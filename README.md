@@ -36,6 +36,12 @@ Code runs in a terminable Web Worker to keep the interface responsive. Each case
 
 ## Verify
 
+Builds use TypeScript 7 through the `@typescript/native` npm alias. ESLint still
+requires the TypeScript 6 API, so the `typescript` dependency aliases
+`@typescript/typescript6`. Keep both aliases when updating the toolchain until
+typescript-eslint supports the new compiler API. This follows Microsoft's
+[side-by-side setup](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0).
+
 ```sh
 npm test                 # Python 3: regression suites + curriculum fixtures + review fingerprints
 npm run test:content     # Content checks during edits, before recording a new review
