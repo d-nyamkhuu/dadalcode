@@ -12,7 +12,7 @@ Each lesson links its problem sources. Premium-listed problems have an accessibl
 
 ## Runtime and interface dependencies
 
-React, CodeMirror, Lucide, and Pyodide retain their respective licenses. Pyodide includes Python and its standard library. Every build collects runtime dependency licenses into `third-party-licenses.txt`, linked from the published Credits and licenses page. Exact Pyodide, Python, and Emscripten license texts are vendored in `licenses/`. Unmodified Pyodide source for the bundled version is available at https://github.com/pyodide/pyodide/tree/0.29.5; the corresponding Python and compiler sources are linked in `licenses/README.md`. Vite, TypeScript, Playwright, and lint/format tools are development dependencies. The interface uses system fonts; no font files are distributed. Earlier revisions bundled Inter under the SIL Open Font License; that dependency has been removed.
+React, CodeMirror, Lucide, and Pyodide retain their respective licenses. Pyodide includes Python and its standard library. Every build collects runtime dependency licenses into `third-party-licenses.txt`, linked from the published Credits and licenses page. Exact Pyodide, Python, and Emscripten license texts are vendored in `licenses/`. Unmodified Pyodide source for the bundled version is available at https://github.com/pyodide/pyodide/tree/314.0.7; the corresponding Python and compiler sources are linked in `licenses/README.md`. Vite, TypeScript, Playwright, and lint/format tools are development dependencies. The interface uses system fonts; no font files are distributed. Earlier revisions bundled Inter under the SIL Open Font License; that dependency has been removed.
 
 ## Design references
 
