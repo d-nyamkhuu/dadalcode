@@ -1,0 +1,82 @@
+{
+  "intuition": [
+    "A normal stack answers recency questions, while a frequency map answers popularity questions. This structure needs both: remove a maximum-frequency value, then use recency only among those tied values. Recomputing frequencies and scanning backward on every pop would be unnecessarily expensive.",
+    "Organize push events by the frequency level they reach. When a value\u2019s count becomes f, append it to groups[f]. That group\u2019s stack order records which values most recently reached that level. maximum identifies the highest currently occupied level, so popping its final entry satisfies both the frequency priority and the recency tie-break.",
+    "Lower-level entries remain as history when a high-level occurrence is removed. They are not duplicates to delete: once a value drops back to that frequency, its earlier level event is again relevant. After popping, decrement the value count; if the highest group empties, move maximum down one level. These updates maintain constant-time operations without stale heap priorities. The input guarantees pop is requested only when an occurrence remains in the structure."
+  ],
+  "walkthrough": {
+    "input": {
+      "operations": [
+        [
+          "push",
+          5
+        ],
+        [
+          "push",
+          7
+        ],
+        [
+          "push",
+          5
+        ],
+        [
+          "push",
+          7
+        ],
+        [
+          "push",
+          4
+        ],
+        [
+          "push",
+          5
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "steps": [
+      "Push 5,7,5,7,4,5. The frequency-three group contains [5], while the frequency-two group contains [5,7].",
+      "The first pop removes 5 from level 3. That group empties, so maximum falls to 2.",
+      "At level 2, 7 is more recent than 5 and is popped next.",
+      "The next pop removes 5 from level 2, leaving all remaining values at frequency one.",
+      "The frequency-one group still records [5,7,4]. Its latest entry is 4, producing pop results [5,7,5,4]."
+    ],
+    "result": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      5,
+      7,
+      5,
+      4
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "groups[level].append(val)",
+      "note": "The push is recorded at its new frequency level, and append order captures the recency needed for ties."
+    },
+    {
+      "code": "val = groups[level].pop()",
+      "note": "The highest group supplies maximum frequency; its stack top supplies the most recently pushed tied occurrence."
+    },
+    {
+      "code": "self.maximum -= 1",
+      "note": "The maximum drops only when its group becomes empty; lower-frequency histories already contain the next valid choices."
+    }
+  ]
+}

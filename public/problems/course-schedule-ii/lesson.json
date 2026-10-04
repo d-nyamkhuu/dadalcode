@@ -1,0 +1,65 @@
+{
+  "slug": "course-schedule-ii",
+  "headline": "Release courses only after every prerequisite is complete",
+  "statement": "Given numCourses courses numbered 0..numCourses-1 and prerequisite pairs [course, prerequisite], return any ordering in which every prerequisite appears before its course. Return [] if no such ordering exists.",
+  "prerequisites": [
+    "Directed graphs",
+    "Queues",
+    "Topological sorting"
+  ],
+  "constraints": [
+    "1 <= numCourses <= 2000",
+    "0 <= len(prerequisites) <= numCourses * (numCourses - 1)",
+    "Prerequisite pairs are distinct and use valid course numbers",
+    "A course is not its own prerequisite"
+  ],
+  "intuition": "An indegree counts unfinished prerequisite edges. Courses with zero indegree are ready. Taking one course removes its outgoing prerequisite obligations, potentially making more courses ready. A cycle leaves some obligations impossible to release.",
+  "approach": [
+    "Build edges prerequisite -> course and count each course\u2019s incoming edges.",
+    "Queue every course with zero indegree, including isolated courses.",
+    "Repeatedly emit a ready course and decrement its dependents\u2019 indegrees.",
+    "If fewer than numCourses were emitted, return []; otherwise return the order."
+  ],
+  "correctness": "Every emitted course has no remaining incoming edge, so all its prerequisites were emitted earlier and the prefix is valid. Each removed edge can release its dependent only after all its prerequisites finish. In an acyclic graph some remaining vertex always has indegree zero, so all vertices are emitted. If the queue empties early, the remaining graph contains a cycle and no complete valid order exists.",
+  "bruteForce": "Try all course permutations and verify every prerequisite position; this can require n! arrangements.",
+  "complexity": {
+    "time": "O(V+E)",
+    "space": "O(V+E)",
+    "explanation": "V=numCourses and E=prerequisite pairs. Every course and edge is processed once."
+  },
+  "pitfalls": [
+    "The edge direction is prerequisite to course.",
+    "Include isolated courses.",
+    "A partially valid order is not acceptable when a cycle blocks the rest."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/course-schedule-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "graph",
+    "focus": [
+      "graph",
+      "indegree",
+      "queue",
+      "order"
+    ],
+    "pointers": [],
+    "watch": [
+      "course",
+      "prerequisite",
+      "dependent"
+    ],
+    "labels": {
+      "graph": "Graph",
+      "indegree": "Indegree",
+      "queue": "Queue",
+      "order": "Order",
+      "course": "Course",
+      "prerequisite": "Prerequisite",
+      "dependent": "Dependent"
+    }
+  }
+}

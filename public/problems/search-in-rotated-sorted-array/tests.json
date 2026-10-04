@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Example: after pivot",
+    "input": {
+      "nums": [
+        4,
+        5,
+        6,
+        7,
+        0,
+        1,
+        2
+      ],
+      "target": 0
+    },
+    "expected": 4
+  },
+  {
+    "name": "Example: absent",
+    "input": {
+      "nums": [
+        4,
+        5,
+        6,
+        7,
+        0,
+        1,
+        2
+      ],
+      "target": 3
+    },
+    "expected": -1
+  },
+  {
+    "name": "Singleton present",
+    "input": {
+      "nums": [
+        1
+      ],
+      "target": 1
+    },
+    "expected": 0
+  },
+  {
+    "name": "Unrotated endpoint",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "target": 4
+    },
+    "expected": 3
+  },
+  {
+    "name": "Two values",
+    "input": {
+      "nums": [
+        3,
+        1
+      ],
+      "target": 3
+    },
+    "expected": 0
+  },
+  {
+    "name": "Target inside right sorted half",
+    "input": {
+      "nums": [
+        6,
+        7,
+        0,
+        1,
+        2,
+        4,
+        5
+      ],
+      "target": 4
+    },
+    "expected": 5
+  },
+  {
+    "name": "Singleton absent",
+    "input": {
+      "nums": [
+        1
+      ],
+      "target": 2
+    },
+    "expected": -1
+  },
+  {
+    "name": "Rotated last endpoint",
+    "input": {
+      "nums": [
+        4,
+        5,
+        1,
+        2,
+        3
+      ],
+      "target": 3
+    },
+    "expected": 4
+  }
+]

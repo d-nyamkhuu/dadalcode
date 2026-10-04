@@ -1,0 +1,169 @@
+[
+  {
+    "name": "Example: three ranges",
+    "input": {
+      "nums": [
+        -2,
+        0,
+        3,
+        -5,
+        2,
+        -1
+      ],
+      "queries": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    "expected": [
+      1,
+      -1,
+      -3
+    ]
+  },
+  {
+    "name": "Example: single element range",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3
+      ],
+      "queries": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "expected": [
+      2
+    ]
+  },
+  {
+    "name": "Single negative",
+    "input": {
+      "nums": [
+        -5
+      ],
+      "queries": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "expected": [
+      -5,
+      -5
+    ]
+  },
+  {
+    "name": "Zero totals",
+    "input": {
+      "nums": [
+        0,
+        0
+      ],
+      "queries": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Boundary suffix",
+    "input": {
+      "nums": [
+        4,
+        -2,
+        7
+      ],
+      "queries": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "expected": [
+      5,
+      4
+    ]
+  },
+  {
+    "name": "Entire array",
+    "input": {
+      "nums": [
+        100,
+        -100,
+        8
+      ],
+      "queries": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "expected": [
+      8,
+      0
+    ]
+  },
+  {
+    "name": "Large final singleton and cancellation",
+    "input": {
+      "nums": [
+        100000,
+        -100000
+      ],
+      "queries": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "expected": [
+      -100000,
+      0
+    ]
+  }
+]

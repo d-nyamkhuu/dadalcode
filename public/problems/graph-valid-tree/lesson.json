@@ -1,0 +1,68 @@
+{
+  "slug": "graph-valid-tree",
+  "headline": "Check edge count and reachability",
+  "statement": "Given n vertices labeled 0 through n-1 and undirected edges, determine whether they form one connected graph without cycles. A single vertex with no edges is a tree.",
+  "prerequisites": [
+    "Adjacency lists",
+    "Depth-first traversal",
+    "Connected components"
+  ],
+  "constraints": [
+    "1 <= n <= 2000",
+    "0 <= len(edges) <= 5000",
+    "Distinct endpoints lie in 0..n-1",
+    "No self-loops or repeated undirected edges"
+  ],
+  "intuition": "An undirected tree on n vertices has n-1 edges. That count alone is insufficient: a disconnected graph can hide a cycle. After the edge-count check, visit from vertex zero and ensure every vertex is reachable.",
+  "approach": [
+    "Reject unless the number of edges is n-1.",
+    "Build an adjacency list in both directions.",
+    "Traverse from vertex zero with an explicit stack and a visited set, then compare its size to n."
+  ],
+  "correctness": "A connected undirected graph contains a spanning tree with n-1 edges. If it has exactly that many total edges, no extra edge can create a cycle. Thus edge count plus connectivity is sufficient; both conditions are also necessary for a tree.",
+  "bruteForce": "Check reachability between every pair of vertices and separately detect cycles; repeated traversals are unnecessary.",
+  "complexity": {
+    "time": "O(n + e)",
+    "space": "O(n + e)",
+    "explanation": "Each vertex and edge is visited at most a constant number of times; the adjacency list stores both directions."
+  },
+  "pitfalls": [
+    "Edge count alone cannot prove connectivity.",
+    "Insert both directions for each edge.",
+    "Do not interpret revisiting the parent through an undirected edge as a new vertex."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/graph-valid-tree/"
+    },
+    {
+      "label": "Verified accessible statement (LeetCode Wiki)",
+      "url": "https://leetcode.doocs.org/en/lc/261/"
+    }
+  ],
+  "visualization": {
+    "kind": "graph",
+    "focus": [
+      "edges",
+      "adjacency",
+      "stack",
+      "visited"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "neighbor",
+      "n"
+    ],
+    "labels": {
+      "edges": "Edges",
+      "adjacency": "Adjacency",
+      "stack": "Stack",
+      "visited": "Visited",
+      "node": "Node",
+      "neighbor": "Neighbor",
+      "n": "N"
+    }
+  }
+}

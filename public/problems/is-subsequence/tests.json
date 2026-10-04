@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Official true",
+    "input": {
+      "s": "abc",
+      "t": "ahbgdc"
+    },
+    "expected": true
+  },
+  {
+    "name": "Official false",
+    "input": {
+      "s": "axc",
+      "t": "ahbgdc"
+    },
+    "expected": false
+  },
+  {
+    "name": "Both empty",
+    "input": {
+      "s": "",
+      "t": ""
+    },
+    "expected": true
+  },
+  {
+    "name": "Empty target",
+    "input": {
+      "s": "a",
+      "t": ""
+    },
+    "expected": false
+  },
+  {
+    "name": "Repeated requirement",
+    "input": {
+      "s": "aa",
+      "t": "ab"
+    },
+    "expected": false
+  },
+  {
+    "name": "Order matters",
+    "input": {
+      "s": "ba",
+      "t": "ab"
+    },
+    "expected": false
+  },
+  {
+    "name": "Empty requirement with nonempty target",
+    "input": {
+      "s": "",
+      "t": "abc"
+    },
+    "expected": true
+  },
+  {
+    "name": "Repeated letters with enough positions",
+    "input": {
+      "s": "aa",
+      "t": "aba"
+    },
+    "expected": true
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "slug": "encode-and-decode-strings",
+  "headline": "Separate framing from payload using length prefixes",
+  "statement": "Implement Codec.encode(strs) to turn a list of strings into one string and Codec.decode(s) to recover exactly the original list. Strings may contain any character, including delimiters and empty strings. Do not use serialization libraries. decode receives a stream produced by encode; malformed external streams are outside this contract.",
+  "prerequisites": [
+    "String slicing",
+    "Integer parsing",
+    "Framing protocols"
+  ],
+  "constraints": [
+    "1 <= number of strings <= 200",
+    "0 <= length of each string <= 200",
+    "Input strings may contain characters with codes 0 through 255"
+  ],
+  "intuition": "A delimiter alone cannot distinguish a separator from the same character inside a message. Put each payload\u2019s character count before a #. The decoder reads # only while parsing the length, then consumes exactly that many payload characters.",
+  "approach": [
+    "For each string, append decimal length, #, and the original text. Join all chunks once.",
+    "During decoding, locate the next # from the current header start.",
+    "Parse the length, slice that many characters, and advance to the next header."
+  ],
+  "correctness": "Each encoded record states exactly how many characters belong to its payload. The decoder starts at the first header and advances by header length plus declared payload length. Inductively it reconstructs each record with neither omitted characters nor accidental splits, including zero-length records.",
+  "bruteForce": "Joining with a fixed separator fails whenever a string contains that separator. Escaping separators can work but needs its own unambiguous escape rules.",
+  "complexity": {
+    "time": "O(C + m)",
+    "space": "O(C + m)",
+    "explanation": "C is total payload length and m is the number of strings. Header scanning and slicing are linear in the encoded size, and joining avoids repeated full-string copies."
+  },
+  "pitfalls": [
+    "Do not split the entire encoded stream on #.",
+    "Distinguish a list containing an empty string from no records.",
+    "Move the cursor past the payload, not merely past the header."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/encode-and-decode-strings/"
+    },
+    {
+      "label": "Public statement: LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/271/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "strs",
+      "chunks",
+      "result",
+      "s"
+    ],
+    "pointers": [
+      "i",
+      "end"
+    ],
+    "watch": [
+      "length",
+      "text"
+    ],
+    "labels": {
+      "strs": "Strs",
+      "chunks": "Chunks",
+      "result": "Result",
+      "s": "S",
+      "i": "I",
+      "end": "End",
+      "length": "Length",
+      "text": "Text"
+    }
+  }
+}

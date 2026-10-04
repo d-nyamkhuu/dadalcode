@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "Every value must go into one of two equal-sum groups. If the total is odd, no integer half exists and the answer is immediately false. Otherwise it is enough to find one subset summing to half; all remaining elements automatically form the other half.",
+    "This is a 0/1 selection problem, not a contiguous-window problem. reachable[s] records whether processed elements can make sum s. Sum zero begins reachable because the empty subset is always available. When a value arrives, each subtotal can remain reachable without it or become reachable by extending a previously reachable subtotal-value.",
+    "The one-dimensional table must be updated backward. A forward scan would read entries already created by the current value and effectively allow that value to be selected several times. Descending order reads only the state from before including this value. The resulting table retains all possible subset sums up to the target while discarding irrelevant larger sums. Duplicate values are still separate input elements, so each copy gets its own update pass.",
+    "Strictly positive inputs let us discard sums above target: adding another value can never bring them back down. Negative values would invalidate that truncation; zeros are outside this problem's domain, though a 0/1 subset DP can handle them with care. Once target is reachable, later values can be excluded from the chosen subset, so the reference returns early without losing a valid partition."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        5,
+        11,
+        5
+      ]
+    },
+    "steps": [
+      "For nums=[1,5,11,5], total=22 and target=11. Initialize only reachable[0] to true.",
+      "Processing 1 adds sum 1, leaving reachable sums {0,1}.",
+      "Processing the first 5 adds sums 5 and 6, so the set is {0,1,5,6}.",
+      "Processing 11 makes target 11 reachable directly from sum zero. Backward updates do not reuse the same 11.",
+      "The target is now reachable, so return true immediately without processing the final 5. The chosen subset [11] leaves complementary values [1,5,5], which also sum to 11."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if total % 2:",
+      "note": "Parity rules out equal integer sums before allocating or updating the dynamic-programming table."
+    },
+    {
+      "code": "for subtotal in range(target, value - 1, -1):",
+      "note": "Descending sums ensure each input occurrence contributes at most once, maintaining 0/1 rather than unlimited selection."
+    },
+    {
+      "code": "reachable[subtotal] = reachable[subtotal] or reachable[subtotal - value]",
+      "note": "The two possibilities correspond to excluding the current value or including it after an already constructible smaller sum."
+    }
+  ]
+}

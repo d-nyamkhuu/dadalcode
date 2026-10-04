@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Example: shared board",
+    "input": {
+      "board": [
+        [
+          "o",
+          "a",
+          "a",
+          "n"
+        ],
+        [
+          "e",
+          "t",
+          "a",
+          "e"
+        ],
+        [
+          "i",
+          "h",
+          "k",
+          "r"
+        ],
+        [
+          "i",
+          "f",
+          "l",
+          "v"
+        ]
+      ],
+      "words": [
+        "oath",
+        "pea",
+        "eat",
+        "rain"
+      ]
+    },
+    "expected": [
+      "eat",
+      "oath"
+    ]
+  },
+  {
+    "name": "Example: cannot reuse",
+    "input": {
+      "board": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "words": [
+        "abcb"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Prefix and longer word",
+    "input": {
+      "board": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "words": [
+        "a",
+        "ab",
+        "abc",
+        "ac"
+      ]
+    },
+    "expected": [
+      "a",
+      "ab",
+      "abc"
+    ]
+  },
+  {
+    "name": "Duplicate paths emit once",
+    "input": {
+      "board": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "a",
+          "a"
+        ]
+      ],
+      "words": [
+        "a",
+        "aa",
+        "aaa",
+        "aaaa"
+      ]
+    },
+    "expected": [
+      "a",
+      "aa",
+      "aaa",
+      "aaaa"
+    ]
+  },
+  {
+    "name": "Single missing",
+    "input": {
+      "board": [
+        [
+          "a"
+        ]
+      ],
+      "words": [
+        "b"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Vertical path",
+    "input": {
+      "board": [
+        [
+          "c"
+        ],
+        [
+          "a"
+        ],
+        [
+          "t"
+        ]
+      ],
+      "words": [
+        "cat",
+        "tac",
+        "act"
+      ]
+    },
+    "expected": [
+      "cat",
+      "tac"
+    ]
+  },
+  {
+    "name": "Only diagonal spells a word",
+    "input": {
+      "board": [
+        [
+          "a",
+          "x"
+        ],
+        [
+          "x",
+          "b"
+        ]
+      ],
+      "words": [
+        "ab"
+      ]
+    },
+    "expected": []
+  }
+]

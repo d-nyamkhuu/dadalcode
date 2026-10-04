@@ -1,0 +1,52 @@
+{
+  "slug": "maximum-subarray",
+  "headline": "Choose whether to extend or restart",
+  "statement": "Return the largest sum of any nonempty contiguous subarray of nums.",
+  "prerequisites": [
+    "Dynamic programming",
+    "Contiguous subarrays"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100000.",
+    "Values range from -10000 to 10000."
+  ],
+  "intuition": "The best subarray ending at the next value has only two possibilities: extend the previous best ending sum, or start at this value. A negative previous sum makes extending worse than starting fresh at the new value. Keep both the best ending here and the best seen anywhere.",
+  "approach": [
+    "Initialize ending and best to the first value.",
+    "At each later value, compare starting fresh with extending ending.",
+    "Update the global best and return it."
+  ],
+  "correctness": "Every subarray ending at i either starts at i or extends a subarray ending at i-1. Choosing the better option gives the optimal ending sum by induction. Taking the maximum over all ending positions therefore covers every nonempty subarray.",
+  "bruteForce": "Enumerate every start/end pair and accumulate sums in O(n²) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Only two running sums are needed."
+  },
+  "pitfalls": [
+    "Initialize from the first element, not zero: all-negative arrays have a negative answer.",
+    "Subarrays must be contiguous.",
+    "Return the global best rather than the final ending sum."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/maximum-subarray/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "value",
+      "ending",
+      "best"
+    ],
+    "labels": {}
+  }
+}

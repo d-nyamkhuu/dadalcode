@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Example: all distinct",
+    "input": {
+      "s": "ABC"
+    },
+    "expected": 10
+  },
+  {
+    "name": "Example: repeated boundary",
+    "input": {
+      "s": "ABA"
+    },
+    "expected": 8
+  },
+  {
+    "name": "Leetcode example",
+    "input": {
+      "s": "LEETCODE"
+    },
+    "expected": 92
+  },
+  {
+    "name": "Single",
+    "input": {
+      "s": "A"
+    },
+    "expected": 1
+  },
+  {
+    "name": "All same",
+    "input": {
+      "s": "AAA"
+    },
+    "expected": 3
+  },
+  {
+    "name": "Two repeated letters",
+    "input": {
+      "s": "ABAB"
+    },
+    "expected": 12
+  },
+  {
+    "name": "Repeated endpoints",
+    "input": {
+      "s": "ABCA"
+    },
+    "expected": 18
+  },
+  {
+    "name": "Consecutive repeated boundaries",
+    "input": {
+      "s": "AABAA"
+    },
+    "expected": 15
+  }
+]

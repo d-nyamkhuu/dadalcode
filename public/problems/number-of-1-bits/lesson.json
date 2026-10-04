@@ -1,0 +1,52 @@
+{
+  "slug": "number-of-1-bits",
+  "headline": "Clear the lowest set bit once per iteration",
+  "statement": "Given a positive integer n, return the number of 1 bits in its binary representation, also called its Hamming weight.",
+  "prerequisites": [
+    "Binary representation",
+    "Bitwise AND"
+  ],
+  "constraints": [
+    "1 <= n <= 2147483647"
+  ],
+  "intuition": "Subtracting one flips the lowest 1 bit to 0 and changes all lower zero bits to 1. ANDing with the original value removes that lowest 1 while leaving all higher bits unchanged. Each operation therefore accounts for exactly one set bit.",
+  "approach": [
+    "Set count to zero.",
+    "While n is nonzero, replace it with n & (n-1) and increment count.",
+    "Return count when every set bit has been removed."
+  ],
+  "correctness": "For any positive n, the transformation n&(n-1) clears exactly its least significant set bit and no other set bit. After t iterations, count=t and exactly t original set bits have been removed. The loop ends when none remain, so count is the original Hamming weight.",
+  "bruteForce": "Inspect each bit position with a mask or repeatedly shift and test n&1. That takes O(bit width) even for sparse values.",
+  "complexity": {
+    "time": "O(number of set bits)",
+    "space": "O(1)",
+    "explanation": "At most 31 iterations are needed under the stated input bound."
+  },
+  "pitfalls": [
+    "Use bitwise AND, not logical and.",
+    "Do not count the bit length: 128 has eight binary positions but one set bit.",
+    "Keep a count before mutating n, whose final value is zero."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/number-of-1-bits/"
+    }
+  ],
+  "visualization": {
+    "kind": "bits",
+    "focus": [
+      "n"
+    ],
+    "pointers": [],
+    "watch": [
+      "count",
+      "previous"
+    ],
+    "labels": {
+      "n": "N",
+      "count": "Count",
+      "previous": "Previous"
+    }
+  }
+}

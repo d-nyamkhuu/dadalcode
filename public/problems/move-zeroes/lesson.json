@@ -1,0 +1,53 @@
+{
+  "slug": "move-zeroes",
+  "headline": "Maintain a compact prefix of nonzero values",
+  "statement": "Move all zero values to the end of nums in place while preserving the order of nonzero values. The method returns nothing.",
+  "prerequisites": [
+    "Stable compaction",
+    "Read and write pointers"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10,000",
+    "Values fit signed 32-bit integers"
+  ],
+  "intuition": "Maintain a compact prefix of nonzero values. Each encountered nonzero moves to the next free prefix position; swapping leaves zeros behind.",
+  "approach": [
+    "Set write=0 and scan read left to right.",
+    "For each nonzero, swap nums[read] with nums[write] and advance write.",
+    "Ignore zeros; after the scan they occupy the remaining suffix."
+  ],
+  "correctness": "Before each scan step, nums[:write] contains precisely the encountered nonzero values in original order. Swapping the next nonzero into write appends it to that prefix; positions skipped between write and read contain zeros. At termination every nonzero is in the prefix and all remaining values are zero.",
+  "bruteForce": "Repeatedly remove a zero and append it to the end, shifting many array elements: O(n²) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Mutate nums rather than returning a newly allocated array.",
+    "Preserve nonzero order.",
+    "Advancing write for zeros leaves holes in the compact prefix."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/move-zeroes/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "read",
+      "write"
+    ],
+    "watch": [],
+    "labels": {
+      "nums": "Nums",
+      "read": "Read",
+      "write": "Write"
+    }
+  }
+}

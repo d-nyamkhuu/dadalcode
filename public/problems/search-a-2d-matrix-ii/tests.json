@@ -1,0 +1,234 @@
+[
+  {
+    "name": "Present interior",
+    "input": {
+      "matrix": [
+        [
+          1,
+          4,
+          7,
+          11,
+          15
+        ],
+        [
+          2,
+          5,
+          8,
+          12,
+          19
+        ],
+        [
+          3,
+          6,
+          9,
+          16,
+          22
+        ],
+        [
+          10,
+          13,
+          14,
+          17,
+          24
+        ],
+        [
+          18,
+          21,
+          23,
+          26,
+          30
+        ]
+      ],
+      "target": 5
+    },
+    "expected": true
+  },
+  {
+    "name": "Absent interior",
+    "input": {
+      "matrix": [
+        [
+          1,
+          4,
+          7,
+          11,
+          15
+        ],
+        [
+          2,
+          5,
+          8,
+          12,
+          19
+        ],
+        [
+          3,
+          6,
+          9,
+          16,
+          22
+        ],
+        [
+          10,
+          13,
+          14,
+          17,
+          24
+        ],
+        [
+          18,
+          21,
+          23,
+          26,
+          30
+        ]
+      ],
+      "target": 20
+    },
+    "expected": false
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "matrix": [
+        [
+          -5
+        ]
+      ],
+      "target": -5
+    },
+    "expected": true
+  },
+  {
+    "name": "Below minimum",
+    "input": {
+      "matrix": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "target": 0
+    },
+    "expected": false
+  },
+  {
+    "name": "Overlapping row ranges",
+    "input": {
+      "matrix": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "target": 2
+    },
+    "expected": true
+  },
+  {
+    "name": "Single row found",
+    "input": {
+      "matrix": [
+        [
+          1,
+          3,
+          5
+        ]
+      ],
+      "target": 3
+    },
+    "expected": true
+  },
+  {
+    "name": "Single row missing",
+    "input": {
+      "matrix": [
+        [
+          1,
+          3,
+          5
+        ]
+      ],
+      "target": 4
+    },
+    "expected": false
+  },
+  {
+    "name": "Single column found",
+    "input": {
+      "matrix": [
+        [
+          1
+        ],
+        [
+          3
+        ],
+        [
+          5
+        ]
+      ],
+      "target": 3
+    },
+    "expected": true
+  },
+  {
+    "name": "Single column missing",
+    "input": {
+      "matrix": [
+        [
+          1
+        ],
+        [
+          3
+        ],
+        [
+          5
+        ]
+      ],
+      "target": 4
+    },
+    "expected": false
+  },
+  {
+    "name": "Repeated target",
+    "input": {
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "target": 1
+    },
+    "expected": true
+  },
+  {
+    "name": "Above repeated grid",
+    "input": {
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "target": 3
+    },
+    "expected": false
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "slug": "clone-graph",
+  "headline": "Create one new node per original before following edges",
+  "statement": "Given a node in a connected undirected graph, return a deep copy of the graph. Every copied node must be a new object with the same value and copied neighbor connections; no returned object may reuse an original node. Return None for an empty graph. Trainer input is a 1-indexed adjacency list; the entry node has value 1.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Adjacency lists and visited sets"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 100",
+    "Node values are unique integers 1 through n.",
+    "The graph is connected, with no self-loops or repeated edges."
+  ],
+  "intuition": "Cycles mean recursively following neighbors without a memo map never ends. Map every original node to exactly one clone as soon as it is discovered. The map both records visits and ensures all incoming edges refer to the same copied node.",
+  "approach": [
+    "Return None for empty input.",
+    "Create the entry clone and queue its original.",
+    "For every original edge, create and enqueue an unseen neighbor clone.",
+    "Append the mapped neighbor clone to the current clone\u2019s neighbors."
+  ],
+  "correctness": "Each discovered original has one distinct clone before any edge can revisit it. Processing an original appends exactly one cloned connection per original neighbor, preserving the adjacency structure and multiplicity. Connectedness ensures all nodes are discovered; only new clone objects are linked, establishing a deep copy.",
+  "bruteForce": "Recursively clone every neighbor with no memoization. Cycles cause infinite recursion, and repeated paths incorrectly create multiple copies of one node.",
+  "complexity": {
+    "time": "O(V+E)",
+    "space": "O(V+E) including the cloned graph; O(V) auxiliary",
+    "explanation": "Every node is queued once and every adjacency entry is copied once. The map and queue are linear in vertex count."
+  },
+  "pitfalls": [
+    "Record a clone before exploring its neighbors.",
+    "Return the clone of the entry, not the original.",
+    "One original must map to one clone even when multiple paths reach it."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/clone-graph/"
+    }
+  ],
+  "visualization": {
+    "kind": "graph",
+    "focus": [
+      "node",
+      "copies",
+      "queue",
+      "current"
+    ],
+    "pointers": [],
+    "watch": [
+      "neighbor"
+    ],
+    "labels": {
+      "node": "Node",
+      "copies": "Copies",
+      "queue": "Queue",
+      "current": "Current",
+      "neighbor": "Neighbor"
+    }
+  }
+}

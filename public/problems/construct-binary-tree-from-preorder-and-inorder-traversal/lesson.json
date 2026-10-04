@@ -1,0 +1,56 @@
+{
+  "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+  "headline": "Use inorder to know when a left branch is complete",
+  "statement": "Reconstruct and return the unique binary tree described by preorder and inorder arrays. Every value is unique and both traversals are valid for the same tree.",
+  "prerequisites": [
+    "Preorder and inorder traversals",
+    "Stack-based traversal"
+  ],
+  "constraints": [
+    "1 <= traversal length <= 3000.",
+    "Values are unique and range from -3000 to 3000.",
+    "Both traversals describe the same tree."
+  ],
+  "intuition": "Preorder introduces roots before descendants. Inorder reaches a node only after its left subtree is complete. A stack holds roots whose right attachment is still unknown. When its top matches the next inorder value, pop completed roots; the next preorder node begins the right subtree of the last popped root.",
+  "approach": [
+    "Create the first preorder node as root and push it.",
+    "For every next value, attach it on the left if stack top has not reached its inorder position.",
+    "Otherwise pop nodes matching consecutive inorder values and attach the new node to the last popped node's right.",
+    "Push the new node and continue."
+  ],
+  "correctness": "The stack is the active ancestor chain of preorder construction. Before an inorder match, preorder nodes belong to the top node's unbuilt left subtree. Matching and popping advances past fully built left subtrees and their roots; the last popped ancestor is exactly the root whose right subtree comes next. Valid distinct traversals make each attachment unique.",
+  "bruteForce": "Recursively locate each root with a linear inorder search and slice arrays. That can take O(n\u00b2) time and storage on a chain; an explicit stack avoids repeated searches and recursion limits.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h) auxiliary plus O(n) output",
+    "explanation": "Each node is pushed and popped once; the stack is an ancestor path."
+  },
+  "pitfalls": [
+    "Inorder matching uses a separate pointer, not the preorder index.",
+    "Attach right to the last popped node, not the current stack top.",
+    "Duplicate values would remove uniqueness and are excluded."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "node",
+      "stack",
+      "preorder",
+      "inorder"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {}
+  }
+}

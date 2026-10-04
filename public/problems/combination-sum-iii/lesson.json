@@ -1,0 +1,60 @@
+{
+  "slug": "combination-sum-iii",
+  "headline": "Select distinct digits with a fixed count and sum",
+  "statement": "Return all sets of exactly k distinct numbers from 1 through 9 whose sum is n. Each number may be used once. Answer and number ordering are unrestricted.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "2 <= k <= 9",
+    "1 <= n <= 60"
+  ],
+  "intuition": "The count and sum must both match. Use increasing choices to enforce distinctness and eliminate reorderings. Because all values are positive, any value exceeding the remaining sum and all later values are impossible.",
+  "approach": [
+    "Track path, next value start, and remaining sum.",
+    "Save only when len(path)==k and remaining==0.",
+    "Try allowed values 1 through 9 in increasing order.",
+    "Recurse with value+1 to prohibit reuse, then pop.",
+    "Optional pruning: for needed slots beginning at start, the minimum possible suffix sum is needed*(2*start+needed-1)//2; the maximum is needed*(19-needed)//2 using the largest available digits. Reject a remainder outside these bounds. The reference uses simpler count and overshoot bounds for an inspectable search."
+  ],
+  "correctness": "Every saved path has k distinct values from the required range and totals n. Every valid set has a unique increasing ordering visited by the recursion. Positive-value pruning only removes paths that would overshoot, so the enumeration is complete without duplicates.",
+  "bruteForce": "Choose all subsets of the nine digits and filter by size and sum. Backtracking exposes the same choices but prunes impossible partial sums.",
+  "complexity": {
+    "time": "O(k * C(9,k))",
+    "space": "O(k) auxiliary, excluding output",
+    "explanation": "The bounded digit universe gives at most C(9,k) complete selections; copying a selection costs k."
+  },
+  "pitfalls": [
+    "Meeting the sum early does not satisfy a missing count.",
+    "Use value+1 rather than value in recursion.",
+    "Values stop at 9 regardless of n."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/combination-sum-iii/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "value"
+    ],
+    "watch": [
+      "remaining",
+      "needed"
+    ],
+    "labels": {
+      "path": "Path",
+      "result": "Result",
+      "value": "Value",
+      "remaining": "Remaining",
+      "needed": "Needed"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "is-subsequence",
+  "headline": "Advance the required-character pointer only on a match",
+  "statement": "Return whether s is a subsequence of t: every character of s must appear in t in the same order, though other characters may occur between them.",
+  "prerequisites": [
+    "Two pointers",
+    "String traversal"
+  ],
+  "constraints": [
+    "0 <= len(s) <= 100",
+    "0 <= len(t) <= 10000",
+    "Strings contain lowercase English letters"
+  ],
+  "intuition": "Match each required character as early as possible in t. An earlier match leaves at least as much suffix for the remaining characters as any later match could.",
+  "approach": [
+    "Point matched at the next character required from s.",
+    "Scan t once and advance matched only when its current character is found.",
+    "Accept when matched equals the length of s, including an empty s."
+  ],
+  "correctness": "After every scanned prefix of t, matched is the largest prefix length of s that can fit there. A matching character increases that length by one; a nonmatch cannot satisfy the next requirement. The greedy earliest choice preserves every possible remaining suffix, so reaching len(s) is equivalent to subsequence existence.",
+  "bruteForce": "Enumerate choices of len(s) indices in t and compare their characters.",
+  "complexity": {
+    "time": "O(len(t))",
+    "space": "O(1)",
+    "explanation": "One counter is updated during a single scan of t."
+  },
+  "pitfalls": [
+    "An empty s is always a subsequence.",
+    "Repeated letters need separate matching positions.",
+    "Do not reset the source pointer after a nonmatch."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/is-subsequence/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s",
+      "t"
+    ],
+    "pointers": [
+      "matched",
+      "i"
+    ],
+    "watch": [
+      "char"
+    ],
+    "labels": {
+      "s": "S",
+      "t": "T",
+      "matched": "Matched",
+      "i": "I",
+      "char": "Char"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Reachable",
+    "input": {
+      "nums": [
+        2,
+        3,
+        1,
+        1,
+        4
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Blocking zero",
+    "input": {
+      "nums": [
+        3,
+        2,
+        1,
+        0,
+        4
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Already finished",
+    "input": {
+      "nums": [
+        0
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "No first move",
+    "input": {
+      "nums": [
+        0,
+        1
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Jump over zero",
+    "input": {
+      "nums": [
+        2,
+        0,
+        0
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Forced short reach",
+    "input": {
+      "nums": [
+        1,
+        0,
+        1
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Maximum jump permits shorter landing",
+    "input": {
+      "nums": [
+        100000,
+        0,
+        0
+      ]
+    },
+    "expected": true
+  }
+]

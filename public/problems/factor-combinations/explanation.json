@@ -1,0 +1,48 @@
+{
+  "intuition": [
+    "Factorizations are unordered: [2,6] and [6,2] represent the same answer. A search that chooses arbitrary factors must spend extra effort deduplicating permutations. Choosing factors in nondecreasing order removes those duplicate branches at their source.",
+    "At any remaining product r, a nontrivial factorization has a smallest factor no greater than sqrt(r). Search candidate divisors only up to that boundary. When factor divides remaining, the pair factor and remaining/factor already completes one valid answer after the current path. The quotient may itself split into more factors, so recurse to discover those longer answers.",
+    "The next recursive search starts at the selected factor, not at two. This permits repeated factors while preserving nondecreasing order. Emitting the pair before recursion covers the decomposition that leaves the quotient whole; recursion covers its further decomposition. A prime offers no divisor and produces no answer, while n=1 likewise has no permitted factorization. The original n alone never appears because every emission introduces a divisor and a quotient."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 12
+    },
+    "steps": [
+      "For n=12, search starts with remaining=12, minimum factor 2, and an empty path.",
+      "Factor 2 divides 12, yielding quotient 6. Emit [2,6] as a complete two-factor answer.",
+      "Recurse with path=[2] and remaining=6. Factor 2 divides it, so emit [2,2,3].",
+      "Return to the original search, undo the chosen 2, and try factor 3. It divides 12, emitting [3,4].",
+      "No further factor up to sqrt(12) remains. Return the three combinations, with their outer ordering irrelevant."
+    ],
+    "result": [
+      [
+        2,
+        2,
+        3
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "while factor * factor <= remaining:",
+      "note": "Every nondecreasing factorization has a smallest factor within this bound, so larger starting factors cannot create new answers."
+    },
+    {
+      "code": "result.append(path + [factor, quotient])",
+      "note": "The selected divisor and untouched quotient finish one valid factorization immediately; copying path prevents later backtracking from changing it."
+    },
+    {
+      "code": "search(quotient, factor)",
+      "note": "The next factor may equal the current one, allowing repeated factors, but may not be smaller, preventing permutation duplicates."
+    }
+  ]
+}

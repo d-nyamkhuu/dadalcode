@@ -1,0 +1,61 @@
+{
+  "slug": "find-k-closest-elements",
+  "headline": "Binary search the start of an optimal sorted window",
+  "statement": "Given an ascending integer array arr, return the k values closest to x in ascending order. Smaller values win equal-distance ties.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= k <= len(arr) <= 10^4",
+    "arr is sorted; values and x lie between -10^4 and 10^4."
+  ],
+  "intuition": "An optimal answer is a contiguous window of k sorted values: skipping an interior value cannot improve distance. Compare the two competing boundary values of adjacent windows. If x-arr[mid] exceeds arr[mid+k]-x, shifting right improves the window; ties retain the smaller left value.",
+  "approach": [
+    "Search possible starts from 0 through len(arr)-k.",
+    "Compare the dropped left value arr[mid] with the gained right value arr[mid+k].",
+    "Shift right only when the left distance is strictly worse.",
+    "Return the k-value slice at the final start."
+  ],
+  "correctness": "Sorted distances form a valley around x, so a best k-element set can be chosen contiguously. Adjacent windows differ in only their two boundary values; the strict comparison chooses the better side and resolves ties toward smaller values. This decision is monotone in the start index, so binary search finds the leftmost optimal window.",
+  "bruteForce": "Sort every value by (absolute distance, value), take k, then sort the result. That costs O(n log n).",
+  "complexity": {
+    "time": "O(log(n-k+1)+k)",
+    "space": "O(k) output; O(1) auxiliary",
+    "explanation": "Binary search locates the window; slicing copies k result values."
+  },
+  "pitfalls": [
+    "Do not replace the directed boundary expressions with absolute values; the monotone comparison also handles x outside the array.",
+    "Equal distances keep the left window.",
+    "Return ascending order, as the contiguous slice does."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/find-k-closest-elements/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "arr"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "watch": [
+      "k",
+      "x"
+    ],
+    "labels": {
+      "arr": "Arr",
+      "left": "Left",
+      "right": "Right",
+      "mid": "Mid",
+      "k": "K",
+      "x": "X"
+    }
+  }
+}

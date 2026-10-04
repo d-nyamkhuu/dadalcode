@@ -1,0 +1,60 @@
+{
+  "slug": "search-a-2d-matrix-ii",
+  "headline": "Eliminate one row or column at a corner",
+  "statement": "Determine whether target occurs in a rectangular matrix sorted in nondecreasing order both left-to-right within each row and top-to-bottom within each column.",
+  "prerequisites": [
+    "Sorted order",
+    "Matrix indices",
+    "Monotonic search"
+  ],
+  "constraints": [
+    "1 <= rows, columns <= 300",
+    "-10^9 <= values and target <= 10^9",
+    "Rows and columns are sorted in nondecreasing order"
+  ],
+  "intuition": "At the top-right corner, all values to the left are smaller and all values below are larger. If the corner is too big, its whole column can be removed; if too small, its whole row can be removed.",
+  "approach": [
+    "Begin at row zero and the final column.",
+    "Return true on equality; move left when the value is above target.",
+    "Otherwise move down; return false when the position exits the matrix."
+  ],
+  "correctness": "The unsearched candidates form a bottom-left rectangle. A too-large corner proves every value beneath it in the same column is too large. A too-small corner proves every value to its left in the row is too small. Removing these cannot remove target.",
+  "bruteForce": "Inspect every cell in O(mn) time, or binary-search each row in O(m log n).",
+  "complexity": {
+    "time": "O(m + n)",
+    "space": "O(1)",
+    "explanation": "Every move discards a row or column; coordinates are the only extra state."
+  },
+  "pitfalls": [
+    "Rows need not form a globally sorted flattened sequence.",
+    "Start at top-right or bottom-left, where the two directions differ.",
+    "Stop on either row or column boundary."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/search-a-2d-matrix-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "matrix"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "value",
+      "target"
+    ],
+    "labels": {
+      "matrix": "Matrix",
+      "row": "Row",
+      "col": "Col",
+      "value": "Value",
+      "target": "Target"
+    }
+  }
+}

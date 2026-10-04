@@ -1,0 +1,55 @@
+{
+  "intuition": [
+    "A word match is a connected path through cells, not a collection of letter counts. A board may contain enough copies of every letter and still have no legal ordering. Conversely, repeated letters in the word require distinct cells, because a path cannot reuse a square.",
+    "The recursive state consists of a coordinate and the next word index. A mismatch or out-of-bounds coordinate immediately rejects that branch. On a match, temporarily mark the square unavailable and search the four neighbors for the next character. This marker represents only the current path\u2019s occupancy.",
+    "Restoration is as important as marking. A failed path must not prevent a different starting cell or a different branch from using the same board cell. Restore before returning even when a complete word was found, so the caller receives its original board. The terminal index condition means all earlier characters have already matched; it does not require stepping onto an additional square.",
+    "Before searching, reject a word longer than the board or needing more copies of any letter than are available. These are necessary conditions, not proof of adjacency: passing them still requires the full path search. An optional refinement can search the reversed word when its final letter is rarer than its first; reversing a legal path preserves adjacency and no-reuse, reducing the number of candidate starts. The reference retains forward traversal for a consistent walkthrough."
+  ],
+  "walkthrough": {
+    "input": {
+      "board": [
+        [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        [
+          "S",
+          "F",
+          "C",
+          "S"
+        ],
+        [
+          "A",
+          "D",
+          "E",
+          "E"
+        ]
+      ],
+      "word": "ABCCED"
+    },
+    "steps": [
+      "For word=\"ABCCED\", start at the A in board row 0, column 0.",
+      "Match B at (0,1), then C at (0,2), marking each visited square so this path cannot return to it.",
+      "The next C is directly below at (1,2). From there, E at (2,2) extends the matched prefix.",
+      "D at (2,1) completes the six letters. The next recursive index equals the word length, establishing success.",
+      "Unwind the recursion and restore every marked letter. Return true for the valid A\u2192B\u2192C\u2192C\u2192E\u2192D path."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "board[row][col] = '#'",
+      "note": "The temporary marker blocks only cells already on the current recursive path, preventing illegal reuse without a separate visited set."
+    },
+    {
+      "code": "search(row + 1, col, index + 1)",
+      "note": "A neighboring coordinate is searched against the next character, preserving adjacency and character order together."
+    },
+    {
+      "code": "board[row][col] = letter",
+      "note": "Restoration runs after both successful and failed searches, so sibling paths and future calls see the original board."
+    }
+  ]
+}

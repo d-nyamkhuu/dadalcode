@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Example: wrapped route",
+    "input": {
+      "gas": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "cost": [
+        3,
+        4,
+        5,
+        1,
+        2
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: insufficient total",
+    "input": {
+      "gas": [
+        2,
+        3,
+        4
+      ],
+      "cost": [
+        3,
+        4,
+        3
+      ]
+    },
+    "expected": -1
+  },
+  {
+    "name": "Single exact",
+    "input": {
+      "gas": [
+        0
+      ],
+      "cost": [
+        0
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Single impossible",
+    "input": {
+      "gas": [
+        1
+      ],
+      "cost": [
+        2
+      ]
+    },
+    "expected": -1
+  },
+  {
+    "name": "First start",
+    "input": {
+      "gas": [
+        5,
+        1,
+        1
+      ],
+      "cost": [
+        1,
+        3,
+        3
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Last start",
+    "input": {
+      "gas": [
+        0,
+        0,
+        3
+      ],
+      "cost": [
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Unique feasible start with positive total",
+    "input": {
+      "gas": [
+        3,
+        0,
+        0,
+        3
+      ],
+      "cost": [
+        0,
+        2,
+        3,
+        0
+      ]
+    },
+    "expected": 3
+  }
+]

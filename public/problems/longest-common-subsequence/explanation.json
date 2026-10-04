@@ -1,0 +1,37 @@
+{
+  "intuition": [
+    "A subsequence can skip characters but cannot reorder them. Enumerating every subsequence of one string would be exponential, and checking common substrings would solve a different problem. Compare pairs of prefixes: the best length for each pair summarizes all earlier choices.",
+    "When the two final prefix characters match, append that character to the optimum for the two shorter prefixes. Otherwise the two different final characters cannot both represent the same final match, so an optimum skips one of them. Take the larger of dropping the final character from text1 or dropping it from text2.",
+    "The reference keeps only the previous and current rows of this table. A match reads the previous row’s diagonal. A mismatch reads the previous row’s same column and the current row’s preceding column. This dependency order is why columns advance left to right. Zero border entries represent an empty prefix of either string. Skipped letters do not reset an accumulated length; carrying those prefix maxima is exactly what distinguishes a subsequence from a contiguous substring.",
+    "For a length-only query, one may swap the two inputs so the shorter string supplies columns, reducing row storage to O(min(m,n)). This lesson keeps the original input orientation so every visual row and column stays aligned with the named strings; the recurrence and time bound are the same."
+  ],
+  "walkthrough": {
+    "input": {
+      "text1": "abcde",
+      "text2": "ace"
+    },
+    "steps": [
+      "For text1=abcde and text2=ace, begin with previous=[0,0,0,0].",
+      "Reading a matches the first column and yields row [0,1,1,1].",
+      "Reading b adds no match, so the best prefix lengths remain [0,1,1,1].",
+      "Reading c extends the earlier a match, producing [0,1,2,2].",
+      "Reading d preserves that row. Reading e extends the diagonal length 2 to 3.",
+      "Return the final cell 3, corresponding to ace while skipping b and d in text1."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "current[col] = previous[col - 1] + 1",
+      "note": "Matching final characters extend the optimum before both characters by one."
+    },
+    {
+      "code": "current[col] = max(previous[col], current[col - 1])",
+      "note": "On mismatch, skip one final character and retain the better prefix result instead of resetting to zero."
+    },
+    {
+      "code": "previous = current",
+      "note": "Once a row is finished, older rows are no longer needed for the recurrence."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "intuition": [
+    "Count each color and overwrite the array in a second pass. This is O(n) time and O(1) storage; the Dutch-national-flag partition accomplishes it in one pass. A comparison sort learns unnecessary information because there are only three possible values; explicit regions encode all needed ordering.",
+    "Think of mid as the boundary between examined and unknown values. Zeros occupy [0,low), ones occupy [low,mid), unknown values occupy [mid,high], and twos occupy (high,n). The midpoint position itself is still unknown. A zero can be exchanged into its final left region because the displaced value is already known. A two swapped from high brings an unexamined value to mid, so advancing mid immediately would skip a decision. The whole algorithm is organized around preserving these four regions.",
+    "Before every iteration the outer regions and the ones region satisfy their required values. A zero swap preserves the ones region, a one extends it, and a two swap extends the twos region. Each action shrinks the unknown region by one. When it is empty, the entire array is sorted. Every iteration removes one element from the unknown interval.",
+    "The trainer rejects common sorted(nums), nums.sort(), list.sort(nums), copied-list sorting, and straightforward alias forms in sortColors. The conservative source check recognizes local or global shadowing and avoids names with multiple bindings, so user counting helpers named sorted, unrelated helpers named sort, and rebound aliases remain usable. This explicit teaching-rule check is not a general proof of one-pass or constant-space behavior; the four-region invariant establishes those properties for the reference."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        2,
+        0,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "steps": [
+      "Start low=mid=0, high=5 in [2,0,2,1,1,0].",
+      "Swap the first 2 with the final 0; reduce high to 4 but inspect mid=0 again.",
+      "Place both initial zeros into the left region, advancing low and mid to 2.",
+      "Swap the 2 at mid=2 with a 1 from high=4; keep mid to examine that incoming one.",
+      "Advance past the remaining ones; the result is [0,0,1,1,2,2]."
+    ],
+    "result": [
+      0,
+      0,
+      1,
+      1,
+      2,
+      2
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "nums[low], nums[mid] = nums[mid], nums[low]",
+      "note": "Put a zero behind the zero boundary; the known middle-region value moved to mid is safe to pass."
+    },
+    {
+      "code": "nums[mid], nums[high] = nums[high], nums[mid]",
+      "note": "Move a two out of the unknown region while bringing another unknown value back for inspection."
+    },
+    {
+      "code": "while mid <= high:",
+      "note": "Stop precisely when the unknown interval disappears, including processing its final single position."
+    }
+  ]
+}

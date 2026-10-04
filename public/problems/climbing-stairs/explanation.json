@@ -1,0 +1,34 @@
+{
+  "intuition": [
+    "Trying all one-step and two-step move sequences produces the correct count, but the search repeats the same question many times: how many routes reach a particular stair? Dynamic programming stores that answer once. The position matters; the exact route taken to reach it does not.",
+    "Partition routes by their final move. Every route to stair i either takes one step from i-1 or two steps from i-2. These possibilities cannot overlap because their final moves differ. Therefore adding the two earlier route counts gives the count for i, rather than multiplying them.",
+    "The empty route is important: dp[0]=1 means there is one way to remain at the starting stair. Together with dp[1]=1, it seeds the recurrence correctly. The reference keeps a full table so you can inspect the growth, although an optimized version can retain only the last two counts."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 5
+    },
+    "steps": [
+      "For n=5, allocate six entries, one for each stair from 0 through 5. Initialize dp to [1,1,0,0,0,0].",
+      "At stair 2, combine routes from stairs 1 and 0: dp[2]=1+1=2, representing [1,1] and [2].",
+      "At stair 3, dp[3]=2+1=3. The two predecessor groups end in different moves, so none are counted twice.",
+      "At stair 4, dp[4]=3+2=5; at stair 5, dp[5]=5+3=8.",
+      "The completed table is [1,1,2,3,5,8]. Return its last entry: eight distinct ordered move sequences reach stair 5."
+    ],
+    "result": 8
+  },
+  "codeNotes": [
+    {
+      "code": "dp[0], dp[1] = 1, 1",
+      "note": "The zero-stair count represents the empty prefix of a route. It is needed when a two-step move reaches stair 2 directly."
+    },
+    {
+      "code": "dp[i] = dp[i - 1] + dp[i - 2]",
+      "note": "Each term counts a different final move, giving an exhaustive, disjoint partition of the routes instead of enumerating their individual sequences."
+    },
+    {
+      "code": "return dp[n]",
+      "note": "The array indexes stairs rather than moves or route lengths. The requested count is the state for exactly the destination stair."
+    }
+  ]
+}

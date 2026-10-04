@@ -1,0 +1,66 @@
+{
+  "slug": "kth-smallest-element-in-a-sorted-matrix",
+  "headline": "Binary search values and count the lower staircase",
+  "statement": "Given an n by n integer matrix whose rows and columns are nondecreasing, return its kth smallest entry counting duplicates separately. The kth entry is not the kth distinct value. Use less than O(n^2) extra storage.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Row and column indices"
+  ],
+  "constraints": [
+    "1 <= n <= 300",
+    "1 <= k <= n*n",
+    "Values range from -10^9 to 10^9; rows and columns are sorted."
+  ],
+  "intuition": "Search the value range rather than flattening the matrix. To count entries <=mid, begin at the bottom-left corner: a qualifying cell certifies every cell above it in that column; an oversized cell means move upward. This count is monotone in mid.",
+  "approach": [
+    "Set low to the top-left and high to the bottom-right value.",
+    "Count <=mid using a bottom-left staircase with row and col pointers.",
+    "If count<k, raise low to mid+1; otherwise lower high to mid.",
+    "Return the first value whose count reaches k."
+  ],
+  "correctness": "The staircase counts each qualifying cell exactly once using column sortedness, and skips oversized cells safely using row sortedness. The kth value is the smallest integer x with at least k entries <=x. Monotonic counts make binary search find this threshold, including when values repeat.",
+  "bruteForce": "Flatten and sort all entries in O(n^2 log n) time with O(n^2) extra storage.",
+  "complexity": {
+    "time": "O(n * log(R+1)), R = max-min",
+    "space": "O(1)",
+    "explanation": "Each count moves at most n rows and n columns. Binary search halves the integer value interval."
+  },
+  "pitfalls": [
+    "Count duplicates individually.",
+    "Use count<k to exclude mid; count==k does not mean mid is a matrix value.",
+    "The row and column sorting assumptions are both needed."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "matrix"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "mid",
+      "low",
+      "high",
+      "count",
+      "k"
+    ],
+    "labels": {
+      "matrix": "Matrix",
+      "row": "Row",
+      "col": "Col",
+      "mid": "Mid",
+      "low": "Low",
+      "high": "High",
+      "count": "Count",
+      "k": "K"
+    }
+  }
+}

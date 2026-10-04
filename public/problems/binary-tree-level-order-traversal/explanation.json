@@ -1,0 +1,54 @@
+{
+  "intuition": [
+    "A depth-first traversal can collect nodes by depth, but it follows one branch before returning to its siblings. Breadth-first search makes the required grouping explicit: all nodes at one distance from the root are processed before any nodes at the next distance.",
+    "Use a FIFO queue of nodes. Popping a parent and appending its children advances the frontier. The subtle issue is that the queue changes while a level is processed. Freeze its initial length so children added during this iteration wait for the next group instead of entering the current one.",
+    "Left-to-right order also follows from the queue discipline. Parents are removed in their existing left-to-right order, and each appends its left child before its right child. Thus the next frontier has the same desired ordering. A deque keeps removals constant time, unlike removing index zero from a Python list."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        3,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "steps": [
+      "For root [3,9,20,null,null,15,7], begin with queue=[3] and no completed levels.",
+      "Freeze size=1. Remove 3, collect [3], and append children 9 then 20. Save the first level.",
+      "Now freeze size=2. Remove 9, which has no children, then 20, whose children 15 and 7 join the queue.",
+      "The collected second level is [9,20]; newly queued children were excluded from its two removals.",
+      "Process the final queue [15,7] as one level. With no children left, return [[3],[9,20],[15,7]]."
+    ],
+    "result": [
+      [
+        3
+      ],
+      [
+        9,
+        20
+      ],
+      [
+        15,
+        7
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "size = len(queue)",
+      "note": "This snapshot is the current level\u2019s boundary. Rechecking a growing queue length would mix child nodes into their parents\u2019 group."
+    },
+    {
+      "code": "node = queue.popleft()",
+      "note": "FIFO removal processes earlier, shallower discoveries first, and deque avoids the element-shifting cost of list.pop(0)."
+    },
+    {
+      "code": "levels.append(level)",
+      "note": "Append only after exactly size nodes have been processed, so every output list corresponds to one complete depth frontier."
+    }
+  ]
+}

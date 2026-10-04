@@ -1,0 +1,63 @@
+{
+  "slug": "subtree-of-another-tree",
+  "headline": "Compare full shape and values at every candidate root",
+  "statement": "Return whether root contains a subtree exactly identical to subRoot. A subtree consists of one node and all of its descendants; both structure and node values must match. Trainer trees use level-order arrays with null for absent children; children of present nodes are read left then right.",
+  "prerequisites": [
+    "Tree traversal",
+    "Structural equality"
+  ],
+  "constraints": [
+    "1 <= root node count <= 2000",
+    "1 <= subRoot node count <= 1000",
+    "-10000 <= node values <= 10000"
+  ],
+  "intuition": "A matching root value alone is insufficient. For every potential starting node, compare paired descendants including absent children. Null mismatches expose shape differences that preorder values alone would miss.",
+  "approach": [
+    "Scan root nodes using a stack.",
+    "When the candidate value matches subRoot\u2019s root value, compare the two complete trees.",
+    "The equality helper processes pairs, rejecting one-null or unequal-value pairs.",
+    "Accept the first full equality; reject after exhausting candidates."
+  ],
+  "correctness": "Every subtree of root is rooted at some visited node. The pair comparison accepts exactly when corresponding nodes have equal values and matching child presence, hence exactly identical trees. Considering every candidate makes the outer search complete.",
+  "bruteForce": "Serialize the tree starting at every node with explicit null markers and compare to subRoot\u2019s serialization; this also repeats subtree work and allocations.",
+  "complexity": {
+    "time": "O(nm)",
+    "space": "O(h_root + h_sub)",
+    "explanation": "In the worst case up to n candidates each compare m nodes. Explicit DFS stacks require tree-height space."
+  },
+  "pitfalls": [
+    "Equal preorder values without null markers do not imply equal structure.",
+    "An extra child invalidates a candidate.",
+    "Repeated values require trying later candidates after an earlier mismatch."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/subtree-of-another-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "subRoot",
+      "stack",
+      "pairs"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "first",
+      "second"
+    ],
+    "labels": {
+      "root": "Root",
+      "subRoot": "Subroot",
+      "stack": "Stack",
+      "pairs": "Pairs",
+      "node": "Node",
+      "first": "First",
+      "second": "Second"
+    }
+  }
+}

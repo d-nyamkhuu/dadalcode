@@ -1,0 +1,60 @@
+{
+  "slug": "binary-tree-zigzag-level-order-traversal",
+  "headline": "Traverse breadth first and reverse alternate level outputs",
+  "statement": "Return the values of a binary tree grouped by depth. The first level is left to right, the next right to left, and directions alternate thereafter. Trainer inputs use level-order arrays with null gaps for absent children.",
+  "prerequisites": [
+    "Breadth-first search",
+    "Queues",
+    "Tree depth"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 2000",
+    "-100 <= node value <= 100"
+  ],
+  "intuition": "Queue order should remain ordinary left-to-right BFS so children are enqueued predictably. Zigzag is an output rule: reverse the completed level when its direction is right-to-left.",
+  "approach": [
+    "Start a queue containing the root, or return [] for an empty tree.",
+    "At each level, process exactly the queue length measured before adding children.",
+    "Append children left then right. Reverse the collected values on alternate levels."
+  ],
+  "correctness": "At a level’s start, the queue contains exactly that depth’s nodes in left-to-right order. Processing only its original length collects that level and enqueues the next in the same order. Reversing the output on odd depths therefore produces precisely the required zigzag while preserving BFS membership.",
+  "bruteForce": "Find the maximum depth and separately traverse the tree for every target depth, taking up to O(nh) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(w) auxiliary plus O(n) output",
+    "explanation": "Each node is visited once. The queue spans portions of adjacent levels and uses O(w) storage; all result rows together store n values."
+  },
+  "pitfalls": [
+    "Measure level size before enqueuing children.",
+    "Reverse values, not queue traversal order.",
+    "An empty tree returns an empty list."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue",
+      "level",
+      "result"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "left_to_right"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "level": "Level",
+      "result": "Result",
+      "node": "Node",
+      "left_to_right": "Left to right"
+    }
+  }
+}

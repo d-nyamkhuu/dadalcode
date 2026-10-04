@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Example: two leaves",
+    "input": {
+      "root": [
+        1,
+        2,
+        3,
+        null,
+        5
+      ]
+    },
+    "expected": [
+      "1->2->5",
+      "1->3"
+    ]
+  },
+  {
+    "name": "Example: singleton",
+    "input": {
+      "root": [
+        1
+      ]
+    },
+    "expected": [
+      "1"
+    ]
+  },
+  {
+    "name": "Left chain",
+    "input": {
+      "root": [
+        3,
+        2,
+        null,
+        1
+      ]
+    },
+    "expected": [
+      "3->2->1"
+    ]
+  },
+  {
+    "name": "Right chain",
+    "input": {
+      "root": [
+        1,
+        null,
+        2,
+        null,
+        3
+      ]
+    },
+    "expected": [
+      "1->2->3"
+    ]
+  },
+  {
+    "name": "Negative values",
+    "input": {
+      "root": [
+        -1,
+        -2,
+        0
+      ]
+    },
+    "expected": [
+      "-1->-2",
+      "-1->0"
+    ]
+  },
+  {
+    "name": "Duplicate paths preserve multiplicity",
+    "input": {
+      "root": [
+        1,
+        2,
+        2
+      ]
+    },
+    "expected": [
+      "1->2",
+      "1->2"
+    ]
+  },
+  {
+    "name": "Deeper sibling backtracking",
+    "input": {
+      "root": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "expected": [
+      "1->2->4",
+      "1->2->5",
+      "1->3->6",
+      "1->3->7"
+    ]
+  }
+]

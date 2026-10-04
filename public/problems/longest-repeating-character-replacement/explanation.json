@@ -1,0 +1,37 @@
+{
+  "intuition": [
+    "For a chosen substring, the cheapest way to make all letters equal is to keep its most frequent letter and replace everything else. The cost is window length minus the largest frequency. Counting different letter kinds would be wrong: a window containing three Bs and two As needs two changes, not one.",
+    "Examining every substring repeats frequency work. Maintain a window and update its counts as right advances. If its exact replacement cost exceeds k, remove characters from left until the cost fits again. The reference recomputes the maximum count after removals rather than keeping a historical maximum, so every displayed window is genuinely valid.",
+    "With a fixed right endpoint, shrinking removes invalid larger windows until the longest valid remaining one is reached. Record its length, then continue. Both boundaries move only forward; finding the maximum among at most 26 counts is constant-sized work. An optimal letter can change as the window changes, so the algorithm does not commit to making every window the same letter. It only asks whether some letter can dominate within the budget.",
+    "A common length-only optimization remembers a historical maximum frequency instead of recomputing the current one. Its temporary window may be invalid even though its recorded best length remains correct, so it needs a different proof. Keep the exact current counts here because the displayed window is intended to satisfy the replacement budget after every repair."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "AABABBA",
+      "k": 1
+    },
+    "steps": [
+      "For AABABBA and k=1, reading AABA yields counts A=3,B=1, length 4, cost 1, and best=4.",
+      "The next B creates A=3,B=2 and length 5, whose cost 2 is too large.",
+      "Remove the first A: A=2,B=2 still costs 2. Remove another A to leave BAB with cost 1.",
+      "The following B grows that window to BABB, with B=3,A=1 and length 4.",
+      "The final A again exceeds budget. Shrink until BBA remains valid.",
+      "Return 4; the earlier AABA and BABB windows both achieve that length."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "while right - left + 1 - max(counts.values()) > k:",
+      "note": "Compute the actual minimum replacement cost and shrink only when the budget is exceeded."
+    },
+    {
+      "code": "counts[s[left]] -= 1",
+      "note": "Removing the left character changes the majority counts, so the next condition must use updated frequencies."
+    },
+    {
+      "code": "best = max(best, right - left + 1)",
+      "note": "Record only a repaired valid window, while preserving larger answers from earlier endpoints."
+    }
+  ]
+}

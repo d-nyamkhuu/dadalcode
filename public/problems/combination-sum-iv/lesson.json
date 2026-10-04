@@ -1,0 +1,59 @@
+{
+  "slug": "combination-sum-iv",
+  "headline": "Count ordered sequences by their final value",
+  "statement": "Count ordered sequences of numbers from nums whose sum equals target. Values may be reused, and different orders count separately. nums contains distinct positive integers.",
+  "prerequisites": [
+    "Dynamic programming",
+    "Counting sequences"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 200",
+    "1 <= nums[i] <= 1000",
+    "1 <= target <= 1000",
+    "The answer fits a signed 32-bit integer"
+  ],
+  "intuition": "For any sequence totaling total, its final value is some value in nums; removing that final value leaves a sequence totaling total-value. Add these disjoint possibilities. Process totals outside and values inside so order is counted.",
+  "approach": [
+    "Set dp[0] to one for the empty sequence.",
+    "For each total from one to target, sum dp[total-value] for usable values.",
+    "Return dp[target]."
+  ],
+  "correctness": "Every counted sequence has exactly one final value and one preceding sequence. The recurrence therefore counts each ordered sequence exactly once. Positive values make every dependency a smaller total, so the bottom-up order is valid.",
+  "bruteForce": "Recursively construct every possible ordered sequence; without memoization identical remaining totals are recomputed exponentially.",
+  "complexity": {
+    "time": "O(target × len(nums))",
+    "space": "O(target)",
+    "explanation": "Each target sum considers every possible final value once."
+  },
+  "pitfalls": [
+    "Loop order differs from counting unordered coin combinations.",
+    "dp[0]=1 is required to count one-element sequences.",
+    "Zero or negative numbers would invalidate finite acyclic counting and are excluded.",
+    "Only the final answer is guaranteed to fit signed 32-bit storage. Some intermediate reachable totals may have larger counts when the final target is unreachable; Python integers handle these automatically."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/combination-sum-iv/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "nums",
+      "dp"
+    ],
+    "pointers": [
+      "total"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "dp": "Dp",
+      "total": "Total",
+      "value": "Value"
+    }
+  }
+}

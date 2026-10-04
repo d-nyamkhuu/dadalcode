@@ -1,0 +1,54 @@
+{
+  "intuition": [
+    "Trying every sequence of words and checking symmetry only after completion wastes most of the search. A partial square already determines the beginning of its next row: the new row must agree with the characters appearing in that column of every previously chosen row.",
+    "Index each word under all its prefixes. At depth k, read character k from each existing row and join those letters into the required prefix. The map immediately supplies only words that could fit. This reference uses a prefix-to-word-list dictionary rather than traversing a trie.",
+    "Backtracking then appends each compatible candidate and undoes it afterward. Words may be reused because the problem does not limit occurrences. Each appended row preserves all established row-column crossings, so a path containing the required number of rows is a complete valid square without a separate full symmetry scan.",
+    "Only proper prefixes are queried: when k reaches the word length, the base case saves the completed square before another lookup. The reference therefore indexes prefix lengths zero through L-1 and omits the unused full-length entry. This saves one stored reference per word while preserving every candidate needed by the search."
+  ],
+  "walkthrough": {
+    "input": {
+      "words": [
+        "area",
+        "lead",
+        "wall",
+        "lady",
+        "ball"
+      ]
+    },
+    "steps": [
+      "All fixture words have length four. Index prefixes of area, lead, wall, lady, and ball, including the empty prefix for the first row.",
+      "Consider the branch beginning with ball. At depth 1, column 1 of ball gives prefix \"a\", selecting area.",
+      "With rows ball and area, depth 2 reads their column-2 letters l and e. Prefix \"le\" selects lead.",
+      "At depth 3, the crossing letters are l, a, and d. Prefix \"lad\" selects lady, completing [ball,area,lead,lady].",
+      "The branch starting wall requires the same later prefixes and completes [wall,area,lead,lady]. Other starting rows cannot finish, leaving two squares."
+    ],
+    "result": [
+      [
+        "ball",
+        "area",
+        "lead",
+        "lady"
+      ],
+      [
+        "wall",
+        "area",
+        "lead",
+        "lady"
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "prefixes[word[:size]].append(word)",
+      "note": "One word is listed under each usable prefix, so later searches retrieve candidates directly instead of repeatedly scanning the full dictionary."
+    },
+    {
+      "code": "prefix = ''.join(row[k] for row in square)",
+      "note": "The kth character of each existing row is already fixed in column k. Reading those crossings derives the only possible next-row prefix."
+    },
+    {
+      "code": "for word in prefixes.get(prefix, []):",
+      "note": "A missing prefix has no compatible candidate and ends the branch immediately. Existing words remain reusable, so no used-word set is applied."
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+[
+  {
+    "name": "Literal and wildcard",
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "addWord",
+        "addWord",
+        "addWord",
+        "search",
+        "search",
+        "search",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "bad"
+        ],
+        [
+          "dad"
+        ],
+        [
+          "mad"
+        ],
+        [
+          "pad"
+        ],
+        [
+          "bad"
+        ],
+        [
+          ".ad"
+        ],
+        [
+          "b.."
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      null,
+      false,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "name": "Exact query length",
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "addWord",
+        "search",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "apple"
+        ],
+        [
+          "app"
+        ],
+        [
+          "appl."
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      false,
+      true
+    ]
+  },
+  {
+    "name": "Empty dictionary",
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "."
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      false
+    ]
+  },
+  {
+    "name": "Two wildcard branches",
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "addWord",
+        "addWord",
+        "search",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "cat"
+        ],
+        [
+          "dog"
+        ],
+        [
+          ".a."
+        ],
+        [
+          ".i."
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      true,
+      false
+    ]
+  },
+  {
+    "name": "Repeated insertion and one-letter word",
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "addWord",
+        "addWord",
+        "search",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "a"
+        ],
+        [
+          "a"
+        ],
+        [
+          "."
+        ],
+        [
+          ".."
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      true,
+      false
+    ]
+  },
+  {
+    "name": "Terminal followed by a letter edge",
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "addWord",
+        "addWord",
+        "search",
+        "search",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "a"
+        ],
+        [
+          "ab"
+        ],
+        [
+          "a."
+        ],
+        [
+          "."
+        ],
+        [
+          ".."
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      true,
+      true,
+      true
+    ]
+  }
+]

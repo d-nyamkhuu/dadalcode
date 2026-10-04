@@ -1,0 +1,151 @@
+[
+  {
+    "name": "Example: found",
+    "input": {
+      "matrix": [
+        [
+          1,
+          3,
+          5,
+          7
+        ],
+        [
+          10,
+          11,
+          16,
+          20
+        ],
+        [
+          23,
+          30,
+          34,
+          60
+        ]
+      ],
+      "target": 3
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: missing",
+    "input": {
+      "matrix": [
+        [
+          1,
+          3,
+          5,
+          7
+        ],
+        [
+          10,
+          11,
+          16,
+          20
+        ],
+        [
+          23,
+          30,
+          34,
+          60
+        ]
+      ],
+      "target": 13
+    },
+    "expected": false
+  },
+  {
+    "name": "Single cell",
+    "input": {
+      "matrix": [
+        [
+          5
+        ]
+      ],
+      "target": 5
+    },
+    "expected": true
+  },
+  {
+    "name": "Below range",
+    "input": {
+      "matrix": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "target": 0
+    },
+    "expected": false
+  },
+  {
+    "name": "Last cell",
+    "input": {
+      "matrix": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "target": 3
+    },
+    "expected": true
+  },
+  {
+    "name": "Single column",
+    "input": {
+      "matrix": [
+        [
+          -5
+        ],
+        [
+          0
+        ],
+        [
+          8
+        ]
+      ],
+      "target": 0
+    },
+    "expected": true
+  },
+  {
+    "name": "Above maximum",
+    "input": {
+      "matrix": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "target": 5
+    },
+    "expected": false
+  },
+  {
+    "name": "Duplicates within globally ordered rows",
+    "input": {
+      "matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "target": 2
+    },
+    "expected": true
+  }
+]

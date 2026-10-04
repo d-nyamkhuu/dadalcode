@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Skip characters",
+    "input": {
+      "text1": "abcde",
+      "text2": "ace"
+    },
+    "expected": 3
+  },
+  {
+    "name": "Identical",
+    "input": {
+      "text1": "abc",
+      "text2": "abc"
+    },
+    "expected": 3
+  },
+  {
+    "name": "No common letters",
+    "input": {
+      "text1": "abc",
+      "text2": "def"
+    },
+    "expected": 0
+  },
+  {
+    "name": "Repeated letters",
+    "input": {
+      "text1": "aaaa",
+      "text2": "aa"
+    },
+    "expected": 2
+  },
+  {
+    "name": "Order cannot reverse",
+    "input": {
+      "text1": "ab",
+      "text2": "ba"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Several choices",
+    "input": {
+      "text1": "aggtab",
+      "text2": "gxtxayb"
+    },
+    "expected": 4
+  },
+  {
+    "name": "Match late across columns",
+    "input": {
+      "text1": "a",
+      "text2": "ba"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Match late across rows",
+    "input": {
+      "text1": "ba",
+      "text2": "a"
+    },
+    "expected": 1
+  }
+]

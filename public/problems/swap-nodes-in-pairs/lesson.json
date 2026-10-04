@@ -1,0 +1,57 @@
+{
+  "slug": "swap-nodes-in-pairs",
+  "headline": "Reconnect two nodes while preserving the untouched suffix",
+  "statement": "Swap every neighboring pair in a singly linked list and return the new head. Do not change node values: swap node references. If the length is odd, leave the last node in place. Trainer inputs supply the list as values.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Node references and pointer reassignment"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 100",
+    "0 <= node values <= 100"
+  ],
+  "intuition": "A dummy node gives the first pair an ordinary predecessor. For predecessor P followed by A,B,C, rewrite P->B->A->C. After this change A is the predecessor of the next pair, so continue from there without special handling of the head.",
+  "approach": [
+    "Create a dummy whose next points to head.",
+    "While the predecessor has two following nodes, name them first and second.",
+    "Connect first to the suffix, second to first, and predecessor to second.",
+    "Advance predecessor to first and return dummy.next."
+  ],
+  "correctness": "The processed prefix consists of correctly swapped pairs and predecessor points to its final node. One iteration preserves the untouched suffix and swaps exactly the next two nodes, extending the invariant by one pair. When fewer than two nodes remain, the final singleton is already correct. Node values never change.",
+  "bruteForce": "Collect all node references into an array, reorder adjacent entries, and reconnect them. This uses O(n) additional memory.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Each pair is rewired once; the dummy and a few node references use constant space."
+  },
+  "pitfalls": [
+    "Save the two nodes before overwriting links.",
+    "Return dummy.next because the old head moves behind its partner.",
+    "Do not implement the task by swapping node values."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/swap-nodes-in-pairs/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "dummy",
+      "previous",
+      "first",
+      "second"
+    ],
+    "pointers": [],
+    "watch": [],
+    "labels": {
+      "head": "Head",
+      "dummy": "Dummy",
+      "previous": "Previous",
+      "first": "First",
+      "second": "Second"
+    }
+  }
+}

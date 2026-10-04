@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Official eleven",
+    "input": {
+      "n": 11
+    },
+    "expected": 3
+  },
+  {
+    "name": "Official power of two",
+    "input": {
+      "n": 128
+    },
+    "expected": 1
+  },
+  {
+    "name": "Official nearly full word",
+    "input": {
+      "n": 2147483645
+    },
+    "expected": 30
+  },
+  {
+    "name": "Smallest input",
+    "input": {
+      "n": 1
+    },
+    "expected": 1
+  },
+  {
+    "name": "All 31 bits",
+    "input": {
+      "n": 2147483647
+    },
+    "expected": 31
+  },
+  {
+    "name": "Separated bits",
+    "input": {
+      "n": 273
+    },
+    "expected": 3
+  },
+  {
+    "name": "Two high bits",
+    "input": {
+      "n": 1073741825
+    },
+    "expected": 2
+  },
+  {
+    "name": "Highest permitted single bit",
+    "input": {
+      "n": 1073741824
+    },
+    "expected": 1
+  }
+]

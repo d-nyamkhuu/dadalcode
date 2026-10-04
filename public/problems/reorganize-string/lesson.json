@@ -1,0 +1,60 @@
+{
+  "slug": "reorganize-string",
+  "headline": "Hold the previous character out of the heap",
+  "statement": "Rearrange all characters of s so no adjacent characters are equal. Return any valid rearrangement, or the empty string if none exists. Every original character must appear with exactly its original multiplicity.",
+  "prerequisites": [
+    "Frequency counts",
+    "Max heap",
+    "Greedy scheduling"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 500",
+    "s contains lowercase English letters"
+  ],
+  "intuition": "Use the most frequent currently available character, but keep the previously used character aside for one turn. This prevents adjacent duplicates while spending the largest remaining counts early. A character occurring more than half the rounded-up length makes any arrangement impossible.",
+  "approach": [
+    "Reject if a character count exceeds (len(s)+1)//2.",
+    "Heapify negative frequencies and repeatedly choose the most frequent available character.",
+    "After choosing, return the previously held character to the heap and hold the new one if copies remain."
+  ],
+  "correctness": "The count bound is necessary because each repeated letter needs other letters as separators. It also establishes a scheduling invariant: with m remaining copies, the held previous letter has at most floor(m/2), and every available letter has at most ceil(m/2). Choosing a maximum available count and consuming one copy maintains these bounds for m-1. For odd m, the only possible count above the new available bound is the unique largest count and it is consumed; for even m, the available bound stays unchanged. The new held count meets its stricter bound and the old held letter becomes available. Hence the heap cannot become empty with copies remaining: that would put all copies in a held count exceeding floor(m/2). Every selection differs from its predecessor and consumes one copy, so the schedule finishes as a full valid rearrangement.",
+  "bruteForce": "Try all permutations and inspect adjacent pairs, costing factorial time and producing many identical arrangements.",
+  "complexity": {
+    "time": "O(n log a)",
+    "space": "O(a + n)",
+    "explanation": "a is the number of distinct letters, at most 26; the heap stores counts and the output stores n letters."
+  },
+  "pitfalls": [
+    "A valid answer may differ from the shown reference output.",
+    "Do not reinsert the current letter before the next selection.",
+    "Returning a valid prefix is insufficient: all characters are required."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/reorganize-string/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "s",
+      "heap",
+      "result"
+    ],
+    "pointers": [],
+    "watch": [
+      "held",
+      "count",
+      "ch"
+    ],
+    "labels": {
+      "s": "S",
+      "heap": "Heap",
+      "result": "Result",
+      "held": "Held",
+      "count": "Count",
+      "ch": "Ch"
+    }
+  }
+}

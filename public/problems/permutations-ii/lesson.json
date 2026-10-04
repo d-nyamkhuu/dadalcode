@@ -1,0 +1,58 @@
+{
+  "slug": "permutations-ii",
+  "headline": "Skip equal choices at the same recursion depth",
+  "statement": "Given an integer array nums that may contain duplicate values, return every distinct full-length permutation in any order. Every input occurrence must be used exactly once in a permutation.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 8",
+    "-10 <= nums[i] <= 10"
+  ],
+  "intuition": "Equal values are indistinguishable in the final word but still occupy separate input positions. Sort them, track used positions, and allow a later equal occurrence only after its predecessor has been used. That gives each value sequence one canonical assignment of positions.",
+  "approach": [
+    "Sort nums and initialize used flags.",
+    "At each depth try unused positions.",
+    "Skip nums[i] when it equals the previous value and that previous position is unused.",
+    "Append, mark used, recurse, then undo both changes."
+  ],
+  "correctness": "Every leaf uses every index exactly once and is a valid permutation. Among equal values the rule forces indices to be chosen in increasing order; therefore one value sequence has exactly one index assignment. Any distinct sequence can use that canonical assignment, so none are omitted.",
+  "bruteForce": "Generate all n! index permutations and deduplicate full value lists. This wastes branches for repeated values.",
+  "complexity": {
+    "time": "O(n * n!) worst case",
+    "space": "O(n) auxiliary, excluding output",
+    "explanation": "There are at most n! leaves and copying each leaf costs n; duplicate pruning reduces the actual count."
+  },
+  "pitfalls": [
+    "The unused-predecessor rule prunes equivalent sibling branches immediately. Reversing the condition can still produce the correct complete permutations, but explores many prefixes that cannot be completed.",
+    "Undo both the path and used flag.",
+    "A set of used values would wrongly remove repeated occurrences."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/permutations-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "nums",
+      "used",
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [],
+    "labels": {
+      "nums": "Nums",
+      "used": "Used",
+      "path": "Path",
+      "result": "Result",
+      "i": "I"
+    }
+  }
+}

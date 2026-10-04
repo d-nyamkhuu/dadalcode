@@ -1,0 +1,64 @@
+{
+  "slug": "concatenated-words",
+  "headline": "Reach the end using at least two dictionary pieces",
+  "statement": "Given distinct nonempty dictionary words, return all words that can be formed by concatenating at least two shorter dictionary words. A component word may be reused.",
+  "prerequisites": [
+    "Word segmentation",
+    "Dynamic programming",
+    "Sets"
+  ],
+  "constraints": [
+    "1 <= number of words <= 10,000",
+    "1 <= word length <= 30",
+    "Total character count <= 100,000",
+    "Words contain lowercase English letters and are unique"
+  ],
+  "intuition": "Check each word as a segmentation problem, explicitly excluding the whole word as its own single piece. Reachable prefix boundaries let shorter dictionary words connect into a complete word.",
+  "approach": [
+    "Store all words in a set.",
+    "For each candidate, initialize reachable boundary 0.",
+    "At every end boundary, try reachable starts and dictionary substrings, skipping the whole-word segment.",
+    "Accept if the final boundary is reachable."
+  ],
+  "correctness": "reachable[end] becomes true exactly when the prefix through end can be split into dictionary entries: a transition extends a previously valid prefix with one entry. Excluding start=0,end=len(word) removes the only one-piece decomposition, so an accepted whole word necessarily uses at least two shorter entries.",
+  "bruteForce": "Try every cut pattern within each word: O(2^L) segmentations.",
+  "complexity": {
+    "time": "O(sum(L³)) due to substring copies",
+    "space": "O(total dictionary characters + max L)",
+    "explanation": "For a word of length L, O(L²) boundary pairs may be considered. Python creates a substring copy and hashes its characters, each taking O(segment length), so the conservative bound is O(L³) per word. The dictionary and O(max L) reachability table determine working storage; output is excluded."
+  },
+  "pitfalls": [
+    "The word itself must not count as its only component.",
+    "Repeated use of a shorter word is allowed.",
+    "A concatenated word can also be a component of a longer one."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/concatenated-words/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "word",
+      "reachable",
+      "dictionary"
+    ],
+    "pointers": [
+      "start",
+      "end"
+    ],
+    "watch": [
+      "result"
+    ],
+    "labels": {
+      "word": "Word",
+      "reachable": "Reachable",
+      "dictionary": "Dictionary",
+      "start": "Start",
+      "end": "End",
+      "result": "Result"
+    }
+  }
+}

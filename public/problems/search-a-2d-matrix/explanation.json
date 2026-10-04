@@ -1,0 +1,54 @@
+{
+  "intuition": [
+    "This matrix has a stronger property than merely sorted rows: every new row begins after every value in the previous row. Reading row by row therefore produces one globally sorted sequence. The visual grid can remain two-dimensional while the search uses a single linear coordinate.",
+    "For a matrix with columns columns, linear index mid identifies row mid//columns and column mid%columns. These operations are just quotient and remainder from counting full rows. Binary search can inspect that cell without allocating a flattened list, preserving constant auxiliary space.",
+    "Each comparison discards half the remaining linear indices. If the midpoint value is smaller than target, the entire prefix through mid is too small; if larger, the suffix from mid is too large. The inclusive left/right bounds need mid+1 and mid-1 updates to ensure progress. This proof depends on the row-boundary rule and does not apply unchanged to a matrix sorted independently by rows and columns."
+  ],
+  "walkthrough": {
+    "input": {
+      "matrix": [
+        [
+          1,
+          3,
+          5,
+          7
+        ],
+        [
+          10,
+          11,
+          16,
+          20
+        ],
+        [
+          23,
+          30,
+          34,
+          60
+        ]
+      ],
+      "target": 3
+    },
+    "steps": [
+      "The example has 3 rows and 4 columns, so search flattened indices 0 through 11 for target=3.",
+      "Midpoint 5 maps to row 1, column 1 and value 11. Eleven is too large, so right becomes 4.",
+      "Midpoint 2 maps to row 0, column 2 and value 5. It is still too large, so right becomes 1.",
+      "Midpoint 0 contains 1, which is too small; left becomes 1.",
+      "Midpoint 1 contains 3. Return true without visiting the remaining cells."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "columns = len(matrix[0])",
+      "note": "The row width determines the flattened-coordinate conversion; using the row count would access wrong cells on a nonsquare matrix."
+    },
+    {
+      "code": "row, col = divmod(mid, columns)",
+      "note": "Quotient selects the row and remainder selects its position, avoiding a copied flattened array."
+    },
+    {
+      "code": "right = mid - 1",
+      "note": "The inspected midpoint is known not to match, so excluding it both preserves correctness and guarantees the search shrinks."
+    }
+  ]
+}

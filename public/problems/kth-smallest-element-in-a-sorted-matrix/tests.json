@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Duplicate thirteenth",
+    "input": {
+      "matrix": [
+        [
+          1,
+          5,
+          9
+        ],
+        [
+          10,
+          11,
+          13
+        ],
+        [
+          12,
+          13,
+          15
+        ]
+      ],
+      "k": 8
+    },
+    "expected": 13
+  },
+  {
+    "name": "Single negative",
+    "input": {
+      "matrix": [
+        [
+          -5
+        ]
+      ],
+      "k": 1
+    },
+    "expected": -5
+  },
+  {
+    "name": "First value",
+    "input": {
+      "matrix": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "k": 1
+    },
+    "expected": 1
+  },
+  {
+    "name": "All equal",
+    "input": {
+      "matrix": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "k": 3
+    },
+    "expected": 2
+  },
+  {
+    "name": "Gap in values",
+    "input": {
+      "matrix": [
+        [
+          1,
+          100
+        ],
+        [
+          100,
+          1000
+        ]
+      ],
+      "k": 2
+    },
+    "expected": 100
+  },
+  {
+    "name": "Last value",
+    "input": {
+      "matrix": [
+        [
+          -3,
+          -1
+        ],
+        [
+          0,
+          7
+        ]
+      ],
+      "k": 4
+    },
+    "expected": 7
+  },
+  {
+    "name": "Full value range and duplicate rank",
+    "input": {
+      "matrix": [
+        [
+          -1000000000,
+          0
+        ],
+        [
+          0,
+          1000000000
+        ]
+      ],
+      "k": 3
+    },
+    "expected": 0
+  }
+]

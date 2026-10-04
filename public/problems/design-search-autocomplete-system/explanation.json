@@ -1,0 +1,64 @@
+{
+  "intuition": [
+    "Scanning and sorting every historical sentence after each keystroke repeats work for the same prefixes. A trie groups sentences by their shared character prefixes, but traversing each matching subtree can still be expensive. Cache the three best full sentences directly at every prefix node instead.",
+    "A committed sentence is the only sentence whose frequency changes. For a node on its path, the new leaders must come from the previous leaders plus that changed sentence: every other outsider keeps the same rank relative to the old leaders. Sorting this at-most-four-item candidate list restores the correct cache.",
+    "The object also remembers the current prefix and its trie node between calls. A missing edge means no historical sentence matches the current query; it remains missing until the query ends. On #, insert the completed sentence, update its prefix caches, and reset the cursor to the root for a new query."
+  ],
+  "walkthrough": {
+    "input": {
+      "sentences": [
+        "i love you",
+        "island",
+        "ironman",
+        "i love leetcode"
+      ],
+      "times": [
+        5,
+        3,
+        2,
+        2
+      ],
+      "chars": [
+        "i",
+        " ",
+        "a",
+        "#"
+      ]
+    },
+    "steps": [
+      "Initialize history with i love you:5, island:3, ironman:2, and i love leetcode:2. The i-prefix cache retains the top three.",
+      "Input i moves to that prefix node and returns [i love you,island,i love leetcode]. The space in i love leetcode sorts before ironman’s r when counts tie.",
+      "Input space extends the query to i . Its cache returns [i love you,i love leetcode]; island no longer matches.",
+      "Input a extends the query to i a. No matching child exists, so the current node becomes absent and the result is [].",
+      "Input # adds the completed sentence i a with count 1 and refreshes caches along its character path.",
+      "Reset prefix to the empty string and node to the root, then return []. The stored new sentence can participate in subsequent queries."
+    ],
+    "result": [
+      [
+        "i love you",
+        "island",
+        "i love leetcode"
+      ],
+      [
+        "i love you",
+        "i love leetcode"
+      ],
+      [],
+      []
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "candidates = list(node[\"hot\"])",
+      "note": "Only existing leaders and the updated sentence can become the new leaders; copying permits safe local reranking."
+    },
+    {
+      "code": "candidates.sort(key=lambda text: (-counts[text], text))",
+      "note": "Negated counts sort hottest first; the second key breaks ties by ascending sentence text, including spaces."
+    },
+    {
+      "code": "self.node = self.root",
+      "note": "A commit ends the old query. Resetting the trie cursor is necessary even when its previous prefix had no matches."
+    }
+  ]
+}

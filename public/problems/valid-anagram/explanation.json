@@ -1,0 +1,37 @@
+{
+  "intuition": [
+    "Anagrams may rearrange positions freely, so positional comparison is the wrong invariant. Their character counts must match exactly. Merely checking that both strings use the same letter set would miss cases such as aab versus abb, where available letters agree but multiplicities differ.",
+    "Count the characters in s, then consume one copy for every character read from t. If any count becomes negative, t requires more copies of that letter than s supplies, so equality is impossible. Check lengths first: strings with different total character counts cannot be rearrangements of each other.",
+    "After a same-length t finishes without a deficit, every supplied copy has been used. A positive leftover would require a negative count elsewhere to maintain the equal total, and that would already have been rejected. Thus no separate final all-zero scan is needed. The dictionary implementation makes the invariant visible even though the allowed alphabet has only 26 letters; it would also work for a larger character alphabet.",
+    "For a larger Unicode alphabet, this dictionary compares code-point multiplicities. A precomposed accented letter and a base letter followed by a combining mark can look identical but contain different code points. Supporting such visual equivalence would require an explicit normalization policy before counting; it is outside the lowercase English-letter contract."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "anagram",
+      "t": "nagaram"
+    },
+    "steps": [
+      "For anagram and nagaram, both lengths are 7, so continue.",
+      "Count s as a=3, n=1, g=1, r=1, m=1.",
+      "Consume the leading n of t, then a and g, reducing those counts without a deficit.",
+      "The next a reduces a to 1; r then reaches zero.",
+      "The final a and m reduce their counts to zero. Every requested copy was available.",
+      "Return true, because equal length and no negative counts establish matching multiplicities."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if len(s) != len(t):",
+      "note": "Rearrangement cannot change the number of characters, so unequal lengths reject immediately."
+    },
+    {
+      "code": "counts[ch] = counts.get(ch, 0) + 1",
+      "note": "Record multiplicity rather than just character presence."
+    },
+    {
+      "code": "if counts[ch] < 0:",
+      "note": "A deficit means the second string requests a copy the first string does not contain."
+    }
+  ]
+}

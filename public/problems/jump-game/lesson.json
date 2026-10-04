@@ -1,0 +1,57 @@
+{
+  "slug": "jump-game",
+  "headline": "Keep the frontier of every reachable index",
+  "statement": "Given nonnegative nums, you start at index zero. nums[i] is the maximum forward jump length from i; you may choose any shorter length. Return whether you can reach the final index.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10^4",
+    "0 <= nums[i] <= 10^5"
+  ],
+  "intuition": "Reachable indices form a continuous prefix: from a reachable index you can land anywhere up to its maximum reach. Keep the farthest endpoint of this prefix and grow it while scanning reachable positions. A gap cannot be crossed by any earlier jump if it lies beyond that endpoint.",
+  "approach": [
+    "Initialize farthest=0.",
+    "If index i exceeds farthest, return false.",
+    "Otherwise extend farthest to max(farthest,i+nums[i]).",
+    "Return true when farthest reaches the final index."
+  ],
+  "correctness": "Before processing i, every index through farthest is reachable using processed positions. A reachable i extends that prefix by its jump interval. If i lies outside the prefix, no earlier position can reach it or any later position, so failure is final. Reaching the last index proves success.",
+  "bruteForce": "Explore every jump from each reachable position, taking O(n^2) in a worst-case DP formulation; naive recursive paths may be exponential.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Each index is inspected at most once and only one frontier is retained."
+  },
+  "pitfalls": [
+    "nums[i] is a maximum, not a mandatory jump length.",
+    "A zero is harmless if an earlier jump can cross it.",
+    "A single-element input succeeds without moving."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/jump-game/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "farthest",
+      "jump"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "i": "I",
+      "farthest": "Farthest",
+      "jump": "Jump"
+    }
+  }
+}

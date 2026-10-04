@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Official odd",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "expected": [
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "name": "Official even",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "expected": [
+      4,
+      5,
+      6
+    ]
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "head": [
+        9
+      ]
+    },
+    "expected": [
+      9
+    ]
+  },
+  {
+    "name": "Two nodes",
+    "input": {
+      "head": [
+        1,
+        2
+      ]
+    },
+    "expected": [
+      2
+    ]
+  },
+  {
+    "name": "Equal values",
+    "input": {
+      "head": [
+        7,
+        7,
+        7,
+        7
+      ]
+    },
+    "expected": [
+      7,
+      7
+    ]
+  },
+  {
+    "name": "Three nodes",
+    "input": {
+      "head": [
+        8,
+        4,
+        2
+      ]
+    },
+    "expected": [
+      4,
+      2
+    ]
+  }
+]

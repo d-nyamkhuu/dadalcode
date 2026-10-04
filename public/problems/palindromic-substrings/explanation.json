@@ -1,0 +1,36 @@
+{
+  "intuition": [
+    "Enumerate all O(n²) substrings and test each in O(n), for O(n³) time. Expansion reuses the inner palindrome property. Checking every candidate from scratch repeatedly verifies the same inner character pairs, even though palindromes grow symmetrically.",
+    "Every substring palindrome has one center: a character for odd length or a gap for even length. Starting there, matching endpoints certify a larger palindrome around the already-valid interior. Each successful expansion adds one distinct positional substring. If endpoints disagree, expanding farther cannot repair the mismatch, so that center is finished. Repeated text such as the three separate occurrences of \"a\" in \"aaa\" counts multiple times because the question distinguishes positions, not unique string values.",
+    "Every palindromic substring has a unique center and radius. For that center, all its inner pairs match, so expansion reaches and counts it. Conversely, each successful expansion creates matching endpoints around a palindrome, so every counted substring is valid. Unique center/radius pairs prevent double counting positions. Repeated-character strings permit quadratic expansions; only pointers and a count are stored."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "abba"
+    },
+    "steps": [
+      "At center=0, left=right=0: count the singleton a, bringing count to 1. Expanding moves left out of bounds.",
+      "At center=1, endpoints 0 and 1 differ, so the a/b gap adds nothing. At center=2, count b at index 1; count=2, and a/b stops the next expansion.",
+      "At center=3, left=1,right=2 match: count bb, bringing count to 3.",
+      "Expand the same gap to left=0,right=3: the two a endpoints match around bb, so count abba and reach count=4.",
+      "At center=4, count the b at index 2, reaching count=5. Its outward b/a pair fails.",
+      "Center=5 is the b/a gap and contributes nothing. Center=6 counts the final singleton a, giving count=6.",
+      "Return 6: four positional singletons, bb, and abba. Even center indices represented characters; odd indices represented gaps."
+    ],
+    "result": 6
+  },
+  "codeNotes": [
+    {
+      "code": "right = left + center % 2",
+      "note": "Even center indices use one character; odd center indices use the adjacent gap, covering both palindrome parities."
+    },
+    {
+      "code": "count += 1",
+      "note": "One successful endpoint comparison identifies one positional palindrome, not just a distinct textual value."
+    },
+    {
+      "code": "left -= 1",
+      "note": "Expanding left and right together keeps the same center and reuses the palindrome already certified inside."
+    }
+  ]
+}

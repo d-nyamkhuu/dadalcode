@@ -1,0 +1,173 @@
+[
+  {
+    "name": "One connected island",
+    "input": {
+      "grid": [
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Three components",
+    "input": {
+      "grid": [
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ]
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Only water",
+    "input": {
+      "grid": [
+        [
+          "0"
+        ]
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Only land",
+    "input": {
+      "grid": [
+        [
+          "1"
+        ]
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Diagonal separate",
+    "input": {
+      "grid": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Separated row segments",
+    "input": {
+      "grid": [
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "1"
+        ]
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Single-column islands",
+    "input": {
+      "grid": [
+        [
+          "1"
+        ],
+        [
+          "1"
+        ],
+        [
+          "0"
+        ],
+        [
+          "1"
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Land ring enclosing water",
+    "input": {
+      "grid": [
+        [
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "1",
+          "1"
+        ]
+      ]
+    },
+    "expected": 1
+  }
+]

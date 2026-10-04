@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Accumulate each start/end subarray sum, taking O(n²). Merge-sort counting reduces work by processing whole monotone value ranges. Prefix sums make each range sum cheap to calculate, but there are still quadratically many ordered prefix pairs to inspect.",
+    "For nums [-2,5,-1], prefix sums are [0,-2,3,2]. Each answer is a later prefix minus an earlier one. Divide the original prefix positions into halves before sorting their values; this preserves the fact that every left-half position precedes every right-half position. Sorted right values place accepted differences in a contiguous interval. As left values increase, both interval boundaries only move forward. The merge step prepares this sorted ordering for the next recursion level while counting each ordered pair exactly once.",
+    "Every index pair belongs uniquely to a recursive left half, right half, or cross-half pair. Recursive calls count the first two classes. For cross pairs, sorted right values make the accepted differences a contiguous interval, counted exactly by the two boundaries. Sorting only after partitioning preserves the original index-order relation at every level. Each recursion level does linear counting and merging using a reusable buffer."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -2,
+        5,
+        -1
+      ],
+      "lower": -2,
+      "upper": 2
+    },
+    "steps": [
+      "Construct prefixes [0,-2,3,2] for bounds [-2,2].",
+      "Within the first original-position half [0,-2], difference -2 qualifies.",
+      "Within the second half [3,2], difference -1 qualifies.",
+      "For cross-half pairs, 2-0=2 qualifies; 3-0=3, 3-(-2)=5, and 2-(-2)=4 do not.",
+      "The merged halves are sorted as [-2,0] and [2,3]. For left prefix -2, both right differences 4 and 5 exceed upper=2, so low=high=mid and no pair qualifies. For left prefix 0, low remains mid while high advances past right prefix 2, giving high-low=1. As left prefix values rise, threshold values rise too, so both pointers only move forward.",
+      "Combine the two internal counts and one cross count to return 3."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "prefix = [0]",
+      "note": "The zero prefix represents the position before the first element, allowing ranges beginning at index zero."
+    },
+    {
+      "code": "while low < end and prefix[low] - prefix[i] < lower:",
+      "note": "Stop at the first right value meeting the inclusive lower bound; smaller differences are excluded."
+    },
+    {
+      "code": "while high < end and prefix[high] - prefix[i] <= upper:",
+      "note": "Stop just after the inclusive upper bound, making high-low the accepted pair count."
+    }
+  ]
+}

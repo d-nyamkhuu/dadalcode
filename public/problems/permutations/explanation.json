@@ -1,0 +1,71 @@
+{
+  "intuition": [
+    "A permutation is an ordering that uses each input value exactly once. Generating arbitrary length-n sequences and later rejecting repeats spends most effort on invalid candidates. Instead construct an ordering one position at a time and forbid values already chosen for that partial ordering.",
+    "The current path is the unfinished permutation; used answers whether a value is already in it. Choose any unused value, append it, and recursively fill the next position. When the path reaches input length, all positions are assigned and every value is used once. Save a copy because the original path is about to change.",
+    "Returning from recursion does not automatically undo list or set mutations. Remove the just-added value from both path and used before trying a sibling branch. This restoration is what makes the search tree systematic: siblings share the same prefix but choose different next values. Every full permutation corresponds to one unique root-to-leaf sequence of choices, so no duplicates or omissions occur.",
+    "There are n! distinct answers: the first position has n choices, the next n-1, and so on. Each answer contains n values, so merely returning all answers requires O(n·n!) storage and time. The O(n) auxiliary-space claim counts only the current path, used set, and recursion frames; it excludes the returned lists. At the maximum n=6, there are 720 answers, which makes output growth part of the task rather than an inefficiency of backtracking."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        3
+      ]
+    },
+    "steps": [
+      "For [1,2,3], begin with path=[] and used=set() and choose 1 first.",
+      "Choose 2 next, then 3. Copy [1,2,3] into result when the path is full.",
+      "Undo 3 and then 2. Choose 3 after prefix [1], then 2, saving [1,3,2].",
+      "Undo back to the empty prefix and choose 2 first, producing [2,1,3] and [2,3,1].",
+      "Choose 3 first for the final two branches, producing [3,1,2] and [3,2,1].",
+      "Return all six saved lists; their outer ordering is not part of the answer requirement."
+    ],
+    "result": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        2
+      ],
+      [
+        2,
+        1,
+        3
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        3,
+        1,
+        2
+      ],
+      [
+        3,
+        2,
+        1
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "result.append(path.copy())",
+      "note": "Store an independent answer; storing path itself would leave results sharing a repeatedly mutated list."
+    },
+    {
+      "code": "if value in used:\n                    continue",
+      "note": "Reject repeated values before descending, so every explored prefix can still become a permutation."
+    },
+    {
+      "code": "path.pop()\n                used.remove(value)",
+      "note": "Undo both state changes so the next sibling branch starts from exactly the same prefix."
+    }
+  ]
+}

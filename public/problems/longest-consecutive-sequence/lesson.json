@@ -1,0 +1,59 @@
+{
+  "slug": "longest-consecutive-sequence",
+  "headline": "Start counting only at the beginning of a run",
+  "statement": "Given an unsorted array of integers, return the length of the longest sequence of consecutive integer values. Values do not need to be adjacent in the input, and duplicate values do not lengthen a sequence. Achieve expected O(n) time.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "0 <= len(nums) <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "intuition": "In a set, membership checks are expected constant time. Start a walk only when value-1 is absent; then every run is counted once. Starting a walk at every value would repeatedly scan the same long run and become quadratic.",
+  "approach": [
+    "Put nums in a set to remove duplicates.",
+    "For every value without a predecessor, walk through value+1, value+2, and so on.",
+    "Keep the largest length encountered."
+  ],
+  "correctness": "Each maximal consecutive run has exactly one value without a predecessor. Its walk visits all and only that run. Every set value belongs to one such run, so all runs are measured and the maximum is correct. Duplicate removal matches the sequence definition.",
+  "bruteForce": "Sort and scan distinct neighboring values in O(n log n) time. It is reliable but misses the required expected linear bound.",
+  "complexity": {
+    "time": "O(n) expected",
+    "space": "O(n)",
+    "explanation": "Each unique value is tested as a start and walked at most once across all runs. Hash-set storage is linear."
+  },
+  "pitfalls": [
+    "Iterate over the set, not nums, to avoid repeating long walks for duplicate starts.",
+    "Sequence means consecutive values, not contiguous input positions.",
+    "The empty input has length zero."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "values"
+    ],
+    "pointers": [],
+    "watch": [
+      "value",
+      "current",
+      "length",
+      "best"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "values": "Values",
+      "value": "Value",
+      "current": "Current",
+      "length": "Length",
+      "best": "Best"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "is-subsequence": {
+    "survives": true,
+    "caught_by": [],
+    "new_case": {
+      "name": "Custom input",
+      "input": {
+        "s": "",
+        "t": "abc"
+      },
+      "expected": true,
+      "actual": false,
+      "passed": false,
+      "error": null,
+      "stdout": "",
+      "duration": 0.31
+    }
+  },
+  "k-closest-points-to-origin": {
+    "survives": true,
+    "caught_by": [],
+    "new_case": {
+      "name": "Custom input",
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "actual": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "passed": false,
+      "error": null,
+      "stdout": "",
+      "duration": 0.67
+    }
+  },
+  "letter-combinations-of-a-phone-number": {
+    "survives": true,
+    "caught_by": [],
+    "new_case": {
+      "name": "Custom input",
+      "input": {
+        "digits": "4"
+      },
+      "expected": [
+        "g",
+        "h",
+        "i"
+      ],
+      "actual": [
+        "x",
+        "y",
+        "z"
+      ],
+      "passed": false,
+      "error": null,
+      "stdout": "",
+      "duration": 0.49
+    }
+  },
+  "longest-common-subsequence": {
+    "survives": false,
+    "caught_by": [
+      "Several choices"
+    ]
+  },
+  "longest-consecutive-sequence": {
+    "survives": true,
+    "caught_by": []
+  },
+  "longest-increasing-subsequence": {
+    "survives": false,
+    "caught_by": [
+      "All equal"
+    ]
+  },
+  "longest-palindromic-substring": {
+    "survives": false,
+    "caught_by": [
+      "Official even",
+      "Repeated letters",
+      "Internal palindrome"
+    ]
+  },
+  "longest-substring-without-repeating-characters": {
+    "survives": false,
+    "caught_by": [
+      "Must not retreat left"
+    ]
+  },
+  "maximum-average-subarray-i": {
+    "survives": false,
+    "caught_by": [
+      "Example: single",
+      "All negative",
+      "Whole array",
+      "Fractional result"
+    ]
+  },
+  "maximum-product-subarray": {
+    "survives": false,
+    "caught_by": [
+      "Two negatives"
+    ]
+  },
+  "maximum-subarray": {
+    "survives": false,
+    "caught_by": [
+      "Example: middle maximum",
+      "All negative",
+      "Zero beats negative",
+      "Best ends early"
+    ]
+  }
+}

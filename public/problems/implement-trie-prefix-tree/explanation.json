@@ -1,0 +1,73 @@
+{
+  "intuition": [
+    "A set answers whole-word membership well, but finding whether any stored word begins with a prefix requires scanning words. A trie stores those prefixes directly. Each character selects a child dictionary, so words sharing the beginning of their spelling share the same initial path.",
+    "Inserting apple creates a path a\u2192p\u2192p\u2192l\u2192e. That also creates a reachable path for app, but app is not necessarily an inserted word. Mark complete word endpoints separately with a key that cannot be a lowercase letter. Inserting app later adds that marker at the already-existing third-character node without duplicating its prefix.",
+    "Both search and startsWith follow their query characters and reject immediately if an edge is absent. Whole-word search additionally requires an endpoint marker. Prefix search does not: reaching the node itself proves at least one inserted word has that prefix. This separation is the central trie invariant. Repeated insertion simply sets an existing marker again, and operation cost depends on query length rather than the number of stored words.",
+    "All three methods advance iteratively through characters. A permitted word of length 2000 therefore needs no 2000-deep recursive call stack; insertion and queries keep only the current node plus the shared trie structure."
+  ],
+  "walkthrough": {
+    "input": {
+      "operations": [
+        "Trie",
+        "insert",
+        "search",
+        "search",
+        "startsWith",
+        "insert",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "apple"
+        ],
+        [
+          "apple"
+        ],
+        [
+          "app"
+        ],
+        [
+          "app"
+        ],
+        [
+          "app"
+        ],
+        [
+          "app"
+        ]
+      ]
+    },
+    "steps": [
+      "Create an empty Trie, then insert apple by making its five-character path and marking its endpoint.",
+      "search(apple) follows the full path and finds the endpoint, returning true.",
+      "search(app) follows an existing path but finds no endpoint, returning false.",
+      "startsWith(app) needs only the path, so it returns true.",
+      "insert(app) reuses the first three nodes and adds a terminal marker there.",
+      "The final search(app) returns true because app is now a stored whole word."
+    ],
+    "result": [
+      null,
+      null,
+      true,
+      false,
+      true,
+      null,
+      true
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "node = node.setdefault(ch, {})",
+      "note": "Reuse an existing prefix edge, creating a child only when that edge is absent."
+    },
+    {
+      "code": "node['#'] = True",
+      "note": "Mark complete words separately from their prefixes using a key outside the letter alphabet."
+    },
+    {
+      "code": "return '#' in node",
+      "note": "Whole-word search must check endpoint status after consuming every query character."
+    }
+  ]
+}

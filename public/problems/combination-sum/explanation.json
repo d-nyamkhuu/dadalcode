@@ -1,0 +1,49 @@
+{
+  "intuition": [
+    "Trying every ordered sequence can find a sum, but it repeats answers: [2,2,3], [2,3,2], and [3,2,2] describe the same combination. A better search constructs each multiset in nondecreasing order. Then each valid combination has exactly one representation in the recursion tree.",
+    "The recursive state records a start index, a path, and the remaining target. Only candidates at or after start may be chosen next. Reusing the chosen index permits another copy of that value; moving to an earlier index is forbidden, which removes reordered duplicates.",
+    "Sorting also exposes a useful stopping rule. When a candidate exceeds the remaining target, all later candidates do too. Positive values guarantee that every choice decreases the remainder. A zero remainder is a completed answer, and a copied path preserves it while exploration continues."
+  ],
+  "walkthrough": {
+    "input": {
+      "candidates": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "target": 7
+    },
+    "steps": [
+      "Sort [2,3,6,7] and begin with remaining=7 and an empty path.",
+      "Choose 2 twice, reaching path [2,2] and remaining=3. Reusing index 0 remains legal.",
+      "Trying another 2 leaves remaining=1, where no candidate fits, so that branch ends without an answer.",
+      "Back at [2,2], choose 3. The remainder becomes zero; save [2,2,3], then undo the choice.",
+      "Branches starting with 3 or 6 cannot finish 7. Choosing 7 directly reaches zero and saves [7]."
+    ],
+    "result": [
+      [
+        2,
+        2,
+        3
+      ],
+      [
+        7
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "visit(i, remaining - value)",
+      "note": "Passing i instead of i+1 allows repeated copies of the chosen candidate while still prohibiting a return to smaller candidates."
+    },
+    {
+      "code": "if value > remaining:",
+      "note": "Sorted order turns this into a break rather than a continue: no later value can fit the remaining positive sum."
+    },
+    {
+      "code": "result.append(path[:])",
+      "note": "The path is reused and shortened during backtracking. Saving a copy prevents later pops from erasing an already discovered combination."
+    }
+  ]
+}

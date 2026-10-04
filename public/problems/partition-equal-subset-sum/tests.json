@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Example: equal eleven",
+    "input": {
+      "nums": [
+        1,
+        5,
+        11,
+        5
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: odd total",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        5
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Single value",
+    "input": {
+      "nums": [
+        2
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Equal pair",
+    "input": {
+      "nums": [
+        3,
+        3
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Cannot reuse a value",
+    "input": {
+      "nums": [
+        1,
+        2,
+        5
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Several combinations",
+    "input": {
+      "nums": [
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Value exceeds half the even total",
+    "input": {
+      "nums": [
+        10,
+        1,
+        1
+      ]
+    },
+    "expected": false
+  }
+]

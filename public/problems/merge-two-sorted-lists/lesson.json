@@ -1,0 +1,56 @@
+{
+  "slug": "merge-two-sorted-lists",
+  "headline": "The first remaining node of each list is its smallest remaining value",
+  "statement": "Merge two nondecreasing linked lists list1 and list2 by relinking their existing nodes. Return the merged list head.",
+  "prerequisites": [
+    "Singly linked lists",
+    "Dummy head node"
+  ],
+  "constraints": [
+    "0 <= length of each list <= 50",
+    "Node values range from -100 to 100",
+    "Both input lists are sorted in nondecreasing order"
+  ],
+  "intuition": "The first remaining node of each list is its smallest remaining value. Repeatedly attach the smaller of those two choices.",
+  "approach": [
+    "Create a dummy head and a tail pointer.",
+    "Compare remaining heads, attach the smaller node, and advance that list.",
+    "Advance tail after each attachment; when one list ends, attach the other remainder."
+  ],
+  "correctness": "The constructed prefix is sorted and contains precisely the smallest nodes removed so far. Since both inputs are sorted, the smaller current head is the smallest remaining node. Appending the surviving suffix preserves the invariant and uses every input node.",
+  "bruteForce": "Copy all values into an array, sort, and build a new list: O((m+n) log(m+n)) time and O(m+n) space; this also misses the relinking goal.",
+  "complexity": {
+    "time": "O(m+n)",
+    "space": "O(1)",
+    "explanation": "Time O(m+n); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Return dummy.next rather than dummy.",
+    "Advance the selected input pointer and tail.",
+    "An empty input still returns the other list."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "list1",
+      "list2",
+      "dummy"
+    ],
+    "pointers": [],
+    "watch": [
+      "tail"
+    ],
+    "labels": {
+      "list1": "List1",
+      "list2": "List2",
+      "dummy": "Dummy",
+      "tail": "Tail"
+    }
+  }
+}

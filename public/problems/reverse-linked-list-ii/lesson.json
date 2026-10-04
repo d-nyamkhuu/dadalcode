@@ -1,0 +1,61 @@
+{
+  "slug": "reverse-linked-list-ii",
+  "headline": "Keep the node before the segment fixed",
+  "statement": "Reverse the nodes from one-based position left through right in a singly linked list, retaining every other node in place. Return the resulting head.",
+  "prerequisites": [
+    "Linked-list relinking",
+    "Dummy head",
+    "One-based positions"
+  ],
+  "constraints": [
+    "1 <= list length <= 500",
+    "1 <= left <= right <= list length",
+    "Node values range from -500 to 500"
+  ],
+  "intuition": "Keep the node before the segment fixed. Repeatedly remove the node immediately after the segment tail and insert it at the segment front.",
+  "approach": [
+    "Use a dummy head and walk before to position left-1.",
+    "Let current be the original first segment node; it becomes the final segment tail.",
+    "Repeat right-left times: detach current.next and insert it immediately after before."
+  ],
+  "correctness": "After k insertions, the first k+1 segment nodes appear in reverse order, current remains their tail, and both surrounding suffixes remain connected. Each step extends this reversed prefix by one original node. After right-left steps the complete requested segment is reversed.",
+  "bruteForce": "Copy all node values to an array, reverse the slice, then overwrite values: O(n) space and this does not reverse actual nodes.",
+  "complexity": {
+    "time": "O(right), O(n) worst case",
+    "space": "O(1)",
+    "explanation": "The predecessor walk takes left-1 steps and the reversal takes right-left steps, so total work is O(right). Only a dummy and a fixed number of node pointers occupy extra space."
+  },
+  "pitfalls": [
+    "Use a dummy head for left=1.",
+    "Save the moving node before overwriting links.",
+    "left=right must preserve the list unchanged."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/reverse-linked-list-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "dummy",
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "before",
+      "current",
+      "moving",
+      "step"
+    ],
+    "labels": {
+      "dummy": "Dummy",
+      "head": "Head",
+      "before": "Before",
+      "current": "Current",
+      "moving": "Moving",
+      "step": "Step"
+    }
+  }
+}

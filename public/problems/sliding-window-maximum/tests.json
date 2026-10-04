@@ -1,0 +1,136 @@
+[
+  {
+    "name": "Example: changing maxima",
+    "input": {
+      "nums": [
+        1,
+        3,
+        -1,
+        -3,
+        5,
+        3,
+        6,
+        7
+      ],
+      "k": 3
+    },
+    "expected": [
+      3,
+      3,
+      5,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "name": "Example: singleton",
+    "input": {
+      "nums": [
+        1
+      ],
+      "k": 1
+    },
+    "expected": [
+      1
+    ]
+  },
+  {
+    "name": "Unit windows",
+    "input": {
+      "nums": [
+        2,
+        -1,
+        3
+      ],
+      "k": 1
+    },
+    "expected": [
+      2,
+      -1,
+      3
+    ]
+  },
+  {
+    "name": "Full window",
+    "input": {
+      "nums": [
+        2,
+        5,
+        1
+      ],
+      "k": 3
+    },
+    "expected": [
+      5
+    ]
+  },
+  {
+    "name": "Equal maxima",
+    "input": {
+      "nums": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "k": 2
+    },
+    "expected": [
+      4,
+      4,
+      4
+    ]
+  },
+  {
+    "name": "Expiring maxima",
+    "input": {
+      "nums": [
+        9,
+        7,
+        5,
+        3
+      ],
+      "k": 2
+    },
+    "expected": [
+      9,
+      7,
+      5
+    ]
+  },
+  {
+    "name": "All-negative increasing maxima",
+    "input": {
+      "nums": [
+        -5,
+        -4,
+        -3,
+        -2
+      ],
+      "k": 2
+    },
+    "expected": [
+      -4,
+      -3,
+      -2
+    ]
+  },
+  {
+    "name": "Separated equal maximum candidates",
+    "input": {
+      "nums": [
+        4,
+        1,
+        4,
+        1
+      ],
+      "k": 2
+    },
+    "expected": [
+      4,
+      4,
+      4
+    ]
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "intuition": [
+    "Sorting all inserted numbers after every update makes finding the middle easy but repeats a growing amount of work. The median needs only the boundary between a lower half and an upper half. Keep those halves as heaps so their boundary values stay immediately accessible without fully sorting either half.",
+    "The lower half is a max heap, represented by negative numbers, and the upper half is a normal min heap. Maintain all lower values at or below all upper values. Their sizes must be equal or lower must have exactly one extra entry. Under these two rules, the roots occupy the middle ranks.",
+    "Insert into lower first, then transfer its largest value to upper to restore cross-half ordering. If upper becomes bigger, transfer its smallest value back. This compact sequence handles any arrival order, including duplicates and negative inputs. With equal sizes average the two roots; otherwise lower\u2019s root is the median. The internal negation is an implementation detail, so remember to undo it when returning actual values."
+  ],
+  "walkthrough": {
+    "input": {
+      "operations": [
+        "MedianFinder",
+        "addNum",
+        "addNum",
+        "findMedian",
+        "addNum",
+        "findMedian"
+      ],
+      "args": [
+        [],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [],
+        [
+          3
+        ],
+        []
+      ]
+    },
+    "steps": [
+      "After addNum(1), lower represents [1] and upper is empty; lower owns the odd extra entry.",
+      "During addNum(2), temporarily push 2 into lower, then move its maximum 2 to upper.",
+      "The halves now represent lower=[1], upper=[2], so findMedian() returns (1+2)/2=1.5.",
+      "For addNum(3), move the new lower maximum 3 into upper.",
+      "Upper becomes larger, so move its minimum 2 back into lower. The halves represent [1,2] and [3].",
+      "findMedian() now returns lower\u2019s maximum 2 because the total count is odd."
+    ],
+    "result": [
+      null,
+      null,
+      null,
+      1.5,
+      null,
+      2.0
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "heappush(upper, -heappop(lower))",
+      "note": "Move the largest lower value across the boundary, preserving lower-versus-upper ordering."
+    },
+    {
+      "code": "if len(upper) > len(lower):",
+      "note": "Only lower may own the odd extra entry; rebalance whenever upper becomes larger."
+    },
+    {
+      "code": "return (-lower[0] + upper[0]) / 2",
+      "note": "Equal-size heaps expose the two middle values whose average defines an even-size median."
+    }
+  ]
+}

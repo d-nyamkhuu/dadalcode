@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Example: best middle",
+    "input": {
+      "nums": [
+        1,
+        12,
+        -5,
+        -6,
+        50,
+        3
+      ],
+      "k": 4
+    },
+    "expected": 12.75
+  },
+  {
+    "name": "Example: single",
+    "input": {
+      "nums": [
+        5
+      ],
+      "k": 1
+    },
+    "expected": 5.0
+  },
+  {
+    "name": "All negative",
+    "input": {
+      "nums": [
+        -5,
+        -2,
+        -3
+      ],
+      "k": 2
+    },
+    "expected": -2.5
+  },
+  {
+    "name": "Whole array",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3
+      ],
+      "k": 3
+    },
+    "expected": 2.0
+  },
+  {
+    "name": "Unit windows",
+    "input": {
+      "nums": [
+        1,
+        -2,
+        5
+      ],
+      "k": 1
+    },
+    "expected": 5.0
+  },
+  {
+    "name": "Fractional result",
+    "input": {
+      "nums": [
+        1,
+        2,
+        4
+      ],
+      "k": 3
+    },
+    "expected": 2.3333333333333335
+  },
+  {
+    "name": "Best first window",
+    "input": {
+      "nums": [
+        10,
+        0,
+        0
+      ],
+      "k": 2
+    },
+    "expected": 5.0
+  }
+]

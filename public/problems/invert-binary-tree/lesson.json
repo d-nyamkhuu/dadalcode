@@ -1,0 +1,54 @@
+{
+  "slug": "invert-binary-tree",
+  "headline": "Mirroring exchanges left and right at every depth",
+  "statement": "Mirror a binary tree by swapping every node\u2019s left and right child. Return the same root with inverted links.",
+  "prerequisites": [
+    "Binary trees",
+    "Iterative depth-first traversal"
+  ],
+  "constraints": [
+    "0 <= node count <= 100",
+    "-100 <= node values <= 100"
+  ],
+  "intuition": "Mirroring exchanges left and right at every depth. Swapping children locally and then visiting both children performs the entire reflection.",
+  "approach": [
+    "Initialize a stack with root when it exists.",
+    "Pop a node and swap its left and right children.",
+    "Push both existing children so their subtrees receive the same operation.",
+    "Return root."
+  ],
+  "correctness": "Each node is visited once and its child links are exchanged once. The same operation recursively applies to both descendant subtrees, so every path made of left/right choices becomes the path with those choices reversed, which defines the mirror tree.",
+  "bruteForce": "Serialize the tree with positional information and reconstruct a mirrored tree, needing additional node allocation.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)",
+    "explanation": "Time O(n); auxiliary space O(h). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Return the root even when it is None.",
+    "Both subtrees still need processing after swapping.",
+    "Avoid swapping values; the tree structure is what changes."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/invert-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "node"
+    ],
+    "labels": {
+      "root": "Root",
+      "stack": "Stack",
+      "node": "Node"
+    }
+  }
+}

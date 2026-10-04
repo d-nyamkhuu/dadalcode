@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Multiplying every possible subarray requires quadratic work. Here every factor is positive and at least one, which gives a useful monotonic rule: expanding a product window cannot decrease its product, and removing its left factors cannot increase it.",
+    "Multiply the next value into product, then move left while product is at least k. Division is exact because each removed value is a factor currently in the product. Once the window is valid, every suffix ending at the same right position is also valid, since removing more factors cannot raise the product.",
+    "Count these suffixes directly as right-left+1 instead of listing them. Each subarray has exactly one right endpoint, so adding that number at every endpoint counts all valid subarrays once. The inequality is strict: equality must trigger shrinking. When k is zero or one, no nonempty product of allowed values can qualify, so return zero before entering the main loop. This special case also avoids trying to shrink an already-empty window."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        10,
+        5,
+        2,
+        6
+      ],
+      "k": 100
+    },
+    "steps": [
+      "For [10,5,2,6] and k=100, the first window product is 10, adding one valid subarray.",
+      "At 5, product becomes 50. Both [5] and [10,5] are valid, raising count to 3.",
+      "At 2, product reaches 100, which is not strictly below the threshold.",
+      "Remove factor 10, leaving product 10 and left=1. Add [2] and [5,2], raising count to 5.",
+      "At 6, product becomes 60. Add [6], [2,6], and [5,2,6].",
+      "Return count 8 without constructing any of the counted subarrays."
+    ],
+    "result": 8
+  },
+  "codeNotes": [
+    {
+      "code": "if k <= 1:\n            return 0",
+      "note": "Every allowed nonempty product is at least one, so these thresholds have no answers."
+    },
+    {
+      "code": "while product >= k:",
+      "note": "Equality is invalid because the required comparison is strictly less than k."
+    },
+    {
+      "code": "count += right - left + 1",
+      "note": "All suffixes of the repaired window are valid and share this unique right endpoint."
+    }
+  ]
+}

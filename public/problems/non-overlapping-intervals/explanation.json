@@ -1,0 +1,53 @@
+{
+  "intuition": [
+    "The requested removals are the complement of a largest compatible set. Searching all subsets is exponential, but viewing the task as selecting intervals suggests a greedy rule. We want each retained interval to leave as much timeline as possible for the remaining ones.",
+    "An earliest-finishing interval is safe to retain first. Replacing an optimal schedule’s first interval with this one cannot invalidate its later intervals, because the replacement ends no later. The same argument applies after every selected interval, giving an optimal chain rather than a merely plausible heuristic.",
+    "Sort by end time and remember only the last retained end. An interval starting before that boundary conflicts and is skipped; one starting at the boundary is compatible. Counting retained intervals and subtracting from the original count converts the selection result into minimum removals.",
+    "Endpoint equality is compatible in this scheduling problem: [-5,-3] and [-3,-1] can both remain. In merge-intervals, the intervals are closed and share their boundary point, so touching components are merged instead. The inequality must follow each problem's stated meaning, rather than a memorized interval template."
+  ],
+  "walkthrough": {
+    "input": {
+      "intervals": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "steps": [
+      "For [[1,2],[2,3],[3,4],[1,3]], end sorting produces [1,2], [2,3], [1,3], [3,4].",
+      "Initialize last_end to negative infinity and kept=0, so the earliest-finishing interval is always eligible.",
+      "Keep [1,2]: its start is beyond the initial boundary. Set last_end=2 and kept=1.",
+      "Keep [2,3] because start 2 equals last_end 2; touching endpoints are compatible here. Update kept=2 and last_end=3.",
+      "Skip [1,3] because start 1 is before 3. Then keep [3,4], raising kept to 3.",
+      "Four original intervals minus three retained intervals gives one removal."
+    ],
+    "result": 1
+  },
+  "codeNotes": [
+    {
+      "code": "sorted(intervals, key=lambda pair: pair[1])",
+      "note": "End ordering implements the exchange argument: finishing earlier never removes opportunities for the remaining intervals."
+    },
+    {
+      "code": "if start >= last_end:",
+      "note": "Equality is allowed because an interval ending when another begins does not overlap under this problem’s contract."
+    },
+    {
+      "code": "return len(intervals) - kept",
+      "note": "The greedy scan maximizes retained count; subtracting translates that result into the requested minimum number removed."
+    }
+  ]
+}

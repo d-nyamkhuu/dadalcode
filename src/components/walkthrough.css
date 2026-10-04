@@ -1,0 +1,198 @@
+.walkthrough:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+.walkthrough .wt-example-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.walkthrough .wt-example-row label {
+  white-space: nowrap;
+  margin: 0;
+}
+.walkthrough .wt-example-row select {
+  min-width: 0;
+  flex: 1;
+  font-size: 12px;
+  padding: 8px 10px;
+}
+.walkthrough .wt-step-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.walkthrough .wt-step-mode {
+  display: flex;
+  border: 1px solid #34434b;
+  border-radius: 5px;
+  padding: 3px;
+  gap: 3px;
+  background: #11191d;
+}
+.walkthrough .wt-step-mode button {
+  padding: 7px 9px;
+  border: none;
+  color: #a8bdcb;
+  background: transparent;
+  font-size: 11px;
+}
+.walkthrough .wt-step-mode button[aria-pressed="true"] {
+  background: #2b3b29;
+  color: var(--lime);
+}
+.walkthrough .wt-shortcuts {
+  font-size: 10px;
+  color: #9cb0bf;
+}
+.walkthrough .wt-instruction {
+  margin-bottom: 10px;
+}
+.walkthrough .wt-instruction > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.walkthrough .wt-instruction > div {
+  min-width: 0;
+  flex: 1;
+}
+.walkthrough .wt-event-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+}
+.walkthrough .wt-event-heading strong {
+  font-size: 12px;
+}
+.walkthrough .wt-event-heading span {
+  font-size: 10px;
+  opacity: 0.8;
+  overflow-wrap: anywhere;
+}
+.walkthrough .wt-instruction p {
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+.walkthrough .wt-semantics {
+  display: block;
+  font-size: 10px;
+  opacity: 0.85;
+}
+.walkthrough .wt-changes {
+  border: 1px solid #34434b;
+  background: #141d22;
+  border-radius: 4px;
+  padding: 10px 11px;
+}
+.walkthrough .wt-changes-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #b4c7d5;
+  font-size: 10px;
+  margin-bottom: 7px;
+}
+.walkthrough .wt-changes-heading button {
+  padding: 3px 5px;
+  font-size: 10px;
+}
+.walkthrough .wt-change-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.walkthrough .wt-change {
+  display: grid;
+  grid-template-columns: minmax(72px, 0.65fr) minmax(0, 1fr) 13px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.walkthrough .wt-change strong {
+  color: #a8bfce;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.walkthrough .wt-change code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #8fa5b4;
+}
+.walkthrough .wt-change svg {
+  color: #718697;
+}
+.walkthrough .wt-change .wt-after {
+  color: #d0eab2;
+}
+.walkthrough .wt-changes > p {
+  margin: 0;
+  color: #8fa5b4;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.walkthrough .scrubber {
+  margin-bottom: 6px;
+}
+.walkthrough .wt-progress-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #93aaba;
+  font-size: 10px;
+  margin-bottom: 17px;
+}
+/* Keep navigation next to the diagram even in long recursive/trie traces. */
+.walkthrough.panel {
+  overflow: visible;
+}
+.walkthrough .wt-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  background: #171e22;
+  border: 1px solid #34434b;
+  border-radius: 5px;
+  padding: 10px 11px 8px;
+  margin: 0 0 16px;
+  box-shadow: 0 4px 12px #0a111755;
+}
+.walkthrough .wt-toolbar .wt-step-options {
+  margin-bottom: 8px;
+}
+.walkthrough .wt-toolbar .playback {
+  margin: 0 0 4px;
+}
+.walkthrough .wt-toolbar .wt-progress-note {
+  margin-bottom: 0;
+}
+.walkthrough .wt-live-instruction {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-top: 1px solid #354139;
+  padding-top: 8px;
+  margin-top: 8px;
+  font-size: 10px;
+  color: #c5d4b8;
+}
+.walkthrough .wt-live-instruction > span {
+  flex-shrink: 0;
+  color: #9eaf94;
+}
+.walkthrough .wt-live-instruction > code {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+}

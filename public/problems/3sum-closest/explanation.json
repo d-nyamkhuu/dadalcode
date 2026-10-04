@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "The direct method evaluates every choice of three positions. That works, but three nested loops cost cubic time, and most comparisons teach us nothing about the next candidate. Sorting changes this: after fixing one position, we can reason about whether changing either remaining value makes the sum larger or smaller.",
+    "Place left immediately after the fixed index and right at the array end. If the sum is below target, moving right inward would only make it smaller. Instead advance left to increase the sum. If it is above target, retreat right to decrease it. Before either move, record the candidate if its absolute distance improves best.",
+    "This movement does not claim the next sum is always better. It discards pairs that cannot beat the already checked pair on the same side of target. Repeating for each first position covers the necessary candidates. An exact match can return immediately because distance zero is unbeatable. Initialize best from real input values so even entirely negative arrays have a legitimate answer."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -1,
+        2,
+        1,
+        -4
+      ],
+      "target": 1
+    },
+    "steps": [
+      "Sort [-1,2,1,-4] into [-4,-1,1,2]; the initial best triple sums to -4.",
+      "With first=-4, left=-1, right=2, the sum is -3, improving the distance to target 1.",
+      "Advance left to 1 because -3 is too small. The new sum is -1, now the best candidate.",
+      "Fix first=-1 and pair 1 with 2. Their total is 2, only one away from target.",
+      "The total exceeds target, so right retreats until the pointers meet.",
+      "Return 2: no examined candidate is closer, and the problem guarantees a unique closest sum."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "nums = sorted(nums)",
+      "note": "Sorting creates the monotonic comparisons that justify moving only one pointer."
+    },
+    {
+      "code": "if abs(total - target) < abs(best - target):",
+      "note": "Compare distances, while retaining the actual sum required by the output contract."
+    },
+    {
+      "code": "left, right = i + 1, len(nums) - 1",
+      "note": "Distinct ordered positions prevent reusing the fixed element or a pair position."
+    }
+  ]
+}

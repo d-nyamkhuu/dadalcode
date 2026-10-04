@@ -1,0 +1,47 @@
+{
+  "intuition": [
+    "A concatenated word is a dictionary entry that can also be segmented into at least two shorter entries. Repeated component words are allowed. Checking whether the complete word belongs to the dictionary is therefore useless by itself: every candidate already does.",
+    "Treat character positions as boundaries. reachable[end] means the prefix ending immediately before end can be segmented. Begin with boundary zero, then try every earlier reachable start whose substring word[start:end] is a dictionary entry. This turns many repeated cut-pattern explorations into one dynamic-programming table per word.",
+    "The sole forbidden transition is using the entire candidate from boundary zero to its final boundary. Excluding it ensures that reaching the final boundary requires at least two pieces. All other dictionary entries can be reused, including entries that are themselves concatenated words. A set provides fast lookup, though Python still copies substring characters. The original dictionary order does not matter because every candidate is tested against the full set rather than only earlier inputs."
+  ],
+  "walkthrough": {
+    "input": {
+      "words": [
+        "cat",
+        "cats",
+        "catsdogcats",
+        "dog",
+        "dogcatsdog",
+        "hippopotamuses",
+        "rat",
+        "ratcatdogcat"
+      ]
+    },
+    "steps": [
+      "The example dictionary includes \"cat\", \"cats\", \"dog\", \"rat\", and several longer words. Build its membership set once.",
+      "\"cat\" and \"cats\" cannot reach their final boundary without the forbidden whole-word transition, so they are not emitted.",
+      "\"catsdogcats\" reaches boundaries 4, 7, and 11 using \"cats\" + \"dog\" + \"cats\".",
+      "\"dogcatsdog\" splits into \"dog\" + \"cats\" + \"dog\", while \"ratcatdogcat\" splits into \"rat\" + \"cat\" + \"dog\" + \"cat\".",
+      "\"hippopotamuses\" has no valid shorter segmentation. Return the three concatenated entries."
+    ],
+    "result": [
+      "catsdogcats",
+      "dogcatsdog",
+      "ratcatdogcat"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "reachable[0] = True",
+      "note": "The empty prefix establishes the first legal boundary from which a dictionary component can begin."
+    },
+    {
+      "code": "if start == 0 and end == len(word):",
+      "note": "Skipping only the whole-candidate transition enforces the at-least-two-components requirement without removing useful dictionary entries globally."
+    },
+    {
+      "code": "if reachable[start] and word[start:end] in dictionary:",
+      "note": "A transition extends an already segmented prefix by one complete dictionary word; both conditions are necessary."
+    }
+  ]
+}

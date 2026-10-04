@@ -1,0 +1,48 @@
+{
+  "intuition": [
+    "A room can be reused once its meeting ends. Assigning rooms by checking every prior meeting repeats a large amount of overlap work. Instead, process meetings in start order and keep only the ending times of meetings that are still active.",
+    "A min-heap exposes the earliest active end. Before adding a new meeting, remove every end at or before its start; those rooms have become available. The remaining entries describe meetings competing with the new one for space at that instant.",
+    "The room requirement is the largest active count, not the active count after the final start. That peak is necessary because all those meetings overlap simultaneously, and sufficient because ended rooms can always be reused. Equal end and start times do not overlap in this scheduling problem."
+  ],
+  "walkthrough": {
+    "input": {
+      "intervals": [
+        [
+          0,
+          30
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          15,
+          20
+        ]
+      ]
+    },
+    "steps": [
+      "For [[0,30],[5,10],[15,20]], start sorting leaves the input order unchanged. Begin with active_ends=[] and peak=0.",
+      "At start 0, no room can be freed. Push end 30, giving heap [30] and peak=1.",
+      "At start 5, earliest end 30 is still in the future. Push 10, yielding [10,30] and peak=2.",
+      "At start 15, pop end 10 because its meeting has ended. End 30 remains active.",
+      "Push end 20; the heap is [20,30]. Two meetings are again active, so peak remains 2.",
+      "Return peak=2. One room hosts the long meeting, and the other is reused for [5,10] then [15,20]."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "while active_ends and active_ends[0] <= start:",
+      "note": "Remove every completed meeting, including one ending exactly at start, so heap size represents current occupancy accurately."
+    },
+    {
+      "code": "heappush(active_ends, end)",
+      "note": "Store end times rather than full meetings because future reuse decisions depend only on when active rooms become free."
+    },
+    {
+      "code": "peak = max(peak, len(active_ends))",
+      "note": "An earlier busy moment may require more rooms than the final heap size. Retaining the maximum preserves that capacity requirement."
+    }
+  ]
+}

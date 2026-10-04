@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Example: hidden fleet",
+    "input": {
+      "text": "thestoryofleetcodeandme",
+      "words": [
+        "story",
+        "fleet",
+        "leetcode"
+      ]
+    },
+    "expected": [
+      [
+        3,
+        7
+      ],
+      [
+        9,
+        13
+      ],
+      [
+        10,
+        17
+      ]
+    ]
+  },
+  {
+    "name": "Example: overlaps",
+    "input": {
+      "text": "ababa",
+      "words": [
+        "aba",
+        "ab"
+      ]
+    },
+    "expected": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ]
+  },
+  {
+    "name": "Every endpoint",
+    "input": {
+      "text": "aaa",
+      "words": [
+        "a",
+        "aa"
+      ]
+    },
+    "expected": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ]
+  },
+  {
+    "name": "No match",
+    "input": {
+      "text": "abc",
+      "words": [
+        "d"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Whole text",
+    "input": {
+      "text": "abc",
+      "words": [
+        "abc"
+      ]
+    },
+    "expected": [
+      [
+        0,
+        2
+      ]
+    ]
+  },
+  {
+    "name": "Longer than text",
+    "input": {
+      "text": "a",
+      "words": [
+        "aa",
+        "a"
+      ]
+    },
+    "expected": [
+      [
+        0,
+        0
+      ]
+    ]
+  }
+]

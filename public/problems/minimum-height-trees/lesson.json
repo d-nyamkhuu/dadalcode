@@ -1,0 +1,66 @@
+{
+  "slug": "minimum-height-trees",
+  "headline": "Peel leaves until only the centers remain",
+  "statement": "Given an undirected tree with n vertices labeled 0 through n-1, return every vertex that minimizes the tree height when chosen as root. Height is the longest root-to-leaf edge distance. Any result order is accepted.",
+  "prerequisites": [
+    "Tree degree",
+    "Queue",
+    "Diameter intuition"
+  ],
+  "constraints": [
+    "1 <= n <= 20,000",
+    "edges has exactly n-1 entries",
+    "Input edges form a connected tree without repeated edges",
+    "Each edge [a,b] has 0 <= a,b < n and a != b"
+  ],
+  "intuition": "Outer leaves are farthest from the central region. Removing all leaves together shrinks every longest branch symmetrically. Continue until one or two vertices remain: these are the tree’s centers and best roots.",
+  "approach": [
+    "Return vertex zero for a one-vertex tree.",
+    "Build adjacency and degrees; enqueue all degree-one vertices.",
+    "Remove a full leaf layer, decrement neighbors’ degrees, and enqueue new leaves; stop with at most two vertices."
+  ],
+  "correctness": "The best roots are the midpoint vertex or pair of any longest tree path. Removing one complete leaf layer deletes both endpoints of every diameter and shifts distances uniformly toward its midpoint. Repeating leaves exactly these midpoint centers.",
+  "bruteForce": "Root the tree at each vertex and compute its height separately, costing O(n²).",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "Each vertex becomes a leaf once and each edge contributes a constant number of degree updates."
+  },
+  "pitfalls": [
+    "Remove an entire layer before deciding to stop.",
+    "A two-center answer may appear in either order.",
+    "The single-vertex tree has degree zero but still has a center."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/minimum-height-trees/"
+    }
+  ],
+  "visualization": {
+    "kind": "graph",
+    "focus": [
+      "edges",
+      "adjacency",
+      "degree",
+      "leaves"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "neighbor",
+      "remaining",
+      "layer_size"
+    ],
+    "labels": {
+      "edges": "Edges",
+      "adjacency": "Adjacency",
+      "degree": "Degree",
+      "leaves": "Leaves",
+      "node": "Node",
+      "neighbor": "Neighbor",
+      "remaining": "Remaining",
+      "layer_size": "Layer size"
+    }
+  }
+}

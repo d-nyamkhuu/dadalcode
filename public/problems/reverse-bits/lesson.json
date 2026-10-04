@@ -1,0 +1,58 @@
+{
+  "slug": "reverse-bits",
+  "headline": "Read the original low bit and append it to a growing reversed result",
+  "statement": "Reverse the order of all 32 bits of an unsigned 32-bit integer n and return the resulting unsigned integer. Leading zero bits participate in the reversal.",
+  "prerequisites": [
+    "Bitwise AND",
+    "Left and right shifts",
+    "Fixed-width representation"
+  ],
+  "constraints": [
+    "0 <= n <= 2^32 - 1",
+    "Always reverse exactly 32 bits"
+  ],
+  "intuition": "Read the original low bit and append it to a growing reversed result. Processing all 32 positions moves original leading zeros to final trailing zeros.",
+  "approach": [
+    "Start result=0.",
+    "Repeat 32 times: shift result left and append n&1.",
+    "Shift n right to expose the next input bit.",
+    "Return the accumulated unsigned result."
+  ],
+  "correctness": "After k iterations, result consists of the original lowest k bits in reverse order, by shifting the existing sequence and appending the next low bit. Exactly 32 iterations include every position, so the final sequence is the full bit reversal.",
+  "bruteForce": "Format a padded 32-character binary string, reverse it, and parse it back; correct but allocates a string.",
+  "complexity": {
+    "time": "O(32), hence O(1)",
+    "space": "O(1)",
+    "explanation": "Exactly 32 iterations each perform one mask, two shifts, and one bit append. The fixed width and two scalar integers make both time and auxiliary storage constant."
+  },
+  "pitfalls": [
+    "Stopping when n becomes zero omits leading zero positions.",
+    "Reverse bits, not decimal digits.",
+    "Python integers are unbounded, so the fixed loop supplies the 32-bit width."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/reverse-bits/"
+    }
+  ],
+  "visualization": {
+    "kind": "bits",
+    "focus": [
+      "n",
+      "result"
+    ],
+    "pointers": [
+      "bit_index"
+    ],
+    "watch": [
+      "bit"
+    ],
+    "labels": {
+      "n": "N",
+      "result": "Result",
+      "bit_index": "Bit index",
+      "bit": "Bit"
+    }
+  }
+}

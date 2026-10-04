@@ -1,0 +1,55 @@
+{
+  "slug": "kth-largest-element-in-an-array",
+  "headline": "Retain the largest k values in a min heap",
+  "statement": "Return the kth largest value of nums, counting equal values separately. This is position k in a descending sorted sequence, rather than the kth distinct value.",
+  "prerequisites": [
+    "Min heap",
+    "Order statistics"
+  ],
+  "constraints": [
+    "1 <= k <= len(nums) <= 100,000",
+    "-10,000 <= nums[i] <= 10,000"
+  ],
+  "intuition": "The heap stores the k largest values seen. Its root is the weakest member and can be evicted when a larger value arrives. At the end, this weakest top-k value is the requested rank.",
+  "approach": [
+    "Fill a heap with up to k values.",
+    "For each subsequent value, replace the root if the value is larger.",
+    "Return the final root."
+  ],
+  "correctness": "Inductively the heap is the largest k processed values with multiplicity. A smaller incoming value cannot improve this group; a larger one replaces its minimum. The minimum of the final top-k group has exactly rank k.",
+  "bruteForce": "Sort all values and index the descending result, in O(n log n) time.",
+  "complexity": {
+    "time": "O(n log(k + 1))",
+    "space": "O(k)",
+    "explanation": "Heap operations are logarithmic in k and the heap never stores more than k values."
+  },
+  "pitfalls": [
+    "Duplicates occupy separate ranks.",
+    "A min heap exposes the item to replace.",
+    "Ranks start at one."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "nums",
+      "heap"
+    ],
+    "pointers": [],
+    "watch": [
+      "k",
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "heap": "Heap",
+      "k": "K",
+      "value": "Value"
+    }
+  }
+}

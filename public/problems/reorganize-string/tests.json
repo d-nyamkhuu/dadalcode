@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Two a one b",
+    "input": {
+      "s": "aab"
+    },
+    "expected": "aba"
+  },
+  {
+    "name": "Impossible majority",
+    "input": {
+      "s": "aaab"
+    },
+    "expected": ""
+  },
+  {
+    "name": "Three v",
+    "input": {
+      "s": "vvvlo"
+    },
+    "expected": "vlvov"
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "s": "z"
+    },
+    "expected": "z"
+  },
+  {
+    "name": "Equal counts",
+    "input": {
+      "s": "aabb"
+    },
+    "expected": "abab"
+  },
+  {
+    "name": "Several letters",
+    "input": {
+      "s": "abc"
+    },
+    "expected": "abc"
+  },
+  {
+    "name": "Even length separator shortage",
+    "input": {
+      "s": "aaaabb"
+    },
+    "expected": ""
+  },
+  {
+    "name": "Odd length tight separator bound",
+    "input": {
+      "s": "aaabb"
+    },
+    "expected": "ababa"
+  }
+]

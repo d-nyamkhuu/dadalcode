@@ -1,0 +1,55 @@
+{
+  "slug": "search-in-rotated-sorted-array",
+  "headline": "Find the sorted half before discarding it",
+  "statement": "A strictly increasing array may have been rotated. Return the index of target, or -1 when it is absent, in logarithmic time.",
+  "prerequisites": [
+    "Binary search",
+    "Sorted intervals"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 5000.",
+    "All values are distinct.",
+    "nums is a rotation of an increasing sequence.",
+    "-10000 <= nums[i], target <= 10000."
+  ],
+  "intuition": "Rotation introduces at most one drop. Splitting at mid therefore leaves at least one half sorted. Use that half's endpoints to decide whether the target belongs inside it, then discard the other half.",
+  "approach": [
+    "Keep an inclusive left/right candidate range.",
+    "Return mid immediately on a match.",
+    "Determine whether the left half is sorted.",
+    "Use the sorted half's value bounds to retain exactly the half that can contain target."
+  ],
+  "correctness": "The target, if present, remains inside the candidate interval. A sorted half either contains the target in its numeric range or cannot contain it, so discarding the appropriate half preserves the invariant. The interval shrinks each iteration; exhaustion proves absence.",
+  "bruteForce": "Scan all positions in O(n) time. Binary search exploits the one-drop structure for O(log n).",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "explanation": "Each iteration discards at least half the candidate positions."
+  },
+  "pitfalls": [
+    "Distinct values are essential for this sorted-half test.",
+    "Bounds must exclude mid after a failed equality check.",
+    "The return value is an index, not a boolean."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "mid",
+      "right"
+    ],
+    "watch": [
+      "target"
+    ],
+    "labels": {}
+  }
+}

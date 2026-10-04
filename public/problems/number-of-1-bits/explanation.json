@@ -1,0 +1,36 @@
+{
+  "intuition": [
+    "Scanning every bit position works, but visits zeros as well as ones. If an integer has only a few set bits, most positions contribute nothing. A useful bit operation should remove one known set bit at a time so the number of iterations equals the quantity we want.",
+    "Consider the lowest 1 in the binary representation. Subtracting one changes that 1 to 0 and changes every lower trailing 0 to 1. Higher bits remain unchanged. AND with the original number removes the newly changed lower positions because they were originally zero, leaving exactly the original bits except that lowest 1.",
+    "Repeating this transformation strictly reduces the number of set bits until the value is zero. Incrementing a counter once per transformation therefore counts the original ones directly. The algorithm uses no binary-string conversion and works within constant space.",
+    "The before/after binary values are 1011 -> 1010 -> 1000 -> 0000; each adjacent pair differs at exactly one original 1 bit. previous stores the pre-clearing value for the visualization and is not needed to calculate the answer. Both n and previous use fixed-size integers under this problem's 31-bit bound."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 11
+    },
+    "steps": [
+      "For n=11, the binary representation is 1011. Initialize count=0.",
+      "The first before/after pair is 1011 -> 1010: n-1 is 1010, so AND clears only the rightmost 1. count becomes 1.",
+      "Now n=10. Its predecessor is 9, binary 1001, so 1010 AND 1001 becomes 1000.",
+      "The second clearing operation leaves n=8 and count=2.",
+      "Subtract one from 8 to get 7, binary 0111. AND 1000 with 0111 gives 0000 and count becomes 3.",
+      "The loop stops at zero. Return 3, which counts the three original set bits rather than the four binary positions."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "while n:",
+      "note": "The remaining integer is nonzero exactly while at least one original set bit has not yet been counted."
+    },
+    {
+      "code": "n &= n - 1",
+      "note": "This transformation clears only the lowest set bit. It is bitwise AND, not a logical boolean comparison."
+    },
+    {
+      "code": "count += 1",
+      "note": "Each transformation removes exactly one bit, so one increment maintains equality between the counter and the number of removed original bits."
+    }
+  ]
+}

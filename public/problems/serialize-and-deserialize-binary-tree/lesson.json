@@ -1,0 +1,65 @@
+{
+  "slug": "serialize-and-deserialize-binary-tree",
+  "headline": "Record null child slots to preserve the exact shape",
+  "statement": "Implement Codec.serialize(root) returning a string and Codec.deserialize(data) reconstructing the same binary tree. The format is your choice, provided round trips preserve every value and child position. Inputs use level-order arrays; the reference format is preorder values with # for each missing child. Saved strings must remain independently decodable after subsequent serialize calls. Reconstruction must use the string rather than cached original nodes.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary tree nodes and traversal"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 10^4",
+    "-1000 <= node values <= 1000",
+    "deserialize receives a string emitted by serialize."
+  ],
+  "intuition": "Values alone cannot distinguish a left child from a right child. Preorder visits the parent before both children; explicit null tokens delimit every subtree. Deserialize by maintaining a stack of the next child slots to fill, avoiding recursive depth limits for skewed trees.",
+  "approach": [
+    "Serialize with an explicit stack, emitting a value or # and pushing right then left children.",
+    "Deserialize comma-separated tokens into pending (parent,side) slots.",
+    "Each non-null token creates a node and pushes its right then left slots.",
+    "A null token fills its slot with None; return the reconstructed root."
+  ],
+  "correctness": "Serialization emits the root followed by complete left and right representations, including empty subtrees. Deserialization consumes slots in that same preorder because the stack pushes right before left. Each token fills exactly one corresponding child position; by induction on consumed tokens the partial tree has the original shape and values.",
+  "bruteForce": "Store only traversal values and infer missing children. That is insufficient: different tree shapes can share the same value traversal. A structural format is necessary.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "There are 2n+1 preorder tokens, and explicit stacks plus token storage are linear. Iterative traversal supports deep chains without Python recursion overflow."
+  },
+  "pitfalls": [
+    "Include missing-child markers or tree shape is ambiguous.",
+    "Push right before left on a LIFO stack.",
+    "Use a fresh decoder instance; decoding must not depend on cached original nodes."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "node",
+      "stack",
+      "slots",
+      "tokens"
+    ],
+    "pointers": [],
+    "watch": [
+      "token",
+      "parent",
+      "side"
+    ],
+    "labels": {
+      "root": "Root",
+      "node": "Node",
+      "stack": "Stack",
+      "slots": "Slots",
+      "tokens": "Tokens",
+      "token": "Token",
+      "parent": "Parent",
+      "side": "Side"
+    }
+  }
+}

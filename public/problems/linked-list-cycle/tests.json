@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Tail enters middle",
+    "input": {
+      "head": [
+        3,
+        2,
+        0,
+        -4
+      ],
+      "pos": 1
+    },
+    "expected": true
+  },
+  {
+    "name": "Two-node cycle",
+    "input": {
+      "head": [
+        1,
+        2
+      ],
+      "pos": 0
+    },
+    "expected": true
+  },
+  {
+    "name": "One acyclic node",
+    "input": {
+      "head": [
+        1
+      ],
+      "pos": -1
+    },
+    "expected": false
+  },
+  {
+    "name": "Empty list",
+    "input": {
+      "head": [],
+      "pos": -1
+    },
+    "expected": false
+  },
+  {
+    "name": "Self loop",
+    "input": {
+      "head": [
+        7
+      ],
+      "pos": 0
+    },
+    "expected": true
+  },
+  {
+    "name": "Repeated values without cycle",
+    "input": {
+      "head": [
+        1,
+        1,
+        1
+      ],
+      "pos": -1
+    },
+    "expected": false
+  },
+  {
+    "name": "Tail self loop after prefix",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pos": 3
+    },
+    "expected": true
+  }
+]

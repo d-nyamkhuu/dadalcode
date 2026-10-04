@@ -1,0 +1,42 @@
+{
+  "intuition": [
+    "Exploring every root-to-leaf path would let us take the smallest length, but it may traverse a huge branch even when another leaf is near the root. Breadth-first search orders nodes by depth, so a shallow solution can end the search before deeper branches are explored.",
+    "The endpoint must be a real leaf: a node with neither child. A missing left child beside an existing right child is not a completed path. This distinction is why simply taking the smaller of two child depths can fail when one subtree is absent.",
+    "Queue each node with its depth in nodes, starting at one for the root. FIFO traversal visits nondecreasing depths; therefore the first leaf popped has the minimum possible depth. Existing children receive depth+1. An empty input is separate and returns zero because there is no root-to-leaf path."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        3,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "steps": [
+      "For [3,9,20,null,null,15,7], enqueue root 3 with depth 1.",
+      "Remove 3. It has children, so it is not a leaf; append (9,2) followed by (20,2).",
+      "Remove (9,2). Both child references are absent, making 9 a genuine leaf.",
+      "Because the queue processes depth 2 before any deeper frontier, no leaf with a smaller depth can still be undiscovered.",
+      "Return 2 immediately. Node 20 and its depth-3 children do not need to be processed to prove this answer."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "queue = deque([(root, 1)])",
+      "note": "Depth counts nodes on the path, so the root contributes one. Storing depth beside each queued node avoids separately managing level counters."
+    },
+    {
+      "code": "if node.left is None and node.right is None:",
+      "note": "Both absences are required. A one-child node must continue down its existing branch rather than treating a missing subtree as a shorter path."
+    },
+    {
+      "code": "queue.append((node.left, depth + 1))",
+      "note": "An existing child extends the path by exactly one node. Its queued depth is therefore its parent depth plus one."
+    }
+  ]
+}

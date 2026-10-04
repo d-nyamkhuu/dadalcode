@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Repeated cycle",
+    "input": {
+      "s": "abcabcbb"
+    },
+    "expected": 3
+  },
+  {
+    "name": "Only one character",
+    "input": {
+      "s": "bbbbb"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Empty string",
+    "input": {
+      "s": ""
+    },
+    "expected": 0
+  },
+  {
+    "name": "Must not retreat left",
+    "input": {
+      "s": "abba"
+    },
+    "expected": 2
+  },
+  {
+    "name": "Substring not subsequence",
+    "input": {
+      "s": "pwwkew"
+    },
+    "expected": 3
+  },
+  {
+    "name": "Space is a character",
+    "input": {
+      "s": "a b!a"
+    },
+    "expected": 4
+  },
+  {
+    "name": "Distinct suffix after repeated prefix",
+    "input": {
+      "s": "aaaaabcd"
+    },
+    "expected": 4
+  }
+]

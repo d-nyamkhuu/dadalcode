@@ -1,0 +1,52 @@
+{
+  "slug": "generate-parentheses",
+  "headline": "Grow only balanced prefixes",
+  "statement": "Produce every well-formed string made from n opening and n closing parentheses. Output order is unrestricted.",
+  "prerequisites": [
+    "Recursion",
+    "Backtracking",
+    "Prefix balance"
+  ],
+  "constraints": [
+    "1 <= n <= 8."
+  ],
+  "intuition": "A prefix is extendable only if it never closes more pairs than it has opened. Track counts instead of generating all strings and checking them later. Add an opening bracket while some remain; add a closing bracket only when an unmatched opening exists.",
+  "approach": [
+    "Recursively track path, opened, and closed.",
+    "Append an opening parenthesis when opened < n.",
+    "Append a closing parenthesis when closed < opened.",
+    "Record the path when both counts reach n."
+  ],
+  "correctness": "Every recursive prefix has 0 <= closed <= opened <= n. Thus a completed prefix is balanced. Every valid string obeys these inequalities at every prefix, so the recursion follows its characters and eventually emits it. Each character-choice path is unique.",
+  "bruteForce": "Enumerate 2^(2n) binary strings and validate each balance. Backtracking rejects invalid prefixes immediately.",
+  "complexity": {
+    "time": "O(n \u00b7 C\u2099)",
+    "space": "O(n) auxiliary plus O(n \u00b7 C\u2099) output",
+    "explanation": "C\u2099 is the nth Catalan number, the count of valid strings."
+  },
+  "pitfalls": [
+    "A close is legal only when closed < opened.",
+    "Do not stop after placing n characters: a result has 2n characters.",
+    "Avoid sharing mutable paths without undoing changes."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/generate-parentheses/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "path",
+      "result"
+    ],
+    "pointers": [],
+    "watch": [
+      "opened",
+      "closed",
+      "n"
+    ],
+    "labels": {}
+  }
+}

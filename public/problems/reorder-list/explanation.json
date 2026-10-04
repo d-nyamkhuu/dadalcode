@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "The target order alternates between nodes from the front and nodes from the back. Singly linked lists cannot move backward efficiently, so repeatedly walking to the last remaining node would become quadratic. Expose those back nodes in forward order by reversing the second half once.",
+    "Slow and fast pointers find the midpoint without measuring the list first. Give the first half an extra node when the length is odd, then detach the second half. Reversing that chain produces Ln, Ln-1, and so on, while the first chain still produces L0, L1, and so on.",
+    "Weaving the two chains now directly generates the desired alternating order. Save both next pointers before connecting a front node to a back node and the back node to the next front node. The detachment prevents an accidental cycle between the original halves. When the back chain runs out, a possible middle node is already attached at the end. Values stay untouched because the transformation is entirely about node links."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "steps": [
+      "For 1\u21922\u21923\u21924, the slow/fast scan leaves slow at node 2, the end of the first half.",
+      "Detach node 2 from node 3. The two chains are 1\u21922 and 3\u21924.",
+      "Reverse the second chain to obtain 4\u21923, saving each original next link before reversing it.",
+      "Weave node 1 with node 4, then node 2 with node 3. The new chain is 1\u21924\u21922\u21923.",
+      "The back chain is exhausted and the list ends without a cycle. The method returns nothing; the original head exposes the reordered list."
+    ],
+    "result": [
+      1,
+      4,
+      2,
+      3
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "slow.next = None",
+      "note": "Breaking the old connection separates the halves before reversal and merge, preventing the final chain from looping into old links."
+    },
+    {
+      "code": "current.next = previous",
+      "note": "This reverses the second half so its original last node becomes the next node available for weaving."
+    },
+    {
+      "code": "next_first, next_second = first.next, second.next",
+      "note": "Both untouched suffixes must be saved before rewriting either connection, or the remaining nodes could be lost."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "3sum",
+  "headline": "Fix one number, squeeze the remaining pair",
+  "statement": "Find every distinct value triplet in nums whose sum is zero. Three different array positions must supply each triplet; the returned triplets may appear in any order.",
+  "prerequisites": [
+    "Sorting",
+    "Two pointers",
+    "Duplicate handling"
+  ],
+  "constraints": [
+    "3 <= len(nums) <= 3000.",
+    "Values are integers between -100000 and 100000."
+  ],
+  "intuition": "Once the array is sorted, fixing the first value turns a three-number search into a two-number search. A sum below zero needs a larger left value; a sum above zero needs a smaller right value. Equal values must be skipped to avoid rediscovering the same triplet.",
+  "approach": [
+    "Sort a copy of the input.",
+    "Choose each distinct first value, stopping when it becomes positive.",
+    "Move left and right toward each other, guided by the sum.",
+    "On zero, record the triplet and skip equal neighbors on both sides."
+  ],
+  "correctness": "For a fixed first value, a sum below zero rules out every pair using that left value with a smaller right value. A sum above zero similarly rules out that right value with a larger left value. Therefore pointer movements cannot skip a solution. Distinct anchors and duplicate skipping emit each value triplet exactly once.",
+  "bruteForce": "Try all index triples in O(n^3) time, then deduplicate their sorted values. Sorting exposes monotonic choices and reduces the search to O(n^2).",
+  "complexity": {
+    "time": "O(n\u00b2)",
+    "space": "O(n) auxiliary plus output",
+    "explanation": "Sorting uses a copied array; each anchor scans the remaining range once."
+  },
+  "pitfalls": [
+    "Skip duplicate anchors as well as duplicate pairs.",
+    "Use three different positions even when values repeat.",
+    "Return all triplets, not the first match."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/3sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "values",
+      "result"
+    ],
+    "pointers": [
+      "i",
+      "left",
+      "right"
+    ],
+    "watch": [
+      "total",
+      "anchor"
+    ],
+    "labels": {}
+  }
+}

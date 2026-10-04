@@ -1,0 +1,42 @@
+{
+  "intuition": [
+    "A sequential scan can inspect every value, but a sorted array lets one failed comparison rule out many candidates at once. If a middle value is smaller than target, everything before it is smaller too. If it is larger, everything after it is too large as well.",
+    "Maintain an inclusive interval left..right that contains every still-possible target position. Check its middle and either return equality or retain the one possible half. The middle itself must be excluded after a failed comparison; otherwise a one-element interval could repeat forever without progress.",
+    "The interval may shrink to one final candidate, so the loop uses left<=right rather than left<right. Only when left exceeds right is there no position left to examine. Returning -1 then records absence, while a successful comparison returns the index rather than the matched value."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -1,
+        0,
+        3,
+        5,
+        9,
+        12
+      ],
+      "target": 9
+    },
+    "steps": [
+      "For nums=[-1,0,3,5,9,12] and target=9, initialize the inclusive search interval 0..5.",
+      "The middle is (0+5)//2=2, where nums[2]=3. Equality fails, and 3<9.",
+      "Sortedness rules out indices 0, 1, and 2. Set left=3, keeping candidate interval 3..5.",
+      "The new middle is (3+5)//2=4, where nums[4]=9. This comparison matches the target.",
+      "Return index 4 immediately. The result identifies the position of 9, not the value 9 itself."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "while left <= right:",
+      "note": "An inclusive interval with equal endpoints still contains one untested candidate. The equality in this guard ensures it is checked before declaring absence."
+    },
+    {
+      "code": "left = mid + 1",
+      "note": "When the middle value is too small, both it and every earlier index are impossible. Excluding mid also guarantees the search interval shrinks."
+    },
+    {
+      "code": "right = mid - 1",
+      "note": "The symmetric update removes a too-large middle and all later positions, preserving only indices that could contain the target."
+    }
+  ]
+}

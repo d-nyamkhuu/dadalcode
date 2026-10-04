@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Sorting the input would group consecutive values, but its O(n log n) cost exceeds the requested expected linear bound. A hash set supplies constant-time membership checks and removes duplicates, which are irrelevant to the length of a sequence of distinct consecutive integer values.",
+    "The potential trap is repeatedly walking the same run. If values 1 through 1000 exist, starting a forward scan at every value repeats most of that run and becomes quadratic. Begin only at a value whose predecessor is absent; that value is the unique beginning of its maximal run.",
+    "From a certified start, increase current until membership fails. The difference current-value is the run length. Every set value belongs to one maximal run and is walked from that run\u2019s unique start, so total walking work is linear even though the algorithm contains a loop inside a loop."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        100,
+        4,
+        200,
+        1,
+        3,
+        2
+      ]
+    },
+    "steps": [
+      "For [100,4,200,1,3,2], the set contains six unique values; their iteration order does not affect the answer.",
+      "Value 1 has no predecessor 0, so it starts a run. Membership succeeds for 1, 2, 3, and 4.",
+      "Membership fails at 5. The length is current-value=5-1=4, and best becomes 4.",
+      "Values 2, 3, and 4 are skipped as starts because each has its predecessor in the set.",
+      "Values 100 and 200 each begin a one-value run. Neither improves best, so the final result is 4."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "values = set(nums)",
+      "note": "The set removes duplicate occurrences and makes each membership lookup expected constant time, matching the problem\u2019s value-based sequence definition."
+    },
+    {
+      "code": "if value - 1 in values:",
+      "note": "An existing predecessor proves this is an interior run value. Skipping its walk prevents the repeated scans that would destroy linear complexity."
+    },
+    {
+      "code": "length = current - value",
+      "note": "current is the first absent value after the run, so subtracting the starting value gives exactly the count of consecutive present integers."
+    }
+  ]
+}

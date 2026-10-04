@@ -1,0 +1,63 @@
+{
+  "slug": "n-queens",
+  "headline": "Place one queen per row",
+  "statement": "Place n queens on an n by n chessboard so none share a row, column, or diagonal. Return every distinct board, with Q for a queen and . for an empty square, in any order.",
+  "prerequisites": [
+    "Backtracking",
+    "Sets",
+    "Diagonal coordinates"
+  ],
+  "constraints": [
+    "1 <= n <= 9"
+  ],
+  "intuition": "Place one queen per row. A partial board needs only three sets to remember attacked columns and the two diagonal directions.",
+  "approach": [
+    "Recursively choose a column in the next row.",
+    "Reject columns or diagonals already occupied; record a safe queen.",
+    "Recurse into the next row, then undo all three occupancy records.",
+    "When n rows are filled, construct a board from the chosen columns."
+  ],
+  "correctness": "One queen per recursive row enforces row uniqueness. The sets enforce column and diagonal uniqueness. Each legal board has one sequence of column choices explored by the search, and undoing each choice makes sibling branches independent; thus all and only valid boards are emitted once.",
+  "bruteForce": "Enumerate every assignment of n columns to n rows and check conflicts: n^n candidates.",
+  "complexity": {
+    "time": "O(n! * n²) including board output",
+    "space": "O(n) excluding output",
+    "explanation": "Let S be the number of solutions. Column uniqueness bounds valid prefixes by permutations; trying n columns at those prefixes gives a safe O(n*n!) search bound. Constructing S independent n-by-n boards costs O(S*n²). Together these are bounded by O(n!*n²). Working sets, placement and recursion need O(n), excluding O(S*n²) output."
+  },
+  "pitfalls": [
+    "The two diagonal keys are row-column and row+column.",
+    "Remove occupancy marks after returning from recursion.",
+    "n=2 and n=3 have no solutions."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/n-queens/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "placement",
+      "columns",
+      "descending",
+      "ascending"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "result"
+    ],
+    "labels": {
+      "placement": "Placement",
+      "columns": "Columns",
+      "descending": "Descending",
+      "ascending": "Ascending",
+      "row": "Row",
+      "col": "Col",
+      "result": "Result"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "Enumerating bit masks for every character position wastes choices on digits, because toggling a digit changes nothing and creates duplicate outputs. The meaningful decisions occur only at letters. Each letter contributes two possibilities, while each digit contributes exactly one.",
+    "Build the result left to right using a character path. For a letter, recurse once with its lowercase form and once with its uppercase form. For a digit, recurse once with the unchanged character. Taking one allowed variant at every position describes every possible final string exactly once.",
+    "After each recursive branch, remove its character before trying the next choice. When the path reaches the input length, join it into a fresh string. Starting with explicit lowercase and uppercase variants also handles input that is already uppercase without depending on its original case."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "a1b2"
+    },
+    "steps": [
+      "For s=a1b2, start at index 0 with an empty path. Character a offers the two choices a and A.",
+      "Follow lowercase a first. Digit 1 has one unchanged choice, giving partial path a1.",
+      "At character b, first choose lowercase b. Digit 2 is unchanged, completing a1b2.",
+      "Backtrack to b’s decision and choose uppercase B instead, completing a1B2.",
+      "Backtrack to index 0 and choose uppercase A. The same choices at the remaining positions generate A1b2 and A1B2.",
+      "Return those four strings. Digits 1 and 2 have never branched or changed, and every letter-case combination is represented."
+    ],
+    "result": [
+      "a1b2",
+      "a1B2",
+      "A1b2",
+      "A1B2"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "choices = (char.lower(), char.upper()) if char.isalpha() else (char,)",
+      "note": "Letters branch into two distinct cases. The one-element digit tuple prevents duplicate branches for characters with no case variation."
+    },
+    {
+      "code": "result.append(''.join(path))",
+      "note": "Joining only at a completed path creates an independent result string and avoids repeatedly rebuilding prefixes during recursion."
+    },
+    {
+      "code": "path.pop()",
+      "note": "Undo exactly the character chosen by this branch so its sibling starts with the same prefix rather than accumulated choices."
+    }
+  ]
+}

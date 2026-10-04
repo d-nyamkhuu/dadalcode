@@ -1,0 +1,59 @@
+{
+  "slug": "permutations",
+  "headline": "Choose, recurse, and undo",
+  "statement": "Return every possible ordering of nums, whose values are distinct. Any ordering of the result list is accepted.",
+  "prerequisites": [
+    "Recursion",
+    "Backtracking",
+    "Sets"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 6",
+    "-10 <= nums[i] <= 10",
+    "All values are distinct"
+  ],
+  "intuition": "A partial ordering can be extended with any value not already used. Make one choice, explore all completions, then undo that choice so the next branch starts from the same prefix.",
+  "approach": [
+    "Maintain path and used while recursively constructing positions.",
+    "Choose each unused value and recurse.",
+    "When path has n values, save a copy; afterward undo each choice."
+  ],
+  "correctness": "Each recursion depth assigns exactly one position, and used prevents repeated values. Every permutation has a unique sequence of choices, so it is reached once. The backtracking restoration ensures no branch inherits another branch\u2019s choices.",
+  "bruteForce": "Generate n^n length-n sequences and discard those with repeated values; this examines far more invalid candidates.",
+  "complexity": {
+    "time": "O(n \u00b7 n!)",
+    "space": "O(n) auxiliary, O(n \u00b7 n!) output",
+    "explanation": "There are n! answers, each copied in O(n); recursion and current path have depth n."
+  },
+  "pitfalls": [
+    "Append a copy of path, not the shared path object.",
+    "Remove both the chosen value and its used marker when backtracking.",
+    "Output order is unrestricted, but duplicate or missing permutations are invalid."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/permutations/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "nums",
+      "path",
+      "used",
+      "result"
+    ],
+    "pointers": [],
+    "watch": [
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "path": "Path",
+      "used": "Used",
+      "result": "Result",
+      "value": "Value"
+    }
+  }
+}

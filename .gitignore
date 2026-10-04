@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Frontend dependencies, generated runtime and local test output
+node_modules/
+public/pyodide/
+*.tsbuildinfo
+test-results/
+playwright-report/

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Example: mixed bits",
+    "input": {
+      "n": 43261596
+    },
+    "expected": 964176192
+  },
+  {
+    "name": "Example: almost all ones",
+    "input": {
+      "n": 4294967293
+    },
+    "expected": 3221225471
+  },
+  {
+    "name": "Zero",
+    "input": {
+      "n": 0
+    },
+    "expected": 0
+  },
+  {
+    "name": "Low one",
+    "input": {
+      "n": 1
+    },
+    "expected": 2147483648
+  },
+  {
+    "name": "High one",
+    "input": {
+      "n": 2147483648
+    },
+    "expected": 1
+  },
+  {
+    "name": "All ones",
+    "input": {
+      "n": 4294967295
+    },
+    "expected": 4294967295
+  },
+  {
+    "name": "Two low bits",
+    "input": {
+      "n": 3
+    },
+    "expected": 3221225472
+  },
+  {
+    "name": "Alternating fixed-width pattern",
+    "input": {
+      "n": 2863311530
+    },
+    "expected": 1431655765
+  }
+]

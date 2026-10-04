@@ -1,0 +1,65 @@
+{
+  "slug": "number-of-longest-increasing-subsequence",
+  "headline": "At each endpoint, track both the best increasing length and how many ways attain it",
+  "statement": "Count index-distinct longest strictly increasing subsequences of nums. A subsequence may skip elements but preserves their original index order.",
+  "prerequisites": [
+    "Dynamic programming",
+    "Subsequence vs subarray",
+    "Counting optimal paths"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 2,000",
+    "-10^6 <= nums[i] <= 10^6",
+    "The answer fits a signed 32-bit integer"
+  ],
+  "intuition": "At each endpoint, track both the best increasing length and how many ways attain it. Equal-valued elements are separate choices but cannot extend each other.",
+  "approach": [
+    "Initialize length[i]=1 and ways[i]=1 for every endpoint.",
+    "For each earlier j with nums[j]<nums[i], consider length[j]+1.",
+    "Replace ways[i] when this improves the length; add ways[j] when it ties.",
+    "Sum ways at endpoints whose length equals the global maximum."
+  ],
+  "correctness": "Every non-singleton increasing subsequence ending at i has a unique previous index j with smaller value. The transition selects the largest achievable length and sums disjoint counts classified by that j. Induction over i establishes each length/count pair; summing optimal endpoints counts each global longest subsequence once.",
+  "bruteForce": "Enumerate all 2^n index subsets and test whether their values increase.",
+  "complexity": {
+    "time": "O(n²)",
+    "space": "O(n)",
+    "explanation": "Time O(n²); auxiliary space O(n). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Strict comparison excludes equal adjacent values.",
+    "Reset the count on an improved length; add only on an equal best length.",
+    "Sum counts across all longest endpoints, not just the last one."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/number-of-longest-increasing-subsequence/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "nums",
+      "length",
+      "ways"
+    ],
+    "pointers": [
+      "i",
+      "j"
+    ],
+    "watch": [
+      "candidate",
+      "longest"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "length": "Length",
+      "ways": "Ways",
+      "i": "I",
+      "j": "J",
+      "candidate": "Candidate",
+      "longest": "Longest"
+    }
+  }
+}

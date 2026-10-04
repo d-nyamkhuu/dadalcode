@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Through two",
+    "input": {
+      "n": 2
+    },
+    "expected": [
+      0,
+      1,
+      1
+    ]
+  },
+  {
+    "name": "Through five",
+    "input": {
+      "n": 5
+    },
+    "expected": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Only zero",
+    "input": {
+      "n": 0
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Single set bit",
+    "input": {
+      "n": 1
+    },
+    "expected": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Power of two boundary",
+    "input": {
+      "n": 8
+    },
+    "expected": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1
+    ]
+  },
+  {
+    "name": "Second power boundary",
+    "input": {
+      "n": 16
+    },
+    "expected": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      4,
+      1
+    ]
+  }
+]

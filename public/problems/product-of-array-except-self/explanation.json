@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "Computing the product of every other element separately repeats most multiplications. Dividing a total product by each element seems faster, but division is prohibited and zeros make that strategy awkward. Instead, split the required product into values strictly before the index and values strictly after it.",
+    "The output array can store the left-side products during a forward pass. Begin prefix at the multiplication identity 1, write that prefix into the current output slot, and only then include the current input value. This order is what excludes the value at the slot being answered.",
+    "A backward pass carries the right-side product in one scalar suffix. Multiply each stored prefix by that suffix before including the current element in the suffix. The two disjoint portions cover every other index exactly once. Empty portions contribute 1 naturally, so both endpoint cases work without branches. Zero behavior also follows from the same arithmetic: one zero leaves only its own output potentially nonzero, while two zeros make every output zero."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "steps": [
+      "For nums=[1,2,3,4], initialize result=[1,1,1,1] and prefix=1.",
+      "The forward pass stores products before each index, producing result=[1,1,2,6]. The final prefix is 24.",
+      "Start suffix=1 at index 3: result[3] stays 6, then suffix becomes 4.",
+      "At index 2 multiply 2 by suffix 4 to get 8; include nums[2]=3 so suffix becomes 12.",
+      "Indices 1 and 0 become 12 and 24. Return [24,12,8,6], without performing any division."
+    ],
+    "result": [
+      24,
+      12,
+      8,
+      6
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "result[i] = prefix",
+      "note": "Store the product before multiplying by nums[i], ensuring the current element is excluded from its own left-side contribution."
+    },
+    {
+      "code": "result[i] *= suffix",
+      "note": "The backward pass combines the previously stored left product with the disjoint right product."
+    },
+    {
+      "code": "suffix *= nums[i]",
+      "note": "Including the current value only after writing its answer makes it available to earlier indices, where it belongs on the right side."
+    }
+  ]
+}

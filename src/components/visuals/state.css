@@ -1,0 +1,115 @@
+.state-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: #a8afb8;
+  font-size: 10px;
+  margin-bottom: 22px;
+}
+.state-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.state-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+}
+.legend-current {
+  background: #c1f17a;
+}
+.legend-change {
+  background: #eab879;
+}
+.watch.watch-wide {
+  grid-column: 1/-1;
+}
+.pointer-values {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0 22px;
+}
+.pointer-values > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #353d45;
+  border-radius: 5px;
+  padding: 6px 9px;
+  font-size: 11px;
+}
+.pointer-values code {
+  color: #a9b5bd;
+}
+.pointer-values b {
+  color: #c1f17a;
+  font-weight: 500;
+}
+.snapshot-limit {
+  font-size: 11px !important;
+  color: #eab879 !important;
+  margin: 8px 0 !important;
+}
+.state-caption {
+  display: block;
+  margin-top: 7px;
+  font-size: 10px;
+  color: #9fa8b1;
+}
+.map-table .changed-entry td {
+  background: #372c1f;
+  border-color: #937448;
+}
+.node-reference {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.node-reference b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  border: 1px solid #68b7dc;
+  border-radius: 50%;
+  font-weight: 500;
+  color: #dfe6ec;
+}
+.node-reference small {
+  color: #8d9fac;
+  font-size: 9px;
+}
+.generic-items {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.generic-items > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #34414b;
+  padding: 6px 9px;
+  border-radius: 4px;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+.generic-items small {
+  color: #9ba3ae;
+  font-size: 10px;
+}
+.call-stack > span.active-call {
+  color: #c1f17a;
+  border-color: #5e7847;
+}
+.return-value code {
+  overflow-wrap: anywhere;
+  max-width: 70%;
+  max-height: 160px;
+  overflow: auto;
+}

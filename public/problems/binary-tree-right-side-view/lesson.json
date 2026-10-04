@@ -1,0 +1,60 @@
+{
+  "slug": "binary-tree-right-side-view",
+  "headline": "Take the last node at each depth",
+  "statement": "Return the values visible from the right side of a binary tree, from the root downward. A deeper node in a left subtree is visible when no node exists to its right at that depth. Trees use level-order arrays with null children.",
+  "prerequisites": [
+    "Queue",
+    "Breadth-first traversal"
+  ],
+  "constraints": [
+    "0 <= node count <= 100",
+    "-100 <= node.val <= 100"
+  ],
+  "intuition": "Visit each level from left to right. The last node is the one visible from the right; following only right-child pointers would miss visible nodes from a deeper left branch.",
+  "approach": [
+    "Enqueue a present root.",
+    "Process the queue size captured at the start of each level.",
+    "Enqueue left before right, and record the final node of the level."
+  ],
+  "correctness": "Parents are processed left to right, and each parent enqueues left before right, so the next depth is also ordered left to right. Its final node is therefore the rightmost node at that depth.",
+  "bruteForce": "Build complete level arrays and then take each final element, requiring unnecessary full output storage.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(w) auxiliary plus O(h) output",
+    "explanation": "The queue can contain parts of two adjacent levels, using O(w) storage where w is maximum level width. The answer contains one value per level, using O(h) output storage."
+  },
+  "pitfalls": [
+    "A deep left branch may be visible.",
+    "Freeze the level size before appending children.",
+    "Return an empty list for an empty tree."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/binary-tree-right-side-view/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue",
+      "result"
+    ],
+    "pointers": [
+      "index"
+    ],
+    "watch": [
+      "node",
+      "level_size"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "result": "Result",
+      "index": "Index",
+      "node": "Node",
+      "level_size": "Level size"
+    }
+  }
+}

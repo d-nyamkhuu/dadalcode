@@ -1,0 +1,51 @@
+name: Verify the GitHub Pages build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install dependencies and local Python runtime
+        run: npm ci
+      - name: Validate curriculum and reviewed content
+        run: npm test
+      - name: Build for the repository path
+        run: npm run build:pages
+      - name: Install browser for deployment checks
+        run: npx playwright install --with-deps chromium
+      - name: Test the production deployment path
+        shell: bash
+        run: |
+          npm run preview:pages > "$RUNNER_TEMP/pattern-lab-preview.log" 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/blind-75/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          npm run test:pages
+      - name: Upload the verified static site
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist

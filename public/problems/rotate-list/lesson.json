@@ -1,0 +1,61 @@
+{
+  "slug": "rotate-list",
+  "headline": "Cut a circular list at the new tail",
+  "statement": "Rotate a singly linked list to the right by k positions and return its new head. An empty list is allowed. Reuse original nodes without changing their values.",
+  "prerequisites": [
+    "Linked-list traversal",
+    "Modulo arithmetic"
+  ],
+  "constraints": [
+    "0 to 500 nodes.",
+    "Node values range from -100 to 100.",
+    "0 <= k <= 2000000000."
+  ],
+  "intuition": "Rotating by the list length changes nothing, so reduce k modulo n. The last k nodes become the front. Connect the old tail to the old head, walk to the node just before the new head, and break that one link.",
+  "approach": [
+    "Handle an empty or singleton list.",
+    "Find the length and old tail, then reduce k modulo length.",
+    "Return unchanged for zero effective rotation.",
+    "Join tail to head, advance length-k-1 links to the new tail, and break the circle."
+  ],
+  "correctness": "The new tail is the last node of the original prefix of length n-k. Its successor is the first node of the original suffix. Closing the old tail-to-head edge concatenates suffix and prefix; cutting after the new tail preserves every node once in the required order.",
+  "bruteForce": "Move the tail to the front k times, finding the tail on each pass: O(nk). Modulo and one cut avoid repeated traversals.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Two scans locate the old and new tails; existing nodes are reused."
+  },
+  "pitfalls": [
+    "Reduce large k before walking.",
+    "Always sever the temporary circle.",
+    "Zero-length input must be handled before modulo."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/rotate-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "tail",
+      "new_tail",
+      "new_head"
+    ],
+    "pointers": [],
+    "watch": [
+      "length",
+      "k"
+    ],
+    "labels": {
+      "head": "Original head",
+      "tail": "Original tail",
+      "new_tail": "Cut after this original prefix node",
+      "new_head": "Rotated head",
+      "length": "Node count",
+      "k": "Effective right rotation"
+    }
+  }
+}

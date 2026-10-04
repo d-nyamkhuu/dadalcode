@@ -1,0 +1,34 @@
+{
+  "intuition": [
+    "Repeatedly remove adjacent matching pairs until none remain. This can require O(n\u00b2) rescanning; a stack performs each match once. Counts alone lose nesting order: the string ([)] has matching totals but its pairs cross and are invalid.",
+    "The newest unmatched opening bracket is the only one a closing bracket may match. A stack preserves precisely that nesting order. On an opener, push its type; on a closer, first ensure an opener exists, then require the corresponding type at the top. Popping removes the now-complete innermost pair. End-of-input acceptance also requires an empty stack, because unopened closers are not the only possible error: a leftover opener is equally invalid. The small match table separates bracket type lookup from the stack\u2019s ordering responsibility.",
+    "The stack contains exactly the unmatched opening brackets of the processed prefix, in their nesting order. A closer must match its top to preserve valid nesting. Rejection detects an impossible match; successful exhaustion with an empty stack proves all brackets were matched correctly. Each bracket is pushed or matched once; all openings may accumulate."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "()"
+    },
+    "steps": [
+      "For s=\"()\", read ( and push it onto the initially empty stack.",
+      "Read ); the match table says its required opener is (.",
+      "The stack is nonempty and its top has that required type.",
+      "Pop the opener, completing the pair and returning the stack to empty.",
+      "The input is exhausted with no unmatched openings, so return True."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "expected = matches[char]",
+      "note": "The closer determines one required opening type; total counts cannot substitute for this exact match."
+    },
+    {
+      "code": "if not stack or stack[-1] != expected:",
+      "note": "Check existence before reading the top, then reject incorrect nesting or bracket type immediately."
+    },
+    {
+      "code": "return not stack",
+      "note": "Even if every encountered closer matched, remaining openers mean the complete string is unfinished."
+    }
+  ]
+}

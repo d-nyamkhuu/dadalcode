@@ -1,0 +1,4709 @@
+[
+  {
+    "slug": "two-sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d535e1e28c2a74cc703b6c1a555ef358c20271a2fb139a6550deffb3b456b0bb"
+    },
+    "packageHashes": {
+      "lesson.json": "101df7c897abebb15267d49927039a0e94fae1b8e20d38c5e2c301e4163eded0",
+      "explanation.json": "d535e1e28c2a74cc703b6c1a555ef358c20271a2fb139a6550deffb3b456b0bb",
+      "solution.py": "d26db8fe4c269dd512e8ac8896e9d4bc41d40f40be60f8ec92ad27edc7dedf8a",
+      "starter.py": "a5949b0b3d8a4605091e80a06caa941bd03e2bff583e89c7f60ca714749d96b0",
+      "tests.json": "b5879056c7d09d2fff51a3854d866325fc31daf42913cc814a84286784839e77",
+      "adapter.py": "7df0e444ebf165aa1cefc036524bde354d79254e727a80c48fdcbf90eaa5b72d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "add-two-numbers",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "9806de51f3df7667d8d47b8d24b96a28ee2749e4f3e87ff10693058b3d1b0ed7"
+    },
+    "packageHashes": {
+      "lesson.json": "29fbd4a918b63194be89705fd94e8b9a9ffe3b0825b7b9923cd3c8d1e1a84a6c",
+      "explanation.json": "9806de51f3df7667d8d47b8d24b96a28ee2749e4f3e87ff10693058b3d1b0ed7",
+      "solution.py": "87bc4bf7c337bb465846116fac260c8767df928c5c373b0c732bdb4ac4144d48",
+      "starter.py": "30cd17e131368c6d80765256ec13fc61a2afc0c4312949e083a642fe78368c9e",
+      "tests.json": "f946e3d22c2e6f4d38841dbb9cba1b6bdbdabb050e9071f394739818433a8cbb",
+      "adapter.py": "de968466b20847c1d8cd52b9b095c1629b92fc44c7c7f51c4e312ff630102078"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "median-of-two-sorted-arrays",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "94b9790c1f8e571c6f978bfe49860f6ab87a255c0cb3b7439414d139fdef9cae"
+    },
+    "packageHashes": {
+      "lesson.json": "726cbb611f8024916a87a8ed0b69ed90e5423352c796af067bad185a859f7ce8",
+      "explanation.json": "94b9790c1f8e571c6f978bfe49860f6ab87a255c0cb3b7439414d139fdef9cae",
+      "solution.py": "2f560f3af122ca110426df80304180fe0116c0f36910844be954bead1eda443b",
+      "starter.py": "9c019b70417ce0c6c2f68e134d9cf89ee0fd42768d2e3f67e5ea033899a1ac56",
+      "tests.json": "43d88de43f2c460819d403801bbf9c77b3e49ceb6549736511790d149336f15d",
+      "adapter.py": "338c9e10f629815d99cce1a5cb60e0f2baa547e214b637a56c3ccb4e46b6c74c"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-substring-without-repeating-characters",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "f25363bb0398ffb3fc9a99338128a93deff1dc0de746a0493eb0d6ff71b368f3"
+    },
+    "packageHashes": {
+      "lesson.json": "522be1ee708d6d8397f2882c191164ca8a51568b2aceeee5284c7acc57879fc0",
+      "explanation.json": "f25363bb0398ffb3fc9a99338128a93deff1dc0de746a0493eb0d6ff71b368f3",
+      "solution.py": "0fbb1ad610889f0b43c5f53c39874f8e1fb1a7f78b0d4b57d9ab3b52390ceb2c",
+      "starter.py": "79383b7e08fc43fb45df15092cb80cf0b29c8c4dcb2cbef4343497c21b914803",
+      "tests.json": "6c2e86773b80d6f5dc0baff3f622be3fd7abacb3f654c1195e6ad14361e23643",
+      "adapter.py": "e5e6d179c9f806891a76b1eb6929eaad704e0e9ce2673b4d125b3b8757340ca4"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "same-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "3b80b8830d6166c74cdbc02883f8ea959dd7880c26f970f06cc9500a7b53e699"
+    },
+    "packageHashes": {
+      "lesson.json": "5e2e68891d7e23c6c45aaabe01fd6c5936d60dab6fb8f55d52ea18cb46a84838",
+      "explanation.json": "3b80b8830d6166c74cdbc02883f8ea959dd7880c26f970f06cc9500a7b53e699",
+      "solution.py": "368851829783349b9fdb86a227eb5921d3458a0054a09aaa7144760d9b6dc223",
+      "starter.py": "5fb3c78c0d33e214af6eeea75aed6b05319c2fbca71d267cce423be0ef9f0e6b",
+      "tests.json": "d2c34ea92cb319453920dee84c2d4f3330d15db8edc0c55a84d4864896e282d9",
+      "adapter.py": "ffc32cd8c293e1d3c741afaedd42e6154b6d7cbf68fae2812f19bfcbdf5428b6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "design-search-autocomplete-system",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b2386095d054d7495d11f13c41d2649412a87d3e10506d5505896bb9dffaee96"
+    },
+    "packageHashes": {
+      "lesson.json": "f36ebea7f95d1a880735209bdc9f3161b7c90581195eb903892c6c4025b7d0f5",
+      "explanation.json": "b2386095d054d7495d11f13c41d2649412a87d3e10506d5505896bb9dffaee96",
+      "solution.py": "841b2f480303482282f56b07ec64144d5f09f83376cd13fdf6cebc62744b9ff5",
+      "starter.py": "66e8b31c919b52e009f2500a634610e83c2aafb7335ea2f969e6e86aeb18090e",
+      "tests.json": "334e2dd4258ed2307d81796d5f8c83c11582ba4b7a9af6ad4543d638190fd42f",
+      "adapter.py": "0edb72d1cab45d521cd0ea6a13b7bc744e07ffa5e8723b96f04a318713a32bbd"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "climbing-stairs",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "0e444d47d9ad525adcfc90c9be97d98369767a675944eba1c5432b204c4d0af9"
+    },
+    "packageHashes": {
+      "lesson.json": "be01b0daaeaf51c512ac5d3b5e7ecefcaa5ee57f11ba56185a56a6842a4c4978",
+      "explanation.json": "0e444d47d9ad525adcfc90c9be97d98369767a675944eba1c5432b204c4d0af9",
+      "solution.py": "1da8f008219e60734b1987fee7dfc8054c6ed6aeec6e6469d59e570573d10ee4",
+      "starter.py": "d0ed9654d0972dd748c929bf48ca8ddef98b5b0e29a25fc7b1c1ae9c7189202f",
+      "tests.json": "2ddcaa657d90697c5a739fcb8b50d60c6bf9d66781fbf65f717a6c9daeef032d",
+      "adapter.py": "038ab740192654ce225e9ad2db8b606cc771bbc6f97dd0b85e7eed5352805eac"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": [
+        "R01"
+      ]
+    }
+  },
+  {
+    "slug": "3sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "c65c4f5cef9083c9923acaa88cef2a9708e32b1d59eac216646b1d86a46af623"
+    },
+    "packageHashes": {
+      "lesson.json": "b781e5f3b3394e6300774be64f65c0dfb1f4f4eaaf796d08aa10c763de16608c",
+      "explanation.json": "c65c4f5cef9083c9923acaa88cef2a9708e32b1d59eac216646b1d86a46af623",
+      "solution.py": "67db5ce3b719d60bb4b26a7940d6941c3abd868439fc2f921e590f323e81ed86",
+      "starter.py": "8d42d315446477e41a3be5649b2bb8b624d43c5d6c7081a3c95b90238965238d",
+      "tests.json": "11f4f0d909195a9c3b07b2732f652428902e2818d0330de663b3bd18c42b61fc",
+      "adapter.py": "41a06c704dba65a7217fba335546ffd2cc21d0ce418bd1f55c8fb22cd023121e"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": [
+        "R05"
+      ]
+    }
+  },
+  {
+    "slug": "trapping-rain-water",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2920b618ceb0542943c26fe965d8318b0ef7743dcb768d5165befb07c0606119"
+    },
+    "packageHashes": {
+      "lesson.json": "6ccd53b0e4668015c2d4a6ec4d3b7f2b4fbee9e021da7640b5e840116a1a7dfb",
+      "explanation.json": "2920b618ceb0542943c26fe965d8318b0ef7743dcb768d5165befb07c0606119",
+      "solution.py": "1581cf21b19db96183cf7d62268b4b548c625dda3d5138bfcbf4ae9d9857d005",
+      "starter.py": "975ccefa94d0cea4c776ff7c5131fa968bc872e6ab64bb395fc80ff59447a60f",
+      "tests.json": "43a889eafbeab6af70c4177fed79f5402f434f0a669726bdb444bfc221863f8e",
+      "adapter.py": "0889e88e62fa5719330ee39b8afb0e6d26bfbf4af799ffe5941cf6777787a1f6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "search-in-rotated-sorted-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e2add147e87c0cdceb82b8a8c25ea996ddf14096f3fb31ddee36b6b9f42f080d"
+    },
+    "packageHashes": {
+      "lesson.json": "b825b4c468131f921e78d7701f14a198b822b373372865ff97f89ce6aa4a16f2",
+      "explanation.json": "e2add147e87c0cdceb82b8a8c25ea996ddf14096f3fb31ddee36b6b9f42f080d",
+      "solution.py": "05a1603610292aac9635087793b38a98a0bf9f5c237f2c7b0cf42ee11ea4eee8",
+      "starter.py": "c4812816057d33b2510061c71f5ed05171ab852286f359ef4602d8daaeb7abc4",
+      "tests.json": "0299f9c0c47184c0fe47168d0906190d302ac6886faef8b2aa54ee395e562332",
+      "adapter.py": "e5a822a722815f761e6b7290a5793a1613af4bbe275ceeb354eeced3028a8db4"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "generate-parentheses",
+    "reviewed": true,
+    "findings": [
+      "Auxiliary space should account for immutable per-frame path strings, or change to shared mutable path."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "6ebd306cb57be5b2374a969e09062585c474426c3d90b785b0df14dc79c43523"
+    },
+    "packageHashes": {
+      "lesson.json": "bfeb3ba0e6f1776335c108a76c516e77942523ba94b6cca34f774149f7a9760d",
+      "explanation.json": "6ebd306cb57be5b2374a969e09062585c474426c3d90b785b0df14dc79c43523",
+      "solution.py": "76b0534b36dc9d09faa71664fa9126fb149788307c7ca2e00bf6c391efa88705",
+      "starter.py": "66c8d43f22921ee18a59afeb0a6e0934e458c8807a75a6a03e987831dc96a9b1",
+      "tests.json": "1de0f64acb593eab0e4615229dc1e325898563affeaa7acd71cf1b384aa3b502",
+      "adapter.py": "283c52f8cc601a974fd648be770bd5d76a4020fc97979f74b5eceec3f5fec97c"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "3sum-closest",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "cc5f7cbec4d1962e49f357fa45f697e12be7a9d8cada60428d507242fbacc283"
+    },
+    "packageHashes": {
+      "lesson.json": "15d3f39de99bab9f7910fe9b117f2535d999c4fed3a2ab8f507348186e355baf",
+      "explanation.json": "cc5f7cbec4d1962e49f357fa45f697e12be7a9d8cada60428d507242fbacc283",
+      "solution.py": "a459253182c7827b7a7aff97f38b425deeab1db6b31a218de87ea977cd208221",
+      "starter.py": "2bcb1a2d564c0d1113f465aac573d41b6ca86cef22f56db6bdf92a4ae78b0303",
+      "tests.json": "dbabf56b00b8d91cee91d04888ec111c904c4e0ca9655cf07bd4ef1e88fc2a0d",
+      "adapter.py": "d44e743b53c7028b9c9ecbb83632854f102bc186e83c8c13f1b0f7e64493302f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "alien-dictionary",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a78def58e8994036168802fd98ed71c93ad045e05d50dd7cc2e8b5d451fde333"
+    },
+    "packageHashes": {
+      "lesson.json": "ccf6ad77855ef93c12b9ba3bac32663d692e65d740e594dbad5d29b9438593d7",
+      "explanation.json": "a78def58e8994036168802fd98ed71c93ad045e05d50dd7cc2e8b5d451fde333",
+      "solution.py": "cf6ac5605556567994d46e2539910710a40ccd035448dc917acb413efb05e9e3",
+      "starter.py": "ff7ea0f253761fe9dc5e3bbacd3cf4729553c5f538047e5f3ea6fd3a366d22e3",
+      "tests.json": "e83556aea9f13c0135d7b06bd617a2a78e03a110d3598edb67b9e5942df8c4e1",
+      "adapter.py": "c051009e5da78f16e3f06f47cbd9a7e86332701bd8b50e8f5db29452dbf1a459"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "combination-sum",
+    "reviewed": true,
+    "findings": [
+      "Copied sorted candidates require O(n+d) auxiliary storage.",
+      "Numeric checker must reject bool elements."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e806c0db658a5dfc7249d97b135fbc6c4410fd8d4c49cfae35f4537d7bb6f176"
+    },
+    "packageHashes": {
+      "lesson.json": "e10684b9adf68f3e344fed7fa6d60d332c038ce6cc102c398b9a9fcc8243efd2",
+      "explanation.json": "e806c0db658a5dfc7249d97b135fbc6c4410fd8d4c49cfae35f4537d7bb6f176",
+      "solution.py": "15a909076f5518e23b8dd0100175c393b85ada698df5fc3c80430d6d85194700",
+      "starter.py": "6e6c1fcfa223ad1230fa03f67dd4aba0a62c7a1a0ff3236d88b843b3d70ce3cd",
+      "tests.json": "b10cccd1332084689487e76f1b2205b1024f8a0aba719cdff791bec8914b75c9",
+      "adapter.py": "742b8f80a9e0eae678242069f6458c2ee254068da8e4d134058d3702f6fc03eb"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "combinations",
+    "reviewed": true,
+    "findings": [
+      "Numeric checker must reject bool elements."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "5c53a5298cf6f5740778bcfe0d39edd6d0a6c56f115eb1e66b1618119bfbde6a"
+    },
+    "packageHashes": {
+      "lesson.json": "0106ab9c203f8d1c4cabe773ec0a11c3bb25e566c815ebdae587b9849f3dde41",
+      "explanation.json": "5c53a5298cf6f5740778bcfe0d39edd6d0a6c56f115eb1e66b1618119bfbde6a",
+      "solution.py": "3c3209567793b8bf2e305e23e3bd40ff357a8583bda030d51843f37dae6249d8",
+      "starter.py": "0b9dabe339478370f4726f51cddb22ce7fcf2b9ad84144b3840a5f9573e65d1e",
+      "tests.json": "05e3dc68710c0c09a739c6399b3d8e4e8399cd1c32e64e476429adeddfe4e395",
+      "adapter.py": "2e15a37716ed964f7cfba4902bb537e63bb2573ead222bb9c3807ba59909783e"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "container-with-most-water",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "89c2078cde07f6f783c32cad66ff320759ff1820be07c8c716f8355daed8bb27"
+    },
+    "packageHashes": {
+      "lesson.json": "6c4c356bdd384ceb0cfc850dd12e41e36bb581c7e4f08d46af01cc8b31d99a5e",
+      "explanation.json": "89c2078cde07f6f783c32cad66ff320759ff1820be07c8c716f8355daed8bb27",
+      "solution.py": "15e9bc44c0ed639e2442235a02a7778428d00f83cb4711784b41b09a6f803036",
+      "starter.py": "150323ee5c90e432ece64fcc78b6b3d546b50180daa254fda98f36eb3172586a",
+      "tests.json": "2b3073c5237bb71eb6af2aff1f797db2c44c0fd3b738a5ec833d42eada563e2d",
+      "adapter.py": "c4f23b7990c041b60a83f2ca3edaeb7227c1b5bf9a4478e1e8ce3a5d604b8ccf"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "encode-and-decode-strings",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2e42e63ac980df9ac1ddf0d99449906fcddb36c32b17a7784f3c6e52c05bdd30"
+    },
+    "packageHashes": {
+      "lesson.json": "0f7b201198979a55bd7ee1655add1347b9592cd91467841098a5d90b5ae138b3",
+      "explanation.json": "2e42e63ac980df9ac1ddf0d99449906fcddb36c32b17a7784f3c6e52c05bdd30",
+      "solution.py": "3ff6963f688ad42e0de1849b251a9a2cf597489a4cd0cffb27a5c802fa699052",
+      "starter.py": "3be164d8ac77f54c4e9a7a7070f7ce3ba7c43a0afcdfbf3c2656e4e6f8df7e12",
+      "tests.json": "77789d0f029b98f10118c906d8b39d376d6b2e12742e8da9ff97d320dd8516ae",
+      "adapter.py": "5327f7010468af328812a47eb567ee1e4d2999f44c5f121ff1ae3341dd59a189"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "first-missing-positive",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "41b8830fe7d677099ddbc868bb59c4fa4d8d6e1ac59dd113d30f35f1e7a5ee33"
+    },
+    "packageHashes": {
+      "lesson.json": "f56e14bff0bff138e3c8d4f13351ac3e52caf92a81526e394d53abeeed940c7c",
+      "explanation.json": "41b8830fe7d677099ddbc868bb59c4fa4d8d6e1ac59dd113d30f35f1e7a5ee33",
+      "solution.py": "a2b3e9cbef2c7866f01a9022757f5f00106c045eb8d9366109b6df01e5db7863",
+      "starter.py": "62c41f382fef6e827a45ec03c3931e5b4ec2e62f7e8bb4cdb91541693ee698d5",
+      "tests.json": "df70536a35001646cb50fad5d0c6bbf0aff6de3948e4b4d65e0d50ec3bce96fe",
+      "adapter.py": "125f403a7455359d1c4cb17de0491542ae225299d0b46abf6f0ffad434afb8ce"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "insert-interval",
+    "reviewed": true,
+    "findings": [
+      "Sliced suffix intervals[i:] allocates O(n) auxiliary storage."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "485325efc48248a607662a5eeebc143f70a079800f7fa606bc3583eb6993b92a"
+    },
+    "packageHashes": {
+      "lesson.json": "cd11b8b06c2c59d1be8b49fbd2f45827a8b2afe5d1327e612bb6e1e101c658f6",
+      "explanation.json": "485325efc48248a607662a5eeebc143f70a079800f7fa606bc3583eb6993b92a",
+      "solution.py": "4fd873e62268bd792222e191a18b6149dfe403b85c18689bdfc70fcfd49c0d50",
+      "starter.py": "04358a71ef53ebecdbb0a8186adae0f33b65a47f1f9703d70605bc19be93073d",
+      "tests.json": "05df48afa7bbf16c820305395d46d8f96dbc853ad1633e14cd2bc0f793fb5e27",
+      "adapter.py": "5605cbbcc718aa77d958692374b49d0046110a39ee29c40443eef1b196f9351f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": [
+        "R06"
+      ]
+    }
+  },
+  {
+    "slug": "letter-combinations-of-a-phone-number",
+    "reviewed": true,
+    "findings": [
+      "Immutable per-frame path strings require O(n²) auxiliary space."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a2f049d9816d30c7f318a4c2db226b68321ebc73080c11a6c20ce0d056b4e83c"
+    },
+    "packageHashes": {
+      "lesson.json": "f417a9e55867f619dd95f453b6c30a73032ba5abb602dc6e022b8650934f8866",
+      "explanation.json": "a2f049d9816d30c7f318a4c2db226b68321ebc73080c11a6c20ce0d056b4e83c",
+      "solution.py": "ab477913446579f16ddebbf0bf99c02d69d381612889ca2bc379ca9cdd345dc7",
+      "starter.py": "a037790b00f05267b19ff7970c45b46948158855f522c5ca58180488e50f9310",
+      "tests.json": "744a1e2cd280a91c57c2b506c794eef55081de124b6e9982cc55645d666f1f6b",
+      "adapter.py": "2ee3316277612ac23f01b5a1b8ddd9a091ad10b444686b7af2deed6a6e3a6577"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "merge-k-sorted-lists",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "bcadf359a6dec2bb8296e77fa10e02379f3317f6a7136a2aeec1d4d00166e268"
+    },
+    "packageHashes": {
+      "lesson.json": "c1bd5572d320b16d0072f66f0205f2444515952679f45316e4a7dcaed39b81b7",
+      "explanation.json": "bcadf359a6dec2bb8296e77fa10e02379f3317f6a7136a2aeec1d4d00166e268",
+      "solution.py": "7899987569fec9f8f1ecf1a893b87cf11279f569afb0053e1f9ff62d6deb58d8",
+      "starter.py": "5e577c63f92025f2e232163c5237c3c995631a735af7b5c4fd8cc389c52a05ee",
+      "tests.json": "5b1f18fbadd7e320043b58d4218b068a4a9147d79044db9f3ef2faa48301c81c",
+      "adapter.py": "0564f629baef63f70dbb811405aeb9b194eb5623cef0e5bc3f9a47c7cbaf1d89"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 4,
+      "findingsResolved": [
+        "R08"
+      ]
+    }
+  },
+  {
+    "slug": "merge-two-sorted-lists",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d3ef8f814ed14599b632a11b5b9aa69747f10ab14ba198b0c3a1b8c9ea88f3fb"
+    },
+    "packageHashes": {
+      "lesson.json": "9c25e84211cb56567699cbab8add3c2ebc5b6b63d8a89385e6b339caeb8c1908",
+      "explanation.json": "d3ef8f814ed14599b632a11b5b9aa69747f10ab14ba198b0c3a1b8c9ea88f3fb",
+      "solution.py": "e3e90548d55ce2ed10d3d0af241bb52055a4842e495dc4650fc119da269d6b78",
+      "starter.py": "7ef9d6522148c2b5bd4bc846d32a3de19ef62202813fcdb8c8bc97b1f255abfa",
+      "tests.json": "2f520cd776e999879d0ab957be22d40bc526e766f82e4de7fbde7ca52d4935af",
+      "adapter.py": "1f9a209b765e4232959a3f39900902617ffaf06ea0a608ecab009652e69c7815"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "n-queens",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "51271eb287751a7fbac93f2bf225ed553c8437f04c78d3c66559baa22eaf3f37"
+    },
+    "packageHashes": {
+      "lesson.json": "6eb02ac2b1b34af12f53b7191187621d1eec0c3c3ac52af358dac8f6d243b6d3",
+      "explanation.json": "51271eb287751a7fbac93f2bf225ed553c8437f04c78d3c66559baa22eaf3f37",
+      "solution.py": "09f6fa7244ea5069fac1c143a78c4af6d079e54471adefd3bad83ee907be368b",
+      "starter.py": "ad90af1211a4735653dea78c170634fa4c6ba540edf7bc3078e03e0695934c47",
+      "tests.json": "4714f6c4e0e07b1880a3e9f6710fb2b2daf7098cea3d6998d3e95dc207f83ae2",
+      "adapter.py": "4c199f76a7a1487467b26150c82d9474b20036287024a25dac05f741336a98ea"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "permutations",
+    "reviewed": true,
+    "findings": [
+      "Visualization pointer depth never exists in solution."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "58a5e95407a6e83eee89c22a6970bd9d23463ea6c02b2b2f6bb23a2c4e07f672"
+    },
+    "packageHashes": {
+      "lesson.json": "0118c3f24c4041adc8f58ffce54104b21032744bc7f3aa2ab9c50997ffe0c2cb",
+      "explanation.json": "58a5e95407a6e83eee89c22a6970bd9d23463ea6c02b2b2f6bb23a2c4e07f672",
+      "solution.py": "bbe1698312a492d7641551973ccf485eecb356f74cbdcde3fc7ea756a4965ad3",
+      "starter.py": "b03c2374f7351a4fc1b66fca60310a886f11b5766f8029629c01643336955320",
+      "tests.json": "71d0508401958ffc131a328ec3770a08c7efc4bc4952bb3c80fcc55ef2f01ecb",
+      "adapter.py": "8a484d6c2c0b4bc45eea4fd8fd39a1d367d3f26d031906b6225817e081edf9e8"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "permutations-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "af740a3e09532af54d593441f7e7399fb7596d890530d2d3d24ab321235e9c14"
+    },
+    "packageHashes": {
+      "lesson.json": "97dc0293b5063e2307f86e2ccbb1ba52ae0c1eb954caaad3bc58429d0c9f58cb",
+      "explanation.json": "af740a3e09532af54d593441f7e7399fb7596d890530d2d3d24ab321235e9c14",
+      "solution.py": "149d9088c46a714d1cfebbaeb39c712a405a117ca295569129348156f5cee302",
+      "starter.py": "1ea4e6e30ad991da7a307141944b26d1b796eea0a02aa75b530a8365188d04a7",
+      "tests.json": "3e8f1bdef1e01c6c83b5da2d0e6c0329d8536bfcd70ab8bff6d563c2729cdf34",
+      "adapter.py": "3fdc37ab75629dccd86b5646213b7e1ee104590858ea27fffacfd5bcae7e62b8"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": [
+        "R10"
+      ]
+    }
+  },
+  {
+    "slug": "search-a-2d-matrix",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2393e3f72640092b94b7b900f6415d5c6f8f2440e9157c71d51f86409153a95d"
+    },
+    "packageHashes": {
+      "lesson.json": "741338d90d95b8b125e65d32af0e3a04288682b1c68f43760a1a192e53ca0b54",
+      "explanation.json": "2393e3f72640092b94b7b900f6415d5c6f8f2440e9157c71d51f86409153a95d",
+      "solution.py": "d7b5b380a50a265bde293866fd8bf58ee62b2dd5f4a426df933cdbf76c1144f3",
+      "starter.py": "50a10f4e9512479029f809bf8efd907b3f7b74ef79cfc31cc83a6266f3dbec14",
+      "tests.json": "8c6ec785cafedce7cca1e1f05039aaadce11094e39c23b7ec053da604ef49ace",
+      "adapter.py": "a8691da24e4b52fe056d06de9cc3b49d481fa5733eef5adcbc4536dfad0b3725"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "spiral-matrix",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e4187d7830225b17da7907157ca696105c035ed3474b286e4842100d34e11ed3"
+    },
+    "packageHashes": {
+      "lesson.json": "b23dddc149f48daebbe39363aa606b6cefec65b15f3716f0141ef03d485c1f24",
+      "explanation.json": "e4187d7830225b17da7907157ca696105c035ed3474b286e4842100d34e11ed3",
+      "solution.py": "4b43b8265920c5cf2e62603a95343f5dc16d01c8c2451097c5187843c7316556",
+      "starter.py": "e1c0782e3a927cc8e0e500be66a3830e400b121a685e0c1aa5a8436653b41947",
+      "tests.json": "777384cc89f299031267e3366cded48f4ba4f08bc60e67756db32e73b50cfcdc",
+      "adapter.py": "89056e685c42dcae947e440cedf651a5d5c7a32567786d872cb5d5411f6d4603"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "subsets-ii",
+    "reviewed": true,
+    "findings": [
+      "Numeric checker must reject bool elements."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "6452e12a19c884854d5e71b4530f66ddf643e31ec2c81e9f156a6fc33b4fed71"
+    },
+    "packageHashes": {
+      "lesson.json": "9723c1cbcc8a8e7edb86fd0838a99f3e938c2b26a881d2b60d9760babd0b1d35",
+      "explanation.json": "6452e12a19c884854d5e71b4530f66ddf643e31ec2c81e9f156a6fc33b4fed71",
+      "solution.py": "2c4c0a410f08a0137f6d6246adb4c4ce110dd8f4fd75861ab0851977c4221a13",
+      "starter.py": "e7a4e457190b599680bc5e240883bd90787e65d4e3796ded83b4ba06ea238655",
+      "tests.json": "dc1011335abd1285c2fbef69039c4388800b732c69ac8c120091642d00e1c990",
+      "adapter.py": "6667c7d03c783be3a5c2ce2e28412eef10beacdf45083192af75a4326ec913bb"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "substring-with-concatenation-of-all-words",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a9b646b30ad41d990d3f1857913bff1a831fddecf86f584c43648fdfa05b8dd0"
+    },
+    "packageHashes": {
+      "lesson.json": "e17a64a57eca68e69f77ae25c9fd9b8cfbf351f322a5ebc815967982ec36cd6d",
+      "explanation.json": "a9b646b30ad41d990d3f1857913bff1a831fddecf86f584c43648fdfa05b8dd0",
+      "solution.py": "f739730c64a6211c622b06d8ba1b786db6b28ef86fb65279d3f4aee10f039d73",
+      "starter.py": "20f12c514ce0360b66d6f098bd706d6115c9f80ce3f9e41da18127f2cb768345",
+      "tests.json": "8a182b4884bc930c5f9023c3d50ba1a2b76400959190eac3ddf64c1324188c66",
+      "adapter.py": "a40015fdba81c51922abc8f1d798f310155887b9358de6e45c5915514de6bd22"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "unique-paths",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "0b14f8f9998666cc4ab8105f7ab922392e13d7d28716131ee543a55ca3d97f42"
+    },
+    "packageHashes": {
+      "lesson.json": "0e46547fcbaac6d90e5b04203fe82e849719bdc91f5e99949431d02e5d041f9f",
+      "explanation.json": "0b14f8f9998666cc4ab8105f7ab922392e13d7d28716131ee543a55ca3d97f42",
+      "solution.py": "1b4811f8271975058e746fc42c4a96d78c90f003dc3127757934cf8338a8fc5b",
+      "starter.py": "aecc210aa8d9b68ce20a0acad97702f1cbebd3164a38ae2ed484286a6bf52bc8",
+      "tests.json": "19a2ae6a64ad187df21b1bda97f38aeac49300e666157db3115d7a2405d24b0e",
+      "adapter.py": "5d77837d09ba316053e69d01025d4de616437853b57279f7da277078712cee63"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "word-search",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b186053b2b57e353f276e0f2fda7e3fdb46f4b08a37caea025db18f32d1638f5"
+    },
+    "packageHashes": {
+      "lesson.json": "f88f9634094eeba5987b3629fba5482521ecb99247277f2669ad8b76a517dcde",
+      "explanation.json": "b186053b2b57e353f276e0f2fda7e3fdb46f4b08a37caea025db18f32d1638f5",
+      "solution.py": "e7cd18ad4d806106503ff0140adaf9efa377701bc24108af574590232a8b5f56",
+      "starter.py": "2a7b81bab99d5b400838bedf7b68252ebcef9512548a42334050bc3a2e8e11bd",
+      "tests.json": "b402da305f54656b1c6c6a053c39af905d6cf8afafbe2db370304bf43dc2ae46",
+      "adapter.py": "1a8a160023eb6f6dd69c7ed6a2b91d47da1e4edb8ed6b59ad9ee8d7e0d1c100c"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "remove-duplicates-from-sorted-list",
+    "reviewed": true,
+    "findings": [
+      "In-place deletion contract lacks original-node identity assertion."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "30dd399992b53892dd14c57afe84e8a85d4319e9f094e709b4d01603d06efbab"
+    },
+    "packageHashes": {
+      "lesson.json": "678304beb724a5ce4e197988aa5886dbe239439013baf447f45e7eeade00f745",
+      "explanation.json": "30dd399992b53892dd14c57afe84e8a85d4319e9f094e709b4d01603d06efbab",
+      "solution.py": "3638eaf2bb18eb65448f8616e9012a48b4b55380139ee6c4f345a000de657211",
+      "starter.py": "2fcaf3eaa1bbeb0f7e8a36048c60d6d98467ae4258f9641e8db5e9ecdb5af275",
+      "tests.json": "d9ca6f81ad3be62101fffd34b9df4abe0fdeed0102c2f0f644fdad024da2a7b1",
+      "adapter.py": "85f3c92279743067d724520c29210058125f23f763e379f543daf72101d5fecb"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-tree-level-order-traversal-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "1bd3577270ecc9c749892a4ac38bd3a9fc7336b540d8a4413e3e5275ead03a2a"
+    },
+    "packageHashes": {
+      "lesson.json": "53a52aa1dc3d022e39cf1f921d72977bcb27e1de8260b5593f5ac569a7a569d6",
+      "explanation.json": "1bd3577270ecc9c749892a4ac38bd3a9fc7336b540d8a4413e3e5275ead03a2a",
+      "solution.py": "04ee6b062bb5a2d0694b1bb7a55e0a71101ce82ad110bf1ce78e7d8c4eabaf0c",
+      "starter.py": "3f7e22d4dcf445a1382ee351459fabf266e9853ccb99b95203dd0171a0312bae",
+      "tests.json": "9fe517bf2fd380dfd01ea79f0a1e8477a4012b821e981733d1feacfe28a1dcf0",
+      "adapter.py": "7658fe0d0ddb641b96b244a0dbd955159839458baf448a23f4b0ad3e02206eb7"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "rotate-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "4c9819923049d1a1f3ac9d613ee10acd1591c1732d46c84c4bb5e127dbf52294"
+    },
+    "packageHashes": {
+      "lesson.json": "7c7cd537d78a658f74db4fde2622f714d50832dc580e37a5044ed44e8272e158",
+      "explanation.json": "4c9819923049d1a1f3ac9d613ee10acd1591c1732d46c84c4bb5e127dbf52294",
+      "solution.py": "5519c586b89857926d8f9e66ba9da56a9bd16ce473f998463291aadbe9b3c44b",
+      "starter.py": "41466b1f87546c3db979930decca25b4a8922195619a501ba170cd6e46fe53f9",
+      "tests.json": "986bb3a71fcfe983a917809efa13f85fc97db7877b24897d18b7ff5e62aa6298",
+      "adapter.py": "84cc8fce634e149b9924ac786218516e1f3143e3684893d0177b44af096d82e5"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "combination-sum-iii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e54d6b3ee218511cbab85e8c9407e3a42caba4e6b967c6501980e6fe1dc7c96e"
+    },
+    "packageHashes": {
+      "lesson.json": "4a9fc0618412f07aabf0f6e9cb8fff0bdd916e615773a10ae72b373c27dee56c",
+      "explanation.json": "e54d6b3ee218511cbab85e8c9407e3a42caba4e6b967c6501980e6fe1dc7c96e",
+      "solution.py": "02529427c0e2acb0a068d8c177116c826a7c0b5f4f77770fd31314cecb8a84fb",
+      "starter.py": "05fd59a8dfa97c49a84badcf8106fcf62cc9b254e0bed40bc054fb807c572abb",
+      "tests.json": "d960a249b8c45bd141f609f555ce803130603f7135de88613a5b8f1abd9832e2",
+      "adapter.py": "26aa38bbaf45cef53b2d71e4bbef7caa4f32cc94cce6b92ce253d9662f05a3ab"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-subarray",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "506c51022991b7c6b0d799f1b68b573ae99320db1981679f28279ef1b79c6356"
+    },
+    "packageHashes": {
+      "lesson.json": "e2ee09af12af8e4ba7856fc7a755597dd4893a7136d2d020f1b086095d5cca3c",
+      "explanation.json": "506c51022991b7c6b0d799f1b68b573ae99320db1981679f28279ef1b79c6356",
+      "solution.py": "926b435c86aea7378b66dbe842cc1e7b73ed814bfcc46913afee38c9810229be",
+      "starter.py": "9451f953b66bc999278701a71336aa9e0ad41d415926ec87194c30ce6097d48f",
+      "tests.json": "c207aa74d1535ef66c9a907a67d2b9b58046925457e1833e44f33b7c432b4034",
+      "adapter.py": "d900438f3dbf355af2a766fe5f34af4ac5752226ffea07a54446756a5841e36b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": [
+        "R07"
+      ]
+    }
+  },
+  {
+    "slug": "word-squares",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d2e03d24927a55d18f2f8fddce678e7e65cc7d8e7488d0142a964e670a98904b"
+    },
+    "packageHashes": {
+      "lesson.json": "c777d157033ea9e19f1997373807e9816b730247e10c318d3f79a8da7a159ed3",
+      "explanation.json": "d2e03d24927a55d18f2f8fddce678e7e65cc7d8e7488d0142a964e670a98904b",
+      "solution.py": "013c480b4415bf2a9bf54daaf5730614efa27dbfa79540dcf21ee7750ce1221c",
+      "starter.py": "df871e2eae9efcae374370a81c3d658799959d68b2deacfd8dd97eb99947e70c",
+      "tests.json": "06ceebb7ef341c7ec5afad00adc2b30849d8191ff26395bd33fab2e3d4ea3a41",
+      "adapter.py": "a0239f6dbdcbea136a5ed8de9cf889b7c85124f85358c73f0b905a16cfd1a5a5"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "word-break",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "911b77d0b5f259759699c503eb9ee17db8cfd192cb907b226e052bfa9f421183"
+    },
+    "packageHashes": {
+      "lesson.json": "24de68256daf32c41c761cd7553c49562f058f6bb84a29a57374d8f0d258bea2",
+      "explanation.json": "911b77d0b5f259759699c503eb9ee17db8cfd192cb907b226e052bfa9f421183",
+      "solution.py": "24dc8d5a7b8bcbb127228977b08ee5c315b83cec04d61e63e41cad1c41fa92e9",
+      "starter.py": "4a2c6b832abbf152723a117c9edbc45016e04608529944f37d0ed49a220e0121",
+      "tests.json": "b608b87b7ff39912679371c949ce47720f9134f11fff854a3f9a43f0f0ae98b5",
+      "adapter.py": "a6028606443b395a88c872cb7e744cb3693275c02b5a7c94aef1335e161acf93"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "search-in-rotated-sorted-array-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "f61218993ff9726779b4f19d6f616a2af2684e721609073411a20862242e7e4d"
+    },
+    "packageHashes": {
+      "lesson.json": "2f4c2360da7695a71986c067d39eed0716b554485960fe14dd71752d5425d002",
+      "explanation.json": "f61218993ff9726779b4f19d6f616a2af2684e721609073411a20862242e7e4d",
+      "solution.py": "0d656054a9804b2738aa2449a02308fec2605fcb00cc1463c5cddefbcbb75f38",
+      "starter.py": "b95b0eebefb31620fb042682c34f4da1b7282f74b0c3c58d5da78f5befbec45f",
+      "tests.json": "9877c7c9afd7c51aac806b69e3adc39bfb3e94626970c473d642ba830f71cdc5",
+      "adapter.py": "e5a822a722815f761e6b7290a5793a1613af4bbe275ceeb354eeced3028a8db4"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sort-colors",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "9625562a14e1332756f69413ad410c2eda52bdf4090fb59d6bade45bc82da81e"
+    },
+    "packageHashes": {
+      "lesson.json": "d46dfc694b3fc3ccce0c5486f476bbe2cfa367ee485aab37a8b4669e5e624ea0",
+      "explanation.json": "9625562a14e1332756f69413ad410c2eda52bdf4090fb59d6bade45bc82da81e",
+      "solution.py": "41abfbb7ff7f0897c98594d9a936baf20f932638a5a2792077b5be60e5a165ef",
+      "starter.py": "6fad505581494c9518ff3b54da64c59926a239662d407f83760bb4799d22dc34",
+      "tests.json": "5cea51abae84fd4750d917c24cdfebd47a3a352548fe658ec36fa812e4e33ccb",
+      "adapter.py": "b102254628323539c9197da2abce95a09cc2513c1bcb77b3df5ee71d881fd63e"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "generalized-abbreviation",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2b5f696c7a56adb28ccb09229a1db1f88ebabe6481dd4532a4fb292268f0ea9b"
+    },
+    "packageHashes": {
+      "lesson.json": "24ce561bbb2d6db0a493627e1b0f07737fcc61acd20bab09200fc167b6d7257c",
+      "explanation.json": "2b5f696c7a56adb28ccb09229a1db1f88ebabe6481dd4532a4fb292268f0ea9b",
+      "solution.py": "585f15860f7cf7a507ca992fb76a477ecfaafed4247e98b643cf96f34b38f367",
+      "starter.py": "f8fab7b073766e03e6ef2cc1e1d7dc00af7f111c1cfb820ce40f8145e5ddac3c",
+      "tests.json": "f5d1de11cbfbd8646d069d4ba256f6e8b8e2bbdbd950e0a9efbd1c8ef3091467",
+      "adapter.py": "3239414fb7be33ef85547bac28d7aa420474836c41d6d50335dd13feba33b4ce"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "meeting-rooms-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d50f030b882289b91b56c3366211b44abc642a55b5573dd4980bbfe37687be0d"
+    },
+    "packageHashes": {
+      "lesson.json": "8578f512ccb1c8eb6914bcc01bf72e28c01c65fb0c25ee11fe0f6a20910f8e1c",
+      "explanation.json": "d50f030b882289b91b56c3366211b44abc642a55b5573dd4980bbfe37687be0d",
+      "solution.py": "01ab79400d3416f5dd907e4e2e7d0e1afc2f48b0f214aa4f5ddb0c11cf3ddb49",
+      "starter.py": "8bd5db4b62e4f176717b184c39b783e747cfe97f32a6e88fed4b3fa8032384f7",
+      "tests.json": "1df33e1442d4b0a93bcd36c9abac2e0de01922672a76b9560508d8cabda2618f",
+      "adapter.py": "83714b15544f5721f17c9877ca992984f3ee7dc9bb78d5cc0a7e7294f3271af6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "minimum-window-substring",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "771de85e26389310be501c9b4f86e2caa2dba9ea35b59232a99dc53ed159c927"
+    },
+    "packageHashes": {
+      "lesson.json": "0bb9de62b87bf84e68a8c9cea0e1ecd99994635ef8fbeefb3e4531d249770b09",
+      "explanation.json": "771de85e26389310be501c9b4f86e2caa2dba9ea35b59232a99dc53ed159c927",
+      "solution.py": "2c56fe0b1c975a1f55ba9174bccfb5bd6fd7fb2c8b2af42894320a3d6455979a",
+      "starter.py": "d265148e014d89e560baf25def23e368a5cfcdddb38816a313625310b0b1af1d",
+      "tests.json": "3874755f27c680356c46a82c82fd968d0806b2d617ca6438f2949edbf49f5ab8",
+      "adapter.py": "a3bb3f03fa524d5671bf3294f592ebec83ded43c87823d733176079fe9625902"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-tree-maximum-path-sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "749fca6563963cde3ecdf36a1f6f303b47fb4118c3eea51c017cfc6734d71f33"
+    },
+    "packageHashes": {
+      "lesson.json": "045e5ff6bf61a8960618b5110d5567cbae58eed4b54a3651ca3b0a54d9622ff2",
+      "explanation.json": "749fca6563963cde3ecdf36a1f6f303b47fb4118c3eea51c017cfc6734d71f33",
+      "solution.py": "282aeaedcf728d717b99a08722c546d38d462928c8694870cadb911a5ea698b0",
+      "starter.py": "742d97424b9dcfd2621dce0e5b5004f7dd38f23f641b96b545a7388071809a94",
+      "tests.json": "662f6111df3cf72847d3f2f03cc1faaa79b965c1b7c0ab299fd2c3ebd577a84f",
+      "adapter.py": "cf2d2a98c8d66367690be3684b4a95adc42134065ea21f1d027f2962e8d9b973"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "path-sum-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "6a5043996dbf3b1ef3857aed6cb4bfcef46ceeef7c62e33d6889cd7eb28600d0"
+    },
+    "packageHashes": {
+      "lesson.json": "56d34f0986c2a9c5bedc10ebc0c1bd6cd84c745ba1202c6771981a98c45372ca",
+      "explanation.json": "6a5043996dbf3b1ef3857aed6cb4bfcef46ceeef7c62e33d6889cd7eb28600d0",
+      "solution.py": "f85611529e83cb5ff3d6c503206ff69e2aec1b3414a3eaca9eef04b098d20b2a",
+      "starter.py": "30e5da92cb9c0c9f27bf8a7fd816738a2c471df91ee2152e439431218cdde8af",
+      "tests.json": "ed359c2c525a96959c2e5d28d0999ecdb4dd793d404b01c1267747a36d8dc250",
+      "adapter.py": "58d2b1cc53301a427178b58ec74f9e018b10832b96dd925f16532fb7506e735b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 4,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "gas-station",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d0a657d357ee1dcab3c2568640e3d446071d4f83d6d7979096d192fe012a09d3"
+    },
+    "packageHashes": {
+      "lesson.json": "92c725f0e75c6bab866a61765d1d8928ce2cd8bcd065efd53e57e1fa6a854d97",
+      "explanation.json": "d0a657d357ee1dcab3c2568640e3d446071d4f83d6d7979096d192fe012a09d3",
+      "solution.py": "f13b9b1f847e8ed8a11a8b0b0098b8f68b7dfa931e0de9dafdadd1e11f2e85bf",
+      "starter.py": "4339ea1f433cb94f8d38de1cf42788e48ca2a1491f9f6f12f8de67b9e8801130",
+      "tests.json": "bb947659099cd52a7c36510c95ea90c3be12edbb5c43d2ee8978d6a6e84b55f1",
+      "adapter.py": "4e137612e77c8e2ede8585b78594d6794689661276c0da1963a5059702306695"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "majority-element",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "8d1e146d4afb79065ca5de948c85d529b2774c4562ec48ce14e6d6cf73e0ba28"
+    },
+    "packageHashes": {
+      "lesson.json": "095c94b057c53e15d84c8c07d9065d9db168f19bf4549f85a0de5a217069f687",
+      "explanation.json": "8d1e146d4afb79065ca5de948c85d529b2774c4562ec48ce14e6d6cf73e0ba28",
+      "solution.py": "be5808a39d0ac1a8d5e3c900dd78346a999b9547af5a244df84e82348409bcf0",
+      "starter.py": "6deeba4e622604352bf706fd487ef747d1f0919bb37e5bb53bb80964d8e32931",
+      "tests.json": "19edb44114e5ae5864e33a57eaf58185cc7ee3fc6e30f7baa9e817b71ee7104e",
+      "adapter.py": "7c24f13ae286c628bfeb8f956169bc6dca18e0d9c5ba3cca14ab876c80914ef6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "contains-duplicate",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2096114e6d627ce1b5c0319af09ab8dc7f29f23f91c4331e5f00f7220cc483ba"
+    },
+    "packageHashes": {
+      "lesson.json": "466b7f8f7e68d0f3a5b4064507de3d28357fab792a7c76b3195cb6d216da5323",
+      "explanation.json": "2096114e6d627ce1b5c0319af09ab8dc7f29f23f91c4331e5f00f7220cc483ba",
+      "solution.py": "a311e6808cfd0273a0bc276edcb2e271b1aa876e03ebf8da8924e2958e8dd997",
+      "starter.py": "88103d0a09bde32d3f3317f6ff246570d7ca33a55609f4799b3bad30d10f263b",
+      "tests.json": "55f7f67239f287b78533d49f55f7b9d316c8b019569df32c5fb19341690ef776",
+      "adapter.py": "5d7bb840fe56aa78226c773fcff88adb0aabc9af6cfa5dc4d1080b343f45f08f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "reverse-linked-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "489a6e55d9e0f0c0a25862283e448b139e3d0f0877c6e5d00390b3337a01733b"
+    },
+    "packageHashes": {
+      "lesson.json": "d416e749a832e59ef64d1e211f9a1469ae5e183f36d879ea5cb7227e371b2824",
+      "explanation.json": "489a6e55d9e0f0c0a25862283e448b139e3d0f0877c6e5d00390b3337a01733b",
+      "solution.py": "a87118ecacb1b0340d68344e774c66d1a3d61bc9e179261c48efc17767a8daf2",
+      "starter.py": "10eb63e897f02171d1d9bd42fb5c7ba97a0162602d92a7e06a604aad10cf1554",
+      "tests.json": "53782e0038ca4186dd4e9e27ed893021276b09db9f7617c8ed1f251cd7c65e12",
+      "adapter.py": "a9224c3500b7038516d8ee9feaa088f08a28ddb66d22b352eb1c786332182fef"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "is-subsequence",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "8e072a7c27835f086c98e645dcbafdd7ddf7570c943edee2884e29273e6ac892"
+    },
+    "packageHashes": {
+      "lesson.json": "3ed9bfcb49b0e3566d4f8c2775d39478e7dbc461adf25c96e155d39d2c0b77de",
+      "explanation.json": "8e072a7c27835f086c98e645dcbafdd7ddf7570c943edee2884e29273e6ac892",
+      "solution.py": "2b6a437de7e88473f837ef7d32e61db13ad32bb535de8e0910b464c35140ab6d",
+      "starter.py": "6f0ca3c6097b38629b9a273659ab48319ec4e06772eff0d368ba7f45371e2929",
+      "tests.json": "2fa73ba804ea92c7f2bc8d00bdfa8151edb071d9807df7bb5581664029e7d2e9",
+      "adapter.py": "fa0f137e9c4c84596d79545e0131c31312a106bfadc02df9ae0b0aa2a2cdff35"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "coin-change",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "44e7d88080a03ee07c8068dfbe797f74175f1b7d531ddff4cfd80c1c49791d45"
+    },
+    "packageHashes": {
+      "lesson.json": "d6e11d90d5cffc79526bcd093fc9d4e7d301010992e82af7f9bcfbd879dffe69",
+      "explanation.json": "44e7d88080a03ee07c8068dfbe797f74175f1b7d531ddff4cfd80c1c49791d45",
+      "solution.py": "901d766e9da7d640b1101c893832cae79e0d5a2fb834415efd1d96448ff788c1",
+      "starter.py": "e98b83d0f1cfdcc1e07cc80ec5d09d7ec7cd0cce9e8fb956008d72da53a41cbd",
+      "tests.json": "68712c272aae38a78df09ab9b30987e7bdec5c5c7fb48b5a0fd53072cd25df10",
+      "adapter.py": "95b6039df859c8c6f70ff3439c323ada1b69c33013b3840aa8dd3e4de0fac459"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "single-number",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "14a124b09a33f3ee453f205df4c3c3458b55dbbf2890537fbf1961c68a4eaf1f"
+    },
+    "packageHashes": {
+      "lesson.json": "d2342e73e05bf576f064ecc78dd5ff36d296b8787eb1d420dcd95a3936dd314b",
+      "explanation.json": "14a124b09a33f3ee453f205df4c3c3458b55dbbf2890537fbf1961c68a4eaf1f",
+      "solution.py": "c2309515f478607c30a7412bbf6a7db748e29b19571540ca319d5787a0024bda",
+      "starter.py": "8bf8e5ac0b501f652965d4c67fb48f78e1c5ba208cb4447138f64b110ac79360",
+      "tests.json": "d4c2a026b9f2b1cad5a31b197916cff8596b51d5fe24745edb4d5a5c11f84934",
+      "adapter.py": "ea2bcc662f50211e769d4da0e8beb5ecdf7ea5a35dd24366f58bbad33d3bb9a7"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-increasing-subsequence",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a012c18fb174be18e2b63fbddaaa1b73a947b1915d088c33950e0f9f4f1f5d94"
+    },
+    "packageHashes": {
+      "lesson.json": "d6d639d19daa278dd7318ab7d62e16ad65fd5811eabb3a820d4502f459564c1e",
+      "explanation.json": "a012c18fb174be18e2b63fbddaaa1b73a947b1915d088c33950e0f9f4f1f5d94",
+      "solution.py": "e7995e1bc261b7a0ca1213f567519a5cec61309cfde4996e010c141732ce23e4",
+      "starter.py": "b58f1ff51b223ae0c65b3241dbb49f33122eb929416db658b5a814f2232dba8c",
+      "tests.json": "8d96ed626be9b74aaa6ca292ca8c767b19af6756fede84393d3d9410384bce40",
+      "adapter.py": "77c5982d27d4f20f19a0ea70f999aea56e751b515237f1570ed63d7bca17fc43"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "reverse-linked-list-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "7338105f54451425ffaf6ff1ccf206270b667c51cc6104304489489d60e59253"
+    },
+    "packageHashes": {
+      "lesson.json": "2e903b386031c53196e86e649f2627a47685ec11896f7a1b1b734ae54b8c3bf5",
+      "explanation.json": "7338105f54451425ffaf6ff1ccf206270b667c51cc6104304489489d60e59253",
+      "solution.py": "0545fe3706eee830dd8b1ea0b49a96c74f21c90532e7591999cfe1990b5c8d23",
+      "starter.py": "9b2d0b3099684299fc15a3518c74dd35e7a948344060e50f9f9f3d9dc45f0c8c",
+      "tests.json": "fca84d0aa75029c9306e87c81d445b1717c70081a2d4888376bf22d9b79ac684",
+      "adapter.py": "941c472550d75ce2aea37ac5a9f544b6d4a78d15917e67dc277026064ba2379f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "validate-binary-search-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "8af6424b5be34ac3f95c88cb82c015b66de5ab9d4717105895f09e1dff9f5859"
+    },
+    "packageHashes": {
+      "lesson.json": "1dbaf0b1c9d5e193b1679ecd932e68e025697e002b7b481ef5197f766b07fe33",
+      "explanation.json": "8af6424b5be34ac3f95c88cb82c015b66de5ab9d4717105895f09e1dff9f5859",
+      "solution.py": "658c9537d81a023504d049814ac19914a6d87fd783e0baa1e285f6005316e0e0",
+      "starter.py": "90665557bdf5dd54224fe2cf01ace6a469190aca8620a2c652419e75dbba712b",
+      "tests.json": "3f4a71100ab940a75a912af052b6991e52e8b347b958d420c2f859085af4b4c1",
+      "adapter.py": "3e15018f37d68ce3aa94eb7855b2ff3d8eff62770b5d699ac01589fe64e6018d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "reorder-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b415fda92b6251eeea82f26eb99068b9090505e1f0d5e12c9910fd42d8c61442"
+    },
+    "packageHashes": {
+      "lesson.json": "02545ae50bc61cbaf8611f4cc5db73aa147ed048a4674190379abbc8f280c15e",
+      "explanation.json": "b415fda92b6251eeea82f26eb99068b9090505e1f0d5e12c9910fd42d8c61442",
+      "solution.py": "eddbd8ae804ff7c7dfca433d4bc17a2ef4f3d07baafc1cf2e7fd2e5940aefffa",
+      "starter.py": "41bda40571d63983b58bf42b0aceb2cbb0fa46658e4285fb77b2e7a06f6e66bb",
+      "tests.json": "edca728ac2062e41e99627e2fcd33afd97a0ae1e62cd42540f43dce81daebb86",
+      "adapter.py": "c783ef35d26c2698d07b2e177d8e2eeedd22810599acd6356f41293f886d349b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-depth-of-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "4e17759545760612a4a9a5a1ece353efda07a063c6dd5c4ec3edfc3e7c646f9d"
+    },
+    "packageHashes": {
+      "lesson.json": "b6f05cf787758a90122f4099d6550cfdf9108565bcf4165491a2361b8bb0548f",
+      "explanation.json": "4e17759545760612a4a9a5a1ece353efda07a063c6dd5c4ec3edfc3e7c646f9d",
+      "solution.py": "f8bd603685f81450a7066c8cd7f391c8231464c64602ab5fd2ca61b6612761be",
+      "starter.py": "c63285e3a9a3139c93e4fd505823d41a95229204c9dddbf97c458cec0ece04aa",
+      "tests.json": "d221e6292a33ca2d1c4b7f3238006ea51f66fb41dfb2a0d4d93f8acde1b6454a",
+      "adapter.py": "2f8fdb6f3f1866e91667259ff4f228ccd127b751c3641bffa6c2fcae308b8549"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "best-time-to-buy-and-sell-stock",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "fbc246786df09e8ccccdcf74da146acb2fb0f3cc1ad944a5bb13af708cc873d8"
+    },
+    "packageHashes": {
+      "lesson.json": "5b36730a49f380f691378d8d9bfe53fabe7b4b96d31bf309a4e3f7e24d4685e9",
+      "explanation.json": "fbc246786df09e8ccccdcf74da146acb2fb0f3cc1ad944a5bb13af708cc873d8",
+      "solution.py": "0e34757c8131bfefa6e699b24770e978051537ae045f507dbe27c35573340141",
+      "starter.py": "7c27a60a38a63d98b47cc96a3629ddf615e5e5fd7f02e871ef9379a0a725200a",
+      "tests.json": "55d8fd8604c641700d307d8192f9d15d53622c45272918db88250cd61f554bbd",
+      "adapter.py": "a36d0823feb2ce126ac56a95b689cceb2c06023f3b7704dcec52789b2f7f1a35"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "3978c6aeca7065788dfe8ac38206aaee6a23a4f8cf979c3903843f45f62a0ace"
+    },
+    "packageHashes": {
+      "lesson.json": "9f2d7b85cd4bee1b2e990a47d8b27d737a41269d7eb202bb4e7972d1dc68748d",
+      "explanation.json": "3978c6aeca7065788dfe8ac38206aaee6a23a4f8cf979c3903843f45f62a0ace",
+      "solution.py": "20ba7e5b0f8e5fae1c55b37ee2462462711372c5c6a7dc788c8753c49d4496bc",
+      "starter.py": "6c409ad9ae83725ee64d94de1e2e58c6cc298b06f9d9ad01185d842fffe573ef",
+      "tests.json": "287571fc2fa586663d1f4a2ad95943a920c41381a32d530ba0f982edd51815e1",
+      "adapter.py": "c38fb3ed3c19f59eb734e3dd659149cca16b92b132d933b64ff0d45ba53b02fe"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-palindromic-substring",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "8c1973fce95278e103288f34f0135d332dc7dad57fb79400bf3a847056fc28e5"
+    },
+    "packageHashes": {
+      "lesson.json": "3a79acdbf760b7be8a32af85eabaa38f05b84cfcfdf48834381375b655191155",
+      "explanation.json": "8c1973fce95278e103288f34f0135d332dc7dad57fb79400bf3a847056fc28e5",
+      "solution.py": "7e4866bd08e4f308068452f2040b97c2c6558abcca3217e16b83fbb7e9d0acf0",
+      "starter.py": "d3df828fe4750cd20db4e6fd92552d04a43e8985f93b375935103ab21f2f8b3e",
+      "tests.json": "9598c41a22269759e45d420970c6f14ae4684f297720781e829d1eb81a665987",
+      "adapter.py": "a6e8bfcc15e82e50412aa7ecbd69c37bfa3d4fe49c4c909b9026f9545de8c994"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "decode-ways",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d714a7b550ccca669cfa927ab46dff982885213f8964534b69017727c0b91d6d"
+    },
+    "packageHashes": {
+      "lesson.json": "0d5eb1e06b61f8ac55fbaeceef21ab64781aa47cf7c4c88c993d92d3f43b5dc7",
+      "explanation.json": "d714a7b550ccca669cfa927ab46dff982885213f8964534b69017727c0b91d6d",
+      "solution.py": "17d72a20d1bf9181a890a297b28f84dc9b281624c9994ef71ba4c146825e85d5",
+      "starter.py": "5c8efeacfb19be76a57e056ea64d8be87b4e3bf7a47252b18679a50d730ff722",
+      "tests.json": "9c8690de4ab5df57ec5350365e214b234bf67177a7b0c1af08c75a61015b6bca",
+      "adapter.py": "af2e759dc1b968d6fdb1b2794d280a8f591638ae76b7c61b9187890680377fcc"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-minimum-in-rotated-sorted-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "0325bb1f41b3166efa74e0d13638d04ae5a5a6f6e952dc85381daca06f1b9826"
+    },
+    "packageHashes": {
+      "lesson.json": "97228fa85bd041f8afaa0900cf40d78368a65ded46c5d16241ea2f23bfe200bd",
+      "explanation.json": "0325bb1f41b3166efa74e0d13638d04ae5a5a6f6e952dc85381daca06f1b9826",
+      "solution.py": "10fa98c05fbf4810e6ae4ff7a22892f416f97902c3fdd80e2b839c4f7e3a53fb",
+      "starter.py": "abf98750d141b29e0a2db91fecc45884a4ba3af62a989c79fa592a6fbb6b973a",
+      "tests.json": "83ae17d27743a056babcd56603dac65a7bb838da8115a13a28caa774ed958207",
+      "adapter.py": "1e2e0ef6041cd9360992717cc4545099e81cf96f4d3cb4dff056aaf1ea618578"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "jump-game",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "f0a879023b6f3198cc6949684a6134613e19632cf23a041bb89cb511bffadf9c"
+    },
+    "packageHashes": {
+      "lesson.json": "ba95a543d40bd6d9750793171a0b17e90a02d618c61fb15b5cc42588953c6895",
+      "explanation.json": "f0a879023b6f3198cc6949684a6134613e19632cf23a041bb89cb511bffadf9c",
+      "solution.py": "68e7a90824e42862d953e8493207a391bb9735b0fadc88fdb914144aa576a841",
+      "starter.py": "392398dd46886d89e08192486bbe37fc194ff0249a81a3b1e2332aa509720765",
+      "tests.json": "a8fe8d0642a027a4652fe3c0b32ebd3bac2359e59a6100e720ad076e29f301af",
+      "adapter.py": "c50a8917a2e45d2976e47276b444fe82096882cbec8510efdc4048c88b8329f5"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-consecutive-sequence",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "bfa92beb9a78bec961a8bbe6169aaf67dd11edbb3dd1cd425a2e3972ef4ad22b"
+    },
+    "packageHashes": {
+      "lesson.json": "67ffc7fae5baa83f1d518d3960876099a0c3cd5d938412769051c69b36442870",
+      "explanation.json": "bfa92beb9a78bec961a8bbe6169aaf67dd11edbb3dd1cd425a2e3972ef4ad22b",
+      "solution.py": "2297847e588dda4906bd5058319cb276f098f74c5e281d6b87d9daae85a221f0",
+      "starter.py": "77af28649168c7ff4324db3a82d1eaa6758c41bb63943ffeafad6de6843ee12f",
+      "tests.json": "1abdc9306fba197a9cea0d906ebc947522fa5c563f9a60709cce1e761a3f08af",
+      "adapter.py": "afdfc177bd50cf7af40de554e6904a73d0738b183c17ab22162c3a1c49b53349"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "missing-number",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a6967889c21628f122590e035921a13da637e3c4654c0975db8fa98ae4455dc0"
+    },
+    "packageHashes": {
+      "lesson.json": "78de15cce4a6c40c9da5da28733ff8e2fbd9f106bbe84dea31dce3cbb35fb5a8",
+      "explanation.json": "a6967889c21628f122590e035921a13da637e3c4654c0975db8fa98ae4455dc0",
+      "solution.py": "b3d6fdc81fe5d9dc96dcee820782a27e17d5d3b9bff5faed73d4113f2db9e04a",
+      "starter.py": "e3b62773569175c3270da4a42ff449f83940e290ccde4dd9e14cce1a34a2b6bd",
+      "tests.json": "23252c199d50dce470eab4efabb48ac721b4f77f92bba197ca9a9e87980e446d",
+      "adapter.py": "3ccc083a8d9b50f4ee9205767eec25abd02c98708ab61163a62d678a8502342c"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "minimum-size-subarray-sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "06f3b98ca5fb141a2a7fe907413a2f3e3b3137f62ec0d9ced887e74d75d3e01a"
+    },
+    "packageHashes": {
+      "lesson.json": "32984e7b3e29301cfd5b9c1122e4584cb89a456b47cac879fceda80ffcc035d2",
+      "explanation.json": "06f3b98ca5fb141a2a7fe907413a2f3e3b3137f62ec0d9ced887e74d75d3e01a",
+      "solution.py": "01108d2a85cc0735ad31fa7fe9ba767804f7b0dda73a3196c6a7440703e22204",
+      "starter.py": "7dac1c62ad350b8aec35331697107398859a37442bb816eed34408627790e405",
+      "tests.json": "d18ea8828e7772f345c5fa1603b1865c5cd4531487a27d416bf34b2e05fbf874",
+      "adapter.py": "02edbec4bc64c829a35a1b274870b31407e4230d9aa231b7dcc38cf61456002d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sort-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ee4b2cd4f268442c77b8708a723be5cd9cba9b8d51a8fe373b37326f860e3886"
+    },
+    "packageHashes": {
+      "lesson.json": "11930e1793d9fc2304c8dc1d11c55a4925f72e6a5506c046bd4047087fcab69a",
+      "explanation.json": "ee4b2cd4f268442c77b8708a723be5cd9cba9b8d51a8fe373b37326f860e3886",
+      "solution.py": "819ea88922059b5513292b749d321f6b0bda91ccfb86f57a92c52ded9fde4954",
+      "starter.py": "02f451681510d0432a3d18611eb21424452562aa6f10b822bcf9da39869851a6",
+      "tests.json": "f740da3cece856621524488a03ad10b42eabe46e9fa7f41e6bf9bf20d30d8fbc",
+      "adapter.py": "1609fe10b5e5ed4f1b982e0bffb9c41caac821d864ef1c91ab8f9853d58c8fd4"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": [
+        "R04"
+      ]
+    }
+  },
+  {
+    "slug": "house-robber",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "943c01ad5c968f1cdea0b04960c8aa04b3a88336a2aec497d64e44784bafd710"
+    },
+    "packageHashes": {
+      "lesson.json": "4c2bd65046905f9c1d0dc38470e12d2f081ab4843c70f01e585da86573105cbb",
+      "explanation.json": "943c01ad5c968f1cdea0b04960c8aa04b3a88336a2aec497d64e44784bafd710",
+      "solution.py": "7eb7e1c618a384e74eb4cc0fa3a8fa0ae6ae7cc3ebccf75ef3f0afd08896fbdf",
+      "starter.py": "0bff230f9dc1a6a111583f0c463e8a301db4d25aa33f11a74c3f0de98790002e",
+      "tests.json": "e0b3627afac304c8fbd4058bfcdf22120a5f918ad426978c393c62f56fa6b6d0",
+      "adapter.py": "4eecbaa0d1923e5503ce98ec186df7c68b9f7d0df2c431f2170b2cef38bcdbc8"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "house-robber-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "99178ab8e081695e904d90b11a9c6df501ca22a71348829ecde027e646387a5f"
+    },
+    "packageHashes": {
+      "lesson.json": "19145f72c183cab333d46ebc1bd62e875da9d3093a3fddf9469012e32aef2634",
+      "explanation.json": "99178ab8e081695e904d90b11a9c6df501ca22a71348829ecde027e646387a5f",
+      "solution.py": "09a0a680bd0ece9634f23207a5085c2e3695ce718634defede6fc09b177ce43c",
+      "starter.py": "0bff230f9dc1a6a111583f0c463e8a301db4d25aa33f11a74c3f0de98790002e",
+      "tests.json": "2408b77640d98dd1030adf55442e7f50a6f7e616b45e53d514cc8bca0e288b18",
+      "adapter.py": "4eecbaa0d1923e5503ce98ec186df7c68b9f7d0df2c431f2170b2cef38bcdbc8"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "course-schedule",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "7a68d02867ecda69d5598de502a145ab7cecb7072ab2a74d02715e54542c0910"
+    },
+    "packageHashes": {
+      "lesson.json": "750f92ad6572389238e7fcdf5bc340212915ecad7291343146544c7552a75cd1",
+      "explanation.json": "7a68d02867ecda69d5598de502a145ab7cecb7072ab2a74d02715e54542c0910",
+      "solution.py": "804b517508c568b0a0c1f8db3318a8c9eb566a0ec0fc8329046d6cedf8cec65b",
+      "starter.py": "14f139632c396703efc887d9cf894857c24e98bde56862d618e0d9a5432e6028",
+      "tests.json": "44794ad30f8c87edad237b0ebf8d066dee4a8b79d163d6a2da4ece59c23fd311",
+      "adapter.py": "c5ca89bf8e1b687ca35a84895d965fbda41670ae6b4ab5d3c4539ed0b46abcf6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-smallest-letter-greater-than-target",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e05c8379bab5a9110462f104949f7fb653385725e89c6a934b1c77b54e6bb142"
+    },
+    "packageHashes": {
+      "lesson.json": "1b45242f687d8787ed688250a3e3b79df3444a66c3d02ce3e7a3e4243efcfa0f",
+      "explanation.json": "e05c8379bab5a9110462f104949f7fb653385725e89c6a934b1c77b54e6bb142",
+      "solution.py": "3c2f09d7198741d2c13925239158f020effa8678ad3b20ca48e7b1c76aefa0ad",
+      "starter.py": "49fb4e6fae1eff8f2fffed6b698eb1fed4fb71dd1778089703840be2c5710aed",
+      "tests.json": "84d0b878b044064401a85c22912432e668613ef1ee21ebd53173c6e8acdce016",
+      "adapter.py": "479b6d24c18ce90cf3c81632bae7bbeb9a1a17c7f4ecf09cd50af332589628ad"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "word-search-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "885eb69d743a67d7aad24ce114187c83f23f3801e3bcc258bf9da5ea4b90c8f5"
+    },
+    "packageHashes": {
+      "lesson.json": "12af08832b6e789fd34cfa2152b6986726778807d4a051818be373b12e9fd1e4",
+      "explanation.json": "885eb69d743a67d7aad24ce114187c83f23f3801e3bcc258bf9da5ea4b90c8f5",
+      "solution.py": "def5e0691e46ece4237fe4be9f4a6fd1612719dcfaf06c9ec77724e6afda0f49",
+      "starter.py": "1b2dcaf1cd8e6f9e1554c75b84a5d77fabd574bcf94a2e14d1e421ce6ff03f43",
+      "tests.json": "8bde7af5b4437114b1f0f9d7abdfa5d39fe61c0595191b9edd6dd9d747d81b32",
+      "adapter.py": "b60ae54ae9736b596e10e28283393f155d8908d690888c4d90635a38b951409b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "non-overlapping-intervals",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "3a667d51b25d369b4a67f5fe2a546c5b1cd9b4342e3a4e0eb56b5b21f848fff8"
+    },
+    "packageHashes": {
+      "lesson.json": "fd4b5edc5ef1ca389dce16d70df0a4982d623b086730e996f127ec576fc97724",
+      "explanation.json": "3a667d51b25d369b4a67f5fe2a546c5b1cd9b4342e3a4e0eb56b5b21f848fff8",
+      "solution.py": "a155467c41d3950666758811e26e8df9110b0f31a05e701ee223bb5dd6916f79",
+      "starter.py": "130c526be70832b4e5ed14704026789b9cc44ae206d2340bee14353c01a435f9",
+      "tests.json": "9d273591fa02571a8cb339f381df87b0a8876f355b84262a1d28e824827dd705",
+      "adapter.py": "7bdbc12947375581a4e6135081d6f162090fad7e5c90925d9e6e8e89f4465f4e"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "number-of-connected-components-in-an-undirected-graph",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2034ee6e3bfd0357241f85b927c12028d8d4fe589b06f3ff4b8fd42c09895028"
+    },
+    "packageHashes": {
+      "lesson.json": "70714d4528f378db6a52cb2cc16a57134ffe03b3cb2d99f1d92359bf7eb5add5",
+      "explanation.json": "2034ee6e3bfd0357241f85b927c12028d8d4fe589b06f3ff4b8fd42c09895028",
+      "solution.py": "3f768a24514a6ed3989dfa1ca19d250a598fac072e5bca43d89a4935b894635e",
+      "starter.py": "42ad2efa4d6f96eedfaf3697058fd0b84649a08b1b2b735568c218987e66741c",
+      "tests.json": "86992da89c830a2e550bb81a1c9f10eca7cffb84ed09d2db37ae5b77e0bf1c7d",
+      "adapter.py": "641caf62e4e90df0c28e562328340fad71ede02289849c2340b0d2d5722aafd0"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "interval-list-intersections",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "28db994154eee7218465ef8391b08b4e634b6d1778e1759b53cbb71a3d3cf1c0"
+    },
+    "packageHashes": {
+      "lesson.json": "fcd80c7c16c8b7279464d9f781ca14314f3316ce034e31e090cab33716d6bc17",
+      "explanation.json": "28db994154eee7218465ef8391b08b4e634b6d1778e1759b53cbb71a3d3cf1c0",
+      "solution.py": "4f29438a6b38ca3a38b9baaaa7c7447b582fc7e0b0798b1ea3935d7ba3d26147",
+      "starter.py": "37270606449396104908a3877a3a7bbca5b3c78717a985fe6b655fb9d4148aed",
+      "tests.json": "f531007dc2bf52c061eebc0bb551959c6564d28bc6db964502c2093b03a71f4d",
+      "adapter.py": "41a6d124b5be991b282fb7c209c4f57350f98bebd7e745dac206192a2f3a26d4"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "range-sum-query-immutable",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "f4164176a71c4aa6faef08aa00b19783453a5aabb08a417b121fb3937398b822"
+    },
+    "packageHashes": {
+      "lesson.json": "4458e1a05e24307c94c7b23c300e7d4492ce656f32d1c0b978c7e3ee974fef1e",
+      "explanation.json": "f4164176a71c4aa6faef08aa00b19783453a5aabb08a417b121fb3937398b822",
+      "solution.py": "9e0f8ae4d00fd712eb64de169c2eca26dbfd0bc84b628d032d9f7b488bdbb613",
+      "starter.py": "0833427a344ff58a7fee936fa70f2ac65a498fde1d1c2543562cdd5f5a7787c4",
+      "tests.json": "a8e638507ec8a8e3ee374bebbfeff2ca1323f5eec42e24d58caf3abd0e8a2551",
+      "adapter.py": "1f327c9f89e33566be185eaf5bd0d1660c311d892ca116cdb4c0cfc6e1fe3704"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "minimum-number-of-arrows-to-burst-balloons",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "fd392b1a4040acf8400b4848a6a777cef55c7f78f1f89cd769e3bb8fb3566eff"
+    },
+    "packageHashes": {
+      "lesson.json": "2fa9f4e54711011571eed58ed7568ac1239cd70b13773becaaf3ba27b1a6139c",
+      "explanation.json": "fd392b1a4040acf8400b4848a6a777cef55c7f78f1f89cd769e3bb8fb3566eff",
+      "solution.py": "c1d45f72fd6fb75473249efc0dddbc795f2dae702bedb86faa6e5ddbc69bad65",
+      "starter.py": "490e93bd9ad406b6e2aafdfcdb5dc4222015cec59dbe961fe34edef94f6c37a3",
+      "tests.json": "fdb4c0394e0533e509ea0afa269973ff5cd6a7623b00b3c630744445a83b76b3",
+      "adapter.py": "6e2174f9688d208b0039dd1df493ff18c6470440d52279e0debb1b2f4c98f7a2"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "invert-binary-tree",
+    "reviewed": true,
+    "findings": [
+      "Same-root/inverted-links contract needs original node identity assertion."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ad7d288b05b3868745ef17dd90070c78505af531587f62bfe11f78a335edf0dd"
+    },
+    "packageHashes": {
+      "lesson.json": "1ac75edb3d51979f9ee5e494e40ae6964bb0d4daccee211b984ae0eccd622099",
+      "explanation.json": "ad7d288b05b3868745ef17dd90070c78505af531587f62bfe11f78a335edf0dd",
+      "solution.py": "aba8fffad476ce9afb2de8fc473df650a4266e8dcc2079caca02464fec8d2215",
+      "starter.py": "2dd2a9e529d321a1247167fcc8de6a9125175323bab53422f548533bb920c184",
+      "tests.json": "fd621944164f74f1f696b888ca944ad45c1c3474a44538d1202eda242f202687",
+      "adapter.py": "7c89fc94facc3666f8f107f06c44eecc092574598a22076fa27c52d3c563105a"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-peak-element",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "122916347e09cb584758ba37e409acbdf03f29baed83066d1ba8bb5d2312de14"
+    },
+    "packageHashes": {
+      "lesson.json": "aba47877601be8c4ffa0adfd5e61a687d350a8d439c0844345dedeb1c3714224",
+      "explanation.json": "122916347e09cb584758ba37e409acbdf03f29baed83066d1ba8bb5d2312de14",
+      "solution.py": "d0d8d3377e62850aac166fd22c007af8975e50bedb9f628fdfdbe194c91063bf",
+      "starter.py": "00694c0abad87b407f2dbc9e6c7531d497cb4cfec93641330d2d7199732f3a7e",
+      "tests.json": "c02d7201040f8c2d418ed756abe6a2e5be74158ce2472bdb39dad9cb55f598c7",
+      "adapter.py": "a35f69df11538e3710e20be3a8cd3cb060fd3fb51a1a307051c0a2a102fd7de8"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "product-of-array-except-self",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "337447065075fdb42243701bab0ba2663ff6b773317d6ab00e36d8f5d65623e0"
+    },
+    "packageHashes": {
+      "lesson.json": "624f6be66289cb729b7c393c30ae6470b1a2bf229d99788c1160813b993a8877",
+      "explanation.json": "337447065075fdb42243701bab0ba2663ff6b773317d6ab00e36d8f5d65623e0",
+      "solution.py": "f7b28b54546880c8f7b71032625fbd62d144b2ae82601d22ccf728de1867781d",
+      "starter.py": "49edca862e496e23895f81a874f2c8f996dd4d4cf615f1f57a52b8bb516d0ecb",
+      "tests.json": "063fcad171a8a4a93bfad398a82de44af895db8f5a5c70857a20f861d62019e0",
+      "adapter.py": "e15d8a2efa3377b4db2ea2162891edae835a63cb74e0edf21057aff48338cd27"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "factor-combinations",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a96075ddcd61842cb6719e9113a1b8cbdfe4b1a5ff3b6b57e1c0e5b14f3e72f4"
+    },
+    "packageHashes": {
+      "lesson.json": "968c23f46ebeb6babca149d328ec6e64fef1d6d9dba3866a54b893a52f9dc1df",
+      "explanation.json": "a96075ddcd61842cb6719e9113a1b8cbdfe4b1a5ff3b6b57e1c0e5b14f3e72f4",
+      "solution.py": "f777a6d06e05294e2f94bd243d8443bc5eba47b1f95beea6a6f7d9872f867d05",
+      "starter.py": "d9be3190cdcb4e773f75f7c0d2c2f478c271ff538b5709ef1f6c2b0545bb75f5",
+      "tests.json": "b39c159e8fa48c55a8d65a5b4a8b32920136afb94bca4370f7a214435d67dc11",
+      "adapter.py": "1d59d41ca5330b3a7eee2d06b6172fbf096ed468759ca3572f2fb9336c46166f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": [
+        "R02"
+      ]
+    }
+  },
+  {
+    "slug": "move-zeroes",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2b0c8326d8b9e76866c63d01cc043c377eca23e1365a24c4bcf7e0ad17da3140"
+    },
+    "packageHashes": {
+      "lesson.json": "0b9c2881619f2a8a166ef5a446c5b9ee8ae4bfed87bcdfd1bdb0fcae511200c9",
+      "explanation.json": "2b0c8326d8b9e76866c63d01cc043c377eca23e1365a24c4bcf7e0ad17da3140",
+      "solution.py": "980d2bad37480b218a23fd7424dae91b73ddb23ce3886a2b080059f18913d2bd",
+      "starter.py": "d3e9b1a8ef382e8c80bad4e550d34f65873ff914690d1555a7faea800491e672",
+      "tests.json": "91488f67e8da54562445506ded8c1dba6ddd889773d228bdd8e3b1418560a9d8",
+      "adapter.py": "ade5d56de5ad8e24b8f7af64b7541e2dc7f9a3bc323a31fcd40ad66af3077a29"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "merge-intervals",
+    "reviewed": true,
+    "findings": [
+      "Custom numeric checker should reject bool/float endpoints."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "0747479ce7e3cd29bad55926d363c8f480572359dbd1322a5c0f2d85760ddc35"
+    },
+    "packageHashes": {
+      "lesson.json": "dc81c0bc3b03020085c98ca61216b0767c8d807bff23f675689d48b655c89955",
+      "explanation.json": "0747479ce7e3cd29bad55926d363c8f480572359dbd1322a5c0f2d85760ddc35",
+      "solution.py": "71003a38aad83df940526d0208551d7cdcae54cb688778af7fd2dd2fbde1ae9c",
+      "starter.py": "5ac903ea94afe4880105a983b268885c67fdbbf6a20189d4be1f1af64eb39a7c",
+      "tests.json": "1c2320f48cfcc390cbe4f60f3b24dfc34b2011084b4e813836a24d66f72a02bc",
+      "adapter.py": "f5c142d8e4e23e8a0913b0d8e882da91a3f48fa501ee8e206dc8003a4f0dc405"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-the-duplicate-number",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "26e1c23a0d117dfeeeebfc6e2a491510bc5f12624bf7e82ab4e3850e096c1715"
+    },
+    "packageHashes": {
+      "lesson.json": "b966fa13293094d0e2c77efe1364379f79d4385d284d9f490a85bd361d717e2d",
+      "explanation.json": "26e1c23a0d117dfeeeebfc6e2a491510bc5f12624bf7e82ab4e3850e096c1715",
+      "solution.py": "a9610d632f31fba13492c09dfdfa80f1a2040367fbb7db431569331a76c1d10b",
+      "starter.py": "10f4c995b83e92a49d82378fd5e0755b8b4a59c546e7954d87cd563a3932238d",
+      "tests.json": "528bc4c1fc164f2d33567b8f0b6af43aba5f77f4f38f60247d01f0d32fd63bcd",
+      "adapter.py": "015bbf00dea63763d6b59d8693c19f0e75f6e506f226da229ce06790b3020e5d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "palindrome-linked-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e737c39c8dd6003f3c1059482b709cf918455b57a2d02575c64ca8b10f491ab3"
+    },
+    "packageHashes": {
+      "lesson.json": "195c9c93793aa0fe7143bc439f6b5a3831217d5fe60e522f7bd5aa700df85d81",
+      "explanation.json": "e737c39c8dd6003f3c1059482b709cf918455b57a2d02575c64ca8b10f491ab3",
+      "solution.py": "269e6182a8031de20e338c2f4034ae5863cb326b90103ecf0317a84e041239ae",
+      "starter.py": "a29645b917325725db4b2eccb84fc066d6bc8e148955fef03afa4a2b1db2580c",
+      "tests.json": "df2ff67847c348d5c74963d9d60eacfa9ded786656c10fe7e1c3d19216ecafd5",
+      "adapter.py": "373b2d3c8d7d26f1be41bf2c0a4d4e988ee592f6adc922aed32dbec82ec6160b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "counting-bits",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "05d1b609885654e1e425d5d84c23ea6511aa85aebdd96452fe0c6b8b02cb37f1"
+    },
+    "packageHashes": {
+      "lesson.json": "b3565a303ee3a87460eed3bdeaaa15b4a0142b3359f49a6101a452d8f3241890",
+      "explanation.json": "05d1b609885654e1e425d5d84c23ea6511aa85aebdd96452fe0c6b8b02cb37f1",
+      "solution.py": "d58c19110760731e29edbc5218b2a5754dadb77a0a5c65effd8d1a32e2cccf07",
+      "starter.py": "4b180078007f3cf8d3e31a35743f4ad05e49ee895bc94e6ca38fc3ea2b6c6131",
+      "tests.json": "d9266d72141a4cd721af858c6d4101d3660baea01fb29ad6291b356721ead76d",
+      "adapter.py": "5dd958434862935256f4add87b5fa3faf457ef2c7fb1779f0a50464c284e8a50"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-product-subarray",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "97c28020a4342a00ac188408213b0a3d1d6c1442c6251036950b41b837442543"
+    },
+    "packageHashes": {
+      "lesson.json": "5a322bb4f52b490bdd87228fc29e155f340956d7816f94994addc67c1197c442",
+      "explanation.json": "97c28020a4342a00ac188408213b0a3d1d6c1442c6251036950b41b837442543",
+      "solution.py": "216a905a42112633ddae4319f6ac7aa949b6e2b838ee75c2047a8f2b63c39da9",
+      "starter.py": "36de211e902e7bc6f27f5d25a2d0840556057f77714730a140a3996f621d0d17",
+      "tests.json": "fa618cc4fce5e213843c1f08d829c90afa61b9c9c1578d9a8b86f30d0ff386af",
+      "adapter.py": "d2862f604710765b592dcbb3db3d4736ced28b120036c4a441f91839ae8a4c1f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-k-closest-elements",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "95c10e082de56fc877bf698b3969dd5927c7a1964fe9ac0ae21d052406b9665a"
+    },
+    "packageHashes": {
+      "lesson.json": "76551e9dd0e4d969549da91aef51c2414759566c16f5f44e0651d23bf51530c9",
+      "explanation.json": "95c10e082de56fc877bf698b3969dd5927c7a1964fe9ac0ae21d052406b9665a",
+      "solution.py": "7569d1526a542f3c0be736cf9c5d75e9418e3e11025d24b0de303eddbe5ca70c",
+      "starter.py": "c73551b46ec34020f25698049de6b5d1c669ba218c12213213abc328a386efea",
+      "tests.json": "123758552394917ed46e179f9fd49ee3a582026446699306fcae3fcf93bc4d6a",
+      "adapter.py": "eb92a29fa136bfc7f5afe6e9f96769d2e0c9e78ab48a7bdaedfaa64da4d05a9a"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "implement-trie-prefix-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "1ec4561c841e2e579732b4371d5464f47d4256e19df52fb049ab8d7cf8393bc9"
+    },
+    "packageHashes": {
+      "lesson.json": "ed15e923136c37ed420716dd7d608ed910f5387339aaeed458e8fb0b69f7117c",
+      "explanation.json": "1ec4561c841e2e579732b4371d5464f47d4256e19df52fb049ab8d7cf8393bc9",
+      "solution.py": "7c19e03744a7eaa420c65d4620ffd342fe9e7c5cf5db73380bdbc7314b910834",
+      "starter.py": "b5f3c5e028436b8716e999c5cd7c26850c4fac2e0b759cf8cf11135c193ad6b6",
+      "tests.json": "0ba833d016e5af9fc732d74c1d865b05300cdaba92fe4b73e2d310b35ea01a0b",
+      "adapter.py": "f8f7761486ced78753643caf1894b665918f87612cf44cf8083ffd0779a36c9b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sort-characters-by-frequency",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "9fde620b1c55d17faea015f9af1721cdbaa755ef3c98ca96cee9f97031ea76ce"
+    },
+    "packageHashes": {
+      "lesson.json": "3361025f1c2f0148d7421946008d288f3e68ea6e68e11c579ec60dc7f68e393e",
+      "explanation.json": "9fde620b1c55d17faea015f9af1721cdbaa755ef3c98ca96cee9f97031ea76ce",
+      "solution.py": "5f4f2c12d1f6e94c5ea40dec7c5aac17407f5adc418a4087f7135e812de698bb",
+      "starter.py": "72e99b9bdb9eed8f2bafa07cb4a688f6410a903d0ccf0f285adabb6531fa656a",
+      "tests.json": "da518690148027c140b2af0a1ae686fa958cccf4c1847575b801b669690b69de",
+      "adapter.py": "ae733986657ce4948ab80c590b8d1bf7407e31327fa720d3d69a322cd7198460"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "kth-largest-element-in-an-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "aac36d984815fca8c2bd1f1f99ae1b3a7af574ed0cc2b4984c51b48180c9425f"
+    },
+    "packageHashes": {
+      "lesson.json": "bedf63c1d478913b82d26ef34b0968eda7247cc826d91c86dadcc042b886e31d",
+      "explanation.json": "aac36d984815fca8c2bd1f1f99ae1b3a7af574ed0cc2b4984c51b48180c9425f",
+      "solution.py": "08d0a4f7d1f7e7bb1e5a43bc356db3cf12707ea0d2af5374433da06708714b26",
+      "starter.py": "ce259cff47ab5a886ce248a9cd6aeb2755bb03479ffcf81321988fc70a58295a",
+      "tests.json": "a44250e9fc1e6adbe797cff8c0bd75214bada663ab83eea17b31256833668032",
+      "adapter.py": "cb242214c781053a6e82b32825450683b208d4c40bfaf9eea14a3845aad48a3c"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sliding-window-maximum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ac3878e3f74fe084185f97e797c2bada89852269482996d1719007901d8db26c"
+    },
+    "packageHashes": {
+      "lesson.json": "b093feb038c32fbf09c8cda1840ca3317afe16edf6a52624451f671ebd656bbf",
+      "explanation.json": "ac3878e3f74fe084185f97e797c2bada89852269482996d1719007901d8db26c",
+      "solution.py": "4506cb0e73825e30e64a19952d28b15e7920995dfd5bb223b670b8d4961d26ee",
+      "starter.py": "3e28b9fef9f889aeae84855f16aadca4b66a14c5efe265b2f26096271d2421aa",
+      "tests.json": "89bec91a5d54e454626468b5d9975f78245830791eae6f11ee179590ce9158c6",
+      "adapter.py": "2382ab62ca13f141edf116e201c819c63f4b67f2b39498255a9cc5d27abd53e5"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "kth-smallest-element-in-a-bst",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ad4c145d504938cab62246fbea512646dd2d141be302a4d9344ca9af91411b87"
+    },
+    "packageHashes": {
+      "lesson.json": "156286b90d8405af32d8f6a467f7412e734cd6d887c8346c7dcdda32d06fb7bc",
+      "explanation.json": "ad4c145d504938cab62246fbea512646dd2d141be302a4d9344ca9af91411b87",
+      "solution.py": "99ac8e0e6cb975b19ab562eda2648c0acec486a9d68e727de1c5ece98ec0e5a9",
+      "starter.py": "846c5c32a71532d362cbfc55bdd37d49673ff2e6631ca955bec649de1c64b716",
+      "tests.json": "bcecc40ae65c5b628370f346ec9333669c18f1e595bb981b9f32a20d77e75f0b",
+      "adapter.py": "69343181e6684fc68e91f1ae55c6c67949d5fca7dc1296042a4fa3cfff8a2d77"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-tree-paths",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "20db2bdcbd083accc73c338ea7cfded8de8700307aff5fbdcc2603c147da3308"
+    },
+    "packageHashes": {
+      "lesson.json": "b3fcaa7441e09bf639a17163d8d043cdfbc6bee27dfd7c5f9bad11a7e8edf084",
+      "explanation.json": "20db2bdcbd083accc73c338ea7cfded8de8700307aff5fbdcc2603c147da3308",
+      "solution.py": "3a8177b21b59943fde24ed4b51ab430f76d7993c187d05ffa3db95d52f2da033",
+      "starter.py": "0830ebc8a4a085079dc4fdf40ac751b7f28b65b3b42899789a7f7dd285701c87",
+      "tests.json": "4a88163a0fcb727599ea7aaf5c5995edf8453b038401491a253451831c5ce401",
+      "adapter.py": "2b0af850d1407de563e65002b2153291e33528a54db7a2df39c6a28346467e62"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-tree-right-side-view",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "02acf3c2701cd9b85b824d4760499e1c1476cf95aa4e2451e93f0e7595b6af1c"
+    },
+    "packageHashes": {
+      "lesson.json": "931642525f55431d290d058d3ca45a3cf5907259fa2c921411c18138044d3f0e",
+      "explanation.json": "02acf3c2701cd9b85b824d4760499e1c1476cf95aa4e2451e93f0e7595b6af1c",
+      "solution.py": "67b0dc9ea11e08a4d83d1cda42b7c989aaf8b44637283218aa70aed7b0333cd9",
+      "starter.py": "5ce30f03faacb1281cb95762aae9aca1495fdecd2ac55c90a3be93c4f6f072f2",
+      "tests.json": "6ec903d145a1169c8fbdaf5a80e2d8626fac4b8c847ec9d9601642171a6eade3",
+      "adapter.py": "c70ce3c3178d1fbe6fe431adbcbfae40c3ec453529bf732b099378d93b8d628a"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "permutation-in-string",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "27c29e3ce1b9b6c9229c4e44db55b3200e3cab16d07881feab397cbd968e57f5"
+    },
+    "packageHashes": {
+      "lesson.json": "a1c54c0bdf9f7cb4f72d3db76543b5d7ea7cfbd3190fe3536dc69882ccfd3ea4",
+      "explanation.json": "27c29e3ce1b9b6c9229c4e44db55b3200e3cab16d07881feab397cbd968e57f5",
+      "solution.py": "97db8822b69a71269da1da12c7ba218c290a50087fe24a80093369c53cc471c9",
+      "starter.py": "c3ddafb514fce82c3d25707938974423bb23803f0b4d19e6dfeaa7ba7820bb4b",
+      "tests.json": "548cdb26c05a390d4dab9ee1b6ae233692a2e4fdf540b9ae0b676bbda0c127e6",
+      "adapter.py": "dd940723c4928264ecd06f87e2261126af9adb07da37c35d7f64ec5728388a86"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "kth-smallest-element-in-a-sorted-matrix",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ce37f9883f43f458566f29e50ff0f1b10dad3709b1688e06ecd2a448dfc5086f"
+    },
+    "packageHashes": {
+      "lesson.json": "2299b3c6a0ed601366911b7bdea15ca69ed46893a786a0948e8033242f1cf42d",
+      "explanation.json": "ce37f9883f43f458566f29e50ff0f1b10dad3709b1688e06ecd2a448dfc5086f",
+      "solution.py": "ef95c2963b730a346e8a3635bdf1845dd74a038a9b7884cab549b98d9c3e24f3",
+      "starter.py": "56053fbe5881e4c031057de5fe31d74f8fb8c675ca83aec41971e1af8fe1a1ae",
+      "tests.json": "c6b6b98d4a75463eb61b337a67b78fe3dfcf84968484136dd23a255c8bc51f4f",
+      "adapter.py": "ed7f49f6776b477e595e9fb4441ace9cbdced12c3303d0b967273bb62ab92b0d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "search-a-2d-matrix-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "283471781594b9145ddd4757493f5d34dc16b0de9632a736de40508914392549"
+    },
+    "packageHashes": {
+      "lesson.json": "933566bc024b591e3f5114098f80e63dc0d27007aa2b832b336563ee78677252",
+      "explanation.json": "283471781594b9145ddd4757493f5d34dc16b0de9632a736de40508914392549",
+      "solution.py": "e48112279e41f2a50b89d6e81139382f4a15ca865001a5257cdcdd78c537a01e",
+      "starter.py": "65cd51cf832db8c75d4d754999f06f7ecc02c4a16a4aaecc486232d0f646f5d1",
+      "tests.json": "620df945ab0debbe308d3c1f8092f2a169f102e76a91bcad85e08f965fdc9915",
+      "adapter.py": "a8691da24e4b52fe056d06de9cc3b49d481fa5733eef5adcbc4536dfad0b3725"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "path-sum-iii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2fc3659164ce6fb2e0c0b44d7214ebe4446ae2f5c619024e16de6b05b5beda3d"
+    },
+    "packageHashes": {
+      "lesson.json": "7553f7c96fc319b38dcfa6af915914368687672eb397db7b8c9a8e7f7e1e3167",
+      "explanation.json": "2fc3659164ce6fb2e0c0b44d7214ebe4446ae2f5c619024e16de6b05b5beda3d",
+      "solution.py": "4422f6ecef6ff90b1b2d99bdb0cfcd9fcac6dd14a37ca147fb305024235c826a",
+      "starter.py": "0da99cf164573d6e2fffc51f79f025f76eb3fe230a99ba3252417f26c59d30b7",
+      "tests.json": "c728024aa442aa563d52d9f24a9f3c8c8f1cb1ad199dcbc7e79da0a349a2ecf2",
+      "adapter.py": "e21675212ffa5df965a926bfc705c4e7fa682915c3402e1633829b98b141f136"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "reverse-nodes-in-k-group",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e55ccf3bc55d4eb9f8b7f189ea56c48871a6d239ecbbf8f45fc64c4d8370f3ec"
+    },
+    "packageHashes": {
+      "lesson.json": "7c29d0dbab98e4729bedd06f5dca7b3834e4a27a8f986598f7440ef9ec72325b",
+      "explanation.json": "e55ccf3bc55d4eb9f8b7f189ea56c48871a6d239ecbbf8f45fc64c4d8370f3ec",
+      "solution.py": "bc5525b48ac26a3c0014c4e8e7153821ae74f51e878a85bba210f9a52b7a73b5",
+      "starter.py": "07a6ecf0b7b5fecc4c07fd721180aa6c4d53f079287a7be14ccdce6541b52e1a",
+      "tests.json": "7f5110ef2ecca972ba7250f88d08e5a275a240c5f2256d456a7a3f282ff8407c",
+      "adapter.py": "3763319c325a96957d98003d2bf008038e06e12f3be9542e8ff09712774c2a03"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-median-from-data-stream",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "265eb82199fd03393cab448ea762cc1f7b233b202898c92bc58e482fc100591c"
+    },
+    "packageHashes": {
+      "lesson.json": "352a52ae2af0e1eec38633cf23e490a519ac26fea0cd0874610c602ab8842f87",
+      "explanation.json": "265eb82199fd03393cab448ea762cc1f7b233b202898c92bc58e482fc100591c",
+      "solution.py": "3a6630689cf13ec9fb92eab17125fbcbba16f35abbc9759163731eb530e35a43",
+      "starter.py": "dff4fc3dfc49ad7bfe7d1bbc7347df70d693ce762385f39ba27859be1c2ee03e",
+      "tests.json": "6d7cc36d0e15f6c4482566b31d17749ff6f77424e789f5291b80f7627e11f814",
+      "adapter.py": "07705dee93be473742755e69094931fdb00a77fab7de20f1ebecddc5ce82d9b9"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-search",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "5070cd8222af95ee51cff87ba1d152d7a219f1ecf17a3c44bb776e15a681c513"
+    },
+    "packageHashes": {
+      "lesson.json": "8b759ef7c476157b4d278ab2c42d8fe3edc54c0103b2566e890a717d539a3cb6",
+      "explanation.json": "5070cd8222af95ee51cff87ba1d152d7a219f1ecf17a3c44bb776e15a681c513",
+      "solution.py": "ae20d170cb9087d1990db31f115c2b2c1f523a5b861a7983263cb781f57e984a",
+      "starter.py": "709fdde3aa38725e9007bf8b7beb36d17d1a3c9a1aef6b9e859b74b3f8676da7",
+      "tests.json": "6053882c7e1a0a988bb6e4aa3bc4c6d18fb4b7f646be80c9654eeb8325b004c8",
+      "adapter.py": "a44a2a60477a00b4b350d2eda8919424a78b9c7737fca1781f2b43d35cfc1926"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "merge-two-binary-trees",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "8652dcfa4a45a03b31b4b8dcb5478255b1e46c0e9c84d3c3324c68663662f810"
+    },
+    "packageHashes": {
+      "lesson.json": "29e31759505c0b2c6ebd1a4918441978408cc40ad90135a1e15c479cfcd581dd",
+      "explanation.json": "8652dcfa4a45a03b31b4b8dcb5478255b1e46c0e9c84d3c3324c68663662f810",
+      "solution.py": "93ae491f47e940b764e55c086787e892fb44a1f7608ff1a1722d64921b8c4916",
+      "starter.py": "b60534eb875439355df5f027d9a2ab7e2dcd3661f22297ac8e4d8fc405ab6b46",
+      "tests.json": "1101ca5a6de3a640115e908a783a2e47af49577071b09521f81fe67251781274",
+      "adapter.py": "bddb9d299db25843874f83d9ca642e2189f7ce8beccc6c0a4975cec6271a5d0a"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "group-anagrams",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2f783ae80db34c4086327b1ab821b88db1c43f017a0d149180959f95bcadc59e"
+    },
+    "packageHashes": {
+      "lesson.json": "dc5d06089ed176be93dc9090cd8df1519cc8c708e75f1c6d5cd906604a3e939d",
+      "explanation.json": "2f783ae80db34c4086327b1ab821b88db1c43f017a0d149180959f95bcadc59e",
+      "solution.py": "9d95746c5a83cf803ac1f1eae8adc387ecb38a724af37a1b2469cff9bcafaa96",
+      "starter.py": "d95c5289352b9bb804f392901bba4d268dc838ee81c3933f92c6a32337643061",
+      "tests.json": "1cc1d5e17af4de16cfce5bb3088c8bea0e419a36e55c07f1186054e06c763827",
+      "adapter.py": "37d17f5ca0771bbb7a43f4e7ef2cae7cdc5015d814bdb33fc0add0682f3965ae"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "rotate-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d3b97c3d103ba1f499b2ac35349e0e20f8462396f5bef204a213d79103df19f9"
+    },
+    "packageHashes": {
+      "lesson.json": "3b09e56457d86f885b689ef7e5f4d65a8f8036031615ff0129b352d6843ff145",
+      "explanation.json": "d3b97c3d103ba1f499b2ac35349e0e20f8462396f5bef204a213d79103df19f9",
+      "solution.py": "a0e6689c3bb99e1c6bd7b1e86bbed09756a1db021fe24b79454e875508c9e213",
+      "starter.py": "119e00865978c3ffc0bda7bc4de2f8748275eea987d9df41ba9a9541285d4e99",
+      "tests.json": "3ab29a9eaefd961a6daedd7091cf4d64b1119674dd7660a3b21cb8ae37a67250",
+      "adapter.py": "e2076cbe91ebfe990911dc9cfa73bfbfd36ee4cea5b0b09d5706076ab749ad4c"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "rearrange-string-k-distance-apart",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "bfb8a87cf4e415edf0eb631696eba531b7f2c3729377dcddc1ae2c2011ea20fe"
+    },
+    "packageHashes": {
+      "lesson.json": "1cf180ccfcbca2dc569951a78aab4c613603caf984a641b0b7640ae1ab329e49",
+      "explanation.json": "bfb8a87cf4e415edf0eb631696eba531b7f2c3729377dcddc1ae2c2011ea20fe",
+      "solution.py": "f7ea2c4a1c66e5689da77e6c43ba6b6894d5ff2f366d7bae8f1e04cc2cc9bfd7",
+      "starter.py": "7b361a2d017770958efcb561402251eccc50145e2845a075ab727206411f3c2b",
+      "tests.json": "aff61d04fc1758c9d07cb7a3b86ea92de89e53cb96cccbf61955f562edc56ac2",
+      "adapter.py": "afa6cf84627877f081b8a319c45f9ed0255d00da1824ede8195d89256c1f3c70"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "pacific-atlantic-water-flow",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "1d457ff4293059baef98608590a851381071fb888e0a0affd7c04449bc7bb3f6"
+    },
+    "packageHashes": {
+      "lesson.json": "a247c2a4f2357840ef506e6d74c434aa27e4620ec26441711c187d6eb05dd100",
+      "explanation.json": "1d457ff4293059baef98608590a851381071fb888e0a0affd7c04449bc7bb3f6",
+      "solution.py": "3ccdc6717cdc41d0482b909ed9533d16114785ff8d35443e51eeb07b14e2f5ef",
+      "starter.py": "6581ade7ca5f06e2feeaf85de8746a5b31085124441330d0ae896dca28972215",
+      "tests.json": "36716fafc902971731aee0e7086b25ab9c225f44bd6bf9798d2786e78da1f2e2",
+      "adapter.py": "d2791788eea386a86923d725358182982ee896a46f4770c72fa0e6c055c000bf"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 4,
+      "findingsResolved": [
+        "R09"
+      ]
+    }
+  },
+  {
+    "slug": "squares-of-a-sorted-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "fb994af850913557fb9f4229a7c843171855eebf30a2d746a8bfaf83661ad516"
+    },
+    "packageHashes": {
+      "lesson.json": "662efe254b00139358d5e9ded94ea7d2fb748f5119de102ff56c0d1e37f1fa9f",
+      "explanation.json": "fb994af850913557fb9f4229a7c843171855eebf30a2d746a8bfaf83661ad516",
+      "solution.py": "09229c9278aa5319fc981747e8253fe22a36760893a85c3e8199fba5fc575249",
+      "starter.py": "4310a8c3eec753cb85fd4971a08c2766cb0a3fa49e13ff50ca711b383a9e4cd0",
+      "tests.json": "6fcd1e025c8182ef9a3130fe81f64c46ef49896df2ede0c5060b6c0e80fb1fea",
+      "adapter.py": "eb3a2dea106f01f4a3fa8aa043aff1a181cf555d7c4836bd6ba69c8fa9c2d215"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "886bad5f4906aa66002bef0017542626bc166e73da4049394a6bac7a221fd6fd"
+    },
+    "packageHashes": {
+      "lesson.json": "20ea179ddb38ce94b8eb2cb10248f2cb810d2fae8f40203839df781b40e7d33c",
+      "explanation.json": "886bad5f4906aa66002bef0017542626bc166e73da4049394a6bac7a221fd6fd",
+      "solution.py": "5f2608f600012d050d6d5d86d847e19f962a33b3d8d2ed2e32bd86af5ffa92af",
+      "starter.py": "e1a7d7380d8875f913fe863a090b5e0d04f031792794d4b2bd1092a12ab78855",
+      "tests.json": "6acbcf2c019addc14a39439df2272fbba3ccd5a8054304d07663642aa8004243",
+      "adapter.py": "a36d0823feb2ce126ac56a95b689cceb2c06023f3b7704dcec52789b2f7f1a35"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "partition-equal-subset-sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "3aa37f5097eae6f4216af3ee29f9f2696375c52e52f02d8d0d5231e744b7a954"
+    },
+    "packageHashes": {
+      "lesson.json": "e1da991ed28c08919c24ab831f7c13972fdf52d2f64493e033b8c01ecb84057c",
+      "explanation.json": "3aa37f5097eae6f4216af3ee29f9f2696375c52e52f02d8d0d5231e744b7a954",
+      "solution.py": "ce2f49bc179c4b09cb6630ffaa8cc5e9e8e70647c464f57034ac9b4ce6b96319",
+      "starter.py": "cdcbd3693ce56eaee4ca487d226e657b0d4d797baf6ff1be349f46115f255034",
+      "tests.json": "3ecf4da8271a09d4a1b5d1b9f4eca25caa1c44976c3b033d8252b3e71094cd2c",
+      "adapter.py": "d3a352051e828cee08412eecb61ec38f695287bb90171177da449874a09612de"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "odd-even-linked-list",
+    "reviewed": true,
+    "findings": [
+      "Assert exact original node order and unchanged values."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d6cdb0c10092420fc249f774d2837f72239a3d79fefc2e2be851d1430279653d"
+    },
+    "packageHashes": {
+      "lesson.json": "bf70f2f34710f1f4cc9503a564250736fbc7ba7fa0459e537631e300553f97ad",
+      "explanation.json": "d6cdb0c10092420fc249f774d2837f72239a3d79fefc2e2be851d1430279653d",
+      "solution.py": "9aea9a911483b30aa68e90ad83037c517168168567e6e4a4bbd682921aced7bf",
+      "starter.py": "3563c72b3be86634edebe7d0c1c243825dac7f84de493dfd1d87d61de3293d04",
+      "tests.json": "e27ee09c7c48394168ae7141302f59e8aac28f4cb44d22f62d88eef42b1fff47",
+      "adapter.py": "65d14bf0152c5c1fdb4a80ca560049d051c6a737c72f837977c6ad0bc39f3b6d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "middle-of-the-linked-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b25c1461158d02f5df57ba1a3eb485d6a0d0decfce23b9a534e6b46b7f4b86e9"
+    },
+    "packageHashes": {
+      "lesson.json": "2881f5da34df3fba393b4e5bfb116d7a1a539988879af38752e8c913b6ee40be",
+      "explanation.json": "b25c1461158d02f5df57ba1a3eb485d6a0d0decfce23b9a534e6b46b7f4b86e9",
+      "solution.py": "ad84a3a9c32047db64edd02011f760c426888b23b25caaa13d0517410d87517c",
+      "starter.py": "c694fd1fe5f33b447933196c9d39b2e4ec6676293fd8e8da55014c57215cf3e4",
+      "tests.json": "af996d13dc8d5e8cb69103c779b25613e09f0581f6776097f3066867a587b317",
+      "adapter.py": "66a78140c96efab6d5338f8566c4890c80bc0f1006f96cd47545773586584bc7"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "concatenated-words",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "61545a78796a60d829bdf978c3e7a194bdb39ce79646b5318907355353e5ba29"
+    },
+    "packageHashes": {
+      "lesson.json": "6c4ed6361410881dcb93dc58d0861e269a966ceee6d73de919355cb507ea33b4",
+      "explanation.json": "61545a78796a60d829bdf978c3e7a194bdb39ce79646b5318907355353e5ba29",
+      "solution.py": "fa555e79653bf59f456b40b435271a23430907a56883f46b0b0e0067623dd888",
+      "starter.py": "f5cc2d99a4386cd03d3b550896f9511f9d25d6a1d911ace9805e06e6b273a534",
+      "tests.json": "935a79989338aa495e8479124d3923ac368f0f770c9610a8ae54adf745467a56",
+      "adapter.py": "0e7c8e6cc39b0313fb7b06a05c9e723de27eb4648dcc63725258de54d3f2e5b6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "number-of-longest-increasing-subsequence",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "0a39d085a364e893ccfb67b9543fd2410a96c1641ea64ab37c8847e8222dafe6"
+    },
+    "packageHashes": {
+      "lesson.json": "f689ef99bbb349ac6ea89347b10970384fbb0fbb9632a16eee954361fe0835d3",
+      "explanation.json": "0a39d085a364e893ccfb67b9543fd2410a96c1641ea64ab37c8847e8222dafe6",
+      "solution.py": "7b27a72cd1518f924c8ec5c4b6f6a8a21d22ad2a6567968124bff07ba8218f1b",
+      "starter.py": "5868f767555a441f82b149f809681d7e06e0cb291c42a6aa7d5d86f03ec270a9",
+      "tests.json": "3c5fa369059db0b1f0fff96497a2b04ba2641af98cbdaf60d95a296810bf7957",
+      "adapter.py": "74cc9411528570481d8687774edc4719e1b9dc6cd8dbcd73576a71321aff8f29"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "linked-list-cycle-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "81d89eb8a94001a3f7c371aacc9280f0ac67a62b343d70d89b4afd1eccc8edf3"
+    },
+    "packageHashes": {
+      "lesson.json": "8d04a2a989e4078255cc733d20bd6c0c5aede37dd7fb8b9021a32ccc02c8a353",
+      "explanation.json": "81d89eb8a94001a3f7c371aacc9280f0ac67a62b343d70d89b4afd1eccc8edf3",
+      "solution.py": "b4cedc95c86950e008137d0ee03bf40994d512c774823f55d1ff569764b7487e",
+      "starter.py": "3e0d81d91a956e254c359a16c4a2dc7a1f7b94e5ae60c9826d4aa62ab6dfb0d7",
+      "tests.json": "61e734dae885b87b5de254aaab50d85b915bd8ad6a9a6a1a2e76f7d502dcab23",
+      "adapter.py": "16f038861cf5883669ae407d84216597460cb9b9c3186b6f9688bd363a73ad05"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-k-pairs-with-smallest-sums",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "9cc54b0712ffec462f3c641ec2ba87bb6b736945961280d312fa9546777ccfbc"
+    },
+    "packageHashes": {
+      "lesson.json": "0d185b097524666fc3b61f060aeaeb6188433a5e1c150a82fdd2c5394bbba8a7",
+      "explanation.json": "9cc54b0712ffec462f3c641ec2ba87bb6b736945961280d312fa9546777ccfbc",
+      "solution.py": "65a8d549ec1f1a09bfefc1be1c4dee4ccb03e15bdfcba93b7dbf7b0d666ea963",
+      "starter.py": "e71d5b1cad77f07f93cb07ba2aee1f0c79a7c4bed084abb1b92c3abc7377fe75",
+      "tests.json": "8edec412e3418dd3e2c7551c76546a3eca81eb76b5fee1dd7144dfd9c8912d6c",
+      "adapter.py": "866b382a7d5082ba78a0ce070e13be09b18e8e5e787e69bedc812dc55957cc35"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "count-of-range-sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d3ca7fedf70d6422fbb6efdfec776ee4d1e700c201d9e89f8c983f7c464cb218"
+    },
+    "packageHashes": {
+      "lesson.json": "8898c182db4658baa8a5c07ba712c58990899a689c708940113b49d51b3ae399",
+      "explanation.json": "d3ca7fedf70d6422fbb6efdfec776ee4d1e700c201d9e89f8c983f7c464cb218",
+      "solution.py": "876e075a4e8ebfce1c5885d3d9895334fd34216a6674d2bc3356a771a6fa3d8a",
+      "starter.py": "b26493ca9020a5c5bfa756d6c2b87210bba0ab318ba7a336ec1a3dbbbd4750ec",
+      "tests.json": "124200e79f4832cd4712a307b772c9a3cfd45aca30032484bddf7c3dd4624166",
+      "adapter.py": "c76380f49a9d68f6e9cc521291a5d42c8e99f28ef6e1b678940dc6ade033ff3f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-word-in-dictionary",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "6e74e3c0cc93b1f09639c52981c2043db0f03f5d58dced78a5939f5588585d43"
+    },
+    "packageHashes": {
+      "lesson.json": "c416292a513ff9a7d60773764934e4f5fa6d2b024f024e68b9cd6878e566d4a5",
+      "explanation.json": "6e74e3c0cc93b1f09639c52981c2043db0f03f5d58dced78a5939f5588585d43",
+      "solution.py": "97bec8f82cabbf8ae5c4191481b07265a588dfa78d9c74b441c4427c97f5f5ee",
+      "starter.py": "956d7809c28722662216cdf09dedbe0574f57e16c572ec284e057a2cf54fac3e",
+      "tests.json": "1fa87f31756a6c9858f7f682508dbdf960e165186a9bffa8f768f7f638592142",
+      "adapter.py": "81d6122f1d7d47bfee9ab1dc8fc420094cfa6f46afb6205701f59b7ba3a8b698"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-average-subarray-i",
+    "reviewed": true,
+    "findings": [
+      "Checker must honor stated10^-5 tolerance for approximate answers."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "32be163c4f05686748bc603e78df1bdec0779e90fb80d175dfa698547c1e720b"
+    },
+    "packageHashes": {
+      "lesson.json": "8503f2f84a036580aae0ab62b6e9f2c1f43f52250362d074d1d10553ade5c1e8",
+      "explanation.json": "32be163c4f05686748bc603e78df1bdec0779e90fb80d175dfa698547c1e720b",
+      "solution.py": "c65b493b813680650630f26e3a09464fe8ef883c7abc3a6d88d72e1a18baea91",
+      "starter.py": "2378a50262c3f65072c152a0903a9766be1002b81017839e8ad3648064a8d5da",
+      "tests.json": "6d0d3abd40039a5b2e18bb97930648f342955e6e86650fd988f6b37c00a43994",
+      "adapter.py": "203131655aee0685173eca3e82d7cc3d00a38e059e8d34d9652ae5f81bec9936"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "minimum-height-trees",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2ff985a461784178b75c014e5bd97f6833beefde32659ed6cb2aa1bdaeff8070"
+    },
+    "packageHashes": {
+      "lesson.json": "d4612767e5b0eb0e0aadacfe219a392276e506f739ec915cef5c1f93d3c2faf9",
+      "explanation.json": "2ff985a461784178b75c014e5bd97f6833beefde32659ed6cb2aa1bdaeff8070",
+      "solution.py": "4fa360eac015afc0146ed677fb01da3cf56aba0c3d11dec3726381560e2876ad",
+      "starter.py": "4daca908cdfc795ce398047867328dc08460c95f109c5e8af1c8c6a94b047bf3",
+      "tests.json": "163cf18219e3307e3c6ff6c625bb0babc4b245d4c3da42b4939ec332f2e2db8d",
+      "adapter.py": "33be0fc4f6fd68da8cde3dbf8b640910f43818378b54850b32d8861a165d0644"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "remove-linked-list-elements",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2c7537c6d56a93d6af38842addb7125907a09d5dd9d835716ace4db00d70c225"
+    },
+    "packageHashes": {
+      "lesson.json": "1a84cb3ce418bd437657e014f3a8690fd461e6ee947b0ac2f32a23bbf37d8b2b",
+      "explanation.json": "2c7537c6d56a93d6af38842addb7125907a09d5dd9d835716ace4db00d70c225",
+      "solution.py": "52b6a771fe3ecf5cc842ee4705acc9f41751a0f51dbea27b389a67c2a3cf3b2f",
+      "starter.py": "31dc6d8eb8c58f334c10d8b15339049b0671e766215b9c3aed287b2a88f82110",
+      "tests.json": "953f5a29b8c9493a86f63469a6f36a463617c539fe2dd64c141ab6660c590d4d",
+      "adapter.py": "bc132f5b45e32825eade1d4519f66f60b383d73bdc6a7faac272c10f84f25d8d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "graph-valid-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ce00eeb1ad844a7ba4b333f31cce95c81dae1c2b4ae5b486d89174309da60c66"
+    },
+    "packageHashes": {
+      "lesson.json": "24503377ec2f6beeff81e9e765ab050e00432186fa3f177c9012387e9f257f5d",
+      "explanation.json": "ce00eeb1ad844a7ba4b333f31cce95c81dae1c2b4ae5b486d89174309da60c66",
+      "solution.py": "ca83addf92e1fcfe278bb3f1c28a6d7b0a83cef2d8dfd51299a48d266d500b02",
+      "starter.py": "ce7296e54e8ce70590a0ffd347bdff6b2da73a8c3e1cde1a0eb7d8e166420d1e",
+      "tests.json": "b211a92860739bf71851e3a54f26ba668f64c79536bab0313ed5e24b785214e1",
+      "adapter.py": "8a9e96e3c45e209962f2e57a6e38b22e5b5c5ace37e7f8682599315d36324f61"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "remove-nth-node-from-end-of-list",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "4618840448b0dfa08570ee6f68e77f2a024e1a928adf647f1a802c77622f464a"
+    },
+    "packageHashes": {
+      "lesson.json": "bc48228bbb28b765d8c711d4f51f0d01c0fb56a91e4b28766c90d71e51ad96dc",
+      "explanation.json": "4618840448b0dfa08570ee6f68e77f2a024e1a928adf647f1a802c77622f464a",
+      "solution.py": "88e9d43dd0ce8783536c344279f2a2019f5cad2745c80617a4f2a8e14c34c85b",
+      "starter.py": "1a1c54863cefde280974626fcfd23a0d8615a492d2f26ccf9fb9bd9293050dac",
+      "tests.json": "8ecce0a1b838327587e119d146b9d77f2482abda32919b7f4fbccb14c01b6538",
+      "adapter.py": "39ae45a823973b7c97a119a9c623e33345e236c78e5da9c8851c112b2375a26b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-repeating-character-replacement",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ab1e774d636dc51272fcac1cda690f27c70850726c29e46b3d0526f5ac3fe95e"
+    },
+    "packageHashes": {
+      "lesson.json": "6913ecc99d46065797b8cf5b8c61a5786b0889024bace7b6fae0c30c3f9d1be2",
+      "explanation.json": "ab1e774d636dc51272fcac1cda690f27c70850726c29e46b3d0526f5ac3fe95e",
+      "solution.py": "f95594c8df8c181215a7704699d19fa0da173490085d8456457340cd8e23a65a",
+      "starter.py": "b64a55bd7a6c9e586c3af5c0665fb97e79c4a384579ee2d8a46d35f9691de9ed",
+      "tests.json": "714a70d6fab56bae154bad6e9a819b82d9e0e5eeddef51281cb4fb372acb4681",
+      "adapter.py": "055f67e27a65d577499bff5297609f6c4451f34239f48486780bc2b382854378"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "minimum-depth-of-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "98b8350db94749f3ab7cc2f2f764885eb09596a796fe3053ee37b325ffcced00"
+    },
+    "packageHashes": {
+      "lesson.json": "2ae0eb27cac519fa69342d0d7d7472c4b02a0ab8ad185352e3ab3241587a6550",
+      "explanation.json": "98b8350db94749f3ab7cc2f2f764885eb09596a796fe3053ee37b325ffcced00",
+      "solution.py": "cc5acfff57a5a0e00e99f9b3a7244326ce695f718b3c4032102562071ebaaee2",
+      "starter.py": "1dadde098cf7791b5186d95598e9aeb11cb3de8d77563d1d6421dd38247fd23e",
+      "tests.json": "cf3d547703573f8b7fc0e296cf69f4a734241026470abef99b92cb02c25f0f03",
+      "adapter.py": "1d99c9e31da1c26522cb5b297cedc3ed81b6ab741043b428a79e7d019053c832"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "reverse-bits",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "471e25aaee836b5a900a897317ae7da2560d2a513fee5e92c883223ebfe27418"
+    },
+    "packageHashes": {
+      "lesson.json": "6fd1c42c6a6c7972df8ff80cf749b27787c4aac63d3465857f2614ac6c021b0e",
+      "explanation.json": "471e25aaee836b5a900a897317ae7da2560d2a513fee5e92c883223ebfe27418",
+      "solution.py": "a3c3889e45d87f0214f4c53fc953ba8105f1befdd4126e7fb630d6abb8c325ff",
+      "starter.py": "77975b5fdf7517d84aad2c0f637f81ebecb8b78f58a32827e31291a6815c5caf",
+      "tests.json": "ca02cc61fcd87629d89ffd39df9c4f9b1b08a64a157d30ee0169d20934a79f3f",
+      "adapter.py": "6ac74836d14d249b7ddf6c7110d35b68f0b82e006c2db15e7841a89becc49b60"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "prefix-and-suffix-search",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "3ce7a017200c5a36f15966e7585d6f2ad5ccc78eff062095cbf1c073112f07fd"
+    },
+    "packageHashes": {
+      "lesson.json": "34a83843a1bae67d839e49ac8368e55f72c116533dceb1400254db672a0ccea9",
+      "explanation.json": "3ce7a017200c5a36f15966e7585d6f2ad5ccc78eff062095cbf1c073112f07fd",
+      "solution.py": "3cd99ea5801fadc37c0a21e5afff23534dc6c21945288017b9c1efc24db47717",
+      "starter.py": "f2ecc0530fab4fbdcf44efd3b96db51b7ba57aeb665658c61d7dc011de458ca5",
+      "tests.json": "eaff58ad5f5e2776d4cc26ee92be0478a14ed31c62c6b183dd999fc5bf2eb619",
+      "adapter.py": "4fba6423856facdfe4b5c692e6549262c8e53ca36ee9d4b4ede220c6ff5438f0"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-frequency-stack",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "c0d2b65ffae3352e1ca295d434b62a0dc03173cea1a3dea3629be4f40264f4ae"
+    },
+    "packageHashes": {
+      "lesson.json": "8d1aa8aebfedd13088504c25bd25924dac3bafb245d804030a2eccccf6e15583",
+      "explanation.json": "c0d2b65ffae3352e1ca295d434b62a0dc03173cea1a3dea3629be4f40264f4ae",
+      "solution.py": "60de7530cbd9e01a2f31bf5b00fbed8d7f04ab4926dbb0528e452f5f0c33f09e",
+      "starter.py": "cf86b0cda9d75cf5241e528caaea71c0bda6f426b2b6a3acb6f77314773055d0",
+      "tests.json": "6b59c16242d26e11fc5ea81ee54e12c258b64dd5e76d3c0657fca8abfb999a28",
+      "adapter.py": "8c7e6440def018fb2d65379bc0bea1da0098f04d3e15f02f5ba8d86764737b9d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "12f743f0c8cee8e2a3737437424379c622ae951bd08253da54eb06fa1e118bc4"
+    },
+    "packageHashes": {
+      "lesson.json": "625cd7e39df20a1f8fcfb55bf0fbf71ffe256e2f90ce512cbbaffe00ca4d3088",
+      "explanation.json": "12f743f0c8cee8e2a3737437424379c622ae951bd08253da54eb06fa1e118bc4",
+      "solution.py": "b2997a0aaf24cf9575258e121021735bbf4ec95c272a89830134415b6c9b01e9",
+      "starter.py": "ca3bce1718994264a52b6d5ed1acaba8d1ac3ce67693454e8cf7e52a9caae0a5",
+      "tests.json": "ccf9b9abe627bf7d38998fb828f9e4b327a897067094edc7252264bdaddd89f0",
+      "adapter.py": "ceab76ab6deca6052fc65fa1120dca936a4adf771a6f85d8d4ae34c30069d377"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-tree-zigzag-level-order-traversal",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d76051b7f649427b53968e343a4231d53ce32b1e9e9eb3f4450a89db58479a30"
+    },
+    "packageHashes": {
+      "lesson.json": "c84a1486d1514b12260e7227e25c790118da51b92d3eb4f44dd41bd3e8caea44",
+      "explanation.json": "d76051b7f649427b53968e343a4231d53ce32b1e9e9eb3f4450a89db58479a30",
+      "solution.py": "1d914d17ab12da73bc9f5004907c7ac3c4aac2ec05ed8ff26652735a8f818178",
+      "starter.py": "0984a7481d1c44ed572bfbf09dca806285fef959b05097d6dbafbfe99441b5a5",
+      "tests.json": "14095008f822247f50a77355553e50d1fb71e319987091a6d4f82e936f94f162",
+      "adapter.py": "44bef33c5a9e800183b9d1d9728adf70bda598de88c5dd40c0d133fef0eb3b60"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "path-sum",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d5b5d0aec03c06f1f850034d4f56a0bdb2de4675e78764b9ac71206ebf22209c"
+    },
+    "packageHashes": {
+      "lesson.json": "a8ab2c2cead037daec2c9f5f9c8870a2b95353af36d3e81fa700922841692f10",
+      "explanation.json": "d5b5d0aec03c06f1f850034d4f56a0bdb2de4675e78764b9ac71206ebf22209c",
+      "solution.py": "aeb569b71c981b75106c35e1ad4bcc16b36e3f30e516b0f67d96701183fc13a1",
+      "starter.py": "b78ee494adba76759953ee458f073785f9c954a1e60b2d3c21f230a52b919756",
+      "tests.json": "d34e0ada81b7e9914441438efe02223d9cfd55cdc19153b7ee25b0c5a40a8775",
+      "adapter.py": "c70fe9a553c368024c9b14da3d8f6715ef39db7e207797d8811920ae22af1324"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "meeting-rooms",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "dc40c6a363e9c3945e385aa54ecd6a9dadcc6de1db03f23c581ed8b6f380582a"
+    },
+    "packageHashes": {
+      "lesson.json": "a2586a1ca43a048667d1019aff37185e515666f5055557138955aa898b262b52",
+      "explanation.json": "dc40c6a363e9c3945e385aa54ecd6a9dadcc6de1db03f23c581ed8b6f380582a",
+      "solution.py": "8984952da74b108a4cb4adf6851fdb568baab3ad26748d68d3262e1d44e99370",
+      "starter.py": "cb14ba4d7f85193fe6f3575d6b656cd5311c6020e7383c46dffe79bf18e09b56",
+      "tests.json": "cdcd7b338d6d76d9e72a7da7556bf2df232d9ca149aa5feac04cdefc5345b5f0",
+      "adapter.py": "a8f8a22674acc7f684dc04f5bffdd711488af79675800709fc04ee164312e179"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-width-of-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "05bb31f5f00ac61bb724f23148718bde22c63ef72f1715a750261bafa212f3cb"
+    },
+    "packageHashes": {
+      "lesson.json": "6b530874e0721b1c49c409136d493c12462ab9add2ebf7ea31e63de2e880bf29",
+      "explanation.json": "05bb31f5f00ac61bb724f23148718bde22c63ef72f1715a750261bafa212f3cb",
+      "solution.py": "ae0857c2c5d208aff19fffea8f5e1815176df46eea6cca7b3e86d26b731c3ade",
+      "starter.py": "9cfffbc3746a77884a02e40d18e30759b91edd9c6b504855efe4f21efbff8733",
+      "tests.json": "bf9150d33b94ca2606bbd4a75dc11b2d63e04e623c412f83376cca452f0d4236",
+      "adapter.py": "06b5885ffefb823e4c27d7416c66c0161df6186fe9d4a5b2e70c795c86cc36c0"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "average-of-levels-in-binary-tree",
+    "reviewed": true,
+    "findings": [
+      "Checker needs absolute10^-5 tolerance."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "08df37a5b5589fac7f3df38e57a842eb64ab7edcb620a094cdbfa2373ccd3bf5"
+    },
+    "packageHashes": {
+      "lesson.json": "33c8c70fb54c9d2e7d6bf3a569197ae8bb16d06a5d5ec8f8a02df8fa2d1c8ba8",
+      "explanation.json": "08df37a5b5589fac7f3df38e57a842eb64ab7edcb620a094cdbfa2373ccd3bf5",
+      "solution.py": "9c243492fe28ae1d28c2c267d58d3cb21b7c8342523fa819483f3888f852efa1",
+      "starter.py": "47a5bd854097b9445016a6fb750940f634881b0b90229047fe8d19c92be0a799",
+      "tests.json": "91108d59f756cd7faded64a588c1a5e73cf95b40cfdb9476bb27178a18cbdd22",
+      "adapter.py": "b0bc1d9c89449c7632155c63d8d7c66565e4b5aadf533c5cc6404bf38c92caeb"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "combination-sum-iv",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "bd3c9750af53adddb7f1f0dbeb97f246fd36597b13421d6ea61deea3f3ccc744"
+    },
+    "packageHashes": {
+      "lesson.json": "ebe0a27b37949010e1c9918ca93f82a8bed299433932cc110623b1a0597b71b3",
+      "explanation.json": "bd3c9750af53adddb7f1f0dbeb97f246fd36597b13421d6ea61deea3f3ccc744",
+      "solution.py": "fbbf07485575b58933b25f73ab079d7ef9189bc6437753a24e0089a868313d7c",
+      "starter.py": "857c92f25c5cf6da25e3b9c20487fabdedaca3cac707eab8b347921f61871b11",
+      "tests.json": "2b71483c4605d27939f92295175577c1d95821d5395a48a153b878dde0c4471d",
+      "adapter.py": "b16384b0b2fb1299f475841510a2b9a7c49000d613fa17a868478ec6bcdd99bc"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "task-scheduler",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "62f63201068c213240a5ec85083e64d3f54d527def4c7ed72396acf83990bc2c"
+    },
+    "packageHashes": {
+      "lesson.json": "95821bab96f1c47bd7a428152be838797b06f31f86839d23695b383b10fa0515",
+      "explanation.json": "62f63201068c213240a5ec85083e64d3f54d527def4c7ed72396acf83990bc2c",
+      "solution.py": "c6e64e3d1836cc6729a4b331ca46c25e8ae484d81117aef8846eac26441d547a",
+      "starter.py": "b21b8e3c95e929219accbd558bf2f07adad1e88e49b2f2d1c762584c270cc6e2",
+      "tests.json": "5ca950cab61d0572fe8acc084a08705e6659e9437b51b4723bb06c15c1339f6e",
+      "adapter.py": "d1fe05059cf0c311261e272bbe00d651f6b8b02fb76567a8abba6576062be94d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "target-sum",
+    "reviewed": true,
+    "findings": [
+      "Handle S=0 in asymptotic complexity wording."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "982a7f63c2259f342fb06020a3619b814f7aa82b44b6352fe06b29ffab4896c5"
+    },
+    "packageHashes": {
+      "lesson.json": "61eb62988415e97f5abffe9be20a9db9bfd6452272b14903b9d8b5d532955e70",
+      "explanation.json": "982a7f63c2259f342fb06020a3619b814f7aa82b44b6352fe06b29ffab4896c5",
+      "solution.py": "b6f4b5858b55c14032703523bbadc0dc388d4942308c6fcb803e7db68a076334",
+      "starter.py": "3dc932c4ed29d8fdf58b90a24d29a11935f9f6f4d4fce4e4d4ef5de41763f96f",
+      "tests.json": "0545f8dbd37295c7b44d6bda2eec92ff5eaf3ed8411e5fad60f89b3577957ef0",
+      "adapter.py": "ba80a27eb70756c92079494189f67f3584f6348eb966ed77c1fd8bd99aa2a8b2"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sliding-window-median",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "123ec5fbc49d54e579fcf24e66866a5784c543536106a7140ebc8cb1552b9aa6"
+    },
+    "packageHashes": {
+      "lesson.json": "addc9f95c608e8a095faa0a19185c5a9b1a4df1aa76ab8098f83934e3ead3da4",
+      "explanation.json": "123ec5fbc49d54e579fcf24e66866a5784c543536106a7140ebc8cb1552b9aa6",
+      "solution.py": "2324bd115983dda86408488ab8014a8e8c139c7bec3cce0d9990c7232e45cc4d",
+      "starter.py": "0b4ab723c44230feb9622f2704cfda1aa3c0650cb19311fb7e2deb087ed2eb0c",
+      "tests.json": "1a4d75509be4ebd23aefdf9180b7f95af7903f97e31287b25345845daa298e02",
+      "adapter.py": "683037fdee2faba0c223fb188c3b33b5489467a6c8f9faf627f1ce821dfe1c8f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "palindromic-substrings",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "f30f533948e284bf367d1e3acc9cc2754c9e7f64674f1f74190c270479f5855b"
+    },
+    "packageHashes": {
+      "lesson.json": "e6161aa9b3e5c1972bac0ebc17fafca72c24a2740c853764c9ae84567b81e626",
+      "explanation.json": "f30f533948e284bf367d1e3acc9cc2754c9e7f64674f1f74190c270479f5855b",
+      "solution.py": "c8df524b6dfadb781f08e6f0ebef436671611c792ceb3463d031a0af158cbf79",
+      "starter.py": "33ed3cb6eb45704a0fe92d50e68b07b2cdab425fdd8c01b9c727c1d4251db56f",
+      "tests.json": "6b10d07c6cc539dd039c9ebe7c69708ea0ac81a010965bbd3b552e3ef7e82367",
+      "adapter.py": "84201cd4e6763fdcb13319070b6dbf595f7e9478c6cc1912b03d867b5b3eba0d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 4,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "index-pairs-of-a-string",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "1a92313a1b6c7d0292cebbf69c8cd9d2840eae131288e0a449e6b026fd42ca96"
+    },
+    "packageHashes": {
+      "lesson.json": "c32b2eb12bfad5d46c168df955f1e22c375cdfbfeb5d3a50b489aceabd7b2723",
+      "explanation.json": "1a92313a1b6c7d0292cebbf69c8cd9d2840eae131288e0a449e6b026fd42ca96",
+      "solution.py": "2d827f87b564d0e9a1f1b00b5ac801c74fb22db349d862a5d713cb0a3eb19a56",
+      "starter.py": "2a94d69d0af3bc18bef84d0221553f9b91955cbb4a9952ae65348260a51cf09b",
+      "tests.json": "29fc1980d4d4f3d3266cab6b943e493b2b2effd5d9d4119bbd1c37dd91aa4339",
+      "adapter.py": "38a09e00096ad7ce9eec0b3884ce596fdc13555fe2541fa4946183b813d6a3cd"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-all-duplicates-in-an-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a7301465b9d9a546b0110209ec36024c5f88f3ae42e68312ae04d9fc34204b3a"
+    },
+    "packageHashes": {
+      "lesson.json": "32a08af76635673cdcc9ef645fd2b1f0238e3d0dd18bdf19dc728ef20a791647",
+      "explanation.json": "a7301465b9d9a546b0110209ec36024c5f88f3ae42e68312ae04d9fc34204b3a",
+      "solution.py": "7fb3b62625bf19bc731009e00c992dbcd8677037c476d14d28e9741fa909eca6",
+      "starter.py": "2ef09c3feafae4ed9800089cbdc50de8f38a798b70ddffc049510715ba1f0c68",
+      "tests.json": "72c7372da6a085df62566e65685781525bf3707bf77a04104e5a08c2d849c819",
+      "adapter.py": "098370dc12e8a49b5a81bc6ae1073938f254e6ae9462cc35b8c181abe8d14a29"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "11bb89071f20434515ff81bac8bddbd28c5b340df0c9bd6068bfe2351bb75caf"
+    },
+    "packageHashes": {
+      "lesson.json": "07d771f21b80227ce19276f5ed22d579e1f4b1ca4fd1afb3ca8be4a179ecddae",
+      "explanation.json": "11bb89071f20434515ff81bac8bddbd28c5b340df0c9bd6068bfe2351bb75caf",
+      "solution.py": "f7756c4b5eb492399bef2fdf38fc5f264200ed946d94faf3f46ceebc5abcb69e",
+      "starter.py": "6cea06b8cb33b0ed3974b5888ab5eb435f069cd5a0c62521dda171098fd14779",
+      "tests.json": "a0897adf1b4954f08a0cfcec97af53732ea11e84a66b179cb31228f54909d264",
+      "adapter.py": "22859ddf75e07f440af6b82e6fd1a52ef946f97dff211d225fbc15cf617ab34d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "count-unique-characters-of-all-substrings-of-a-given-string",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "6e6354a3e8298261798911edd7c00cb3241f24f6dce4f509d994b9d6ba675c69"
+    },
+    "packageHashes": {
+      "lesson.json": "24e654d9091824d40106767a8972f161db8cb6ef28ddd3c7a5deae6d796da8f5",
+      "explanation.json": "6e6354a3e8298261798911edd7c00cb3241f24f6dce4f509d994b9d6ba675c69",
+      "solution.py": "4aa4e2e8d9228b6fc9b529b7c29d1fa70d46dd9a787a21d6e1d16d0796e2ae44",
+      "starter.py": "c0cefa7c15522685bb249aee13c0ddbbb1bad2dc08f0f3909ae5a0ebb883b539",
+      "tests.json": "e3a2a535a4c0301289d289df6a3dd2a07b96e8fb71ba3204f35aca4ad9747352",
+      "adapter.py": "c1b597d8ac2b067beb2ead4c715baac52401ad950d58d9dad09516c6f035e8f7"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "find-all-numbers-disappeared-in-an-array",
+    "reviewed": true,
+    "findings": [
+      "Accept any valid missing-number order."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "65131b5d626e1668c40b37a7d654344729fc306c12f4cefc13361d18856dc31f"
+    },
+    "packageHashes": {
+      "lesson.json": "93096c49aeb3d2450bfde8742a834e74752a733beb0bc9b6f34bba2c59880690",
+      "explanation.json": "65131b5d626e1668c40b37a7d654344729fc306c12f4cefc13361d18856dc31f",
+      "solution.py": "027164820e51937a803350ea13b55120cc186f531e54a81b314ac459747f2416",
+      "starter.py": "b3f6f4f26506932e3e7f42d385c7e9da3416e7a1ebbffac6c4bec0e443f1dbc8",
+      "tests.json": "3e508d36fe790ad2d0e49465f0bdcaf0f6c0df49a58b2a009a75ed66428cc295",
+      "adapter.py": "bf31c43273d126de5534d36c6c971e7d4f6d0a2b4c7f99593381f1a487c9492f"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "smallest-range-covering-elements-from-k-lists",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "7f640c61c2ba0cda5dff0bbcd67091ffc236ef9320f537e1eb16ed84f6289e16"
+    },
+    "packageHashes": {
+      "lesson.json": "64908977cd134bc645c865ae989ba886184e32e23ea4fd060c08f3f2fae46822",
+      "explanation.json": "7f640c61c2ba0cda5dff0bbcd67091ffc236ef9320f537e1eb16ed84f6289e16",
+      "solution.py": "3579ba7bcb977428eb9b553c4080eefb4d854c540780e7e62d9f493778e65f44",
+      "starter.py": "deaf382f3f81ce25c335915a44dfd58b36e3ff714fc5016e2a9e6a3bff3bd37b",
+      "tests.json": "a13ba9b57491ac685c5236671b4b12c896cc949d8dd41a8600d28c3474cd9965",
+      "adapter.py": "406f493dd1cdcf491abe97683af07c80436ef32c4706bcbf97e50cc8f761b560"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "valid-palindrome",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "5b7825e70706894a785c2469134945e661c252ace5689c1fc541503aa335d24e"
+    },
+    "packageHashes": {
+      "lesson.json": "9ad6ad3c8392ff25ee870bede20066a349a5097d075c2424dc9576d20834eb3a",
+      "explanation.json": "5b7825e70706894a785c2469134945e661c252ace5689c1fc541503aa335d24e",
+      "solution.py": "236653f662316a3d6a95d67c570a9fd2210813f7e4e63ebfbac55802f2b479da",
+      "starter.py": "23629eda3998deee2bd1f09962ddf2adfe65c7d79434506cb43f60e48331cd66",
+      "tests.json": "4bfbaa822763376bb0d60ff5dfb1fe9cd0669b587fdbb9a39a5d52b0f62fde34",
+      "adapter.py": "27656cf7a84979a355a8f916dd903d98100f7a353084d24ef583371fadda6ee2"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "binary-tree-level-order-traversal",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "963b5b7d0eba12582c426482dd4ce68c7b1067cd308d7c3ed0f625a805631cab"
+    },
+    "packageHashes": {
+      "lesson.json": "6bbc8441878b26eaac2c77d779a21444e4827ae3a6632c0ca5fc6067a9ff2462",
+      "explanation.json": "963b5b7d0eba12582c426482dd4ce68c7b1067cd308d7c3ed0f625a805631cab",
+      "solution.py": "a1f9c5fe1f5169d338e91830628ce3357d848adc7d2489125bd262ba88ad6c4e",
+      "starter.py": "ca98ccd9ce5e3b27dadd9e0a22ed9d7d0c69c857da114ad759c7e12c3f1b8bec",
+      "tests.json": "302e91b35a0144bf667bbd458686f759f9cceee4c0c262af3faaebe775b6a20f",
+      "adapter.py": "e24dd5c36e777686ec0c807c48073f29a4f536227a26dd928c5a3dbfffb46322"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "subtree-of-another-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "7cccbd2a4111dcf79d1a658b61544fad6b6b2a68db594348e7debdc022ac49f7"
+    },
+    "packageHashes": {
+      "lesson.json": "f00204311818c5feef28baba9faa7c912bef177d650267e9f910e5dd4a77e107",
+      "explanation.json": "7cccbd2a4111dcf79d1a658b61544fad6b6b2a68db594348e7debdc022ac49f7",
+      "solution.py": "e0bd656709808a652649c177e497283320082966f3bdeefb71d7524594b31bc1",
+      "starter.py": "d9fe60c84538dbc1586a25bf63186b0f446e1b66212bcae1c77610ff5dd618b0",
+      "tests.json": "e40f620d551d5acd95a2b1713ede576033228234a054b44d8b7812f937411ba5",
+      "adapter.py": "d4f0c640d898e614b1c1819ffea9da9338e430a4e78018db1e2cc2ebf8146d59"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "peak-index-in-a-mountain-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "41bbd09f9c7b7b4a2fd7cad74a1418e1e114f86a04bca7d6be23a5a96a172765"
+    },
+    "packageHashes": {
+      "lesson.json": "d730bfae88ca129cada01747b3a224373e1136d511101c534dac371fe65cf9f5",
+      "explanation.json": "41bbd09f9c7b7b4a2fd7cad74a1418e1e114f86a04bca7d6be23a5a96a172765",
+      "solution.py": "d3a064317ac96907f9c5ee854a66fda375cbae228930fc293020805ce899733a",
+      "starter.py": "7a957a3f81fe690345b12e65156cfd42c07d5d3505e90b35930fb8034d80d2be",
+      "tests.json": "c965e796399d6bd69cbd9775b2e15a91da69e51f9cb353ab690f8689c0f2f7d1",
+      "adapter.py": "65f223e05b614e6d40968a0785d4544f2de99ae44215f12fc91575e2d0f62928"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "backspace-string-compare",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "30ec22bd4eb9c756b45479ef41fa4630527f9f77d3d7d65c6e27a19aba05bd43"
+    },
+    "packageHashes": {
+      "lesson.json": "5d61cd19358bd15bef8328d7846f17c0743aa1abde64904951384003ae4bd355",
+      "explanation.json": "30ec22bd4eb9c756b45479ef41fa4630527f9f77d3d7d65c6e27a19aba05bd43",
+      "solution.py": "2e12f879a3c7258eb77b9ec3ae45e747e39981ab84eb811f877a606c64c675ed",
+      "starter.py": "a6ee55d829a02f1f09cce60abeeede309412c4706db7276262410e02decc506b",
+      "tests.json": "c2abb12183d480868827889d15ceff5c358a74923834452fdb7141be5b3e6bfd",
+      "adapter.py": "9177cf101ee284f20846f77e67cd42adb2284097c4fcbec0f3f64393324a3e26"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "k-closest-points-to-origin",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "e140aef38611586fa3e136671abe1275864dcf167ecdd271c39d7059438f86c8"
+    },
+    "packageHashes": {
+      "lesson.json": "dde834fab5b772112abf7df1dfabb080dcfd92fa81562c3bfbed1ab5eab42fad",
+      "explanation.json": "e140aef38611586fa3e136671abe1275864dcf167ecdd271c39d7059438f86c8",
+      "solution.py": "74d2c3cb0952424972c692551211a6065dcfff25cb032f9d81658eaa6ec197e2",
+      "starter.py": "ea6d876b665932bec9a1d0f36890608a1cd31d20a5d46142e014c28a00cbe5f3",
+      "tests.json": "6d407371015391ffc88430aea15dd033025fdfe4b3adb034b70d05490d403681",
+      "adapter.py": "da6b0163d5d78ed2d59315fc5aa0effbd207af2ded82ecfb21ed7d65c12b49ed"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "letter-case-permutation",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a783eb82b7b27a256950b52c6556145cc6505dc2efc2118afe85ba8afb3b9226"
+    },
+    "packageHashes": {
+      "lesson.json": "88f4fe2aeeb64d59aafcf3a8c7064ae0d3eb80234291ebf17c08fb95189f6581",
+      "explanation.json": "a783eb82b7b27a256950b52c6556145cc6505dc2efc2118afe85ba8afb3b9226",
+      "solution.py": "8361a6b8a321983a4ea604216d6a09631f8828aa4d2a71efb557d3e5fd270188",
+      "starter.py": "5bb393bd33d63905e138d7f96d53994899fd97b0246eae6081dda8e0a978e6df",
+      "tests.json": "27dd002ddb6f4d4227c98108cc02d9f1cfc0a54bb257e3591eb4c9cb85c7d75c",
+      "adapter.py": "8c08725bbf66ec6b0d219d7c95af93c26592b4af8bedf16650ad18289aebdfa5"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "partition-to-k-equal-sum-subsets",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "431029e13b2a5c46902b9a4919d27bf6f13e087bfbf1822f69efb48de34962fa"
+    },
+    "packageHashes": {
+      "lesson.json": "ca0d59b8f9a5c84da6804922abdf44f33ccee35abb84b1c17b2da98b9cfb9129",
+      "explanation.json": "431029e13b2a5c46902b9a4919d27bf6f13e087bfbf1822f69efb48de34962fa",
+      "solution.py": "82e4cf1d1f2aa09d502d12c13daba044d2f7e360c349b23efffa126e7c9a9a2e",
+      "starter.py": "a997a535e64fb3caf9009a0faf395010f006206aa56383d43ba9c94f568158e2",
+      "tests.json": "04e3e83524351fdc9f061bf23b0df95a12ae436a1629b2b3cc37a16d8dccec7d",
+      "adapter.py": "57891654028c071d77fff348fac010e25917c60af2c64623af1e22688541e0e9"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 4,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "swap-nodes-in-pairs",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "fd8d98e3b70517b1f451b655de2cd017965915a912ac2a49c8a66c741dbac165"
+    },
+    "packageHashes": {
+      "lesson.json": "471b8ac747eb3c3744df83394eb26c7b1f884fbc6013efae01dec775b28730e9",
+      "explanation.json": "fd8d98e3b70517b1f451b655de2cd017965915a912ac2a49c8a66c741dbac165",
+      "solution.py": "12b8246d44084f840956617d2f26b6db066c0bb4ccb016ce6753a21478b8371c",
+      "starter.py": "9bddfd9314e96d6097ab0b0eb3f1729ba0bc729510939fb2c5b1633381c86300",
+      "tests.json": "f60d37583a206c9f048ed3d7a6bf7dbe28698bac005e96ed703f54c335098051",
+      "adapter.py": "727bc4f781de116c42af676bd2b6871da181aabe466ff155abff6d47f62e2ca4"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "serialize-and-deserialize-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "0f068ce74cca0e20fd678524564dda52270ef6815f55986ceac5a2de3d618fa0"
+    },
+    "packageHashes": {
+      "lesson.json": "0d34a26dab21e204537cd4153b270b1b8a754707093142c417826a2719433542",
+      "explanation.json": "0f068ce74cca0e20fd678524564dda52270ef6815f55986ceac5a2de3d618fa0",
+      "solution.py": "82eae074b54f8307c4984a78e7dfc4953b138b2ed014c3378d92281c4891cb04",
+      "starter.py": "fa66d555ae4c5d8c188f9911e53c43194d5873b3f760c3d4ab43d512815a0aa4",
+      "tests.json": "2c372b69911390f305b348deccf126597e4db96e207408910db2166b1c6d472a",
+      "adapter.py": "b7d58b38b8eaa617a61c704ad17e749b9a56537ae60c78b57fc541f2731a2fc6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": [
+        "R03"
+      ]
+    }
+  },
+  {
+    "slug": "subsets",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ce489fcd18c7693b58eb7fee51e5f66ab2f4d7129103f7d5d269f79fce18df1a"
+    },
+    "packageHashes": {
+      "lesson.json": "5ce56ea847a5a44e4c0470ebc6262f83f423ecb67ff45df93cb5daae2239f8d3",
+      "explanation.json": "ce489fcd18c7693b58eb7fee51e5f66ab2f4d7129103f7d5d269f79fce18df1a",
+      "solution.py": "c8db7ccd764982b50094a2739727543a2980fa227ab6bdc5f1ba2c5e149d4dfc",
+      "starter.py": "6ba7be5698c02785336c6c072689706058757cb89da4a8277c8537ea88bc7aed",
+      "tests.json": "f418bb6987e40064535b238c6c6af7265cc80e9879c236c2ac0951e061316aff",
+      "adapter.py": "ab2cb5bd4cd58ef743b29a0bf4cfe3deb164eb2e1f3b45b7fe348ca5ac47dd69"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "number-of-islands",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b50e4e91343e5e1f3a4f4d4f3ed2c830e02ef66f4237b6ad974bc3839a1c471f"
+    },
+    "packageHashes": {
+      "lesson.json": "907d56cfcc7cf5ea2bb028a77beda64a86c0eddfe1a860a714a76b6eb2e7cae6",
+      "explanation.json": "b50e4e91343e5e1f3a4f4d4f3ed2c830e02ef66f4237b6ad974bc3839a1c471f",
+      "solution.py": "33c352fd7ce57396cf06a38eb665c70e79b9d298337f6093b60328eb8ea63f3f",
+      "starter.py": "fda689c0bafbed2e1e366b24f10c0132458571c439ca1b59edaf8d8287bad6ae",
+      "tests.json": "d98b97d88020a9ef83666b2a826f29f3b79eab675e634b7c6646bfdf46828e7d",
+      "adapter.py": "9cc20817d8f6b9544f31072823bd7f5f19518009245e97a722bc5f37f751e454"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "subarray-product-less-than-k",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ec3c0587046e3a77d4689f2ee01c58b7cb37bac07a632f25e8bc45f7b8206b4d"
+    },
+    "packageHashes": {
+      "lesson.json": "e72639964895ab000210afaafb3912db8bf8a6672cedd17bc9a4c9a891f735c4",
+      "explanation.json": "ec3c0587046e3a77d4689f2ee01c58b7cb37bac07a632f25e8bc45f7b8206b4d",
+      "solution.py": "db2b88b866f992468d88300e0cd3626dbc5ed509d18770f50bf1979fd03dcb04",
+      "starter.py": "c5dc9c8085db6a723f721eea29035d9e910c0a641d0ae29391151c245e35abf6",
+      "tests.json": "8ba44dfbe0143ed9803eb264e2e166a6bbf9fe8887e2e66bd1ae4da9110b001d",
+      "adapter.py": "57dcca859aa320fd927ca28ede8e5322f45e85065f7a0be8524b18945f422a71"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "combination-sum-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "678ca5747adb6e231ceffa09e692c495174514023cfc35cfe3d3560abff73fab"
+    },
+    "packageHashes": {
+      "lesson.json": "104d52ab88473ef35b8af49323f6ef9692f87641056fd0c6b74ced4cbfdd90d4",
+      "explanation.json": "678ca5747adb6e231ceffa09e692c495174514023cfc35cfe3d3560abff73fab",
+      "solution.py": "7071813b5110ec9ffdd093257653e837b8789a060bb877e538588a35efdbabcc",
+      "starter.py": "f77db2dd5569322924200bbf11e23a41b1cea94d7b6de685dac223e5842a4eb0",
+      "tests.json": "5ccc4e8291c46cc48033820c7fed5a99c1d9914d03f83b64ba4ce04d44d38add",
+      "adapter.py": "bdcf46b9f9af63b0540c8811b8f2b944a0bd53c29a88cde179b38ee33549d5ff"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "reorganize-string",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "9da3f42005f3a37bf340f5c2180e655be5bd0b7f0abb31d10ffa1887ed284fe1"
+    },
+    "packageHashes": {
+      "lesson.json": "1163f9ac45368628415fb062ee66adb1429dd545ff9f499c03a58b72623b3894",
+      "explanation.json": "9da3f42005f3a37bf340f5c2180e655be5bd0b7f0abb31d10ffa1887ed284fe1",
+      "solution.py": "d0f0e64c90e7cfb307889dab61cb32251b299cbf33803ff033a2b62a64061296",
+      "starter.py": "d7d41246106ce78865b631f10c1d8db7a729d027406b9d531653f263aab072b2",
+      "tests.json": "948089783aa7c9f004a12d784b5f3789db06d87c21c81a85a9cf881556d8f88b",
+      "adapter.py": "920872f0fb953d052d3c9e91dabff1c63349b0d4fd6d562c999e1916a3847006"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "linked-list-cycle",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "12993e6156764f6369ec338ca44c3fe1df3fd66683476b8aa6328f2f31eef366"
+    },
+    "packageHashes": {
+      "lesson.json": "306cf6a6cbbcd635aa41f5d51cba1540a8348a21021a23677d528c2c2e490c8a",
+      "explanation.json": "12993e6156764f6369ec338ca44c3fe1df3fd66683476b8aa6328f2f31eef366",
+      "solution.py": "15ada72bb02f5286cad440eadd7d135282b43d417f57f79d4869ce351c35336d",
+      "starter.py": "1b1dba25643fff487bfcfc4311e37d8fe87ab855f480e5cb6e7fe02599740170",
+      "tests.json": "07f03be6f7b3ec808a5f56fe942e961ee0b7d977da7b6e62ced1c0a0af7e68ea",
+      "adapter.py": "a4c3c3c4904051f6eb3e4082441000db37e8b8dd97d46d90a33a5901fa97a760"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "employee-free-time",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "71d9e6ca53487cc9a796fd2cd3a72c2a3de89b6123211d27be259bbac32172b8"
+    },
+    "packageHashes": {
+      "lesson.json": "06690298abf40fa0f0d4150dac04cc621214dee7a69248204689301220696e1f",
+      "explanation.json": "71d9e6ca53487cc9a796fd2cd3a72c2a3de89b6123211d27be259bbac32172b8",
+      "solution.py": "2d95a7916f5fe25db026dc52722ac7b8b920c59b9eeb9a3528821e1bd51601b4",
+      "starter.py": "33c770b59dbafa967207e1497fba9004987020c72371d641b9fdcaa3e02630b4",
+      "tests.json": "19c93b10304e5c25d51d276fef70ecd361bb45672f451b4a9347175b34f8d42e",
+      "adapter.py": "6482377fea72dd3dd33786e5a777f7864da0a217822610c9cb7df22fb4529c2b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "fruit-into-baskets",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "11c2d8b608a33b86244f1236df512c437a20b5b229634505903baf40afbe8397"
+    },
+    "packageHashes": {
+      "lesson.json": "bc40408a897207942ea8a73a2d1b6425dab9c7ef6f0c425fd01845d855c21076",
+      "explanation.json": "11c2d8b608a33b86244f1236df512c437a20b5b229634505903baf40afbe8397",
+      "solution.py": "271df458565307c7ae0c032e687c710279d5303fc72d5a8614934a359cef8eae",
+      "starter.py": "9cc4fbfc7c79b675a751549a56d18462291c058ba73f831f2b6579811882d4ad",
+      "tests.json": "f050d118b39cdd760c777140e348bba53bdb983249355a585018f52a3b3c6993",
+      "adapter.py": "6efa47c85519ae36dfe8d834f3e77d163e837a591bfe39ee56bdcab920fba7e6"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "palindrome-partitioning",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "baba888459653fa5ed5f9f105ee426b16d6f5e8895f2bcc6d86916366ec04823"
+    },
+    "packageHashes": {
+      "lesson.json": "3d3265cf3bf30733dbd3e89e3dc65ccc0061e8bcfdd843947303cd629f7479bd",
+      "explanation.json": "baba888459653fa5ed5f9f105ee426b16d6f5e8895f2bcc6d86916366ec04823",
+      "solution.py": "76d49ade7a5470cae18880551769802d489e89051ef3f52bc6ff3fe9ac496e30",
+      "starter.py": "2745875cb9d5649583402542fe7a9417e6c40d7415e5412de89597a2763ae442",
+      "tests.json": "c02c5df03db2afa2762301ba4a2a86b01badb8bbba8af1f745cef3d539ec00f1",
+      "adapter.py": "22397941a4ed0f05a0f20ecd3eb98d54116b7c27464058083cffa9c98a0e6822"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "maximum-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2038eba1d49d4cad94ed247ae632df4d7bdf15c0048848c71fdc82eebf651240"
+    },
+    "packageHashes": {
+      "lesson.json": "63f7162d1c1a267538279f8fbf9043f103e18d0ca5aee19e638fcbccd6dc1cd9",
+      "explanation.json": "2038eba1d49d4cad94ed247ae632df4d7bdf15c0048848c71fdc82eebf651240",
+      "solution.py": "74858d63bdf7c23f56b280a2d10b71c83f9af2fac7bc7b069f4a0d72cfb74ab1",
+      "starter.py": "76e60a140813c5372780a58431689c6754367355c403128a3cb1d74e78920667",
+      "tests.json": "e7df171b22ee01cb4805e4e352a773adfeac0db8877054f749e904d308385df7",
+      "adapter.py": "bbdeb673c76a94127ae0dccabfec84a24db64cd2390a40948d9e7c4cb2001e7d"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "set-matrix-zeroes",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "1aea3d2714b46e09e9a1d60e02b0884e521204fd5276f9a5bce004f439e7ef2d"
+    },
+    "packageHashes": {
+      "lesson.json": "09026163c447ed1f8b81317e657b0d15d25b356b0eb1793bf80fef6df29c4b20",
+      "explanation.json": "1aea3d2714b46e09e9a1d60e02b0884e521204fd5276f9a5bce004f439e7ef2d",
+      "solution.py": "5f55ebfade779af0be0a87d175ed8c65a832e77ed9110fcd825ca750c9f27f90",
+      "starter.py": "eeae9b6847f1be25a61187fd476742ef3a1f64659344ec094a29624ecd650918",
+      "tests.json": "beb2905614d8c25edaf7e013299919ab2cf96884d06999f096c1be732b8e2fd9",
+      "adapter.py": "75e927171e891e53b6af13d703bfb6246bac9c7aabad8778e00f5d8b2add1953"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "clone-graph",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "2f646a651cd665b60544062996910838278816aa29ed1300070c6b1877054a41"
+    },
+    "packageHashes": {
+      "lesson.json": "0fa903b93bd2a9b97d8d471d09e4b16cf3c9462a1013c100a447282a7ca3e202",
+      "explanation.json": "2f646a651cd665b60544062996910838278816aa29ed1300070c6b1877054a41",
+      "solution.py": "bcfe9a6594a44b6aa471a40399f614dfe009e340e8aaed9f56a3f5f3b5833181",
+      "starter.py": "767f4615035cf00a06d31751c9789432ea304e6c8d08b743476eb927f92fb421",
+      "tests.json": "07c4bad2b109f4adb81dde6b21aff6c770e4d379ef408c3e9771f0b181ac048c",
+      "adapter.py": "c5cbde3f0c5adfa3da24fb2824b31c9c106491d6b3112a8bad5413397d256812"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "all-nodes-distance-k-in-binary-tree",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a0553086b49c5812910f0b6f62a1e8a7ba8a62195ab8fed3ab6e5a333ef36d9e"
+    },
+    "packageHashes": {
+      "lesson.json": "57394bd083e93d71679192df805139326831a8a103d05816065aba07352c98f0",
+      "explanation.json": "a0553086b49c5812910f0b6f62a1e8a7ba8a62195ab8fed3ab6e5a333ef36d9e",
+      "solution.py": "c382272c5eece3b2369ac014a2f9ae1d356ebf9666abc4cdec67eefe17e74287",
+      "starter.py": "0d5de32e61a7451dc7c252635b87ae1294384c1d54c83db07db014db357c3a74",
+      "tests.json": "504da219e940f2acb71036b27f1e7bde2066433733a21dd1d80bf1e7b3897b4e",
+      "adapter.py": "840065dfe9d0b26da7874c03d2684eba545dac0898f20fe2ba22f40cf969e060"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "course-schedule-ii",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "d5ef0a3eab2d85a70c1aead0319ec205d9f4bfc95647754e874b56651211b846"
+    },
+    "packageHashes": {
+      "lesson.json": "b7170c41ca1c4c70d9eb595993ee8b8f5696d1d696574fc94dae49f6e11b740b",
+      "explanation.json": "d5ef0a3eab2d85a70c1aead0319ec205d9f4bfc95647754e874b56651211b846",
+      "solution.py": "554adcbaccaf4c192047d4fdf39a3924c4a3948ded02ea2f8dea13c694c1b7aa",
+      "starter.py": "efa5cb2126f0efc6a9b9963c6f588d3493d551171b03c26330715dc43ac3fcd4",
+      "tests.json": "2e9e35147f768aaefd96a40c0f8cf2c470e88c6346a9953c63a9a680a2d25d92",
+      "adapter.py": "2e613cc9a5445f458d1ee5a98e07d6cf9820067381934090590dabf4e6a3bd1b"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "rotate-image",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "a545c73340674d358de88641af2598bfb331ec07efd194dc9b7a1edda28311c5"
+    },
+    "packageHashes": {
+      "lesson.json": "8d322755d5f9ce2a80421cc5cdf9177c564af292a46818374386a673a929be63",
+      "explanation.json": "a545c73340674d358de88641af2598bfb331ec07efd194dc9b7a1edda28311c5",
+      "solution.py": "ada011efcff78e0fbbe5a49632726e223fa89196c2f1183b1f8cb7af316c35fa",
+      "starter.py": "adaa88c3bc14e8cff937de76f8be2d7bbf84b932561e45bc489d87c7bc202bff",
+      "tests.json": "49b8e3cfb16a67922b43a91908d7b2e88e2a1a317e15a773ddab59692a27e874",
+      "adapter.py": "659abeb8df9099c835d07c9bd9b978d247eb80447c8d195df41609eb6dd2cb6a"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "top-k-frequent-elements",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "fb8ecd7c50f735f7e6d2b1578e8f89ab14b97ad44515532e1ae962ea914749ee"
+    },
+    "packageHashes": {
+      "lesson.json": "a7672c4ee48a78f2c2d1efd63f58821b9098fbf99a221f37a80081c6b711c672",
+      "explanation.json": "fb8ecd7c50f735f7e6d2b1578e8f89ab14b97ad44515532e1ae962ea914749ee",
+      "solution.py": "616bf35a7d7b75d6272ce79a92bb69d5e2c22a019e9bc57df8e8ddeeebef2292",
+      "starter.py": "540ee3c9c3a7c63649e7a4be50ba24bf65d19620d81991222ac593e2a027b4a2",
+      "tests.json": "5023096a7bc98f776d83f92a2ede5265088a47d6471d9efc742e023430a699b3",
+      "adapter.py": "fb83c43801e04a96cd60ab6460c4f264776b0a4639406938dcf9e1b285de7294"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "number-of-1-bits",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "bac53e1e152f70288b3f5176219a61a040425f7a84d4c2eabc1a6631a98912f9"
+    },
+    "packageHashes": {
+      "lesson.json": "47407c2434b705cd704d3a21a547753847da0795a8db5303556380f1e72278fe",
+      "explanation.json": "bac53e1e152f70288b3f5176219a61a040425f7a84d4c2eabc1a6631a98912f9",
+      "solution.py": "67cf04262dac149ee3e9f7726981d8a3ffc3712d0898b4a8d5f15fda12a1454d",
+      "starter.py": "2bb933410c51fe0043ae68e4d320711279bf9e92341d16938e09d5d9508fbef6",
+      "tests.json": "7523a91e19d746f4058bc21fee82a2124cdc623dd58edeba81f0bffbe4490e04",
+      "adapter.py": "f99612f5c1c32078edee188246221962508483662905bf3b8ca2952722344bde"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sum-of-two-integers",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "59ad578e506d65258a811856b24fb411b339fd20f4cb4961e0534882f8babe5a"
+    },
+    "packageHashes": {
+      "lesson.json": "944f2d74b1d0caea8aaf50c8dee57340414d110d4d92a75bd34a38f999792898",
+      "explanation.json": "59ad578e506d65258a811856b24fb411b339fd20f4cb4961e0534882f8babe5a",
+      "solution.py": "e2d1b07ac8a49c61802ea0269266d74ea719e2a09a900ca4ff55f6456afc9009",
+      "starter.py": "d5a49db7f2e25a56263595d90e6dc099e4d06b71963aec7a2cc079f3fc969f37",
+      "tests.json": "ef95cf9d165229fb91d2eaec1166d7783dced328820b6110200a026b0efef0c4",
+      "adapter.py": "f94f7cf0c159863d09bd78e34d3f172688f0da2c9e1906d6f13f48801fc29fba"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "convert-1d-array-into-2d-array",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "ddb2620874c44302f1cf7adb583d2c117ed14f66f4340675e9957300c3481704"
+    },
+    "packageHashes": {
+      "lesson.json": "d54b6c3f71bb0a5a5631cf228008f71b2ff5bee23f7362ed7eca302b15d61322",
+      "explanation.json": "ddb2620874c44302f1cf7adb583d2c117ed14f66f4340675e9957300c3481704",
+      "solution.py": "6b39a6eca17b2a72dd62a09881be79399f7a898ad8e6efa7d05fd31b51d47a01",
+      "starter.py": "af0d2088f5a10f9e485e1694ecb5c0ae89b3868244940d2951541592930c2e41",
+      "tests.json": "da3990d3687198b6b87347a299723cd4f95c4c65bc8040a273a955b05571432d",
+      "adapter.py": "fc9550a31904dfbf4157cdf2df830b2d4f4c6f1010d0ead3d328b8e018dd1c95"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "valid-parentheses",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b19ff6c9a06ef797ebe5f8490684f73da7872407b6ca75f88110340f6adb207f"
+    },
+    "packageHashes": {
+      "lesson.json": "4573786f4296190d7b152dcc91409e5275678f037f49551c734bd50aaf04fa04",
+      "explanation.json": "b19ff6c9a06ef797ebe5f8490684f73da7872407b6ca75f88110340f6adb207f",
+      "solution.py": "09a8a80b4327dd066e3471a3e71ee2d60d19dd5c500c9246bb2874bd940e7746",
+      "starter.py": "02f2571209c49f036b0017f4d047dc2a07b1c3a29eccf082441d8017ef539cbf",
+      "tests.json": "ff3c32af686117bcff5434ca3a5f0ccc0af7909f1930d18f1621bf4aa97a7d78",
+      "adapter.py": "112b52931ff8cf209fdc0abc36126cac494d96a308c8032b23c54773fe2ebfda"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "sudoku-solver",
+    "reviewed": true,
+    "findings": [
+      "All6fixtures expect same board; diversify solved boards to reject constant solution."
+    ],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b23989708d4406005012b8a64fc43d8498626422be6b0854a8c2541e3b9e48e3"
+    },
+    "packageHashes": {
+      "lesson.json": "029e034d563940616ca2ff300e2ff492632b15ec81c15dedf21891e17f0a5ae4",
+      "explanation.json": "b23989708d4406005012b8a64fc43d8498626422be6b0854a8c2541e3b9e48e3",
+      "solution.py": "b0af2d5ddf7ff64c149341fbf53379489b8d77b930a3462931f5d30ce06400a1",
+      "starter.py": "d8ffcefc2950f55dffbdc13dad7316c2732c6b0df5db476b2a24bf5bd711de72",
+      "tests.json": "b7b7012674bec1c4ea6259543f3d397fbf7ed39475907360b4889a6b7592c744",
+      "adapter.py": "8cb0f7abee83f3af65c38a272b2ff33d3f791b442d9967f25924b424996eae18"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "valid-anagram",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "81ac549c38304fb4c39630675957a90decda1b3e6c51e91dc3992afe8d08d8bf"
+    },
+    "packageHashes": {
+      "lesson.json": "3e8d8e0c27500be6654f800914f7b3809865fd4aa89d82dff48b2497681285c3",
+      "explanation.json": "81ac549c38304fb4c39630675957a90decda1b3e6c51e91dc3992afe8d08d8bf",
+      "solution.py": "20b85010597d307f4755544557fcacf15fc5e6377129d0f74b42db7e241b40f5",
+      "starter.py": "ddd9842d925862439bb535542f758d399e766bf713def46455689c97d73af073",
+      "tests.json": "fa7ee40afa0cd4e356efd5b90c028ad9cb59820cae2aa0d329b572cf2724ca29",
+      "adapter.py": "5b7421d20c5e19088050d9c1a30d556a5bbbe3f27dc2df619186c49332446871"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "design-add-and-search-words-data-structure",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "b8675b1b854361c0b589730e4e0f7e957d50193a46c4719a52777b893763251e"
+    },
+    "packageHashes": {
+      "lesson.json": "90d5f3545f287d123ec083b4a16b4d09bd552a37f8efafcb085bdd75e1cc9552",
+      "explanation.json": "b8675b1b854361c0b589730e4e0f7e957d50193a46c4719a52777b893763251e",
+      "solution.py": "3c8be65e1c16d7a8b746772d64a9852633d414dd789190ff87f0f78a8009827e",
+      "starter.py": "60a1c7add581037df979d0fa9a0c2d31e13041037a82e7afdb84e6bef78663ee",
+      "tests.json": "a0b8ed91c3da8a9281c6349bed6855cd2ebc4ad50e6b0c8d8af243b572366ce8",
+      "adapter.py": "c364aa7a24bd4060ef93bf6ea0056b14d9b13c2c5526ff61e4524f8ffd227994"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 2,
+      "findingsResolved": []
+    }
+  },
+  {
+    "slug": "longest-common-subsequence",
+    "reviewed": true,
+    "findings": [],
+    "resolved": true,
+    "editorialReview": {
+      "reviewed": true,
+      "status": "approved",
+      "findings": [],
+      "explanationHash": "306cda9dca8fba32852cfb8138816b76cc9d52c67196a9b0cef24ded4a39b627"
+    },
+    "packageHashes": {
+      "lesson.json": "86c46fea0c7e390c99cd23925caaa2f7019e85cd8235f0d824408ad2d4ff4b2e",
+      "explanation.json": "306cda9dca8fba32852cfb8138816b76cc9d52c67196a9b0cef24ded4a39b627",
+      "solution.py": "a26544904830b5b71a59e9464fe8b3e1d40ca5c8f01704e3af6935a9234c77cd",
+      "starter.py": "53dc7edcb60a4d0b8a9baafcad9bf6f000cd7b11ff34fa430d7756c4e8b0fff3",
+      "tests.json": "f75ea80d4f6c3edc1d0e78871a28bfb112644ef38da647fb11437a2eb09e9363",
+      "adapter.py": "14dcb24b55ea2d2d28a30e5bee565ee96ae6de975d61ee6698222f2a91fe67d5"
+    },
+    "followupReview": {
+      "date": "2026-10-04",
+      "report": "review/2026-10-04/resolution.json",
+      "suggestionsAddressed": 3,
+      "findingsResolved": []
+    }
+  }
+]

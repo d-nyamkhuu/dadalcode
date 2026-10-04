@@ -1,0 +1,65 @@
+{
+  "slug": "combination-sum-ii",
+  "headline": "Skip equal choices at one depth while consuming each index once",
+  "statement": "Return every distinct combination of positive candidate values that sums to target. Each candidate index can be used at most once; repeated input values are allowed. Return combinations in any order.",
+  "prerequisites": [
+    "Backtracking",
+    "Sorting",
+    "Duplicate pruning"
+  ],
+  "constraints": [
+    "1 <= len(candidates) <= 100",
+    "1 <= candidate <= 50",
+    "1 <= target <= 30"
+  ],
+  "intuition": "Sorting groups equal values. At one decision depth, picking the second identical value would reproduce combinations from picking the first, so skip it. Deeper recursion may still choose another copy because using two equal input indices can be a valid combination.",
+  "approach": [
+    "Sort candidates and search using a start index, remaining sum, and current path.",
+    "Record a copy of path when remaining becomes zero.",
+    "Skip equal values only when their index is greater than this call’s start.",
+    "Stop when a value exceeds remaining; recurse with index+1 so an index is used once."
+  ],
+  "correctness": "Every recursive path selects strictly increasing indices, so no candidate is reused. Positive sorted values make the over-budget cutoff safe. Equal values at the same depth generate identical value-prefix families, so retaining only their first occurrence loses no distinct combination. Equal values at later depths remain available, allowing valid multiplicities. Therefore all and only unique target combinations are produced.",
+  "bruteForce": "Enumerate all 2^n subsets of candidate indices, sum each, and deduplicate equal-value subsets afterward.",
+  "complexity": {
+    "time": "O(2^n × n) worst case",
+    "space": "O(n) auxiliary plus output",
+    "explanation": "Sorting costs O(n log n). O(2^n * n) is a conservative worst-case bound; positive candidates also cap recursion depth at min(n,target), at most 30 here. Sum and duplicate pruning avoid many subsets. Output copies have at most that depth."
+  },
+  "pitfalls": [
+    "Skip duplicates per depth, not globally.",
+    "Advance start to i+1 instead of i.",
+    "Copy the mutable path before recording it."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/combination-sum-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "candidates",
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "start",
+      "i"
+    ],
+    "watch": [
+      "remaining",
+      "value"
+    ],
+    "labels": {
+      "candidates": "Candidates",
+      "path": "Path",
+      "result": "Result",
+      "start": "Start",
+      "i": "I",
+      "remaining": "Remaining",
+      "value": "Value"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "valid-anagram",
+  "headline": "Match the frequency of every letter",
+  "statement": "Determine whether t is an anagram of s: t must contain exactly the same characters with exactly the same multiplicities, in any order.",
+  "prerequisites": [
+    "Frequency dictionaries",
+    "String lengths"
+  ],
+  "constraints": [
+    "1 <= len(s), len(t) <= 50,000",
+    "Both strings contain lowercase English letters"
+  ],
+  "intuition": "Order changes under an anagram, but counts do not. First reject different lengths, then consume each t character from a count of s. A negative count identifies a character used too often.",
+  "approach": [
+    "Reject unequal lengths.",
+    "Count each character of s in counts.",
+    "Consume each t character, rejecting a deficit; if no deficit occurs, equal length guarantees all counts balance."
+  ],
+  "correctness": "Equal multisets are necessary for rearrangement and sufficient because each t character can be matched to a distinct corresponding s character. Consuming without deficits uses all available copies, and equal lengths ensure none are left over.",
+  "bruteForce": "Sort both strings and compare the sorted sequences, costing O(n log n) time.",
+  "complexity": {
+    "time": "O(len(s) + len(t))",
+    "space": "O(26)",
+    "explanation": "Only a count per lowercase letter is stored."
+  },
+  "pitfalls": [
+    "Presence alone is insufficient: multiplicity matters.",
+    "Unequal lengths cannot be anagrams.",
+    "The reference can count arbitrary Unicode code points if the domain is extended, but visually identical text may require Unicode normalization first."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/valid-anagram/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s",
+      "t",
+      "counts"
+    ],
+    "pointers": [],
+    "watch": [
+      "ch"
+    ],
+    "labels": {
+      "s": "S",
+      "t": "T",
+      "counts": "Counts",
+      "ch": "Ch"
+    }
+  }
+}

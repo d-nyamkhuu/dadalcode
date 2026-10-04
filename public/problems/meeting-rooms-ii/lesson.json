@@ -1,0 +1,62 @@
+{
+  "slug": "meeting-rooms-ii",
+  "headline": "Measure maximum simultaneous meetings with an end-time heap",
+  "statement": "Given positive-length meeting intervals [start, end), return the minimum rooms needed to host them all. A room ending at time t can host another meeting starting at t.",
+  "prerequisites": [
+    "Sorting",
+    "Min-heaps",
+    "Half-open time intervals"
+  ],
+  "constraints": [
+    "1 <= number of meetings <= 10000",
+    "0 <= start < end <= 1000000"
+  ],
+  "intuition": "At a meeting’s start, only meetings that have not ended still occupy rooms. A min-heap lets us remove every finished meeting cheaply. The largest active heap size is the busiest instant and therefore the required capacity.",
+  "approach": [
+    "Sort intervals by start time.",
+    "Before inserting a meeting, pop all end times at or before its start.",
+    "Push its end time and update the peak active count."
+  ],
+  "correctness": "After removing finished entries and adding the current meeting, the heap contains exactly the meetings active at its start. Its size is therefore a lower bound on room capacity. Reusing ended rooms realizes that capacity, so the maximum observed size is both necessary and sufficient.",
+  "bruteForce": "Compare each start with every interval to count its simultaneous meetings, taking quadratic time.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)",
+    "explanation": "Sorting dominates; each end time is pushed and popped once."
+  },
+  "pitfalls": [
+    "End equal to start is reusable; use <=.",
+    "Return the peak size, not the heap size after the final meeting.",
+    "Remove all completed meetings, not just one when counting active occupancy."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/meeting-rooms-ii/"
+    },
+    {
+      "label": "Public statement: LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/253/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "intervals",
+      "active_ends"
+    ],
+    "pointers": [],
+    "watch": [
+      "start",
+      "end",
+      "peak"
+    ],
+    "labels": {
+      "intervals": "Intervals",
+      "active_ends": "Active ends",
+      "start": "Start",
+      "end": "End",
+      "peak": "Peak"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "intuition": [
+    "You could first count all nodes and then walk halfway from the head. A singly linked list does not offer indexed access, so that approach needs two traversals. The same halfway location can be discovered by comparing two pointer speeds during one traversal.",
+    "Start both pointers at the head. For every round, slow advances one link while fast advances two. When fast can no longer take another two-link step, slow has advanced floor(length/2) links. This selects the only middle for odd lengths and the second middle for even lengths.",
+    "The answer is an original node, not merely its value. Returning that node also exposes the unchanged suffix beginning there. No links or node contents need modification, and the algorithm keeps only the two traversal pointers regardless of the list length."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "steps": [
+      "For head=[1,2,3,4,5,6], both slow and fast initially reference node 1.",
+      "The first round moves slow to node 2 and fast to node 3.",
+      "The second round moves slow to node 3 and fast to node 5.",
+      "The third round moves slow to node 4. Fast takes the link to node 6 and then reaches None.",
+      "The loop stops with slow at zero-based index 3. For six nodes, the two middle positions are indices 2 and 3, so this is the required second middle.",
+      "Return the original node 4. Traversing from it produces the fixture’s displayed result [4,5,6]."
+    ],
+    "result": [
+      4,
+      5,
+      6
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "slow = fast = head",
+      "note": "Equal starting positions make their traveled-link counts exactly one-to-two, without an initial offset to correct."
+    },
+    {
+      "code": "while fast is not None and fast.next is not None:",
+      "note": "This condition permits the final round on an even-length list, selecting the second middle while preventing an invalid two-link step."
+    },
+    {
+      "code": "return slow",
+      "note": "Return the actual middle node by identity. Constructing a replacement chain with equal values would not satisfy the original-node contract."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "intuition": [
+    "Generating every permutation of s1 is factorial work, even though we only need to detect one matching substring. All permutations have the same character multiplicities and the same length. Compare that signature with each equal-width window of s2 instead of constructing candidate permutations.",
+    "Because the alphabet contains only 26 lowercase letters, a fixed count vector describes each signature. As the right boundary moves, increment the arriving letter. Once the window is full, decrement the letter that falls off the left, keeping exactly len(s1) positions represented.",
+    "A matching pair of vectors proves a permutation appears because every letter has the required multiplicity. Comparing 26 entries takes constant time per window. Sets would be insufficient: they cannot distinguish words such as aab and abb, whose distinct letters agree but counts differ."
+  ],
+  "walkthrough": {
+    "input": {
+      "s1": "ab",
+      "s2": "eidbaooo"
+    },
+    "steps": [
+      "For s1=\"ab\", target counts are one a and one b; the required window width is two.",
+      "Scanning s2=\"eidbaooo\", the first complete window \"ei\" has different counts, so continue.",
+      "At right=2, add d and remove e, leaving \"id\". At right=3, add b and remove i, leaving \"db\"; neither matches.",
+      "At right=4, add a and remove d. The current window is \"ba\", with exactly one b and one a.",
+      "The two count vectors now agree, so return true immediately. Later o characters do not need to be examined."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "target, window = [0] * 26, [0] * 26",
+      "note": "Separate vectors distinguish the desired signature from the current window; each index corresponds to one lowercase English letter."
+    },
+    {
+      "code": "window[ord(s2[right - width]) - ord('a')] -= 1",
+      "note": "The departing index is right-width. Removing its count preserves a fixed-width substring rather than allowing earlier irrelevant letters to accumulate."
+    },
+    {
+      "code": "if right >= width - 1 and window == target:",
+      "note": "The length guard prevents incomplete prefixes from being tested as permutations. Equal full-width counts then provide an exact multiplicity match."
+    }
+  ]
+}

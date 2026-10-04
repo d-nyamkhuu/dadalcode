@@ -1,0 +1,56 @@
+{
+  "slug": "meeting-rooms",
+  "headline": "Sort meetings and inspect neighboring boundaries",
+  "statement": "Given meeting intervals [start,end), return whether one person can attend every meeting. A meeting ending at time t does not conflict with one beginning at t. The empty schedule is attendable.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Sorting and interval boundaries"
+  ],
+  "constraints": [
+    "0 <= len(intervals) <= 10^4",
+    "0 <= start < end <= 10^6"
+  ],
+  "intuition": "Sort by start time so any conflict becomes visible between neighboring intervals. If no neighboring meeting begins before its predecessor ends, all meetings can be attended in that sorted order. A nested meeting immediately conflicts with the outer meeting.",
+  "approach": [
+    "Sort a copy of intervals by start time.",
+    "For each interval after the first, compare its start to the previous end.",
+    "Return false for a strict start<previous_end overlap.",
+    "Return true after every neighbor passes."
+  ],
+  "correctness": "If a neighboring pair overlaps, attendance is impossible. Conversely, if every neighbor is nonoverlapping, each interval ends no later than the next begins. Chaining these inequalities shows any earlier interval ends before any later interval begins, so there are no conflicts anywhere.",
+  "bruteForce": "Compare every pair of meetings in O(n^2) time. Sorting exposes enough structure to check only neighbors.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)",
+    "explanation": "The sorted copy and Python sorting workspace use linear storage; the neighbor scan is linear."
+  },
+  "pitfalls": [
+    "Touching endpoints are allowed: use < rather than <= for overlap.",
+    "Sort before checking neighbors.",
+    "An empty list and a single meeting both return true."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/meeting-rooms/"
+    },
+    {
+      "label": "Public problem statement · LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/252/"
+    }
+  ],
+  "visualization": {
+    "kind": "intervals",
+    "focus": [
+      "intervals"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [],
+    "labels": {
+      "intervals": "Intervals",
+      "i": "I"
+    }
+  }
+}

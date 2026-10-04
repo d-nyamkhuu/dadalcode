@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Root split",
+    "input": {
+      "root": [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      "p": 2,
+      "q": 8
+    },
+    "expected": 6
+  },
+  {
+    "name": "Target is ancestor",
+    "input": {
+      "root": [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      "p": 2,
+      "q": 4
+    },
+    "expected": 2
+  },
+  {
+    "name": "Two nodes",
+    "input": {
+      "root": [
+        2,
+        1
+      ],
+      "p": 2,
+      "q": 1
+    },
+    "expected": 2
+  },
+  {
+    "name": "Lower split",
+    "input": {
+      "root": [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      "p": 3,
+      "q": 5
+    },
+    "expected": 4
+  },
+  {
+    "name": "Negative values",
+    "input": {
+      "root": [
+        0,
+        -3,
+        4,
+        -5,
+        -1
+      ],
+      "p": -5,
+      "q": -1
+    },
+    "expected": -3
+  },
+  {
+    "name": "Reversed target order",
+    "input": {
+      "root": [
+        2,
+        1,
+        3
+      ],
+      "p": 3,
+      "q": 1
+    },
+    "expected": 2
+  },
+  {
+    "name": "Shared rightward search",
+    "input": {
+      "root": [
+        1,
+        null,
+        2,
+        null,
+        3,
+        null,
+        4
+      ],
+      "p": 3,
+      "q": 4
+    },
+    "expected": 3
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "name": "Two digits",
+    "input": {
+      "digits": "23"
+    },
+    "expected": [
+      "ad",
+      "ae",
+      "af",
+      "bd",
+      "be",
+      "bf",
+      "cd",
+      "ce",
+      "cf"
+    ]
+  },
+  {
+    "name": "Empty digits",
+    "input": {
+      "digits": ""
+    },
+    "expected": []
+  },
+  {
+    "name": "Single digit",
+    "input": {
+      "digits": "2"
+    },
+    "expected": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "name": "Four-letter digit",
+    "input": {
+      "digits": "7"
+    },
+    "expected": [
+      "p",
+      "q",
+      "r",
+      "s"
+    ]
+  },
+  {
+    "name": "Repeated digit",
+    "input": {
+      "digits": "22"
+    },
+    "expected": [
+      "aa",
+      "ab",
+      "ac",
+      "ba",
+      "bb",
+      "bc",
+      "ca",
+      "cb",
+      "cc"
+    ]
+  },
+  {
+    "name": "Other four-letter digit",
+    "input": {
+      "digits": "9"
+    },
+    "expected": [
+      "w",
+      "x",
+      "y",
+      "z"
+    ]
+  },
+  {
+    "name": "Previously uncovered digit mappings",
+    "input": {
+      "digits": "4568"
+    },
+    "expected": [
+      "gjmt",
+      "gjmu",
+      "gjmv",
+      "gjnt",
+      "gjnu",
+      "gjnv",
+      "gjot",
+      "gjou",
+      "gjov",
+      "gkmt",
+      "gkmu",
+      "gkmv",
+      "gknt",
+      "gknu",
+      "gknv",
+      "gkot",
+      "gkou",
+      "gkov",
+      "glmt",
+      "glmu",
+      "glmv",
+      "glnt",
+      "glnu",
+      "glnv",
+      "glot",
+      "glou",
+      "glov",
+      "hjmt",
+      "hjmu",
+      "hjmv",
+      "hjnt",
+      "hjnu",
+      "hjnv",
+      "hjot",
+      "hjou",
+      "hjov",
+      "hkmt",
+      "hkmu",
+      "hkmv",
+      "hknt",
+      "hknu",
+      "hknv",
+      "hkot",
+      "hkou",
+      "hkov",
+      "hlmt",
+      "hlmu",
+      "hlmv",
+      "hlnt",
+      "hlnu",
+      "hlnv",
+      "hlot",
+      "hlou",
+      "hlov",
+      "ijmt",
+      "ijmu",
+      "ijmv",
+      "ijnt",
+      "ijnu",
+      "ijnv",
+      "ijot",
+      "ijou",
+      "ijov",
+      "ikmt",
+      "ikmu",
+      "ikmv",
+      "iknt",
+      "iknu",
+      "iknv",
+      "ikot",
+      "ikou",
+      "ikov",
+      "ilmt",
+      "ilmu",
+      "ilmv",
+      "ilnt",
+      "ilnu",
+      "ilnv",
+      "ilot",
+      "ilou",
+      "ilov"
+    ]
+  }
+]

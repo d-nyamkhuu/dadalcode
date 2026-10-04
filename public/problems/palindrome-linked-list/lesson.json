@@ -1,0 +1,63 @@
+{
+  "slug": "palindrome-linked-list",
+  "headline": "Reverse a half, compare, then restore",
+  "statement": "Determine whether a singly linked list reads identically forward and backward. Inputs use node-value arrays. The reference uses linear time and constant extra space. The reference restores its temporary link changes; input restoration is not an additional requirement for learner answers.",
+  "prerequisites": [
+    "Slow and fast pointers",
+    "Linked-list reversal"
+  ],
+  "constraints": [
+    "1 <= node count <= 100,000",
+    "0 <= node.val <= 9"
+  ],
+  "intuition": "Reverse the second half so it can be compared against the first half in forward traversal. For odd lengths skip the middle node. Restore the reversed suffix after comparison.",
+  "approach": [
+    "Find the middle using slow and fast pointers.",
+    "Skip an odd center and reverse the second half.",
+    "Compare mirrored values, then reverse the suffix back before returning."
+  ],
+  "correctness": "The reversed suffix visits the final nodes in exactly the order mirrored against the beginning. Every symmetric pair is compared; an odd center equals itself. Thus the comparisons are necessary and sufficient for a palindrome.",
+  "bruteForce": "Copy values to an array and compare its forward and reverse orders, requiring O(n) extra space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Finding the middle, reversing, comparing, and restoring each make linear scans using only pointers."
+  },
+  "pitfalls": [
+    "Skip the central odd-length node.",
+    "Save the next link before flipping it.",
+    "Restore the suffix before returning, including on mismatch."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/palindrome-linked-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "slow",
+      "fast",
+      "left",
+      "right",
+      "previous",
+      "current",
+      "matches"
+    ],
+    "labels": {
+      "head": "Head",
+      "slow": "Slow",
+      "fast": "Fast",
+      "left": "Left",
+      "right": "Right",
+      "previous": "Previous",
+      "current": "Current",
+      "matches": "Matches"
+    }
+  }
+}

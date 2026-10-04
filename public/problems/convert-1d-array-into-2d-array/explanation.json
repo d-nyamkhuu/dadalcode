@@ -1,0 +1,50 @@
+{
+  "intuition": [
+    "Assign each value individually using row=index//n and col=index%n. This has the same linear complexity; slicing emphasizes the consecutive row blocks. There is no combinatorial search here: dimensions determine every destination, and a size mismatch makes any arrangement impossible.",
+    "Row-major order divides the original array into consecutive blocks of n values. The first row starts at offset zero, the next at n, and row r at r*n. Check the total cell count before constructing anything; otherwise an oversized shape might create incomplete rows, or an undersized one might silently discard values. Every row slice allocates its own list, avoiding shared-row aliasing. This is a reshape operation rather than sorting or transposing, so duplicate values and their original positions remain in the same order.",
+    "The size check ensures the required cells equal the available entries. The row blocks are consecutive, disjoint, and cover offsets zero through m*n-1 exactly once. Therefore every value appears in its original order in the required matrix shape. Each original entry is copied into exactly one output row."
+  ],
+  "walkthrough": {
+    "input": {
+      "original": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "m": 2,
+      "n": 2
+    },
+    "steps": [
+      "For original [1,2,3,4], m=2, and n=2, verify four entries equal four cells.",
+      "Row 0 starts at offset 0 and copies indices 0 and 1 into [1,2].",
+      "Row 1 starts at offset 2 and copies indices 2 and 3 into [3,4].",
+      "The two disjoint blocks cover every original entry exactly once.",
+      "Return [[1,2],[3,4]] with two rows and two columns."
+    ],
+    "result": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if len(original) != m * n:",
+      "note": "The shape must use every value exactly once, so both too many and too few entries require the empty result."
+    },
+    {
+      "code": "start = row * n",
+      "note": "Each preceding row consumes n elements, fixing the current row\u2019s first offset."
+    },
+    {
+      "code": "result.append(original[start:start+n])",
+      "note": "A consecutive slice preserves row-major order and creates a distinct list for each output row."
+    }
+  ]
+}

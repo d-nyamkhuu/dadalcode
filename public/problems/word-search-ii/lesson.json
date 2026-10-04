@@ -1,0 +1,66 @@
+{
+  "slug": "word-search-ii",
+  "headline": "Search the board once against a trie of all words",
+  "statement": "Return all distinct dictionary words that can be formed on board by horizontal or vertical adjacent cells, without using a cell twice within one word. Return words in any order.",
+  "prerequisites": [
+    "Trie prefixes",
+    "Grid backtracking",
+    "Word Search"
+  ],
+  "constraints": [
+    "1 <= rows, columns <= 12",
+    "1 <= number of words <= 30,000",
+    "Words are distinct lowercase strings of length 1..10",
+    "Board cells are lowercase English letters."
+  ],
+  "intuition": "Search the board once against a trie of all words. When the current path is not any dictionary prefix, stop that branch immediately.",
+  "approach": [
+    "Insert each word into a nested dictionary trie and store the complete word at its terminal node.",
+    "Start DFS from each board cell; follow the corresponding trie edge only if present.",
+    "Emit and remove terminal words to avoid duplicates across paths.",
+    "Mark the cell during neighbor recursion and restore it afterward; prune exhausted trie branches."
+  ],
+  "correctness": "The trie node reached by a board path represents exactly its spelled prefix. Missing edges cannot lead to dictionary words. Each matching terminal emits a valid path word, and removing its terminal prevents duplicate emission. All legal board paths are considered until their prefix becomes impossible, so every obtainable word is found.",
+  "bruteForce": "Run Word Search independently for every word, repeating common-prefix searches.",
+  "complexity": {
+    "time": "O(D + rows*columns*4*3^(L-1))",
+    "space": "O(D + L)",
+    "explanation": "D is the total number of dictionary characters and L is the maximum word length. A start has at most four next choices; subsequent path cells have at most three because the previous cell is unavailable. Trie construction costs O(D), and recursion uses O(L) space in addition to the trie."
+  },
+  "pitfalls": [
+    "Remove the terminal marker after reporting a word, but continue for longer words sharing its prefix.",
+    "Keep path visitation separate from dictionary prefix state.",
+    "Restore the board after exploring a branch."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/word-search-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "board",
+      "trie"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "node",
+      "letter",
+      "result"
+    ],
+    "labels": {
+      "board": "Board",
+      "trie": "Trie",
+      "row": "Row",
+      "col": "Col",
+      "node": "Node",
+      "letter": "Letter",
+      "result": "Result"
+    }
+  }
+}

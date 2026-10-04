@@ -1,0 +1,60 @@
+{
+  "slug": "binary-tree-level-order-traversal-ii",
+  "headline": "Collect levels, then reverse their order",
+  "statement": "Return a binary tree’s node values grouped by depth, starting with the deepest level and ending with the root. Within each level, keep left-to-right order. Trees use level-order arrays with null for absent children.",
+  "prerequisites": [
+    "Queue",
+    "Breadth-first traversal",
+    "Binary trees"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 2000",
+    "-1000 <= node.val <= 1000"
+  ],
+  "intuition": "A breadth-first queue naturally visits one depth at a time. Save those top-down groups, then reverse only the outer list. Reversing values inside a level would destroy the required left-to-right order.",
+  "approach": [
+    "Return an empty list for an absent root.",
+    "At each round process exactly the queue size measured at that round’s start.",
+    "Enqueue children left before right, save the level, and reverse the collected levels."
+  ],
+  "correctness": "At the start of a round the queue holds exactly one depth in left-to-right order. Its children form the next depth in that same order. Reversing the depth groups gives deepest-to-root order while preserving each group’s ordering.",
+  "bruteForce": "Run a separate depth-limited traversal for every depth; on a chain this revisits nodes and costs O(n²).",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(w + h) auxiliary plus O(n) output",
+    "explanation": "Each node is visited once. The queue holds O(w) nodes across adjacent levels; the shallow outer reversal creates O(h) additional row references, while returned rows store all n values."
+  },
+  "pitfalls": [
+    "Freeze the queue size before adding children.",
+    "Reverse levels, not individual rows.",
+    "Do not use pop(0) on Python lists for the queue."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/binary-tree-level-order-traversal-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue",
+      "levels",
+      "level"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "level_size"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "levels": "Levels",
+      "level": "Level",
+      "node": "Node",
+      "level_size": "Level size"
+    }
+  }
+}

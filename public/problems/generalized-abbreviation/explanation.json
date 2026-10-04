@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "Each character can either remain visible or join an omitted run. Enumerating those binary choices gives all abbreviations, but writing a separate 1 for every omitted character would create invalid adjacent numeric tokens. Consecutive omitted positions must be represented by a single combined count.",
+    "Keep a pending count alongside the already emitted prefix. Omitting a character increments the count without writing anything. Keeping a character first writes any pending count, then that letter, and resets the count. A real letter is what separates numeric runs in a valid abbreviation.",
+    "At the end, flush a remaining count even if no later letter exists to trigger it. Every keep-or-omit pattern follows one recursion path, so all abbreviations appear exactly once. Passing immutable prefixes keeps sibling decisions independent, while the count summarizes a run that has not yet been emitted.",
+    "This teaching implementation passes immutable prefix strings, making sibling branches independent but keeping O(n\u00b2) prefix characters across a recursion stack. An optional mutable token path can instead append a pending count and kept letter, recurse, then pop exactly those appended tokens; the omit branch changes only the pending counter. Joining the token path only at a leaf reduces auxiliary storage to O(n), with the same O(n*2^n) output cost. The undo steps must restore the shared path before exploring a sibling."
+  ],
+  "walkthrough": {
+    "input": {
+      "word": "abc"
+    },
+    "steps": [
+      "For word=\"abc\", start with i=0, path=\"\", and count=0. Omitting all three characters grows count to 3 and emits \"3\" at the end.",
+      "Omit a and b but keep c: the pending count 2 is flushed before c, producing \"2c\".",
+      "Omit a, keep b, then omit c: emit \"1b\" when b is kept, then flush the final count 1 to obtain \"1b1\".",
+      "Keeping c on that branch instead gives \"1bc\". Keeping a before omitting b and c gives \"a2\".",
+      "The remaining keep/omit branches yield \"a1c\", \"ab1\", and \"abc\". Together these are all eight patterns for three letters."
+    ],
+    "result": [
+      "3",
+      "2c",
+      "1b1",
+      "1bc",
+      "a2",
+      "a1c",
+      "ab1",
+      "abc"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "visit(i + 1, path, count + 1)",
+      "note": "An omitted character extends the pending run. Delaying its numeric representation automatically merges consecutive omissions instead of writing adjacent counts."
+    },
+    {
+      "code": "prefix = path + (str(count) if count else '') + word[i]",
+      "note": "Keeping a real letter closes an omitted run. Only a nonzero count is emitted, and the letter separates it from any future omitted run."
+    },
+    {
+      "code": "result.append(path + (str(count) if count else ''))",
+      "note": "The terminal case must flush a trailing run because there may be no kept letter after it to perform that operation."
+    }
+  ]
+}

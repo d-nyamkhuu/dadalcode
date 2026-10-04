@@ -1,0 +1,48 @@
+{
+  "intuition": [
+    "An array of node references could make group reversal straightforward, but it costs space proportional to the list. We can reverse links directly with only a few pointers. The difficult part is recognizing each complete group before modifying it and reconnecting its two boundaries afterward.",
+    "First find the kth node after the previous group. If it does not exist, the remaining nodes are a short tail and must stay unchanged. Otherwise the kth node’s successor marks the exclusive reversal boundary, so the loop knows exactly where to stop.",
+    "Set the reversal’s initial previous pointer to the following group rather than None. Then the old head, which becomes the reversed group’s tail, already points to the correct suffix. The old kth node becomes the new head; the previous group reconnects to it. Repeating this preserves every original node."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "k": 2
+    },
+    "steps": [
+      "For [1,2,3,4,5] with k=2, dummy is the predecessor of the first group. Its kth node is 2 and group_after is 3.",
+      "Initialize prev=3 and current=1. Save node 2, then redirect node 1.next to node 3.",
+      "Process node 2 and redirect its next to node 1. The reversed first group is now 2→1→3.",
+      "Set dummy.next to node 2 and move group_before to old head 1, now this group’s tail.",
+      "The next complete group is nodes 3 and 4. Reverse it to 4→3→5 and connect node 1.next to 4.",
+      "Only node 5 remains, so the completeness scan fails without changing it. The final values are [2,1,4,3,5]."
+    ],
+    "result": [
+      2,
+      1,
+      4,
+      3,
+      5
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if kth is None:",
+      "note": "Detect an incomplete group before redirecting any link; otherwise the required unchanged tail would need to be repaired."
+    },
+    {
+      "code": "prev, current = group_after, old_head",
+      "note": "Using the suffix boundary as prev automatically connects the new tail to the remaining list during the first reversal step."
+    },
+    {
+      "code": "group_before = old_head",
+      "note": "After reversal, the old head is the tail and therefore the predecessor needed to begin the following group."
+    }
+  ]
+}

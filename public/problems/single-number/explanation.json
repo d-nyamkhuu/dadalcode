@@ -1,0 +1,39 @@
+{
+  "intuition": [
+    "Count occurrences with a dictionary in O(n) space, then return the count-one key. XOR uses the promised multiplicities to remove that storage. Counting solves the task but stores information about every distinct value, even though paired values ultimately contribute nothing to the answer.",
+    "View XOR as a reversible bit toggle. Encountering a value changes the accumulator’s bits; encountering that same value again undoes exactly those changes. Associativity lets values cancel even when their two appearances are far apart. Zero is the neutral starting value, and negative integers obey the same bitwise cancellation identities in Python. This is a promise-driven algorithm: if some ordinary value occurred three times rather than twice, one copy would remain and corrupt the intended result.",
+    "After any prefix, result is its XOR. For the full array, associativity and commutativity allow identical values to be grouped; each pair becomes zero. The sole unpaired value remains, including when it is negative. One accumulator processes every value once.",
+    "Python evaluates bitwise operations on negative integers as though their two's complement representation has infinitely many sign bits. We do not need to choose a finite width here: x^x is still zero for a negative x, and zero^x is x. Associativity and commutativity therefore let negative pairs cancel exactly like positive pairs. This differs from fixed-width bit reversal, where the number of positions must be supplied explicitly."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        2,
+        2,
+        1
+      ]
+    },
+    "steps": [
+      "Start result=0 for [2,2,1].",
+      "XOR the first 2 into zero; the accumulator becomes 2.",
+      "XOR the second 2; its matching bits cancel and the accumulator returns to zero.",
+      "XOR the remaining 1, obtaining result=1.",
+      "Return 1, the only value with no partner to cancel it."
+    ],
+    "result": 1
+  },
+  "codeNotes": [
+    {
+      "code": "result = 0",
+      "note": "Zero leaves every bit unchanged under XOR, so it is the identity element for this accumulation."
+    },
+    {
+      "code": "result ^= value",
+      "note": "Applying the same bit toggle twice cancels it; pair order and adjacency do not matter."
+    },
+    {
+      "code": "return result",
+      "note": "The promised multiplicities ensure exactly one unpaired value survives the complete XOR reduction."
+    }
+  ]
+}

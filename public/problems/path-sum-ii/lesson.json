@@ -1,0 +1,61 @@
+{
+  "slug": "path-sum-ii",
+  "headline": "Carry each partial path and its running sum",
+  "statement": "Return all root-to-leaf paths whose node values sum to targetSum. Each returned path is a list of node values in root-to-leaf order. Return paths in any order. Distinct root-to-leaf routes with identical values contribute separate, repeated entries.",
+  "prerequisites": [
+    "Tree traversal",
+    "Backtracking path state"
+  ],
+  "constraints": [
+    "0 <= node count <= 5,000",
+    "Node values range from -1,000 to 1,000",
+    "-1,000 <= targetSum <= 1,000"
+  ],
+  "intuition": "Carry each partial path and its running sum. A matching sum is an answer only when the path has reached a leaf.",
+  "approach": [
+    "Use an explicit stack containing node, prefix path, and prefix sum.",
+    "Append the current value and update the sum.",
+    "Emit a path only if both children are absent and the sum matches.",
+    "Push children with the updated prefix state."
+  ],
+  "correctness": "The stack state records the unique root-to-parent path for its node. Adding the node creates its unique root-to-node path. Every leaf is visited exactly once and only matching leaf paths are emitted; no partial or non-root path is included.",
+  "bruteForce": "Copy and sum every root-to-leaf path independently, repeating prefix work.",
+  "complexity": {
+    "time": "O(n*h + L)",
+    "space": "O(h²) auxiliary plus O(L) output",
+    "explanation": "n is node count, h is height, and L is the total number of returned path values. Copying a prefix at each visited node costs O(n*h), with a quadratic chain worst case. At most O(h) pending binary-tree DFS entries retain paths of length O(h), so auxiliary storage is O(h²); returned lists use O(L)."
+  },
+  "pitfalls": [
+    "Do not accept a matching internal node.",
+    "Negative values mean an oversized prefix cannot be pruned.",
+    "Distinct nodes can yield identical value paths and both count."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/path-sum-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "stack",
+      "path"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "total",
+      "result"
+    ],
+    "labels": {
+      "root": "Root",
+      "stack": "Stack",
+      "path": "Path",
+      "node": "Node",
+      "total": "Total",
+      "result": "Result"
+    }
+  }
+}

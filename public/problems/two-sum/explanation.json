@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "If you fix one number, its required partner is already determined: target minus that number. A brute-force solution nevertheless checks every later value, repeating nearly identical searches. The useful question is not which pair to try next, but whether the particular missing value has already appeared.",
+    "A dictionary converts that question into a fast lookup. Its keys are values and its entries remember indices, because the requested answer is positional. Before index i is processed, the dictionary contains only earlier elements. This small invariant makes the distinct-index rule automatic rather than something to repair afterward.",
+    "The order of operations is the important detail. Look for the complement first and insert the current value only after an unsuccessful lookup. With two equal values, the later copy can find the earlier copy; a lone value can never find itself. This works equally well for negatives and zero, since the reasoning uses addition rather than sorted order."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        2,
+        7,
+        11,
+        15
+      ],
+      "target": 9
+    },
+    "steps": [
+      "The example has nums=[2,7,11,15] and target=9. Begin with an empty seen dictionary.",
+      "At i=0, value=2 requires complement=7. Seven has not appeared, so no pair can end at this index.",
+      "Record seen[2]=0. This stores an index, not a count or a boolean.",
+      "At i=1, value=7 requires complement=2. The dictionary now contains that value at index 0.",
+      "Return [0,1]: the indices are distinct and their values 2+7 equal 9. The remaining numbers need no examination."
+    ],
+    "result": [
+      0,
+      1
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "seen = {}",
+      "note": "The dictionary represents the processed prefix. Keeping only earlier indices gives every successful lookup a valid distinct partner."
+    },
+    {
+      "code": "complement = target - value",
+      "note": "Subtraction identifies one exact lookup target, replacing the entire inner loop over possible partners."
+    },
+    {
+      "code": "seen[value] = i",
+      "note": "Insertion follows the lookup. Reversing those operations could incorrectly reuse the current element when target is twice its value."
+    }
+  ]
+}

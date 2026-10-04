@@ -1,0 +1,50 @@
+{
+  "intuition": [
+    "Removing values while walking a linked list can fail when matching nodes are consecutive. If the traversal advances unconditionally after deleting one neighbor, the newly exposed neighbor may never be checked. The useful pointer should therefore describe the last retained node.",
+    "A dummy before the head makes even the first real node a deletable next neighbor. At every iteration, inspect prev.next. If it matches val, bypass it and leave prev in place; otherwise retain it and move prev forward. The link rewrite itself consumes the deleted node.",
+    "The retained prefix never contains a forbidden value, and each step handles one unprocessed node. This keeps the original surviving nodes and their relative order without allocating a second list. The dummy also handles an empty result uniformly."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        1,
+        2,
+        6,
+        3,
+        4,
+        5,
+        6
+      ],
+      "val": 6
+    },
+    "steps": [
+      "For [1,2,6,3,4,5,6] and val=6, begin with prev=dummy.",
+      "Node 1 is retained, so prev moves to 1. Node 2 is retained next, moving prev to 2.",
+      "The next node is 6. Redirect node 2.next to node 3 and leave prev at node 2.",
+      "Inspect the new next neighbor, node 3. Retain it, then retain nodes 4 and 5 in the same way.",
+      "At node 5, the final next neighbor is 6. Bypass it, making node 5.next=None.",
+      "The loop ends because no neighbor remains. Returning dummy.next yields the retained chain [1,2,3,4,5]."
+    ],
+    "result": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "while prev.next is not None:",
+      "note": "The next node is the unprocessed candidate, while prev is always the node that owns the link being changed."
+    },
+    {
+      "code": "prev.next = prev.next.next",
+      "note": "Deletion exposes a new candidate without moving prev. This is why consecutive matching nodes are handled correctly."
+    },
+    {
+      "code": "prev = prev.next",
+      "note": "Advance only after retaining the neighbor. The invariant then extends the clean prefix by exactly one node."
+    }
+  ]
+}

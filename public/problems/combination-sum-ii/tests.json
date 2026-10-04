@@ -1,0 +1,136 @@
+[
+  {
+    "name": "Official mixed",
+    "input": {
+      "candidates": [
+        10,
+        1,
+        2,
+        7,
+        6,
+        1,
+        5
+      ],
+      "target": 8
+    },
+    "expected": [
+      [
+        1,
+        1,
+        6
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        6
+      ]
+    ]
+  },
+  {
+    "name": "Official duplicates",
+    "input": {
+      "candidates": [
+        2,
+        5,
+        2,
+        1,
+        2
+      ],
+      "target": 5
+    },
+    "expected": [
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        5
+      ]
+    ]
+  },
+  {
+    "name": "No solution",
+    "input": {
+      "candidates": [
+        4,
+        5
+      ],
+      "target": 3
+    },
+    "expected": []
+  },
+  {
+    "name": "Single exact",
+    "input": {
+      "candidates": [
+        3
+      ],
+      "target": 3
+    },
+    "expected": [
+      [
+        3
+      ]
+    ]
+  },
+  {
+    "name": "Repeated values usable",
+    "input": {
+      "candidates": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "target": 2
+    },
+    "expected": [
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "name": "No reuse of one index",
+    "input": {
+      "candidates": [
+        2
+      ],
+      "target": 4
+    },
+    "expected": []
+  },
+  {
+    "name": "Multiple duplicated values",
+    "input": {
+      "candidates": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "target": 4
+    },
+    "expected": [
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ]
+  }
+]

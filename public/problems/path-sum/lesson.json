@@ -1,0 +1,60 @@
+{
+  "slug": "path-sum",
+  "headline": "Carry a separate path total to each leaf",
+  "statement": "Return whether a binary tree contains a root-to-leaf path whose node values sum to targetSum. A leaf has no children; a path ending at an internal node does not count.",
+  "prerequisites": [
+    "Depth-first search",
+    "Root-to-leaf paths",
+    "Stack entries"
+  ],
+  "constraints": [
+    "0 <= node count <= 5000",
+    "-1000 <= node values <= 1000",
+    "-1000 <= targetSum <= 1000"
+  ],
+  "intuition": "Every stack entry should contain both a node and the total along the unique root-to-that-node path. Siblings inherit the same parent total but accumulate independently. Only leaves can complete the requested path.",
+  "approach": [
+    "Return false for an empty tree.",
+    "Start a DFS stack with root and its value.",
+    "At a leaf, compare its total with targetSum.",
+    "For each child, push the child with total plus the child’s value."
+  ],
+  "correctness": "The initial total equals the root path’s sum. Pushing a child adds exactly its value, preserving the stack invariant for every entry. Every leaf is visited unless a matching one is found earlier, so true is returned exactly when a root-to-leaf path meets the target.",
+  "bruteForce": "Enumerate all root-to-leaf node sequences, then sum each sequence separately; storing and summing paths adds repeated work.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)",
+    "explanation": "Each node is processed once. DFS pending entries use O(h) space in a binary tree, and iteration avoids recursion limits."
+  },
+  "pitfalls": [
+    "A target reached at an internal node is not enough.",
+    "Negative values prevent simple pruning when a sum exceeds target.",
+    "An empty tree has no root-to-leaf path even when target is zero."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/path-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "total",
+      "targetSum"
+    ],
+    "labels": {
+      "root": "Root",
+      "stack": "Stack",
+      "node": "Node",
+      "total": "Total",
+      "targetSum": "Targetsum"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+[
+  {
+    "name": "Example: apple",
+    "input": {
+      "words": [
+        "apple"
+      ],
+      "queries": [
+        [
+          "a",
+          "e"
+        ]
+      ]
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Example: no match",
+    "input": {
+      "words": [
+        "apple"
+      ],
+      "queries": [
+        [
+          "b",
+          "e"
+        ]
+      ]
+    },
+    "expected": [
+      -1
+    ]
+  },
+  {
+    "name": "Largest matching index",
+    "input": {
+      "words": [
+        "apple",
+        "ape",
+        "apple"
+      ],
+      "queries": [
+        [
+          "a",
+          "e"
+        ],
+        [
+          "appl",
+          "le"
+        ]
+      ]
+    },
+    "expected": [
+      2,
+      2
+    ]
+  },
+  {
+    "name": "Independent prefix and suffix",
+    "input": {
+      "words": [
+        "abc",
+        "xbc",
+        "abx"
+      ],
+      "queries": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "x",
+          "c"
+        ],
+        [
+          "ab",
+          "x"
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Overlapping query pieces",
+    "input": {
+      "words": [
+        "aaa"
+      ],
+      "queries": [
+        [
+          "aa",
+          "aa"
+        ],
+        [
+          "aaa",
+          "aaa"
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      0
+    ]
+  },
+  {
+    "name": "One-letter dictionary",
+    "input": {
+      "words": [
+        "a",
+        "b",
+        "a"
+      ],
+      "queries": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ]
+    },
+    "expected": [
+      2,
+      -1
+    ]
+  },
+  {
+    "name": "Prefix longer than word",
+    "input": {
+      "words": [
+        "a"
+      ],
+      "queries": [
+        [
+          "aa",
+          "a"
+        ]
+      ]
+    },
+    "expected": [
+      -1
+    ]
+  },
+  {
+    "name": "Interior substring is not a prefix",
+    "input": {
+      "words": [
+        "babc"
+      ],
+      "queries": [
+        [
+          "ab",
+          "c"
+        ]
+      ]
+    },
+    "expected": [
+      -1
+    ]
+  }
+]

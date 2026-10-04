@@ -1,0 +1,54 @@
+{
+  "intuition": [
+    "A tree has no cycle and connects all its vertices. Checking only for n-1 edges is tempting but incomplete: a disconnected component could contain a cycle while another vertex is isolated. The edge count is a useful first filter, and a connectivity traversal supplies the missing condition.",
+    "Build an undirected adjacency list by inserting both directions for each edge. Start at vertex zero and use a stack to visit all reachable vertices. Mark a neighbor when it is pushed, rather than when it is popped, so multiple adjacent vertices cannot schedule duplicate visits. The visited set also prevents repeatedly following the same undirected edge.",
+    "Why does this avoid a separate cycle detector? Every connected n-vertex graph contains a spanning tree using n-1 edges. If the graph itself has exactly n-1 edges, there are no extra edges left to form cycles. Thus the count check plus reaching all n vertices is both necessary and sufficient. A singleton with no edges satisfies both conditions and correctly counts as a tree.",
+    "The explicit stack also handles a 2000-vertex chain within the stated domain. A recursive DFS would require one nested call per vertex and may exceed Python\u2019s recursion limit; marking and pushing each vertex here keeps traversal depth in ordinary heap storage."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 5,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    "steps": [
+      "For n=5 and edges [[0,1],[0,2],[0,3],[1,4]], there are four edges, matching n-1.",
+      "Build adjacency in both directions, then initialize visited={0} and stack=[0].",
+      "Pop 0 and mark/push neighbors 1, 2, 3. Four vertices are now known reachable.",
+      "Vertices 3 and 2 only lead back to already-visited 0.",
+      "Pop 1 and discover 4. Its only neighbor is the already-visited 1.",
+      "All five vertices were reached, so with four edges the graph is a tree; return true."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if len(edges) != n - 1:",
+      "note": "Reject a graph that cannot have the exact edge count of an n-vertex tree."
+    },
+    {
+      "code": "adjacency[b].append(a)",
+      "note": "An undirected input edge must be traversable from either endpoint."
+    },
+    {
+      "code": "visited.add(neighbor)\n                    stack.append(neighbor)",
+      "note": "Mark on discovery so each vertex enters the stack once, even with several incoming visits."
+    }
+  ]
+}

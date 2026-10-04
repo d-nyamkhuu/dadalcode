@@ -1,0 +1,56 @@
+{
+  "intuition": [
+    "The two trees are aligned by position, not by value or traversal order. At a position occupied in both trees, add the values. At a position occupied in only one tree, every existing node in that one-sided subtree should remain unchanged in the result.",
+    "Use the first tree as the output structure. A stack holds pairs of nodes present at the same position. Add the second node’s value into the first, then inspect their left children and right children separately. If the first tree lacks a child, attach the second tree’s entire child subtree. If both children exist, queue that overlapping pair.",
+    "One-sided subtrees need no further traversal because their values already equal the required merged values at every position. This is why the algorithm can skip large nonoverlapping sections. An absent input root is simply the extreme form of the same rule: return the other root. The reference deliberately reuses input nodes, so callers needing unchanged input trees would choose an allocating variant instead. Both approaches satisfy the merge’s value and shape requirements."
+  ],
+  "walkthrough": {
+    "input": {
+      "root1": [
+        1,
+        3,
+        2,
+        5
+      ],
+      "root2": [
+        2,
+        1,
+        3,
+        null,
+        4,
+        null,
+        7
+      ]
+    },
+    "steps": [
+      "The example roots are 1 and 2, so their merged root becomes 3. Queue both overlapping child pairs on the stack.",
+      "The right child pair is popped first because the stack is LIFO. Values 2 and 3 sum to 5; attach its second-tree right child 7.",
+      "The left child pair 3 and 1 is popped next and becomes 4. Its first-tree left node 5 is one-sided and remains unchanged.",
+      "That left pair has a right child only in the second tree, so attach node 4 intact without further traversal.",
+      "The resulting level order is [3,4,5,5,4,null,7], combining overlaps while retaining both one-sided branches."
+    ],
+    "result": [
+      3,
+      4,
+      5,
+      5,
+      4,
+      null,
+      7
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if not root1:",
+      "note": "A missing first root means the entire second tree is already the correct result and can be returned without further work."
+    },
+    {
+      "code": "first.val += second.val",
+      "note": "Only corresponding occupied positions are summed; the traversal stack guarantees first and second refer to the same position."
+    },
+    {
+      "code": "setattr(first, direction, b)",
+      "note": "When the output side is absent, attach the complete one-sided subtree because none of its descendants require addition."
+    }
+  ]
+}

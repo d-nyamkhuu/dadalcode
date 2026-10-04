@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "Comparing only node values is insufficient: the same values could occur in different child positions. Trees are equal only when both shape and values match. Consider each structural position as a pair of nodes, one from each tree, and reject as soon as that position disagrees.",
+    "An absent node matches another absent node. If exactly one member of a pair is absent, one tree has a branch where the other does not, so no descendant comparison can repair the mismatch. When both nodes exist, compare their values and then create pairs for their corresponding left children and corresponding right children.",
+    "The reference uses an explicit stack rather than recursion. Pushing left and then right means the right pair is processed first, but the order does not affect equality because all structural positions must agree. At every point, pending pairs refer to the same position in the two trees. Exhausting the stack without rejection means every position was checked successfully, including the missing-child positions that value-only traversals would overlook."
+  ],
+  "walkthrough": {
+    "input": {
+      "p": [
+        1,
+        2,
+        3
+      ],
+      "q": [
+        1,
+        2,
+        3
+      ]
+    },
+    "steps": [
+      "For p=[1,2,3] and q=[1,2,3], initialize the stack with both root nodes.",
+      "Pop the roots: both are present and both have value 1.",
+      "Push their left-child pair 2 and their right-child pair 3; the stack processes 3 first.",
+      "The two 3s match. Their absent-child pairs also match and are skipped.",
+      "The two 2s and their absent children match in the same way.",
+      "The stack is empty, so return true: both shape and all values agree."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if a is None or b is None:",
+      "note": "Handle structure before accessing values; one-sided absence is a decisive mismatch."
+    },
+    {
+      "code": "if a.val != b.val:",
+      "note": "Matching structure at this position still requires matching values."
+    },
+    {
+      "code": "stack.append((a.left, b.left))",
+      "note": "Pair the same child position across trees, rather than comparing unrelated traversal neighbors."
+    }
+  ]
+}

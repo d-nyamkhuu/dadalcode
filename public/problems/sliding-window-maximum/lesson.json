@@ -1,0 +1,55 @@
+{
+  "slug": "sliding-window-maximum",
+  "headline": "Keep only candidates that can still become maximum",
+  "statement": "For every contiguous window of k values in nums, return its maximum in left-to-right window order. Use O(n) time.",
+  "prerequisites": [
+    "Sliding windows",
+    "Double-ended queues",
+    "Monotonic sequences"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100000.",
+    "1 <= k <= len(nums).",
+    "Values range from -10000 to 10000."
+  ],
+  "intuition": "A newer value at least as large as an older candidate dominates it: the newer value is no smaller and expires later. Store surviving indices in decreasing value order so the front is always the current maximum.",
+  "approach": [
+    "Remove expired indices from the front.",
+    "Remove back indices whose values are at most the new value.",
+    "Append the new index.",
+    "Once a complete window exists, emit the front's value."
+  ],
+  "correctness": "The deque contains current-window candidates in decreasing value order. Any removed back candidate has a newer value no smaller, so it cannot become the maximum before it expires. Expired front indices are invalid. Thus the front is the largest value among all relevant candidates and the true maximum.",
+  "bruteForce": "Scan all k values in every window, giving O(nk) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(k) auxiliary plus output",
+    "explanation": "Each index enters once and leaves at most once from either end."
+  },
+  "pitfalls": [
+    "Store indices so expiry can be tested.",
+    "Remove indices at or before i-k.",
+    "Repeated values are safe to discard from the back because the newer copy expires later."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/sliding-window-maximum/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "candidates",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "k"
+    ],
+    "labels": {}
+  }
+}

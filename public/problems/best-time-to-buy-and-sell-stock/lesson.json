@@ -1,0 +1,53 @@
+{
+  "slug": "best-time-to-buy-and-sell-stock",
+  "headline": "Pair each selling day with the cheapest earlier price",
+  "statement": "Choose at most one purchase and a later sale. Return the greatest possible profit; return zero if no profitable transaction exists.",
+  "prerequisites": [
+    "Array scan",
+    "Running minimum"
+  ],
+  "constraints": [
+    "1 <= len(prices) <= 100000.",
+    "0 <= prices[i] <= 10000."
+  ],
+  "intuition": "For a fixed selling day, the best buy is the minimum price seen before it. Update the best profit using that minimum, then include today's price in the minimum for future selling days.",
+  "approach": [
+    "Initialize the cheapest price from the first day and profit to zero.",
+    "For each day, compute its profit against the previous cheapest price.",
+    "Update the best profit and running cheapest price.",
+    "Return zero or the best positive profit."
+  ],
+  "correctness": "Before evaluating a selling day, cheapest is the minimum price on earlier days. Its difference from today is the best transaction ending today. Taking the maximum across all selling days and zero yields the best legal choice, including doing nothing.",
+  "bruteForce": "Try every earlier buy/later sell pair in O(n\u00b2). A running minimum summarizes all earlier buys.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "The algorithm stores only the cheapest earlier price and best profit."
+  },
+  "pitfalls": [
+    "A sale must happen after the buy.",
+    "Only one transaction is allowed.",
+    "Decreasing prices should return zero, not a negative profit."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "prices"
+    ],
+    "pointers": [
+      "day"
+    ],
+    "watch": [
+      "price",
+      "cheapest",
+      "profit"
+    ],
+    "labels": {}
+  }
+}

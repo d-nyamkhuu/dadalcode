@@ -1,0 +1,35 @@
+{
+  "intuition": [
+    "Simulate each editor with a stack, popping on #, then compare final strings. It takes linear space; reverse skipping needs only counters. The final editor contents need not be materialized when comparison can proceed directly between surviving characters.",
+    "Scanning forward demands a stack because a later backspace may undo an earlier letter. Scanning backward reveals the deletion before the affected letter: each # increments a skip budget, and each earlier ordinary letter consumes one skip. Stop only at a letter with no outstanding deletion. Compare the two surviving letters and continue leftward. Excess backspaces can run off the beginning without creating text. If one string still has a survivor after the other is exhausted, the edited outputs cannot be equal.",
+    "The helper skips precisely the letters erased by backspaces to their right, stopping at the last unerased character of the remaining prefix. Comparing these survivors visits the edited texts in reverse order. Equality at every position and simultaneous exhaustion is equivalent to equal final text. Both indices only move backward; counters replace explicit editor contents."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "ab#c",
+      "t": "ad#c"
+    },
+    "steps": [
+      "For s=\"ab#c\" and t=\"ad#c\", the last characters c and c survive and match.",
+      "Move left to # in each string; each helper sets its skip count to one.",
+      "Consume b in s and d in t using those pending deletions.",
+      "The next surviving characters are a and a, which match.",
+      "Both indices then fall below zero together, so return True."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if text[index] == '#':",
+      "note": "Encountering a backspace in reverse adds one earlier letter to the deletion budget."
+    },
+    {
+      "code": "elif skip:",
+      "note": "An ordinary character with a pending deletion is skipped rather than compared with the other string."
+    },
+    {
+      "code": "return i == j",
+      "note": "After helper scans, exhausted indices are -1; both exhausted means equality, while only one exhausted means a remaining mismatch."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "binary-tree-maximum-path-sum",
+  "headline": "Return one branch; score both branches",
+  "statement": "Find the largest sum of values on any nonempty simple path in a binary tree. Consecutive path nodes must share a parent-child edge. The path may start and end anywhere and need not contain the root.",
+  "prerequisites": [
+    "Postorder traversal",
+    "Stack frames",
+    "Tree paths"
+  ],
+  "constraints": [
+    "1 <= number of nodes <= 30,000",
+    "-1000 <= node.val <= 1000"
+  ],
+  "intuition": "A path can turn at one highest node and use both its child branches. But a branch passed to a parent may use only one child, or it would fork. Negative child contributions are best excluded; the node itself must still be counted.",
+  "approach": [
+    "Use an explicit postorder stack to visit children before their parent.",
+    "Read each child\u2019s best downward gain and clip negative gains to zero.",
+    "Score a path through the node using both gains, then store one-branch gain for its parent."
+  ],
+  "correctness": "Every simple tree path has a unique highest node. At that node, its two downward parts are optimized by the child gains, and including a negative part cannot help. Evaluating every possible highest node finds the best path; storing only one branch ensures a parent extension remains a path.",
+  "bruteForce": "Try every pair of endpoints and compute their connecting path, costing up to O(n\u00b3) without additional preprocessing.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "Explicit postorder avoids Python recursion limits; gains and traversal storage are linear."
+  },
+  "pitfalls": [
+    "A parent can extend only one child branch.",
+    "Initialize best below every possible node value so all-negative trees work.",
+    "The answer must contain at least one node."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "stack",
+      "gains"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "left_gain",
+      "right_gain",
+      "best"
+    ],
+    "labels": {
+      "root": "Root",
+      "stack": "Stack",
+      "gains": "Gains",
+      "node": "Node",
+      "left_gain": "Left gain",
+      "right_gain": "Right gain",
+      "best": "Best"
+    }
+  }
+}

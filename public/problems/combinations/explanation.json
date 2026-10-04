@@ -1,0 +1,60 @@
+{
+  "intuition": [
+    "Choosing k numbers in arbitrary order creates duplicate answers because [1,2] and [2,1] represent the same selection. Restricting every next number to be larger than the previous one gives each subset one unique construction. The search now creates combinations directly instead of repairing duplicates later.",
+    "The state records the selected path and the smallest next allowed value. After choosing value, recurse with value+1. Distinctness and ascending order follow automatically from that boundary; there is no need for a used array or a set of completed results.",
+    "The remaining count also limits the next choice. If needed numbers are missing from the path, the first must be at most n-needed+1 so enough larger values remain. This pruning removes unfinished branches before they begin, and saving a copied path prevents subsequent backtracking from changing an answer."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 4,
+      "k": 2
+    },
+    "steps": [
+      "For n=4 and k=2, the root needs two numbers. It may start with 1, 2, or 3, but not 4.",
+      "Choose 1. The next start is 2, and one slot remains; choosing 2 completes [1,2].",
+      "Backtrack that second choice and try 3, then 4. Save [1,3] and [1,4].",
+      "Return to the root and choose 2. Its children complete [2,3] and [2,4].",
+      "The final root choice 3 has only child 4, producing [3,4]. These six paths are the six two-element selections."
+    ],
+    "result": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "needed = k - len(path)",
+      "note": "The number of missing choices determines both the completion condition and how far the next-value loop can safely extend."
+    },
+    {
+      "code": "for value in range(start, n - needed + 2):",
+      "note": "Python\u2019s range excludes its endpoint, so +2 includes the largest feasible start, n-needed+1, without entering branches too short to finish."
+    },
+    {
+      "code": "visit(value + 1)",
+      "note": "Moving beyond the chosen value enforces distinctness and ascending construction, eliminating alternative orderings of the same selected set."
+    }
+  ]
+}

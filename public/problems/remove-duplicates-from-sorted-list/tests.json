@@ -1,0 +1,87 @@
+[
+  {
+    "name": "One repeated run",
+    "input": {
+      "head": [
+        1,
+        1,
+        2
+      ]
+    },
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Two repeated runs",
+    "input": {
+      "head": [
+        1,
+        1,
+        2,
+        3,
+        3
+      ]
+    },
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Empty",
+    "input": {
+      "head": []
+    },
+    "expected": []
+  },
+  {
+    "name": "All equal",
+    "input": {
+      "head": [
+        7,
+        7,
+        7,
+        7
+      ]
+    },
+    "expected": [
+      7
+    ]
+  },
+  {
+    "name": "Already distinct",
+    "input": {
+      "head": [
+        -3,
+        0,
+        5
+      ]
+    },
+    "expected": [
+      -3,
+      0,
+      5
+    ]
+  },
+  {
+    "name": "Signed trailing duplicate run",
+    "input": {
+      "head": [
+        -3,
+        -3,
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": [
+      -3,
+      -1,
+      0
+    ]
+  }
+]

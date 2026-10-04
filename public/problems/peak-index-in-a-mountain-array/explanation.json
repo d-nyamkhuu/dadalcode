@@ -1,0 +1,39 @@
+{
+  "intuition": [
+    "Scanning for the maximum would return the peak, but the requested logarithmic time asks us to exploit the guaranteed mountain shape. Before the unique peak, each adjacent edge rises; from the peak onward, each edge falls. An adjacent comparison tells which side of a middle position contains the peak.",
+    "Maintain an inclusive interval containing the peak. If arr[mid] is smaller than arr[mid+1], the peak must be strictly after mid, so discard mid and everything before it. Otherwise the edge falls, and mid itself may be the peak, so retain mid as the new right boundary.",
+    "Each update shrinks the interval while preserving the peak. When left and right coincide, only the peak can remain. The loop condition left<right also guarantees mid+1 is in bounds: midpoint rounding places mid strictly before right. This reasoning depends on the strict mountain guarantee; plateaus or arbitrary arrays would need different handling. The answer is an index, so the final return must not substitute the corresponding maximum value."
+  ],
+  "walkthrough": {
+    "input": {
+      "arr": [
+        0,
+        1,
+        0
+      ]
+    },
+    "steps": [
+      "For [0,1,0], begin with left=0 and right=2, covering the entire mountain.",
+      "The midpoint is 1. Compare arr[1]=1 with arr[2]=0.",
+      "This edge falls, so the peak is at or before index 1; set right=1.",
+      "The new midpoint is 0. Compare arr[0]=0 with arr[1]=1.",
+      "This edge rises, so move left to 1. The bounds now meet.",
+      "Return index 1, whose value is the unique interior maximum."
+    ],
+    "result": 1
+  },
+  "codeNotes": [
+    {
+      "code": "while left < right:",
+      "note": "Stop when only one possible peak index remains; this also keeps mid+1 valid."
+    },
+    {
+      "code": "left = mid + 1",
+      "note": "A rising edge rules out mid and every earlier index as the peak."
+    },
+    {
+      "code": "right = mid",
+      "note": "A falling edge allows mid itself to be the peak, so it must not be discarded."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "palindromic-substrings",
+  "headline": "Every palindrome has one center",
+  "statement": "Count all contiguous substrings of s that read the same forward and backward. Equal strings at different positions count separately.",
+  "prerequisites": [
+    "Two pointers",
+    "Odd and even centers"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 1000.",
+    "s contains lowercase English letters."
+  ],
+  "intuition": "A palindrome expands symmetrically around a character or a gap. There are n odd centers and n-1 even centers. Extend matching endpoints and count every successful expansion.",
+  "approach": [
+    "Enumerate 2n-1 centers.",
+    "Map each center to equal pointers for odd length or neighboring pointers for even length.",
+    "While endpoints are in bounds and equal, increment the count and expand outward.",
+    "Return the total."
+  ],
+  "correctness": "Every palindromic substring has a unique center and radius. For that center, all its inner pairs match, so expansion reaches and counts it. Conversely, each successful expansion creates matching endpoints around a palindrome, so every counted substring is valid. Unique center/radius pairs prevent double counting positions.",
+  "bruteForce": "Enumerate all O(n²) substrings and test each in O(n), for O(n³) time. Expansion reuses the inner palindrome property.",
+  "complexity": {
+    "time": "O(n²)",
+    "space": "O(1)",
+    "explanation": "Repeated-character strings permit quadratic expansions; only pointers and a count are stored."
+  },
+  "pitfalls": [
+    "Include even-length centers between characters.",
+    "Repeated equal text at different positions counts repeatedly.",
+    "A single character is always a palindrome."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/palindromic-substrings/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s"
+    ],
+    "pointers": [
+      "center",
+      "left",
+      "right"
+    ],
+    "watch": [
+      "count"
+    ],
+    "labels": {
+      "s": "Input string",
+      "center": "Center index (character or gap)",
+      "left": "Left endpoint",
+      "right": "Right endpoint",
+      "count": "Positional palindrome count"
+    }
+  }
+}

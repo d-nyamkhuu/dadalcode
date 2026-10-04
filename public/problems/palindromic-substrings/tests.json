@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Example: distinct",
+    "input": {
+      "s": "abc"
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: repeated",
+    "input": {
+      "s": "aaa"
+    },
+    "expected": 6
+  },
+  {
+    "name": "One character",
+    "input": {
+      "s": "z"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Even palindrome",
+    "input": {
+      "s": "abba"
+    },
+    "expected": 6
+  },
+  {
+    "name": "Odd overlapping",
+    "input": {
+      "s": "ababa"
+    },
+    "expected": 9
+  },
+  {
+    "name": "Four repeats",
+    "input": {
+      "s": "aaaa"
+    },
+    "expected": 10
+  }
+]

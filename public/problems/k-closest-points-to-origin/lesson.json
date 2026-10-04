@@ -1,0 +1,61 @@
+{
+  "slug": "k-closest-points-to-origin",
+  "headline": "Compare squared distances",
+  "statement": "Return k points closest to the origin from points=[[x,y],...]. Distance is Euclidean. Any output order is accepted; the closest set is guaranteed unique except for order. Duplicate coordinate pairs count as separate input occurrences and must be returned with their required multiplicity.",
+  "prerequisites": [
+    "Distance formula",
+    "Bounded heap",
+    "Tuple comparisons"
+  ],
+  "constraints": [
+    "1 <= k <= len(points) <= 10,000",
+    "-10,000 <= x,y <= 10,000"
+  ],
+  "intuition": "The square root preserves ordering, so compare x*x+y*y directly. A size-k max heap exposes the farthest retained point for replacement when a closer point arrives.",
+  "approach": [
+    "Use negative squared distances to create a max heap on Python’s min-heap API.",
+    "Insert the first k points, retaining their input indices for safe ties.",
+    "Replace the farthest retained point only with a smaller distance, then return the selected original points."
+  ],
+  "correctness": "After every input point, the heap retains the k smallest distances seen, counting points separately. A farther new point cannot improve this set; a closer one replaces its maximum. Thus the final heap is exactly a closest-k set.",
+  "bruteForce": "Sort all points by squared distance and take the first k, costing O(n log n).",
+  "complexity": {
+    "time": "O(n log(k + 1))",
+    "space": "O(k)",
+    "explanation": "Each point causes at most one logarithmic heap operation, and only k entries are retained."
+  },
+  "pitfalls": [
+    "Avoid square roots and their unnecessary rounding.",
+    "Points are pairs, not just distances; return the original coordinates.",
+    "When validating, order is unrestricted but multiplicity is required."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/k-closest-points-to-origin/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "points",
+      "heap"
+    ],
+    "pointers": [
+      "index"
+    ],
+    "watch": [
+      "distance",
+      "k",
+      "point"
+    ],
+    "labels": {
+      "points": "Points",
+      "heap": "Heap",
+      "index": "Index",
+      "distance": "Distance",
+      "k": "K",
+      "point": "Point"
+    }
+  }
+}

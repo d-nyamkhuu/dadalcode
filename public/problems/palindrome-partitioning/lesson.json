@@ -1,0 +1,68 @@
+{
+  "slug": "palindrome-partitioning",
+  "headline": "Precompute palindrome ranges, then choose every valid next piece",
+  "statement": "Return every partition of s into contiguous nonempty substrings such that each piece is a palindrome. The pieces in each partition must concatenate to s. Return partitions in any order.",
+  "prerequisites": [
+    "Backtracking",
+    "Substring intervals",
+    "Boolean dynamic programming"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 16",
+    "s contains lowercase English letters"
+  ],
+  "intuition": "At an offset, any palindromic prefix of the remaining suffix may be the next piece. A palindrome table makes every proposed cut a constant-time lookup instead of repeatedly scanning its interior.",
+  "approach": [
+    "Fill palindrome[left][right] for increasing substring lengths using equal endpoints and the inner range.",
+    "Search from start; try every end whose table entry is true.",
+    "Append that substring, recurse at end+1, and undo the choice.",
+    "Record path when start reaches the string length."
+  ],
+  "correctness": "The table recurrence is exact: a range is palindromic iff endpoints match and its interior is palindromic, with length one or two handled directly. Each partition has a unique sequence of cut positions. The search tries every next palindromic range and only such ranges, so it enumerates every valid partition exactly once.",
+  "bruteForce": "Try all 2^(n-1) cut masks and independently scan each resulting substring for symmetry.",
+  "complexity": {
+    "time": "O(n² + n × 2^n)",
+    "space": "O(n²) auxiliary plus output",
+    "explanation": "The table costs n². In the worst case every cut pattern is valid, and copying pieces across outputs costs O(n×2^n)."
+  },
+  "pitfalls": [
+    "A partition covers the full string without skips.",
+    "Single characters are palindromes.",
+    "Do not confuse this with finding one longest palindromic substring."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/palindrome-partitioning/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "s",
+      "palindrome",
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "start",
+      "end"
+    ],
+    "watch": [
+      "length"
+    ],
+    "labels": {
+      "s": "S",
+      "palindrome": "Palindrome",
+      "path": "Path",
+      "result": "Result",
+      "left": "Left",
+      "right": "Right",
+      "start": "Start",
+      "end": "End",
+      "length": "Length"
+    }
+  }
+}

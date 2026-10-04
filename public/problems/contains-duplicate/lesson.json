@@ -1,0 +1,55 @@
+{
+  "slug": "contains-duplicate",
+  "headline": "Use membership to remember every distinct value",
+  "statement": "Return true if any integer occurs at least twice in nums; otherwise return false.",
+  "prerequisites": [
+    "Hash sets",
+    "Linear scans"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100000",
+    "-1000000000 <= nums[i] <= 1000000000"
+  ],
+  "intuition": "When you see a number again, the earlier copy is all the evidence needed. A set forgets order and frequency, which are irrelevant here, while retaining efficient membership checks.",
+  "approach": [
+    "Start an empty seen set.",
+    "For each value, return true if it is already present.",
+    "Otherwise add it and continue; return false after the scan."
+  ],
+  "correctness": "Before processing each value, seen contains exactly the values at earlier indices. Membership therefore detects precisely a pair with the current index as its later endpoint. If no membership succeeds, all values occur once.",
+  "bruteForce": "Compare every pair of indices, which can require O(n²) comparisons.",
+  "complexity": {
+    "time": "O(n) expected",
+    "space": "O(n)",
+    "explanation": "Hash-set membership and insertion take expected constant time, giving expected O(n) runtime. The expectation concerns performance, not correctness. At most n distinct values are retained."
+  },
+  "pitfalls": [
+    "Do not assume duplicates are adjacent.",
+    "Negative numbers and zero are ordinary set keys."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/contains-duplicate/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "seen"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "seen": "Seen",
+      "i": "I",
+      "value": "Value"
+    }
+  }
+}

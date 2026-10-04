@@ -1,0 +1,583 @@
+[
+  {
+    "slug": "insert-interval",
+    "verdict": "issue",
+    "formulation_review": "Defines sorted, disjoint, closed intervals and allows an empty list; endpoint-touching behavior is explicit. Clarify that newInterval endpoints obey the same numeric bounds.",
+    "explanation_review": "The three-region proof and walkthrough are correct, but the claimed transitive chain reaching intervals beyond the original insertion is impossible under pairwise-disjoint existing intervals.",
+    "solution_review": "Correct O(n) three-phase scan with O(1) working state excluding fresh output pairs. Starter signature and direct adapter match; inputs are not unnecessarily mutated.",
+    "tests_review": "Covers empty, containment, endpoint contact and insertion before all. Missing insertion after all and a disjoint middle insertion.",
+    "findings": [
+      {
+        "severity": "P3",
+        "title": "Remove impossible overlap-chain example under disjoint input constraints",
+        "file": "public/problems/insert-interval/explanation.json",
+        "line_start": 4,
+        "line_end": 4,
+        "detail": "The paragraph claims merging one existing interval can extend the endpoint enough to reach a later existing interval that did not overlap the original insertion. If a merged existing interval ends at b, its next closed disjoint interval starts strictly after b; any later interval beyond the original insertion end therefore also lies beyond the merged end. Such a transitive chain requires overlaps among existing intervals and cannot occur for this problem. The implementation itself remains correct.",
+        "evidence": "For consecutive existing intervals I,J, disjoint closed sorted input implies I.end < J.start. If J.start > newInterval.end and I overlaps newInterval, then J.start > max(I.end,newInterval.end), so J cannot be newly reached by merging I.",
+        "recommendation": "Explain that all original overlaps form one contiguous block; maintain current min/max union bounds without claiming a newly reached disjoint interval. Update the matching chain comments/code note wording as part of the same editorial cleanup."
+      }
+    ],
+    "improvements": [
+      "Add intervals=[[1,2],[4,5]], newInterval=[7,9] -> [[1,2],[4,5],[7,9]] and newInterval=[3,3] -> [[1,2],[3,3],[4,5]].",
+      "Rewrite the chain paragraph to explain merging the contiguous original overlap block; retain the expanding union endpoints as a clear implementation invariant."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures."
+    ]
+  },
+  {
+    "slug": "interval-list-intersections",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Both list ordering and disjointness plus closed endpoint semantics are clear; empty lists are legal.",
+    "explanation_review": "Earlier-ending pointer discard proof is sound; walkthrough correctly includes touching intersections. Equality of end times can be explained explicitly.",
+    "solution_review": "Correct linear two-pointer scan, constant working state. Advancing j on equal ends remains safe. Starter and adapter agree.",
+    "tests_review": "Good coverage of endpoint-only, containment, disjointness and either empty input. Equal end times followed by more intervals are absent.",
+    "findings": [],
+    "improvements": [
+      "Add firstList=[[1,3],[5,7]], secondList=[[2,3],[4,6]] -> [[2,3],[5,6]] to exercise equal end times.",
+      "Explain why either pointer can advance on an end-time tie."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures."
+    ]
+  },
+  {
+    "slug": "invert-binary-tree",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Clearly requires original root identity and swapped links rather than just equivalent values; empty tree is legal.",
+    "explanation_review": "Correct local-to-global mirror argument, stack explanation and involution observation.",
+    "solution_review": "Correct iterative DFS with O(n) time and O(h) stack. Adapter verifies every original node, value, and swapped child identity, so clone-return solutions cannot pass. Starter matches.",
+    "tests_review": "Balanced, empty, single, unilateral and asymmetric fixtures are useful. Strong identity checks exceed value-only output checks.",
+    "findings": [],
+    "improvements": [
+      "Add a 100-node one-sided fixture using only values within -100..100 to exercise iterative depth and full link preservation.",
+      "Use invert(invert(tree)) == original links as a generated property check, alongside the existing identity assertions."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures."
+    ]
+  },
+  {
+    "slug": "is-subsequence",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Distinguishes subsequences from contiguous matches and permits both strings to be empty.",
+    "explanation_review": "Earliest-match greedy invariant is sound; prefix progress walkthrough is accurate.",
+    "solution_review": "Correct O(len(t)) scan with guarded s indexing and constant state. Starter/direct adapter match. Returning early when all characters are found is optional.",
+    "tests_review": "Covers order and repeated-character false cases, but only tests empty s when t is also empty.",
+    "findings": [],
+    "improvements": [
+      "Add s=\"\", t=\"abc\" -> true; a mutant returning false only for this situation passes all six current fixtures.",
+      "Add s=\"aa\", t=\"aba\" -> true to pair the existing repeated-letter rejection with a valid repeated match.",
+      "Optionally return immediately when matched reaches len(s), and return true immediately for empty s."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant survived all current fixtures; added independent counterexample or performance rationale is described in test improvements."
+    ]
+  },
+  {
+    "slug": "jump-game",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Maximum rather than mandatory jump lengths and nonempty arrays are clearly specified.",
+    "explanation_review": "Continuous reachable-prefix invariant and gap proof are correct; walkthrough provides a concrete successful route.",
+    "solution_review": "Correct greedy O(n) scan and O(1) space, including singleton zero and crossing the final position. Starter/direct adapter match.",
+    "tests_review": "Useful blocking-zero, no-first-move and zero-crossing cases. Maximum numeric jump and large input are absent.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[100000,0,0] -> true to reinforce shorter-than-maximum landing semantics.",
+      "Keep a generated 10000-element [1,...,1,0] boundary test to guard against recursive alternatives exceeding available depth."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "k-closest-points-to-origin",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Specifies Euclidean distance, output order freedom, k bounds and unique closest set. Explicitly state that duplicate coordinate pairs count as separate input occurrences.",
+    "explanation_review": "Squared-distance and negative-distance heap reasoning are correct. The multiplicity paragraph is valuable.",
+    "solution_review": "Correct O(n log(k+1)) heap, O(k) storage. Index tie breaker safely retains original coordinates. Adapter validates shape, coordinate types, occurrence counts and optimal distance multiset; starter matches.",
+    "tests_review": "Covers signs, origin, k=n and different ranks, but has no duplicate coordinates or equal-distance retained points.",
+    "findings": [],
+    "improvements": [
+      "Add points=[[0,0],[0,0],[1,0]], k=2 -> [[0,0],[0,0]]; a deduplicating mutant passes all current tests and fails this valid unique closest multiset.",
+      "Add points=[[1,0],[0,1],[3,3]], k=2, accepting either order of the first two points, to exercise harmless equal-distance heap ties."
+    ],
+    "validation": [
+      "Read all six package files; all 5 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "Targeted mutant survived all current fixtures; added independent counterexample or performance rationale is described in test improvements.",
+      "Custom checker independently accepted a valid alternative/order and rejected a targeted malformed or incorrect answer: {'valid_accepted': True, 'invalid_rejected': True}."
+    ]
+  },
+  {
+    "slug": "kth-largest-element-in-an-array",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Rank versus distinct rank and multiplicity are explicit; k and value bounds are sufficient.",
+    "explanation_review": "Min-heap invariant and k=1/k=n observations are correct; sorting comparison is useful.",
+    "solution_review": "Correct O(n log(k+1)) bounded min heap and O(k) state. Equal incoming root values can safely be ignored once full. Starter/direct adapter match.",
+    "tests_review": "Includes duplicates, all equal, k=n, singleton and negative values. k=1 is only tested on singleton.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[-3,10,4,10], k=1 -> 10 to test repeated maximum replacement with k=1.",
+      "Add a descending input with intermediate k to exercise the no-replacement branch after heap fill."
+    ],
+    "validation": [
+      "Read all six package files; all 5 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "kth-smallest-element-in-a-bst",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "One-based rank, nonempty BST and valid k are stated. Spell out whether duplicate keys are prohibited, since the BST ordering assumption is left implicit.",
+    "explanation_review": "Inorder iterator proof is accurate; useful update/query extension is appropriately identified as a different optimization.",
+    "solution_review": "Correct O(h+k) early-stopping traversal, O(h) stack. No recursion-depth risk. Starter type annotations work with shared TreeNode injection; direct adapter matches.",
+    "tests_review": "Covers minimum and maximum rank, singleton, both chain directions and an interior rank. Existing chains are shallow.",
+    "findings": [],
+    "improvements": [
+      "Add a valid 10000-node chain and k=10000 to verify advertised skew-tree behavior.",
+      "Give a walkthrough with k>1 to show the transition into a popped node's right subtree and back to waiting ancestors."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "kth-smallest-element-in-a-sorted-matrix",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Square shape, row/column order, duplicate rank semantics and storage requirement are clear. Use nondecreasing instead of ascending to avoid suggesting strict order.",
+    "explanation_review": "Monotone threshold proof and bottom-left staircase are correct, including mid not necessarily being an entry.",
+    "solution_review": "Correct constant-space value binary search, O(n log(R+1)) for nonzero range with constant work on all-equal input. Starter/direct adapter match.",
+    "tests_review": "Strong cases for duplicates, gaps, negatives, singleton, first/last rank and all-equal matrix.",
+    "findings": [],
+    "improvements": [
+      "Add matrix=[[-1000000000,0],[0,1000000000]], k=3 -> 0 for full numeric range and duplicate boundary rank.",
+      "Include one annotated staircase count showing both row decrements and whole-column-prefix additions within a single midpoint."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "letter-case-permutation",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "English-only alphabet, unchanged digits and any output order are explicit; constraints bound recursion to 12.",
+    "explanation_review": "Cartesian-product explanation and undo invariant are correct; uppercase input handling is clear.",
+    "solution_review": "Correct backtracking with O(n*2^L) output-sensitive time and O(n) working state. Sorted-list adapter comparison preserves multiplicity and accepts any order. Starter matches.",
+    "tests_review": "Covers digits only, uppercase, mixed characters and small Cartesian products, but not the maximum number of branches.",
+    "findings": [],
+    "improvements": [
+      "Add s=\"abcdefghijkl\" with 4096 distinct outputs and invariant checks for length and per-position lower/upper choices.",
+      "Document total output space as O(n*2^L), in addition to the already correct O(n) auxiliary bound."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Custom checker independently accepted a valid alternative/order and rejected a targeted malformed or incorrect answer: {'valid_accepted': True, 'invalid_rejected': True}."
+    ]
+  },
+  {
+    "slug": "letter-combinations-of-a-phone-number",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "All eight mappings and the empty-input convention are fully specified; digits 0/1 are excluded.",
+    "explanation_review": "Independent choice/product explanation is correct; immutable prefixes correctly avoid sibling interference.",
+    "solution_review": "Correct enumerator. O(n^2) auxiliary characters for live copied prefixes is an accurate Python-specific refinement. Starter and order-insensitive multiplicity-aware adapter match.",
+    "tests_review": "Empty, repeated digit and both four-letter mappings are covered, but digits 4,5,6,8 never appear in any fixture.",
+    "findings": [],
+    "improvements": [
+      "Add digits=\"4568\" with the independently generated product of ghi, jkl, mno, tuv; a wrong digit-4 mapping passes every current fixture.",
+      "Add digits=\"7979\" to exercise maximum permitted length and all four-choice positions."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant survived all current fixtures; added independent counterexample or performance rationale is described in test improvements.",
+      "Custom checker independently accepted a valid alternative/order and rejected a targeted malformed or incorrect answer: {'valid_accepted': True, 'invalid_rejected': True}."
+    ]
+  },
+  {
+    "slug": "linked-list-cycle",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Fixture pos versus the actual head-only API and identity-based cycle definition are clear.",
+    "explanation_review": "Floyd meeting argument, safety guards and initial-equality warning are correct.",
+    "solution_review": "Correct identity comparison after movement; O(n) time/O(1) space. Adapter builds fixtures with the intended tail connection and starter exposes only head.",
+    "tests_review": "Covers empty, single acyclic, self-loop, two-node loop, internal entry and repeated acyclic values.",
+    "findings": [],
+    "improvements": [
+      "Add head=[1,2,3,4], pos=3 -> true to exercise a long prefix followed by a one-node tail cycle.",
+      "Retain generated 10000-node acyclic and tail-self-loop boundary tests to test termination and identity rather than short visual cases alone."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "2 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "linked-list-cycle-ii",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Original-node identity, no-link-mutation contract and fixture-only pos are explicit. Return annotation could be Optional[ListNode] to reflect None.",
+    "explanation_review": "Two-phase modular-distance proof is sound and example correctly returns the entry rather than initial meeting.",
+    "solution_review": "Correct Floyd detection and entry localization with O(1) state. Adapter verifies links unchanged and returned original identity; starter matches, though annotation omits None.",
+    "tests_review": "Strong coverage of internal/head entries, repeated values, no cycle, empty and self-loop.",
+    "findings": [],
+    "improvements": [
+      "Change both solution and starter annotations to Optional[ListNode] for the nullable head and nullable result.",
+      "Add a long prefix followed by a single tail-node loop, and a longer cycle with entry far from head, to show the second phase is necessary."
+    ],
+    "validation": [
+      "Read all six package files; all 7 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "2 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "longest-common-subsequence",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Clearly distinguishes subsequence order from adjacency and states nonempty lowercase inputs.",
+    "explanation_review": "Prefix recurrence, left-to-right dependency order and rolling rows are correct; walkthrough agrees with the implementation.",
+    "solution_review": "Correct O(mn) time and O(len(text2)) two-row memory; starter/direct adapter match.",
+    "tests_review": "Fixtures distinguish substring DP, repeated matches and order reversal. A mutant dropping the current-row left value is caught by Several choices.",
+    "findings": [],
+    "improvements": [
+      "Optionally swap input strings so the column dimension is the shorter one, reducing auxiliary memory to O(min(m,n)).",
+      "Add text1=\"a\", text2=\"ba\" -> 1 and reverse lengths to illustrate propagation across a row and across rows separately.",
+      "Keep a 1000-by-1000 repeated-letter boundary probe to verify full advertised input size."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: Several choices."
+    ]
+  },
+  {
+    "slug": "longest-consecutive-sequence",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Expected linear-time requirement, duplicates, empty input and value-versus-index meaning are explicit.",
+    "explanation_review": "Unique-run-start counting and amortized nested-loop argument are correct.",
+    "solution_review": "Correct expected O(n) set implementation and O(n) space. Iterating the set protects against duplicate run starts. Starter/direct adapter match.",
+    "tests_review": "Covers negative values, empty, duplicates and separated runs, but small duplicates cannot distinguish repeated-start quadratic scanning.",
+    "findings": [],
+    "improvements": [
+      "Add an operation-count or runtime-regression probe using nums=[0]*50000 + list(range(50000)); changing for value in values to for value in nums passes all current fixtures but repeats the entire run 50000 times.",
+      "Add values near -1000000000 and 1000000000 to reinforce that arithmetic adjacency is independent of list positions."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant survived all current fixtures; added independent counterexample or performance rationale is described in test improvements.",
+      "Membership-count instrumentation on [0]*500 + list(range(500)): reference uses 1001 lookups; an original-nums iteration mutant uses 252001 lookups with the same correct answer. Both pass all existing fixtures, confirming the performance coverage gap."
+    ]
+  },
+  {
+    "slug": "longest-increasing-subsequence",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Strict increase and preserved index order with skipped elements are explicit; input is nonempty.",
+    "explanation_review": "Minimum-tail invariant and the warning that tails need not itself be a subsequence are sound.",
+    "solution_review": "Correct bisect_left replacement algorithm, O(n log n) time/O(n) space. Starter imports the required helper and direct adapter matches.",
+    "tests_review": "Duplicate strictness, descending input, singleton and skipping are covered. Switching to bisect_right is caught by All equal.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[3,5,6,2,4] -> 3 and show final tails=[2,4,6], whose indices are out of order, to make the summary-not-reconstruction warning concrete.",
+      "Keep generated monotone 2500-element input as a boundary check."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: All equal."
+    ]
+  },
+  {
+    "slug": "longest-palindromic-substring",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Contiguous, nonempty input and any longest tied answer are clear; letters/digits permit case-sensitive examples.",
+    "explanation_review": "Odd/even centers, stopped-pointer bounds and one-time slice allocation are explained correctly.",
+    "solution_review": "Correct O(n^2) center expansion and constant working state excluding output. Adapter verifies palindrome, containment and optimal fixture length while allowing ties; starter matches.",
+    "tests_review": "Useful odd/even, repeated, whole, internal and singleton cases. Removing even centers is caught by three fixtures.",
+    "findings": [],
+    "improvements": [
+      "Add s=\"abcd\" accepting any one-character answer, and s=\"aA1\" to make case-sensitive distinct-character behavior explicit.",
+      "Test the checker with alternate optimum \"aba\" for babad and reject a shorter palindrome, an invented palindrome and a nonpalindrome of expected length."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: Official even, Repeated letters, Internal palindrome.",
+      "Custom checker independently accepted a valid alternative/order and rejected a targeted malformed or incorrect answer: {'valid_accepted': True, 'invalid_rejected': True}."
+    ]
+  },
+  {
+    "slug": "longest-repeating-character-replacement",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Replacement budget is at most k; uppercase fixed alphabet and contiguous length are explicit.",
+    "explanation_review": "Exact majority-cost reasoning and repeated shrink walkthrough are correct; using recomputed maximum keeps displayed windows valid.",
+    "solution_review": "Correct O(26n) scan and O(26) state. Existing zero-frequency keys remain bounded by the alphabet. Starter/direct adapter match.",
+    "tests_review": "Budget zero/full, singleton, all different and changing majorities are tested; AABABBA forces multiple removals.",
+    "findings": [],
+    "improvements": [
+      "Add s=\"AAAA\", k=0 -> 4 and a large 26-letter alternating input to cover the no-shrink and frequent-shrink extremes.",
+      "Mention that historical-maximum variants have a different window invariant so readers do not substitute stale counts into this exact-valid-window proof."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "longest-substring-without-repeating-characters",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Contiguous distinct-character length, empty input, spaces and symbols are explicit.",
+    "explanation_review": "Last-occurrence jump and monotone left boundary proof are correct; historical dictionary entries are explained well.",
+    "solution_review": "Correct O(n) scan with space bounded by distinct characters. Starter and direct adapter match.",
+    "tests_review": "Excellent targeted cases: abba catches retreating left, pwwkew distinguishes subsequences, and spaces/punctuation are exercised.",
+    "findings": [],
+    "improvements": [
+      "Add a trailing all-distinct suffix case such as s=\"aaaaabcd\" -> 4 to test the optimum after a long repeated prefix.",
+      "Use a generated 50000-character repeated input and a long unique-prefix/repeated-suffix input as practical boundary checks."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: Must not retreat left."
+    ]
+  },
+  {
+    "slug": "longest-word-in-dictionary",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Requires every nonempty prefix, specifies lexicographic tie and empty answer. Dictionary duplicates are not explicitly prohibited and implementation handles them.",
+    "explanation_review": "Length-ordered certification and strict-length tie update proof are correct; walkthrough reflects the sorted order.",
+    "solution_review": "Correct sorted pass with prefix-set membership. Time bound accounts for Python character comparisons/copying. Space O(W*L) is conservative; stored strings reuse references, so O(W) container entries plus O(L) temporary characters describes auxiliary storage more precisely. Starter/adapter match.",
+    "tests_review": "Covers missing first and middle prefixes, unsorted input and lexicographic ties.",
+    "findings": [],
+    "improvements": [
+      "Add duplicate dictionary entries such as words=[\"a\",\"a\",\"ab\",\"abc\"] -> \"abc\" to state whether repeated inputs are accepted.",
+      "Clarify total input storage versus auxiliary references in the O(W*L) space explanation.",
+      "Consider a shorter sentence defining W and L immediately next to the complexity labels."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures."
+    ]
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Distinct existing targets, distinct keys, ancestor-self rule and original-node return contract are clear. Fixture p/q values are explained.",
+    "explanation_review": "Shared descent and first-split proof are correct; walkthrough has both a left and a right descent.",
+    "solution_review": "Correct O(h) search/O(1) space. Adapter ensures original returned identity and starter signature matches.",
+    "tests_review": "Root/lower splits, ancestor target, two nodes, negatives and reversed target order are covered. All existing trees are small.",
+    "findings": [],
+    "improvements": [
+      "Add an entirely rightward search fixture, e.g. root=[1,null,2,null,3,null,4], p=3, q=4 -> 3.",
+      "Keep a deep valid BST chain boundary check to ensure iterative O(h) behavior without recursion."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-tree",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Distinct existing targets and unique values are stated; returning an original node is in pitfalls but can also be made explicit in the statement with fixture p/q encoding.",
+    "explanation_review": "Parent discovery and first upward-chain intersection proof are correct; the walkthrough intentionally uses a non-BST tree.",
+    "solution_review": "Correct iterative O(n) parent-map algorithm, O(n) storage. Shared TreeNode objects are identity-hashable. Adapter verifies original-node result and starter matches.",
+    "tests_review": "Covers separate branches, target ancestor, siblings, non-BST ordering, negatives and a shallow chain.",
+    "findings": [],
+    "improvements": [
+      "Explicitly state that trainer p and q are supplied as node values while the Python method receives node objects.",
+      "Add a deep chain near the 100000-node bound, or at least beyond Python recursion depth, to enforce the advertised iterative robustness.",
+      "Add reversed target order for an ancestor/descendant pair to confirm both upward walks handle the self-ancestor case."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "majority-element",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Strict majority, nonempty input and existence guarantee are clear; no arbitrary no-majority case is required.",
+    "explanation_review": "Unequal-pair cancellation proof and vote-versus-frequency distinction are correct.",
+    "solution_review": "Correct Boyer-Moore candidate scan with O(n) time and O(1) state; starter/direct adapter match.",
+    "tests_review": "Good reset, late takeover, negative, singleton and zero-majority coverage.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[2,1,2,1,2] -> 2 for repeated complete cancellations before the guaranteed winner.",
+      "Keep the existence guarantee next to any reuse example; add a verification pass only when extending to arbitrary arrays."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "maximum-average-subarray-i",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Exact length k, absolute 1e-5 tolerance and numeric bounds are explicit.",
+    "explanation_review": "Fixed denominator, incremental sum and actual-first-window initialization are correct; walkthrough arithmetic is accurate.",
+    "solution_review": "Correct O(n) scan/O(1) state without a temporary initial slice. Adapter accepts finite numeric answers within the stated tolerance and rejects bool, NaN and infinity; starter matches.",
+    "tests_review": "Covers all-negative values, k=1, k=n, singleton and fractional result; zero-initialization mutant is caught.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[10,0,0], k=2 -> 5.0 to make a best-first-window case explicit.",
+      "Test adapter tolerance at exactly 1e-5 and just beyond it, and test nonfinite/wrong-type outputs."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: Example: single, All negative, Whole array, Fractional result.",
+      "Custom checker independently accepted a valid alternative/order and rejected a targeted malformed or incorrect answer: {'valid_accepted': True, 'invalid_rejected': True}."
+    ]
+  },
+  {
+    "slug": "maximum-binary-tree",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Recursive maximum construction, distinctness and level-order trainer serialization are clear.",
+    "explanation_review": "Decreasing right-ancestor chain and last-popped-root reasoning are correct; mixed-input walkthrough illustrates both linking modes.",
+    "solution_review": "Correct linear monotonic-stack construction. Working stack is O(n), constructed nodes O(n) output. Shared TreeNode injection supports solution/starter; adapter serializes with repeated-node protection.",
+    "tests_review": "Mixed, ascending, descending, singleton and middle maximum cover core structure. Existing chains are only length three.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[5,1,2,3,4] -> [5,null,4,3,null,2,null,1] to isolate repeated absorption under a surviving larger ancestor.",
+      "Keep a sorted 1000-value boundary probe to catch naive recursive implementations and verify the promised linear method.",
+      "Separate O(n) auxiliary stack from O(n) returned tree allocation in the space explanation."
+    ],
+    "validation": [
+      "Read all six package files; all 5 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "maximum-depth-of-binary-tree",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Counts nodes along root-to-leaf paths rather than edges; empty tree behavior is explicit.",
+    "explanation_review": "Exact propagated-depth invariant and explanation that maximum internal depth cannot exceed maximum leaf depth are sound.",
+    "solution_review": "Correct O(n) iterative DFS/O(h) stack. Deep skew traversal avoids recursion limits. Starter/direct adapter match.",
+    "tests_review": "Empty, zero-valued singleton, balanced, both unilateral shapes and asymmetry are covered, but deepest fixture is four nodes.",
+    "findings": [],
+    "improvements": [
+      "Add a 10000-node chain with repeated legal values, expected depth 10000, to make the iterative-depth claim executable.",
+      "Shorten the headline to a brief teaching cue, e.g. Carry each node's depth on the stack; keep the longer detail in intuition."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "maximum-frequency-stack",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Stateful API, active-frequency priority, most recent remaining occurrence tie rule and nonempty-pop guarantee are clear. Describe trainer operation arrays and null push results.",
+    "explanation_review": "Frequency-level event stacks and preserved lower-level history proof are correct; walkthrough recency ordering is accurate.",
+    "solution_review": "Correct amortized O(1) operations and O(active pushes) state. Deleting zero-count keys and empty groups makes the stated active-storage bound accurate. Starter has all methods and adapter dispatch matches.",
+    "tests_review": "Strong examples for ties, frequency, interleaving, zero values and reuse after becoming empty.",
+    "findings": [],
+    "improvements": [
+      "Add an interleaved re-push after a frequency-level drop, e.g. push 1, push 2, push 1, pop, push 1, pop, pop, pop -> null,null,null,1,null,1,2,1.",
+      "Explain that constructor is implicit in trainer operations and push returns None, which appears as null in expected output.",
+      "Keep a 20000-operation fill-and-drain probe and inspect that frequency/groups are empty after draining."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  },
+  {
+    "slug": "maximum-product-subarray",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Nonempty contiguous candidates, singleton validity and numeric/product bounds are clearly specified.",
+    "explanation_review": "Sign-sensitive extreme tracking, zero restart and preserving old values before simultaneous transitions are correct.",
+    "solution_review": "Correct O(n) DP with O(1) working state under bounded products. Starter/direct adapter match.",
+    "tests_review": "Positive prefix, zero-separated negatives, sign flip, negative singleton, restart and ones exercise the main recurrence; dropping minimum is caught by Two negatives.",
+    "findings": [],
+    "improvements": [
+      "Add nums=[-2,-3,-4] -> 12 for an odd all-negative run whose optimum excludes one endpoint.",
+      "Add nums=[-2,0,-3,-4] -> 12 to combine a reset with a minimum-to-maximum sign flip."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: Two negatives."
+    ]
+  },
+  {
+    "slug": "maximum-subarray",
+    "verdict": "issue",
+    "formulation_review": "Nonempty contiguous maximum sum and numeric bounds are explicit.",
+    "explanation_review": "Detailed explanation and correctness proof are sound, but lesson intuition reverses the consequence of a negative previous sum.",
+    "solution_review": "Correct Kadane recurrence O(n)/O(1), initialized from a real element. Starter and direct adapter match.",
+    "tests_review": "All-negative, zero, singleton, whole-array and early-optimum cases are strong; returning final ending instead of global best is caught by four fixtures.",
+    "findings": [
+      {
+        "severity": "P3",
+        "title": "Correct the reversed negative-prefix intuition",
+        "file": "public/problems/maximum-subarray/lesson.json",
+        "line_start": 13,
+        "line_end": 13,
+        "detail": "The intuition says a negative previous sum makes a fresh start worse. A fresh start omits the negative prefix, so extending is worse; the sentence contradicts the correct recurrence and detailed explanation.",
+        "evidence": "For nums=[-2,1], extending gives -2+1=-1 while restarting gives 1. The reference and oracle return 1.",
+        "recommendation": "Replace the sentence with: A negative previous sum makes extending worse than starting fresh at this value."
+      }
+    ],
+    "improvements": [
+      "Fix the intuition sentence to say a negative previous sum makes extending worse, so starting at the new value is better.",
+      "Add a two-value explanatory example nums=[-2,1] -> 1 to connect the corrected wording directly to the recurrence."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "250 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter.",
+      "Targeted mutant was rejected by: Example: middle maximum, All negative, Zero beats negative, Best ends early."
+    ]
+  },
+  {
+    "slug": "maximum-width-of-binary-tree",
+    "verdict": "no-confirmed-defect",
+    "formulation_review": "Conceptual gaps, nonempty tree and bounded answer are explicit; width differs from count of present nodes.",
+    "explanation_review": "Common index translation proof and sparse example are correct; normalization prevents coordinate growth unrelated to actual width.",
+    "solution_review": "Correct O(n) BFS with queue size bounded by real present nodes on adjacent levels. Starter and direct adapter match; no empty-root guard is required by current constraints.",
+    "tests_review": "Useful gap, full, singleton and one-sided fixtures; deep narrow and large bounded sparse widths are absent.",
+    "findings": [],
+    "improvements": [
+      "Add a 3000-node one-sided chain with legal repeated values, expected width 1, to validate normalization across depth.",
+      "Add a sparse tree with far-separated extreme branches and width near the signed 32-bit bound while retaining few real nodes.",
+      "Use a symbol such as w_real for maximum number of present nodes at a level in the complexity label to distinguish queue space from conceptual width."
+    ],
+    "validation": [
+      "Read all six package files; all 6 supplied fixtures passed through src/runtime/harness.py.",
+      "239 independently generated valid cases passed against a separate oracle (seed 103); zero failures.",
+      "1 valid upper-bound/deep-input checks passed through the actual adapter."
+    ]
+  }
+]

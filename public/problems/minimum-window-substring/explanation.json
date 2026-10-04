@@ -1,0 +1,38 @@
+{
+  "intuition": [
+    "Checking every substring and recounting its characters is expensive, especially because adjacent candidates share almost all their contents. A useful window can be expanded or shrunk by adjusting just one character count. The crucial detail is multiplicity: if t contains two As, finding one A does not satisfy the requirement.",
+    "The needed dictionary records each required count minus its count in the window. Positive values are deficits; zero means exactly enough copies, and negative values mean surplus. missing counts the total number of unmatched copies. Consuming a character reduces missing only while its deficit is positive.",
+    "Once missing reaches zero, the window covers t. Record its length and advance left, restoring the released character’s deficit. Surplus characters can leave without invalidating coverage; releasing an essential copy makes missing positive and ends shrinking. Right then resumes expanding. Both boundaries only move forward, yet the shortest valid window ending at every relevant right position is considered.",
+    "Characters absent from t also acquire Counter entries as s is scanned. Their initial deficit is zero, consumption makes it negative, and release restores it toward zero without changing missing. Thus irrelevant letters behave like surplus; they neither satisfy a needed copy nor invalidate coverage when removed."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "ADOBECODEBANC",
+      "t": "ABC"
+    },
+    "steps": [
+      "Initially needed[A]=needed[B]=needed[C]=1 and missing=3. Reading through right=5 creates ADOBEC, length 6, with missing=0.",
+      "Record length 6, then release A at index 0: needed[A]=1, missing=1, left=1. Expansion resumes.",
+      "A at right=10 restores missing=0. Shrink from left=1, releasing D,O, the surplus B, and E; left reaches 5. The valid shorter window CODEBA has length 6 and does not improve best.",
+      "Release C at index 5: needed[C]=1, missing=1, left=6. Reading N at index 11 leaves that required copy missing.",
+      "C at right=12 restores needed[C]=0 and missing=0. Release surplus O,D,E at indices 6,7,8; left becomes 9.",
+      "Now BANC at indices 9..12 is valid with length 4, so save it. Releasing B makes needed[B]=1, missing=1, left=10, ending the final shrink.",
+      "Return BANC, the saved shortest valid window. Every removed required copy stopped shrinking at exactly the point coverage failed."
+    ],
+    "result": "BANC"
+  },
+  "codeNotes": [
+    {
+      "code": "if needed[ch] > 0:\n                missing -= 1",
+      "note": "Only an unmet copy reduces the total deficit; extra copies remain useful surplus."
+    },
+    {
+      "code": "while missing == 0:",
+      "note": "Shrink only valid windows, recording candidates before removing a necessary character."
+    },
+    {
+      "code": "if needed[leaving] > 0:\n                    missing += 1",
+      "note": "After release, a positive deficit means this exact copy is required to recover coverage."
+    }
+  ]
+}

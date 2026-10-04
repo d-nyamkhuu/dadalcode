@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Example: idle intervals",
+    "input": {
+      "tasks": [
+        "A",
+        "A",
+        "A",
+        "B",
+        "B",
+        "B"
+      ],
+      "n": 2
+    },
+    "expected": 8
+  },
+  {
+    "name": "Example: enough other tasks",
+    "input": {
+      "tasks": [
+        "A",
+        "C",
+        "A",
+        "B",
+        "D",
+        "B"
+      ],
+      "n": 1
+    },
+    "expected": 6
+  },
+  {
+    "name": "No cooldown",
+    "input": {
+      "tasks": [
+        "A",
+        "A",
+        "B"
+      ],
+      "n": 0
+    },
+    "expected": 3
+  },
+  {
+    "name": "One label",
+    "input": {
+      "tasks": [
+        "A",
+        "A",
+        "A"
+      ],
+      "n": 2
+    },
+    "expected": 7
+  },
+  {
+    "name": "Single task",
+    "input": {
+      "tasks": [
+        "Z"
+      ],
+      "n": 100
+    },
+    "expected": 1
+  },
+  {
+    "name": "Many tied maxima",
+    "input": {
+      "tasks": [
+        "A",
+        "A",
+        "B",
+        "B",
+        "C",
+        "C"
+      ],
+      "n": 2
+    },
+    "expected": 6
+  },
+  {
+    "name": "Tied leaders exceed frame width",
+    "input": {
+      "tasks": [
+        "A",
+        "A",
+        "B",
+        "B",
+        "C",
+        "C",
+        "D",
+        "D"
+      ],
+      "n": 1
+    },
+    "expected": 8
+  }
+]

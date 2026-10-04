@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "For each digit, several letters are possible. Checking whether an arbitrary word matches the digits would waste time on letters that cannot occur. Instead, construct only valid words by choosing one permitted letter at each position. Every completed construction is already an answer.",
+    "The state is a digit index and a partial word. The prefix describes decisions already made; the index identifies the next independent choice. For digit 2, the next letters are a, b, c. For digit 3, they are d, e, f.",
+    "Backtracking here needs no rejection rule because every partial prefix is feasible. The recursion simply enumerates the Cartesian product of these letter sets. A new string is passed into each branch, so sibling branches cannot overwrite one another\u2019s prefix. Empty input is handled separately."
+  ],
+  "walkthrough": {
+    "input": {
+      "digits": "23"
+    },
+    "steps": [
+      "For digits \"23\", start at index 0 with an empty prefix; the first choices are a, b, and c.",
+      "Choose a. At index 1 the digit is 3, so extend a with d to form ad.",
+      "Index 2 is past the last digit. Save ad, then explore ae and af from the same prefix a.",
+      "Return to the first digit and choose b, yielding bd, be, and bf after its three second-digit choices.",
+      "The c branch produces cd, ce, and cf. All nine words have exactly one permitted letter per digit."
+    ],
+    "result": [
+      "ad",
+      "ae",
+      "af",
+      "bd",
+      "be",
+      "bf",
+      "cd",
+      "ce",
+      "cf"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if not digits:",
+      "note": "Without this early return, the recursion\u2019s terminal case would save an empty string, whereas empty input requires an empty result list."
+    },
+    {
+      "code": "if i == len(digits):",
+      "note": "Reaching this depth certifies that the partial word has one chosen letter for every digit; no additional validity check is needed."
+    },
+    {
+      "code": "visit(i + 1, path + letter)",
+      "note": "Advancing the index fixes exactly one more position. String concatenation gives the child its own prefix and preserves the parent branch."
+    }
+  ]
+}

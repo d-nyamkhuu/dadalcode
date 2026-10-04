@@ -1,0 +1,54 @@
+{
+  "slug": "linked-list-cycle",
+  "headline": "A faster pointer catches the slower one inside a cycle",
+  "statement": "Return whether a singly linked list has a cycle: following next repeatedly can revisit a node. The trainer uses values head and pos, where pos is the index connected to the tail, or -1 for no cycle. pos describes the fixture and is not an argument to hasCycle.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Node references and pointer reassignment"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 10^4",
+    "Node values range from -10^5 to 10^5.",
+    "pos is -1 or a valid index; hasCycle receives only head."
+  ],
+  "intuition": "Use a slow pointer moving one link and a fast pointer moving two. In an acyclic list fast eventually reaches null. In a cycle, once both pointers enter it, their relative position changes by one per iteration, so fast must meet slow.",
+  "approach": [
+    "Initialize slow and fast at head.",
+    "While fast and fast.next exist, advance slow once and fast twice.",
+    "Compare node identity after moving; equality proves a cycle.",
+    "Return false if fast reaches an endpoint."
+  ],
+  "correctness": "An acyclic list cannot revisit a node, and the faster pointer eventually leaves it. For a cycle of length c, both pointers eventually enter the cycle, and their distance modulo c decreases by one each iteration, reaching zero within c iterations. Identity equality then proves an actual repeated node, regardless of repeated values.",
+  "bruteForce": "Store every visited node in a set and return true upon revisiting one. This takes O(n) extra space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Pointers take at most a linear number of steps before termination or meeting."
+  },
+  "pitfalls": [
+    "Compare objects with is, not node values.",
+    "Do not declare a cycle from the initial equality at head.",
+    "Check both fast and fast.next before a two-link move."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/linked-list-cycle/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "slow",
+      "fast"
+    ],
+    "pointers": [],
+    "watch": [],
+    "labels": {
+      "head": "Head",
+      "slow": "Slow",
+      "fast": "Fast"
+    }
+  }
+}

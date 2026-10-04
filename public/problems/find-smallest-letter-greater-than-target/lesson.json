@@ -1,0 +1,58 @@
+{
+  "slug": "find-smallest-letter-greater-than-target",
+  "headline": "Find the first strict upper bound and wrap around",
+  "statement": "Given sorted letters with at least two distinct lowercase characters and a target character, return the smallest letter strictly greater than target. If no letter is greater, return the first letter.",
+  "prerequisites": [
+    "Binary search",
+    "Sorted strings"
+  ],
+  "constraints": [
+    "2 <= len(letters) <= 10000",
+    "letters is sorted and contains at least two distinct lowercase English letters",
+    "target is a lowercase English letter"
+  ],
+  "intuition": "All letters <= target lie before all valid answers. Binary search this boundary with a half-open interval. If the boundary is beyond the array, the problem\u2019s circular rule returns index zero.",
+  "approach": [
+    "Search [left,right) for the first letter > target.",
+    "Move left past mid when letters[mid] <= target; otherwise lower right to mid.",
+    "Return letters[left % len(letters)]."
+  ],
+  "correctness": "The search maintains that all indices below left are <= target and all indices at or above right are > target. Updating by the middle comparison preserves these partitions until left==right is the first valid index. Modulo converts the no-valid-letter boundary to the stipulated wraparound answer.",
+  "bruteForce": "Scan from the beginning until a letter greater than target is encountered; this costs O(n).",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "explanation": "Binary search halves the candidate range; wraparound takes constant time."
+  },
+  "pitfalls": [
+    "The comparison is strictly greater; duplicates equal to target must be skipped.",
+    "Wrap to the first letter when the insertion point equals len(letters)."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/find-smallest-letter-greater-than-target/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "letters"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "watch": [
+      "target"
+    ],
+    "labels": {
+      "letters": "Letters",
+      "left": "Left",
+      "right": "Right",
+      "mid": "Mid",
+      "target": "Target"
+    }
+  }
+}

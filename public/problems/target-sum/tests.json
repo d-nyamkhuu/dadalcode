@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Five ones",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "target": 3
+    },
+    "expected": 5
+  },
+  {
+    "name": "One plus",
+    "input": {
+      "nums": [
+        1
+      ],
+      "target": 1
+    },
+    "expected": 1
+  },
+  {
+    "name": "Zero doubles choices",
+    "input": {
+      "nums": [
+        0,
+        0,
+        1
+      ],
+      "target": 1
+    },
+    "expected": 4
+  },
+  {
+    "name": "Negative target",
+    "input": {
+      "nums": [
+        1,
+        2
+      ],
+      "target": -1
+    },
+    "expected": 1
+  },
+  {
+    "name": "Impossible target",
+    "input": {
+      "nums": [
+        2,
+        4
+      ],
+      "target": 1
+    },
+    "expected": 0
+  },
+  {
+    "name": "All zero",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0
+      ],
+      "target": 0
+    },
+    "expected": 8
+  },
+  {
+    "name": "Negative target at sum bound",
+    "input": {
+      "nums": [
+        1000
+      ],
+      "target": -1000
+    },
+    "expected": 1
+  },
+  {
+    "name": "Target outside reachable range",
+    "input": {
+      "nums": [
+        2
+      ],
+      "target": 3
+    },
+    "expected": 0
+  }
+]

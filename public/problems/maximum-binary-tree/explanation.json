@@ -1,0 +1,52 @@
+{
+  "intuition": [
+    "The recursive definition says to find a subarray\u2019s maximum, use it as root, and repeat on the two sides. Repeated scans can be quadratic for sorted input. A monotonic stack builds the same tree left to right by remembering the pending rightmost ancestor chain.",
+    "Keep the stack decreasing by value. A new value larger than the top becomes the parent of that smaller pending subtree. Pop smaller roots until a larger ancestor remains or the stack is empty. The last popped root already contains the earlier popped nodes in its right chain, so assigning it as the new node\u2019s left child preserves the entire absorbed subtree.",
+    "If a larger ancestor remains, attach the new node as its right child, replacing the smaller trailing subtree that the new node just absorbed. Then push the new node. These links preserve original inorder order and make every parent larger than its descendants, exactly the defining properties of the maximum tree. Each node is pushed once and popped at most once, replacing repeated maximum scans with linear work."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        3,
+        2,
+        1,
+        6,
+        0,
+        5
+      ]
+    },
+    "steps": [
+      "For [3,2,1,6,0,5], values 3,2,1 create a right chain 3\u21922\u21921 on the decreasing stack.",
+      "Reading 6 pops 1, then 2, then 3. The final popped subtree rooted at 3 becomes 6\u2019s left child.",
+      "The stack was emptied, so 6 becomes the overall root.",
+      "Reading 0 attaches it as the current right child of 6.",
+      "Reading 5 pops 0 into its left child, then becomes the right child of remaining ancestor 6.",
+      "Return root 6, whose left subtree preserves [3,2,1] and whose right subtree is 5 with left child 0."
+    ],
+    "result": [
+      6,
+      3,
+      5,
+      null,
+      2,
+      0,
+      null,
+      null,
+      1
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "while stack and stack[-1].val < value:",
+      "note": "Absorb exactly the smaller trailing roots under the newly encountered larger value."
+    },
+    {
+      "code": "node.left = stack.pop()",
+      "note": "The final popped root carries all earlier popped descendants, so one left link preserves the entire subtree."
+    },
+    {
+      "code": "stack[-1].right = node",
+      "note": "A surviving larger ancestor retains the new subtree on its right, maintaining input inorder order."
+    }
+  ]
+}

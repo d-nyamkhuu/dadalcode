@@ -1,0 +1,51 @@
+{
+  "slug": "valid-parentheses",
+  "headline": "Match each closer with the most recent unmatched opener",
+  "statement": "Determine whether a string of (), [], and {} brackets is correctly matched and nested. Every closing bracket must match the latest unmatched opening bracket, and no unmatched bracket may remain.",
+  "prerequisites": [
+    "Stacks",
+    "Last-in-first-out ordering"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 10000.",
+    "Only the six bracket characters occur."
+  ],
+  "intuition": "A nested pair must close before the surrounding pair. Therefore the most recent opener is the only legal match for a closer: exactly the last-in-first-out rule of a stack.",
+  "approach": [
+    "Push every opening bracket.",
+    "For a closing bracket, reject an empty stack or a mismatched top.",
+    "Pop its matching opener.",
+    "Accept only if the stack is empty at the end."
+  ],
+  "correctness": "The stack contains exactly the unmatched opening brackets of the processed prefix, in their nesting order. A closer must match its top to preserve valid nesting. Rejection detects an impossible match; successful exhaustion with an empty stack proves all brackets were matched correctly.",
+  "bruteForce": "Repeatedly remove adjacent matching pairs until none remain. This can require O(n\u00b2) rescanning; a stack performs each match once.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "Each bracket is pushed or matched once; all openings may accumulate."
+  },
+  "pitfalls": [
+    "Equal counts do not guarantee correct nesting.",
+    "A leading closing bracket is invalid.",
+    "Reject leftover openings after the scan."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/valid-parentheses/"
+    }
+  ],
+  "visualization": {
+    "kind": "stack",
+    "focus": [
+      "s",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "char",
+      "expected"
+    ],
+    "labels": {}
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "rotate-array",
+  "headline": "Reverse three segments to rotate in place",
+  "statement": "Rotate nums to the right by k positions, modifying the same list in place. k is nonnegative and may exceed the array length. The method returns nothing. Aim for linear time with constant extra space.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10^5",
+    "0 <= k <= 10^5",
+    "Elements are 32-bit signed integers."
+  ],
+  "intuition": "Write the array as A+B where B is the last k values. Reversing everything gives reverse(B)+reverse(A). Reverse each segment separately to restore internal order, yielding B+A without allocating another list.",
+  "approach": [
+    "Reduce k modulo the array length.",
+    "Reverse the entire list with two swapping pointers.",
+    "Reverse indices 0..k-1 and then k..n-1."
+  ],
+  "correctness": "The first reversal swaps the segment positions and reverses their interiors. The next two reversals restore both interiors, producing exactly the last k elements followed by the first n-k. Modulo reduction preserves the rotation because a full n-step rotation is identity.",
+  "bruteForce": "Move the final value to the front k times; repeated shifts cost O(n*k). An auxiliary rotated copy takes O(n) extra storage.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Three segment reversals collectively swap O(n) pairs. The helper uses two indices and swaps in the same list, with no slices or auxiliary rotated array."
+  },
+  "pitfalls": [
+    "Modify nums instead of returning a newly rotated list.",
+    "Reduce k before determining segment boundaries.",
+    "Avoid slices if claiming constant auxiliary space."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/rotate-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "right"
+    ],
+    "watch": [
+      "k",
+      "n"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "left": "Left",
+      "right": "Right",
+      "k": "K",
+      "n": "N"
+    }
+  }
+}

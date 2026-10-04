@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Finding an increasing subsequence’s maximum length is not enough to count how many achieve it. Different earlier choices can produce the same length, and equal-valued elements at different indices are distinct choices even though they cannot extend one another in a strictly increasing sequence.",
+    "For each endpoint i, store length[i], the best increasing length ending there, and ways[i], the number of index sequences achieving that length. A single element begins with length one and count one. Every smaller earlier value at j proposes a continuation of length length[j]+1.",
+    "An improved proposal replaces the previous count because shorter constructions no longer matter. An equally good proposal adds its count: sequences with different previous indices are disjoint, so their counts combine without duplication. After processing all endpoints, find the global longest length and sum ways over every endpoint attaining it. Counting only the final index would miss longest sequences finishing earlier. This endpoint-based decomposition explains both the transition and why the final sum counts each optimal subsequence exactly once.",
+    "For the main example, the complete length/ways arrays after each endpoint are: after 1, [1,1,1,1,1]/[1,1,1,1,1]; after 3, [1,2,1,1,1]/[1,1,1,1,1]; after 5, [1,2,3,1,1]/[1,1,1,1,1]; after 4, [1,2,3,3,1]/[1,1,1,1,1]; after 7, [1,2,3,3,4]/[1,1,1,1,2]. Entries after the processed endpoint still hold their singleton initialization."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        3,
+        5,
+        4,
+        7
+      ]
+    },
+    "steps": [
+      "For [1,3,5,4,7], initialize every endpoint with length 1 and ways 1.",
+      "Endpoint 3 extends 1, reaching length 2. Endpoint 5 extends that chain, reaching length 3.",
+      "Endpoint 4 also extends 1→3 to length 3; it cannot extend 5 because 5 is larger.",
+      "At value 7, predecessor 5 proposes length 4 with one way. Predecessor 4 ties that length and contributes another way.",
+      "The longest length is 4 and the count at its only endpoint is 2: [1,3,5,7] and [1,3,4,7]."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "if nums[j] < nums[i]:",
+      "note": "Strict inequality excludes equal-valued extensions while still allowing equal values at different indices to count as alternative choices."
+    },
+    {
+      "code": "length[i], ways[i] = candidate, ways[j]",
+      "note": "A strictly better length replaces all counts belonging to shorter subsequences at this endpoint."
+    },
+    {
+      "code": "ways[i] += ways[j]",
+      "note": "A tied best length contributes disjoint sequences classified by their different previous index, so the counts add."
+    }
+  ]
+}

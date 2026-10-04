@@ -1,0 +1,57 @@
+{
+  "slug": "remove-linked-list-elements",
+  "headline": "Bypass matching nodes without advancing past the new neighbor",
+  "statement": "Remove every node whose value equals val from a singly linked list and return the resulting head. Reuse the original surviving nodes in their original order, without changing their values.",
+  "prerequisites": [
+    "Linked lists",
+    "Dummy nodes"
+  ],
+  "constraints": [
+    "0 <= list length <= 10000",
+    "1 <= node value <= 50",
+    "0 <= val <= 50"
+  ],
+  "intuition": "A pointer to the predecessor can remove its next node without moving itself. This is essential for consecutive matching nodes: after deletion the next neighbor must be checked again.",
+  "approach": [
+    "Place a dummy before head and set prev to dummy.",
+    "While prev.next exists, bypass it when its value equals val.",
+    "Advance prev only when the next node is retained.",
+    "Return the dummy’s next pointer."
+  ],
+  "correctness": "The retained prefix ending at prev contains no forbidden value. Removing a matching next node leaves this prefix unchanged; retaining a nonmatching next node extends it by one valid node. Each step consumes one unprocessed node, so the final list contains exactly the original nonmatching nodes in their original order.",
+  "bruteForce": "Copy every nonmatching value into a new list, which allocates O(n) nodes instead of modifying existing links.",
+  "complexity": {
+    "time": "O(length)",
+    "space": "O(1)",
+    "explanation": "Every original node is examined once; only a dummy and predecessor pointer are needed."
+  },
+  "pitfalls": [
+    "Do not advance prev after a deletion.",
+    "A dummy handles consecutive removals from the head.",
+    "An empty or fully removed list returns None."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/remove-linked-list-elements/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "dummy"
+    ],
+    "pointers": [],
+    "watch": [
+      "prev",
+      "val"
+    ],
+    "labels": {
+      "head": "Head",
+      "dummy": "Dummy",
+      "prev": "Prev",
+      "val": "Val"
+    }
+  }
+}

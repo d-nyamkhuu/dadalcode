@@ -1,0 +1,47 @@
+{
+  "intuition": [
+    "Convert both lists to integers, add them, and build the result. This hides the list algorithm and assumes support for arbitrarily large integers; column addition works directly with bounded digit arithmetic. The important limitation is not computing a decimal sum, but preserving the list representation while handling numbers longer than a machine integer.",
+    "Think of each node as a paper-addition column. Because the lists begin with their units digits, traversal already runs in the correct direction. The only information one column sends to its neighbor is a carry of zero or one. A dummy head is a construction aid: it is not a digit in the returned answer, and tail initially points to the dummy; after the first append, it points to the final real digit appended so far.",
+    "After each iteration, the output contains the correct lower decimal columns of the sum, and carry is the amount owed to the next column. This holds initially for an empty output and zero carry. Splitting the column total into quotient and remainder maintains it. When no digits or carry remain, all columns are complete. Each input node is visited once. The output needs at most one extra digit for a final carry."
+  ],
+  "walkthrough": {
+    "input": {
+      "l1": [
+        2,
+        4,
+        3
+      ],
+      "l2": [
+        5,
+        6,
+        4
+      ]
+    },
+    "steps": [
+      "Read 2 and 5 from the first nodes; total 7 produces digit 7 with carry 0.",
+      "Read 4 and 6 next; total 10 produces digit 0 and carry 1.",
+      "Read 3 and 4 with that carry; total 8 produces digit 8 and clears carry.",
+      "Both input pointers reach None, and carry is zero, so the loop stops.",
+      "Return the digits [7,0,8], which represent 807 rather than 708."
+    ],
+    "result": [
+      7,
+      0,
+      8
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "while l1 or l2 or carry:",
+      "note": "The carry participates in the stopping condition so 9 plus 1 can append a final tens node."
+    },
+    {
+      "code": "carry, digit = divmod(total, 10)",
+      "note": "The quotient carries into the next decimal column; the remainder stays in the current output column."
+    },
+    {
+      "code": "return dummy.next",
+      "note": "The dummy simplifies appending, but skipping it prevents an unwanted leading output digit."
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Official 12",
+    "input": {
+      "s": "12"
+    },
+    "expected": 2
+  },
+  {
+    "name": "Official 226",
+    "input": {
+      "s": "226"
+    },
+    "expected": 3
+  },
+  {
+    "name": "Leading zero",
+    "input": {
+      "s": "06"
+    },
+    "expected": 0
+  },
+  {
+    "name": "Paired zero",
+    "input": {
+      "s": "10"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Invalid zero",
+    "input": {
+      "s": "100"
+    },
+    "expected": 0
+  },
+  {
+    "name": "No valid pair",
+    "input": {
+      "s": "27"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Separated pairs",
+    "input": {
+      "s": "11106"
+    },
+    "expected": 2
+  },
+  {
+    "name": "Code boundary 0",
+    "input": {
+      "s": "0"
+    },
+    "expected": 0
+  },
+  {
+    "name": "Code boundary 20",
+    "input": {
+      "s": "20"
+    },
+    "expected": 1
+  },
+  {
+    "name": "Code boundary 30",
+    "input": {
+      "s": "30"
+    },
+    "expected": 0
+  },
+  {
+    "name": "Code boundary 26",
+    "input": {
+      "s": "26"
+    },
+    "expected": 2
+  }
+]

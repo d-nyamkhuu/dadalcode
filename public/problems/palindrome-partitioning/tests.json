@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Official two partitions",
+    "input": {
+      "s": "aab"
+    },
+    "expected": [
+      [
+        "a",
+        "a",
+        "b"
+      ],
+      [
+        "aa",
+        "b"
+      ]
+    ]
+  },
+  {
+    "name": "Official singleton",
+    "input": {
+      "s": "a"
+    },
+    "expected": [
+      [
+        "a"
+      ]
+    ]
+  },
+  {
+    "name": "Whole odd palindrome",
+    "input": {
+      "s": "aba"
+    },
+    "expected": [
+      [
+        "a",
+        "b",
+        "a"
+      ],
+      [
+        "aba"
+      ]
+    ]
+  },
+  {
+    "name": "All repeated",
+    "input": {
+      "s": "aaa"
+    },
+    "expected": [
+      [
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "aa"
+      ],
+      [
+        "aa",
+        "a"
+      ],
+      [
+        "aaa"
+      ]
+    ]
+  },
+  {
+    "name": "No longer palindrome",
+    "input": {
+      "s": "abc"
+    },
+    "expected": [
+      [
+        "a",
+        "b",
+        "c"
+      ]
+    ]
+  },
+  {
+    "name": "Nested even palindrome",
+    "input": {
+      "s": "abba"
+    },
+    "expected": [
+      [
+        "a",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "a",
+        "bb",
+        "a"
+      ],
+      [
+        "abba"
+      ]
+    ]
+  },
+  {
+    "name": "Two independent doubled letters",
+    "input": {
+      "s": "aabb"
+    },
+    "expected": [
+      [
+        "a",
+        "a",
+        "b",
+        "b"
+      ],
+      [
+        "a",
+        "a",
+        "bb"
+      ],
+      [
+        "aa",
+        "b",
+        "b"
+      ],
+      [
+        "aa",
+        "bb"
+      ]
+    ]
+  }
+]

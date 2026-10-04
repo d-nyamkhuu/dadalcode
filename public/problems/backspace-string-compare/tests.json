@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Example: equal edits",
+    "input": {
+      "s": "ab#c",
+      "t": "ad#c"
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: empty results",
+    "input": {
+      "s": "ab##",
+      "t": "c#d#"
+    },
+    "expected": true
+  },
+  {
+    "name": "Different survivors",
+    "input": {
+      "s": "a#c",
+      "t": "b"
+    },
+    "expected": false
+  },
+  {
+    "name": "Extra empty backspaces",
+    "input": {
+      "s": "###a",
+      "t": "a"
+    },
+    "expected": true
+  },
+  {
+    "name": "Only one survivor",
+    "input": {
+      "s": "a",
+      "t": "#"
+    },
+    "expected": false
+  },
+  {
+    "name": "Chained deletion",
+    "input": {
+      "s": "bxj##tw",
+      "t": "bxo#j##tw"
+    },
+    "expected": true
+  },
+  {
+    "name": "Unequal backspace counts erase all",
+    "input": {
+      "s": "a#",
+      "t": "####"
+    },
+    "expected": true
+  },
+  {
+    "name": "Unequal surviving lengths",
+    "input": {
+      "s": "abc",
+      "t": "ab"
+    },
+    "expected": false
+  }
+]

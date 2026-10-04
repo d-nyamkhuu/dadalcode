@@ -1,0 +1,48 @@
+{
+  "intuition": [
+    "You could find both root-to-target paths and compare their common prefix, but that stores paths unnecessarily. A binary search tree already tells us which child contains each target from value comparisons. We can follow their shared search direction until their paths stop sharing a child.",
+    "If both target values are smaller than the current node, their lowest common ancestor must be somewhere in its left subtree. The symmetric argument applies when both are larger. Moving downward in either case preserves the answer while discarding a whole irrelevant part of the tree.",
+    "The first node where the comparisons disagree is the split point: one target lies on each side, so neither child contains them both. Equality also ends the search because a target node is an ancestor of itself. Return that existing node object rather than allocating a matching value."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        6,
+        2,
+        8,
+        0,
+        4,
+        7,
+        9,
+        null,
+        null,
+        3,
+        5
+      ],
+      "p": 3,
+      "q": 5
+    },
+    "steps": [
+      "In the fixture with root 6, choose targets p=3 and q=5. Their values are both below 6.",
+      "Move to node 2. Both target values are above 2, so their shared search path continues into its right child.",
+      "The next node is 4. Target 3 is smaller and target 5 is larger, so the paths now diverge.",
+      "Node 4 contains both targets in its subtree, but neither of its child subtrees contains them both.",
+      "Return the existing node 4. The trainer converts that identity to value 4 after verifying it belongs to the original tree."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "if p.val < node.val and q.val < node.val:",
+      "note": "Both comparisons are required to descend left: knowing only one target is smaller does not show where their shared ancestor lies."
+    },
+    {
+      "code": "elif p.val > node.val and q.val > node.val:",
+      "note": "This symmetric branch follows a shared right search path. Each step gets closer to the deepest node that still contains both targets."
+    },
+    {
+      "code": "return node",
+      "note": "The remaining case is a split or equality with a target. It identifies the ancestor itself, and preserves the required original-node identity."
+    }
+  ]
+}

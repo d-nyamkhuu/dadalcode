@@ -1,0 +1,140 @@
+[
+  {
+    "name": "Official two courses",
+    "input": {
+      "numCourses": 2,
+      "prerequisites": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Official diamond",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "One course",
+    "input": {
+      "numCourses": 1,
+      "prerequisites": []
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Cycle",
+    "input": {
+      "numCourses": 2,
+      "prerequisites": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Isolated courses",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": [
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Cycle with ready component",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Reverse labeled chain",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "expected": [
+      3,
+      2,
+      1,
+      0
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Example: balanced",
+    "input": {
+      "root": [
+        3,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: right child",
+    "input": {
+      "root": [
+        1,
+        null,
+        2
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Empty",
+    "input": {
+      "root": []
+    },
+    "expected": 0
+  },
+  {
+    "name": "Single node",
+    "input": {
+      "root": [
+        0
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Left chain",
+    "input": {
+      "root": [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Asymmetric",
+    "input": {
+      "root": [
+        1,
+        2,
+        3,
+        null,
+        4,
+        null,
+        null,
+        5
+      ]
+    },
+    "expected": 4
+  }
+]

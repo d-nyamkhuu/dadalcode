@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "A linear scan always finds the minimum, but ignores the structure that survives rotation. A distinct sorted array consists of at most two ascending segments separated by a single downward jump. The minimum is the first value after that jump, or the first array value when no jump exists.",
+    "Compare the middle value with the right endpoint. If the middle is larger, it belongs to the high segment before the rotation break, so the minimum lies strictly after it. Otherwise the middle-to-right segment is ascending, and its minimum is the middle itself.",
+    "These comparisons shrink an inclusive interval that always contains the answer. Keep mid in the second case because it may be exactly the minimum; exclude it in the first because it is known too large. Distinct values make each comparison decisive without ambiguity from equal endpoints.",
+    "For [3,4,5,1,2], the original high segment is [3,4,5] and the low segment is [1,2]. Comparing 5 with right endpoint 2 crosses the downward break, so discard through 5. Inside the remaining [1,2], comparing 1 with 2 finds an ascending interval; keep 1 because it may itself be the minimum. The same right-endpoint rule applies to the narrowed interval, not only to the original two segments."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        3,
+        4,
+        5,
+        1,
+        2
+      ]
+    },
+    "steps": [
+      "For nums=[3,4,5,1,2], begin with left=0 and right=4, covering every possible minimum position.",
+      "The first middle is index 2, value 5. The right endpoint is value 2, so 5>2 identifies the high segment.",
+      "Move left to 3. The remaining candidate interval is indices 3..4, containing values [1,2].",
+      "The new middle is index 3, value 1. Since 1<=2, retain it by setting right=3.",
+      "left and right now coincide at index 3. Return nums[3]=1, the sole remaining candidate."
+    ],
+    "result": 1
+  },
+  "codeNotes": [
+    {
+      "code": "if nums[mid] > nums[right]:",
+      "note": "The comparison is to the current right endpoint, not to the original first value, so it remains valid as the candidate interval narrows."
+    },
+    {
+      "code": "left = mid + 1",
+      "note": "A middle value larger than the right endpoint cannot be the minimum. Excluding it keeps the search progressing toward the low segment."
+    },
+    {
+      "code": "right = mid",
+      "note": "In this branch the middle may be the segment\u2019s smallest value. Keeping it prevents losing the answer at the rotation boundary."
+    }
+  ]
+}

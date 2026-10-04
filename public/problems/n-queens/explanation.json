@@ -1,0 +1,48 @@
+{
+  "intuition": [
+    "Choosing any of n columns independently for every row produces many illegal boards. A better search builds only conflict-free prefixes. Place exactly one queen in each row; row attacks then disappear from the checks because the construction already guarantees row uniqueness.",
+    "A queen at (row,col) occupies one column and two diagonals. Squares share the descending diagonal precisely when row-col is equal, and share the ascending diagonal when row+col is equal. Three sets make each safety check immediate. The placement list remembers only selected columns, postponing string construction until a complete board exists.",
+    "Backtracking means that these occupancy marks belong to one branch, not to the whole search. After exploring a queen’s descendants, remove its column and diagonals before trying the next column. This restoration makes each sibling start from the same parent board. Reaching row n certifies a complete legal arrangement; reaching a row with no safe column simply closes a failed branch."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 4
+    },
+    "steps": [
+      "With n=4, try row 0, column 0. Later rows cannot complete a safe board, so that branch is undone.",
+      "Try row 0, column 1. At row 1, column 0 shares the ascending diagonal and column 1 is occupied, so keep searching.",
+      "With row 0 at column 1, row 1 column 2 is rejected: both queens have row-col=-1 and share a descending diagonal. Column 3 passes all three occupancy checks.",
+      "Row 2 then uses column 0, and row 3 uses column 2. Placement [1,3,0,2] is a complete board.",
+      "Emit [\".Q..\",\"...Q\",\"Q...\",\"..Q.\"], then undo the last choices so the search can continue.",
+      "The mirrored placement [2,0,3,1] gives the second board. All remaining branches fail, so exactly two boards are returned."
+    ],
+    "result": [
+      [
+        ".Q..",
+        "...Q",
+        "Q...",
+        "..Q."
+      ],
+      [
+        "..Q.",
+        "Q...",
+        "...Q",
+        ".Q.."
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if col in columns or row - col in descending or row + col in ascending:",
+      "note": "These three occupied-coordinate tests cover every attack not already ruled out by one queen per row."
+    },
+    {
+      "code": "search(row + 1)",
+      "note": "Recursion advances to a new row only after recording a safe queen; every recursive prefix is therefore legal."
+    },
+    {
+      "code": "placement.pop()",
+      "note": "Removing the choice and its three occupancy marks is what makes later sibling branches independent."
+    }
+  ]
+}

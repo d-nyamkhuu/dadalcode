@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Official mixed",
+    "input": {
+      "points": [
+        [
+          10,
+          16
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          7,
+          12
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Official disjoint",
+    "input": {
+      "points": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Shared endpoints",
+    "input": {
+      "points": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "One balloon",
+    "input": {
+      "points": [
+        [
+          -2,
+          3
+        ]
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Nested balloons",
+    "input": {
+      "points": [
+        [
+          0,
+          10
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          4,
+          6
+        ]
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Integer extremes",
+    "input": {
+      "points": [
+        [
+          -2147483648,
+          -1
+        ],
+        [
+          0,
+          2147483647
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Duplicate balloons share a shot",
+    "input": {
+      "points": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Different starts, equal end",
+    "input": {
+      "points": [
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          7
+        ]
+      ]
+    },
+    "expected": 1
+  }
+]

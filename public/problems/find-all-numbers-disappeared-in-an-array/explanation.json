@@ -1,0 +1,47 @@
+{
+  "intuition": [
+    "Because values are restricted to 1 through n, every possible value has a corresponding index in the input itself. A set could record appearances, but that needs separate linear memory. The array can act as its own presence table by changing signs without destroying magnitudes.",
+    "When value v appears, make the value at index v-1 negative. A previously marked input position may later be read as part of the scan, so recover its original magnitude with abs before deriving its home index. Repeated appearances must leave the marker negative; toggling the sign would wrongly erase evidence of an even number of copies.",
+    "After all values have marked their homes, scan the positions again. A positive entry means its corresponding number never appeared; append index+1 to the result. The magnitude stored at that home is irrelevant to this second pass: its sign alone is the presence flag. The method relies on strictly positive original values and the bounded value range, which guarantee both unambiguous signs and valid home indices."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        4,
+        3,
+        2,
+        7,
+        8,
+        2,
+        3,
+        1
+      ]
+    },
+    "steps": [
+      "For [4,3,2,7,8,2,3,1], reading 4 marks index 3 negative, changing 7 to -7.",
+      "Reading 3 marks index 2; reading the now-negative -2 still yields original value 2 via abs.",
+      "Later -7 marks index 6, and 8 marks index 7.",
+      "Repeated 2 and 3 keep their homes negative rather than flipping them back. Assign -abs(marker), rather than toggling the sign: a second appearance must not restore a positive marker.",
+      "The final marker array is [-4,-3,-2,-7,8,2,-3,-1].",
+      "Only indices 4 and 5 remain positive, so the missing values are [5,6]."
+    ],
+    "result": [
+      5,
+      6
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "value = abs(nums[index])",
+      "note": "Earlier marking may have changed this position\u2019s sign, but its original magnitude still identifies the encountered value."
+    },
+    {
+      "code": "nums[home] = -abs(nums[home])",
+      "note": "Repeated appearances preserve the negative presence marker rather than toggling it."
+    },
+    {
+      "code": "result.append(index + 1)",
+      "note": "Convert an unmarked zero-based home back to its corresponding one-based value."
+    }
+  ]
+}

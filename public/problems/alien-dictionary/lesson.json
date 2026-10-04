@@ -1,0 +1,73 @@
+{
+  "slug": "alien-dictionary",
+  "headline": "Turn first differences into a topological alphabet",
+  "statement": "Given words claimed to be sorted by an unknown alphabet of lowercase English letters, return any valid ordering of every distinct observed letter. Return an empty string if the claim is inconsistent. A word must precede every longer word that has it as a prefix.",
+  "prerequisites": [
+    "Directed graphs",
+    "Lexicographic comparison",
+    "Indegrees and BFS"
+  ],
+  "constraints": [
+    "1 <= number of words <= 100",
+    "1 <= word length <= 100",
+    "Words contain lowercase English letters"
+  ],
+  "intuition": "Two neighboring words reveal only one rule: their first unequal letters must appear in the same order as the words. These rules form a directed graph. Characters with no unfinished prerequisites can be emitted next.",
+  "approach": [
+    "Create a vertex for every observed character, even isolated ones.",
+    "For each adjacent pair, reject a longer word before its exact prefix; otherwise add only the first differing-character edge.",
+    "Use edge sets so duplicate evidence does not inflate indegrees.",
+    "Apply Kahn’s algorithm; if not all vertices are emitted, a cycle makes an alphabet impossible."
+  ],
+  "correctness": "The first mismatch determines lexicographic order, so the extracted edges are exactly the necessary adjacent-word constraints. A topological order satisfies every edge and hence every adjacent comparison; by transitivity it sorts the entire list. Kahn’s algorithm emits all characters exactly when these constraints are acyclic. Prefix violations are impossible under every alphabet and are rejected separately.",
+  "bruteForce": "Try every permutation of observed characters and check whether it sorts the words. There may be up to 26! candidates.",
+  "complexity": {
+    "time": "O(C + V + E)",
+    "space": "O(V + E)",
+    "explanation": "C is the total character count; V <= 26. Sorting each outgoing neighbor set gives reproducible traversal order, with its cost bounded by the fixed alphabet; each distinct edge is processed once."
+  },
+  "pitfalls": [
+    "Stop at the first mismatch; later letters give no ordering evidence.",
+    "Initialize isolated letters.",
+    "Detect the longer-before-prefix case.",
+    "Deduplicate edges before incrementing indegree."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/alien-dictionary/"
+    },
+    {
+      "label": "Public statement: LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/269/"
+    }
+  ],
+  "visualization": {
+    "kind": "graph",
+    "focus": [
+      "graph",
+      "indegree",
+      "queue",
+      "order"
+    ],
+    "pointers": [],
+    "watch": [
+      "first",
+      "second",
+      "a",
+      "b",
+      "char"
+    ],
+    "labels": {
+      "graph": "Graph",
+      "indegree": "Indegree",
+      "queue": "Queue",
+      "order": "Order",
+      "first": "First",
+      "second": "Second",
+      "a": "A",
+      "b": "B",
+      "char": "Char"
+    }
+  }
+}

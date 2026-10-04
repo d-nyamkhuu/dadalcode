@@ -1,0 +1,58 @@
+{
+  "slug": "letter-combinations-of-a-phone-number",
+  "headline": "Build one letter choice per digit",
+  "statement": "Return every letter string represented by a string of telephone digits 2 through 9. Use the standard mapping 2=abc, 3=def, 4=ghi, 5=jkl, 6=mno, 7=pqrs, 8=tuv, 9=wxyz. An empty input has no combinations. Output order is unrestricted.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "0 <= len(digits) <= 4",
+    "Only digits 2 through 9 are permitted."
+  ],
+  "intuition": "A result chooses exactly one letter for each position. The choices for a later digit do not affect earlier digits, so recursively extend a partial string with every allowed letter. The recursion tree is the Cartesian product of the digit letter sets.",
+  "approach": [
+    "Store the telephone mapping.",
+    "At index i, append each letter for digits[i] to the partial word.",
+    "Recurse to i+1 and save the word only when all digits are consumed."
+  ],
+  "correctness": "Each leaf has one allowed letter at every digit position. Every valid combination determines exactly one path through these choices, so all combinations appear once. Returning early for empty digits prevents the empty word being mistaken for a combination.",
+  "bruteForce": "Repeatedly extend a list of all partial strings; it has the same necessary output cost but retains complete intermediate layers.",
+  "complexity": {
+    "time": "O(n * 4^n)",
+    "space": "O(n^2) auxiliary; O(n * 4^n) output",
+    "explanation": "There are at most four branches per digit and each resulting word has n letters. Copied immutable prefixes held by active recursive calls use O(n^2) auxiliary characters."
+  },
+  "pitfalls": [
+    "Digits 7 and 9 have four letters.",
+    "Do not convert the digit string to an integer; positions matter.",
+    "Handle the empty input before entering recursion."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "digits",
+      "letter"
+    ],
+    "labels": {
+      "path": "Path",
+      "result": "Result",
+      "i": "I",
+      "digits": "Digits",
+      "letter": "Letter"
+    }
+  }
+}

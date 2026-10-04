@@ -1,0 +1,50 @@
+{
+  "intuition": [
+    "A root-to-leaf path is stricter than any downward path or any prefix whose sum reaches the target. Listing every complete path and summing it afterward repeats additions along shared prefixes. Instead, carry the accumulated total while traversing the tree.",
+    "Each stack item contains a node and the sum from the root through that node. Pushing a child adds exactly its value to the parent’s total. Siblings receive independent totals, so exploring one branch cannot contaminate another branch’s sum.",
+    "Only a node without either child completes a valid path. Compare the total there and stop early on a match. Negative values mean exceeding the target at an internal node is not a reason to prune; a later negative child could reduce the sum. An explicit stack also supports deep trees without Python recursion limits."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        5,
+        4,
+        8,
+        11,
+        null,
+        13,
+        4,
+        7,
+        2,
+        null,
+        null,
+        null,
+        1
+      ],
+      "targetSum": 22
+    },
+    "steps": [
+      "For the fixture with targetSum=22, initialize stack with root 5 and total 5.",
+      "Pop 5. Push right child 8 with total 13, then left child 4 with total 9, so the left branch is explored first.",
+      "Pop 4 and push its child 11 with total 20. Node 4 is not a leaf, so total 9 is not tested as a finished path.",
+      "Pop 11. Its children produce totals 27 for node 7 and 22 for node 2.",
+      "The stack explores leaf 7 first; 27 does not match. Next leaf 2 has total 22.",
+      "Return true for path 5→4→11→2. The still-pending right subtree need not be explored after a valid path is found."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "stack = [(root, root.val)]",
+      "note": "Include the current node’s value in each entry; the stack then has one unambiguous meaning for its stored total."
+    },
+    {
+      "code": "if node.left is None and node.right is None:",
+      "note": "Reaching the target at an internal node is insufficient. Both missing children identify a complete root-to-leaf path."
+    },
+    {
+      "code": "stack.append((node.left, total + node.left.val))",
+      "note": "The child inherits the parent total plus its own value, avoiding repeated summation or shared mutable path totals."
+    }
+  ]
+}

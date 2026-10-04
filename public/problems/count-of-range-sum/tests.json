@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Example: mixed signs",
+    "input": {
+      "nums": [
+        -2,
+        5,
+        -1
+      ],
+      "lower": -2,
+      "upper": 2
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: zero",
+    "input": {
+      "nums": [
+        0
+      ],
+      "lower": 0,
+      "upper": 0
+    },
+    "expected": 1
+  },
+  {
+    "name": "Zero multiplicity",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0
+      ],
+      "lower": 0,
+      "upper": 0
+    },
+    "expected": 6
+  },
+  {
+    "name": "Exact bound",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3
+      ],
+      "lower": 3,
+      "upper": 3
+    },
+    "expected": 2
+  },
+  {
+    "name": "Negative range",
+    "input": {
+      "nums": [
+        -1,
+        -1
+      ],
+      "lower": -2,
+      "upper": -1
+    },
+    "expected": 3
+  },
+  {
+    "name": "No range qualifies",
+    "input": {
+      "nums": [
+        10,
+        20
+      ],
+      "lower": -3,
+      "upper": 3
+    },
+    "expected": 0
+  },
+  {
+    "name": "Large prefix values cancel",
+    "input": {
+      "nums": [
+        2147483647,
+        -2147483648
+      ],
+      "lower": -1,
+      "upper": -1
+    },
+    "expected": 1
+  }
+]

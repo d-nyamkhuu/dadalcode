@@ -1,0 +1,62 @@
+{
+  "slug": "add-two-numbers",
+  "headline": "Add one digit column at a time",
+  "statement": "Two nonempty linked lists store decimal digits from least significant to most significant. Return a linked list representing their sum in the same order. Each input represents a nonnegative integer without leading zeros, apart from zero itself.",
+  "prerequisites": [
+    "Linked-list traversal",
+    "Decimal addition and carrying",
+    "Dummy head nodes"
+  ],
+  "constraints": [
+    "Each list has 1 to 100 nodes.",
+    "Every node stores a digit from 0 to 9.",
+    "Inputs have no leading zeros except the single digit zero."
+  ],
+  "intuition": "Reverse digit order is useful: the head is the units column, exactly where ordinary addition begins. At each column, add the two available digits and the previous carry. Dividing by ten separates the next output digit from the carry.",
+  "approach": [
+    "Create a dummy output head and a tail pointer. Start carry at zero.",
+    "While either list has a digit or a carry remains, read available digits and substitute zero for missing digits.",
+    "Use divmod(total, 10) to obtain carry and digit. Append a new node and advance input pointers.",
+    "Return the node after the dummy head."
+  ],
+  "correctness": "After each iteration, the output contains the correct lower decimal columns of the sum, and carry is the amount owed to the next column. This holds initially for an empty output and zero carry. Splitting the column total into quotient and remainder maintains it. When no digits or carry remain, all columns are complete.",
+  "bruteForce": "Convert both lists to integers, add them, and build the result. This hides the list algorithm and assumes support for arbitrarily large integers; column addition works directly with bounded digit arithmetic.",
+  "complexity": {
+    "time": "O(max(m, n))",
+    "space": "O(max(m, n)) output; O(1) auxiliary",
+    "explanation": "Each input node is visited once. The output needs at most one extra digit for a final carry."
+  },
+  "pitfalls": [
+    "Do not omit the final carry after both lists end.",
+    "Digits are reversed; avoid treating the head as the most significant digit.",
+    "A shorter list contributes zero, rather than ending the computation."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/add-two-numbers/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "l1",
+      "l2",
+      "dummy"
+    ],
+    "pointers": [],
+    "watch": [
+      "a",
+      "b",
+      "total",
+      "carry",
+      "digit"
+    ],
+    "labels": {
+      "l1": "Remaining first number",
+      "l2": "Remaining second number",
+      "dummy": "Output digits",
+      "carry": "Carry to next column"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Example: mixed",
+    "input": {
+      "nums": [
+        2,
+        0,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "expected": [
+      0,
+      0,
+      1,
+      1,
+      2,
+      2
+    ]
+  },
+  {
+    "name": "Example: three colors",
+    "input": {
+      "nums": [
+        2,
+        0,
+        1
+      ]
+    },
+    "expected": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Only twos",
+    "input": {
+      "nums": [
+        2,
+        2,
+        2
+      ]
+    },
+    "expected": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "name": "One zero",
+    "input": {
+      "nums": [
+        0
+      ]
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Reverse regions",
+    "input": {
+      "nums": [
+        2,
+        2,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    "expected": [
+      0,
+      0,
+      1,
+      1,
+      2,
+      2
+    ]
+  },
+  {
+    "name": "Incoming zero",
+    "input": {
+      "nums": [
+        2,
+        1,
+        0
+      ]
+    },
+    "expected": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Only ones",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": [
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "name": "Already sorted regions",
+    "input": {
+      "nums": [
+        0,
+        0,
+        1,
+        2,
+        2
+      ]
+    },
+    "expected": [
+      0,
+      0,
+      1,
+      2,
+      2
+    ]
+  }
+]

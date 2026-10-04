@@ -1,0 +1,54 @@
+{
+  "slug": "valid-palindrome",
+  "headline": "Compare the outermost meaningful characters directly",
+  "statement": "Return whether s reads the same forward and backward after ignoring non-alphanumeric characters and treating uppercase letters as lowercase. The normalized empty sequence is a palindrome.",
+  "prerequisites": [
+    "Two pointers",
+    "Character classification"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 200,000",
+    "s contains printable ASCII characters"
+  ],
+  "intuition": "Compare the outermost meaningful characters directly. Skipping punctuation on each side avoids constructing a separate normalized string.",
+  "approach": [
+    "Initialize left and right at the string ends.",
+    "Advance each pointer past non-alphanumeric characters.",
+    "Compare lowercase versions; a mismatch immediately returns false.",
+    "Move both pointers inward and return true when they meet or cross."
+  ],
+  "correctness": "After skipping ignored characters, the two pointers select the first and last unmatched characters of the normalized sequence. Equal comparisons remove a valid mirrored pair. Any mismatch violates palindrome symmetry; exhausting all such pairs proves the sequence is palindromic.",
+  "bruteForce": "Build a normalized string and compare it with its reverse: O(n) time and O(n) space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Digits are alphanumeric and must be compared.",
+    "Do not compare punctuation before skipping it.",
+    "Pointer bounds matter for strings containing only punctuation."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/valid-palindrome/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s"
+    ],
+    "pointers": [
+      "left",
+      "right"
+    ],
+    "watch": [],
+    "labels": {
+      "s": "S",
+      "left": "Left",
+      "right": "Right"
+    }
+  }
+}

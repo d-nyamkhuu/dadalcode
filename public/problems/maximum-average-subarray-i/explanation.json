@@ -1,0 +1,42 @@
+{
+  "intuition": [
+    "Every candidate has exactly k elements, so every average has the same denominator. Maximizing the sum therefore maximizes the average. A brute-force solution resums each neighboring length-k slice even though almost all its values overlap with the previous slice.",
+    "Maintain the sum of one fixed-width window. Moving its right boundary by one introduces nums[right] and removes nums[right-k]. Updating those two values gives the next exact window sum in constant time. Initialize the running maximum from the first actual window, rather than from zero.",
+    "That initialization matters for an array containing only negatives: zero may be larger than every legitimate average, but it is not a candidate. Keep integer sums during the scan and divide by k once at the end. The first window plus each subsequent one-step slide covers every permitted subarray exactly once. The technique would need different reasoning if lengths varied, because a larger sum would no longer necessarily imply a larger average."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        12,
+        -5,
+        -6,
+        50,
+        3
+      ],
+      "k": 4
+    },
+    "steps": [
+      "For nums=[1,12,-5,-6,50,3] and k=4, the first four values sum to 2, so total=best=2.",
+      "Move right to index 4. Add 50 and remove nums[0]=1, producing total=51.",
+      "Update best from 2 to 51. This window is [12,-5,-6,50].",
+      "Move right to index 5. Add 3 and remove nums[1]=12, producing total=42, which does not improve best.",
+      "All three length-four windows were measured. Return 51/4=12.75."
+    ],
+    "result": 12.75
+  },
+  "codeNotes": [
+    {
+      "code": "best = total",
+      "note": "Starting from a real window prevents an all-negative input from incorrectly returning an unattainable zero average."
+    },
+    {
+      "code": "total += nums[right] - nums[right - k]",
+      "note": "Adjacent fixed-width windows differ by exactly these entering and leaving elements, so their sum can be updated without rescanning."
+    },
+    {
+      "code": "return best / k",
+      "note": "The denominator is shared by every candidate; delaying division retains exact integer sums while comparing windows."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "intuition": [
+    "A person cannot attend two overlapping intervals, so comparing every pair is an obvious solution. Its quadratic cost is unnecessary once meetings are arranged by start time. In that order, each meeting only needs to be checked against its immediate predecessor to establish a conflict-free schedule.",
+    "If every predecessor ends before or exactly when the next meeting begins, chaining those inequalities shows that all earlier meetings finish before any later one starts. Conversely, a neighboring overlap immediately proves that attending the full schedule is impossible. A nested meeting is caught when it follows its containing interval.",
+    "Intervals are half-open: [start,end) includes the starting time but excludes the ending time. Therefore a meeting ending at 10 is compatible with one starting at 10. The overlap test must be strict. Sorting a copy keeps the teaching scan simple without requiring the original input order to be changed."
+  ],
+  "walkthrough": {
+    "input": {
+      "intervals": [
+        [
+          6,
+          8
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    "steps": [
+      "Sorting by start gives [[0,2],[2,6],[6,8]]. The original order does not matter for attendance.",
+      "At i=1, start 2 equals predecessor end 2. The half-open meetings share no occupied time, so continue.",
+      "At i=2, start 6 equals predecessor end 6. This pair also passes the strict overlap test.",
+      "Chaining the two boundaries establishes that [0,2) also ends before [6,8) begins; all earlier/later meetings are compatible.",
+      "Every neighboring comparison passed, so return true for the complete schedule."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "intervals = sorted(intervals)",
+      "note": "Ordering starts exposes the predecessor relationship needed for the linear check. Sorting complete pairs also gives a deterministic order for tied starts."
+    },
+    {
+      "code": "for i in range(1, len(intervals)):",
+      "note": "The first meeting has no predecessor. Starting at one also makes empty and one-meeting schedules pass without special cases."
+    },
+    {
+      "code": "if intervals[i][0] < intervals[i - 1][1]:",
+      "note": "A strictly earlier start conflicts with the preceding end. Equality is allowed because an ending meeting no longer occupies that instant."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "intuition": [
+    "For every node, scan its whole left and right subtrees for violations, which can cost O(n\u00b2). Bound propagation visits each node once. A node can satisfy its parent\u2019s comparison and still violate a more distant ancestor, so local child checks do not establish the global property.",
+    "Associate each pending node with an open numeric interval. The interval summarizes every ancestor constraint without retaining all ancestor values separately. For a left child, the parent becomes a stricter upper bound; for a right child, it becomes a stricter lower bound. Infinite initial endpoints admit any legal integer at the root. The explicit stack gives the same depth-first reasoning as recursion while avoiding the interpreter\u2019s recursion-depth limit on a long chain.",
+    "Each stack entry records exactly the bounds imposed by its ancestors. Passing those bounds means the node is correctly placed relative to all ancestors. The children receive the additional constraint from their parent. Therefore every node passes if and only if the whole tree obeys the strict subtree property. The depth-first stack contains pending branches bounded by tree height h; worst-case h=n."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        2,
+        1,
+        3
+      ]
+    },
+    "steps": [
+      "Push root 2 with allowed interval (-infinity,infinity).",
+      "Value 2 passes, so push right 3 with lower bound 2 and left 1 with upper bound 2.",
+      "Pop left 1; its value lies strictly inside (-infinity,2).",
+      "Pop right 3; its value lies strictly inside (2,infinity).",
+      "All nodes satisfy their complete ancestor bounds, so return True."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if not low < node.val < high:",
+      "note": "Strict inequality rejects duplicate keys and values misplaced anywhere beneath an ancestor."
+    },
+    {
+      "code": "stack.append((node.right, node.val, high))",
+      "note": "The right subtree inherits the previous upper bound and must also remain larger than this node."
+    },
+    {
+      "code": "stack.append((node.left, low, node.val))",
+      "note": "The left subtree preserves the ancestor lower bound while narrowing its upper endpoint to the parent."
+    }
+  ]
+}

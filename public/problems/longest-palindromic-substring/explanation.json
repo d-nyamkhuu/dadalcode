@@ -1,0 +1,35 @@
+{
+  "intuition": [
+    "Checking every substring repeats the same interior comparisons. For example, once bb is known to read identically in both directions, testing a larger substring around it should only require comparing the newly exposed endpoints. We need a way to organize candidates so their interiors stay valid automatically.",
+    "Every palindrome is symmetric around a center. Odd lengths use one character as the center; even lengths use the gap between two characters. Starting with either kind, equal endpoint characters let us expand while keeping the entire enclosed substring palindromic. A mismatch ends just that center’s search.",
+    "Trying both centers at every index covers every possible palindrome. We keep only the best starting index and length rather than storing all candidates. The search is quadratic in the worst case, but it avoids the cubic work of rescanning each candidate’s interior."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "cbbd"
+    },
+    "steps": [
+      "For s=cbbd, begin with best_start=0 and best_length=1, representing c.",
+      "The odd center at index 0 expands once, then hits the left boundary. Its valid length is 1.",
+      "At center 1, the odd choice yields b. The even choice starts at indices 1 and 2, where both characters are b.",
+      "Expand to indices 0 and 3. They contain c and d, so the expansion stops; the valid inner range is indices 1..2.",
+      "Compute length=3-0-1=2 and replace the best range with start 1, length 2.",
+      "The remaining centers cannot beat length 2, so slicing s[1:3] returns bb."
+    ],
+    "result": "bb"
+  },
+  "codeNotes": [
+    {
+      "code": "for offset in (0, 1):",
+      "note": "Offset zero represents an odd center; offset one represents an even center. Both are necessary because a single-character center can never discover bb."
+    },
+    {
+      "code": "length = right - left - 1",
+      "note": "The stopped pointers sit outside the valid palindrome. Removing those two outside positions explains the subtraction and avoids an off-by-one length."
+    },
+    {
+      "code": "return s[best_start:best_start + best_length]",
+      "note": "Store coordinates during the search and allocate the answer only once. The exclusive slicing endpoint is starting index plus length."
+    }
+  ]
+}

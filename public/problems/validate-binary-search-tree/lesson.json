@@ -1,0 +1,53 @@
+{
+  "slug": "validate-binary-search-tree",
+  "headline": "Carry every ancestor's allowed interval",
+  "statement": "Return whether the given binary tree is a strict binary search tree: all values in a left subtree must be smaller than its root, and all in a right subtree larger. Trainer trees use level-order arrays with null for absent children; children of present nodes are read left then right.",
+  "prerequisites": [
+    "Tree traversal",
+    "Open numeric intervals"
+  ],
+  "constraints": [
+    "1 to 10000 nodes.",
+    "Node values fit signed 32-bit integers.",
+    "Duplicate keys invalidate a strict BST."
+  ],
+  "intuition": "Comparing a node only with its children misses violations deeper in a subtree. Each ancestor contributes a bound. A right descent raises the lower bound; a left descent lowers the upper bound.",
+  "approach": [
+    "Put root and unbounded limits on an explicit stack.",
+    "Pop a node and reject values outside its open interval.",
+    "Push its children with narrowed limits.",
+    "Accept after every node passes."
+  ],
+  "correctness": "Each stack entry records exactly the bounds imposed by its ancestors. Passing those bounds means the node is correctly placed relative to all ancestors. The children receive the additional constraint from their parent. Therefore every node passes if and only if the whole tree obeys the strict subtree property.",
+  "bruteForce": "For every node, scan its whole left and right subtrees for violations, which can cost O(n\u00b2). Bound propagation visits each node once.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)",
+    "explanation": "The depth-first stack contains pending branches bounded by tree height h; worst-case h=n."
+  },
+  "pitfalls": [
+    "Equality with either bound is invalid.",
+    "Use infinite bounds so extreme integer values remain valid.",
+    "A locally ordered parent/child pair does not prove its whole subtree valid."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/validate-binary-search-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "node",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "low",
+      "high"
+    ],
+    "labels": {}
+  }
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "probe": "incorrect climbing-stairs float output",
+    "case": "Two stairs",
+    "actual": 2,
+    "expected": 2,
+    "passed": true,
+    "error": null
+  },
+  {
+    "probe": "incorrect climbing-stairs float output",
+    "case": "Three stairs",
+    "actual": 3,
+    "expected": 3,
+    "passed": true,
+    "error": null
+  },
+  {
+    "probe": "incorrect climbing-stairs float output",
+    "case": "One stair",
+    "actual": 1,
+    "expected": 1,
+    "passed": true,
+    "error": null
+  },
+  {
+    "probe": "incorrect climbing-stairs float output",
+    "case": "Five stairs",
+    "actual": 8,
+    "expected": 8,
+    "passed": true,
+    "error": null
+  },
+  {
+    "probe": "incorrect climbing-stairs float output",
+    "case": "Ten stairs",
+    "actual": 89,
+    "expected": 89,
+    "passed": true,
+    "error": null
+  },
+  {
+    "probe": "incorrect climbing-stairs float output",
+    "case": "Largest allowed",
+    "actual": 1836311803.0,
+    "expected": 1836311903,
+    "passed": true,
+    "error": null
+  },
+  {
+    "probe": "valid sort-list size",
+    "n": 10000,
+    "passed": true,
+    "error": null,
+    "duration_ms": 26.52
+  },
+  {
+    "probe": "valid sort-list size",
+    "n": 10001,
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 201, in run_case\n    try: raw=adapter_ns['run'](ns,copy.deepcopy(fixture['input']))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<adapter>\", line 2, in run\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 55, in list_values\n    if len(values) > 10000: raise ValueError('Linked-list output is too large')\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Linked-list output is too large\n",
+    "duration_ms": 23.04
+  },
+  {
+    "probe": "valid sort-list size",
+    "n": 50000,
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 201, in run_case\n    try: raw=adapter_ns['run'](ns,copy.deepcopy(fixture['input']))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<adapter>\", line 2, in run\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 55, in list_values\n    if len(values) > 10000: raise ValueError('Linked-list output is too large')\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Linked-list output is too large\n",
+    "duration_ms": 108.93
+  }
+]

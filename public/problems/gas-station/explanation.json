@@ -1,0 +1,48 @@
+{
+  "intuition": [
+    "Trying every station as a start repeats the same failed portions of the circle. Replace each station with its net contribution gas[i]-cost[i]. A candidate start is feasible through the current station only while the running tank remains nonnegative after paying each outgoing cost.",
+    "If the tank first becomes negative at i, discard not only the candidate but every later start inside that failed segment. Before failure, the prefix from the candidate to each intermediate station had nonnegative balance. Removing such a prefix cannot improve the negative segment ending at i. The next possible start is therefore i+1.",
+    "Keep two balances because they answer different questions. tank tests the current candidate\u2019s segment, while total tests the entire route\u2019s fuel budget. Resetting tank does not change total. A negative total makes every start impossible. When total is nonnegative, the final surviving candidate has enough suffix surplus to complete the wrapped prefix as well; the problem guarantees that a feasible start is unique.",
+    "Let P[j] be the total net balance before station j, with P[0]=0. A negative local tank means P[i+1] is strictly below the prefix balance at the candidate start; resetting chooses this new minimum boundary. The final candidate s therefore has a minimum prefix balance. Every suffix partial balance is P[j]-P[s]>=0. After wrapping, the balance is total+P[j]-P[s]>=0 when total>=0, proving the full circuit is feasible. Resetting on equality is unnecessary: a zero tank has not failed, and the one-station [0]/[0] case must return index 0 rather than the beyond-end candidate 1."
+  ],
+  "walkthrough": {
+    "input": {
+      "gas": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "cost": [
+        3,
+        4,
+        5,
+        1,
+        2
+      ]
+    },
+    "steps": [
+      "For gas=[1,2,3,4,5] and cost=[3,4,5,1,2], the net balances are [-2,-2,-2,3,3].",
+      "Index 0 immediately makes tank negative, so discard it and reset start to 1, tank to 0.",
+      "Indices 1 and 2 fail in the same way. The surviving candidate becomes index 3.",
+      "Indices 3 and 4 add 3 each, leaving tank=6. The full route total is 0, so sufficient fuel exists.",
+      "Start at 3: surplus from stations 3 and 4 pays for the three earlier deficits after wrapping. Return 3."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "total += balance",
+      "note": "The global budget must include every station even when several local candidate segments fail."
+    },
+    {
+      "code": "if tank < 0:",
+      "note": "A first negative segment eliminates every start within it, justifying a jump instead of another full simulation."
+    },
+    {
+      "code": "start = i + 1",
+      "note": "The first station after the failed segment is the earliest candidate not already ruled out by the same deficit."
+    }
+  ]
+}

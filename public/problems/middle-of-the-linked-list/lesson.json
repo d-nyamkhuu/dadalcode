@@ -1,0 +1,52 @@
+{
+  "slug": "middle-of-the-linked-list",
+  "headline": "Move twice as fast to identify the second middle",
+  "statement": "Return the middle node of a nonempty singly linked list. For an even number of nodes, return the second of the two middle nodes.",
+  "prerequisites": [
+    "Linked-list traversal",
+    "Two pointers"
+  ],
+  "constraints": [
+    "1 <= list length <= 100",
+    "1 <= node value <= 100"
+  ],
+  "intuition": "After t rounds, slow has advanced t links and fast has advanced 2t. When fast runs out of pairs of links, slow has advanced floor(n/2), which is exactly the requested zero-based middle index.",
+  "approach": [
+    "Start slow and fast at head.",
+    "While fast and fast.next exist, advance slow one link and fast two.",
+    "Return slow, preserving its original identity and suffix."
+  ],
+  "correctness": "For odd n=2k+1 the loop runs k times and returns index k. For even n=2k it runs k times and returns index k, the second middle. No input links are modified.",
+  "bruteForce": "Count nodes first, then walk floor(n/2) links in a second pass.",
+  "complexity": {
+    "time": "O(length)",
+    "space": "O(1)",
+    "explanation": "The two pointers traverse the list with no auxiliary collection."
+  },
+  "pitfalls": [
+    "Use the loop condition that returns the second middle for even length.",
+    "Return the original node, not a newly constructed list with the same values."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "slow",
+      "fast"
+    ],
+    "labels": {
+      "head": "Head",
+      "slow": "Slow",
+      "fast": "Fast"
+    }
+  }
+}

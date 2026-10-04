@@ -1,0 +1,156 @@
+[
+  {
+    "name": "Example: square",
+    "input": {
+      "original": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "m": 2,
+      "n": 2
+    },
+    "expected": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  },
+  {
+    "name": "Example: one row",
+    "input": {
+      "original": [
+        1,
+        2,
+        3
+      ],
+      "m": 1,
+      "n": 3
+    },
+    "expected": [
+      [
+        1,
+        2,
+        3
+      ]
+    ]
+  },
+  {
+    "name": "Too many values",
+    "input": {
+      "original": [
+        1,
+        2
+      ],
+      "m": 1,
+      "n": 1
+    },
+    "expected": []
+  },
+  {
+    "name": "Too few values",
+    "input": {
+      "original": [
+        1,
+        2
+      ],
+      "m": 2,
+      "n": 2
+    },
+    "expected": []
+  },
+  {
+    "name": "One column",
+    "input": {
+      "original": [
+        4,
+        5,
+        6
+      ],
+      "m": 3,
+      "n": 1
+    },
+    "expected": [
+      [
+        4
+      ],
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  {
+    "name": "Rectangular order",
+    "input": {
+      "original": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "m": 2,
+      "n": 3
+    },
+    "expected": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4,
+        5,
+        6
+      ]
+    ]
+  },
+  {
+    "name": "One cell",
+    "input": {
+      "original": [
+        7
+      ],
+      "m": 1,
+      "n": 1
+    },
+    "expected": [
+      [
+        7
+      ]
+    ]
+  },
+  {
+    "name": "Repeated values preserve all positions",
+    "input": {
+      "original": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "m": 2,
+      "n": 2
+    },
+    "expected": [
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        7
+      ]
+    ]
+  }
+]

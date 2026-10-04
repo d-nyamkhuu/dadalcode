@@ -1,0 +1,67 @@
+{
+  "slug": "number-of-islands",
+  "headline": "Flood each newly discovered land component",
+  "statement": "Given a rectangular grid of characters 1 for land and 0 for water, count islands. Land cells belong to the same island when joined horizontally or vertically; diagonal contact does not connect islands. Grid boundaries are surrounded by water. The reference may change land to water to mark visited cells; preserving the input with separate visited state is also valid.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Row and column indices"
+  ],
+  "constraints": [
+    "1 <= number of rows, columns <= 300",
+    "Every cell is the character \"0\" or \"1\"."
+  ],
+  "intuition": "When the scan finds unvisited land, that cell begins exactly one new island. Flood all connected land and mark it as water so no later scan position can count that island again. An iterative queue avoids recursion depth limits.",
+  "approach": [
+    "Scan cells in row-major order.",
+    "For each remaining 1, increment islands, mark it 0, and enqueue it.",
+    "Expand the queue through valid four-direction land neighbors.",
+    "Mark a neighbor before enqueueing to prevent duplicate visits."
+  ],
+  "correctness": "Flooding reaches precisely the land connected to the starting cell by four-direction paths. Marking all reached cells prevents recounting that component. Every component has a first scanned land cell, so each island contributes exactly one increment and none are missed.",
+  "bruteForce": "For each cell, independently search its component and deduplicate component identities afterward. Repeated floods can become quadratic.",
+  "complexity": {
+    "time": "O(rows * cols)",
+    "space": "O(rows * cols) worst case",
+    "explanation": "Each cell is scanned once and land is queued once. The explicit flood queue can hold a linear number of cells; input is mutated to mark visitation."
+  },
+  "pitfalls": [
+    "Use four directions; diagonals are not connected.",
+    "Mark when enqueueing rather than when popping.",
+    "Characters \"1\" and \"0\" differ from integers 1 and 0."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/number-of-islands/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "grid",
+      "queue"
+    ],
+    "pointers": [
+      "row",
+      "col",
+      "r",
+      "c",
+      "nr",
+      "nc"
+    ],
+    "watch": [
+      "islands"
+    ],
+    "labels": {
+      "grid": "Grid",
+      "queue": "Queue",
+      "row": "Row",
+      "col": "Col",
+      "r": "R",
+      "c": "C",
+      "nr": "Nr",
+      "nc": "Nc",
+      "islands": "Islands"
+    }
+  }
+}

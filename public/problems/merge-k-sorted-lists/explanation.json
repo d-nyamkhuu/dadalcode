@@ -1,0 +1,60 @@
+{
+  "intuition": [
+    "One simple strategy collects every node value, sorts the values, and builds an answer. That ignores an advantage already present: each input chain is sorted. Only its current head can be its smallest remaining element, so we need compare the heads rather than every unmerged node.",
+    "A min heap stores one candidate per nonempty list. Removing its smallest entry chooses the globally smallest remaining node. Append that node to the answer and expose its successor as the next candidate from the same list. Other lists do not change. The heap therefore stays bounded by the number of input lists even while the output grows.",
+    "The tuple includes a list number because equal values are common, and Python should not attempt to order linked-node objects. The reference relinks existing nodes through a dummy head. Read the popped node’s successor before attaching it, and finish by clearing the final tail link. These details keep pointer manipulation independent of which list supplies each next value.",
+    "Initialization also has a cost when no nodes exist: k empty lists still require k head checks. Building all initial tuples and heapifying gives O(k) initialization; the N node removals and successor insertions then cost O(N log(k+1)). Original node identities and values are preserved, not just the displayed value multiset."
+  ],
+  "walkthrough": {
+    "input": {
+      "lists": [
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    "steps": [
+      "For [1,4,5], [1,3,4], [2,6], initialize heap candidates 1 from list 0, 1 from list 1, and 2 from list 2.",
+      "Pop list 0’s 1, attach it, and expose its next value 4.",
+      "Pop list 1’s 1 and expose 3. The merged prefix is now [1,1].",
+      "Pop 2 from list 2, then 3 from list 1; each pop advances only its own list.",
+      "The two 4s, then 5 and 6, are selected by heap order as earlier heads disappear.",
+      "Return the dummy head’s successor, representing [1,1,2,3,4,4,5,6]."
+    ],
+    "result": [
+      1,
+      1,
+      2,
+      3,
+      4,
+      4,
+      5,
+      6
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "heapify(heap)",
+      "note": "The initial list of head tuples is built by scanning all k members, including empty ones. Heapifying it is linear, and each tuple's list number breaks equal-value ties without ordering node objects."
+    },
+    {
+      "code": "if node.next is not None:",
+      "note": "Expose the successor while the original list link is still available."
+    },
+    {
+      "code": "tail.next = node\n            tail = node",
+      "note": "Append the chosen node and move the tail so the next append extends the result."
+    }
+  ]
+}

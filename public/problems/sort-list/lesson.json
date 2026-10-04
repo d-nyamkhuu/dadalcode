@@ -1,0 +1,56 @@
+{
+  "slug": "sort-list",
+  "headline": "Merge sorted runs of doubling size",
+  "statement": "Return the linked list in ascending value order. The reference rearranges existing links using bottom-up merge sort, meeting O(n log n) time and constant auxiliary space. Trainer inputs and outputs represent head as an array of values; the trainer supplies the ListNode class and converts arrays to linked lists.",
+  "prerequisites": [
+    "Linked-list rewiring",
+    "Merging sorted sequences",
+    "Merge sort"
+  ],
+  "constraints": [
+    "0 to 50000 nodes.",
+    "Node values range from -100000 to 100000."
+  ],
+  "intuition": "A single node is already sorted. Merge neighboring one-node runs to obtain two-node runs, then double the run size repeatedly. Because the runs are linked lists, cutting and reconnecting them requires only pointers rather than array buffers.",
+  "approach": [
+    "Count the nodes.",
+    "For run sizes 1, 2, 4, and so on, split two consecutive runs from the remaining list.",
+    "Merge those runs by choosing the smaller front node and connect their merged tail to the next pair.",
+    "After the final pass, return the new head."
+  ],
+  "correctness": "At the start of a width pass, every width-sized run is sorted. Merging two adjacent sorted runs produces a sorted run of size at most 2*width and preserves its nodes. Thus each pass doubles the guaranteed sorted run size. Once width reaches n, the entire list is one sorted run.",
+  "bruteForce": "Insertion sort repeatedly searches the sorted prefix, taking O(n\u00b2). Top-down merge sort improves time but uses O(log n) recursion storage.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(1) auxiliary",
+    "explanation": "There are logarithmically many passes, each scanning O(n) nodes. Only a fixed number of pointers is retained."
+  },
+  "pitfalls": [
+    "Cut each run before merging, or old links may create cycles.",
+    "Runs at the end may be shorter than width.",
+    "Return the updated head after merging, not the original first node."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/sort-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "left",
+      "right",
+      "current",
+      "dummy",
+      "tail"
+    ],
+    "pointers": [],
+    "watch": [
+      "width",
+      "length"
+    ],
+    "labels": {}
+  }
+}

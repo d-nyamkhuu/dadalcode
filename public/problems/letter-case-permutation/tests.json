@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Official mixed",
+    "input": {
+      "s": "a1b2"
+    },
+    "expected": [
+      "a1b2",
+      "a1B2",
+      "A1b2",
+      "A1B2"
+    ]
+  },
+  {
+    "name": "Official trailing letter",
+    "input": {
+      "s": "3z4"
+    },
+    "expected": [
+      "3z4",
+      "3Z4"
+    ]
+  },
+  {
+    "name": "Digits only",
+    "input": {
+      "s": "12345"
+    },
+    "expected": [
+      "12345"
+    ]
+  },
+  {
+    "name": "Uppercase input",
+    "input": {
+      "s": "A"
+    },
+    "expected": [
+      "a",
+      "A"
+    ]
+  },
+  {
+    "name": "Two letters",
+    "input": {
+      "s": "xY"
+    },
+    "expected": [
+      "xy",
+      "xY",
+      "Xy",
+      "XY"
+    ]
+  },
+  {
+    "name": "One digit",
+    "input": {
+      "s": "0"
+    },
+    "expected": [
+      "0"
+    ]
+  }
+]

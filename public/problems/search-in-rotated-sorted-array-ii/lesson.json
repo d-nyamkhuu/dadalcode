@@ -1,0 +1,54 @@
+{
+  "slug": "search-in-rotated-sorted-array-ii",
+  "headline": "Remove ambiguity before choosing a sorted half",
+  "statement": "A nondecreasing array with possible repeated values has been rotated. Return whether target occurs in it.",
+  "prerequisites": [
+    "Binary search",
+    "Duplicate handling"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 5000.",
+    "Values and target range from -10000 to 10000.",
+    "The input is a rotation of a sorted array."
+  ],
+  "intuition": "Duplicates can hide which side contains the rotation point. If left, mid, and right are equal and mid is not the target, the endpoints can safely be removed. Otherwise one sorted half can guide ordinary rotated binary search.",
+  "approach": [
+    "Check mid for target.",
+    "If both endpoints equal mid, shrink both ends.",
+    "Otherwise identify the sorted half and compare target against its bounds.",
+    "Continue until a match or an empty interval."
+  ],
+  "correctness": "Removing equal endpoints after a failed mid check cannot remove the target because those values equal the known non-target mid. In all other cases, the sorted-half bounds identify a half that cannot contain the target. Thus the candidate range preserves any possible match until found or exhausted.",
+  "bruteForce": "A linear membership scan is O(n). Binary search usually reduces work, although indistinguishable duplicates force linear behavior in the worst case.",
+  "complexity": {
+    "time": "O(log n) when each step halves the interval; O(n) worst case",
+    "space": "O(1)",
+    "explanation": "Unambiguous sorted-half steps halve the candidate interval. Equal endpoints can require repeated one-position trimming, making the worst case linear; no average-case distribution is assumed."
+  },
+  "pitfalls": [
+    "Do not claim guaranteed logarithmic complexity with duplicates.",
+    "Return a boolean, unlike the distinct-value version.",
+    "Check equality before discarding duplicate endpoints."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/search-in-rotated-sorted-array-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "mid",
+      "right"
+    ],
+    "watch": [
+      "target"
+    ],
+    "labels": {}
+  }
+}

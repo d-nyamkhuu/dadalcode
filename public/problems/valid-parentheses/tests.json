@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Example: one pair",
+    "input": {
+      "s": "()"
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: neighboring types",
+    "input": {
+      "s": "()[]{}"
+    },
+    "expected": true
+  },
+  {
+    "name": "Wrong type",
+    "input": {
+      "s": "(]"
+    },
+    "expected": false
+  },
+  {
+    "name": "Nested valid",
+    "input": {
+      "s": "{[()]}"
+    },
+    "expected": true
+  },
+  {
+    "name": "Crossing pairs",
+    "input": {
+      "s": "([)]"
+    },
+    "expected": false
+  },
+  {
+    "name": "Leading close",
+    "input": {
+      "s": ")("
+    },
+    "expected": false
+  },
+  {
+    "name": "Leftover open",
+    "input": {
+      "s": "(()"
+    },
+    "expected": false
+  }
+]

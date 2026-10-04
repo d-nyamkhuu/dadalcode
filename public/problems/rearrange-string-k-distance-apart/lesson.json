@@ -1,0 +1,71 @@
+{
+  "slug": "rearrange-string-k-distance-apart",
+  "headline": "Schedule the most frequent available character first so it does not run out of future slots",
+  "statement": "Rearrange all characters of s so any two equal characters are at least k positions apart. Return any valid rearrangement, or an empty string if none exists.",
+  "prerequisites": [
+    "Frequency counts",
+    "Max heaps",
+    "FIFO cooldown queue"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 300,000",
+    "s contains lowercase English letters",
+    "0 <= k <= len(s)"
+  ],
+  "intuition": "Schedule the most frequent available character first so it does not run out of future slots. A cooldown queue hides each used character until its next legal position.",
+  "approach": [
+    "Count characters and put negative counts in a min-heap to simulate a max-heap.",
+    "Before each output position, release cooldown entries whose ready index has arrived.",
+    "Pop the largest remaining available count and append its character.",
+    "If it has copies left, enqueue it with ready index position+k; if no character is available, return empty."
+  ],
+  "correctness": "The cooldown queue enforces a difference of at least k between successive occurrences, and remaining counts ensure each input copy is consumed exactly once. All letters have the same cooldown: a legal letter with more remaining copies requires more future separated slots, so selecting a maximum count addresses the most urgent requirement first. The heap updates this priority after every use, while increasing ready indices make FIFO release correct. Equal-cooldown feasibility is characterized by (f-1)*k+m <= n, where f is the largest frequency and m is the number of letters attaining it. The repeated layers need f-1 gaps followed by m final copies; other letters can fill or extend these gaps. Greedy scheduling spends these repeated copies early. If no letter is eligible before all copies are placed, the required gaps exceed the available positions; otherwise the completed string has exactly the required counts and spacing.",
+  "bruteForce": "Try all distinct character permutations and reject those violating a distance: factorial time.",
+  "complexity": {
+    "time": "O(n log σ), σ <= 26",
+    "space": "O(σ) excluding output",
+    "explanation": "Time O(n log σ), σ <= 26; auxiliary space O(σ) excluding output. Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Distance k means an index difference of at least k.",
+    "For k=0 or k=1 every arrangement is valid.",
+    "Use remaining counts, not original counts, in heap priorities."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/rearrange-string-k-distance-apart/"
+    },
+    {
+      "label": "Public problem statement — LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/358/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "heap",
+      "cooldown",
+      "result",
+      "counts"
+    ],
+    "pointers": [
+      "position"
+    ],
+    "watch": [
+      "letter",
+      "count",
+      "ready"
+    ],
+    "labels": {
+      "heap": "Heap",
+      "cooldown": "Cooldown",
+      "result": "Result",
+      "counts": "Counts",
+      "position": "Position",
+      "letter": "Letter",
+      "count": "Count",
+      "ready": "Ready"
+    }
+  }
+}

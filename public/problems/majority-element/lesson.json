@@ -1,0 +1,60 @@
+{
+  "slug": "majority-element",
+  "headline": "Cancel pairs of different values",
+  "statement": "Return the value occurring more than floor(n/2) times in nums. The input is nonempty and a majority element is guaranteed.",
+  "prerequisites": [
+    "Frequency counting",
+    "Greedy cancellation"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 50,000",
+    "-10^9 <= nums[i] <= 10^9",
+    "A strict majority always exists"
+  ],
+  "intuition": "Cancel pairs of different values. A strict majority cannot be completely cancelled because it has more occurrences than all other values combined.",
+  "approach": [
+    "Keep a candidate and a vote balance.",
+    "When balance is zero, choose the current value as candidate.",
+    "Add one for a candidate match, subtract one for a different value.",
+    "Return the surviving candidate; no verification pass is needed under the guarantee."
+  ],
+  "correctness": "Removing a pair of different values preserves the strict-majority identity: the majority loses at most one occurrence while two elements disappear. The vote algorithm performs these cancellations implicitly. Since a majority exists, the uncancelled candidate must be that value.",
+  "bruteForce": "Count each distinct value by scanning nums: O(n\u00b2) worst case. A frequency map costs O(n) space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "The guarantee is essential; arbitrary arrays need a second verification pass.",
+    "Reset the candidate when the balance is zero, before updating the vote.",
+    "Majority means more than half, not just most frequent."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/majority-element/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "candidate",
+      "votes",
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "i": "I",
+      "candidate": "Candidate",
+      "votes": "Votes",
+      "value": "Value"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "permutation-in-string",
+  "headline": "Compare a fixed-width window to the target counts",
+  "statement": "Return whether string s2 contains a contiguous substring that is a permutation of s1. Matching requires identical character multiplicities, regardless of order.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(s1), len(s2) <= 10^4",
+    "Both strings contain lowercase English letters."
+  ],
+  "intuition": "All permutations have the same length and frequency vector. Slide a window of exactly len(s1) through s2, adding the arriving letter and subtracting the departing letter. Compare 26 counters instead of constructing permutations.",
+  "approach": [
+    "Count the letters in s1.",
+    "Update a 26-entry window count while scanning s2.",
+    "Once the window exceeds the target width, remove its old left letter.",
+    "For each full-width window, compare the two vectors."
+  ],
+  "correctness": "At right index r, window counts describe exactly the last len(s1) characters once enough characters exist. Two equal-length strings are permutations precisely when all letter counts agree. Every candidate substring of that length is scanned, so returning true is equivalent to a permutation occurring.",
+  "bruteForce": "Generate all permutations of s1 and search each in s2, costing factorial work and duplicating permutations when letters repeat.",
+  "complexity": {
+    "time": "O(len(s1)+len(s2))",
+    "space": "O(1)",
+    "explanation": "Comparing 26 counters is constant work per window; the alphabet size is fixed."
+  },
+  "pitfalls": [
+    "The window length is fixed, not variable.",
+    "Multiplicity matters; a set cannot distinguish aa from ab.",
+    "If s1 is longer than s2, the answer is false."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/permutation-in-string/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "target",
+      "window"
+    ],
+    "pointers": [
+      "right"
+    ],
+    "watch": [
+      "width",
+      "s1",
+      "s2"
+    ],
+    "labels": {
+      "target": "Target",
+      "window": "Window",
+      "right": "Right",
+      "width": "Width",
+      "s1": "S1",
+      "s2": "S2"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "partition-equal-subset-sum",
+  "headline": "Two equal sums each equal half the total",
+  "statement": "Determine whether nums can be divided into two subsets with equal sums. Every element must belong to exactly one subset.",
+  "prerequisites": [
+    "0/1 knapsack",
+    "Boolean dynamic programming",
+    "Parity"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 200",
+    "1 <= nums[i] <= 100"
+  ],
+  "intuition": "Two equal sums each equal half the total. Ask whether that half can be formed by choosing each value at most once.",
+  "approach": [
+    "Reject an odd total immediately.",
+    "Initialize reachable[0]=True for the empty subset.",
+    "For each value, update sums downwards from target to value.",
+    "Return reachable[target]."
+  ],
+  "correctness": "After each value, reachable[s] records exactly whether some subset of processed elements sums to s. The transition either excludes the value or adds it to a previously reachable s-value. Descending updates use the previous layer, preventing reuse. Reaching half leaves the complementary elements with the same sum.",
+  "bruteForce": "Enumerate all 2^n subsets and check their sums.",
+  "complexity": {
+    "time": "O(n*T), T=sum(nums)/2",
+    "space": "O(T)",
+    "explanation": "Time O(n*T), T=sum(nums)/2; auxiliary space O(T). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Update sums downward, or one value may be used multiple times.",
+    "Odd total cannot split equally.",
+    "This is subset selection, not a contiguous subarray problem."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/partition-equal-subset-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "nums",
+      "reachable"
+    ],
+    "pointers": [
+      "subtotal"
+    ],
+    "watch": [
+      "value",
+      "target",
+      "total"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "reachable": "Reachable",
+      "subtotal": "Subtotal",
+      "value": "Value",
+      "target": "Target",
+      "total": "Total"
+    }
+  }
+}

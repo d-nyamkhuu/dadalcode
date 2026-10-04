@@ -1,0 +1,135 @@
+[
+  {
+    "name": "Several classes",
+    "input": {
+      "strs": [
+        "eat",
+        "tea",
+        "tan",
+        "ate",
+        "nat",
+        "bat"
+      ]
+    },
+    "expected": [
+      [
+        "eat",
+        "tea",
+        "ate"
+      ],
+      [
+        "tan",
+        "nat"
+      ],
+      [
+        "bat"
+      ]
+    ]
+  },
+  {
+    "name": "Empty word",
+    "input": {
+      "strs": [
+        ""
+      ]
+    },
+    "expected": [
+      [
+        ""
+      ]
+    ]
+  },
+  {
+    "name": "Single letter",
+    "input": {
+      "strs": [
+        "a"
+      ]
+    },
+    "expected": [
+      [
+        "a"
+      ]
+    ]
+  },
+  {
+    "name": "Repeated words",
+    "input": {
+      "strs": [
+        "ab",
+        "ab",
+        "ba"
+      ]
+    },
+    "expected": [
+      [
+        "ab",
+        "ab",
+        "ba"
+      ]
+    ]
+  },
+  {
+    "name": "Counts distinguish",
+    "input": {
+      "strs": [
+        "ab",
+        "aab",
+        "abb"
+      ]
+    },
+    "expected": [
+      [
+        "ab"
+      ],
+      [
+        "aab"
+      ],
+      [
+        "abb"
+      ]
+    ]
+  },
+  {
+    "name": "Empty and nonempty",
+    "input": {
+      "strs": [
+        "",
+        "a",
+        ""
+      ]
+    },
+    "expected": [
+      [
+        "",
+        ""
+      ],
+      [
+        "a"
+      ]
+    ]
+  },
+  {
+    "name": "Final alphabet letter",
+    "input": {
+      "strs": [
+        "zzab",
+        "bazz",
+        "zz",
+        "z"
+      ]
+    },
+    "expected": [
+      [
+        "zzab",
+        "bazz"
+      ],
+      [
+        "zz"
+      ],
+      [
+        "z"
+      ]
+    ]
+  }
+]

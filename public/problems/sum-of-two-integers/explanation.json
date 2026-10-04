@@ -1,0 +1,36 @@
+{
+  "intuition": [
+    "Simulate binary column addition with an explicit bit list and a carry. XOR/AND apply those same column operations to every bit at once. Ordinary arithmetic is disallowed, so the algorithm must reproduce binary column addition using allowed bit operations.",
+    "At each bit position, XOR computes the sum bit when incoming carries are temporarily ignored. AND finds pairs of one bits that generate a carry; shifting moves those carries into the next higher positions. Repeat this decomposition until the carry word vanishes. Python integers need special handling because negative values have unbounded sign extension: a 32-bit mask makes carry propagation finite. Finally interpret a word with its high bit set as a signed two\u2019s-complement integer, using complement operations rather than prohibited subtraction.",
+    "For fixed-width words, XOR plus shifted AND preserves the arithmetic sum modulo 2^32. Every iteration moves outstanding carry bits left, so all disappear after at most 32 shifts. The final word therefore represents the correct sum. Because the result fits signed 32-bit range, signed conversion yields the ordinary integer answer. The bounded word width guarantees carry termination even for negative inputs.",
+    "The trainer enforces the explicit operator rule by rejecting binary or augmented addition and subtraction in submitted source. Unary negative literals remain legal. This teaching check does not claim to detect every possible way to delegate arithmetic; use the bitwise algorithm rather than hiding an addition elsewhere."
+  ],
+  "walkthrough": {
+    "input": {
+      "a": 3,
+      "b": 5
+    },
+    "steps": [
+      "For a=3 (0011) and b=5 (0101), mask both into 32-bit words. Only the low four bits are shown here.",
+      "The first round gives XOR sum 0110 (6) and shifted-AND carry 0010 (2).",
+      "The next round combines 6 and 2: XOR becomes 0100 (4), and carry becomes 0100 (4).",
+      "Combining 4 and 4 gives XOR 0000 and carry 1000 (8). The following round puts 8 in a and clears b.",
+      "The carry is now zero and the sign bit is clear, so return 8. All updates used bit operations instead of arithmetic addition or subtraction."
+    ],
+    "result": 8
+  },
+  "codeNotes": [
+    {
+      "code": "carry = ((a & b) << 1) & mask",
+      "note": "Only two one bits produce a carry; shifting places it in the correct higher column and masking bounds its width."
+    },
+    {
+      "code": "a = (a ^ b) & mask",
+      "note": "XOR computes the current sum without carry, while the next iteration incorporates the separately stored carry."
+    },
+    {
+      "code": "return a if a <= signed_max else ~(a ^ mask)",
+      "note": "A high-bit word represents a negative signed result; complementing its inverted low bits reconstructs Python\u2019s negative integer."
+    }
+  ]
+}

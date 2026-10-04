@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Shortest pair",
+    "input": {
+      "target": 7,
+      "nums": [
+        2,
+        3,
+        1,
+        2,
+        4,
+        3
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Single sufficient",
+    "input": {
+      "target": 4,
+      "nums": [
+        1,
+        4,
+        4
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Impossible target",
+    "input": {
+      "target": 11,
+      "nums": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Whole array",
+    "input": {
+      "target": 6,
+      "nums": [
+        1,
+        2,
+        3
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Exceed rather than equal",
+    "input": {
+      "target": 5,
+      "nums": [
+        3,
+        3
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Repeated shrinking",
+    "input": {
+      "target": 10,
+      "nums": [
+        1,
+        2,
+        3,
+        4,
+        10
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Singleton too small",
+    "input": {
+      "target": 2,
+      "nums": [
+        1
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Singleton exactly target",
+    "input": {
+      "target": 1,
+      "nums": [
+        1
+      ]
+    },
+    "expected": 1
+  }
+]

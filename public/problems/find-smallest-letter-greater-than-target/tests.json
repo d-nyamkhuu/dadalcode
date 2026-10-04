@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Official before first",
+    "input": {
+      "letters": [
+        "c",
+        "f",
+        "j"
+      ],
+      "target": "a"
+    },
+    "expected": "c"
+  },
+  {
+    "name": "Official equal first",
+    "input": {
+      "letters": [
+        "c",
+        "f",
+        "j"
+      ],
+      "target": "c"
+    },
+    "expected": "f"
+  },
+  {
+    "name": "Official wrap",
+    "input": {
+      "letters": [
+        "x",
+        "x",
+        "y",
+        "y"
+      ],
+      "target": "z"
+    },
+    "expected": "x"
+  },
+  {
+    "name": "Between letters",
+    "input": {
+      "letters": [
+        "c",
+        "f",
+        "j"
+      ],
+      "target": "g"
+    },
+    "expected": "j"
+  },
+  {
+    "name": "Duplicate equality",
+    "input": {
+      "letters": [
+        "a",
+        "a",
+        "b",
+        "c"
+      ],
+      "target": "a"
+    },
+    "expected": "b"
+  },
+  {
+    "name": "Equal final wraps",
+    "input": {
+      "letters": [
+        "a",
+        "z"
+      ],
+      "target": "z"
+    },
+    "expected": "a"
+  },
+  {
+    "name": "Smallest distinct array",
+    "input": {
+      "letters": [
+        "a",
+        "b"
+      ],
+      "target": "a"
+    },
+    "expected": "b"
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "slug": "factor-combinations",
+  "headline": "Choose factors in nondecreasing order to avoid permutations",
+  "statement": "Return every unordered factorization of n using at least two factors, each between 2 and n-1. Represent a combination in nondecreasing order; combinations may be returned in any order.",
+  "prerequisites": [
+    "Divisibility",
+    "Backtracking",
+    "Square-root bounds"
+  ],
+  "constraints": [
+    "1 <= n <= 10^7"
+  ],
+  "intuition": "Choose factors in nondecreasing order to avoid permutations. For any factorization, its smallest factor is at most the square root of the remaining product.",
+  "approach": [
+    "Search factors from a minimum allowed factor through sqrt(remaining).",
+    "For each divisor f, emit path + [f, remaining//f].",
+    "Recurse on the quotient with minimum factor f to allow repeats without decreasing order.",
+    "Undo f when returning."
+  ],
+  "correctness": "Every emitted list multiplies to n and has at least two factors. Nondecreasing choices make each unordered factorization unique. Any factorization with at least two factors has a smallest factor no greater than sqrt(remaining), which the loop reaches; recursion enumerates all decompositions of the quotient.",
+  "bruteForce": "Enumerate sequences of candidate integers and multiply them, generating many permutations and impossible products.",
+  "complexity": {
+    "time": "Output-sensitive search; divisor scans cost O(sqrt(r)) per remaining product r",
+    "space": "O(log n) recursion excluding output",
+    "explanation": "Time Output-sensitive search; divisor scans cost O(sqrt(r)) per remaining product r; auxiliary space O(log n) recursion excluding output. Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Do not emit [n].",
+    "Keep the same minimum factor after selecting f so repeated factors are legal.",
+    "n=1 and primes have no factorizations."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/factor-combinations/"
+    },
+    {
+      "label": "Public problem statement \u2014 LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/254/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "path"
+    ],
+    "pointers": [],
+    "watch": [
+      "remaining",
+      "factor",
+      "quotient",
+      "start",
+      "result"
+    ],
+    "labels": {
+      "path": "Path",
+      "remaining": "Remaining",
+      "factor": "Factor",
+      "quotient": "Quotient",
+      "start": "Start",
+      "result": "Result"
+    }
+  }
+}

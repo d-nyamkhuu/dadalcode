@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "Enumerate all subsets and reject adjacent selected houses, including the endpoint pair. This takes exponential time. The ordinary line recurrence handles neighboring houses, but it does not know that the final house also conflicts with the first.",
+    "Every valid circular selection omits at least one endpoint. Therefore solve two overlapping linear cases: all houses except the last, and all houses except the first. They may both contain the same optimal selection, which is harmless because we take a maximum rather than sum their totals. A singleton is exceptional: excluding either endpoint would exclude the only house. Index ranges avoid copying arrays and make the omitted endpoint explicit in each call.",
+    "Every valid circular selection belongs to at least one endpoint-excluded line because it cannot contain both endpoints. Conversely, a nonadjacent selection in either line is circularly legal. Therefore the maximum of their optima is precisely the circular optimum. Two linear scans use index ranges rather than copied slices."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        1,
+        10,
+        1,
+        10
+      ]
+    },
+    "steps": [
+      "For [1,1,10,1,10], solve the first line on indices 0..3, excluding the final house.",
+      "Its prefix optima are 1,1,11,11. The best selection includes indices 0 and 2 for total 11.",
+      "Solve the second line on indices 1..4, excluding the first house. Its amounts are [1,10,1,10].",
+      "Its prefix optima are 1,10,10,20. Selecting original indices 2 and 4 earns 20; they are not adjacent in the circle.",
+      "Return max(11,20)=20. The unequal line optima show why both endpoint exclusions must be evaluated."
+    ],
+    "result": 20
+  },
+  "codeNotes": [
+    {
+      "code": "if len(nums) == 1:",
+      "note": "A single house can be robbed; the two endpoint-exclusion cases would otherwise erase it."
+    },
+    {
+      "code": "for i in range(start, end):",
+      "note": "An exclusive endpoint expresses each linear subproblem without allocating sliced copies."
+    },
+    {
+      "code": "return max(linear(0, len(nums) - 1), linear(1, len(nums)))",
+      "note": "The two cases collectively cover every legal circular choice, including choices that omit both endpoints."
+    }
+  ]
+}

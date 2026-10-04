@@ -1,0 +1,42 @@
+{
+  "intuition": [
+    "Enumerating every contiguous subarray repeats most additions and takes quadratic time. Positive values provide a stronger structure: extending a window to the right can only increase its sum, while removing its leftmost value can only decrease it. That makes a monotone two-pointer scan possible.",
+    "For each right endpoint, add its value and then shrink the left boundary while the sum still meets target. Each qualifying window gives a candidate length before shrinking. Continuing until qualification fails finds the shortest useful window ending at that right endpoint, instead of stopping at the first match.",
+    "A left boundary that was already removed need not be revisited. Extending the right endpoint would only make that old window longer, whereas its previously inspected version was at least as good. Both pointers therefore move forward at most n times, despite the nested loop."
+  ],
+  "walkthrough": {
+    "input": {
+      "target": 7,
+      "nums": [
+        2,
+        3,
+        1,
+        2,
+        4,
+        3
+      ]
+    },
+    "steps": [
+      "After extending right through index 3, total=8, left=0. Record length 4, best=4; remove 2 to get total=6 and left=1.",
+      "At right=4, add 4: total=10. Record length 4 (best stays 4), then remove 3: total=7, left=2.",
+      "Record length 3, best=3; remove 1: total=6, left=3. The window now fails the threshold.",
+      "At right=5, add 3: total=9. Record length 3 (best stays 3), then remove 2: total=7, left=4.",
+      "Record length 2 for [4,3], best=2; remove 4: total=3, left=5. No further valid window remains, so return 2."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "while total >= target:",
+      "note": "Qualification means at least target, not exact equality. Repeated shrinking considers shorter valid windows at the same right endpoint."
+    },
+    {
+      "code": "best = min(best, right - left + 1)",
+      "note": "Record the inclusive window length before removing its first value; afterward the window might no longer satisfy the target."
+    },
+    {
+      "code": "total -= nums[left]",
+      "note": "Maintaining the sum incrementally avoids rescanning the window. Strict positivity ensures this removal moves the sum toward failure monotonically."
+    }
+  ]
+}

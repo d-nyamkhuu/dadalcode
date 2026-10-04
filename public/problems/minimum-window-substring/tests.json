@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Standard window",
+    "input": {
+      "s": "ADOBECODEBANC",
+      "t": "ABC"
+    },
+    "expected": "BANC"
+  },
+  {
+    "name": "Single match",
+    "input": {
+      "s": "a",
+      "t": "a"
+    },
+    "expected": "a"
+  },
+  {
+    "name": "Insufficient multiplicity",
+    "input": {
+      "s": "a",
+      "t": "aa"
+    },
+    "expected": ""
+  },
+  {
+    "name": "Need repeated A",
+    "input": {
+      "s": "AAABBC",
+      "t": "AABC"
+    },
+    "expected": "AABBC"
+  },
+  {
+    "name": "Case sensitive",
+    "input": {
+      "s": "aA",
+      "t": "A"
+    },
+    "expected": "A"
+  },
+  {
+    "name": "No required letter",
+    "input": {
+      "s": "hello",
+      "t": "z"
+    },
+    "expected": ""
+  },
+  {
+    "name": "Late repeated-copy window",
+    "input": {
+      "s": "bbaac",
+      "t": "aac"
+    },
+    "expected": "aac"
+  }
+]

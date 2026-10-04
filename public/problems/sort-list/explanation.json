@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "Insertion sort repeatedly searches the sorted prefix, taking O(n\u00b2). Top-down merge sort improves time but uses O(log n) recursion storage. Array-style sorting buffers are unnecessary because list nodes can be moved simply by changing next pointers.",
+    "A one-node run is already sorted. Merge adjacent runs, doubling the guaranteed sorted width after each pass. split temporarily terminates each run so merge cannot wander into the next pair. A dummy node tracks the changing first node, while tail identifies the end of the output assembled during the current pass. The final pair may contain a short run or no right run; the same merge logic handles it. Iteration avoids the recursion stack required by top-down merge sort.",
+    "At the start of a width pass, every width-sized run is sorted. Merging two adjacent sorted runs produces a sorted run of size at most 2*width and preserves its nodes. Thus each pass doubles the guaranteed sorted run size. Once width reaches n, the entire list is one sorted run. There are logarithmically many passes, each scanning O(n) nodes. Only a fixed number of pointers is retained."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        4,
+        2,
+        1,
+        3
+      ]
+    },
+    "steps": [
+      "Count four nodes in [4,2,1,3] and begin with width=1.",
+      "Cut [4] and [2]; merge their fronts into [2,4].",
+      "Cut [1] and [3]; merge them into [1,3], reconnecting both sorted runs.",
+      "Double width to 2 and merge [2,4] with [1,3] into [1,2,3,4].",
+      "Width becomes 4, so the complete list is one sorted run and dummy.next is returned."
+    ],
+    "result": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "node.next = None",
+      "note": "Terminating a run prevents later merge decisions from following links into an unrelated run."
+    },
+    {
+      "code": "if left.val <= right.val:",
+      "note": "The smaller remaining front is the next sorted output node; equality consistently chooses the left node."
+    },
+    {
+      "code": "width *= 2",
+      "note": "Each completed pass merges width-sized runs, making twice that width the next guaranteed sorted unit."
+    }
+  ]
+}

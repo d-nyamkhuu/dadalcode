@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Official several removals",
+    "input": {
+      "head": [
+        1,
+        2,
+        6,
+        3,
+        4,
+        5,
+        6
+      ],
+      "val": 6
+    },
+    "expected": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "name": "Official empty",
+    "input": {
+      "head": [],
+      "val": 1
+    },
+    "expected": []
+  },
+  {
+    "name": "All removed",
+    "input": {
+      "head": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "val": 7
+    },
+    "expected": []
+  },
+  {
+    "name": "Consecutive head matches",
+    "input": {
+      "head": [
+        2,
+        2,
+        3,
+        4
+      ],
+      "val": 2
+    },
+    "expected": [
+      3,
+      4
+    ]
+  },
+  {
+    "name": "No matches",
+    "input": {
+      "head": [
+        1,
+        2,
+        3
+      ],
+      "val": 8
+    },
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Consecutive middle matches",
+    "input": {
+      "head": [
+        1,
+        4,
+        4,
+        2
+      ],
+      "val": 4
+    },
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Zero target is absent from positive nodes",
+    "input": {
+      "head": [
+        1,
+        2
+      ],
+      "val": 0
+    },
+    "expected": [
+      1,
+      2
+    ]
+  }
+]

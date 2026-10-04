@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Reordered letters",
+    "input": {
+      "s": "anagram",
+      "t": "nagaram"
+    },
+    "expected": true
+  },
+  {
+    "name": "Different letters",
+    "input": {
+      "s": "rat",
+      "t": "car"
+    },
+    "expected": false
+  },
+  {
+    "name": "Different multiplicities",
+    "input": {
+      "s": "aab",
+      "t": "abb"
+    },
+    "expected": false
+  },
+  {
+    "name": "Different lengths",
+    "input": {
+      "s": "a",
+      "t": "aa"
+    },
+    "expected": false
+  },
+  {
+    "name": "Single same letter",
+    "input": {
+      "s": "z",
+      "t": "z"
+    },
+    "expected": true
+  },
+  {
+    "name": "Every alphabet letter reversed",
+    "input": {
+      "s": "abcdefghijklmnopqrstuvwxyz",
+      "t": "zyxwvutsrqponmlkjihgfedcba"
+    },
+    "expected": true
+  }
+]

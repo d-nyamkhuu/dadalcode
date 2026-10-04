@@ -1,0 +1,59 @@
+{
+  "slug": "subsets-ii",
+  "headline": "Skip duplicates only among sibling choices",
+  "statement": "Return every distinct subset of nums, which may contain repeated integers. A value can occur in a subset no more often than in nums. Include the empty subset. Output ordering is unrestricted.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10",
+    "-10 <= nums[i] <= 10"
+  ],
+  "intuition": "Sorting places equal values together. At one recursion depth, choosing the second equal value would duplicate the branch from the first. At a deeper depth it is allowed, so subsets containing multiple copies remain possible.",
+  "approach": [
+    "Sort nums. Save the current path at every call, including the root.",
+    "Try each index from start onward.",
+    "Skip a repeated value only when i>start and it equals nums[i-1].",
+    "Recurse from i+1 and undo the append."
+  ],
+  "correctness": "Paths use strictly increasing indices, so their multiplicities are legal. The sibling skip chooses only the first occurrence for each next value. Every desired multiset follows a canonical path that takes consecutive equal occurrences at successive depths, giving exactly one path per subset.",
+  "bruteForce": "Generate every index subset in O(n*2^n) time and remove duplicates afterward.",
+  "complexity": {
+    "time": "O(n * 2^n)",
+    "space": "O(n) auxiliary, excluding output",
+    "explanation": "The distinct-input case has 2^n subsets and up to n values per saved copy; duplicates reduce the output."
+  },
+  "pitfalls": [
+    "Use i>start, not i>0, when skipping duplicates.",
+    "Save every path, not just full-length leaves.",
+    "The empty subset belongs in the result."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/subsets-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "nums",
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "start"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "path": "Path",
+      "result": "Result",
+      "i": "I",
+      "start": "Start"
+    }
+  }
+}

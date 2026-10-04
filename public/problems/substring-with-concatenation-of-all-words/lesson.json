@@ -1,0 +1,68 @@
+{
+  "slug": "substring-with-concatenation-of-all-words",
+  "headline": "Treat each whole word as one token",
+  "statement": "Return every starting index in s of a substring formed by concatenating each word in words exactly once, in any order. All words have the same nonzero length; duplicate words count separately. Return indices in any order.",
+  "prerequisites": [
+    "Sliding windows",
+    "Frequency maps",
+    "Fixed-size string chunks"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 10,000",
+    "1 <= len(words) <= 5,000",
+    "All words have equal length between 1 and 30",
+    "s and words contain lowercase English letters"
+  ],
+  "intuition": "Treat each whole word as one token. For each possible alignment, maintain a window whose token counts never exceed the required counts.",
+  "approach": [
+    "Count required word multiplicities and scan each offset modulo word length.",
+    "Add a word-sized token; clear the window if it is not required.",
+    "When a count exceeds its quota, remove left tokens until valid again.",
+    "Once the window contains exactly len(words) tokens, record its start."
+  ],
+  "correctness": "Each aligned window contains only required words and no count above its quota. If its token count equals the total quota, every required count must be exactly satisfied. Shrinking removes only invalid starts; scanning all offsets includes every possible starting index.",
+  "bruteForce": "For each start, slice and count all words in the candidate: O(n*m*w) work for n characters, m words and width w.",
+  "complexity": {
+    "time": "O(n*w + m*w)",
+    "space": "O(m*w)",
+    "explanation": "Time O(n*w + m*w); auxiliary space O(m*w). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Duplicate words need multiplicities, not a set.",
+    "Scan every offset, including starts inside the first word width.",
+    "Shrink repeatedly on overflow; overlapping answers are allowed."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/substring-with-concatenation-of-all-words/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s",
+      "need",
+      "window"
+    ],
+    "pointers": [
+      "left",
+      "right"
+    ],
+    "watch": [
+      "word",
+      "used",
+      "result"
+    ],
+    "labels": {
+      "s": "S",
+      "need": "Need",
+      "window": "Window",
+      "left": "Left",
+      "right": "Right",
+      "word": "Word",
+      "used": "Used",
+      "result": "Result"
+    }
+  }
+}

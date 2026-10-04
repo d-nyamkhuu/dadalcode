@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "Each input position independently chooses plus or minus, so straightforward enumeration explores 2^n assignments. Many partial assignments have the same running total, though. For future choices they are equivalent except for how many ways reached that total, which suggests storing a count per reachable sum.",
+    "Start with one way to make zero before reading any numbers. For every existing total, adding the next value and subtracting it produce two extensions. Accumulate the old count into both new totals using a fresh map. Equal totals merge by addition, but their distinct underlying sign choices are still counted.",
+    "Using a new map is essential: updating the old map while iterating could consume the same number multiple times. Zero deserves special attention because plus zero and minus zero both preserve the total yet are different assignments. Both updates therefore land on the same key and double its count. Negative targets need no special conversion; the map naturally carries negative as well as positive sums. At the end, return the target count or zero if it was never reached.",
+    "Every reachable signed sum lies between -S and S, where S=sum(nums). Flipping a sign changes the sum by twice that value, so every signed sum has the same parity as S. The reference rejects targets outside the range or with incompatible parity before constructing the count maps; zero still follows both sign updates and doubles its assignment count."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "target": 3
+    },
+    "steps": [
+      "For five ones and target 3, begin with ways={0:1}.",
+      "After one value, sums -1 and 1 each have one assignment.",
+      "After two, sum 0 has two assignments, while -2 and 2 each have one.",
+      "After four, sum 2 has count 4 and sum 4 has count 1.",
+      "The final plus-one extends the four assignments at 2 to target 3; the final minus-one extends the one assignment at 4.",
+      "Return 4+1=5 distinct sign assignments, matching the five choices of which one receives a minus."
+    ],
+    "result": 5
+  },
+  "codeNotes": [
+    {
+      "code": "ways = {0: 1}",
+      "note": "The empty assignment is one valid starting state, not zero ways."
+    },
+    {
+      "code": "next_ways = {}",
+      "note": "Separate rounds ensure the current input position contributes exactly one sign."
+    },
+    {
+      "code": "next_ways[minus] = next_ways.get(minus, 0) + count",
+      "note": "Accumulate all minus extensions, including when zero makes plus and minus reach the same sum."
+    }
+  ]
+}

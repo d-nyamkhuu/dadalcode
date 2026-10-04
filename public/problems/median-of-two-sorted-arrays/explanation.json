@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Merging both sorted inputs would make the median easy to locate, but it reads every value. The logarithmic requirement asks us to exploit sortedness more directly. Instead of finding the whole merged order, find only the boundary separating its lower half from its upper half.",
+    "Choose a cut in each array. Their left portions together must contain (m+n+1)//2 values. Once the first cut is chosen, the other is forced. Everything inside each portion is already sorted, so only the two cross-boundary comparisons can violate the desired ordering.",
+    "Binary search the shorter array’s cut. A first-array left value above the other right value means the cut took too much from the first array. The reverse mismatch means it took too little. A valid cut reveals both central values without performing a merge.",
+    "The opposite search direction occurs for nums1=[3,4], nums2=[1,2]. Initially i=j=1: a_left=3 exceeds b_right=2, so high becomes 0. The next cut i=0, j=2 passes both comparisons, and its middle values 2 and 3 average to 2.5. This complements the main example, where low moves right."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums1": [
+        1,
+        3
+      ],
+      "nums2": [
+        2
+      ]
+    },
+    "steps": [
+      "Swap the inputs locally: nums1 becomes [2] and nums2 becomes [1,3]. The required lower half has two values.",
+      "The initial search interval is 0..1. Its middle cut i=0 forces j=2 in the other array.",
+      "That cut puts 3 on the left but 2 on the right, violating the boundary order. Move low to 1.",
+      "Now i=1 and j=1 split the arrays into left values [2] and [1], with right value [3].",
+      "Both cross comparisons hold. The combined length is three, so return the largest left value, 2."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "left_size = (m + n + 1) // 2",
+      "note": "The extra left value for an odd total makes one formula support both parity cases; the odd median is then the left maximum."
+    },
+    {
+      "code": "j = left_size - i",
+      "note": "This equation keeps the combined lower-half size fixed while the searched cut changes, leaving only one independent decision."
+    },
+    {
+      "code": "if a_left <= b_right and b_left <= a_right:",
+      "note": "Both directions matter: each array’s sorted order alone cannot guarantee its left values precede the other array’s right values."
+    }
+  ]
+}

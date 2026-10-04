@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Use a seen set in O(n) space, or compare all pairs in O(n\u00b2). Neither meets both requested resource constraints. Mutation-based marking would violate the input restriction, while a visited set would violate the constant-space requirement.",
+    "Interpret each array position as a graph node whose outgoing pointer is its value. Since values are valid indices from 1 through n, repeatedly following pointers never reaches index zero again and must eventually cycle. The reachable cycle\u2019s entrance receives one edge from the incoming path and one from the cycle, exposing the repeated value. Two pointer speeds find a meeting inside the cycle; a second equal-speed phase finds its entrance. This uses the value range as structure rather than treating the input as an arbitrary array.",
+    "Let \u03bc be the path length before the cycle and \u03bb its length. At the first meeting after t slow steps, t is a multiple of \u03bb. Advancing one pointer from zero and the other from the meeting for \u03bc steps makes them meet at the entrance. This entrance has distinct incoming predecessors from the path and cycle, identifying the unique repeated value. Cycle detection and entrance search each traverse at most a linear number of edges.",
+    "For nums=[1,2,3,4,5,6,4], the pointer path is 0\u21921\u21922\u21923\u21924\u21925\u21926\u21924. Its noncyclic prefix has length \u03bc=4 and its cycle has length \u03bb=3. Slow and fast first meet after t=6 slow steps, at index 6, since 6 is a multiple of 3. Reset finder to zero; equal-speed pairs become (1,4), (2,5), (3,6), then (4,4). The duplicate is entrance 4, not meeting point 6."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        3,
+        4,
+        2,
+        2
+      ]
+    },
+    "steps": [
+      "Start slow=fast=0 for [1,3,4,2,2].",
+      "After one move slow=1 and fast=3; after the next, slow=3 and fast=4.",
+      "Continue until both pointers meet at index 4 inside cycle 4\u21922\u21924.",
+      "Reset finder to 0; advance finder and slow together through (1,2) and (3,4).",
+      "The next move makes both equal 2, the entrance and repeated number."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "fast = nums[nums[fast]]",
+      "note": "Following two next pointers, rather than adding two to an index, gives Floyd\u2019s speed difference."
+    },
+    {
+      "code": "finder = 0",
+      "note": "Restart from the path origin while keeping the meeting pointer inside the cycle to locate the entrance."
+    },
+    {
+      "code": "return finder",
+      "note": "The entrance index is a repeated destination value, so it is the duplicate itself rather than a duplicate position."
+    }
+  ]
+}

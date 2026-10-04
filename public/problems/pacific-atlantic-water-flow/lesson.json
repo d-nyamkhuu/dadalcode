@@ -1,0 +1,66 @@
+{
+  "slug": "pacific-atlantic-water-flow",
+  "headline": "Search uphill from each ocean",
+  "statement": "Return coordinates of cells whose water can reach both oceans. The Pacific touches top and left edges; the Atlantic touches bottom and right edges. Water moves orthogonally to an equal or lower height. Return each qualifying coordinate once, in any order.",
+  "prerequisites": [
+    "Grid traversal",
+    "Reverse reachability"
+  ],
+  "constraints": [
+    "1 <= rows, columns <= 200.",
+    "0 <= heights[r][c] <= 100000."
+  ],
+  "intuition": "Searching downhill from every cell repeats work. Reverse the arrows: start at an ocean's boundary and move to neighbors of equal or greater height. Those cells can send water back along the reversed path to that ocean. Intersect the two reachable sets.",
+  "approach": [
+    "Collect Pacific and Atlantic border cells.",
+    "Run a visited-set traversal uphill from each set of seeds.",
+    "Allow equal-height neighbors and four orthogonal directions.",
+    "Return the coordinates in both reachable sets."
+  ],
+  "correctness": "Reversing every legal downhill edge gives an uphill edge. A cell reached from an ocean border in the reversed graph has an original downhill path to that border, and every such path is discoverable in reverse. Therefore the intersection contains exactly the cells reaching both oceans.",
+  "bruteForce": "Run a downhill traversal from each of R*C cells, potentially taking O((RC)²). Two reverse traversals visit each cell only a constant number of times.",
+  "complexity": {
+    "time": "O(RC)",
+    "space": "O(RC)",
+    "explanation": "Two iterative reverse traversals and one row-major output scan each visit at most RC coordinates. Hash-set membership is expected O(1), so time is O(RC). The two reachability sets and traversal stacks use O(RC) storage."
+  },
+  "pitfalls": [
+    "Reverse traversal uses >=, not <=.",
+    "Equal-height plateaus allow flow.",
+    "A corner can touch both oceans directly."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "heights",
+      "seen",
+      "stack",
+      "pacific",
+      "atlantic"
+    ],
+    "pointers": [
+      "r",
+      "c",
+      "nr",
+      "nc"
+    ],
+    "watch": [],
+    "labels": {
+      "heights": "Terrain heights",
+      "seen": "Current ocean reachability",
+      "stack": "Pending uphill cells",
+      "pacific": "Cells reaching Pacific",
+      "atlantic": "Cells reaching Atlantic",
+      "r": "Current row",
+      "c": "Current column",
+      "nr": "Neighbor row",
+      "nc": "Neighbor column"
+    }
+  }
+}

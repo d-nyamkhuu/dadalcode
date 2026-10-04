@@ -1,0 +1,42 @@
+{
+  "intuition": [
+    "A separator-only encoding is ambiguous when the separator occurs inside a string. Escaping can solve that problem, but adds another set of rules to synchronize. An explicit payload length lets the decoder distinguish record boundaries without restricting what characters the payload contains.",
+    "Encode each record as decimal length, a #, and the original text. The decoder searches for # only while reading a numeric header. After that header, it consumes the stated number of characters, treating every character inside the payload as ordinary data, including other # symbols.",
+    "Joining all records once avoids repeatedly copying a growing string. Decoding advances one cursor from header to payload to the next header, so records need no global separator. A zero-length record is still represented by 0#, distinguishing an empty string from an absent record. A separate receiver can recover everything from the encoded text alone.",
+    "The character count and Python slicing both use the same character units. The decoder assumes a valid stream produced by encode; it need not reject missing headers, negative lengths, or truncated records supplied by unrelated callers. Testing a fresh receiving Codec enforces that recovery uses the transmitted stream alone."
+  ],
+  "walkthrough": {
+    "input": {
+      "strs": [
+        "Hello",
+        "World"
+      ]
+    },
+    "steps": [
+      "For strs=[Hello,World], encode Hello as 5#Hello and World as 5#World.",
+      "Join the chunks into 5#Hello5#World, whose total length is 14 characters.",
+      "Begin decoding at i=0. The first # is at end=1, and the preceding digit gives length=5.",
+      "Move i to 2, then take s[2:7]=Hello. Advance the cursor by five to i=7.",
+      "The next # is at index 8. Parse length 5, move i to 9, and take s[9:14]=World.",
+      "The cursor reaches 14, equal to the encoded length. Return [Hello,World] with both record boundaries recovered."
+    ],
+    "result": [
+      "Hello",
+      "World"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "chunks.append(str(len(text)) + '#' + text)",
+      "note": "The header supplies framing information while preserving payload characters verbatim, so delimiter escaping is unnecessary."
+    },
+    {
+      "code": "end = s.index('#', i)",
+      "note": "Search begins at the next header, never within an already-sized payload; a payload\u2019s # cannot become a separator accidentally."
+    },
+    {
+      "code": "i += length",
+      "note": "Skipping the exact payload length positions the cursor at the next header, including when length is zero."
+    }
+  ]
+}

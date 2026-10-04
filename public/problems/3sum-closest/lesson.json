@@ -1,0 +1,63 @@
+{
+  "slug": "3sum-closest",
+  "headline": "Move two pointers toward the target",
+  "statement": "Choose three distinct positions in nums so that their sum is closest to target. Return that sum. Exactly one closest sum is guaranteed.",
+  "prerequisites": [
+    "Sorting",
+    "Two pointers",
+    "Absolute difference"
+  ],
+  "constraints": [
+    "3 <= len(nums) <= 500",
+    "-1000 <= nums[i] <= 1000",
+    "-10000 <= target <= 10000"
+  ],
+  "intuition": "Fix the smallest position in a sorted triple. The remaining pair can be searched from both ends: increasing the left value raises the sum, while decreasing the right value lowers it.",
+  "approach": [
+    "Sort nums and initialize best using an actual triple.",
+    "For each first position, place left immediately after it and right at the end.",
+    "Update best; move left if the sum is too small, right if it is too large, or return an exact match."
+  ],
+  "correctness": "For a fixed first value, when the sum is below target, pairing the same left with any smaller right cannot improve it, so left can advance. The symmetric argument allows right to retreat above target. Every discarded pair is no better than an already considered candidate.",
+  "bruteForce": "Enumerate all triples and compare their distances, costing O(n³).",
+  "complexity": {
+    "time": "O(n²)",
+    "space": "O(n)",
+    "explanation": "Sorting costs O(n log n); each fixed position uses a linear pointer sweep. Python sorting may use O(n) workspace."
+  },
+  "pitfalls": [
+    "Use distinct indices, even when values repeat.",
+    "Initialize best from a real triple, not zero.",
+    "Return the sum rather than the distance.",
+    "A unique closest sum may come from multiple index triples. sorted(nums) creates a copy, preserving the input array."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/3sum-closest/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i",
+      "left",
+      "right"
+    ],
+    "watch": [
+      "total",
+      "best"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "i": "I",
+      "left": "Left",
+      "right": "Right",
+      "total": "Total",
+      "best": "Best"
+    }
+  }
+}

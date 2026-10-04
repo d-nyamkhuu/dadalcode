@@ -1,0 +1,51 @@
+{
+  "slug": "binary-tree-paths",
+  "headline": "Emit the current path only at a leaf",
+  "statement": "Return every root-to-leaf path as a string whose node values are separated by ->. A leaf has no left or right child; output order is unrestricted.",
+  "prerequisites": [
+    "Depth-first search",
+    "Backtracking",
+    "Leaf detection"
+  ],
+  "constraints": [
+    "1 to 100 nodes.",
+    "Node values range from -100 to 100."
+  ],
+  "intuition": "All descendants share the path to their ancestor. Maintain one list of value strings, append on entry, and pop on return. Copy it into a result string only when reaching a leaf.",
+  "approach": [
+    "Append the current value to a shared path.",
+    "At a leaf, join the path with -> and record it.",
+    "Otherwise visit each existing child.",
+    "Pop the current value before returning to the parent."
+  ],
+  "correctness": "On entering a node, path contains exactly its ancestors. Appending the current value creates its complete root path. Only leaves produce results, and DFS reaches each leaf once. Popping restores the ancestor path for sibling exploration, so all and only root-to-leaf paths are emitted.",
+  "bruteForce": "Copy a path list for every child and retain all partial paths. A shared path avoids those repeated intermediate copies.",
+  "complexity": {
+    "time": "O(n + L)",
+    "space": "O(h) auxiliary plus O(L) output",
+    "explanation": "L is the total number of characters in all returned paths; joining at leaves accounts for output size."
+  },
+  "pitfalls": [
+    "A node with one child is not a leaf.",
+    "Undo the append after both children.",
+    "Negative values are formatted as signed decimal strings."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/binary-tree-paths/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "node",
+      "path",
+      "result"
+    ],
+    "pointers": [],
+    "watch": [],
+    "labels": {}
+  }
+}

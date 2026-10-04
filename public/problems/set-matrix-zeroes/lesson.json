@@ -1,0 +1,60 @@
+{
+  "slug": "set-matrix-zeroes",
+  "headline": "Use the first row and column as deferred zero markers",
+  "statement": "For every cell that is zero in the original matrix, set its entire row and column to zero. Perform the update in place using constant extra space. The matrix is rectangular.",
+  "prerequisites": [
+    "Matrix traversal",
+    "Deferred mutation",
+    "Boolean flags"
+  ],
+  "constraints": [
+    "1 <= rows, columns <= 200",
+    "Matrix values are signed 32-bit integers"
+  ],
+  "intuition": "Zeroing immediately would create new zeros that incorrectly erase unrelated rows. First record which lines need clearing. The first cell of each row and column can serve as its marker; separate flags preserve whether the first row and column originally contained a zero.",
+  "approach": [
+    "Record original zero presence in row zero and column zero.",
+    "Scan the interior and put zero in its row/column headers whenever an original interior cell is zero.",
+    "Clear interior cells based on header markers.",
+    "Finally clear the first row and column according to the saved flags."
+  ],
+  "correctness": "The marker pass writes only headers, leaving all unvisited interior cells unchanged; thus every interior zero examined is original. Each header then precisely marks a row or column containing an original zero. Applying these markers clears exactly the required interior cells. The saved flags separately restore the correct first-row and first-column behavior.",
+  "bruteForce": "Save a full copy of the matrix, scan its zeros, and clear corresponding rows/columns in the original, using O(mn) extra memory and potentially repeated work.",
+  "complexity": {
+    "time": "O(rows × columns)",
+    "space": "O(1)",
+    "explanation": "Header flags and indices are constant-sized; a constant number of passes visits all cells."
+  },
+  "pitfalls": [
+    "Do not let newly created zeros trigger more clearing.",
+    "Preserve the first row and first column’s original zero state before using them as markers.",
+    "Delay clearing headers until interior markers have been used."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/set-matrix-zeroes/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "matrix"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "first_row_zero",
+      "first_col_zero"
+    ],
+    "labels": {
+      "matrix": "Matrix",
+      "row": "Row",
+      "col": "Col",
+      "first_row_zero": "First row zero",
+      "first_col_zero": "First col zero"
+    }
+  }
+}

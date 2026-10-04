@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Example: four groups",
+    "input": {
+      "nums": [
+        4,
+        3,
+        2,
+        3,
+        5,
+        2,
+        1
+      ],
+      "k": 4
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: indivisible",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "k": 3
+    },
+    "expected": false
+  },
+  {
+    "name": "Two complementary groups",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "k": 2
+    },
+    "expected": true
+  },
+  {
+    "name": "Divisible but impossible",
+    "input": {
+      "nums": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5
+      ],
+      "k": 4
+    },
+    "expected": false
+  },
+  {
+    "name": "One group",
+    "input": {
+      "nums": [
+        5,
+        2,
+        1
+      ],
+      "k": 1
+    },
+    "expected": true
+  },
+  {
+    "name": "One element per group",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "k": 4
+    },
+    "expected": true
+  },
+  {
+    "name": "Oversized element",
+    "input": {
+      "nums": [
+        6,
+        1,
+        1
+      ],
+      "k": 2
+    },
+    "expected": false
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "nums": [
+        7
+      ],
+      "k": 1
+    },
+    "expected": true
+  }
+]

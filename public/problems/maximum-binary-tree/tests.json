@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Mixed values",
+    "input": {
+      "nums": [
+        3,
+        2,
+        1,
+        6,
+        0,
+        5
+      ]
+    },
+    "expected": [
+      6,
+      3,
+      5,
+      null,
+      2,
+      0,
+      null,
+      null,
+      1
+    ]
+  },
+  {
+    "name": "Descending",
+    "input": {
+      "nums": [
+        3,
+        2,
+        1
+      ]
+    },
+    "expected": [
+      3,
+      null,
+      2,
+      null,
+      1
+    ]
+  },
+  {
+    "name": "Ascending",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3
+      ]
+    },
+    "expected": [
+      3,
+      2,
+      null,
+      1
+    ]
+  },
+  {
+    "name": "One value",
+    "input": {
+      "nums": [
+        0
+      ]
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Maximum in middle",
+    "input": {
+      "nums": [
+        2,
+        5,
+        1
+      ]
+    },
+    "expected": [
+      5,
+      2,
+      1
+    ]
+  },
+  {
+    "name": "Absorb beneath surviving ancestor",
+    "input": {
+      "nums": [
+        5,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "expected": [
+      5,
+      null,
+      4,
+      3,
+      null,
+      2,
+      null,
+      1
+    ]
+  }
+]

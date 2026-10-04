@@ -1,0 +1,71 @@
+{
+  "slug": "design-search-autocomplete-system",
+  "headline": "Cache the hottest three sentences at every prefix",
+  "statement": "Implement AutocompleteSystem(sentences, times) and input(c). Each ordinary character extends the current query and returns up to three historical sentences that start with that query. Rank by descending use count, then ascending ASCII order. On #, add one use of the completed query, return [], and start a new query. Spaces are meaningful characters. Each input(c) call supplies exactly one character. Initial sentences are distinct.",
+  "prerequisites": [
+    "Dictionary lookup",
+    "Trie prefixes",
+    "Sorting with tuple keys",
+    "Persistent object state"
+  ],
+  "constraints": [
+    "1 <= number of initial sentences <= 100",
+    "Initial sentence length is 1..100; each frequency is 1..50",
+    "Input contains lowercase letters, spaces, or #; completed queries have length 1..200",
+    "At most 5000 input calls"
+  ],
+  "intuition": "A prefix corresponds to one trie node. If every node already remembers its three hottest descendants, a keystroke only needs to follow one edge. Finishing a sentence changes the ranking only along that sentence\u2019s path. The new or changed sentence is the only candidate that can enter a node\u2019s top three.",
+  "approach": [
+    "Build a character trie whose nodes contain children and a top-three sentence list. Keep complete sentence counts separately.",
+    "Insert each historical sentence, updating its count and reranking the cached list at every node on its path.",
+    "Keep both the current prefix and its trie node between input calls. A missing edge makes the node absent until # resets the query.",
+    "For an ordinary character, advance the node and copy its cached suggestions.",
+    "For #, increment the completed sentence, refresh its prefix caches, and reset to the root."
+  ],
+  "correctness": "Initially every prefix cache is formed by considering all inserted sentences. When one sentence\u2019s count increases, the relative order of every other sentence is unchanged. Thus the previous top three together with the updated sentence contain the new top three. Sorting that candidate set by (-count, sentence) restores each affected cache. The current trie node represents exactly the characters typed since the last #, so its cache contains precisely the requested highest-ranked matches.",
+  "bruteForce": "Store sentence counts in a dictionary; after every character scan all sentences, retain prefix matches, sort by frequency and text, and take three. This repeatedly scans the entire history.",
+  "complexity": {
+    "time": "O(L) trie updates and O(1) node transitions, plus string comparison/copy costs",
+    "space": "O(total distinct prefix characters + total sentence text)",
+    "explanation": "Insertion visits L characters and sorts at most four candidates per node; lexical comparisons can cost O(max sentence length). An ordinary input follows one edge and copies at most three references, while forming the prefix string costs its current length. Each trie node retains only three sentence references."
+  },
+  "pitfalls": [
+    "Sort ties by sentence ascending; spaces sort before letters.",
+    "Do not record partial prefixes before #.",
+    "After a missing prefix, return [] for further characters but still record the completed new sentence.",
+    "Returning the internal cache directly could let a caller mutate future suggestions."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/design-search-autocomplete-system/"
+    },
+    {
+      "label": "Public statement: LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/642/"
+    }
+  ],
+  "visualization": {
+    "kind": "trie",
+    "focus": [
+      "node",
+      "candidates",
+      "counts",
+      "suggestions"
+    ],
+    "pointers": [],
+    "watch": [
+      "sentence",
+      "prefix",
+      "char",
+      "c"
+    ],
+    "labels": {
+      "node": "Current prefix node",
+      "counts": "Historical frequencies",
+      "candidates": "Previous leaders + updated sentence",
+      "suggestions": "Top three matching sentences",
+      "prefix": "Typed query"
+    }
+  }
+}

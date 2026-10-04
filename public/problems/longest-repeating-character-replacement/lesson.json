@@ -1,0 +1,63 @@
+{
+  "slug": "longest-repeating-character-replacement",
+  "headline": "Budget the characters unlike the majority",
+  "statement": "Return the length of the longest contiguous substring that can be changed into all one letter using at most k replacements. s contains uppercase English letters.",
+  "prerequisites": [
+    "Sliding window",
+    "Character counts"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 100,000",
+    "0 <= k <= len(s)",
+    "Only uppercase English letters occur"
+  ],
+  "intuition": "Within a window, keep its most common letter and replace every other letter. Its replacement cost is window length minus the largest count. Recompute that largest count after shrinking so every displayed window is genuinely valid.",
+  "approach": [
+    "Add the right character to a frequency map.",
+    "While window length minus the maximum frequency exceeds k, remove the left character and advance left.",
+    "Record the largest valid window length."
+  ],
+  "correctness": "For a fixed window, replacing all non-majority letters is both sufficient and minimal. Extending right and removing left until this exact cost fits retains the longest valid window ending there: shrinking cannot make an invalid window larger and valid. Maximizing over endpoints finds the optimum.",
+  "bruteForce": "Examine every substring and count its majority letter, costing O(n\u00b2) windows and repeated work.",
+  "complexity": {
+    "time": "O(26n), equivalent to O(n)",
+    "space": "O(26)",
+    "explanation": "Both boundaries move forward only; finding a maximum scans at most 26 character counts."
+  },
+  "pitfalls": [
+    "Replacement cost is not the number of distinct letters.",
+    "Removing a character can lower the exact majority count.",
+    "k is an upper bound, so fewer replacements are allowed."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/longest-repeating-character-replacement/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s",
+      "counts"
+    ],
+    "pointers": [
+      "left",
+      "right"
+    ],
+    "watch": [
+      "k",
+      "best",
+      "ch"
+    ],
+    "labels": {
+      "s": "S",
+      "counts": "Counts",
+      "left": "Left",
+      "right": "Right",
+      "k": "K",
+      "best": "Best",
+      "ch": "Ch"
+    }
+  }
+}

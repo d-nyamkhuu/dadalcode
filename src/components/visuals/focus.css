@@ -1,0 +1,206 @@
+.algorithm-focus {
+  padding: 16px;
+  border: 1px solid #374338;
+  background: #1c241d;
+  border-radius: 8px;
+  margin-bottom: 22px;
+}
+.focus-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  color: #d8e4d1;
+  margin-bottom: 16px;
+  font-weight: 550;
+}
+.focus-heading > span {
+  font-size: 10px;
+  color: #a9b3a5;
+  font-weight: 400;
+}
+.algorithm-focus p {
+  font-size: 11px;
+  line-height: 1.65;
+  color: #abb9a6;
+  margin: 12px 0 0;
+}
+.algorithm-focus strong {
+  color: #c1f17a;
+}
+.word-square-board,
+.queens-board {
+  display: grid;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+  gap: 3px;
+  margin: 0 auto;
+}
+.word-square-board > span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #161c19;
+  border: 1px solid #354032;
+  border-radius: 4px;
+  font: 15px var(--font-mono);
+  color: #d8e3d4;
+}
+.word-square-board .crossing-letter {
+  background: #294031;
+  border-color: #8bc777;
+  color: #c1f17a;
+}
+.word-square-board .required-letter {
+  border-style: dashed;
+  border-color: #8bc777;
+  color: #c1f17a;
+}
+.queens-board {
+  gap: 1px;
+}
+.queens-board > span {
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #232c25;
+  color: #768b70;
+  font-size: 16px;
+}
+.queens-board > span.dark-square {
+  background: #161e19;
+}
+.queens-board > span.has-queen {
+  font-size: 27px;
+  color: #c1f17a;
+}
+.queens-board > span.candidate-square {
+  outline: 2px solid #eab879;
+  outline-offset: -2px;
+}
+.elevation-profile {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  overflow: auto;
+  padding-top: 5px;
+}
+.elevation-profile > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 5px;
+  min-width: 17px;
+  text-align: center;
+}
+.elevation-profile i {
+  display: block;
+  background: #6a8594;
+  border-radius: 3px 3px 0 0;
+}
+.elevation-profile small {
+  font: 10px var(--font-mono);
+  color: #c9d5dc;
+}
+.elevation-profile span {
+  font: 9px var(--font-mono);
+  color: #8ba285;
+}
+.elevation-profile .active-column i {
+  background: #c1f17a;
+}
+.focus-equation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  font: 24px var(--font-mono);
+  padding: 8px;
+}
+.focus-equation b {
+  font-weight: 500;
+}
+.focus-equation span {
+  color: #99ad91;
+}
+.recurrence-path {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.recurrence-path code {
+  border: 1px solid #657650;
+  border-radius: 4px;
+  padding: 10px;
+  color: #d4e3c9;
+}
+.recurrence-path span {
+  color: #a1b192;
+  font-size: 11px;
+}
+.islands-grid-scroll {
+  overflow: auto;
+  max-height: 400px;
+}
+.islands-board {
+  border-collapse: separate;
+  border-spacing: 4px;
+  margin: 0 auto;
+  font: 12px var(--font-mono);
+}
+.islands-board th {
+  font-size: 9px;
+  color: #92a38e;
+  font-weight: 400;
+  padding: 2px 6px;
+}
+.islands-board td {
+  height: 42px;
+  min-width: 42px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  position: relative;
+}
+.islands-board td > span {
+  display: block;
+}
+.island-water {
+  background: #1b3441;
+  color: #91b5c8;
+}
+.island-land {
+  background: #3b502b;
+  color: #d5f0ae;
+}
+.island-visited {
+  background: #4a3b26;
+  color: #ebc789;
+}
+.islands-board .island-pointer {
+  border: 1px solid #d2dfa8;
+  box-shadow: inset 0 0 0 1px #c1f17a33;
+}
+.islands-board td > small {
+  display: block;
+  font: 8px var(--font-mono);
+  margin-top: 2px;
+}
+.islands-legend {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+}
+.islands-legend > span {
+  font-size: 10px;
+  padding: 4px 7px;
+  border-radius: 3px;
+}

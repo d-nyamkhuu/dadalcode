@@ -1,0 +1,54 @@
+{
+  "slug": "task-scheduler",
+  "headline": "The most frequent labels set the minimum frame length",
+  "statement": "Execute uppercase-labeled tasks in any order. Each time interval executes one task or is idle, and identical labels must have at least n intervening intervals. Return the shortest total schedule length. Intervals are discrete units, and the same cooldown n applies to every label.",
+  "prerequisites": [
+    "Frequency counting",
+    "Greedy lower bounds"
+  ],
+  "constraints": [
+    "1 <= len(tasks) <= 10000.",
+    "Labels are uppercase A through Z.",
+    "0 <= n <= 100."
+  ],
+  "intuition": "If the highest frequency is f, its repeats force f-1 gaps of width n+1 between starts. If t labels share frequency f, the final group has t tasks. This creates a lower bound (f-1)(n+1)+t. The schedule also needs at least one interval per task. Enough other labels fill all gaps; otherwise idle slots supply the remainder.",
+  "approach": [
+    "Count each label's frequency.",
+    "Find f, the maximum frequency, and t, the number of labels achieving it.",
+    "Compute the cooldown frame lower bound.",
+    "Return max(number of tasks, frame length)."
+  ],
+  "correctness": "The f occurrences of a most-frequent label require f-1 separations of n+1 positions; the t tied labels add t final occurrences, yielding the frame lower bound. All tasks also require their own slots. Arrange high-frequency labels across these frames and fill gaps with remaining labels; when there are more tasks than frame slots, distribute them so the gaps expand. This realizes the larger lower bound. For A,A,B,B,C,C,D,D with n=1, the bound from repeats is 6 while the task count is 8. Expanding the two groups to A,B,C,D realizes A,B,C,D,A,B,C,D with no idle intervals.",
+  "bruteForce": "Enumerate permutations and insert the minimum necessary idle slots, which is factorial in the number of tasks. A heap simulation is another practical option, especially when an actual schedule is needed.",
+  "complexity": {
+    "time": "O(N + 26)",
+    "space": "O(26), effectively O(1)",
+    "explanation": "Count N tasks, then inspect at most 26 label frequencies."
+  },
+  "pitfalls": [
+    "The gap is n intervening intervals, so repeat starts differ by n+1.",
+    "Count every label tied for maximum frequency.",
+    "Never return fewer intervals than there are tasks."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/task-scheduler/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "tasks",
+      "counts"
+    ],
+    "pointers": [],
+    "watch": [
+      "maximum",
+      "tied",
+      "frame",
+      "n"
+    ],
+    "labels": {}
+  }
+}

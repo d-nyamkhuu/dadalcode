@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Example: animal words",
+    "input": {
+      "words": [
+        "cat",
+        "cats",
+        "catsdogcats",
+        "dog",
+        "dogcatsdog",
+        "hippopotamuses",
+        "rat",
+        "ratcatdogcat"
+      ]
+    },
+    "expected": [
+      "catsdogcats",
+      "dogcatsdog",
+      "ratcatdogcat"
+    ]
+  },
+  {
+    "name": "Example: catdog",
+    "input": {
+      "words": [
+        "cat",
+        "dog",
+        "catdog"
+      ]
+    },
+    "expected": [
+      "catdog"
+    ]
+  },
+  {
+    "name": "Single cannot use itself",
+    "input": {
+      "words": [
+        "cat"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Repeated component",
+    "input": {
+      "words": [
+        "a",
+        "aa",
+        "aaa"
+      ]
+    },
+    "expected": [
+      "aa",
+      "aaa"
+    ]
+  },
+  {
+    "name": "Unsplittable remainder",
+    "input": {
+      "words": [
+        "a",
+        "ab",
+        "abc"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Input order independence",
+    "input": {
+      "words": [
+        "foobar",
+        "bar",
+        "foo",
+        "barfoo"
+      ]
+    },
+    "expected": [
+      "foobar",
+      "barfoo"
+    ]
+  },
+  {
+    "name": "Try alternative segmentation boundaries",
+    "input": {
+      "words": [
+        "ab",
+        "aba",
+        "bab",
+        "ababa"
+      ]
+    },
+    "expected": [
+      "ababa"
+    ]
+  }
+]

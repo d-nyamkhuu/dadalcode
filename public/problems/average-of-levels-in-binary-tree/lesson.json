@@ -1,0 +1,63 @@
+{
+  "slug": "average-of-levels-in-binary-tree",
+  "headline": "Average each frozen breadth-first level",
+  "statement": "Return the arithmetic mean of node values at each binary tree depth, starting at the root. Accept results within 10^-5 of the true averages. Trainer inputs use a level-order array with null gaps.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary tree nodes and traversal"
+  ],
+  "constraints": [
+    "1 <= number of nodes <= 10^4",
+    "Node values are signed 32-bit integers."
+  ],
+  "intuition": "A level is a breadth-first frontier. Sum only the nodes already in the queue at its start, then divide by that fixed count. Children are queued for the next level and must not enter the current denominator.",
+  "approach": [
+    "Queue the root.",
+    "At each iteration freeze size=len(queue) and initialize total=0.",
+    "Process exactly size nodes, adding values and enqueueing existing children.",
+    "Append total/size as a floating-point average."
+  ],
+  "correctness": "At each level the queue initially contains exactly its nodes. Processing the frozen size sums each once without including deeper children. Dividing by the number of those nodes is the required mean, and the newly queued children form the next correct frontier.",
+  "bruteForce": "Traverse separately for each depth and compute sum/count, requiring O(n*h) repeated tree scanning.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(w) auxiliary; O(h) output",
+    "explanation": "Every node is visited once. w is the maximum width and h the number of levels."
+  },
+  "pitfalls": [
+    "Use /, not //, because averages can be fractional or negative.",
+    "Freeze the count before appending children.",
+    "Large values should not overflow the accumulator; Python integers grow automatically."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/average-of-levels-in-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue",
+      "averages"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "total",
+      "size",
+      "node"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "averages": "Averages",
+      "i": "I",
+      "total": "Total",
+      "size": "Size",
+      "node": "Node"
+    }
+  }
+}

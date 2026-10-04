@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Official chain",
+    "input": {
+      "words": [
+        "wrt",
+        "wrf",
+        "er",
+        "ett",
+        "rftt"
+      ]
+    },
+    "expected": "wertf"
+  },
+  {
+    "name": "Official pair",
+    "input": {
+      "words": [
+        "z",
+        "x"
+      ]
+    },
+    "expected": "zx"
+  },
+  {
+    "name": "Cycle",
+    "input": {
+      "words": [
+        "z",
+        "x",
+        "z"
+      ]
+    },
+    "expected": ""
+  },
+  {
+    "name": "Invalid prefix",
+    "input": {
+      "words": [
+        "abc",
+        "ab"
+      ]
+    },
+    "expected": ""
+  },
+  {
+    "name": "Isolated characters",
+    "input": {
+      "words": [
+        "abc"
+      ]
+    },
+    "expected": "abc"
+  },
+  {
+    "name": "Repeated evidence",
+    "input": {
+      "words": [
+        "za",
+        "zb",
+        "ca",
+        "cb"
+      ]
+    },
+    "expected": "zacb"
+  },
+  {
+    "name": "Identical words",
+    "input": {
+      "words": [
+        "a",
+        "a"
+      ]
+    },
+    "expected": "a"
+  },
+  {
+    "name": "Only first mismatch constrains later letters",
+    "input": {
+      "words": [
+        "abx",
+        "acy"
+      ]
+    },
+    "expected": "abxcy"
+  },
+  {
+    "name": "Shared prefix with one mismatch",
+    "input": {
+      "words": [
+        "ab",
+        "ac"
+      ]
+    },
+    "expected": "abc"
+  },
+  {
+    "name": "Valid shorter prefix",
+    "input": {
+      "words": [
+        "ab",
+        "abc"
+      ]
+    },
+    "expected": "abc"
+  }
+]

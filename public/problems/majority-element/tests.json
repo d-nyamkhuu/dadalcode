@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Example: three",
+    "input": {
+      "nums": [
+        3,
+        2,
+        3
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: two",
+    "input": {
+      "nums": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Single",
+    "input": {
+      "nums": [
+        7
+      ]
+    },
+    "expected": 7
+  },
+  {
+    "name": "Negative majority",
+    "input": {
+      "nums": [
+        -1,
+        2,
+        -1
+      ]
+    },
+    "expected": -1
+  },
+  {
+    "name": "Late takeover",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        3,
+        3
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "All same",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Repeated complete cancellations",
+    "input": {
+      "nums": [
+        2,
+        1,
+        2,
+        1,
+        2
+      ]
+    },
+    "expected": 2
+  }
+]

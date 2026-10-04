@@ -1,0 +1,62 @@
+{
+  "slug": "maximum-frequency-stack",
+  "headline": "Organize push events by the frequency level they reach",
+  "statement": "Implement FreqStack with push(val) and pop(). pop removes a value having the highest current frequency; on a frequency tie, remove the value whose most recent remaining occurrence was pushed last. The trainer constructs FreqStack once, then executes operations such as [\"push\",5] and [\"pop\"]. push returns None, displayed as null in the output list; pop returns the removed value.",
+  "prerequisites": [
+    "Frequency maps",
+    "Stacks",
+    "Stateful APIs"
+  ],
+  "constraints": [
+    "0 <= val <= 10^9",
+    "At most 20,000 push and pop calls",
+    "pop is called only on a nonempty stack"
+  ],
+  "intuition": "Organize push events by the frequency level they reach. The top of the highest-frequency group is also the most recent event among tied values.",
+  "approach": [
+    "Count the frequency of each pushed value.",
+    "Append it to the stack for its new frequency and update the maximum frequency.",
+    "Pop the latest entry from the maximum-frequency stack and decrease that value’s count.",
+    "If that group becomes empty, decrease the maximum frequency."
+  ],
+  "correctness": "A push at level f records the moment a value gained its f-th active occurrence. These level-f entries remain in chronological order. The greatest nonempty level equals the greatest current frequency; its final entry is the most recent among tied values. Removing it exposes the correct previous-frequency history in lower groups, preserving the invariant.",
+  "bruteForce": "Keep an ordinary list and recompute frequencies and search backwards on every pop: O(n) per operation.",
+  "complexity": {
+    "time": "O(1) amortized per operation",
+    "space": "O(number of active pushes)",
+    "explanation": "Time O(1) amortized per operation; auxiliary space O(number of active pushes). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "A simple heap needs stale-entry management; frequency alone does not encode recency.",
+    "Do not remove the lower-frequency history when popping a top level.",
+    "Decrease max frequency only after its group empties."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/maximum-frequency-stack/"
+    },
+    {
+      "label": "Public problem statement — LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/895/"
+    }
+  ],
+  "visualization": {
+    "kind": "stack",
+    "focus": [
+      "frequency",
+      "groups"
+    ],
+    "pointers": [],
+    "watch": [
+      "val",
+      "level"
+    ],
+    "labels": {
+      "frequency": "Frequency",
+      "groups": "Groups",
+      "val": "Val",
+      "level": "Level"
+    }
+  }
+}

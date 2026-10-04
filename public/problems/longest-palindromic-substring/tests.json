@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Official odd",
+    "input": {
+      "s": "babad"
+    },
+    "expected": "bab"
+  },
+  {
+    "name": "Official even",
+    "input": {
+      "s": "cbbd"
+    },
+    "expected": "bb"
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "s": "a"
+    },
+    "expected": "a"
+  },
+  {
+    "name": "Repeated letters",
+    "input": {
+      "s": "aaaa"
+    },
+    "expected": "aaaa"
+  },
+  {
+    "name": "Whole palindrome",
+    "input": {
+      "s": "racecar"
+    },
+    "expected": "racecar"
+  },
+  {
+    "name": "Internal palindrome",
+    "input": {
+      "s": "xabccbay"
+    },
+    "expected": "abccba"
+  },
+  {
+    "name": "All distinct tied singletons",
+    "input": {
+      "s": "abcd"
+    },
+    "expected": "a"
+  },
+  {
+    "name": "Case sensitive letters and digit",
+    "input": {
+      "s": "aA1"
+    },
+    "expected": "a"
+  }
+]

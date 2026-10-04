@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Example: winding path",
+    "input": {
+      "board": [
+        [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        [
+          "S",
+          "F",
+          "C",
+          "S"
+        ],
+        [
+          "A",
+          "D",
+          "E",
+          "E"
+        ]
+      ],
+      "word": "ABCCED"
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: repeated letters",
+    "input": {
+      "board": [
+        [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        [
+          "S",
+          "F",
+          "C",
+          "S"
+        ],
+        [
+          "A",
+          "D",
+          "E",
+          "E"
+        ]
+      ],
+      "word": "SEE"
+    },
+    "expected": true
+  },
+  {
+    "name": "Cell reuse forbidden",
+    "input": {
+      "board": [
+        [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        [
+          "S",
+          "F",
+          "C",
+          "S"
+        ],
+        [
+          "A",
+          "D",
+          "E",
+          "E"
+        ]
+      ],
+      "word": "ABCB"
+    },
+    "expected": false
+  },
+  {
+    "name": "Single cell",
+    "input": {
+      "board": [
+        [
+          "a"
+        ]
+      ],
+      "word": "a"
+    },
+    "expected": true
+  },
+  {
+    "name": "Diagonal forbidden",
+    "input": {
+      "board": [
+        [
+          "A",
+          "X"
+        ],
+        [
+          "X",
+          "B"
+        ]
+      ],
+      "word": "AB"
+    },
+    "expected": false
+  },
+  {
+    "name": "Backtrack to other start",
+    "input": {
+      "board": [
+        [
+          "A",
+          "A",
+          "B"
+        ]
+      ],
+      "word": "AAB"
+    },
+    "expected": true
+  },
+  {
+    "name": "First start fails before later success",
+    "input": {
+      "board": [
+        [
+          "A",
+          "X",
+          "A",
+          "A",
+          "B"
+        ]
+      ],
+      "word": "AAB"
+    },
+    "expected": true
+  }
+]

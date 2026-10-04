@@ -1,0 +1,57 @@
+{
+  "slug": "maximum-depth-of-binary-tree",
+  "headline": "Carry each node’s depth on the stack",
+  "statement": "Return the largest number of nodes on any path from the root to a leaf. An empty tree has depth zero.",
+  "prerequisites": [
+    "Tree nodes",
+    "Depth-first traversal"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 10,000",
+    "Node values range from -100 to 100"
+  ],
+  "intuition": "Depth counts nodes along a path, so carry a depth with each node and remember the greatest depth visited. An explicit stack also handles a very skewed tree.",
+  "approach": [
+    "Put (root,1) on a stack if root exists.",
+    "Pop a node and depth, update the largest depth.",
+    "Push existing children with depth+1; stop when the stack is empty."
+  ],
+  "correctness": "Every node is pushed once with its exact root-to-node depth because each child increases its parent depth by one. Every longest path ends at a visited leaf, so the maximum visited depth is exactly the maximum tree depth.",
+  "bruteForce": "Enumerate and copy every root-to-leaf path, then measure lengths; repeatedly copying paths can cost O(n*h).",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)",
+    "explanation": "Time O(n); auxiliary space O(h). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Depth counts nodes rather than edges.",
+    "The empty tree has zero depth.",
+    "Recursive Python implementations can exceed recursion limits on long chains."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "depth",
+      "best"
+    ],
+    "labels": {
+      "root": "Root",
+      "stack": "Stack",
+      "node": "Node",
+      "depth": "Depth",
+      "best": "Best"
+    }
+  }
+}

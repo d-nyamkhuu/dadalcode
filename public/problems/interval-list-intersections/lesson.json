@@ -1,0 +1,63 @@
+{
+  "slug": "interval-list-intersections",
+  "headline": "Advance whichever interval finishes first",
+  "statement": "Given two sorted lists of pairwise-disjoint closed intervals, return every intersection between an interval from the first list and one from the second. Either list may be empty.",
+  "prerequisites": [
+    "Two pointers",
+    "Closed interval intersection"
+  ],
+  "constraints": [
+    "0 <= each list length <= 1000",
+    "0 <= start < end <= 1000000000",
+    "Within each list, intervals are sorted and pairwise disjoint"
+  ],
+  "intuition": "The current pair overlaps from max(starts) through min(ends), if that range is nonempty. The interval that ends earlier cannot meet a later interval from the other list, so it is safe to discard it.",
+  "approach": [
+    "Point i and j at the current intervals.",
+    "Compute low=max(starts) and high=min(ends); append [low,high] if low<=high.",
+    "Advance the pointer whose interval ends first; repeat while both remain."
+  ],
+  "correctness": "At each step, the algorithm records the current pair\u2019s exact intersection. If A ends before B, all later B intervals begin after B ends and hence after A ends; A has no untested future intersection. Discarding A is safe, and the symmetric argument applies to B. Thus every possible overlap is processed once.",
+  "bruteForce": "Compare every interval in one list against every interval in the other, taking O(mn) time.",
+  "complexity": {
+    "time": "O(m+n)",
+    "space": "O(1) auxiliary plus output",
+    "explanation": "At least one pointer advances per iteration; result storage is O(m+n)."
+  },
+  "pitfalls": [
+    "A single touching point is a valid closed intersection.",
+    "Advance by end time rather than start time.",
+    "Handle empty input lists."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/interval-list-intersections/"
+    }
+  ],
+  "visualization": {
+    "kind": "intervals",
+    "focus": [
+      "firstList",
+      "secondList",
+      "result"
+    ],
+    "pointers": [
+      "i",
+      "j"
+    ],
+    "watch": [
+      "low",
+      "high"
+    ],
+    "labels": {
+      "firstList": "Firstlist",
+      "secondList": "Secondlist",
+      "result": "Result",
+      "i": "I",
+      "j": "J",
+      "low": "Low",
+      "high": "High"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "intuition": [
+    "Counting land cells is not enough: several cells can represent one island, while diagonal neighbors belong to different islands. The task is to count four-direction connected components. A grid scan needs a way to distinguish a new component from land already reached through an earlier cell.",
+    "When an unvisited land cell is found, increment the count once and flood its entire component. The reference changes discovered land to water to record visitation without a separate boolean grid. Later scan positions therefore cannot start another flood for that same island.",
+    "Use a queue for the flood, considering only up, down, left, and right. Mark a neighbor immediately when it is enqueued, not later when it is removed. Otherwise two frontier cells could discover the same neighbor before either copy is processed, causing unnecessary repeated queue entries.",
+    "The reference deliberately mutates grid to reuse its storage for discovery marks. A caller that needs the original terrain can instead keep a set of visited coordinates or a boolean visited grid and leave the characters unchanged. That variant has the same O(rows*cols) time bound, with additional O(rows*cols) visitation storage."
+  ],
+  "walkthrough": {
+    "input": {
+      "grid": [
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ]
+      ]
+    },
+    "steps": [
+      "In the three-component fixture, rows are 11000, 11000, 00100, and 00011. Start scanning at (0,0).",
+      "The land at (0,0) starts island 1. Flood its neighbors (1,0), (0,1), and then (1,1), marking all four cells visited.",
+      "The scan later reaches (2,2), still land. It has no four-direction land neighbor, so it forms island 2 alone.",
+      "At (3,3), begin island 3. Its right neighbor (3,4) joins the same flood and cannot be counted separately.",
+      "The diagonal contact between (2,2) and (3,3) does not connect them. No unvisited land remains, so return 3."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "if grid[row][col] != '1':",
+      "note": "Only remaining land can start a new component. Cells changed to water by earlier floods are deliberately skipped during the outer scan."
+    },
+    {
+      "code": "queue = deque([(row, col)])",
+      "note": "Each queue is a frontier for one newly counted island. Flooding finishes that component before the row-major scan resumes."
+    },
+    {
+      "code": "grid[nr][nc] = '0'",
+      "note": "Marking before enqueueing guarantees each land cell is discovered once, even when several neighboring cells can reach it."
+    }
+  ]
+}

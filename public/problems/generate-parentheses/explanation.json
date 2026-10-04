@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Enumerate 2^(2n) binary strings and validate each balance. Backtracking rejects invalid prefixes immediately. Most arbitrary strings fail before their last character; exploring their remaining suffixes contributes no useful answers.",
+    "Track two budgets: openings used and closings used. Openings cannot exceed n, and closings cannot overtake openings. These restrictions are enough to describe valid prefixes, so the recursion never needs to repair an invalid one. The path list is shared along the current recursion branch, making append/pop an explicit record of choosing and undoing a character. Joining occurs only at a complete answer, which separates working storage from the returned strings.",
+    "Every recursive prefix has 0 <= closed <= opened <= n. Thus a completed prefix is balanced. Every valid string obeys these inequalities at every prefix, so the recursion follows its characters and eventually emits it. Each character-choice path is unique. C\u2099 is the nth Catalan number, the count of valid strings.",
+    "The number of valid outputs is the Catalan number C_n. Pair the first opening parenthesis with its matching close: if i pairs lie inside it, n-1-i pairs lie after it. These independent choices give C_n=sum(C_i*C_(n-1-i) for i=0..n-1), with C_0=1. Prefix pruning follows only paths whose closes never exceed opens, so it reaches precisely those C_n leaves. Each output needs 2n characters, accounting for O(n*C_n) time and output storage."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 3
+    },
+    "steps": [
+      "With n=3, choose opening brackets until path becomes ((( with opened=3 and closed=0.",
+      "The opening budget is exhausted; three closings finish ((())).",
+      "Backtrack to ((, choose a closing, then open the remaining pair to form (()()).",
+      "Further alternate open and close decisions generate (())(), ()(()), and ()()().",
+      "Every recorded string has three pairs, and no prefix ever contains more closings than openings."
+    ],
+    "result": [
+      "((()))",
+      "(()())",
+      "(())()",
+      "()(())",
+      "()()()"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if opened < n:",
+      "note": "The opening count is a finite budget; exhausting it leaves only matching closing choices."
+    },
+    {
+      "code": "if closed < opened:",
+      "note": "A closer requires an unmatched opener already present, preventing negative prefix balance."
+    },
+    {
+      "code": "result.append(''.join(path))",
+      "note": "Copy the complete path into a string before later backtracking changes the shared list."
+    }
+  ]
+}

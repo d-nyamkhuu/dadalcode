@@ -1,0 +1,56 @@
+{
+  "intuition": [
+    "The existing intervals are already sorted and disjoint, so sorting again throws away useful structure. Relative to the inserted interval, they form three consecutive regions: strictly earlier intervals, one possible overlap block, and strictly later intervals. A single scan can treat each region differently.",
+    "Every existing interval that overlaps the original insertion belongs to one contiguous block. The merged start and end track the union of that block and newInterval. Because the existing intervals are pairwise disjoint, extending the merged end cannot newly reach a later interval that was beyond the original insertion. Testing against the current end still gives a simple invariant: each interval accepted by the loop intersects the union being built.",
+    "The inequalities encode closed intervals. An existing interval ending exactly at the new start belongs to the merge, and an interval starting exactly at the merged end does too. Once a later start is strictly greater than that end, sorted order proves no following interval can overlap. The result can then append the untouched suffix in order."
+  ],
+  "walkthrough": {
+    "input": {
+      "intervals": [
+        [
+          1,
+          3
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "newInterval": [
+        2,
+        5
+      ]
+    },
+    "steps": [
+      "For intervals=[[1,3],[6,9]] and newInterval=[2,5], initialize start=2 and end=5.",
+      "The first interval ends at 3, so it is not strictly before start=2. Nothing is copied in the first phase.",
+      "[1,3] starts before end=5; merge it to obtain start=1 and end=5.",
+      "The next interval starts at 6, beyond the merged end. Stop expansion and append [1,5].",
+      "Append untouched [6,9]. The final result [[1,5],[6,9]] is sorted and disjoint."
+    ],
+    "result": [
+      [
+        1,
+        5
+      ],
+      [
+        6,
+        9
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "intervals[i][1] < start",
+      "note": "Strict inequality preserves endpoint-touching overlaps for the merge phase."
+    },
+    {
+      "code": "while i < len(intervals) and intervals[i][0] <= end:",
+      "note": "The current end is the right boundary of the union being built; the loop merges its contiguous overlap block before emitting one interval."
+    },
+    {
+      "code": "result.append([start, end])",
+      "note": "Only after the overlap block is complete are its final bounds emitted, preventing several partially merged output intervals."
+    }
+  ]
+}

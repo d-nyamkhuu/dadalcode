@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Example: no carry",
+    "input": {
+      "a": 1,
+      "b": 2
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: carry",
+    "input": {
+      "a": 2,
+      "b": 3
+    },
+    "expected": 5
+  },
+  {
+    "name": "Negative plus positive",
+    "input": {
+      "a": -4,
+      "b": 7
+    },
+    "expected": 3
+  },
+  {
+    "name": "Both negative",
+    "input": {
+      "a": -5,
+      "b": -3
+    },
+    "expected": -8
+  },
+  {
+    "name": "Cancellation",
+    "input": {
+      "a": -1000,
+      "b": 1000
+    },
+    "expected": 0
+  },
+  {
+    "name": "Negative lower bound",
+    "input": {
+      "a": -1000,
+      "b": -1000
+    },
+    "expected": -2000
+  },
+  {
+    "name": "Long carry chain",
+    "input": {
+      "a": 15,
+      "b": 1
+    },
+    "expected": 16
+  },
+  {
+    "name": "Both zero",
+    "input": {
+      "a": 0,
+      "b": 0
+    },
+    "expected": 0
+  },
+  {
+    "name": "Carry through masked word",
+    "input": {
+      "a": -1,
+      "b": 1
+    },
+    "expected": 0
+  },
+  {
+    "name": "Several carry rounds",
+    "input": {
+      "a": 3,
+      "b": 5
+    },
+    "expected": 8
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "slug": "index-pairs-of-a-string",
+  "headline": "Starting from each text position, walk a dictionary trie until the text stops matching a prefix",
+  "statement": "Return all inclusive index pairs [i,j] such that text[i:j+1] is one of words. Matches can overlap. Sort pairs by i, then by j.",
+  "prerequisites": [
+    "Trie prefixes",
+    "Inclusive substring endpoints"
+  ],
+  "constraints": [
+    "1 <= len(text) <= 100",
+    "1 <= len(words) <= 20",
+    "1 <= word length <= 50",
+    "text and distinct words are lowercase English letters"
+  ],
+  "intuition": "Starting from each text position, walk a dictionary trie until the text stops matching a prefix. Every terminal node gives one matching endpoint.",
+  "approach": [
+    "Insert words into a trie with a terminal marker.",
+    "For each start index, traverse subsequent characters in increasing end order.",
+    "Stop as soon as an edge is missing; emit [start,end] on terminal nodes.",
+    "The nested scan order already sorts all emitted pairs."
+  ],
+  "correctness": "The trie node after scanning start..end represents exactly that substring. A terminal marker is present exactly for dictionary words. Missing edges make every longer substring from the same start impossible. Increasing start and then end emits every valid pair once in the required order.",
+  "bruteForce": "Construct every substring and check dictionary membership: O(n\u00b3) character copying in the worst case.",
+  "complexity": {
+    "time": "O(total word characters + n*min(n,L))",
+    "space": "O(total word characters) excluding output",
+    "explanation": "Time O(total word characters + n*min(n,L)); auxiliary space O(total word characters) excluding output. Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Endpoints are inclusive.",
+    "A terminal prefix may also lead to a longer matching word.",
+    "Overlaps must be kept rather than skipped."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/index-pairs-of-a-string/"
+    },
+    {
+      "label": "Public problem statement \u2014 LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/1065/"
+    }
+  ],
+  "visualization": {
+    "kind": "trie",
+    "focus": [
+      "text",
+      "trie",
+      "node"
+    ],
+    "pointers": [
+      "start",
+      "end"
+    ],
+    "watch": [
+      "letter",
+      "result"
+    ],
+    "labels": {
+      "text": "Text",
+      "trie": "Trie",
+      "node": "Node",
+      "start": "Start",
+      "end": "End",
+      "letter": "Letter",
+      "result": "Result"
+    }
+  }
+}

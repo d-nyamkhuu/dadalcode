@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Example: three paths",
+    "input": {
+      "root": [
+        10,
+        5,
+        -3,
+        3,
+        2,
+        null,
+        11,
+        3,
+        -2,
+        null,
+        1
+      ],
+      "targetSum": 8
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: target twenty-two",
+    "input": {
+      "root": [
+        5,
+        4,
+        8,
+        11,
+        null,
+        13,
+        4,
+        7,
+        2,
+        null,
+        null,
+        5,
+        1
+      ],
+      "targetSum": 22
+    },
+    "expected": 3
+  },
+  {
+    "name": "Empty",
+    "input": {
+      "root": [],
+      "targetSum": 0
+    },
+    "expected": 0
+  },
+  {
+    "name": "Single matching",
+    "input": {
+      "root": [
+        2
+      ],
+      "targetSum": 2
+    },
+    "expected": 1
+  },
+  {
+    "name": "All zero paths",
+    "input": {
+      "root": [
+        0,
+        0,
+        0
+      ],
+      "targetSum": 0
+    },
+    "expected": 5
+  },
+  {
+    "name": "Sibling isolation",
+    "input": {
+      "root": [
+        1,
+        2,
+        2
+      ],
+      "targetSum": 0
+    },
+    "expected": 0
+  },
+  {
+    "name": "Negative cancellation",
+    "input": {
+      "root": [
+        1,
+        -1,
+        null,
+        1
+      ],
+      "targetSum": 1
+    },
+    "expected": 3
+  },
+  {
+    "name": "Wide prefix cancellation",
+    "input": {
+      "root": [
+        1000000000,
+        -1000000000
+      ],
+      "targetSum": 0
+    },
+    "expected": 1
+  }
+]

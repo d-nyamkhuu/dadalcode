@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Even palindrome",
+    "input": {
+      "head": [
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Two unequal nodes",
+    "input": {
+      "head": [
+        1,
+        2
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "head": [
+        9
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Odd palindrome",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        2,
+        1
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Odd mismatch",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        1
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "All zeros",
+    "input": {
+      "head": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Even mismatch at second comparison",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        1
+      ]
+    },
+    "expected": false
+  }
+]

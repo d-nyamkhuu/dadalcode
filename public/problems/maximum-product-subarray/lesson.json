@@ -1,0 +1,62 @@
+{
+  "slug": "maximum-product-subarray",
+  "headline": "Remember both product extremes",
+  "statement": "Return the largest product of any nonempty contiguous subarray of nums. A single element is a valid subarray.",
+  "prerequisites": [
+    "Contiguous subarrays",
+    "Multiplication signs",
+    "Dynamic programming"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 20,000",
+    "-10 <= nums[i] <= 10",
+    "All subarray products and the answer fit a signed 32-bit integer"
+  ],
+  "intuition": "A negative value reverses ordering: the smallest previous product may become the largest new product. Keep both extremes for subarrays ending here, and allow a fresh start. Zero resets both.",
+  "approach": [
+    "Initialize low, high, and best from the first value.",
+    "For each later value consider it alone and products with both old extremes.",
+    "Save the new extremes and update the global maximum."
+  ],
+  "correctness": "Every ending subarray either starts at this value or extends a previous ending subarray. The old extreme products determine the new extremes under multiplication, whether the multiplier is positive, zero, or negative. Taking the maximum across endpoints covers all subarrays.",
+  "bruteForce": "Multiply every subarray incrementally in O(n\u00b2) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Three product values summarize all previous positions."
+  },
+  "pitfalls": [
+    "Use old high and low together before overwriting either.",
+    "Zero may be the optimal subarray.",
+    "An all-negative singleton still requires a nonempty result."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/maximum-product-subarray/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "value",
+      "high",
+      "low",
+      "best"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "i": "I",
+      "value": "Value",
+      "high": "High",
+      "low": "Low",
+      "best": "Best"
+    }
+  }
+}

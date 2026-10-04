@@ -1,0 +1,62 @@
+{
+  "slug": "reorder-list",
+  "headline": "The requested order alternates the front half with the back half read backwards",
+  "statement": "Reorder L0 → L1 → ... → Ln into L0 → Ln → L1 → Ln-1 → ... in place. Change links, not node values. The method returns nothing.",
+  "prerequisites": [
+    "Slow/fast pointers",
+    "List reversal",
+    "Alternating merge"
+  ],
+  "constraints": [
+    "1 <= list length <= 50,000",
+    "1 <= node value <= 1,000"
+  ],
+  "intuition": "The requested order alternates the front half with the back half read backwards. Split the list, reverse its second half, then weave the two chains.",
+  "approach": [
+    "Find the end of the first half with slow and fast pointers.",
+    "Detach the second half and reverse its links.",
+    "Alternate nodes from the first half and the reversed second half, preserving their next pointers before relinking."
+  ],
+  "correctness": "The split gives the first half at least as many nodes as the second. Reversal orders the second half from Ln downwards. Each merge step appends the next front node then the next back node; a possible extra middle node stays last, yielding exactly the required order without replacing nodes.",
+  "bruteForce": "Store all nodes in an array and reconnect using alternating endpoints: O(n) time and O(n) auxiliary space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Finding the midpoint, reversing the second half, and weaving each visit a linear number of original nodes. A fixed number of node pointers replaces any auxiliary node array."
+  },
+  "pitfalls": [
+    "Detach halves before merging to prevent cycles.",
+    "Do not change val fields.",
+    "The odd-length middle node must appear once."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/reorder-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "slow",
+      "fast",
+      "current",
+      "previous",
+      "first",
+      "second"
+    ],
+    "labels": {
+      "head": "Head",
+      "slow": "Slow",
+      "fast": "Fast",
+      "current": "Current",
+      "previous": "Previous",
+      "first": "First",
+      "second": "Second"
+    }
+  }
+}

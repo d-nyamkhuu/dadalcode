@@ -1,0 +1,58 @@
+{
+  "slug": "longest-word-in-dictionary",
+  "headline": "Accept a word only after its immediate prefix",
+  "statement": "From lowercase dictionary words, return the longest word that can be built one character at a time, with every nonempty prefix also present in the dictionary. If several longest words qualify, return the lexicographically smallest. Return an empty string if none qualifies.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(words) <= 1000",
+    "1 <= len(word) <= 30",
+    "Words contain lowercase English letters.",
+    "Repeated dictionary entries are allowed and do not change which prefixes exist."
+  ],
+  "intuition": "A word qualifies exactly when its one-character-shorter prefix qualifies, or it has one character. Process shorter words first and remember those that are buildable. Sorting lexicographically within each length makes the first longest candidate the tie winner.",
+  "approach": [
+    "Sort by (length, word).",
+    "Keep a set buildable containing the empty prefix.",
+    "Add word only if word[:-1] is buildable.",
+    "Replace best only when a strictly longer buildable word appears."
+  ],
+  "correctness": "Induction on length shows a word enters buildable exactly when all of its nonempty prefixes are present: its predecessor already certifies every shorter prefix. At each length lexicographic ordering visits the smallest candidate first, and strict-length updates preserve that winner. Therefore best has maximal length and the required tie order.",
+  "bruteForce": "For each word, independently check every prefix in a dictionary set. This repeats work for shared prefixes and costs O(W*L^2) in Python due to substring copying.",
+  "complexity": {
+    "time": "O(W log W * L + W * L) worst case",
+    "space": "O(W + L) auxiliary",
+    "explanation": "W is the number of input entries and L is maximum word length. Sorting can compare O(L) characters per comparison. The sorted array, sort keys, and certified set hold O(W) references to existing input strings; one temporary copied prefix uses O(L) characters. Input string storage is O(W × L), separate from auxiliary space."
+  },
+  "pitfalls": [
+    "A missing first-letter prefix invalidates the entire word.",
+    "Do not update best for equal lengths after lexicographic ordering.",
+    "The dictionary may arrive in any order."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/longest-word-in-dictionary/"
+    }
+  ],
+  "visualization": {
+    "kind": "trie",
+    "focus": [
+      "words",
+      "buildable"
+    ],
+    "pointers": [],
+    "watch": [
+      "word",
+      "best"
+    ],
+    "labels": {
+      "words": "Words",
+      "buildable": "Buildable",
+      "word": "Word",
+      "best": "Best"
+    }
+  }
+}

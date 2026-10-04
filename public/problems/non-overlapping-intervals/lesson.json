@@ -1,0 +1,57 @@
+{
+  "slug": "non-overlapping-intervals",
+  "headline": "Keep the meeting that ends earliest",
+  "statement": "Return the minimum number of intervals to remove so that the remaining intervals do not overlap. Intervals whose end equals another start are compatible.",
+  "prerequisites": [
+    "Greedy exchange arguments",
+    "Sorting"
+  ],
+  "constraints": [
+    "1 <= number of intervals <= 100000",
+    "-50000 <= start < end <= 50000"
+  ],
+  "intuition": "Minimizing removals equals maximizing the number retained. Among intervals available next, the earliest finishing one leaves the largest available future timeline. Keeping a longer one cannot improve the remaining choices.",
+  "approach": [
+    "Sort by end time.",
+    "Keep each interval whose start is at least the last retained end.",
+    "Count retained intervals and subtract from the total."
+  ],
+  "correctness": "For an optimal compatible schedule, replace its first interval with the globally earliest-finishing interval. The replacement ends no later, so all later choices remain compatible. Repeating the argument on the remaining timeline proves greedy selects a maximum-cardinality compatible set. Removing the complement is minimal.",
+  "bruteForce": "Enumerate every subset, check pairwise overlap, and retain the largest compatible subset.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)",
+    "explanation": "Sorting dominates and creates an ordered list; the scan keeps only an end boundary and counter."
+  },
+  "pitfalls": [
+    "Touching endpoints are compatible here.",
+    "Sort by end rather than start.",
+    "Count removed intervals, not retained intervals."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/non-overlapping-intervals/"
+    }
+  ],
+  "visualization": {
+    "kind": "intervals",
+    "focus": [
+      "intervals"
+    ],
+    "pointers": [],
+    "watch": [
+      "start",
+      "end",
+      "last_end",
+      "kept"
+    ],
+    "labels": {
+      "intervals": "Intervals",
+      "start": "Start",
+      "end": "End",
+      "last_end": "Last end",
+      "kept": "Kept"
+    }
+  }
+}

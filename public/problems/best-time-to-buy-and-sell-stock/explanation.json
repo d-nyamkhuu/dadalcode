@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Try every earlier buy/later sell pair in O(n\u00b2). A running minimum summarizes all earlier buys. Only the cheapest earlier purchase matters for a fixed selling day; all more expensive earlier buys are dominated.",
+    "Move through prices as possible selling days. cheapest summarizes the best legal purchase strictly before the current day, and profit records the best completed transaction seen so far. Compute a sale\u2019s benefit before incorporating today into cheapest, making the time ordering explicit. A later low price cannot retroactively fund an earlier sale. Keeping profit initially zero also allows choosing no trade when all legal transactions lose money, which the problem explicitly permits.",
+    "Before evaluating a selling day, cheapest is the minimum price on earlier days. Its difference from today is the best transaction ending today. Taking the maximum across all selling days and zero yields the best legal choice, including doing nothing. The algorithm stores only the cheapest earlier price and best profit."
+  ],
+  "walkthrough": {
+    "input": {
+      "prices": [
+        7,
+        1,
+        5,
+        3,
+        6,
+        4
+      ]
+    },
+    "steps": [
+      "Initialize cheapest=7 and profit=0.",
+      "At price 1, selling loses money, so keep profit zero and reduce cheapest to 1.",
+      "At price 5, a sale after buying at 1 yields profit 4.",
+      "Price 3 gives only 2, so the best remains 4.",
+      "At price 6, update profit to 5; the final price 4 does not improve it."
+    ],
+    "result": 5
+  },
+  "codeNotes": [
+    {
+      "code": "profit = max(profit, price - cheapest)",
+      "note": "Evaluate today\u2019s sale using the best purchase from earlier days, then retain the best completed trade."
+    },
+    {
+      "code": "cheapest = min(cheapest, price)",
+      "note": "Today becomes a possible purchase only for future iterations, preserving buy-before-sell ordering."
+    },
+    {
+      "code": "profit = 0",
+      "note": "Doing nothing is legal; this baseline prevents a decreasing market from returning a negative answer."
+    }
+  ]
+}

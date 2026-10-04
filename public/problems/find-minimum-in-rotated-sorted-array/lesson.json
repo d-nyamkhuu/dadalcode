@@ -1,0 +1,56 @@
+{
+  "slug": "find-minimum-in-rotated-sorted-array",
+  "headline": "Compare the middle to the sorted right boundary",
+  "statement": "An ascending array of distinct integers is rotated zero or more times. Return its minimum value in logarithmic time. The array is nonempty.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 5000",
+    "All values are distinct and between -5000 and 5000."
+  ],
+  "intuition": "A rotated array has at most one downward break. If nums[mid] exceeds nums[right], the minimum must lie beyond mid across that break. Otherwise the segment from mid to right is sorted and mid may itself be the minimum.",
+  "approach": [
+    "Keep an inclusive interval left..right containing the minimum.",
+    "When nums[mid]>nums[right], set left=mid+1.",
+    "Otherwise set right=mid, retaining mid as a candidate.",
+    "When the interval has one element, return it."
+  ],
+  "correctness": "If the middle exceeds the right endpoint, the rotated low segment is strictly to the right of middle. Otherwise no break lies in mid..right, and all values there after middle are larger, so discarding them preserves the minimum. Each update keeps the minimum and shrinks the interval until it is the sole candidate.",
+  "bruteForce": "Scan all values to find the minimum in O(n) time.",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "explanation": "Every iteration halves the candidate interval; only boundaries are stored."
+  },
+  "pitfalls": [
+    "Use right=mid, not mid-1, because mid may be the minimum.",
+    "An unrotated array is valid.",
+    "The distinctness constraint is essential to the simple comparison."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "mid",
+      "right"
+    ],
+    "watch": [],
+    "labels": {
+      "nums": "Nums",
+      "left": "Left",
+      "mid": "Mid",
+      "right": "Right"
+    }
+  }
+}

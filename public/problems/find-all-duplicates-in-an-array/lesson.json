@@ -1,0 +1,54 @@
+{
+  "slug": "find-all-duplicates-in-an-array",
+  "headline": "Use each value's index as a visited flag",
+  "statement": "Return every value appearing twice in nums. All values are between 1 and the array length, and each occurs once or twice. Run in linear time with constant auxiliary space, excluding output. You may modify nums, and the duplicate values may be returned in any order.",
+  "prerequisites": [
+    "In-place marking",
+    "Index/value mapping"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100000.",
+    "1 <= original nums[i] <= len(nums).",
+    "Each value occurs at most twice."
+  ],
+  "intuition": "Value v owns slot v-1. Negating that slot records that v has appeared. If the slot is already negative, this is the second occurrence. Read absolute values because earlier visits may have changed signs of unread entries.",
+  "approach": [
+    "For each position, recover its original value with abs.",
+    "Look at the value-owned marker slot v-1.",
+    "If negative, append v; otherwise negate it.",
+    "Return the duplicates; the reference permits input mutation."
+  ],
+  "correctness": "Initially every marker is positive. Its first corresponding value negates it, and its second sees that negative marker and records the value. Because values occur at most twice, every duplicate is emitted once and single-occurrence values never are. Absolute value preserves the original value mapping.",
+  "bruteForce": "Count values in a dictionary, taking O(n) space. The constrained value range lets the input itself store visited flags.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1) auxiliary plus output",
+    "explanation": "Each position is processed once; signs in the original array store flags."
+  },
+  "pitfalls": [
+    "Use abs when reading a value that may already have been marked.",
+    "Subtract one to obtain its marker index.",
+    "This marking technique modifies nums and relies on positive bounded values."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/find-all-duplicates-in-an-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "result"
+    ],
+    "pointers": [
+      "i",
+      "index"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {}
+  }
+}

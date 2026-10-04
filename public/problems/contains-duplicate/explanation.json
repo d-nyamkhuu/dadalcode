@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "Comparing every pair of elements asks the same membership question repeatedly and can take quadratic time. Sorting would bring equal values together, but uses more work than necessary when all we need is whether some earlier value matches the current one.",
+    "A set retains the distinct values already encountered. Before inserting the next value, ask whether it is present. Presence means an earlier occurrence exists, so the current index completes a duplicate pair. Absence means this is its first appearance and it should be remembered.",
+    "The set intentionally ignores occurrence positions and exact frequencies because neither affects the answer. Early return avoids scanning the rest after a duplicate is proved. If the scan completes, every insertion was a first occurrence, which proves that all elements are distinct. Hash lookup gives expected linear total time."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        1
+      ]
+    },
+    "steps": [
+      "For nums=[1,2,3,1], begin with seen=set() as an empty set.",
+      "At index 0, value 1 is absent. Insert it, giving seen={1}.",
+      "At index 1, value 2 is absent. Insert it, giving seen={1,2}.",
+      "At index 2, value 3 is absent. Insert it, giving seen={1,2,3}.",
+      "At index 3, value 1 is already in the set. Its earlier occurrence was at index 0.",
+      "Return true immediately. The answer depends on repeated value 1, not on whether the duplicate positions are adjacent."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "if value in seen:",
+      "note": "Membership is checked before insertion so the current element cannot be mistaken for its own earlier occurrence."
+    },
+    {
+      "code": "seen.add(value)",
+      "note": "Remember a first occurrence without retaining its position. Future elements only need to know whether that value has appeared."
+    },
+    {
+      "code": "return False",
+      "note": "This line is reached only after every element was absent when examined, which proves that no duplicate pair exists."
+    }
+  ]
+}

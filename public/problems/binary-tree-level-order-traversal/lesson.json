@@ -1,0 +1,63 @@
+{
+  "slug": "binary-tree-level-order-traversal",
+  "headline": "Process one breadth-first frontier at a time",
+  "statement": "Return node values of a binary tree grouped by depth, from root level to deepest level. Within each level use left-to-right order. An empty tree produces an empty list. Trainer inputs use level-order arrays with null for absent children.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary tree nodes and traversal"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 2000",
+    "Node values lie between -1000 and 1000."
+  ],
+  "intuition": "A FIFO queue visits parents before their children. Freeze the queue length at the start of a level: those nodes are exactly the current frontier. Appending children while processing that many nodes builds the next frontier without mixing depths.",
+  "approach": [
+    "Return [] for a missing root; otherwise enqueue it.",
+    "Record size=len(queue) before each level.",
+    "Pop size nodes, collect their values, and enqueue left then right children.",
+    "Append each finished level to levels."
+  ],
+  "correctness": "Initially the queue contains exactly depth-zero nodes in left-to-right order. If that is true at one level, processing its frozen size enqueues only the next depth and preserves left-before-right parent order. Induction proves each collected group has exactly the intended depth and order.",
+  "bruteForce": "Repeatedly scan the whole tree for each desired depth, taking O(n*h) time. A DFS with depth buckets is also linear but expresses the frontier less directly.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(w) auxiliary; O(n) output",
+    "explanation": "Each node is queued once; w is the largest level width. The queue during a level contains portions of two adjacent levels and remains O(w)."
+  },
+  "pitfalls": [
+    "Freeze the level size before adding children.",
+    "Append left before right for left-to-right ordering.",
+    "Avoid list.pop(0), which shifts remaining entries."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue",
+      "levels",
+      "level"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "node",
+      "size"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "levels": "Levels",
+      "level": "Level",
+      "i": "I",
+      "node": "Node",
+      "size": "Size"
+    }
+  }
+}

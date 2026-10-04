@@ -1,0 +1,54 @@
+{
+  "intuition": [
+    "Generating permutations of input indices works for distinct values, but duplicates make many index arrangements look identical. For [1,1,2], exchanging the two occurrences of 1 does not create a new value sequence. Deduplicating only after generation wastes whole subtrees of repeated work.",
+    "Sorting puts equal occurrences together. Track used indices because every occurrence must still be available separately. Among equal values, require the earlier index to be selected before the later one. This canonical ordering decides which physical occurrence represents the next equal value without banning repeated values.",
+    "The key distinction is whether the predecessor is already used in the current prefix. If it is used, the next equal occurrence is a legitimate additional copy. If it is unused, selecting the later occurrence would duplicate the sibling branch that selects the earlier one. Undo both the flag and the path after recursion."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        1,
+        2
+      ]
+    },
+    "steps": [
+      "Sorted nums is [1,1,2], with every used flag false. Choose the first 1 at index 0.",
+      "The second 1 is now allowed because index 0 is used. Append 2 afterward and save [1,1,2].",
+      "Undo the second 1. Choose 2 in its place, then the unused second 1, saving [1,2,1].",
+      "At the root, skip index 1 because its equal predecessor is unused; that would repeat the first root branch.",
+      "Choose root value 2 instead, then the two ones in index order, producing the third answer [2,1,1]."
+    ],
+    "result": [
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        1,
+        1
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "used = [False] * len(nums)",
+      "note": "Flags track occurrences, not values: the two ones must each be used once even though their numeric values are equal."
+    },
+    {
+      "code": "if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:",
+      "note": "This is a sibling-duplicate rule. It rejects a later equal occurrence only when its earlier representative has not already joined the prefix."
+    },
+    {
+      "code": "used[i] = False",
+      "note": "Restoring the flag after popping the path returns the search to its parent state, making the occurrence available to other valid branches."
+    }
+  ]
+}

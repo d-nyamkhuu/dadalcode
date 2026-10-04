@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "Taking the largest available coin feels natural, but arbitrary denominations break that rule. With coins 1,3,4 and amount 6, greedy takes 4+1+1, while 3+3 uses fewer coins. Trying all ordered coin sequences finds the answer but revisits the same remaining amounts repeatedly.",
+    "Every nonempty composition has a final coin. Removing it leaves a smaller amount whose minimum coin count can be reused. If that smaller amount is reachable, adding the chosen coin gives one candidate cost for the current amount. Comparing all final coins avoids committing to a locally attractive denomination.",
+    "Process amounts in ascending order because positive coin values always refer backward to already computed entries. An unreachable sentinel distinguishes impossible amounts from valid costs. The table stores only the cheapest count, since a more expensive composition of the same amount cannot help any later amount."
+  ],
+  "walkthrough": {
+    "input": {
+      "coins": [
+        1,
+        3,
+        4
+      ],
+      "amount": 6
+    },
+    "steps": [
+      "For coins=[1,3,4] and amount=6, initialize dp[0]=0 and dp[1..6]=7, the unreachable sentinel.",
+      "Amounts 1 and 2 can only use coin 1, so their minimum counts are 1 and 2.",
+      "Amount 3 considers coin 1 after amount 2, but coin 3 after amount 0 improves its count to 1.",
+      "Amount 4 is best formed by one coin 4; its table entry is also 1.",
+      "Amount 5 needs two coins, such as 4+1, so dp[5]=2.",
+      "At amount 6, coin 3 uses dp[3]+1=2, beating coin 1’s cost 3 and coin 4’s cost 3. Return 2."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "unreachable = amount + 1",
+      "note": "Positive denominations make amount+1 greater than any valid minimum count. It can safely stand for an impossible composition."
+    },
+    {
+      "code": "candidate = dp[value - coin] + 1",
+      "note": "Treat coin as the final coin and reuse the best composition of the remaining value; this is why amounts are processed upward."
+    },
+    {
+      "code": "dp[value] = min(dp[value], candidate)",
+      "note": "Multiple final coins can reach the same amount. Retaining only the cheapest result prevents a greedy denomination choice from determining the answer."
+    }
+  ]
+}

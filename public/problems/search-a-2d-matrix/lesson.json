@@ -1,0 +1,62 @@
+{
+  "slug": "search-a-2d-matrix",
+  "headline": "The row boundary condition makes the entire matrix one sorted row-major sequence",
+  "statement": "Return whether target appears in matrix. Each row is nondecreasing and the first element of a row is greater than the final element of the preceding row. The matrix is rectangular. Use O(log(rows*columns)) time and O(1) auxiliary space.",
+  "prerequisites": [
+    "Binary search",
+    "Flattened row-major indices"
+  ],
+  "constraints": [
+    "1 <= rows, columns <= 100",
+    "Matrix values and target range from -10,000 to 10,000"
+  ],
+  "intuition": "The row boundary condition makes the entire matrix one sorted row-major sequence. Binary search it without allocating a flattened copy.",
+  "approach": [
+    "Search indices 0 through rows*columns-1.",
+    "Convert a midpoint i to row i//columns and column i%columns.",
+    "Compare its value with target and discard the impossible half."
+  ],
+  "correctness": "The flattened sequence is sorted by both row order and the row boundary rule. Each binary-search comparison removes values all smaller or all larger than the target; if present, the target stays in the remaining interval until found.",
+  "bruteForce": "Scan every cell: O(rows*columns) time.",
+  "complexity": {
+    "time": "O(log(rows*columns))",
+    "space": "O(1)",
+    "explanation": "Time O(log(rows*columns)); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "This stronger row boundary condition differs from Search a 2D Matrix II.",
+    "Divide by the number of columns, not rows.",
+    "Use mid-1 or mid+1 to make progress."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/search-a-2d-matrix/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "matrix"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "left",
+      "right",
+      "mid",
+      "value"
+    ],
+    "labels": {
+      "matrix": "Matrix",
+      "row": "Row",
+      "col": "Col",
+      "left": "Left",
+      "right": "Right",
+      "mid": "Mid",
+      "value": "Value"
+    }
+  }
+}

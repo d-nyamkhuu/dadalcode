@@ -1,0 +1,58 @@
+{
+  "intuition": [
+    "Choosing one value from every list in all combinations quickly becomes impractical. A more useful candidate keeps one current representative per sorted list. The minimum and maximum of those representatives define a range that already covers every list.",
+    "To improve this range, advance the list that supplies its minimum. Advancing another representative cannot raise the lower endpoint and cannot reduce the upper endpoint, so it cannot produce a better range before the current minimum changes. A min heap locates the next list to advance, while a separate high value tracks the largest representative.",
+    "Each popped minimum yields a valid candidate before its list advances. Compare candidates by width first and left endpoint second, since equal-width ties must favor the earlier range. Sorted lists mean replacement values never move backward, so high only needs to increase. If the minimum\u2019s list has no successor, stop: proceeding would drop that list\u2019s coverage, and no later covering selection is possible. The heap remains one entry per list throughout the search."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        [
+          4,
+          10,
+          15,
+          24,
+          26
+        ],
+        [
+          0,
+          9,
+          12,
+          20
+        ],
+        [
+          5,
+          18,
+          22,
+          30
+        ]
+      ]
+    },
+    "steps": [
+      "For the three example lists, representatives [4,0,5] produce initial range [0,5].",
+      "Advance the list supplying 0 to 9; then advance the list supplying 4 to 10.",
+      "Continue advancing only the smallest representative, exposing 18,12,15,20,24,22 in sequence.",
+      "Eventually the representatives are 24 from list 0, 20 from list 1, and 22 from list 2.",
+      "Their range [20,24] has width 4, improving the earlier width-5 best.",
+      "Popping 20 exhausts list 1, so stop and return [20,24]."
+    ],
+    "result": [
+      20,
+      24
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "low, row, index = heappop(heap)",
+      "note": "The minimum identifies both the current range\u2019s lower endpoint and the only list worth advancing."
+    },
+    {
+      "code": "if (high - low, low) < (best[1] - best[0], best[0]):",
+      "note": "Tuple ordering encodes the required width priority and smaller-left-endpoint tie-breaker."
+    },
+    {
+      "code": "if index + 1 == len(nums[row]):",
+      "note": "An exhausted list prevents any later selection from retaining coverage of all lists."
+    }
+  ]
+}

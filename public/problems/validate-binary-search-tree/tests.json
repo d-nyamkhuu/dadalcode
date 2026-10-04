@@ -1,0 +1,109 @@
+[
+  {
+    "name": "Example: valid",
+    "input": {
+      "root": [
+        2,
+        1,
+        3
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: bad right root",
+    "input": {
+      "root": [
+        5,
+        1,
+        4,
+        null,
+        null,
+        3,
+        6
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Ancestor violation",
+    "input": {
+      "root": [
+        5,
+        4,
+        6,
+        null,
+        null,
+        3,
+        7
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Duplicate key",
+    "input": {
+      "root": [
+        2,
+        2,
+        3
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Extreme singleton",
+    "input": {
+      "root": [
+        -2147483648
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Valid unbalanced",
+    "input": {
+      "root": [
+        1,
+        null,
+        2,
+        null,
+        3
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Maximum integer singleton",
+    "input": {
+      "root": [
+        2147483647
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Both signed integer extremes",
+    "input": {
+      "root": [
+        0,
+        -2147483648,
+        2147483647
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Left descendant exceeds ancestor",
+    "input": {
+      "root": [
+        5,
+        3,
+        8,
+        null,
+        6
+      ]
+    },
+    "expected": false
+  }
+]

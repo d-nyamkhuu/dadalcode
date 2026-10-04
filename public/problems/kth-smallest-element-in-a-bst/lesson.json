@@ -1,0 +1,53 @@
+{
+  "slug": "kth-smallest-element-in-a-bst",
+  "headline": "Stop inorder traversal at rank k",
+  "statement": "Return the kth smallest node value in a binary search tree, with k counted from one.",
+  "prerequisites": [
+    "BST ordering",
+    "Inorder traversal",
+    "Stacks"
+  ],
+  "constraints": [
+    "1 <= k <= number of nodes <= 10000.",
+    "Node values range from 0 to 10000.",
+    "All node values are distinct; every left descendant is smaller and every right descendant is larger."
+  ],
+  "intuition": "Inorder visits a BST in ascending order: left subtree, root, right subtree. Count visited nodes until k reaches zero; no full sorted array is necessary.",
+  "approach": [
+    "Push the entire left spine.",
+    "Pop its smallest pending node and decrease k.",
+    "Return its value when k becomes zero.",
+    "Continue down the popped node's right subtree."
+  ],
+  "correctness": "The stack represents the unvisited ancestor chain. Popping after exhausting the left spine yields the smallest remaining value, and its right subtree comes before the remaining ancestors. Consequently the kth pop is exactly the kth value in sorted order.",
+  "bruteForce": "Collect all values, sort them, and return position k-1, taking O(n log n) time and O(n) space. Inorder uses the tree's existing ordering.",
+  "complexity": {
+    "time": "O(h + k), O(n) worst case",
+    "space": "O(h)",
+    "explanation": "The traversal stops after k visits, with at most a height-sized ancestor stack."
+  },
+  "pitfalls": [
+    "k is one-based.",
+    "A skewed tree can require O(n) stack space.",
+    "For frequent updates and rank queries, store subtree sizes to support O(h) rank searches."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "node",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "k"
+    ],
+    "labels": {}
+  }
+}

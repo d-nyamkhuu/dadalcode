@@ -1,0 +1,46 @@
+{
+  "intuition": [
+    "A tree-wide sum cannot produce per-depth averages, and averaging previously computed child averages is wrong when their level populations differ. Each level needs its own total and actual node count. Breadth-first traversal naturally groups nodes at the same distance from the root.",
+    "Freeze the queue size at the start of a level, then process exactly that many nodes. Sum their values while appending existing children for later processing. The frozen denominator counts only the current frontier, so those children cannot accidentally dilute their parents\u2019 average.",
+    "Use ordinary division to preserve fractional results. Values may be negative or large, but Python\u2019s integer accumulator handles the exact sum before conversion to a floating-point average. Queue order is convenient for traversal, although the average itself depends only on the members of each level, not their ordering."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        3,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "steps": [
+      "For root [3,9,20,null,null,15,7], begin with the queue containing only node 3.",
+      "Freeze size=1 and sum that frontier to total=3. Append children 9 and 20, then record 3/1=3.",
+      "For the next level, freeze size=2. Values 9 and 20 sum to 29; their mean is 29/2=14.5.",
+      "Node 20 has queued children 15 and 7, which are excluded from the previous denominator. Their level total is 22.",
+      "Divide 22 by its size 2 to obtain 11. With no nodes remaining, return [3,14.5,11]."
+    ],
+    "result": [
+      3,
+      14.5,
+      11
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "size, total = len(queue), 0",
+      "note": "Reset the sum for each depth and preserve its initial population before newly discovered children enter the queue."
+    },
+    {
+      "code": "total += node.val",
+      "note": "Accumulate actual node values rather than averaging intermediate averages, which would give unequal-sized groups incorrect weights."
+    },
+    {
+      "code": "averages.append(total / size)",
+      "note": "Ordinary division retains fractional means. The fixed size is exactly the number of values added during this frontier\u2019s processing."
+    }
+  ]
+}

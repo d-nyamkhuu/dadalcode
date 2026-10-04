@@ -1,0 +1,67 @@
+{
+  "slug": "smallest-range-covering-elements-from-k-lists",
+  "headline": "Advance the list supplying the current minimum",
+  "statement": "Given k nonempty sorted integer lists, return the smallest inclusive range [a,b] containing at least one value from every list. Compare ranges by width b-a first, then prefer smaller a on equal width.",
+  "prerequisites": [
+    "Min heap",
+    "K-way merging",
+    "Range ordering"
+  ],
+  "constraints": [
+    "1 <= k <= 3500",
+    "1 <= each list length <= 50",
+    "Values lie between -100,000 and 100,000",
+    "Each list is sorted in nondecreasing order"
+  ],
+  "intuition": "Choose one current representative from each list. The smallest and largest representatives define a covering range. To improve its width, advance the list supplying the smallest value; moving any other representative cannot raise the minimum.",
+  "approach": [
+    "Put the first value from each list in a heap and track the largest representative.",
+    "Pop the minimum and compare its range to best using width and left endpoint.",
+    "Advance that minimum\u2019s list, updating the maximum; stop when a list runs out."
+  ],
+  "correctness": "With a fixed leftmost representative, advancing a different list cannot improve the lower endpoint and cannot reduce the maximum. Advancing the minimum explores the next possible left endpoint while preserving coverage. Once that list is exhausted, no later representative selection can cover all lists.",
+  "bruteForce": "Choose one value from each list in all combinations and compare their ranges; the number of combinations is the product of list lengths.",
+  "complexity": {
+    "time": "O(N log(k + 1))",
+    "space": "O(k)",
+    "explanation": "N is the total number of elements across all k lists. Each consumed value causes one heap update and the heap has one representative per list."
+  },
+  "pitfalls": [
+    "Do not forget the left-endpoint tie-breaker.",
+    "Update the maximum after adding a replacement value.",
+    "Stop when the popped list is exhausted, rather than dropping its coverage."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "nums",
+      "heap",
+      "best"
+    ],
+    "pointers": [
+      "row",
+      "index"
+    ],
+    "watch": [
+      "low",
+      "high",
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "heap": "Heap",
+      "best": "Best",
+      "row": "Row",
+      "index": "Index",
+      "low": "Low",
+      "high": "High",
+      "value": "Value"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+  "headline": "Follow both targets until their search paths split",
+  "statement": "Given a binary search tree with distinct values and two different existing nodes p and q, return their lowest common ancestor as the existing node object. A node is considered an ancestor of itself. Trainer inputs identify p and q by their values.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary tree nodes and traversal"
+  ],
+  "constraints": [
+    "2 <= number of nodes <= 10^5",
+    "Values are distinct signed integers.",
+    "p and q are different nodes already in the tree."
+  ],
+  "intuition": "In a BST, every smaller value is in the left subtree and every larger value is in the right. If both targets are on the same side, their lowest ancestor is there too. Their first split, including equality with the current root, is the answer.",
+  "approach": [
+    "Start at the root.",
+    "If both targets are smaller, descend left.",
+    "If both are larger, descend right.",
+    "Otherwise return the current node because the target paths diverge here."
+  ],
+  "correctness": "When both targets lie in one subtree, their lowest common ancestor must lie there; moving into it preserves the answer. At the first split, no child subtree contains both targets, while the current node contains them both, so it is the lowest common ancestor. Equality also works because a target is its own ancestor.",
+  "bruteForce": "Find both root-to-target paths and compare their common prefix, using O(h) extra storage.",
+  "complexity": {
+    "time": "O(h)",
+    "space": "O(1)",
+    "explanation": "Only one search path is followed. h can be n for a skewed tree and log n for a balanced tree."
+  },
+  "pitfalls": [
+    "Return the original node, not a newly allocated node with the same value.",
+    "Equality with either target ends the search.",
+    "BST-specific comparisons cannot replace general binary-tree LCA logic."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "node"
+    ],
+    "pointers": [],
+    "watch": [
+      "p",
+      "q"
+    ],
+    "labels": {
+      "root": "Root",
+      "node": "Node",
+      "p": "P",
+      "q": "Q"
+    }
+  }
+}

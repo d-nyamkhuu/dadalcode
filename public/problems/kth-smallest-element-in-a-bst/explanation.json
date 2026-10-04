@@ -1,0 +1,45 @@
+{
+  "intuition": [
+    "Collect all values, sort them, and return position k-1, taking O(n log n) time and O(n) space. Inorder uses the tree's existing ordering. Sorting arbitrary tree values would work, but a BST already contains the ordering information needed for rank selection.",
+    "Inorder traversal is a sorted iterator over a BST. The explicit stack stores ancestors waiting to be visited after their left descendants. After popping a node, its right subtree supplies the next values before any larger pending ancestor. Decrementing k on visits, rather than on pushes, counts actual inorder positions. Stopping immediately at rank k avoids traversing irrelevant larger values. For many queries on a changing tree, subtree-size annotations offer a separate optimization, but one query needs only this traversal.",
+    "The stack represents the unvisited ancestor chain. Popping after exhausting the left spine yields the smallest remaining value, and its right subtree comes before the remaining ancestors. Consequently the kth pop is exactly the kth value in sorted order. The traversal stops after k visits, with at most a height-sized ancestor stack.",
+    "For a branching tree, returning from a right subtree eventually exposes a larger ancestor still waiting on the stack. The pop sequence, not the push sequence, is the sorted iterator; the stack can retain such ancestors across several right-subtree visits."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        4,
+        2,
+        6,
+        1,
+        3,
+        5,
+        7
+      ],
+      "k": 4
+    },
+    "steps": [
+      "For root [4,2,6,1,3,5,7] and k=4, push the left spine: 4, then 2, then 1.",
+      "Pop 1 as the smallest unvisited node and decrease k to 3. It has no right subtree, so the next pending visit is ancestor 2.",
+      "Pop 2 and decrease k to 2. Node 4 remains waiting on the stack, while traversal moves into node 2's right subtree rooted at 3.",
+      "Push and pop node 3, decreasing k to 1. Its right subtree is empty, so the waiting ancestor 4 becomes the next visit.",
+      "Pop 4 and decrease k to zero. The first four inorder values were 1,2,3,4.",
+      "Return 4 immediately without traversing its larger right subtree rooted at 6."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "while node:",
+      "note": "Exhaust the left spine before visiting a root so every smaller value in its subtree comes first."
+    },
+    {
+      "code": "k -= 1",
+      "note": "A pop represents one completed inorder visit; pushes alone do not advance sorted rank."
+    },
+    {
+      "code": "node = node.right",
+      "note": "After visiting a node, its right subtree precedes the larger ancestors still waiting on the stack."
+    }
+  ]
+}

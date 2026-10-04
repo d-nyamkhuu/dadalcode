@@ -1,0 +1,53 @@
+{
+  "slug": "counting-bits",
+  "headline": "Reuse the count after removing one low bit",
+  "statement": "For every integer i from zero through n inclusive, return the number of set bits in its binary representation. The answer has n+1 entries. Aim for O(n) time without a built-in bit-count operation.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recurrences and dynamic programming states"
+  ],
+  "constraints": [
+    "0 <= n <= 10^5"
+  ],
+  "intuition": "The representation of i without its final binary digit is i//2. Its bit count is already known because it is smaller. The discarded digit contributes one precisely when i is odd. This yields a direct recurrence.",
+  "approach": [
+    "Create counts of length n+1, initially zero.",
+    "For i from 1 to n, set counts[i]=counts[i>>1]+(i&1).",
+    "Return the table, including the zero entry."
+  ],
+  "correctness": "The zero entry is correct. Right shifting removes exactly the least significant bit, so the count of i equals the already computed count of i>>1 plus that last bit. Induction across increasing i proves every table entry.",
+  "bruteForce": "For each number independently divide by two until zero and count odd remainders. That uses O(n log n) total time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n) output; O(1) auxiliary",
+    "explanation": "Every output entry takes constant work and the table is the required returned storage."
+  },
+  "pitfalls": [
+    "Return n+1 entries, not n.",
+    "Zero has no set bits.",
+    "The recurrence uses a count from the table, not the shifted integer itself."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/counting-bits/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "counts"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "n"
+    ],
+    "labels": {
+      "counts": "Counts",
+      "i": "I",
+      "n": "N"
+    }
+  }
+}

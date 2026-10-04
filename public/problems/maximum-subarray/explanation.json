@@ -1,0 +1,44 @@
+{
+  "intuition": [
+    "Enumerate every start/end pair and accumulate sums in O(n\u00b2) time. Every new endpoint shares almost all earlier candidates, suggesting that a compact summary should replace repeated subarray enumeration.",
+    "The summary is ending: the best sum of a nonempty subarray ending at the immediately previous position. To include the next value, either extend that subarray or abandon it and start fresh. A negative prefix is a burden, while a positive one improves the next choice. Keep a separate best because the globally optimal subarray may end long before the last element. Initializing with an actual element preserves the nonempty requirement on all-negative input.",
+    "Every subarray ending at i either starts at i or extends a subarray ending at i-1. Choosing the better option gives the optimal ending sum by induction. Taking the maximum over all ending positions therefore covers every nonempty subarray. Only two running sums are needed."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -2,
+        1,
+        -3,
+        4,
+        -1,
+        2,
+        1,
+        -5,
+        4
+      ]
+    },
+    "steps": [
+      "Initialize ending=best=-2 at the first element.",
+      "At value 1, restarting beats extending -2, so ending=1 and best=1.",
+      "At value 4, restarting beats the preceding ending=-2, beginning the useful middle segment.",
+      "Extend through -1,2,1 to reach ending=6 for [4,-1,2,1].",
+      "Later values do not exceed best=6, so return that stored global optimum."
+    ],
+    "result": 6
+  },
+  "codeNotes": [
+    {
+      "code": "ending = best = nums[0]",
+      "note": "A real first element gives the correct result even when every possible subarray has a negative sum."
+    },
+    {
+      "code": "ending = max(value, ending + value)",
+      "note": "These are the only ways a contiguous subarray can end here: start here or extend the previous prefix optimum."
+    },
+    {
+      "code": "best = max(best, ending)",
+      "note": "Preserve earlier optimal endpoints instead of accidentally returning only the last ending sum."
+    }
+  ]
+}

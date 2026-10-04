@@ -1,0 +1,56 @@
+{
+  "slug": "peak-index-in-a-mountain-array",
+  "headline": "Binary-search the change from rising to falling",
+  "statement": "Given a mountain array arr that strictly increases to one interior peak then strictly decreases, return the peak index in logarithmic time.",
+  "prerequisites": [
+    "Binary search",
+    "Monotonic slopes"
+  ],
+  "constraints": [
+    "3 <= len(arr) <= 100,000",
+    "0 <= arr[i] <= 10^6",
+    "A strict mountain shape with an interior peak is guaranteed"
+  ],
+  "intuition": "Compare the middle value to the next value. A rising edge places the peak strictly to the right; a falling edge places the peak at middle or to its left. This slope test discards half the search interval.",
+  "approach": [
+    "Maintain inclusive bounds containing the peak.",
+    "When arr[mid] < arr[mid+1], set left to mid+1.",
+    "Otherwise set right to mid; stop when bounds meet."
+  ],
+  "correctness": "A mountain rises only before its unique peak and falls from its peak onward. Each slope comparison selects an interval that still contains the peak. The interval shrinks strictly, and its sole remaining index must be the peak.",
+  "bruteForce": "Scan to find the maximum value, costing O(n) time.",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "explanation": "The interval roughly halves each round and uses only indices."
+  },
+  "pitfalls": [
+    "The input guarantee is essential; arbitrary arrays may have multiple peaks.",
+    "Use right=mid on a falling edge because mid may be the peak.",
+    "With left<right, mid+1 is always in bounds."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/peak-index-in-a-mountain-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "arr"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "watch": [],
+    "labels": {
+      "arr": "Arr",
+      "left": "Left",
+      "right": "Right",
+      "mid": "Mid"
+    }
+  }
+}

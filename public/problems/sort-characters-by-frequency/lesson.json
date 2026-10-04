@@ -1,0 +1,55 @@
+{
+  "slug": "sort-characters-by-frequency",
+  "headline": "Collect equal characters before ordering by count",
+  "statement": "Given a nonempty string s, return a string containing exactly the same characters ordered by descending frequency. All copies of a character must be contiguous. Ties may appear in either order; uppercase and lowercase are distinct.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 5*10^5",
+    "Characters are English letters or digits."
+  ],
+  "intuition": "Count first, then emit whole groups rather than sorting individual occurrences by their original location. Sorting distinct characters by negative frequency makes the dominant group appear first and lets each character contribute one contiguous block.",
+  "approach": [
+    "Count every character with a frequency map.",
+    "Sort distinct keys by decreasing count, using character order only as a deterministic tie-breaker.",
+    "Append character repeated count times and join the groups."
+  ],
+  "correctness": "The frequency map records each input multiplicity exactly. Every key contributes one block of that size, so the returned multiset matches the input and each character is contiguous. Sorting by descending frequency enforces the requested block order; tie order is unrestricted.",
+  "bruteForce": "Sort all n occurrences by their frequency after counting, costing O(n log n). Sorting only u distinct keys is cheaper when characters repeat.",
+  "complexity": {
+    "time": "O(n + u log u)",
+    "space": "O(n+u), including output",
+    "explanation": "Counting and building the output are linear in input size; u is the number of distinct characters. Under the English letter/digit constraint, u <= 62, so the bound is effectively O(n)."
+  },
+  "pitfalls": [
+    "Ties do not require a particular order.",
+    "Uppercase A and lowercase a are different keys.",
+    "Equal characters must remain in one block."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/sort-characters-by-frequency/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "counts",
+      "order",
+      "groups"
+    ],
+    "pointers": [],
+    "watch": [
+      "char"
+    ],
+    "labels": {
+      "counts": "Counts",
+      "order": "Order",
+      "groups": "Groups",
+      "char": "Char"
+    }
+  }
+}

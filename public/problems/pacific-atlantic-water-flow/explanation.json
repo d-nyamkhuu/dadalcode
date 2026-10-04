@@ -1,0 +1,100 @@
+{
+  "intuition": [
+    "Run a downhill traversal from each of R*C cells, potentially taking O((RC)²). Two reverse traversals visit each cell only a constant number of times. Most starting cells would rediscover the same downstream routes, so searching separately from each one repeats extensive work.",
+    "Reverse the direction of the question. An ocean border is already a successful destination; moving uphill from it discovers every cell able to drain back along that route. Equal heights remain traversable because water can flow across a flat plateau. Pacific and Atlantic searches are independent, with their own visited sets, then their intersection answers the original question. Mark a cell when adding it to the stack, preventing neighboring cells from scheduling the same work repeatedly. Orthogonal movement follows the problem’s four-direction rule, excluding diagonal shortcuts.",
+    "Reversing every legal downhill edge gives an uphill edge. A cell reached from an ocean border in the reversed graph has an original downhill path to that border, and every such path is discoverable in reverse. Therefore the intersection contains exactly the cells reaching both oceans. Two visited sets and traversal stacks each hold at most all cells.",
+    "After both traversals finish, the reference scans every coordinate in row-major order and includes it only if both sets contain it. This deterministic order costs O(RC), because it does no comparison sorting. The learner may return any order; the trainer compares coordinate collections while checking that no coordinate is duplicated."
+  ],
+  "walkthrough": {
+    "input": {
+      "heights": [
+        [
+          1,
+          2,
+          2,
+          3,
+          5
+        ],
+        [
+          3,
+          2,
+          3,
+          4,
+          4
+        ],
+        [
+          2,
+          4,
+          5,
+          3,
+          1
+        ],
+        [
+          6,
+          7,
+          1,
+          4,
+          5
+        ],
+        [
+          5,
+          1,
+          1,
+          2,
+          4
+        ]
+      ]
+    },
+    "steps": [
+      "Seed the Pacific traversal with every top-row and left-column cell, and seed the Atlantic traversal with every bottom-row and right-column cell.",
+      "One eligible Pacific expansion goes from seed (0,1), height 2, into interior (1,1), also height 2, because equal heights permit reverse flow.",
+      "One eligible Atlantic expansion goes from seed (1,4), height 4, into interior (1,3), also height 4; visited guards ensure such a cell is only scheduled once.",
+      "Whichever seed is popped first, both searches ultimately reach (2,2), height 5, certifying downhill paths back to their respective oceans.",
+      "Intersect the complete reachable sets to obtain the seven coordinates in the result; no particular set-pop order is required."
+    ],
+    "result": [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        0
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "heights[nr][nc] >= heights[r][c]",
+      "note": "Reverse traversal climbs toward cells whose water could originally descend to the current cell."
+    },
+    {
+      "code": "seen.add((nr,nc))",
+      "note": "Mark at discovery, before pushing, so each ocean traversal processes a coordinate once."
+    },
+    {
+      "code": "if (r, c) in pacific and (r, c) in atlantic",
+      "note": "Each coordinate needs both reachability properties. A row-major scan checks membership in O(1) expected time per cell, giving deterministic output in O(RC) without sorting the intersection."
+    }
+  ]
+}

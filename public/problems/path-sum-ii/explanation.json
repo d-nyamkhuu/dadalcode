@@ -1,0 +1,63 @@
+{
+  "intuition": [
+    "The phrase root-to-leaf imposes two restrictions that are easy to overlook: a path cannot start in the middle of the tree, and a matching sum at an internal node is not yet an answer. Every candidate is one complete root-to-leaf route, including all of its values.",
+    "Keep a stack entry containing the next node, its prefix path, and the prefix sum. Visiting a node creates a new list with that node appended. Siblings may share their parent prefix, but neither mutates it: each child builds its own extension. Carrying a running sum avoids resumming the same prefix at every descendant.",
+    "Negative values rule out a tempting pruning shortcut. A prefix greater than target may later decrease, so exploration must continue until the route ends. Only when both children are absent is the sum compared against target. The approach trades some path-copying space for simple ownership of branch state and avoids recursive-depth problems in skewed trees. Distinct routes with the same values remain distinct answers.",
+    "The copied-prefix design is simple and iterative, but a chain copies lengths 1,2,...,h and can take quadratic time even if it yields one path. A more efficient alternative uses iterative enter/exit events and one shared path: append on entry, pop on exit, and copy only matching leaf paths. That approach takes O(n+L) time and O(h) auxiliary state, where L counts returned path values. The reference keeps fresh prefixes to make branch ownership explicit; its auxiliary pending copies are bounded by O(h²), separately from O(L) returned output."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        5,
+        4,
+        8,
+        11,
+        null,
+        13,
+        4,
+        7,
+        2,
+        null,
+        null,
+        5,
+        1
+      ],
+      "targetSum": 22
+    },
+    "steps": [
+      "For targetSum=22, begin at root 5 with empty prefix and total 0.",
+      "The left branch extends through 4 and 11, producing path [5,4,11] and total 20.",
+      "Leaf 7 gives total 27 and is rejected; leaf 2 gives total 22, so save [5,4,11,2].",
+      "Explore the right branch through 8 and 4. Its leaf 5 gives the second match [5,8,4,5].",
+      "The other leaves do not total 22. Return the two saved paths, preserving their complete root-to-leaf order."
+    ],
+    "result": [
+      [
+        5,
+        4,
+        11,
+        2
+      ],
+      [
+        5,
+        8,
+        4,
+        5
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "path = prefix + [node.val]",
+      "note": "A fresh child extension leaves the shared parent prefix untouched, preventing later exploration from modifying a previously saved route."
+    },
+    {
+      "code": "if not node.left and not node.right and total == targetSum:",
+      "note": "A matching internal prefix is excluded; only complete routes terminating at leaves qualify."
+    },
+    {
+      "code": "stack.append((node.right, path, total))",
+      "note": "The next entry carries exactly the current node’s completed path and sum, allowing its child to extend rather than recompute them."
+    }
+  ]
+}

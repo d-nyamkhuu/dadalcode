@@ -1,0 +1,55 @@
+{
+  "intuition": [
+    "A depth-first traversal can collect values by depth, but it then needs extra bookkeeping to preserve the horizontal order at every level. Breadth-first search already processes the exact grouping required by this problem. The zigzag direction can be applied to the completed group rather than changing how the tree is traversed.",
+    "Keep the queue in ordinary left-to-right BFS order. At the start of each round, its current size is the number of nodes on this level. Consume only that many entries while appending their children for the next level. This prevents children from being mixed into their parents’ result.",
+    "Reverse the collected values on alternate levels. Leaving queue order unchanged is important: reversing traversal direction and still appending children left-first can scramble the following level. Separating traversal from display makes the invariant simple and handles sparse trees without special directional child rules."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        3,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "steps": [
+      "For root=[3,9,20,null,null,15,7], initialize queue=[3], result=[], and left_to_right=true.",
+      "The first level has one node. Pop 3, collect [3], and enqueue its children 9 then 20.",
+      "Append [3] unchanged and switch direction. The next queue is [9,20].",
+      "Process exactly two nodes: 9 contributes no children; 20 appends 15 and 7. Collected values are [9,20].",
+      "Because this level is right-to-left, reverse that output to [20,9]. The queue still contains [15,7].",
+      "Process the final level in the normal direction and append [15,7]. Return [[3],[20,9],[15,7]]."
+    ],
+    "result": [
+      [
+        3
+      ],
+      [
+        20,
+        9
+      ],
+      [
+        15,
+        7
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "for _ in range(len(queue)):",
+      "note": "The range length is evaluated before any child is appended. Exactly the original level is consumed even as queue size changes."
+    },
+    {
+      "code": "queue.append(node.left)",
+      "note": "Children enter left-first, keeping the next level in ordinary horizontal order independently of the current display direction."
+    },
+    {
+      "code": "level.reverse()",
+      "note": "Only the output values are reversed. Queue ordering continues to obey the BFS invariant for the following level."
+    }
+  ]
+}

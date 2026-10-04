@@ -1,0 +1,91 @@
+[
+  {
+    "name": "Mixed signs",
+    "input": {
+      "nums": [
+        -1,
+        2,
+        1,
+        -4
+      ],
+      "target": 1
+    },
+    "expected": 2
+  },
+  {
+    "name": "All zeros",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0
+      ],
+      "target": 1
+    },
+    "expected": 0
+  },
+  {
+    "name": "Exactly three",
+    "input": {
+      "nums": [
+        5,
+        -2,
+        7
+      ],
+      "target": 100
+    },
+    "expected": 10
+  },
+  {
+    "name": "Exact match",
+    "input": {
+      "nums": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "target": 7
+    },
+    "expected": 7
+  },
+  {
+    "name": "Negative closest sum",
+    "input": {
+      "nums": [
+        -8,
+        -5,
+        -3,
+        -1
+      ],
+      "target": -20
+    },
+    "expected": -16
+  },
+  {
+    "name": "Repeated values can supply distinct positions",
+    "input": {
+      "nums": [
+        -1,
+        -1,
+        -1,
+        2,
+        2
+      ],
+      "target": 0
+    },
+    "expected": 0
+  },
+  {
+    "name": "Largest target and endpoint values",
+    "input": {
+      "nums": [
+        -1000,
+        1000,
+        1000
+      ],
+      "target": 10000
+    },
+    "expected": 1000
+  }
+]

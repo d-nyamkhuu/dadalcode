@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Example: mixed values",
+    "input": {
+      "nums": [
+        3,
+        4,
+        -1,
+        1
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Example: zero ignored",
+    "input": {
+      "nums": [
+        1,
+        2,
+        0
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "All out of range",
+    "input": {
+      "nums": [
+        7,
+        8,
+        9,
+        11,
+        12
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Duplicates",
+    "input": {
+      "nums": [
+        1,
+        1
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Single negative",
+    "input": {
+      "nums": [
+        -1
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "All present",
+    "input": {
+      "nums": [
+        2,
+        3,
+        1
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Last home missing despite repeated four",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4,
+        4
+      ]
+    },
+    "expected": 5
+  },
+  {
+    "name": "Signed extremes are irrelevant",
+    "input": {
+      "nums": [
+        -2147483648,
+        2147483647,
+        1
+      ]
+    },
+    "expected": 2
+  }
+]

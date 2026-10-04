@@ -1,0 +1,135 @@
+[
+  {
+    "name": "Example: interleaving",
+    "input": {
+      "list1": [
+        1,
+        2,
+        4
+      ],
+      "list2": [
+        1,
+        3,
+        4
+      ]
+    },
+    "expected": [
+      1,
+      1,
+      2,
+      3,
+      4,
+      4
+    ]
+  },
+  {
+    "name": "Example: both empty",
+    "input": {
+      "list1": [],
+      "list2": []
+    },
+    "expected": []
+  },
+  {
+    "name": "Empty first",
+    "input": {
+      "list1": [],
+      "list2": [
+        0
+      ]
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Duplicates",
+    "input": {
+      "list1": [
+        2,
+        2
+      ],
+      "list2": [
+        2
+      ]
+    },
+    "expected": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "name": "Negative values",
+    "input": {
+      "list1": [
+        -5,
+        -1
+      ],
+      "list2": [
+        -3,
+        0
+      ]
+    },
+    "expected": [
+      -5,
+      -3,
+      -1,
+      0
+    ]
+  },
+  {
+    "name": "Disjoint ranges",
+    "input": {
+      "list1": [
+        1,
+        2
+      ],
+      "list2": [
+        3,
+        4
+      ]
+    },
+    "expected": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "name": "Empty second list",
+    "input": {
+      "list1": [
+        1,
+        2
+      ],
+      "list2": []
+    },
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Second list supplies lower prefix",
+    "input": {
+      "list1": [
+        3,
+        4
+      ],
+      "list2": [
+        -2,
+        -1,
+        0
+      ]
+    },
+    "expected": [
+      -2,
+      -1,
+      0,
+      3,
+      4
+    ]
+  }
+]

@@ -1,0 +1,897 @@
+[
+  {
+    "slug": "two-sum",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "add-two-numbers",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-substring-without-repeating-characters",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "median-of-two-sorted-arrays",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-palindromic-substring",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "container-with-most-water",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "3sum",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "3sum-closest",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "letter-combinations-of-a-phone-number",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "remove-nth-node-from-end-of-list",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "merge-two-sorted-lists",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "generate-parentheses",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "merge-k-sorted-lists",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "swap-nodes-in-pairs",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "reverse-nodes-in-k-group",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "substring-with-concatenation-of-all-words",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "search-in-rotated-sorted-array",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "sudoku-solver",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "combination-sum",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "combination-sum-ii",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "first-missing-positive",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "trapping-rain-water",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "permutations",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "permutations-ii",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "rotate-image",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "n-queens",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-subarray",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "spiral-matrix",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "jump-game",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "merge-intervals",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "insert-interval",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "rotate-list",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "unique-paths",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "climbing-stairs",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "set-matrix-zeroes",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "search-a-2d-matrix",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "sort-colors",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "minimum-window-substring",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "combinations",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "subsets",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "word-search",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "search-in-rotated-sorted-array-ii",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "remove-duplicates-from-sorted-list",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "subsets-ii",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "decode-ways",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "reverse-linked-list-ii",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "validate-binary-search-tree",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "same-tree",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-tree-level-order-traversal",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-tree-zigzag-level-order-traversal",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-depth-of-binary-tree",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-tree-level-order-traversal-ii",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "minimum-depth-of-binary-tree",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "path-sum",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "path-sum-ii",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "best-time-to-buy-and-sell-stock",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-tree-maximum-path-sum",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-consecutive-sequence",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "palindrome-partitioning",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "gas-station",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "single-number",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "word-break",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "linked-list-cycle",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "linked-list-cycle-ii",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "reorder-list",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "sort-list",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-product-subarray",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-minimum-in-rotated-sorted-array",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-peak-element",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "majority-element",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "house-robber",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-tree-right-side-view",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "number-of-islands",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "remove-linked-list-elements",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "reverse-linked-list",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "course-schedule",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "implement-trie-prefix-tree",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "minimum-size-subarray-sum",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "course-schedule-ii",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "word-search-ii",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "house-robber-ii",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "kth-largest-element-in-an-array",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "combination-sum-iii",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "contains-duplicate",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "invert-binary-tree",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "kth-smallest-element-in-a-bst",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "palindrome-linked-list",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-tree",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "product-of-array-except-self",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "sliding-window-maximum",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "search-a-2d-matrix-ii",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "meeting-rooms",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "meeting-rooms-ii",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "factor-combinations",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-tree-paths",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "graph-valid-tree",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "missing-number",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "alien-dictionary",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "move-zeroes",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-the-duplicate-number",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-median-from-data-stream",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "serialize-and-deserialize-binary-tree",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-increasing-subsequence",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "range-sum-query-immutable",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "minimum-height-trees",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "generalized-abbreviation",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "coin-change",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "number-of-connected-components-in-an-undirected-graph",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "count-of-range-sum",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "odd-even-linked-list",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "counting-bits",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "top-k-frequent-elements",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "rearrange-string-k-distance-apart",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-k-pairs-with-smallest-sums",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "combination-sum-iv",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "kth-smallest-element-in-a-sorted-matrix",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "is-subsequence",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "partition-equal-subset-sum",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "pacific-atlantic-water-flow",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-repeating-character-replacement",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "word-squares",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "non-overlapping-intervals",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "path-sum-iii",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-all-duplicates-in-an-array",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-all-numbers-disappeared-in-an-array",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "sort-characters-by-frequency",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "minimum-number-of-arrows-to-burst-balloons",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "concatenated-words",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "sliding-window-median",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "target-sum",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "permutation-in-string",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "subtree-of-another-tree",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "merge-two-binary-trees",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "task-scheduler",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "smallest-range-covering-elements-from-k-lists",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "average-of-levels-in-binary-tree",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "design-search-autocomplete-system",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-average-subarray-i",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "palindromic-substrings",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-binary-tree",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-k-closest-elements",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-width-of-binary-tree",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "number-of-longest-increasing-subsequence",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "partition-to-k-equal-sum-subsets",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "subarray-product-less-than-k",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-word-in-dictionary",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "find-smallest-letter-greater-than-target",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "prefix-and-suffix-search",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "employee-free-time",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "reorganize-string",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "binary-search",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "letter-case-permutation",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "count-unique-characters-of-all-substrings-of-a-given-string",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "backspace-string-compare",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "peak-index-in-a-mountain-array",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "all-nodes-distance-k-in-binary-tree",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "middle-of-the-linked-list",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "maximum-frequency-stack",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "fruit-into-baskets",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "k-closest-points-to-origin",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "squares-of-a-sorted-array",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "interval-list-intersections",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "index-pairs-of-a-string",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "convert-1d-array-into-2d-array",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "valid-anagram",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "group-anagrams",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "encode-and-decode-strings",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "valid-palindrome",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "valid-parentheses",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "design-add-and-search-words-data-structure",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "clone-graph",
+    "author": 3,
+    "status": "integrated"
+  },
+  {
+    "slug": "number-of-1-bits",
+    "author": 4,
+    "status": "integrated"
+  },
+  {
+    "slug": "reverse-bits",
+    "author": 0,
+    "status": "integrated"
+  },
+  {
+    "slug": "sum-of-two-integers",
+    "author": 1,
+    "status": "integrated"
+  },
+  {
+    "slug": "longest-common-subsequence",
+    "author": 2,
+    "status": "integrated"
+  },
+  {
+    "slug": "rotate-array",
+    "author": 3,
+    "status": "integrated"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "Counting nodes at each depth misses empty slots between distant branches. Constructing every slot of a complete tree would represent those gaps, but a sparse deep tree could require exponentially many placeholders. Instead, keep only real nodes with coordinates describing where they would sit.",
+    "Assign a node at position i the child positions 2i and 2i+1. Within a level, the rightmost coordinate minus the leftmost coordinate plus one counts real nodes and all intervening gaps. Breadth-first order gives those endpoints directly.",
+    "Normalize each level by subtracting its first coordinate before generating child positions. This shifts all positions equally and therefore preserves differences. It avoids large coordinates caused solely by a one-sided path while retaining the spacing that actually affects width. The queue never needs to store missing nodes."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        1,
+        3,
+        2,
+        5,
+        3,
+        null,
+        9
+      ]
+    },
+    "steps": [
+      "For root=[1,3,2,5,3,null,9], begin with root 1 at position 0. The first level’s width is 1.",
+      "Its children receive positions 0 and 1, so the second level queue is [(3,0),(2,1)].",
+      "Subtract offset 0 and process those two nodes. The final position 1 gives width 2.",
+      "Node 3 contributes children 5 at position 0 and 3 at position 1. Node 2 contributes only right child 9 at position 3.",
+      "The next level has real coordinates 0,1,3. Position 2 is missing but lies between the endpoint nodes.",
+      "The final normalized coordinate 3 gives width 3+1=4. Return maximum width 4, even though that level has only three real nodes."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "position -= offset",
+      "note": "A common translation preserves every horizontal gap while preventing needless index growth on deep, narrow paths."
+    },
+    {
+      "code": "queue.append((node.right, 2 * position + 1))",
+      "note": "Right children occupy the next conceptual slot after left children; these coordinates encode missing positions without allocating them."
+    },
+    {
+      "code": "width = position + 1",
+      "note": "After subtracting the first coordinate, the last coordinate plus one equals the full endpoint span, including internal gaps."
+    }
+  ]
+}

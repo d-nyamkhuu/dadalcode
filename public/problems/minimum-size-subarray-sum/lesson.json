@@ -1,0 +1,62 @@
+{
+  "slug": "minimum-size-subarray-sum",
+  "headline": "Shrink every qualifying positive window",
+  "statement": "Given positive integers nums and positive target, return the minimum length of a contiguous subarray whose sum is at least target. Return zero when no such subarray exists.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10^5",
+    "1 <= nums[i] <= 10^4",
+    "1 <= target <= 10^9"
+  ],
+  "intuition": "Positive values make the sum grow when extending the right end and shrink when removing the left end. For each right endpoint, repeatedly remove left values while the window still qualifies. This finds its shortest valid window without revisiting discarded positions.",
+  "approach": [
+    "Extend right and add nums[right] to total.",
+    "While total>=target, update the best length and remove nums[left].",
+    "Increment left and continue shrinking.",
+    "Translate an untouched best sentinel into zero."
+  ],
+  "correctness": "While processing right, total=sum(nums[left:right+1]). For a fixed right endpoint, successive shrinking examines every qualifying left boundary until positivity makes the sum too small. Discarded left boundaries can never give a shorter solution with a later right endpoint. Thus every possible globally shortest window is considered.",
+  "bruteForce": "Try every start and end while accumulating sums, using O(n^2) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Each pointer advances at most n times, so the nested while loop is linear in total."
+  },
+  "pitfalls": [
+    "Use >=target rather than equality.",
+    "Update best before removing a left value.",
+    "This window strategy relies on strictly positive values."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/minimum-size-subarray-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "right"
+    ],
+    "watch": [
+      "total",
+      "best",
+      "target"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "left": "Left",
+      "right": "Right",
+      "total": "Total",
+      "best": "Best",
+      "target": "Target"
+    }
+  }
+}

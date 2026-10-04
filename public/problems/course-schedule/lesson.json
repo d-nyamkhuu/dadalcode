@@ -1,0 +1,59 @@
+{
+  "slug": "course-schedule",
+  "headline": "Repeatedly remove courses with no remaining prerequisites",
+  "statement": "There are numCourses labeled courses. Each pair [a,b] requires b before a. Return whether every course can be completed.",
+  "prerequisites": [
+    "Directed graphs",
+    "Indegree",
+    "Breadth-first traversal"
+  ],
+  "constraints": [
+    "1 <= numCourses <= 2000.",
+    "0 to 5000 unique prerequisite pairs.",
+    "Labels range from 0 to numCourses-1."
+  ],
+  "intuition": "A course with zero unmet prerequisites is ready. Taking it removes one prerequisite from each dependent. If courses remain but none is ready, those remaining dependencies contain a cycle.",
+  "approach": [
+    "Build edges from prerequisite to dependent and count incoming edges.",
+    "Enqueue every zero-indegree course.",
+    "Take each ready course, reduce its dependents' indegrees, and enqueue newly ready courses.",
+    "Compare completed count with numCourses."
+  ],
+  "correctness": "Every removed course has no prerequisites among the unremoved courses, so the removal order is legal. If all courses are removed, that order proves feasibility. Otherwise every remaining node has an incoming edge from another remaining node; repeatedly following predecessors in a finite graph reaches a cycle, which prevents completion.",
+  "bruteForce": "Try all course permutations and check their ordering. Topological removal determines feasibility in linear graph time.",
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V + E)",
+    "explanation": "Adjacency lists hold edges; indegrees and the ready queue hold courses."
+  },
+  "pitfalls": [
+    "Pair [a,b] means b \u2192 a.",
+    "Include isolated courses in the initial queue.",
+    "A disconnected cyclic component still makes the answer false."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/course-schedule/"
+    }
+  ],
+  "visualization": {
+    "kind": "graph",
+    "focus": [
+      "graph",
+      "indegree",
+      "ready"
+    ],
+    "pointers": [
+      "course"
+    ],
+    "watch": [
+      "completed",
+      "dependent"
+    ],
+    "labels": {
+      "indegree": "Unmet prerequisites",
+      "ready": "Ready courses"
+    }
+  }
+}

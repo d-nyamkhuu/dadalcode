@@ -1,0 +1,96 @@
+{
+  "intuition": [
+    "Comparing every interval from one list with every interval from the other ignores their sorted order. At any moment, the current pair is enough to determine the next possible overlap. The overlap itself starts at the greater start and ends at the smaller end.",
+    "After considering that pair, discard the interval that finishes first. The other list’s later intervals start after its current interval ends, so they cannot intersect the discarded interval. This gives a safe pointer advance without missing later overlaps.",
+    "Closed endpoints permit a single-point intersection when the computed start equals the end. Sorted, pairwise-disjoint lists also mean each pointer can move only forward. At least one pointer advances after every comparison, reducing a potentially quadratic search to a linear merge-like sweep.",
+    "When the current ends are equal, either pointer may advance: both intervals end before every later interval in the opposite list. This implementation advances j first; the other tied interval will then be discarded without creating a duplicate intersection."
+  ],
+  "walkthrough": {
+    "input": {
+      "firstList": [
+        [
+          0,
+          2
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          13,
+          23
+        ],
+        [
+          24,
+          25
+        ]
+      ],
+      "secondList": [
+        [
+          1,
+          5
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          15,
+          24
+        ],
+        [
+          25,
+          26
+        ]
+      ]
+    },
+    "steps": [
+      "Start with [0,2] and [1,5]. Their common range is [1,2]; the first interval ends earlier, so advance i.",
+      "Compare [5,10] with [1,5]. Record the touching intersection [5,5] and advance j, whose interval ends first.",
+      "Now [5,10] meets [8,12] in [8,10]. Advance i because end 10 is smaller than 12.",
+      "Compare [13,23] with [8,12]. The computed bounds 13 and 12 cross, so record nothing and advance j.",
+      "Compare [13,23] with [15,24], recording [15,23]. Next [24,25] meets [15,24] at [24,24].",
+      "Finally [24,25] meets [25,26] at [25,25]. The first list is exhausted, yielding all six recorded intersections."
+    ],
+    "result": [
+      [
+        1,
+        2
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        15,
+        23
+      ],
+      [
+        24,
+        24
+      ],
+      [
+        25,
+        25
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "low = max(firstList[i][0], secondList[j][0])",
+      "note": "A common point must be after both starts, so the later start is the earliest possible overlap."
+    },
+    {
+      "code": "if low <= high:",
+      "note": "Equality preserves a one-point closed intersection; crossed bounds mean the pair has no common point."
+    },
+    {
+      "code": "if firstList[i][1] < secondList[j][1]:",
+      "note": "The earlier-finishing interval cannot meet any later interval on the other side, making its pointer the safe one to advance."
+    }
+  ]
+}

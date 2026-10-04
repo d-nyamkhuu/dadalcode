@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Official duplicate",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        1
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Official distinct",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "nums": [
+        0
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Repeated zero",
+    "input": {
+      "nums": [
+        0,
+        0
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Negative duplicate",
+    "input": {
+      "nums": [
+        -4,
+        3,
+        -4
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Unsorted distinct",
+    "input": {
+      "nums": [
+        9,
+        -1,
+        0,
+        2
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Extreme signed values",
+    "input": {
+      "nums": [
+        1000000000,
+        -1000000000,
+        1000000000
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Late duplicate after distinct prefix",
+    "input": {
+      "nums": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        9
+      ]
+    },
+    "expected": true
+  }
+]

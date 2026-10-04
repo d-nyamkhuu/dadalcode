@@ -1,0 +1,64 @@
+{
+  "slug": "reverse-nodes-in-k-group",
+  "headline": "Reverse only complete blocks and reconnect their boundaries",
+  "statement": "Reverse the nodes of a linked list in groups of k and return the new head. Leave a final group with fewer than k nodes unchanged. Change node links, not node values.",
+  "prerequisites": [
+    "Linked-list reversal",
+    "Dummy nodes",
+    "Boundary pointers"
+  ],
+  "constraints": [
+    "1 <= list length <= 5000",
+    "1 <= k <= list length",
+    "0 <= node value <= 1000"
+  ],
+  "intuition": "Before modifying a group, find its kth node. Its successor is the boundary the reversal must reconnect to. Reversing with prev initialized to that successor automatically connects the old group head, now the tail, to the remainder.",
+  "approach": [
+    "Track group_before, initially the dummy node.",
+    "Walk k links to find a complete group; stop if too short.",
+    "Remember group_after and reverse links up to that boundary.",
+    "Connect the preceding group to the old kth node; move group_before to the old head."
+  ],
+  "correctness": "The prefix before group_before is already correctly reversed in blocks. A full k-node group is reversed by redirecting each link to the previously processed node, starting with the unchanged suffix boundary. Its old kth node becomes its head and its old head becomes its tail, so reconnecting both boundaries preserves all nodes. An incomplete final group is detected before any modification.",
+  "bruteForce": "Collect all node references into an array, reverse each complete k-length slice, and relink them using O(n) extra space.",
+  "complexity": {
+    "time": "O(length)",
+    "space": "O(1)",
+    "explanation": "Each node participates in a completeness scan and at most one reversal; a constant number of pointers is used."
+  },
+  "pitfalls": [
+    "Check group completeness before reversing.",
+    "Remember the original group head because it becomes the next predecessor.",
+    "Do not reverse the short trailing group or exchange values."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "dummy"
+    ],
+    "pointers": [],
+    "watch": [
+      "group_before",
+      "kth",
+      "group_after",
+      "current",
+      "prev"
+    ],
+    "labels": {
+      "head": "Head",
+      "dummy": "Dummy",
+      "group_before": "Group before",
+      "kth": "Kth",
+      "group_after": "Group after",
+      "current": "Current",
+      "prev": "Prev"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "intuition": [
+    "Sorting characters alphabetically does not capture the requested frequency ordering, and preserving input order can leave equal characters split across the result. First count how often every character occurs. Those multiplicities determine the order of whole character groups rather than individual input positions.",
+    "Sort the distinct characters by decreasing count. The reference adds character order as a deterministic tie-breaker, but the problem accepts any order among equally frequent groups. Uppercase and lowercase remain different dictionary keys, and digits participate exactly like letters.",
+    "Build one block for each character by repeating it its counted number of times, then join the blocks. This construction preserves all input occurrences and makes each group contiguous automatically. Sorting only distinct keys also avoids spending sorting work separately on thousands of copies of the same character."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "tree"
+    },
+    "steps": [
+      "For s=\"tree\", counting produces t:1, r:1, and e:2. There are four total input characters.",
+      "The sorting key places e first because its count is largest; the tied count-1 characters follow in character order r then t.",
+      "For e, append the block \"ee\" to groups, contributing both of its occurrences together.",
+      "Append \"r\", then \"t\". Joining [\"ee\",\"r\",\"t\"] yields \"eert\".",
+      "The result retains the original character multiplicities and has block sizes 2,1,1 in descending order. Return \"eert\"; other legal tie orders are also accepted."
+    ],
+    "result": "eert"
+  },
+  "codeNotes": [
+    {
+      "code": "counts = Counter(s)",
+      "note": "The frequency map summarizes all occurrences before any output ordering is chosen, including separate keys for case-sensitive letters."
+    },
+    {
+      "code": "order = sorted(counts, key=lambda char: (-counts[char], char))",
+      "note": "Negating the count turns ascending key sorting into descending frequency ordering. The secondary character key stabilizes ties for the walkthrough."
+    },
+    {
+      "code": "groups.append(char * counts[char])",
+      "note": "Emitting an entire block ensures all copies stay adjacent and the final output contains precisely the original number of occurrences."
+    }
+  ]
+}

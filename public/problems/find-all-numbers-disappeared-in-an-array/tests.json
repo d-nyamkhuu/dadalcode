@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Several missing values",
+    "input": {
+      "nums": [
+        4,
+        3,
+        2,
+        7,
+        8,
+        2,
+        3,
+        1
+      ]
+    },
+    "expected": [
+      5,
+      6
+    ]
+  },
+  {
+    "name": "One repeat",
+    "input": {
+      "nums": [
+        1,
+        1
+      ]
+    },
+    "expected": [
+      2
+    ]
+  },
+  {
+    "name": "Complete range",
+    "input": {
+      "nums": [
+        3,
+        1,
+        2
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "One value",
+    "input": {
+      "nums": [
+        1
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Repeated largest",
+    "input": {
+      "nums": [
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Three copies keep the marker negative",
+    "input": {
+      "nums": [
+        2,
+        2,
+        2
+      ]
+    },
+    "expected": [
+      1,
+      3
+    ]
+  }
+]

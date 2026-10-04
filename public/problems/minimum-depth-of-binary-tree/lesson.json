@@ -1,0 +1,56 @@
+{
+  "slug": "minimum-depth-of-binary-tree",
+  "headline": "The first leaf in breadth-first order is nearest",
+  "statement": "Return the number of nodes on the shortest root-to-leaf path of a binary tree. A leaf has no left or right child. An empty tree has depth zero. Inputs are level-order arrays with null for absent children.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary tree nodes and traversal"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 10^5",
+    "Node values lie between -1000 and 1000."
+  ],
+  "intuition": "Breadth-first traversal examines shallower nodes before deeper ones. The first leaf encountered must therefore have the smallest root-to-leaf depth. A missing child is not a leaf or a path ending; this distinction avoids treating a one-child root as depth one.",
+  "approach": [
+    "Return zero for an absent root.",
+    "Queue (root,1), recording depth in nodes rather than edges.",
+    "Pop nodes and return depth only if both children are absent.",
+    "Queue existing children at depth+1."
+  ],
+  "correctness": "FIFO order processes nodes in nondecreasing depth. The first node with no children ends a valid root-to-leaf path, and no shallower leaf can remain unprocessed. Its depth is thus minimal. A missing root has no path and correctly returns zero.",
+  "bruteForce": "DFS every leaf and take the smallest depth, taking O(n) time but always traversing the whole tree even when a leaf is near the root.",
+  "complexity": {
+    "time": "O(n) worst case",
+    "space": "O(w)",
+    "explanation": "Each visited node is enqueued once, with at most O(w) nodes across the active frontiers. Early exit can inspect far fewer than n nodes. Here w is the maximum number of nodes on any tree level; the queue can span parts of two consecutive levels."
+  },
+  "pitfalls": [
+    "A node with one missing child is not a leaf.",
+    "Count nodes: a root leaf has depth one.",
+    "Do not take min(0,childDepth) for a one-child node in a recursive variant."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/minimum-depth-of-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "depth"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "node": "Node",
+      "depth": "Depth"
+    }
+  }
+}

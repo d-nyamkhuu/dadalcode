@@ -1,0 +1,217 @@
+[
+  {
+    "name": "Example: first row",
+    "input": {
+      "nums1": [
+        1,
+        7,
+        11
+      ],
+      "nums2": [
+        2,
+        4,
+        6
+      ],
+      "k": 3
+    },
+    "expected": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        6
+      ]
+    ]
+  },
+  {
+    "name": "Example: duplicate pairs",
+    "input": {
+      "nums1": [
+        1,
+        1,
+        2
+      ],
+      "nums2": [
+        1,
+        2,
+        3
+      ],
+      "k": 2
+    },
+    "expected": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "name": "Tied choices",
+    "input": {
+      "nums1": [
+        1,
+        2
+      ],
+      "nums2": [
+        1,
+        2
+      ],
+      "k": 2
+    },
+    "expected": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ]
+  },
+  {
+    "name": "All pairs",
+    "input": {
+      "nums1": [
+        -1,
+        1
+      ],
+      "nums2": [
+        0,
+        2
+      ],
+      "k": 4
+    },
+    "expected": [
+      [
+        -1,
+        0
+      ],
+      [
+        -1,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
+      ]
+    ]
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "nums1": [
+        3
+      ],
+      "nums2": [
+        -2
+      ],
+      "k": 1
+    },
+    "expected": [
+      [
+        3,
+        -2
+      ]
+    ]
+  },
+  {
+    "name": "Second row wins",
+    "input": {
+      "nums1": [
+        1,
+        2
+      ],
+      "nums2": [
+        1,
+        100
+      ],
+      "k": 2
+    },
+    "expected": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ]
+  },
+  {
+    "name": "Multiplicity from both arrays",
+    "input": {
+      "nums1": [
+        1,
+        1
+      ],
+      "nums2": [
+        1,
+        1
+      ],
+      "k": 4
+    },
+    "expected": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "name": "Many rows but one column",
+    "input": {
+      "nums1": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "nums2": [
+        10
+      ],
+      "k": 2
+    },
+    "expected": [
+      [
+        0,
+        10
+      ],
+      [
+        1,
+        10
+      ]
+    ]
+  }
+]

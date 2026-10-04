@@ -1,0 +1,59 @@
+{
+  "slug": "decode-ways",
+  "headline": "Count ways to decode one or two final digits",
+  "statement": "Digits 1..26 represent A..Z. Return how many ways the digit string s can be split into valid codes. A code cannot begin with zero, so 06 is invalid while 10 is valid. The result fits a signed 32-bit integer.",
+  "prerequisites": [
+    "Dynamic programming",
+    "Prefix subproblems"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 100",
+    "s contains decimal digits, possibly leading zeros"
+  ],
+  "intuition": "Every valid decoding of a prefix ends in either a one-digit code or a two-digit code. These cases are disjoint. Their counts come from shorter prefixes, so counting never requires constructing all decoded strings.",
+  "approach": [
+    "Set dp[0]=1: the empty prefix supplies one way to begin a decoding.",
+    "For each prefix length i, add dp[i-1] if its final digit is not zero.",
+    "Also add dp[i-2] if its final two digits form a number from 10 to 26.",
+    "Return the count for the entire string."
+  ],
+  "correctness": "Partition decodings by the length of their last code. Removing that code leaves a valid decoding of the preceding prefix, and appending it reconstructs exactly one full decoding. The two code lengths never overlap, so summing the applicable shorter-prefix counts is exact. Induction from dp[0]=1 establishes all entries.",
+  "bruteForce": "Recursively try one- and two-digit codes at every position without memoization. Repeated suffixes cause exponential work.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "Each prefix performs two constant-size digit checks; the table makes all prefix counts inspectable."
+  },
+  "pitfalls": [
+    "A zero contributes no single-digit decoding.",
+    "Two-digit codes must be between 10 and 26, not merely <=26.",
+    "The empty-prefix base is 1, not 0."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/decode-ways/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "s",
+      "dp"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "single",
+      "pair"
+    ],
+    "labels": {
+      "s": "S",
+      "dp": "Dp",
+      "i": "I",
+      "single": "Single",
+      "pair": "Pair"
+    }
+  }
+}

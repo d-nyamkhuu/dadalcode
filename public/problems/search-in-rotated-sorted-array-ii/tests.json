@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Example: present",
+    "input": {
+      "nums": [
+        2,
+        5,
+        6,
+        0,
+        0,
+        1,
+        2
+      ],
+      "target": 0
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: absent",
+    "input": {
+      "nums": [
+        2,
+        5,
+        6,
+        0,
+        0,
+        1,
+        2
+      ],
+      "target": 3
+    },
+    "expected": false
+  },
+  {
+    "name": "Hidden pivot",
+    "input": {
+      "nums": [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "target": 0
+    },
+    "expected": true
+  },
+  {
+    "name": "Uniform absent",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "target": 2
+    },
+    "expected": false
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "nums": [
+        1
+      ],
+      "target": 1
+    },
+    "expected": true
+  },
+  {
+    "name": "Duplicates on sorted side",
+    "input": {
+      "nums": [
+        3,
+        3,
+        1,
+        2,
+        3
+      ],
+      "target": 2
+    },
+    "expected": true
+  },
+  {
+    "name": "Mirror hidden pivot",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "target": 0
+    },
+    "expected": true
+  },
+  {
+    "name": "Uniform present",
+    "input": {
+      "nums": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "target": 2
+    },
+    "expected": true
+  }
+]

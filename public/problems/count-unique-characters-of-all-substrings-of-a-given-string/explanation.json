@@ -1,0 +1,34 @@
+{
+  "intuition": [
+    "Enumerating every substring repeats frequency work across heavily overlapping ranges. Instead of asking how many unique letters each substring contains, reverse the counting perspective: for one particular character occurrence, how many substrings count that occurrence as unique?",
+    "Let previous and next be the neighboring indices containing the same character, using -1 and n when a neighbor is absent. A substring containing the occurrence at p may start after previous through p, and may end from p through next-1. These choices are independent, giving (p-previous)*(next-p) valid substrings for that one occurrence.",
+    "A left-to-right scan does not know next immediately. Store the last two indices of each character; when its next occurrence arrives, the middle occurrence\u2019s contribution becomes computable. After the scan, finalize the last occurrence of each character using n as its missing next boundary. Summing occurrence contributions counts every unique-character event exactly once, even for equal substring text at different positions. Unique means frequency exactly one, so a substring containing two copies contributes nothing for that character."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "ABA"
+    },
+    "steps": [
+      "For ABA, start with result=0 and no remembered character positions. At index 0, A receives the pair (-1,0); its placeholder contribution is zero.",
+      "At index 1, B receives (-1,1), again with zero placeholder contribution.",
+      "At index 2, A has before=-1 and previous=0. Its earlier occurrence now contributes (0-(-1))*(2-0)=2; store A positions (0,2).",
+      "Finalize A with string boundary 3: (2-0)*(3-2)=2, bringing result to 4.",
+      "Finalize B: (1-(-1))*(3-1)=4. Return 8; the two A occurrences each count only substrings excluding their equal neighbor."
+    ],
+    "result": 8
+  },
+  "codeNotes": [
+    {
+      "code": "before, previous = positions.get(letter, (-1, -1))",
+      "note": "Two remembered positions provide the left boundary of the previous occurrence when its right boundary arrives."
+    },
+    {
+      "code": "contribution = (previous - before) * (i - previous)",
+      "note": "The two factors count independent start and end choices that include the previous occurrence but exclude equal neighboring characters."
+    },
+    {
+      "code": "contribution = (previous - before) * (len(s) - previous)",
+      "note": "The final occurrence of each letter has no later equal character, so the string boundary supplies its last possible right limit."
+    }
+  ]
+}

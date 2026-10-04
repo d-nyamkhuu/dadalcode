@@ -1,0 +1,63 @@
+{
+  "slug": "lowest-common-ancestor-of-a-binary-tree",
+  "headline": "Record parent links and intersect ancestor chains",
+  "statement": "Given a binary tree and two distinct existing nodes p and q, return their lowest common ancestor: the deepest node that is an ancestor of both. A node is considered its own ancestor. Return the original node object. Trainer inputs identify p and q by their unique values, while the Python method receives the corresponding node objects.",
+  "prerequisites": [
+    "Depth-first search",
+    "Parent relationships",
+    "Sets and node identity"
+  ],
+  "constraints": [
+    "2 <= node count <= 100000",
+    "All node values are unique",
+    "p and q are distinct nodes that exist in the tree"
+  ],
+  "intuition": "Once each discovered node knows its parent, its ancestors form a chain back to the root. Mark p’s chain, then walk upward from q. The first marked node is the deepest shared ancestor.",
+  "approach": [
+    "Discover parent links with an explicit DFS until both nodes are reached.",
+    "Add p and every parent above it to an ancestor set.",
+    "Move q upward until it enters that set; return the original node."
+  ],
+  "correctness": "The DFS records each node’s true parent because a tree gives each nonroot node exactly one incoming edge. The marked set is exactly p’s ancestors. Walking q’s chain from deepest to shallowest returns its first member in this set, which is therefore common and lower than every other common ancestor.",
+  "bruteForce": "For each node, separately search both subtrees for p and q, producing O(n²) worst-case repeated traversal.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "Parent links and the ancestor set can each contain n nodes. The iterative walk supports deep trees without recursion overflow."
+  },
+  "pitfalls": [
+    "This is a general binary tree, so value comparisons do not choose a subtree.",
+    "A target node may itself be the answer.",
+    "Return original identity rather than a same-valued replacement."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "stack",
+      "ancestors"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "current",
+      "p",
+      "q"
+    ],
+    "labels": {
+      "root": "Root",
+      "stack": "Stack",
+      "ancestors": "Ancestors",
+      "node": "Node",
+      "current": "Current",
+      "p": "P",
+      "q": "Q"
+    }
+  }
+}

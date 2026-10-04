@@ -1,0 +1,59 @@
+{
+  "slug": "implement-trie-prefix-tree",
+  "headline": "Share prefix paths, mark complete words",
+  "statement": "Implement Trie with insert(word), search(word), and startsWith(prefix). search requires an inserted whole word; startsWith accepts a prefix of an inserted word. Supply parallel operations and args arrays, beginning with Trie and empty constructor args.",
+  "prerequisites": [
+    "Nested dictionaries",
+    "String traversal",
+    "Classes"
+  ],
+  "constraints": [
+    "Lowercase English letters only",
+    "1 <= word or prefix length <= 2000",
+    "At most 30,000 method calls"
+  ],
+  "intuition": "Each character is one edge in a shared prefix tree. A terminal marker distinguishes an inserted word from a path created only because a longer word was inserted.",
+  "approach": [
+    "Create character-keyed child dictionaries on insertion.",
+    "Mark the final dictionary with a non-letter terminal key.",
+    "Follow query characters; whole-word search requires the marker, while prefix search only requires the path."
+  ],
+  "correctness": "Insertion creates exactly the path spelling its word and marks exactly its endpoint. A reachable query path corresponds to an inserted word prefix. The terminal marker exists exactly when that full query was inserted.",
+  "bruteForce": "Store words in a set and scan all of them on each prefix query; this repeatedly compares shared prefixes.",
+  "complexity": {
+    "time": "O(L) per method",
+    "space": "O(total distinct prefix characters)",
+    "explanation": "A method follows one edge per character; shared prefixes reuse nodes."
+  },
+  "pitfalls": [
+    "Inserting apple does not make search(app) true.",
+    "Terminal keys must not overlap valid letters.",
+    "Repeated insertion should leave the tree unchanged."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/implement-trie-prefix-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "trie",
+    "focus": [
+      "node",
+      "word",
+      "prefix"
+    ],
+    "pointers": [],
+    "watch": [
+      "ch",
+      "self"
+    ],
+    "labels": {
+      "node": "Node",
+      "word": "Word",
+      "prefix": "Prefix",
+      "ch": "Ch",
+      "self": "Self"
+    }
+  }
+}

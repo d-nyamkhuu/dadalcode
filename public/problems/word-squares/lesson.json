@@ -1,0 +1,66 @@
+{
+  "slug": "word-squares",
+  "headline": "Let existing columns prescribe the next row prefix",
+  "statement": "Given unique lowercase words of equal length, return every word square that can be built from them. A square has as many rows as the word length and its row r equals column r. A word may be reused in different rows. Return squares in any order; row order within a square matters.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "1 <= len(words) <= 1000",
+    "All words have the same length from 1 through 4.",
+    "Words contain lowercase letters and are unique."
+  ],
+  "intuition": "When k rows are selected, the next row must begin with their characters at column k. A prefix lookup turns this forced prefix into a short list of candidates, pruning rows that cannot match the already fixed columns.",
+  "approach": [
+    "Index each word under its proper prefixes, including the empty prefix; full-length prefixes are never queried.",
+    "At depth k, build the required prefix by reading square[r][k] for all r<k.",
+    "Try every indexed word with that prefix, allowing reuse.",
+    "Save a copy when k reaches the word length."
+  ],
+  "correctness": "Each newly appended row matches every existing row at their crossing positions. This invariant guarantees symmetry at completion. Conversely, a valid square always has the prescribed prefix at every depth, so each of its rows is considered. Since input words are unique, each row sequence is produced once.",
+  "bruteForce": "Try all W^L sequences of L words and check row-column equality afterward. Prefix pruning rejects invalid partial squares immediately.",
+  "complexity": {
+    "time": "O(W * L^2 + L * W^L) worst case",
+    "space": "O(W * L^2 + L) auxiliary, excluding output",
+    "explanation": "W words of length L are indexed under L copied proper prefixes. Worst-case search is exponential in L, which is at most four; output and branch prefix work are bounded by L."
+  },
+  "pitfalls": [
+    "Allow repeated use of the same word; no used set is needed.",
+    "Read column k from existing rows to form the prefix.",
+    "Do not sort rows inside a returned square."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/word-squares/"
+    },
+    {
+      "label": "Public problem statement \u00b7 LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/425/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "square",
+      "prefixes",
+      "result"
+    ],
+    "pointers": [
+      "k"
+    ],
+    "watch": [
+      "prefix",
+      "word"
+    ],
+    "labels": {
+      "square": "Square",
+      "prefixes": "Prefixes",
+      "result": "Result",
+      "k": "K",
+      "prefix": "Prefix",
+      "word": "Word"
+    }
+  }
+}

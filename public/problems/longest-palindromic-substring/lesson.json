@@ -1,0 +1,62 @@
+{
+  "slug": "longest-palindromic-substring",
+  "headline": "Expand around the two kinds of palindrome centers",
+  "statement": "Return a longest contiguous palindromic substring of s. A palindrome reads the same in both directions. If several longest substrings exist, return any one.",
+  "prerequisites": [
+    "String indices",
+    "Two pointers"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 1000",
+    "s contains English letters and digits"
+  ],
+  "intuition": "A palindrome has a center: one character for odd lengths or a gap for even lengths. Starting at every possible center and moving outward discovers the largest palindrome at that center without retesting its interior.",
+  "approach": [
+    "For each index, try both (i,i) and (i,i+1) as centers.",
+    "Move the two boundaries outward while their characters match.",
+    "After expansion stops, compare the valid inner interval to the best so far."
+  ],
+  "correctness": "Every palindrome has one of the tested centers. Expansion at that center includes all matching symmetric pairs until the first mismatch or boundary, so its longest palindrome is found. Taking the greatest length over all centers therefore finds a global longest substring.",
+  "bruteForce": "Enumerate all O(n\u00b2) substrings and scan each to test symmetry, costing O(n\u00b3).",
+  "complexity": {
+    "time": "O(n\u00b2)",
+    "space": "O(1) auxiliary",
+    "explanation": "There are 2n centers and each expands at most n positions. The returned slice itself uses O(n) output space."
+  },
+  "pitfalls": [
+    "Test even centers such as bb.",
+    "After expansion, left and right point outside the valid palindrome.",
+    "Accept any longest answer, not just the earliest one."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/longest-palindromic-substring/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s"
+    ],
+    "pointers": [
+      "center",
+      "left",
+      "right",
+      "best_start"
+    ],
+    "watch": [
+      "best_length",
+      "length"
+    ],
+    "labels": {
+      "s": "S",
+      "center": "Center",
+      "left": "Left",
+      "right": "Right",
+      "best_start": "Best start",
+      "best_length": "Best length",
+      "length": "Length"
+    }
+  }
+}

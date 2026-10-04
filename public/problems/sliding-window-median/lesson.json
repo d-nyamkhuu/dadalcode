@@ -1,0 +1,59 @@
+{
+  "slug": "sliding-window-median",
+  "headline": "Balance two heaps and lazily discard expired values",
+  "statement": "Return the median of every length-k window of nums. An odd window uses its middle ordered value; an even window uses the mean of its two middle values. Return medians in increasing window-start order.",
+  "prerequisites": [
+    "Min/max heaps",
+    "Lazy deletion",
+    "Sliding windows"
+  ],
+  "constraints": [
+    "1 <= k <= len(nums) <= 100000.",
+    "Values fit signed 32-bit integers.",
+    "Output accepts absolute error up to 0.00001."
+  ],
+  "intuition": "Split active values into a lower half in a max-heap and an upper half in a min-heap. The lower half has the same active size or one extra. Arbitrary heap deletion is expensive, so mark expired values and remove them only when they reach a heap root. Track active sizes separately from physical heap lengths.",
+  "approach": [
+    "Insert values into the appropriate half and rebalance their active sizes.",
+    "Mark the outgoing value in a delayed-count map and subtract it from its logical half.",
+    "Prune expired roots before moving values between heaps.",
+    "Read the lower root for odd k or average both roots for even k."
+  ],
+  "correctness": "All active lower-half values are no greater than active upper-half values, and rebalancing keeps lower size equal to upper size or one larger. Lazy removals adjust logical sizes immediately; pruning ensures reported roots are active. These invariants identify the correct middle value or middle pair after every complete window.",
+  "bruteForce": "Sort each window independently, taking O(nk log k). Maintaining a sorted Python list reduces comparison work but list insertion/removal still costs O(k) per slide.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n) auxiliary plus output",
+    "explanation": "Each entry is pushed and eventually popped at most once. Lazy expired entries can remain buried, so this version may retain O(n) entries rather than O(k)."
+  },
+  "pitfalls": [
+    "Physical heap lengths include expired entries and cannot drive balancing.",
+    "Prune roots before using their values.",
+    "Duplicate values are interchangeable, but delayed removal counts must preserve multiplicity."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/sliding-window-median/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "nums",
+      "small",
+      "large",
+      "delayed",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "small_size",
+      "large_size",
+      "value"
+    ],
+    "labels": {}
+  }
+}

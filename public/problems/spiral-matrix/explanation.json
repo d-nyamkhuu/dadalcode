@@ -1,0 +1,61 @@
+{
+  "intuition": [
+    "An explicit simulation can turn clockwise whenever its next cell is outside the matrix or already visited. That works but needs a visited grid. A spiral has more structure: after completing an outer border, the unvisited cells form another rectangle. Four inclusive boundaries can describe that rectangle without remembering individual visited cells.",
+    "Walk its top edge left to right, right edge downward, bottom edge right to left, and left edge upward. Shrink each boundary immediately after consuming its edge. The order of these updates matters because corner cells should belong to exactly one edge traversal.",
+    "A last remaining row or column is the main subtlety. After the top and right traversals, that row or column may already be exhausted. Recheck whether rows remain before traversing bottom, and whether columns remain before traversing left. This keeps thin matrices and the center of an odd-sized square from being emitted twice. Every successful pass removes the current perimeter."
+  ],
+  "walkthrough": {
+    "input": {
+      "matrix": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          7,
+          8,
+          9
+        ]
+      ]
+    },
+    "steps": [
+      "For the 3\u00d73 matrix, initial boundaries are top=0, bottom=2, left=0, right=2.",
+      "Read top row 1,2,3 and move top to 1.",
+      "Read right column 6,9 and move right to 1.",
+      "Read bottom row backward as 8,7 and move bottom to 1.",
+      "Read left column upward as 4 and move left to 1. Only center cell 5 remains.",
+      "Read 5 once. The boundaries cross, ending traversal with [1,2,3,6,9,8,7,4,5]."
+    ],
+    "result": [
+      1,
+      2,
+      3,
+      6,
+      9,
+      8,
+      7,
+      4,
+      5
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "top += 1",
+      "note": "Remove the consumed top edge before the right traversal to avoid repeating its corner."
+    },
+    {
+      "code": "if top <= bottom:",
+      "note": "A collapsed single-row rectangle may have no bottom edge left to read."
+    },
+    {
+      "code": "if left <= right:",
+      "note": "The corresponding guard prevents repeating a column already consumed from the right."
+    }
+  ]
+}

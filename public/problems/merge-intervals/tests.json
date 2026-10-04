@@ -1,0 +1,177 @@
+[
+  {
+    "name": "Official separated",
+    "input": {
+      "intervals": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          15,
+          18
+        ]
+      ]
+    },
+    "expected": [
+      [
+        1,
+        6
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        15,
+        18
+      ]
+    ]
+  },
+  {
+    "name": "Official touching",
+    "input": {
+      "intervals": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "expected": [
+      [
+        1,
+        5
+      ]
+    ]
+  },
+  {
+    "name": "Nested",
+    "input": {
+      "intervals": [
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "expected": [
+      [
+        1,
+        10
+      ]
+    ]
+  },
+  {
+    "name": "Singleton point",
+    "input": {
+      "intervals": [
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "expected": [
+      [
+        2,
+        2
+      ]
+    ]
+  },
+  {
+    "name": "Unsorted chain",
+    "input": {
+      "intervals": [
+        [
+          5,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ]
+    },
+    "expected": [
+      [
+        1,
+        7
+      ]
+    ]
+  },
+  {
+    "name": "Separated points",
+    "input": {
+      "intervals": [
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    "expected": [
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        3
+      ]
+    ]
+  },
+  {
+    "name": "Duplicates with contained point",
+    "input": {
+      "intervals": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "expected": [
+      [
+        1,
+        4
+      ]
+    ]
+  }
+]

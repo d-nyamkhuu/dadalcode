@@ -1,0 +1,56 @@
+{
+  "slug": "first-missing-positive",
+  "headline": "With n slots, the answer lies in 1 through n+1",
+  "statement": "Find the smallest positive integer absent from nums, in linear time and constant auxiliary space. You may rearrange nums.",
+  "prerequisites": [
+    "In-place swaps",
+    "Array indexing"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100,000",
+    "-2^31 <= nums[i] <= 2^31 - 1"
+  ],
+  "intuition": "With n slots, the answer lies in 1 through n+1. Use slot value-1 as the home for each relevant value, turning the array into its own membership table.",
+  "approach": [
+    "For each index, repeatedly swap its value into its home if it is between 1 and n.",
+    "Stop when the current value is out of range or its home already contains that value.",
+    "Scan left to right for the first slot not containing index+1; otherwise return n+1."
+  ],
+  "correctness": "Every swap permanently fills a previously incorrect home with its matching value. No correct home is displaced, so at most n such swaps occur. At the end every present value in 1..n occupies its home; the first missing home identifies the smallest absent positive.",
+  "bruteForce": "Try 1, 2, 3, ... and scan nums for each candidate: O(n\u00b2) time. A set gives O(n) time but uses O(n) space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Ignore zero, negatives, and values larger than n.",
+    "Check for duplicate values before swapping to avoid an infinite loop.",
+    "The answer can be n+1."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/first-missing-positive/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i",
+      "home"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "i": "I",
+      "home": "Home",
+      "value": "Value"
+    }
+  }
+}

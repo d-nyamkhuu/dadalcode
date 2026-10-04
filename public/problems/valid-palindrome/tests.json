@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Example: phrase",
+    "input": {
+      "s": "A man, a plan, a canal: Panama"
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: mismatch",
+    "input": {
+      "s": "race a car"
+    },
+    "expected": false
+  },
+  {
+    "name": "Only whitespace",
+    "input": {
+      "s": " "
+    },
+    "expected": true
+  },
+  {
+    "name": "Digits count",
+    "input": {
+      "s": "0P"
+    },
+    "expected": false
+  },
+  {
+    "name": "Case insensitive",
+    "input": {
+      "s": "aA"
+    },
+    "expected": true
+  },
+  {
+    "name": "Punctuation only",
+    "input": {
+      "s": ".,!"
+    },
+    "expected": true
+  },
+  {
+    "name": "Numeric palindrome",
+    "input": {
+      "s": "12:21"
+    },
+    "expected": true
+  },
+  {
+    "name": "One letter inside punctuation",
+    "input": {
+      "s": "!!!A???"
+    },
+    "expected": true
+  },
+  {
+    "name": "Mixed digit and case palindrome",
+    "input": {
+      "s": "1aA1"
+    },
+    "expected": true
+  },
+  {
+    "name": "Asymmetric punctuation around mismatch",
+    "input": {
+      "s": "!a??B..."
+    },
+    "expected": false
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "intuition": [
+    "Recursively locate each root with a linear inorder search and slice arrays. That can take O(n\u00b2) time and storage on a chain; an explicit stack avoids repeated searches and recursion limits. The first preorder value identifies a root, but finding every split by scanning inorder repeatedly becomes quadratic on skewed trees.",
+    "Preorder tells us which node is introduced next; inorder tells us which left subtrees have already finished. Keep an ancestor stack and a cursor into inorder. If the stack top has not reached the cursor, a new node belongs on its left. When values match, pop completed roots until locating the ancestor whose right subtree begins next. The uniqueness promise makes these matches unambiguous, and an explicit stack avoids deep recursive calls while constructing the actual node objects.",
+    "The stack is the active ancestor chain of preorder construction. Before an inorder match, preorder nodes belong to the top node's unbuilt left subtree. Matching and popping advances past fully built left subtrees and their roots; the last popped ancestor is exactly the root whose right subtree comes next. Valid distinct traversals make each attachment unique. Each node is pushed and popped once; the stack is an ancestor path."
+  ],
+  "walkthrough": {
+    "input": {
+      "preorder": [
+        3,
+        9,
+        20,
+        15,
+        7
+      ],
+      "inorder": [
+        9,
+        3,
+        15,
+        20,
+        7
+      ]
+    },
+    "steps": [
+      "Create root 3; inorder currently expects 9, so the next preorder value 9 attaches as 3.left.",
+      "Before introducing 20, pop 9 because inorder reaches it, then pop 3 because inorder reaches it too.",
+      "Attach 20 to the last popped node\u2019s right, making 3.right=20.",
+      "Inorder now expects 15; attach preorder value 15 as 20.left.",
+      "Pop 15 and then 20 when inorder reaches them, and attach 7 as 20.right.",
+      "Return level-order shape [3,9,20,None,None,15,7]."
+    ],
+    "result": [
+      3,
+      9,
+      20,
+      null,
+      null,
+      15,
+      7
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if node.val != inorder[i]:",
+      "note": "Until inorder reaches this ancestor, preorder continues building its left side."
+    },
+    {
+      "code": "while stack and stack[-1].val == inorder[i]:",
+      "note": "Consecutive matches finish left subtrees and ascend to the ancestor whose right subtree comes next."
+    },
+    {
+      "code": "node.right = child",
+      "note": "Attach to the last popped ancestor, which can differ from the new stack top."
+    }
+  ]
+}

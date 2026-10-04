@@ -1,0 +1,52 @@
+{
+  "intuition": [
+    "Every answer identifies an occurrence, so overlapping matches and repeated appearances at different positions must be retained. A word set could test every constructed substring, but longer substring construction repeats characters and continues even after no dictionary word could possibly match the prefix.",
+    "A trie summarizes the dictionary\u2019s prefixes. For each starting text index, advance one character at a time through that trie. Reaching a terminal marker gives an inclusive pair [start,end]. A terminal does not end the scan because the same text prefix may also begin a longer dictionary word.",
+    "Once the next trie edge is absent, every longer substring from that same start is impossible, so stop that inner scan immediately. The outer start loop and inner end loop both move in increasing order, automatically producing the required sorting without a final sort. Separate starts are independent: finding one word does not consume its text characters or prevent another start from overlapping it. The trie stores unique words, ensuring each matching start/end pair is emitted only once."
+  ],
+  "walkthrough": {
+    "input": {
+      "text": "thestoryofleetcodeandme",
+      "words": [
+        "story",
+        "fleet",
+        "leetcode"
+      ]
+    },
+    "steps": [
+      "For text=\"thestoryofleetcodeandme\", build a trie for [\"story\",\"fleet\",\"leetcode\"].",
+      "Starts 0,1,2 quickly lose their trie paths. Start 3 matches \"story\" through inclusive end 7, so emit [3,7].",
+      "Start 9 follows the substring \"fleet\" ending at 13, even though it crosses into the longer visible \"leetcode\" text.",
+      "Start 10 follows \"leetcode\" through end 17, emitting [10,17]. These occurrences are allowed to overlap.",
+      "Later starts provide no terminals. Return [[3,7],[9,13],[10,17]] in start-then-end order."
+    ],
+    "result": [
+      [
+        3,
+        7
+      ],
+      [
+        9,
+        13
+      ],
+      [
+        10,
+        17
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "node['$'] = True",
+      "note": "A terminal marker distinguishes a complete dictionary word from a prefix that merely begins a longer word."
+    },
+    {
+      "code": "if letter not in node:",
+      "note": "A missing trie edge rejects every longer candidate at this start, preventing useless substring exploration."
+    },
+    {
+      "code": "result.append([start, end])",
+      "note": "The current end is inclusive, and nested increasing loops already provide the required output order."
+    }
+  ]
+}

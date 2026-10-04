@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Example: two plus seven",
+    "input": {
+      "nums": [
+        2,
+        7,
+        11,
+        15
+      ],
+      "target": 9
+    },
+    "expected": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Example: later pair",
+    "input": {
+      "nums": [
+        3,
+        2,
+        4
+      ],
+      "target": 6
+    },
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Duplicate values",
+    "input": {
+      "nums": [
+        3,
+        3
+      ],
+      "target": 6
+    },
+    "expected": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Negative pair",
+    "input": {
+      "nums": [
+        -3,
+        4,
+        3,
+        90
+      ],
+      "target": 0
+    },
+    "expected": [
+      0,
+      2
+    ]
+  },
+  {
+    "name": "Zero partner",
+    "input": {
+      "nums": [
+        0,
+        4,
+        0
+      ],
+      "target": 0
+    },
+    "expected": [
+      0,
+      2
+    ]
+  },
+  {
+    "name": "Distant indices",
+    "input": {
+      "nums": [
+        8,
+        1,
+        6,
+        2
+      ],
+      "target": 10
+    },
+    "expected": [
+      0,
+      3
+    ]
+  },
+  {
+    "name": "Signed magnitude extremes",
+    "input": {
+      "nums": [
+        -1000000000,
+        1000000000
+      ],
+      "target": 0
+    },
+    "expected": [
+      0,
+      1
+    ]
+  }
+]

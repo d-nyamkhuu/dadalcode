@@ -1,0 +1,55 @@
+{
+  "intuition": [
+    "A bottom-up answer does not require discovering the deepest nodes first. Breadth-first traversal already groups nodes by depth with little bookkeeping. Collect those groups from the root down, then reverse the groups. Trying a separate traversal for every depth would repeatedly revisit upper nodes.",
+    "At the start of a breadth-first round, the queue contains exactly the nodes for one depth. Save its length before processing them. The children appended during this round belong to the next depth and must wait until the next round. Enqueue each left child before its right child to preserve the required spatial ordering.",
+    "The distinction between reversing the outer list and reversing each row matters. The task wants deepest levels first but still left-to-right values inside every level. A final outer slice reversal changes only depth order. Queue size is bounded by tree width, and the complete answer necessarily stores every node value. An empty root yields no levels, while a singleton produces one one-element group."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        3,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "steps": [
+      "For [3,9,20,null,null,15,7], the initial queue contains only root 3.",
+      "Process one node and save level [3]; its children create queue [9,20].",
+      "Freeze level_size=2. Process 9 and 20, saving [9,20] and enqueueing 15 then 7.",
+      "Process the final queue to save [15,7]. No more children remain.",
+      "The top-down groups are [[3],[9,20],[15,7]].",
+      "Reverse only the groups to return [[15,7],[9,20],[3]]."
+    ],
+    "result": [
+      [
+        15,
+        7
+      ],
+      [
+        9,
+        20
+      ],
+      [
+        3
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "level_size = len(queue)",
+      "note": "Freeze this depth\u2019s size before new children are appended to the same queue."
+    },
+    {
+      "code": "queue.append(node.left)",
+      "note": "Left-before-right insertion preserves node ordering within each depth."
+    },
+    {
+      "code": "return levels[::-1]",
+      "note": "Reverse depth order without reversing values inside any level."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Reversed pair present",
+    "input": {
+      "s1": "ab",
+      "s2": "eidbaooo"
+    },
+    "expected": true
+  },
+  {
+    "name": "Pair absent",
+    "input": {
+      "s1": "ab",
+      "s2": "eidboaoo"
+    },
+    "expected": false
+  },
+  {
+    "name": "Exact full permutation",
+    "input": {
+      "s1": "abc",
+      "s2": "bca"
+    },
+    "expected": true
+  },
+  {
+    "name": "Target longer",
+    "input": {
+      "s1": "abcd",
+      "s2": "abc"
+    },
+    "expected": false
+  },
+  {
+    "name": "Duplicate multiplicity absent",
+    "input": {
+      "s1": "aab",
+      "s2": "abb"
+    },
+    "expected": false
+  },
+  {
+    "name": "Window at final end",
+    "input": {
+      "s1": "aab",
+      "s2": "zzbaa"
+    },
+    "expected": true
+  },
+  {
+    "name": "Width one final match",
+    "input": {
+      "s1": "a",
+      "s2": "bba"
+    },
+    "expected": true
+  },
+  {
+    "name": "Noncontiguous counts are insufficient",
+    "input": {
+      "s1": "aab",
+      "s2": "abxba"
+    },
+    "expected": false
+  }
+]

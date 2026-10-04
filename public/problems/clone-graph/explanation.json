@@ -1,0 +1,68 @@
+{
+  "intuition": [
+    "A graph may contain cycles and multiple routes to the same node. Blindly copying each neighbor recursively can loop forever or create several copies of one original. A deep clone must preserve shared graph structure while ensuring every returned node is a new object.",
+    "Keep a map from each original node object to its unique clone. Create and store a clone as soon as an original is discovered, before examining any of its outgoing connections. The same map doubles as a visited record and a way to retrieve previously copied neighbors.",
+    "Process originals through a queue. For every edge, create an unseen neighbor\u2019s clone if needed, then append that mapped clone to the current clone\u2019s neighbor list. Edges point only between new objects, but cycles and shared neighbors are preserved because all references to one original use the same map entry."
+  ],
+  "walkthrough": {
+    "input": {
+      "adjacency": [
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "steps": [
+      "In the four-node cycle, create clone 1 and queue original 1. Its neighbors are originals 2 and 4.",
+      "Processing 1 creates clones 2 and 4, links clone 1 to them, and queues both originals.",
+      "Processing original 2 reuses clone 1 for its back edge and creates clone 3 for its other neighbor.",
+      "Processing original 4 reuses existing clones 1 and 3. It must not create a second clone of shared neighbor 3.",
+      "Finally original 3 links its clone to clones 2 and 4. Return clone 1, preserving the cycle\u2019s adjacency with entirely new node identities."
+    ],
+    "result": [
+      [
+        2,
+        4
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        1,
+        3
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "copies = {node: Node(node.val)}",
+      "note": "Store the entry clone before traversal, so an edge returning to the starting node retrieves an existing object instead of recursing or duplicating it."
+    },
+    {
+      "code": "if neighbor not in copies:",
+      "note": "The original object is the identity key. Multiple paths to the same original share one clone, while distinct originals must remain distinct."
+    },
+    {
+      "code": "copies[current].neighbors.append(copies[neighbor])",
+      "note": "Each original edge becomes one connection between corresponding new objects. This preserves adjacency without exposing original nodes in the returned graph."
+    }
+  ]
+}

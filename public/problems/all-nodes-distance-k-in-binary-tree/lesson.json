@@ -1,0 +1,67 @@
+{
+  "slug": "all-nodes-distance-k-in-binary-tree",
+  "headline": "Treat parent links as another edge in a breadth-first search",
+  "statement": "Given a binary tree, an existing target node, and nonnegative k, return values of every node whose shortest edge distance from target is exactly k. Values are unique and output order is unrestricted. Trainer input identifies target by value. Distance counts edges, so the target itself has distance zero.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary tree nodes and traversal"
+  ],
+  "constraints": [
+    "1 <= number of nodes <= 500",
+    "Node values are unique integers from 0 through 500.",
+    "0 <= k <= 1000; target exists in the tree."
+  ],
+  "intuition": "A target-to-node route may go upward before descending another branch. Record each node\u2019s parent to turn the tree into an undirected graph, then perform BFS from target using left, right, and parent neighbors. A visited set prevents immediate backtracking around those two-way edges.",
+  "approach": [
+    "Traverse from root to build the parent map.",
+    "Start a queue with (target,0) and mark target seen.",
+    "For nodes at distance k, collect values without expanding further.",
+    "For closer nodes, enqueue unseen child and parent neighbors at distance+1."
+  ],
+  "correctness": "The parent map adds exactly the reverse of each tree edge. BFS in this undirected graph first reaches each node by its shortest path from target, while seen prevents repeats. Every node at distance k is collected once; no farther nodes are expanded or returned.",
+  "bruteForce": "For each node separately find its path from target and measure it, requiring up to O(n^2) work.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "The parent map, seen set, traversal stack, and BFS queue store at most a linear number of nodes."
+  },
+  "pitfalls": [
+    "Count edges, not nodes.",
+    "Include parent moves; a subtree-only traversal misses answers.",
+    "Do not expand nodes already at distance k."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "target",
+      "queue",
+      "parents",
+      "seen",
+      "result"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "distance",
+      "k"
+    ],
+    "labels": {
+      "root": "Root",
+      "target": "Target",
+      "queue": "Queue",
+      "parents": "Parents",
+      "seen": "Seen",
+      "result": "Result",
+      "node": "Node",
+      "distance": "Distance",
+      "k": "K"
+    }
+  }
+}

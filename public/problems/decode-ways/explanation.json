@@ -1,0 +1,36 @@
+{
+  "intuition": [
+    "Trying every split into one-digit and two-digit letters works, but different split paths repeatedly ask how many ways the same prefix can be decoded. We can count these possibilities directly without constructing decoded words. The essential question is how a valid decoding ends.",
+    "The last letter uses either the final one digit or the final two digits. These two groups cannot overlap because their final code lengths differ. A valid final code can be appended to every valid decoding of the preceding prefix, so shorter-prefix counts combine into a recurrence.",
+    "Zero makes code validity important: it cannot stand alone, and 06 is not a valid two-digit code. The empty prefix has one decoding choice, meaning do nothing; this base allows the first valid code to contribute one. Each table entry then counts exactly its complete prefix.",
+    "The full prefix table makes every subproblem visible. For a memory-focused extension, retain only the counts for prefixes i-2 and i-1: compute the new count from the same valid single/pair checks before advancing both old values together. This keeps O(n) time and reduces auxiliary storage to O(1), while making earlier table entries unavailable for inspection."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "226"
+    },
+    "steps": [
+      "For s=226, allocate dp=[1,0,0,0]; entry zero represents the empty prefix.",
+      "At i=1, digit 2 is valid by itself. Add dp[0]=1, giving dp[1]=1.",
+      "At i=2, the final digit 2 contributes dp[1]=1. Pair 22 also contributes dp[0]=1, so dp[2]=2.",
+      "Those two prefix decodings correspond to 2|2 and 22; they are distinct choices rather than duplicate counts.",
+      "At i=3, digit 6 contributes dp[2]=2, and pair 26 contributes dp[1]=1.",
+      "The final table is [1,1,2,3]. Return 3, corresponding to 2|2|6, 22|6, and 2|26."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "dp[0] = 1",
+      "note": "There is one way to append the first code to an empty prefix. A zero base would incorrectly erase all later counts."
+    },
+    {
+      "code": "if single != '0':",
+      "note": "A nonzero digit forms exactly one valid one-digit letter. A zero must instead be part of a valid pair."
+    },
+    {
+      "code": "if 10 <= pair <= 26:",
+      "note": "The lower bound rejects leading-zero pairs; the upper bound restricts pairs to the alphabet\u2019s final code, 26."
+    }
+  ]
+}

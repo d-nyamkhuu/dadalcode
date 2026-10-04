@@ -1,0 +1,39 @@
+{
+  "intuition": [
+    "The majority is more frequent than all other values combined, not merely the most common value. That stronger guarantee permits cancellation: removing a pair of unequal values cannot eliminate the identity of a strict majority. A frequency dictionary works, but it remembers much more than this guarantee requires.",
+    "Keep one candidate and a vote balance. Matching values add a vote; different values cancel one. A balance of zero means the processed group has completely cancelled in unequal pairs, so the next value can start a new candidate group. The balance is not the candidate’s actual frequency in the full array.",
+    "Even if several candidate groups disappear, the guaranteed majority must survive the complete cancellation process. It has more copies than all potential opponents combined. Under this problem’s guarantee, returning the final candidate is enough. If a task only asked whether an arbitrary array had a majority, the same scan would propose a candidate but would still require a second pass to verify its count.",
+    "When reusing this method outside the guaranteed-majority contract, count the returned candidate in a second pass and require more than len(nums)//2 occurrences. Returning the cancellation survivor alone is justified only by the explicit existence guarantee."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        3,
+        2,
+        3
+      ]
+    },
+    "steps": [
+      "For nums=[3,2,3], begin with candidate=None and votes=0.",
+      "The first value 3 becomes the candidate because the balance is zero; matching it gives votes=1.",
+      "Value 2 disagrees, so it cancels that vote and returns the balance to zero.",
+      "The final value 3 starts a new group and leaves votes=1.",
+      "Return candidate=3. Its two appearances exceed floor(3/2)=1, as the input guarantee promises."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "if votes == 0:",
+      "note": "A zero balance permits a fresh candidate because all earlier active votes have cancelled against different values."
+    },
+    {
+      "code": "votes += 1 if value == candidate else -1",
+      "note": "This arithmetic represents pair cancellation rather than a full frequency count."
+    },
+    {
+      "code": "return candidate",
+      "note": "The strict-majority guarantee is what makes verification unnecessary. Without it, a surviving candidate could still fail to exceed half the array."
+    }
+  ]
+}

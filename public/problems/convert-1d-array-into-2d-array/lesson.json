@@ -1,0 +1,55 @@
+{
+  "slug": "convert-1d-array-into-2d-array",
+  "headline": "Reshape consecutive blocks without reordering",
+  "statement": "Construct a matrix with m rows and n columns using every entry of original in row-major order. Return an empty list if the requested shape has a different number of cells.",
+  "prerequisites": [
+    "Array indexing",
+    "Matrix dimensions"
+  ],
+  "constraints": [
+    "1 <= len(original) <= 50000.",
+    "1 <= original[i] <= 100000.",
+    "1 <= m,n <= 40000."
+  ],
+  "intuition": "Reshaping changes grouping rather than order. A valid shape needs exactly m*n entries, and row r receives the block beginning at r*n. Check the size before allocating rows.",
+  "approach": [
+    "Reject unless len(original) equals m*n.",
+    "For each row index, compute its starting offset.",
+    "Copy the next n elements into a new row.",
+    "Return all rows in order."
+  ],
+  "correctness": "The size check ensures the required cells equal the available entries. The row blocks are consecutive, disjoint, and cover offsets zero through m*n-1 exactly once. Therefore every value appears in its original order in the required matrix shape.",
+  "bruteForce": "Assign each value individually using row=index//n and col=index%n. This has the same linear complexity; slicing emphasizes the consecutive row blocks.",
+  "complexity": {
+    "time": "O(mn) for a valid shape; O(1) if invalid",
+    "space": "O(mn) output; O(1) auxiliary",
+    "explanation": "Each original entry is copied into exactly one output row."
+  },
+  "pitfalls": [
+    "Do not transpose the row-major order.",
+    "Reject both too few and too many entries.",
+    "Create distinct row lists rather than repeating one mutable row."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/convert-1d-array-into-2d-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "original",
+      "result"
+    ],
+    "pointers": [
+      "row",
+      "start"
+    ],
+    "watch": [
+      "m",
+      "n"
+    ],
+    "labels": {}
+  }
+}

@@ -1,0 +1,99 @@
+[
+  {
+    "name": "Example: one dependency",
+    "input": {
+      "numCourses": 2,
+      "prerequisites": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Example: cycle",
+    "input": {
+      "numCourses": 2,
+      "prerequisites": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Isolated courses",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": []
+    },
+    "expected": true
+  },
+  {
+    "name": "Diamond",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Disconnected cycle",
+    "input": {
+      "numCourses": 4,
+      "prerequisites": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Self dependency",
+    "input": {
+      "numCourses": 1,
+      "prerequisites": [
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "expected": false
+  }
+]

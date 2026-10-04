@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Two words",
+    "input": {
+      "s": "leetcode",
+      "wordDict": [
+        "leet",
+        "code"
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Reuse apple",
+    "input": {
+      "s": "applepenapple",
+      "wordDict": [
+        "apple",
+        "pen"
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Uncovered suffix",
+    "input": {
+      "s": "catsandog",
+      "wordDict": [
+        "cats",
+        "dog",
+        "sand",
+        "and",
+        "cat"
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Greedy trap",
+    "input": {
+      "s": "cars",
+      "wordDict": [
+        "car",
+        "ca",
+        "rs"
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Single letter repeat",
+    "input": {
+      "s": "aaaa",
+      "wordDict": [
+        "a",
+        "aa"
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "No first word",
+    "input": {
+      "s": "b",
+      "wordDict": [
+        "a"
+      ]
+    },
+    "expected": false
+  }
+]

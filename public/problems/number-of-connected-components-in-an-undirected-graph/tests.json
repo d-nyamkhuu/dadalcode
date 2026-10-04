@@ -1,0 +1,148 @@
+[
+  {
+    "name": "Example: two groups",
+    "input": {
+      "n": 5,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Example: connected",
+    "input": {
+      "n": 5,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "All isolated",
+    "input": {
+      "n": 4,
+      "edges": []
+    },
+    "expected": 4
+  },
+  {
+    "name": "Single vertex",
+    "input": {
+      "n": 1,
+      "edges": []
+    },
+    "expected": 1
+  },
+  {
+    "name": "Cycle and isolated",
+    "input": {
+      "n": 4,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Three groups",
+    "input": {
+      "n": 6,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Reversed edge orientation",
+    "input": {
+      "n": 3,
+      "edges": [
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Cycle, chain and isolated vertex",
+    "input": {
+      "n": 7,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "expected": 3
+  }
+]

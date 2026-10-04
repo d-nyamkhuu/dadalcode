@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Official mixed",
+    "input": {
+      "nums": [
+        10,
+        9,
+        2,
+        5,
+        3,
+        7,
+        101,
+        18
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Official repeated",
+    "input": {
+      "nums": [
+        0,
+        1,
+        0,
+        3,
+        2,
+        3
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "All equal",
+    "input": {
+      "nums": [
+        7,
+        7,
+        7,
+        7
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Decreasing",
+    "input": {
+      "nums": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "nums": [
+        -1
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Skip large early value",
+    "input": {
+      "nums": [
+        1,
+        8,
+        2,
+        3,
+        4
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Tail summary is not recovered sequence",
+    "input": {
+      "nums": [
+        3,
+        5,
+        6,
+        2,
+        4
+      ]
+    },
+    "expected": 3
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "intuition": [
+    "Explore take/skip choices recursively, excluding the next house after a take. Without memoization, overlapping prefixes cause exponential work. A decision near the current house affects only whether its neighbor can be included; earlier history can be compressed into prefix optima.",
+    "one_back is the best total before considering today, while two_back excludes yesterday as well. Taking today combines its amount with two_back; skipping it retains one_back. This distinction avoids a tempting greedy rule such as always taking the locally richer neighbor: a smaller nearby choice can enable a much larger later one. Compute current before advancing the saved states so both choices use the correct previous prefixes. No list of selected houses is necessary because only the maximum total is requested.",
+    "An optimal selection of a prefix either omits its last house, giving the previous-prefix optimum, or contains it, excluding its neighbor and leaving an optimal selection two houses back. The recurrence exhausts both choices. Starting with empty-prefix totals of zero makes the induction valid. Only the two preceding prefix optima are needed."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        1
+      ]
+    },
+    "steps": [
+      "Before index 0, both states represent empty prefixes and equal zero. For amount 1, max(0,0+1)=1.",
+      "Before index 1, one_back=1 is the optimum for indices 0..0, while two_back=0 is the empty-prefix optimum. Amount 2 gives max(1,0+2)=2.",
+      "Before index 2, one_back=2 covers indices 0..1, while two_back=1 covers only index 0. Taking amount 3 gives 1+3=4, exceeding the skip value 2.",
+      "Before index 3, one_back=4 covers indices 0..2 and two_back=2 covers indices 0..1. Taking amount 1 offers 3; skipping retains 4.",
+      "Advance both saved states together and return one_back=4, the optimum for the whole indices 0..3 prefix."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "current = max(one_back, two_back + amount)",
+      "note": "Skipping and taking exhaust all legal choices for the last house of the current prefix."
+    },
+    {
+      "code": "two_back, one_back = one_back, current",
+      "note": "Tuple assignment advances both states using their old values, avoiding an accidental adjacent-house combination."
+    },
+    {
+      "code": "return one_back",
+      "note": "After the final update, this state represents the optimum over the entire street."
+    }
+  ]
+}

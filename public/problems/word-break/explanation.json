@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Greedily taking the first or longest matching dictionary word can strand the remaining suffix. Recursively trying every split avoids that mistake, but many choices lead to the same remaining suffix. A dynamic program remembers which prefix boundaries are reachable instead of remembering every sequence of chosen words.",
+    "Boundary end is reachable when some earlier reachable start is followed by a dictionary word s[start:end]. The empty prefix is reachable before any words are chosen. After that, a successful transition adds exactly one complete word. A dictionary set makes membership checks direct, and the longest word length limits how far backward to search.",
+    "Think of the table as possible stopping positions, not a single committed segmentation. Several boundaries may stay true simultaneously even when only one leads to the final answer. For cars, both car and ca are available prefixes, but ca followed by rs succeeds while car followed by s fails. Returning the final boundary asks whether at least one whole-string segmentation exists; it does not require reconstructing which one.",
+    "A possible refinement stores the distinct dictionary word lengths and checks only those lengths at each boundary, skipping slice lengths that cannot match any entry. A trie can instead follow dictionary prefixes directly to avoid repeatedly constructing slices. These alternatives trade extra indexing or traversal logic for fewer substring operations; the reference keeps its straightforward bounded backward scan and accounts for Python slicing in O(nL^2)."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "cars",
+      "wordDict": [
+        "car",
+        "ca",
+        "rs"
+      ]
+    },
+    "steps": [
+      "For cars with dictionary [car,ca,rs], initialize dp=[true,false,false,false,false].",
+      "At end=1, c is not a dictionary word, so boundary 1 stays false.",
+      "At end=2, start=0 is reachable and ca matches, so dp[2]=true.",
+      "At end=3, car matches from boundary 0, so dp[3]=true as another possibility.",
+      "At end=4, the reachable boundary 2 is followed by rs, making dp[4]=true.",
+      "Return true. Keeping both reachable prefixes prevents the greedy car choice from hiding ca+rs."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "dp[0] = True",
+      "note": "The empty prefix supplies the starting boundary for the first dictionary word."
+    },
+    {
+      "code": "if dp[start] and s[start:end] in words:",
+      "note": "Both a valid earlier segmentation and one complete next word are required."
+    },
+    {
+      "code": "range(max(0, end - longest), end)",
+      "note": "No valid final word can start farther away than the dictionary\u2019s maximum word length."
+    }
+  ]
+}

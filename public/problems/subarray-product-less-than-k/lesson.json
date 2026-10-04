@@ -1,0 +1,64 @@
+{
+  "slug": "subarray-product-less-than-k",
+  "headline": "Count valid suffixes of a product window",
+  "statement": "Count nonempty contiguous subarrays of positive nums whose product is strictly less than k.",
+  "prerequisites": [
+    "Sliding window",
+    "Positive products",
+    "Integer division"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 30,000",
+    "1 <= nums[i] <= 1000",
+    "0 <= k <= 10^6"
+  ],
+  "intuition": "Positive factors are at least one, so extending a window cannot decrease its product and shrinking it cannot increase it. Once the longest valid window ending at right is found, all its suffixes are also valid: there are right-left+1.",
+  "approach": [
+    "Return zero when k <= 1 because every product is at least one.",
+    "Multiply in each right value and remove left values until product < k.",
+    "Add the number of valid suffixes ending at right."
+  ],
+  "correctness": "After shrinking, the current window has product below k, while any earlier start would still be invalid. All later starts remove factors at least one, so they are valid. Each subarray has one right endpoint, so summing suffix counts counts every valid subarray once.",
+  "bruteForce": "Enumerate all starting positions and multiply successive values; O(n\u00b2) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Each input factor enters and leaves the window at most once."
+  },
+  "pitfalls": [
+    "The inequality is strict, so shrink on product >= k.",
+    "Use integer division; floating-point rounding is unnecessary.",
+    "Zero or negative values are excluded and would change the reasoning."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/subarray-product-less-than-k/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "right"
+    ],
+    "watch": [
+      "product",
+      "count",
+      "k",
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "left": "Left",
+      "right": "Right",
+      "product": "Product",
+      "count": "Count",
+      "k": "K",
+      "value": "Value"
+    }
+  }
+}

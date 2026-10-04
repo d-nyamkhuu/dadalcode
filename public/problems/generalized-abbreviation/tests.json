@@ -1,0 +1,76 @@
+[
+  {
+    "name": "Four letters",
+    "input": {
+      "word": "word"
+    },
+    "expected": [
+      "4",
+      "3d",
+      "2r1",
+      "2rd",
+      "1o2",
+      "1o1d",
+      "1or1",
+      "1ord",
+      "w3",
+      "w2d",
+      "w1r1",
+      "w1rd",
+      "wo2",
+      "wo1d",
+      "wor1",
+      "word"
+    ]
+  },
+  {
+    "name": "One letter",
+    "input": {
+      "word": "a"
+    },
+    "expected": [
+      "1",
+      "a"
+    ]
+  },
+  {
+    "name": "Two letters",
+    "input": {
+      "word": "ab"
+    },
+    "expected": [
+      "2",
+      "1b",
+      "a1",
+      "ab"
+    ]
+  },
+  {
+    "name": "Repeated letters",
+    "input": {
+      "word": "aa"
+    },
+    "expected": [
+      "2",
+      "1a",
+      "a1",
+      "aa"
+    ]
+  },
+  {
+    "name": "Three letters",
+    "input": {
+      "word": "abc"
+    },
+    "expected": [
+      "3",
+      "2c",
+      "1b1",
+      "1bc",
+      "a2",
+      "a1c",
+      "ab1",
+      "abc"
+    ]
+  }
+]

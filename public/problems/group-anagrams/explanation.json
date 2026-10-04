@@ -1,0 +1,55 @@
+{
+  "intuition": [
+    "Comparing every pair of words for anagram equality repeats character work and makes grouping quadratic in the number of words. Instead, compute a signature that is identical precisely when two words are anagrams, then use it as a dictionary key to find the right group immediately.",
+    "For lowercase words, a 26-entry vector of letter counts is sufficient. Letter positions in the original word do not matter, but multiplicities do: ab and aab must have different signatures. Converting the vector to a tuple makes the signature immutable and usable as a hash-map key.",
+    "Append each original word occurrence to its signature\u2019s list. No deduplication is performed because repeated input strings must remain repeated outputs. The zero-count signature naturally groups empty strings. Returning the dictionary\u2019s lists produces all classes, with group and within-group order unrestricted.",
+    "The output lists hold references to the original string objects, rather than copies of their character data. With W words and G distinct signatures, the map retains G tuples of 26 counts and W grouped references; temporary count vectors have 26 entries. Thus O(26*G+W) auxiliary/output references is a tighter accounting than charging all input characters again."
+  ],
+  "walkthrough": {
+    "input": {
+      "strs": [
+        "eat",
+        "tea",
+        "tan",
+        "ate",
+        "nat",
+        "bat"
+      ]
+    },
+    "steps": [
+      "For strs=[eat,tea,tan,ate,nat,bat], count eat as one e, one a, and one t; create its first group.",
+      "tea has the same 26 counts despite different character order, so append it to the eat group.",
+      "tan has one t, one a, and one n, a different signature; create a second group containing tan.",
+      "ate joins eat and tea. nat shares tan\u2019s signature and joins the second group.",
+      "bat introduces the third signature. Return groups [eat,tea,ate], [tan,nat], and [bat], preserving every input occurrence."
+    ],
+    "result": [
+      [
+        "eat",
+        "tea",
+        "ate"
+      ],
+      [
+        "tan",
+        "nat"
+      ],
+      [
+        "bat"
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "counts = [0] * 26",
+      "note": "A fresh vector for each word prevents counts from leaking between signatures. Its fixed alphabet size makes per-word setup constant work."
+    },
+    {
+      "code": "signature = tuple(counts)",
+      "note": "Lists are mutable and cannot be dictionary keys. A tuple safely captures the completed multiplicity signature for lookup and grouping."
+    },
+    {
+      "code": "groups[signature].append(word)",
+      "note": "Append the original occurrence rather than a reconstructed or deduplicated string, preserving spelling and repeated entries in the input multiset."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "intuition": [
+    "Imagine checking every possible start of a substring and extending right until a character repeats. This is correct, but neighboring starts repeatedly inspect nearly the same characters. The useful question is not which substrings to list; it is how far left a valid substring ending at the current character can begin.",
+    "Keep a left boundary and a dictionary of the most recent position of each character. When the next character has already appeared inside the window, both copies cannot stay. Moving left just beyond the earlier copy removes the conflict in one jump. A remembered occurrence outside the window is harmless, so it must never pull left backward.",
+    "After this repair, the current window is the longest distinct-character substring ending here. Compare its length with best, then continue. Notice that the dictionary can remember old positions without deleting them: the left boundary tells us which positions still matter. This separates historical information from the active window and makes the algorithm linear."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "abcabcbb"
+    },
+    "steps": [
+      "For abcabcbb, start with left=0, best=0, and an empty last-position dictionary.",
+      "Reading a, b, c at positions 0, 1, 2 grows the distinct window abc to length 3.",
+      "At position 3, a last appeared at 0 inside the window. Move left to 1; bca is valid and still length 3.",
+      "The following b and c move left to 2 and then 3. No window becomes longer than 3.",
+      "At position 6, b previously occurred at 4, so left jumps to 5. The final b moves left to 7.",
+      "The longest recorded length is 3, returned after every right endpoint has been considered."
+    ],
+    "result": 3
+  },
+  "codeNotes": [
+    {
+      "code": "if ch in last and last[ch] >= left:",
+      "note": "The second condition distinguishes a harmful duplicate in the active window from harmless history outside it."
+    },
+    {
+      "code": "left = last[ch] + 1",
+      "note": "Move only as far as necessary: the previous copy is the exact obstacle to distinctness."
+    },
+    {
+      "code": "best = max(best, right - left + 1)",
+      "note": "Inclusive endpoints require the extra one; compare valid windows rather than individual characters."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "combinations",
+  "headline": "Choose increasing numbers with room for the suffix",
+  "statement": "Return every selection of k distinct integers from the range 1 through n. The order of selected numbers and order of answers are irrelevant.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "1 <= n <= 20",
+    "1 <= k <= n"
+  ],
+  "intuition": "Make each combination increasing. After choosing value v, only numbers larger than v are eligible. If r positions remain, a starting value above n-r+1 cannot leave enough choices, so cut those branches before recursing.",
+  "approach": [
+    "Maintain an increasing path and its next allowed start.",
+    "When the path has k values, save a copy.",
+    "Try values from start through n-needed+1, recurse with value+1, then pop."
+  ],
+  "correctness": "Increasing choices ensure every path contains k distinct allowed values. Any k-element subset has exactly one increasing ordering, which is visited. The upper bound prunes only starts lacking enough remaining numbers, so it cannot remove a valid completion.",
+  "bruteForce": "Enumerate all 2^n subsets and retain those of size k. This explores many irrelevant sizes.",
+  "complexity": {
+    "time": "O(k * C(n,k))",
+    "space": "O(k) auxiliary, excluding output",
+    "explanation": "There are C(n,k) answers, each containing k values, so copying output alone costs O(k*C(n,k)). At n=20,k=10 there are 184756 answers. The working path and recursion stack use only O(k) auxiliary storage; storing the required output is separate."
+  },
+  "pitfalls": [
+    "Recurse with value+1 to prohibit reuse.",
+    "Include the upper range endpoint using +1 in Python range.",
+    "Do not return the shared mutable path."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/combinations/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "value"
+    ],
+    "watch": [
+      "needed",
+      "start"
+    ],
+    "labels": {
+      "path": "Path",
+      "result": "Result",
+      "value": "Value",
+      "needed": "Needed",
+      "start": "Start"
+    }
+  }
+}

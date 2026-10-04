@@ -1,0 +1,58 @@
+{
+  "slug": "longest-increasing-subsequence",
+  "headline": "Maintain the smallest tail for each subsequence length",
+  "statement": "Return the length of a longest strictly increasing subsequence of nums. A subsequence preserves index order but may skip elements.",
+  "prerequisites": [
+    "Binary search",
+    "Subsequences",
+    "Greedy invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 2500",
+    "-10000 <= nums[i] <= 10000"
+  ],
+  "intuition": "For subsequences of the same length, a smaller final value is easier to extend later. Keep only that smallest tail per length. The tails array summarizes possibilities; it need not itself be a subsequence from the input.",
+  "approach": [
+    "Keep tails sorted, where tails[k] is the smallest known ending of a length k+1 subsequence.",
+    "Binary-search the first tail >= the next value.",
+    "Replace that tail, or append if the value extends every known length."
+  ],
+  "correctness": "If the first tail >= x is at index k, every earlier tail is smaller than x, so x can extend a length-k subsequence. Replacing the length k+1 tail with x improves or preserves extensibility without changing achievable lengths. If no such tail exists, x achieves one new length. Thus tails length equals the maximum achievable increasing length after every prefix.",
+  "bruteForce": "Enumerate all 2^n subsequences. A simpler O(n\u00b2) DP instead checks every earlier smaller value for each endpoint.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)",
+    "explanation": "Each of n values performs binary search among at most n tails."
+  },
+  "pitfalls": [
+    "Use lower bound (first >=), so equal numbers do not extend a strictly increasing sequence.",
+    "The contents of tails are summary minima, not necessarily a recovered subsequence."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "tails"
+    ],
+    "pointers": [
+      "i",
+      "position"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "tails": "Tails",
+      "i": "I",
+      "position": "Position",
+      "value": "Value"
+    }
+  }
+}

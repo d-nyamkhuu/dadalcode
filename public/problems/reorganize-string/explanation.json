@@ -1,0 +1,36 @@
+{
+  "intuition": [
+    "Trying every character permutation would generate factorially many candidates, often with many duplicates. The real obstacle is frequency: copies of the same letter need different letters between them. If the largest count exceeds the rounded-up half of the string length, there are not enough separators and no full arrangement can exist.",
+    "For a possible input, choose the most frequent currently eligible letter. A max heap represents remaining counts, using negative counts for Python’s min-heap interface. The previously chosen letter must be temporarily ineligible: keep its remaining copies outside the heap for one turn. This enforces the adjacency rule without searching individual placements.",
+    "After choosing a different letter, reinsert the previously held letter if copies remain, then hold the newly chosen one. Spending the largest remaining counts early avoids leaving a dominant letter until the end. The result must include every original character, not merely form a valid prefix. The reference checks for a remaining held count at termination as a final completeness guard. Any valid full rearrangement is accepted, so lexicographic tie choices in the heap do not constrain learner answers.",
+    "The majority bound is also sufficient for this schedule. Before a choice, let m be the total number of remaining copies. The held previous letter has at most floor(m/2) copies, because it cannot occupy the next slot; every other letter has at most ceil(m/2). Initially there is no held letter and the majority check establishes the second bound. Select a largest available count and consume one copy. Its new held count fits floor((m-1)/2). If m is odd, at most one available letter can have ceil(m/2) copies; selecting the largest reduces that letter before the bound drops. If m is even, other letters may keep their counts because ceil((m-1)/2) is unchanged. The old held count also fits the new available bound. Therefore the invariant continues. With copies still remaining, an empty heap would mean every copy belongs to the held letter, contradicting its at-most-half bound. Construction must finish."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "aab"
+    },
+    "steps": [
+      "For aab, the largest count is 2, which fits (3+1)//2, so construction is possible.",
+      "Initialize heap with counts a=2 and b=1; no previous letter is held.",
+      "Pop a, append it, and hold its one remaining copy outside the heap.",
+      "Only b is eligible next. Append b, then return the held a to the heap.",
+      "Pop a again and append it. Its remaining count is now zero.",
+      "The full output is aba, containing all original copies and no equal adjacent pair."
+    ],
+    "result": "aba"
+  },
+  "codeNotes": [
+    {
+      "code": "if max(counts.values()) > (len(s) + 1) // 2:",
+      "note": "A dominant letter requires at least one separator between every pair of its copies."
+    },
+    {
+      "code": "if held[0] < 0:\n                heappush(heap, held)",
+      "note": "Only after another character was chosen can the previous character become eligible again."
+    },
+    {
+      "code": "held = (count + 1, ch)",
+      "note": "Negative counts move toward zero as copies are consumed; hold the new letter for the next turn."
+    }
+  ]
+}

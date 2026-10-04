@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Example: balanced letters",
+    "input": {
+      "s": "aabbcc",
+      "k": 3
+    },
+    "expected": "abcabc"
+  },
+  {
+    "name": "Example: impossible",
+    "input": {
+      "s": "aaabc",
+      "k": 3
+    },
+    "expected": ""
+  },
+  {
+    "name": "Another feasible distribution",
+    "input": {
+      "s": "aaadbbcc",
+      "k": 2
+    },
+    "expected": "abacabcd"
+  },
+  {
+    "name": "Zero spacing",
+    "input": {
+      "s": "aaaa",
+      "k": 0
+    },
+    "expected": "aaaa"
+  },
+  {
+    "name": "One character",
+    "input": {
+      "s": "a",
+      "k": 1
+    },
+    "expected": "a"
+  },
+  {
+    "name": "All distinct with large spacing",
+    "input": {
+      "s": "abcd",
+      "k": 4
+    },
+    "expected": "abcd"
+  },
+  {
+    "name": "One gap insufficient",
+    "input": {
+      "s": "aab",
+      "k": 3
+    },
+    "expected": ""
+  },
+  {
+    "name": "Tied frequencies exactly feasible",
+    "input": {
+      "s": "aaabbb",
+      "k": 2
+    },
+    "expected": "ababab"
+  },
+  {
+    "name": "Tied frequencies insufficient spacing",
+    "input": {
+      "s": "aaabbb",
+      "k": 3
+    },
+    "expected": ""
+  }
+]

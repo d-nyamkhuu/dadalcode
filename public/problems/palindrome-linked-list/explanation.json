@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "Copying all node values to an array makes reverse comparison simple, but it uses memory proportional to list length. A linked list can instead temporarily reverse half its own links. That gives access to the last values in the order needed to compare them against the first values.",
+    "Slow and fast pointers locate the midpoint: slow moves one link while fast moves two. If fast is still present at the end, the length is odd and slow points at the unpaired middle value. Skip that value. Reverse the remaining suffix, then walk from the original head and the reversed suffix together, comparing mirrored values.",
+    "The suffix has only half the nodes, so comparison stops when its pointer ends. A mismatch disproves the palindrome immediately, but the function postpones returning so it can reverse the suffix back. Restoring the chain makes this technique safe for callers that still need the original list. Within reversal, save the next link before overwriting it or the remaining suffix would be lost."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        1,
+        2,
+        2,
+        1
+      ]
+    },
+    "steps": [
+      "For [1,2,2,1], slow and fast both begin at the first node.",
+      "After two slow/fast rounds, slow is the third node 2 and fast is absent, indicating even length.",
+      "Reverse the suffix [2,1] into a comparison chain [1,2].",
+      "Compare the first original 1 with reversed 1, then the second original 2 with reversed 2.",
+      "The reversed-half pointer ends, so all mirrored pairs matched.",
+      "Reverse the suffix back to [2,1] and return true with the original list restored."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "following = current.next",
+      "note": "Save access to the remaining suffix before flipping the current next link."
+    },
+    {
+      "code": "if fast is not None:\n            slow = slow.next",
+      "note": "An odd-length center has no distinct mirrored partner and can be skipped."
+    },
+    {
+      "code": "reverse(second)",
+      "note": "Restore original links before returning, even when comparison stopped on a mismatch."
+    }
+  ]
+}

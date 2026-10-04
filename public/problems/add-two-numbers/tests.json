@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Example: 342 + 465",
+    "input": {
+      "l1": [
+        2,
+        4,
+        3
+      ],
+      "l2": [
+        5,
+        6,
+        4
+      ]
+    },
+    "expected": [
+      7,
+      0,
+      8
+    ]
+  },
+  {
+    "name": "Example: zero",
+    "input": {
+      "l1": [
+        0
+      ],
+      "l2": [
+        0
+      ]
+    },
+    "expected": [
+      0
+    ]
+  },
+  {
+    "name": "Final carry",
+    "input": {
+      "l1": [
+        9
+      ],
+      "l2": [
+        1
+      ]
+    },
+    "expected": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Unequal lengths",
+    "input": {
+      "l1": [
+        1,
+        2,
+        3
+      ],
+      "l2": [
+        5
+      ]
+    },
+    "expected": [
+      6,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Carry chain",
+    "input": {
+      "l1": [
+        9,
+        9,
+        9
+      ],
+      "l2": [
+        1
+      ]
+    },
+    "expected": [
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Internal zero",
+    "input": {
+      "l1": [
+        0,
+        1
+      ],
+      "l2": [
+        0,
+        2
+      ]
+    },
+    "expected": [
+      0,
+      3
+    ]
+  },
+  {
+    "name": "Second list is longer",
+    "input": {
+      "l1": [
+        5
+      ],
+      "l2": [
+        1,
+        2,
+        3
+      ]
+    },
+    "expected": [
+      6,
+      2,
+      3
+    ]
+  }
+]

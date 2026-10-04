@@ -1,0 +1,55 @@
+{
+  "slug": "merge-intervals",
+  "headline": "Sort starts so overlaps form one continuous run",
+  "statement": "Given closed intervals [start,end], merge every overlapping group and return the resulting non-overlapping intervals covering exactly the same points. Touching endpoints overlap. Return the resulting intervals in any order.",
+  "prerequisites": [
+    "Sorting",
+    "Closed interval overlap"
+  ],
+  "constraints": [
+    "1 <= number of intervals <= 10000",
+    "0 <= start <= end <= 10000"
+  ],
+  "intuition": "Once intervals are ordered by start, only the latest merged interval can overlap the next one. An overlapping interval extends the same continuous union; a later start beyond the current end begins a new disjoint component.",
+  "approach": [
+    "Sort intervals by start.",
+    "Append the first interval. For each later interval, compare its start with the latest merged end.",
+    "If start <= end, extend the end to their maximum. Otherwise append a new interval."
+  ],
+  "correctness": "The merged list is a disjoint sorted cover of the processed prefix. Because the next start is at least all preceding starts, it cannot overlap any component except the last. Extending that component or appending a new one preserves the invariant. At termination the list is exactly the input union.",
+  "bruteForce": "Repeatedly inspect every pair and merge overlaps until none remain; repeated rescans can be quadratic or worse.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)",
+    "explanation": "Sorting uses O(n log n); the sweep and returned intervals use O(n)."
+  },
+  "pitfalls": [
+    "Closed intervals touching at one point merge.",
+    "Nested intervals must not shrink the current end.",
+    "Copy intervals rather than unexpectedly altering input rows."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/merge-intervals/"
+    }
+  ],
+  "visualization": {
+    "kind": "intervals",
+    "focus": [
+      "intervals",
+      "merged"
+    ],
+    "pointers": [],
+    "watch": [
+      "start",
+      "end"
+    ],
+    "labels": {
+      "intervals": "Intervals",
+      "merged": "Merged",
+      "start": "Start",
+      "end": "End"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "find-median-from-data-stream",
+  "headline": "Balance lower and upper halves",
+  "statement": "Implement MedianFinder.addNum(num) and findMedian(). The median is the middle sorted value for an odd count, or the average of the two middle values for an even count. Supply parallel operations and args arrays. Median answers must be finite; numerical comparisons allow relative error 1e-7 or absolute error 1e-9.",
+  "prerequisites": [
+    "Min heaps",
+    "Max heap via negation",
+    "Median rank"
+  ],
+  "constraints": [
+    "-100,000 <= num <= 100,000",
+    "At most 50,000 calls",
+    "findMedian is called only after an insertion"
+  ],
+  "intuition": "Keep smaller values in a max heap and larger values in a min heap. The lower half is either the same size as the upper half or one element larger. Their roots expose the middle value or pair immediately.",
+  "approach": [
+    "Push a new value into the lower heap and move its maximum to the upper heap.",
+    "If upper becomes larger, move its minimum back to lower.",
+    "For equal sizes average the two roots; otherwise return lower\u2019s maximum."
+  ],
+  "correctness": "Moving the largest lower value into upper preserves the order that all lower values are no greater than all upper values. Rebalancing preserves this order and the required size difference. Therefore the exposed roots have exactly the median ranks.",
+  "bruteForce": "Append to an array and sort on each query, costing O(n log n) per median query.",
+  "complexity": {
+    "time": "O(log n) insertion, O(1) median",
+    "space": "O(n)",
+    "explanation": "Each value is in one heap; a constant number of logarithmic heap operations occurs per insertion."
+  },
+  "pitfalls": [
+    "Negate max-heap values consistently.",
+    "Even-size median requires division by two.",
+    "Balance sizes after every insertion, including duplicates and negatives."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/find-median-from-data-stream/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "lower",
+      "upper"
+    ],
+    "pointers": [],
+    "watch": [
+      "num",
+      "self"
+    ],
+    "labels": {
+      "lower": "Lower",
+      "upper": "Upper",
+      "num": "Num",
+      "self": "Self"
+    }
+  }
+}

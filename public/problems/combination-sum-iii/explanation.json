@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "This problem has two simultaneous requirements: exactly k chosen digits and total n. Finding the total too early is insufficient, and choosing the right number of values with the wrong total is also insufficient. The recursive state must retain both the path length and the remaining sum.",
+    "Choose numbers in increasing order from 1 through 9. Passing value+1 as the next start prevents reuse and eliminates reordered duplicates. Unlike Combination Sum with unlimited reuse, taking a second copy of the same digit is prohibited, even if it would make the arithmetic work.",
+    "Two simple bounds cut useless branches. Enough larger digits must remain to fill the missing slots, and a chosen value must not exceed the remaining sum. When the path length reaches k, save it only if the remainder is zero. This makes the leaf condition directly match both problem requirements."
+  ],
+  "walkthrough": {
+    "input": {
+      "k": 3,
+      "n": 7
+    },
+    "steps": [
+      "For k=3 and n=7, start with an empty path, remaining=7, and eligible digits beginning at 1.",
+      "Choose 1, then 2. The path is [1,2], and the remaining sum is 4 with one slot left.",
+      "Trying 3 fills the third slot but leaves remaining=1, so reject [1,2,3]. The count alone is insufficient.",
+      "Try 4 instead. Now [1,2,4] has three values and remainder zero, so save that combination.",
+      "Branches such as [1,3] cannot reuse 3, and larger third digits overshoot. All other increasing triples fail, leaving [[1,2,4]]."
+    ],
+    "result": [
+      [
+        1,
+        2,
+        4
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "needed = k - len(path)",
+      "note": "The missing-slot count controls the latest feasible next digit, preventing searches that could never select enough distinct remaining numbers."
+    },
+    {
+      "code": "if remaining == 0:",
+      "note": "This check occurs inside the exact-length leaf. A combination is saved only when both the required count and required sum hold together."
+    },
+    {
+      "code": "visit(value + 1, remaining - value)",
+      "note": "Advancing the next start prohibits repeated digits and guarantees a canonical increasing representation for each selected set."
+    }
+  ]
+}

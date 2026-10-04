@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Example: two starts",
+    "input": {
+      "s": "barfoothefoobarman",
+      "words": [
+        "foo",
+        "bar"
+      ]
+    },
+    "expected": [
+      0,
+      9
+    ]
+  },
+  {
+    "name": "Example: duplicate quota fails",
+    "input": {
+      "s": "wordgoodgoodgoodbestword",
+      "words": [
+        "word",
+        "good",
+        "best",
+        "word"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Overlapping matches",
+    "input": {
+      "s": "aaaaaa",
+      "words": [
+        "aa",
+        "aa"
+      ]
+    },
+    "expected": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Nonzero alignment",
+    "input": {
+      "s": "xbarfoo",
+      "words": [
+        "bar",
+        "foo"
+      ]
+    },
+    "expected": [
+      1
+    ]
+  },
+  {
+    "name": "Repeated required word",
+    "input": {
+      "s": "wordgoodgoodgoodbestword",
+      "words": [
+        "word",
+        "good",
+        "best",
+        "good"
+      ]
+    },
+    "expected": [
+      8
+    ]
+  },
+  {
+    "name": "Too short",
+    "input": {
+      "s": "a",
+      "words": [
+        "aa"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Unknown token between matches",
+    "input": {
+      "s": "barfooxxxfoobar",
+      "words": [
+        "bar",
+        "foo"
+      ]
+    },
+    "expected": [
+      0,
+      9
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "name": "Middle missing",
+    "input": {
+      "nums": [
+        3,
+        0,
+        1
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Last missing",
+    "input": {
+      "nums": [
+        0,
+        1
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Larger permutation",
+    "input": {
+      "nums": [
+        9,
+        6,
+        4,
+        2,
+        3,
+        5,
+        7,
+        0,
+        1
+      ]
+    },
+    "expected": 8
+  },
+  {
+    "name": "Zero missing",
+    "input": {
+      "nums": [
+        1
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "One missing",
+    "input": {
+      "nums": [
+        0
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Unsorted missing zero",
+    "input": {
+      "nums": [
+        3,
+        1,
+        2
+      ]
+    },
+    "expected": 0
+  }
+]

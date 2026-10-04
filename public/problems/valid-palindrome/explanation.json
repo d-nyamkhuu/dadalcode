@@ -1,0 +1,35 @@
+{
+  "intuition": [
+    "The problem compares a normalized sequence: punctuation and spaces are removed, and letters are compared without case. Constructing that sequence and its reverse works but allocates additional storage. Two pointers can perform the same comparison directly on the original string.",
+    "At each side, skip characters that are not alphanumeric. The next meaningful left and right characters form the outermost unmatched pair of the normalized sequence. Compare their lowercase forms and move inward only if they agree. Digits participate like letters; a digit and an unrelated letter must not be silently ignored.",
+    "If the pointers meet or cross after punctuation skips, no unmatched pair remains. This includes a string containing only punctuation, whose normalized sequence is empty and therefore palindromic. The bounds checks inside both skip loops protect exactly this case. A single mismatch proves failure immediately, so the algorithm need not scan the remaining interior. Each original position is visited at most once from one side, giving linear time and constant extra space.",
+    "Printable ASCII makes the character policy unambiguous. Extending the problem to Unicode would require a separate decision about case folding and normalization, since some case mappings expand to multiple code points and visually equivalent strings need not have identical encodings. The reference keeps the stated ASCII semantics."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "A man, a plan, a canal: Panama"
+    },
+    "steps": [
+      "For \"A man, a plan, a canal: Panama\", initialize pointers at the first A and the final a.",
+      "Their lowercase forms agree. Move inward, skipping the space after the initial A and punctuation wherever it appears.",
+      "The next meaningful pair is m and m, followed by a and a and further matching mirrored characters.",
+      "The comma, colon, and spaces never enter a comparison because they are not alphanumeric.",
+      "The pointers meet after every meaningful pair agrees. Return true for the normalized palindrome \"amanaplanacanalpanama\"."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "while left < right and not s[left].isalnum():",
+      "note": "Ignored characters must be skipped before comparison, and the pointer bound prevents stepping past the opposite side."
+    },
+    {
+      "code": "if s[left].lower() != s[right].lower():",
+      "note": "Case conversion makes letter comparison insensitive to capitalization while keeping digits and meaningful symbols classified correctly."
+    },
+    {
+      "code": "left += 1",
+      "note": "Once a mirrored pair agrees, both pointers move inward; previously compared characters never need to be revisited."
+    }
+  ]
+}

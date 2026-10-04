@@ -1,0 +1,63 @@
+{
+  "slug": "squares-of-a-sorted-array",
+  "headline": "Take the largest remaining square from an endpoint",
+  "statement": "Given an ascending integer array nums, return its squared values in ascending order. Produce a linear-time solution. Negative values may move to the far end after squaring.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10^4",
+    "-10^4 <= nums[i] <= 10^4",
+    "nums is sorted in nondecreasing order."
+  ],
+  "intuition": "On a sorted interval, the largest absolute value is at its left or right endpoint. Choose the larger square and write it into the last unfilled output position. Work backward so the resulting array is already sorted.",
+  "approach": [
+    "Put left and right at the endpoints and create an output array.",
+    "Compare endpoint squares. Place the larger at write, the last empty slot.",
+    "Move only the selected endpoint inward and decrement write."
+  ],
+  "correctness": "Every interior value lies between the endpoints, so its absolute value is no greater than the larger endpoint absolute value. The selected square is therefore the largest remaining square. Filling positions from right to left repeatedly places the correct maximum, yielding ascending order with all multiplicities retained.",
+  "bruteForce": "Square then sort in O(n log n) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n) output; O(1) auxiliary",
+    "explanation": "Each endpoint is consumed once; the output contains n entries."
+  },
+  "pitfalls": [
+    "Do not assume squaring preserves order for negatives.",
+    "Fill from the output end when choosing the largest square.",
+    "Advance one endpoint per write, including ties."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/squares-of-a-sorted-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "result"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "write"
+    ],
+    "watch": [
+      "a",
+      "b"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "result": "Result",
+      "left": "Left",
+      "right": "Right",
+      "write": "Write",
+      "a": "A",
+      "b": "B"
+    }
+  }
+}

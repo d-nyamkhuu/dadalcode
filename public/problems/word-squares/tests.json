@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Two four-row squares",
+    "input": {
+      "words": [
+        "area",
+        "lead",
+        "wall",
+        "lady",
+        "ball"
+      ]
+    },
+    "expected": [
+      [
+        "ball",
+        "area",
+        "lead",
+        "lady"
+      ],
+      [
+        "wall",
+        "area",
+        "lead",
+        "lady"
+      ]
+    ]
+  },
+  {
+    "name": "Repeated rows allowed",
+    "input": {
+      "words": [
+        "abat",
+        "baba",
+        "atan",
+        "atal"
+      ]
+    },
+    "expected": [
+      [
+        "baba",
+        "abat",
+        "baba",
+        "atal"
+      ],
+      [
+        "baba",
+        "abat",
+        "baba",
+        "atan"
+      ]
+    ]
+  },
+  {
+    "name": "Single letters",
+    "input": {
+      "words": [
+        "a",
+        "b"
+      ]
+    },
+    "expected": [
+      [
+        "a"
+      ],
+      [
+        "b"
+      ]
+    ]
+  },
+  {
+    "name": "No square",
+    "input": {
+      "words": [
+        "ab"
+      ]
+    },
+    "expected": []
+  },
+  {
+    "name": "Reuse singleton word",
+    "input": {
+      "words": [
+        "aa"
+      ]
+    },
+    "expected": [
+      [
+        "aa",
+        "aa"
+      ]
+    ]
+  },
+  {
+    "name": "Two-letter crossings",
+    "input": {
+      "words": [
+        "ab",
+        "ba"
+      ]
+    },
+    "expected": [
+      [
+        "ab",
+        "ba"
+      ],
+      [
+        "ba",
+        "ab"
+      ]
+    ]
+  },
+  {
+    "name": "Three-letter reusable squares",
+    "input": {
+      "words": [
+        "aba",
+        "bab"
+      ]
+    },
+    "expected": [
+      [
+        "aba",
+        "bab",
+        "aba"
+      ],
+      [
+        "bab",
+        "aba",
+        "bab"
+      ]
+    ]
+  }
+]

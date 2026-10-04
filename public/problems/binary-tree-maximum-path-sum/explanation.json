@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "A path can start anywhere, so the best result cannot be found by considering only root-to-leaf sums. Every simple tree path has a highest node: there it may join a downward branch on the left to one on the right. This observation separates the best completed path from the branch that can still extend toward a parent.",
+    "A child passes up its best single downward branch. Clip a negative branch to zero because omitting it improves any path through its parent. At each node, score a completed path using the node plus both nonnegative child gains. However, store for the parent only the node plus one larger gain; passing both would create a fork rather than a path.",
+    "Children must be processed before their parent. The explicit stack first defers a node with processed=True and pushes its children. When that deferred entry returns, both gains are available. This avoids Python recursion-depth failures on tall trees. Initialize best to negative infinity so an all-negative tree still chooses a real node instead of an empty zero-valued path."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        -10,
+        9,
+        20,
+        null,
+        null,
+        15,
+        7
+      ]
+    },
+    "steps": [
+      "For [-10,9,20,null,null,15,7], process leaf 9 first; its downward gain and completed path both equal 9.",
+      "Leaves 15 and 7 likewise contribute gains 15 and 7.",
+      "At node 20, the completed path 15\u219220\u21927 has sum 42, while its parent-facing gain is 20+15=35.",
+      "At root -10, the through-root candidate is -10+9+35=34.",
+      "The root can offer gain -10+35=25, but neither root calculation improves best=42.",
+      "Return 42, demonstrating why the optimal path need not contain the root."
+    ],
+    "result": 42
+  },
+  "codeNotes": [
+    {
+      "code": "stack.append((node, True))",
+      "note": "Defer the parent computation until its child gains have been produced."
+    },
+    {
+      "code": "best = max(best, node.val + left_gain + right_gain)",
+      "note": "A completed path may join both branches at its highest node."
+    },
+    {
+      "code": "gains[node] = node.val + max(left_gain, right_gain)",
+      "note": "A parent extension receives only one branch, preventing an invalid fork."
+    }
+  ]
+}

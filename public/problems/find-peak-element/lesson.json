@@ -1,0 +1,56 @@
+{
+  "slug": "find-peak-element",
+  "headline": "Follow the uphill half with binary search",
+  "statement": "Return an index of any peak in nums, where a peak is strictly greater than its neighbors. Adjacent values differ, and values outside the array are treated as negative infinity. The algorithm must take O(log n) time.",
+  "prerequisites": [
+    "Binary search",
+    "Slope reasoning"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 1000",
+    "Adjacent elements are unequal",
+    "Elements are signed 32-bit integers"
+  ],
+  "intuition": "Compare the middle value with its right neighbor. If the slope rises, a peak must exist to the right: either the rise eventually ends or the final element is a peak. A falling slope similarly guarantees a peak on the left including the middle.",
+  "approach": [
+    "Keep an inclusive candidate interval [left,right].",
+    "If nums[mid] < nums[mid+1], move left to mid+1. Otherwise move right to mid.",
+    "Return the single remaining index."
+  ],
+  "correctness": "The current interval always contains a peak compatible with its bounding slopes. On a rising middle edge, the right side contains a peak; on a falling edge, the left side through mid contains one. The chosen interval shrinks without losing all peaks. A singleton satisfying these boundaries is a valid peak.",
+  "bruteForce": "Scan every index and compare its neighbors, taking O(n) time.",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "explanation": "The interval approximately halves each iteration and uses three indices."
+  },
+  "pitfalls": [
+    "A peak need not be the global maximum.",
+    "Use mid+1 only while left<right.",
+    "A monotone array has a peak at one endpoint."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/find-peak-element/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "watch": [],
+    "labels": {
+      "nums": "Nums",
+      "left": "Left",
+      "right": "Right",
+      "mid": "Mid"
+    }
+  }
+}

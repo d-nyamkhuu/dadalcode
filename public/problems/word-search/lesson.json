@@ -1,0 +1,66 @@
+{
+  "slug": "word-search",
+  "headline": "A matching prefix is a path, not just a set of letters",
+  "statement": "Determine whether word can be formed by moving horizontally or vertically between adjacent board cells. A cell may be used at most once in a single path.",
+  "prerequisites": [
+    "Depth-first search",
+    "Backtracking",
+    "Grid boundaries"
+  ],
+  "constraints": [
+    "1 <= rows, columns <= 6",
+    "1 <= len(word) <= 15",
+    "Board and word contain uppercase or lowercase English letters"
+  ],
+  "intuition": "A matching prefix is a path, not just a set of letters. Try each start, marking the cells used by that path and restoring them when the branch finishes.",
+  "approach": [
+    "Reject words longer than the board or requiring more occurrences of a letter than the board supplies.",
+    "Start a depth-first search from every cell matching the first letter.",
+    "Reject out-of-bounds, used cells, or a character mismatch.",
+    "Mark a match and search its four neighbors for the next letter.",
+    "Restore the cell on both success and failure; return true if any complete path is found."
+  ],
+  "correctness": "A recursive state uses only distinct adjacent cells matching exactly the prefix before its index. Each legal next cell is explored, preserving the invariant. Reaching the word length proves a valid path; exhaustive failed branches prove that no start works.",
+  "bruteForce": "Enumerate all grid walks of the word length and check every completed walk for letters and repeated cells.",
+  "complexity": {
+    "time": "O(rows*columns*4^L)",
+    "space": "O(L + 52)",
+    "explanation": "DFS has at most L active letters. The frequency precheck scans rows*columns cells and stores at most 52 English-letter counts; auxiliary space is O(L+52), effectively O(L)."
+  },
+  "pitfalls": [
+    "Diagonal moves are not allowed.",
+    "A used cell is unavailable only for its current path.",
+    "Restore the board before returning success too."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/word-search/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "board",
+      "word"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "index",
+      "letter",
+      "found"
+    ],
+    "labels": {
+      "board": "Board",
+      "word": "Word",
+      "row": "Row",
+      "col": "Col",
+      "index": "Index",
+      "letter": "Letter",
+      "found": "Found"
+    }
+  }
+}

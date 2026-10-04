@@ -1,0 +1,54 @@
+{
+  "slug": "backspace-string-compare",
+  "headline": "Walk backward past erased characters",
+  "statement": "Compare the text produced by s and t when # erases the most recent surviving letter. Backspacing an empty editor leaves it empty.",
+  "prerequisites": [
+    "Two pointers",
+    "Reverse traversal"
+  ],
+  "constraints": [
+    "1 <= len(s), len(t) <= 200.",
+    "Only lowercase letters and # appear."
+  ],
+  "intuition": "Scanning backward lets a # announce that a previous letter must be skipped. Count outstanding backspaces until finding a surviving letter, then compare the two strings' next surviving characters without constructing their edited versions.",
+  "approach": [
+    "Start indices at the final characters.",
+    "Move each index backward past backspaces and erased letters using a skip counter.",
+    "Compare the surviving characters, or reject if only one string still has one.",
+    "Continue until both are exhausted."
+  ],
+  "correctness": "The helper skips precisely the letters erased by backspaces to their right, stopping at the last unerased character of the remaining prefix. Comparing these survivors visits the edited texts in reverse order. Equality at every position and simultaneous exhaustion is equivalent to equal final text.",
+  "bruteForce": "Simulate each editor with a stack, popping on #, then compare final strings. It takes linear space; reverse skipping needs only counters.",
+  "complexity": {
+    "time": "O(len(s) + len(t))",
+    "space": "O(1)",
+    "explanation": "Both indices only move backward; counters replace explicit editor contents."
+  },
+  "pitfalls": [
+    "Extra backspaces at the beginning erase nothing.",
+    "Two exhausted strings are equal.",
+    "Reset the skip counter for each search for a surviving character."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/backspace-string-compare/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s",
+      "t"
+    ],
+    "pointers": [
+      "i",
+      "j",
+      "index"
+    ],
+    "watch": [
+      "skip"
+    ],
+    "labels": {}
+  }
+}

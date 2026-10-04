@@ -1,0 +1,77 @@
+{
+  "intuition": [
+    "A set supports exact word lookups, but a period query can represent many different words. Scanning every stored word is one solution, yet it repeatedly compares shared prefixes. A trie shares those prefixes, allowing one query to explore only character paths that actually exist.",
+    "Maintain a frontier of trie nodes reachable after the query prefix processed so far. A literal letter follows its matching child from each node. A period follows every letter child, consuming exactly one character. Since the terminal marker is not a letter edge, exclude it from wildcard transitions.",
+    "After the entire query, at least one frontier node must have the terminal marker. An existing path alone is only a prefix and cannot satisfy a whole-word search. The frontier interpretation gives a precise correctness rule: after each step it contains every and only the stored prefixes matching the consumed query prefix. Missing literal edges disappear from the frontier, and an empty frontier allows early rejection. Added words share the same path-building behavior as an ordinary trie."
+  ],
+  "walkthrough": {
+    "input": {
+      "operations": [
+        "WordDictionary",
+        "addWord",
+        "addWord",
+        "addWord",
+        "search",
+        "search",
+        "search",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "bad"
+        ],
+        [
+          "dad"
+        ],
+        [
+          "mad"
+        ],
+        [
+          "pad"
+        ],
+        [
+          "bad"
+        ],
+        [
+          ".ad"
+        ],
+        [
+          "b.."
+        ]
+      ]
+    },
+    "steps": [
+      "Insert bad, dad, and mad, creating three first-letter branches that share the suffix spelling in separate paths.",
+      "search(pad) finds no p edge, so its frontier becomes empty and the query returns false.",
+      "search(bad) follows b, a, d and finds an endpoint, returning true.",
+      "For search(.ad), the first period expands to the b, d, and m nodes.",
+      "Literal a then d advances those three paths to complete words, so the query returns true.",
+      "For b.., begin on b and use each period for exactly one next letter; bad supplies a complete match."
+    ],
+    "result": [
+      null,
+      null,
+      null,
+      null,
+      false,
+      true,
+      true,
+      true
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "frontier = [self.root]",
+      "note": "Before reading any query character, the sole possible prefix is the empty root path."
+    },
+    {
+      "code": "next_frontier.extend(child for key, child in node.items() if key != '#')",
+      "note": "A period explores actual letter edges but must not consume the endpoint marker as a character."
+    },
+    {
+      "code": "return any('#' in node for node in frontier)",
+      "note": "After consuming the full query, require at least one complete word rather than merely a reachable prefix."
+    }
+  ]
+}

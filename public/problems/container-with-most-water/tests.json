@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Example: wide winning pair",
+    "input": {
+      "height": [
+        1,
+        8,
+        6,
+        2,
+        5,
+        4,
+        8,
+        3,
+        7
+      ]
+    },
+    "expected": 49
+  },
+  {
+    "name": "Example: two walls",
+    "input": {
+      "height": [
+        1,
+        1
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Zero walls",
+    "input": {
+      "height": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Increasing heights",
+    "input": {
+      "height": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Tall interior pair",
+    "input": {
+      "height": [
+        1,
+        10,
+        1,
+        10,
+        1
+      ]
+    },
+    "expected": 20
+  },
+  {
+    "name": "Equal walls",
+    "input": {
+      "height": [
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "expected": 15
+  },
+  {
+    "name": "Decreasing heights",
+    "input": {
+      "height": [
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Boundary wall heights",
+    "input": {
+      "height": [
+        10000,
+        0,
+        10000
+      ]
+    },
+    "expected": 20000
+  }
+]

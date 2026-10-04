@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Example: twelve",
+    "input": {
+      "n": 12
+    },
+    "expected": [
+      [
+        2,
+        2,
+        3
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  },
+  {
+    "name": "Example: one",
+    "input": {
+      "n": 1
+    },
+    "expected": []
+  },
+  {
+    "name": "Prime",
+    "input": {
+      "n": 37
+    },
+    "expected": []
+  },
+  {
+    "name": "Square",
+    "input": {
+      "n": 4
+    },
+    "expected": [
+      [
+        2,
+        2
+      ]
+    ]
+  },
+  {
+    "name": "Power of two",
+    "input": {
+      "n": 16
+    },
+    "expected": [
+      [
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        2,
+        2,
+        4
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        4,
+        4
+      ]
+    ]
+  },
+  {
+    "name": "Two prime factors",
+    "input": {
+      "n": 15
+    },
+    "expected": [
+      [
+        3,
+        5
+      ]
+    ]
+  },
+  {
+    "name": "Overlapping decompositions of thirty-six",
+    "input": {
+      "n": 36
+    },
+    "expected": [
+      [
+        2,
+        2,
+        3,
+        3
+      ],
+      [
+        2,
+        2,
+        9
+      ],
+      [
+        2,
+        3,
+        6
+      ],
+      [
+        2,
+        18
+      ],
+      [
+        3,
+        3,
+        4
+      ],
+      [
+        3,
+        12
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        6,
+        6
+      ]
+    ]
+  }
+]

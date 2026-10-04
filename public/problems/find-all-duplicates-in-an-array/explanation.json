@@ -1,0 +1,46 @@
+{
+  "intuition": [
+    "Count values in a dictionary, taking O(n) space. The constrained value range lets the input itself store visited flags. The bounded positive value range gives every value an available marker position, eliminating the separate counting table.",
+    "Value v is assigned marker slot v-1. Its first occurrence negates the marker, while its second observes that negative sign and emits v. An unread input position might already have been negated because another value owned it as a marker; reading abs therefore recovers the original value. The promise that no value occurs more than twice guarantees a duplicate is emitted exactly once. Unlike the no-mutation duplicate-number problem, this reference deliberately uses the input as working storage.",
+    "Initially every marker is positive. Its first corresponding value negates it, and its second sees that negative marker and records the value. Because values occur at most twice, every duplicate is emitted once and single-occurrence values never are. Absolute value preserves the original value mapping. Each position is processed once; signs in the original array store flags."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        4,
+        3,
+        2,
+        7,
+        8,
+        2,
+        3,
+        1
+      ]
+    },
+    "steps": [
+      "Read value 4 and negate its marker at index 3; read 3 and negate index 2.",
+      "Recover value 2 from the now-negative entry at index 2 and mark index 1.",
+      "Continue marking 7 and 8 using their assigned slots.",
+      "The second 2 finds index 1 negative and is appended; the second 3 likewise finds index 2 negative.",
+      "Return [2,3]; other values never encounter an already-marked slot twice."
+    ],
+    "result": [
+      2,
+      3
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "value = abs(nums[i])",
+      "note": "Sign changes store visited information; the magnitude still contains the original value to process."
+    },
+    {
+      "code": "index = value - 1",
+      "note": "Values begin at one but array positions begin at zero, so this maps each value to its own unique slot."
+    },
+    {
+      "code": "if nums[index] < 0:",
+      "note": "A negative owned slot proves this value was already encountered; its second occurrence belongs in the answer."
+    }
+  ]
+}

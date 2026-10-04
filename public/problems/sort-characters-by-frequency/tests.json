@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Most frequent e",
+    "input": {
+      "s": "tree"
+    },
+    "expected": "eert"
+  },
+  {
+    "name": "Equal triple groups",
+    "input": {
+      "s": "cccaaa"
+    },
+    "expected": "aaaccc"
+  },
+  {
+    "name": "Case-sensitive counts",
+    "input": {
+      "s": "Aabb"
+    },
+    "expected": "bbAa"
+  },
+  {
+    "name": "One character",
+    "input": {
+      "s": "x"
+    },
+    "expected": "x"
+  },
+  {
+    "name": "Digit groups",
+    "input": {
+      "s": "122333"
+    },
+    "expected": "333221"
+  },
+  {
+    "name": "Mixed tied groups",
+    "input": {
+      "s": "aabbc"
+    },
+    "expected": "aabbc"
+  }
+]

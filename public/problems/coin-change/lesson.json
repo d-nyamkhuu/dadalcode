@@ -1,0 +1,60 @@
+{
+  "slug": "coin-change",
+  "headline": "Build the cheapest composition for each amount",
+  "statement": "Given distinct positive coin denominations and an amount, return the fewest coins whose values sum to amount. Every denomination may be used any number of times. Return -1 when the amount cannot be formed.",
+  "prerequisites": [
+    "Dynamic programming",
+    "Minimum over choices"
+  ],
+  "constraints": [
+    "1 <= number of denominations <= 12",
+    "1 <= coin <= 2147483647",
+    "0 <= amount <= 10000"
+  ],
+  "intuition": "Choosing the final coin leaves a smaller amount with the same kind of problem. Store the best answer for every smaller amount, and try all possible final coins. This handles denomination sets for which taking the largest coin greedily is wrong.",
+  "approach": [
+    "Set dp[0]=0 and every other entry to an unreachable sentinel.",
+    "For each amount from 1 upward, try every coin not exceeding it.",
+    "Minimize dp[value] using dp[value-coin]+1.",
+    "Convert an unreachable final value to -1."
+  ],
+  "correctness": "Any nonempty coin composition has a final coin c and a composition of value-c. Inductively dp[value-c] is its optimal cost. Trying every c therefore considers an optimal composition\u2019s last coin, and no candidate can be cheaper than a real composition. The minimum is exact.",
+  "bruteForce": "Recursively try every possible next coin without storing repeated amounts; the branching causes exponential repeated work.",
+  "complexity": {
+    "time": "O(amount \u00d7 number of coins)",
+    "space": "O(amount)",
+    "explanation": "Each table entry examines all denominations; amount+1 slots hold optimal counts."
+  },
+  "pitfalls": [
+    "Largest-coin-first is not valid for arbitrary denominations.",
+    "Amount zero requires zero coins.",
+    "Use a sentinel greater than any possible valid coin count."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/coin-change/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "coins",
+      "dp"
+    ],
+    "pointers": [
+      "value"
+    ],
+    "watch": [
+      "coin",
+      "candidate"
+    ],
+    "labels": {
+      "coins": "Coins",
+      "dp": "Dp",
+      "value": "Value",
+      "coin": "Coin",
+      "candidate": "Candidate"
+    }
+  }
+}

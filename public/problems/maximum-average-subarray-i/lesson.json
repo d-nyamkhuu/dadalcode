@@ -1,0 +1,61 @@
+{
+  "slug": "maximum-average-subarray-i",
+  "headline": "All candidate windows share the same denominator k",
+  "statement": "Return the maximum average among all contiguous subarrays of nums having exactly k elements. Answers within 10^-5 are accepted.",
+  "prerequisites": [
+    "Fixed-width sliding windows",
+    "Running sum"
+  ],
+  "constraints": [
+    "1 <= k <= len(nums) <= 100,000",
+    "-10,000 <= nums[i] <= 10,000"
+  ],
+  "intuition": "All candidate windows share the same denominator k. Maximize their sum by replacing one outgoing element with one incoming element per step.",
+  "approach": [
+    "Sum the first k values and initialize best to that sum.",
+    "Slide the right end through the remaining values.",
+    "Add nums[right] and subtract nums[right-k]; update best.",
+    "Return best/k."
+  ],
+  "correctness": "Initially total equals the first window sum. Each transition removes exactly the value leaving and adds exactly the value entering, preserving the window-sum invariant. Every length-k window is measured once, and maximizing its sum also maximizes its average.",
+  "bruteForce": "Sum every length-k slice independently: O(n*k) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Initialize best from a real window so all-negative arrays work.",
+    "The length is exactly k, not at most k.",
+    "Use floating-point division for the final average."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/maximum-average-subarray-i/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "right",
+      "i"
+    ],
+    "watch": [
+      "total",
+      "best",
+      "k"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "right": "Right",
+      "i": "I",
+      "total": "Total",
+      "best": "Best",
+      "k": "K"
+    }
+  }
+}

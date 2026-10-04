@@ -1,0 +1,61 @@
+{
+  "slug": "binary-search",
+  "headline": "Keep the target inside an inclusive search interval",
+  "statement": "Given ascending nums with distinct integer values and a target, return its index if present, or -1 otherwise. Use logarithmic time.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 10^4",
+    "nums contains distinct sorted integers.",
+    "Values and target lie between -10^4 and 10^4."
+  ],
+  "intuition": "Checking the middle divides sorted candidates into two halves. If the middle value is too small, every value before it is too small too; if too large, everything after it is too large. Exclude the middle after a failed comparison.",
+  "approach": [
+    "Initialize left=0 and right=len(nums)-1.",
+    "While left<=right, compare nums[mid] to target.",
+    "Return mid for equality; otherwise keep only the possible half.",
+    "Return -1 when no candidate remains."
+  ],
+  "correctness": "The invariant is that any occurrence lies in left..right. Sortedness justifies removing the middle and all smaller values when nums[mid]<target, or the middle and all larger values otherwise. If equality is found the returned index is correct. An empty interval proves absence.",
+  "bruteForce": "A sequential scan takes O(n) time and cannot exploit sortedness.",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)",
+    "explanation": "Each comparison at least halves the interval, with only scalar boundaries."
+  },
+  "pitfalls": [
+    "Use <= so a final single candidate is tested.",
+    "Remove mid with +1 or -1 after a failed comparison to guarantee progress.",
+    "Return an index, not the target value.",
+    "Python integers do not overflow when computing (left+right)//2. In a fixed-width integer language, left+(right-left)//2 avoids addition overflow."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/binary-search/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "watch": [
+      "target"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "left": "Left",
+      "right": "Right",
+      "mid": "Mid",
+      "target": "Target"
+    }
+  }
+}

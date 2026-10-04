@@ -1,0 +1,47 @@
+{
+  "intuition": [
+    "A forward-only list does not provide the distance from a node to the tail. Counting the list and walking it again is valid, but we can locate the target during one coordinated traversal. The complication is that deletion requires the target’s predecessor rather than the target alone.",
+    "Place a dummy before the head and separate two pointers by n+1 links. Once the leading pointer has passed the tail, the trailing pointer sits immediately before the nth node from the end. The fixed gap converts an unknown total length into a known relative distance.",
+    "The dummy makes removing the original head look exactly like any other deletion: change a predecessor’s next link. No values need changing, and the surviving nodes retain their order. Returning dummy.next also handles a list whose only node was removed."
+  ],
+  "walkthrough": {
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "n": 2
+    },
+    "steps": [
+      "For head=[1,2,3,4,5] and n=2, attach dummy before node 1 and initialize fast=slow=dummy.",
+      "Advance fast n+1=3 links, so fast reaches node 3 while slow remains at dummy.",
+      "Move both once: fast reaches 4 and slow reaches 1. Their three-link separation is preserved.",
+      "Move again: fast reaches 5 and slow reaches 2. One final move takes fast to None and slow to 3.",
+      "Node 3 is the predecessor of node 4, which is second from the end. Change node 3.next from node 4 to node 5.",
+      "Return dummy.next, still node 1. Following its links yields [1,2,3,5]."
+    ],
+    "result": [
+      1,
+      2,
+      3,
+      5
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "dummy = ListNode(0, head)",
+      "note": "A removable head now has a predecessor. The dummy’s arbitrary value is never part of the returned list."
+    },
+    {
+      "code": "for _ in range(n + 1):",
+      "note": "The extra step positions slow before the deletion target when fast reaches None. A gap of n would stop on the target."
+    },
+    {
+      "code": "slow.next = slow.next.next",
+      "note": "Bypass exactly one node. Both neighboring links already identify the retained prefix and suffix, so no additional reconstruction is needed."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "intuition": [
+    "Counting the bits of each number independently repeats work: neighboring numbers share binary prefixes that have already been examined. Instead of repeatedly dividing every value until zero, store the bit count for each smaller value and build the next answer from one known prefix.",
+    "Right shifting i by one removes its final binary digit. That final digit is zero for an even number and one for an odd number. Thus the count of i is the count of i>>1 plus i&1. The shifted value is always smaller, so its table entry is ready.",
+    "Start with the count for zero, which is zero. Fill entries in ascending numeric order, making each recurrence lookup valid without recursion. The required result already contains one entry per integer, so the full table is output storage rather than an avoidable auxiliary data structure."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 8
+    },
+    "steps": [
+      "For n=8, allocate nine zero entries for values 0 through 8; counts[0]=0 is the base case.",
+      "At i=1, use counts[0]+1=1. At i=2 (10), use counts[1]+0=1. At i=3 (11), use counts[1]+1=2.",
+      "At i=4 (100), reuse counts[2]+0=1. At i=5 (101), reuse counts[2]+1=2. At i=6 (110), reuse counts[3]+0=2.",
+      "At i=7 (111), reuse counts[3]+1=3: the known prefix 11 supplies two set bits.",
+      "At i=8 (1000), reuse counts[4]+0=1. Crossing a power of two resets the count even though the integer increased.",
+      "Return [0,1,1,2,1,2,2,3,1], preserving every entry from 0 through n."
+    ],
+    "result": [
+      0,
+      1,
+      1,
+      2,
+      1,
+      2,
+      2,
+      3,
+      1
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "counts = [0] * (n + 1)",
+      "note": "The range includes zero and n, so it needs n+1 entries. Initializing zeros supplies the recurrence\u2019s correct zero-value base case."
+    },
+    {
+      "code": "for i in range(1, n + 1):",
+      "note": "Ascending order ensures every shifted prefix has already been counted, removing any need for recursive calls or memoization checks."
+    },
+    {
+      "code": "counts[i] = counts[i >> 1] + (i & 1)",
+      "note": "The shifted prefix contributes all earlier bits, and the bitwise AND contributes exactly the one removed least-significant bit."
+    }
+  ]
+}

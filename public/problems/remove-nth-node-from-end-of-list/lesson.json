@@ -1,0 +1,60 @@
+{
+  "slug": "remove-nth-node-from-end-of-list",
+  "headline": "Keep a fixed gap so one pointer locates the predecessor",
+  "statement": "Remove the nth node from the end of a singly linked list and return the updated head. n is valid for the list length. Preserve the identities, values, and order of all surviving original nodes.",
+  "prerequisites": [
+    "Linked-list links",
+    "Dummy nodes",
+    "Two pointers"
+  ],
+  "constraints": [
+    "1 <= list length <= 30",
+    "1 <= n <= list length",
+    "0 <= node value <= 100"
+  ],
+  "intuition": "Deleting a node requires its predecessor. Start both pointers at a dummy before the head and move fast n+1 positions ahead. When fast reaches the end, slow is just before the desired node, including when the head is removed.",
+  "approach": [
+    "Create a dummy whose next is head.",
+    "Advance fast n+1 links from the dummy.",
+    "Advance both pointers until fast is None.",
+    "Bypass slow.next and return dummy.next."
+  ],
+  "correctness": "The pointers remain n+1 links apart. When fast is past the final node, slow is n+1 links before that position: immediately before the nth node from the end. Bypassing that link deletes exactly the required node and preserves every other node’s order.",
+  "bruteForce": "Count the length in one pass, then walk length-n positions in a second pass to find the predecessor.",
+  "complexity": {
+    "time": "O(length)",
+    "space": "O(1)",
+    "explanation": "Each pointer walks at most the list length; only a dummy and pointers are allocated."
+  },
+  "pitfalls": [
+    "Use a dummy to make head deletion uniform.",
+    "The gap must locate the predecessor, not the node itself.",
+    "Return dummy.next after a potential head change."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head",
+      "dummy"
+    ],
+    "pointers": [],
+    "watch": [
+      "fast",
+      "slow",
+      "n"
+    ],
+    "labels": {
+      "head": "Head",
+      "dummy": "Dummy",
+      "fast": "Fast",
+      "slow": "Slow",
+      "n": "N"
+    }
+  }
+}

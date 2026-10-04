@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Official frequencies",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "k": 2
+    },
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Official singleton",
+    "input": {
+      "nums": [
+        1
+      ],
+      "k": 1
+    },
+    "expected": [
+      1
+    ]
+  },
+  {
+    "name": "Negative leader",
+    "input": {
+      "nums": [
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        3
+      ],
+      "k": 1
+    },
+    "expected": [
+      -1
+    ]
+  },
+  {
+    "name": "All distinct selected",
+    "input": {
+      "nums": [
+        4,
+        2,
+        9
+      ],
+      "k": 3
+    },
+    "expected": [
+      4,
+      2,
+      9
+    ]
+  },
+  {
+    "name": "Equal leaders above boundary",
+    "input": {
+      "nums": [
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "k": 2
+    },
+    "expected": [
+      1,
+      2
+    ]
+  },
+  {
+    "name": "Repeated only value",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "k": 1
+    },
+    "expected": [
+      0
+    ]
+  }
+]

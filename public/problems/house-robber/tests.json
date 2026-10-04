@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Example: alternate",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        1
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Example: longer street",
+    "input": {
+      "nums": [
+        2,
+        7,
+        9,
+        3,
+        1
+      ]
+    },
+    "expected": 12
+  },
+  {
+    "name": "Singleton",
+    "input": {
+      "nums": [
+        5
+      ]
+    },
+    "expected": 5
+  },
+  {
+    "name": "Zeros",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Greedy trap",
+    "input": {
+      "nums": [
+        2,
+        1,
+        1,
+        2
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Two houses",
+    "input": {
+      "nums": [
+        3,
+        8
+      ]
+    },
+    "expected": 8
+  },
+  {
+    "name": "Maximum amounts around zero",
+    "input": {
+      "nums": [
+        400,
+        0,
+        400
+      ]
+    },
+    "expected": 800
+  }
+]

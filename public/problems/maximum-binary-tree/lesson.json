@@ -1,0 +1,57 @@
+{
+  "slug": "maximum-binary-tree",
+  "headline": "Maintain a decreasing chain of right ancestors",
+  "statement": "Construct a binary tree from distinct nums values. Its root is the maximum value; its left subtree is built from values left of that maximum and its right subtree from values right of it. Return the tree; the trainer serializes it in level order.",
+  "prerequisites": [
+    "Binary trees",
+    "Monotonic stack",
+    "Inorder ordering"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 1000",
+    "0 <= nums[i] <= 1000",
+    "All values are distinct"
+  ],
+  "intuition": "Reading left to right, a new larger value becomes the parent of smaller pending roots. The last popped root becomes its left child. If a larger ancestor remains on the stack, the new node becomes that ancestor’s right child.",
+  "approach": [
+    "Create one node for each value.",
+    "Pop smaller stack nodes, assigning the final popped subtree as the new node’s left child.",
+    "Link the new node as the remaining top’s right child, then push it; the first stack node is the final root."
+  ],
+  "correctness": "The stack follows the rightmost ancestor chain in decreasing value order. A larger new value absorbs exactly the smaller trailing subtrees as its left subtree, preserving input inorder order and the maximum-parent property. These properties uniquely define the requested recursive maximum tree.",
+  "bruteForce": "Find the maximum in every recursive subarray and split around it, costing O(n²) on already sorted input.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)",
+    "explanation": "Each node is pushed and popped at most once. The decreasing stack uses O(n) auxiliary references in the worst case; constructing the returned tree allocates O(n) output nodes separately."
+  },
+  "pitfalls": [
+    "Use strict comparison because all values are distinct.",
+    "The last popped subtree, not every popped node, is the new left child.",
+    "Preserve inorder order; this is not a binary search tree."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/maximum-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "nums",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "value",
+      "node"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "stack": "Stack",
+      "value": "Value",
+      "node": "Node"
+    }
+  }
+}

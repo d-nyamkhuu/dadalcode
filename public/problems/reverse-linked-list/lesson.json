@@ -1,0 +1,56 @@
+{
+  "slug": "reverse-linked-list",
+  "headline": "Split the list conceptually into an already reversed prefix and an untouched suffix",
+  "statement": "Reverse all next pointers of a singly linked list and return its new head. An empty list returns an empty list.",
+  "prerequisites": [
+    "Linked-list pointers",
+    "Preserving a suffix before mutation"
+  ],
+  "constraints": [
+    "0 <= node count <= 5,000",
+    "-5,000 <= node values <= 5,000"
+  ],
+  "intuition": "Split the list conceptually into an already reversed prefix and an untouched suffix. Move one node from the suffix to the prefix at each step.",
+  "approach": [
+    "Initialize previous=None and current=head.",
+    "Save current.next as following before modifying it.",
+    "Set current.next=previous, advance previous to current, and current to following.",
+    "Return previous after the original suffix is empty."
+  ],
+  "correctness": "The reversed prefix initially is empty. Each iteration links the first untouched node in front of that prefix while preserving every untouched node through following. Thus all processed links are reversed with no lost nodes; when current is None, previous is the complete reversed list.",
+  "bruteForce": "Store all node references, then reconnect them in reverse: O(n) auxiliary space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Each original node is transferred once from the untouched suffix to the reversed prefix. Only previous, current, and following pointers are needed; no output nodes are allocated."
+  },
+  "pitfalls": [
+    "Saving following after overwriting current.next loses the suffix.",
+    "Return previous, since current is None at the end.",
+    "Reverse links rather than copying reversed values into nodes."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/reverse-linked-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "previous",
+      "current",
+      "following"
+    ],
+    "labels": {
+      "head": "Head",
+      "previous": "Previous",
+      "current": "Current",
+      "following": "Following"
+    }
+  }
+}

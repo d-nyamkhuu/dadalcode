@@ -1,0 +1,61 @@
+{
+  "slug": "letter-case-permutation",
+  "headline": "Branch only when a character has two letter cases",
+  "statement": "Return every string obtained by independently choosing uppercase or lowercase for each letter in s. Digits remain unchanged. Return strings in any order.",
+  "prerequisites": [
+    "Backtracking",
+    "Character classification"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 12",
+    "s consists only of English letters and digits"
+  ],
+  "intuition": "Each letter makes one binary decision; a digit makes no decision. Recursion over positions builds the Cartesian product of those local choices, preserving every character’s position.",
+  "approach": [
+    "Maintain a list of chosen characters.",
+    "At position i, use lowercase and uppercase variants for a letter, or the unchanged digit.",
+    "Recurse to i+1 for each choice and undo it.",
+    "Join the completed path into one output string."
+  ],
+  "correctness": "For each letter, both and only its two valid cases are explored. Digits have one unchanged branch. The recursion selects one allowed character per position, so every resulting string is valid. Each valid sequence of choices follows one unique branch path, ensuring completeness without duplicates.",
+  "bruteForce": "Enumerate masks for all positions and toggle by mask, then deduplicate; masks at digit positions create redundant work.",
+  "complexity": {
+    "time": "O(n × 2^L)",
+    "space": "O(n) auxiliary plus output",
+    "explanation": "L is the number of letters. There are 2^L strings, each requiring n characters to create. Working path and recursion use O(n) auxiliary space; the returned strings use O(n × 2^L) output space."
+  },
+  "pitfalls": [
+    "Do not produce two identical branches for a digit.",
+    "Input letters may already be uppercase.",
+    "Keep digits and character order unchanged."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/letter-case-permutation/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "s",
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "char",
+      "choices"
+    ],
+    "labels": {
+      "s": "S",
+      "path": "Path",
+      "result": "Result",
+      "i": "I",
+      "char": "Char",
+      "choices": "Choices"
+    }
+  }
+}

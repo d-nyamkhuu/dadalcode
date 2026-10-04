@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "The sorted list divides into letters that are too small or equal to the target and letters that are strictly greater. A linear scan finds the first valid letter, but binary search can locate this boundary faster. Duplicates matter because every copy equal to target must be excluded.",
+    "Use a half-open interval [left,right). When the middle letter is at most target, discard it and everything earlier. When it is greater, preserve it as a possible first answer by moving right to mid. The unexamined elements occupy [left,right), while the insertion boundary remains between left and right inclusively; it may equal right.",
+    "The boundary may equal the list length, meaning every letter was too small or equal. The problem specifies circular wraparound in that case, so taking the boundary modulo the length selects the first letter. This handles the missing strict upper bound without a separate scan.",
+    "For letters=[a,z] and target=z, begin with [left,right)=[0,2). Midpoint 1 contains z, which is equal rather than strictly greater, so left becomes 2. The search ends at insertion position 2, one past the final element. Applying 2 % 2 gives zero, so the answer wraps to a. Equality at the final entry must follow the same discarded-side rule as equality anywhere else."
+  ],
+  "walkthrough": {
+    "input": {
+      "letters": [
+        "c",
+        "f",
+        "j"
+      ],
+      "target": "c"
+    },
+    "steps": [
+      "For letters=[c,f,j] and target=c, initialize left=0 and right=3, with right as an exclusive endpoint.",
+      "The first midpoint is 1, whose letter f is greater than c. Keep index 1 as a possible earliest valid answer by setting right=1.",
+      "The next midpoint is 0, whose letter c equals the target and is therefore invalid.",
+      "Move left to mid+1=1. Left now equals right, establishing the strict upper-bound position.",
+      "Compute index 1 modulo length 3, which remains 1. No wraparound is needed in this example.",
+      "Return letters[1]=f. Returning c would violate strictness even though it is present in the sorted list."
+    ],
+    "result": "f"
+  },
+  "codeNotes": [
+    {
+      "code": "left, right = 0, len(letters)",
+      "note": "The exclusive right endpoint permits an insertion position equal to the length, representing a missing greater letter."
+    },
+    {
+      "code": "if letters[mid] <= target:",
+      "note": "Equality belongs on the discarded side; otherwise a duplicate target letter could be returned instead of a strictly greater one."
+    },
+    {
+      "code": "return letters[left % len(letters)]",
+      "note": "Modulo translates the beyond-end boundary to index zero, implementing the specified circular behavior in constant time."
+    }
+  ]
+}

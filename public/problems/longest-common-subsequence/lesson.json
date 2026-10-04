@@ -1,0 +1,64 @@
+{
+  "slug": "longest-common-subsequence",
+  "headline": "Compare prefix pairs without requiring adjacency",
+  "statement": "Return the length of the longest common subsequence of text1 and text2. A subsequence preserves relative character order but may skip characters. Return zero if no character sequence is common.",
+  "prerequisites": [
+    "Subsequences versus substrings",
+    "Prefix dynamic programming"
+  ],
+  "constraints": [
+    "1 <= len(text1), len(text2) <= 1000",
+    "Both strings contain lowercase English letters"
+  ],
+  "intuition": "For two prefixes, matching final characters can extend the common subsequence of both shorter prefixes. When final characters differ, an optimal subsequence must skip at least one of them. Keep one previous row and one current row of this prefix table.",
+  "approach": [
+    "Start a zero row representing an empty text1 prefix.",
+    "For each text1 character, build a row over text2: match uses diagonal+1, mismatch uses max(above,left).",
+    "Replace the previous row and return its final value."
+  ],
+  "correctness": "If the last characters match, an optimal common subsequence can include that match after an optimal shorter-prefix subsequence. If they differ, they cannot both end the same subsequence, so dropping either last character covers the optimum. Induction over both prefix lengths proves the recurrence.",
+  "bruteForce": "Enumerate all subsequences of one string and check each against the other; there are up to 2^m candidates.",
+  "complexity": {
+    "time": "O(mn)",
+    "space": "O(n)",
+    "explanation": "Each prefix pair is computed once; only two length-n rows are retained."
+  },
+  "pitfalls": [
+    "Subsequence characters need not be adjacent.",
+    "Matching uses the previous diagonal, not the current row value.",
+    "A mismatch chooses a maximum; it does not reset the cell to zero as substring DP would."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/longest-common-subsequence/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "text1",
+      "text2",
+      "previous",
+      "current"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "first",
+      "second"
+    ],
+    "labels": {
+      "text1": "Text1",
+      "text2": "Text2",
+      "previous": "Previous",
+      "current": "Current",
+      "row": "Row",
+      "col": "Col",
+      "first": "First",
+      "second": "Second"
+    }
+  }
+}

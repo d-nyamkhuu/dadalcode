@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Example: three houses",
+    "input": {
+      "nums": [
+        2,
+        3,
+        2
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: four houses",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        1
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "Single house",
+    "input": {
+      "nums": [
+        9
+      ]
+    },
+    "expected": 9
+  },
+  {
+    "name": "Two houses",
+    "input": {
+      "nums": [
+        8,
+        3
+      ]
+    },
+    "expected": 8
+  },
+  {
+    "name": "Endpoint conflict",
+    "input": {
+      "nums": [
+        10,
+        1,
+        1,
+        10
+      ]
+    },
+    "expected": 11
+  },
+  {
+    "name": "All zero",
+    "input": {
+      "nums": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Excluding first endpoint wins",
+    "input": {
+      "nums": [
+        1,
+        1,
+        10,
+        1,
+        10
+      ]
+    },
+    "expected": 20
+  }
+]

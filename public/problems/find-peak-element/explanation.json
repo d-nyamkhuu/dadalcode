@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "Scanning all positions finds a peak, but the required logarithmic time means we must discard a large part of the array after each comparison. Searching for the global maximum is unnecessary: any value greater than both neighbors is acceptable, including an endpoint with its outside neighbor treated as negative infinity.",
+    "Compare the middle value with the next value. A rise guarantees a peak somewhere to the right: either the rising run eventually falls, creating a local peak, or it reaches the final element. A fall guarantees a peak in the left part, including the middle itself.",
+    "Keep an inclusive candidate interval and preserve a side containing a peak at every update. Adjacent values are unequal, so the comparison always supplies a direction. When one index remains, the maintained boundary slopes ensure it is a valid peak. Multiple possible peaks do not require tie-breaking."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        1,
+        3,
+        5,
+        6,
+        4
+      ]
+    },
+    "steps": [
+      "For nums=[1,2,1,3,5,6,4], start with left=0 and right=6.",
+      "Midpoint 3 contains value 3, while index 4 contains 5. The slope rises, so keep the right side by setting left=4.",
+      "Now mid=5 contains 6 and index 6 contains 4. The slope falls; keep mid as a possible peak by setting right=5.",
+      "With interval [4,5], mid=4 contains 5 and its right neighbor contains 6. Set left=5.",
+      "Left and right now both equal 5, so stop without another neighbor comparison.",
+      "Return index 5. Its value 6 is greater than both neighbors, 5 and 4; the earlier peak at index 1 need not be found."
+    ],
+    "result": 5
+  },
+  "codeNotes": [
+    {
+      "code": "mid = (left + right) // 2",
+      "note": "While left<right, this midpoint is strictly before right, so reading mid+1 remains inside the array."
+    },
+    {
+      "code": "left = mid + 1",
+      "note": "A rising edge guarantees a peak beyond mid, allowing the entire left portion to be discarded."
+    },
+    {
+      "code": "right = mid",
+      "note": "A falling edge allows mid itself to be the peak. Keeping it avoids accidentally discarding the correct answer."
+    }
+  ]
+}

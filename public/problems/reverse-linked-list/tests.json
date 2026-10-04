@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Example: five nodes",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "expected": [
+      5,
+      4,
+      3,
+      2,
+      1
+    ]
+  },
+  {
+    "name": "Example: two nodes",
+    "input": {
+      "head": [
+        1,
+        2
+      ]
+    },
+    "expected": [
+      2,
+      1
+    ]
+  },
+  {
+    "name": "Empty",
+    "input": {
+      "head": []
+    },
+    "expected": []
+  },
+  {
+    "name": "One",
+    "input": {
+      "head": [
+        9
+      ]
+    },
+    "expected": [
+      9
+    ]
+  },
+  {
+    "name": "Duplicates",
+    "input": {
+      "head": [
+        2,
+        2,
+        3
+      ]
+    },
+    "expected": [
+      3,
+      2,
+      2
+    ]
+  },
+  {
+    "name": "Negative values",
+    "input": {
+      "head": [
+        -1,
+        0,
+        1
+      ]
+    },
+    "expected": [
+      1,
+      0,
+      -1
+    ]
+  }
+]

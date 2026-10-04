@@ -1,0 +1,51 @@
+{
+  "slug": "sort-colors",
+  "headline": "Partition into zero, one, unknown, and two regions",
+  "statement": "Rearrange nums in place so all 0 values precede 1 values, which precede 2 values. Use no library sort; the reference uses one pass and constant extra space.",
+  "prerequisites": [
+    "In-place swaps",
+    "Loop invariants"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 300.",
+    "Each value is 0, 1, or 2."
+  ],
+  "intuition": "Three pointers describe four regions: zeros before low, ones from low to mid, unknown values from mid to high, and twos after high. Each swap shrinks the unknown region without disturbing the classified regions.",
+  "approach": [
+    "Set low and mid to zero and high to the last index.",
+    "Move a zero to low, advancing both low and mid.",
+    "Leave a one in the middle and advance mid.",
+    "Move a two to high, reducing high without advancing mid."
+  ],
+  "correctness": "Before every iteration the outer regions and the ones region satisfy their required values. A zero swap preserves the ones region, a one extends it, and a two swap extends the twos region. Each action shrinks the unknown region by one. When it is empty, the entire array is sorted.",
+  "bruteForce": "Count each color and overwrite the array in a second pass. This is O(n) time and O(1) storage; the Dutch-national-flag partition accomplishes it in one pass.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Every iteration removes one element from the unknown interval."
+  },
+  "pitfalls": [
+    "After swapping a two, inspect the incoming value at mid.",
+    "Modify the supplied array rather than only returning a new one.",
+    "Advance low only after placing a zero."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/sort-colors/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "watch": [],
+    "labels": {}
+  }
+}

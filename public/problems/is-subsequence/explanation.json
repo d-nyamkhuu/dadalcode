@@ -1,0 +1,37 @@
+{
+  "intuition": [
+    "A subsequence may skip characters, so matching s against one contiguous part of t is too restrictive. Enumerating every choice of positions in t is the opposite extreme: it explores many index combinations even though most decisions can be made immediately while scanning.",
+    "The useful state is the next unmatched character of s. When t supplies that character, accept the earliest available occurrence. Waiting for a later occurrence cannot create more space for the remaining characters; it only removes potential positions from the suffix.",
+    "This gives a one-way scan with two kinds of progress: every character advances through t, but only a match advances through s. The matched counter always describes a prefix of s already found in order. Reaching the length of s proves all required characters have distinct matching positions.",
+    "The full scan makes every t position available to the visual walkthrough. A result-only variant can return true immediately for empty s or after its final required character matches; that saves work on easy inputs while preserving the same worst-case O(len(t)) bound."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "abc",
+      "t": "ahbgdc"
+    },
+    "steps": [
+      "For s=abc and t=ahbgdc, begin with matched=0, so the next required character is a.",
+      "At t index 0, a matches s[0]; set matched=1 and now require b.",
+      "At index 1, h is unrelated to the next requirement, so leave matched unchanged.",
+      "At index 2, b matches s[1]; set matched=2 and now require c.",
+      "Characters g and d at indices 3 and 4 are skipped. At index 5, c matches and matched becomes 3.",
+      "Since matched equals len(s)=3, return true. The selected indices 0,2,5 preserve order while allowing gaps."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "matched = 0",
+      "note": "This counter is both the number of matched characters and the index of the next character needed from s."
+    },
+    {
+      "code": "if matched < len(s) and s[matched] == char:",
+      "note": "The length guard protects empty or fully matched s; equality consumes only the next requirement, never a later one."
+    },
+    {
+      "code": "matched += 1",
+      "note": "Advance on the earliest matching occurrence. This leaves the longest available suffix for all remaining requirements."
+    }
+  ]
+}

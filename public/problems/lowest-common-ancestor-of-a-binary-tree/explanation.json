@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "This is a general binary tree, so comparing p and q’s values cannot tell us which branch contains their ancestor. Repeated subtree searches can revisit many nodes. A direct alternative is to first provide the upward links that a normal binary-tree node does not store.",
+    "An iterative traversal records each discovered node’s parent by identity. Once p and q are discovered, those records already include their complete chains to the root. Mark every ancestor of p, including p itself, then walk upward from q.",
+    "The first marked node encountered from q is the lowest common ancestor: any later shared node is strictly higher on q’s chain. Using original node objects rather than values preserves the required identity. A target that is itself above the other target naturally becomes the answer because nodes count as their own ancestors."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        10,
+        5,
+        3,
+        8,
+        2
+      ],
+      "p": 8,
+      "q": 2
+    },
+    "steps": [
+      "Use root=[10,5,3,8,2], p=node 8, and q=node 2. Initialize parents[root]=None and stack=[10].",
+      "Pop 10 and record parents[5]=10 and parents[3]=10. The stack contains 5 then 3.",
+      "Pop 3, which has no children. Pop 5 next and record parents[8]=5 and parents[2]=5.",
+      "Both targets are now discovered, so stop building parents. Walk from p=8 upward and mark nodes 8,5,10.",
+      "Start the second walk at q=2. It is not marked, so follow its parent to node 5.",
+      "Node 5 is marked and is the first shared node encountered. Return the original node 5, displayed by its value in the fixture."
+    ],
+    "result": 5
+  },
+  "codeNotes": [
+    {
+      "code": "while p not in parents or q not in parents:",
+      "note": "Discovery can stop once both targets have complete parent chains; unrelated descendants are unnecessary for the answer."
+    },
+    {
+      "code": "ancestors.add(current)",
+      "note": "Mark original node identities along p’s chain, including p itself, so an ancestor target can be returned correctly."
+    },
+    {
+      "code": "while current not in ancestors:",
+      "note": "Starting from q makes the first intersection deepest on q’s chain and therefore lower than every other common ancestor."
+    }
+  ]
+}

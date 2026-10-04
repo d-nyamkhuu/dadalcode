@@ -1,0 +1,256 @@
+[
+  {
+    "name": "Example: frequency then recency",
+    "input": {
+      "operations": [
+        [
+          "push",
+          5
+        ],
+        [
+          "push",
+          7
+        ],
+        [
+          "push",
+          5
+        ],
+        [
+          "push",
+          7
+        ],
+        [
+          "push",
+          4
+        ],
+        [
+          "push",
+          5
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      5,
+      7,
+      5,
+      4
+    ]
+  },
+  {
+    "name": "Example: simple tie",
+    "input": {
+      "operations": [
+        [
+          "push",
+          1
+        ],
+        [
+          "push",
+          2
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      2,
+      1
+    ]
+  },
+  {
+    "name": "Repeated only value",
+    "input": {
+      "operations": [
+        [
+          "push",
+          3
+        ],
+        [
+          "push",
+          3
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      3,
+      3
+    ]
+  },
+  {
+    "name": "Interleaved operations",
+    "input": {
+      "operations": [
+        [
+          "push",
+          1
+        ],
+        [
+          "push",
+          2
+        ],
+        [
+          "push",
+          1
+        ],
+        [
+          "pop"
+        ],
+        [
+          "push",
+          2
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      1,
+      null,
+      2,
+      2,
+      1
+    ]
+  },
+  {
+    "name": "Zero is a value",
+    "input": {
+      "operations": [
+        [
+          "push",
+          0
+        ],
+        [
+          "push",
+          9
+        ],
+        [
+          "push",
+          0
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      0
+    ]
+  },
+  {
+    "name": "Empty then reuse",
+    "input": {
+      "operations": [
+        [
+          "push",
+          4
+        ],
+        [
+          "pop"
+        ],
+        [
+          "push",
+          5
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      4,
+      null,
+      5
+    ]
+  },
+  {
+    "name": "Repush after frequency drop",
+    "input": {
+      "operations": [
+        [
+          "push",
+          1
+        ],
+        [
+          "push",
+          2
+        ],
+        [
+          "push",
+          1
+        ],
+        [
+          "pop"
+        ],
+        [
+          "push",
+          1
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ],
+        [
+          "pop"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      1,
+      null,
+      1,
+      2,
+      1
+    ]
+  }
+]

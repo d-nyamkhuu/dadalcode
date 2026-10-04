@@ -1,0 +1,70 @@
+{
+  "slug": "median-of-two-sorted-arrays",
+  "headline": "Split two arrays at the same median boundary",
+  "statement": "Given two ascending integer arrays nums1 and nums2 with a nonempty combined length, return their combined median. The algorithm must take logarithmic time. For even length, average the two middle values. Neither input needs to be modified. The trainer accepts finite numeric answers within relative tolerance 1e-7 or absolute tolerance 1e-9.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Indexing, comparisons, and loop invariants"
+  ],
+  "constraints": [
+    "0 <= len(nums1), len(nums2) <= 1000",
+    "1 <= combined length <= 2000",
+    "Values are between -10^6 and 10^6; each input is sorted."
+  ],
+  "intuition": "The median separates a lower half from an upper half. Choose how many elements of the smaller array belong to the lower half; the needed count from the other array is then forced. Sortedness means only the four values beside this boundary need checking.",
+  "approach": [
+    "Search the smaller array so every candidate partition is legal.",
+    "Keep (m+n+1)//2 values on the left, placing the extra value there for odd totals.",
+    "If the first left boundary exceeds the second right boundary, take fewer from the first array; if the reverse inequality fails, take more.",
+    "Once both inequalities hold, return the largest left value or its average with the smallest right value."
+  ],
+  "correctness": "For a valid partition, sortedness inside each array and both cross-boundary inequalities imply every left value is no larger than every right value. The left side has the exact required size, so its maximum is the odd median. For even totals the right minimum is the other central value. An oversized first boundary can only be corrected by moving that cut left; an undersized cut must move right, so binary search never discards a valid cut.",
+  "bruteForce": "Merge the arrays in O(m+n) time and read the middle. That approach is easy but fails the required logarithmic bound.",
+  "complexity": {
+    "time": "O(log(min(m,n)+1))",
+    "space": "O(1)",
+    "explanation": "Each partition halves the smaller search interval; only scalar boundaries are stored."
+  },
+  "pitfalls": [
+    "Search the shorter input, otherwise the second cut may be outside its array.",
+    "Use negative/positive infinity at missing boundaries.",
+    "For odd totals, use the left maximum instead of averaging."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums1",
+      "nums2"
+    ],
+    "pointers": [
+      "i",
+      "j"
+    ],
+    "watch": [
+      "low",
+      "high",
+      "a_left",
+      "a_right",
+      "b_left",
+      "b_right"
+    ],
+    "labels": {
+      "nums1": "Nums1",
+      "nums2": "Nums2",
+      "i": "First-array left count",
+      "j": "Second-array left count",
+      "low": "Minimum first-array cut",
+      "high": "Maximum first-array cut",
+      "a_left": "A left",
+      "a_right": "A right",
+      "b_left": "B left",
+      "b_right": "B right"
+    }
+  }
+}

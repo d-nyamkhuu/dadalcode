@@ -1,0 +1,40 @@
+{
+  "intuition": [
+    "The usual maximum-sum idea of remembering one best ending value does not transfer directly to products. Multiplying by a negative number reverses ordering. A very negative ending product that looks unhelpful now could become the next position\u2019s largest positive product. Keeping only the maximum would discard that possibility.",
+    "Track high and low for nonempty subarrays ending at the current position. Every next ending subarray either starts fresh at the current value or extends an old ending subarray. Compare the current value with its products against both old extremes, then choose a new maximum and minimum. Zero automatically makes both products zero and permits a later fresh start.",
+    "The old extremes must be read together before either is overwritten. Updating high and then using that new value to compute low would accidentally apply the current factor twice. The global best is separate: an earlier ending subarray may remain optimal after later negatives or zeros arrive. Initializing all three values from nums[0] respects the requirement that the selected subarray is nonempty."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        2,
+        3,
+        -2,
+        4
+      ]
+    },
+    "steps": [
+      "For [2,3,-2,4], initialize high=low=best=2.",
+      "At 3, candidates are 3 and 6. Set high=6, low=3, best=6.",
+      "At -2, candidates are -2, -12, and -6. Set high=-2 and low=-12.",
+      "The global best remains 6 even though the current ending maximum is negative.",
+      "At 4, candidates are 4, -8, and -48. Set high=4 and low=-48.",
+      "Return best=6, the product of the earlier contiguous subarray [2,3]."
+    ],
+    "result": 6
+  },
+  "codeNotes": [
+    {
+      "code": "old_high, old_low = high, low",
+      "note": "Both transitions need the previous position\u2019s extremes, not one partially updated value."
+    },
+    {
+      "code": "high = max(value, value * old_high, value * old_low)",
+      "note": "Allow starting fresh and both sign-sensitive extensions."
+    },
+    {
+      "code": "best = max(best, high)",
+      "note": "An earlier subarray can remain optimal even when the current ending product worsens."
+    }
+  ]
+}

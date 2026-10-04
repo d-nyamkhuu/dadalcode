@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Example: two types",
+    "input": {
+      "fruits": [
+        1,
+        2,
+        1
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: shift start",
+    "input": {
+      "fruits": [
+        0,
+        1,
+        2,
+        2
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Late best window",
+    "input": {
+      "fruits": [
+        1,
+        2,
+        3,
+        2,
+        2
+      ]
+    },
+    "expected": 4
+  },
+  {
+    "name": "One tree",
+    "input": {
+      "fruits": [
+        0
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "All one type",
+    "input": {
+      "fruits": [
+        2,
+        2,
+        2
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Many restarts",
+    "input": {
+      "fruits": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+      ]
+    },
+    "expected": 2
+  },
+  {
+    "name": "Drop an old repeated type",
+    "input": {
+      "fruits": [
+        0,
+        0,
+        1,
+        2,
+        2,
+        2,
+        1
+      ]
+    },
+    "expected": 5
+  },
+  {
+    "name": "Best window ends before final tree",
+    "input": {
+      "fruits": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        2
+      ]
+    },
+    "expected": 5
+  }
+]

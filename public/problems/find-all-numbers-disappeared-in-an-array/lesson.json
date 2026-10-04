@@ -1,0 +1,58 @@
+{
+  "slug": "find-all-numbers-disappeared-in-an-array",
+  "headline": "Use each value as an index marker",
+  "statement": "Given nums of length n with values from 1 through n, return the numbers in that range that never appear. Some values repeat. Solve without extra space apart from the returned list. Any output order is accepted. You may modify nums.",
+  "prerequisites": [
+    "Array indexing",
+    "In-place sign markers"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100,000",
+    "1 <= nums[i] <= len(nums)"
+  ],
+  "intuition": "Value v has a natural home at index v-1. Mark that home negative when v appears. Use absolute values while scanning because an earlier visit may have changed the sign of the current element.",
+  "approach": [
+    "For every position read value as abs(nums[position]).",
+    "Make nums[value-1] negative without toggling an already-negative marker.",
+    "Collect index+1 for every position still positive."
+  ],
+  "correctness": "Position v-1 becomes negative if and only if value v is encountered. Absolute values preserve original magnitudes for later visits, and repeated visits keep markers negative. Therefore the remaining positive positions correspond exactly to missing values.",
+  "bruteForce": "For each number from 1 to n, scan nums for membership; this costs O(n\u00b2). A set gives linear time but O(n) extra space.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1) auxiliary",
+    "explanation": "Two passes use the input signs as n markers; output space is excluded."
+  },
+  "pitfalls": [
+    "Use abs when reading values that may already have been marked.",
+    "Set negative rather than multiplying by -1; repeats must not undo marks.",
+    "Map values to zero-based positions by subtracting one."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "result"
+    ],
+    "pointers": [
+      "index",
+      "home"
+    ],
+    "watch": [
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "result": "Result",
+      "index": "Index",
+      "home": "Home",
+      "value": "Value"
+    }
+  }
+}

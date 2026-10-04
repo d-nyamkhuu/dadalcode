@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "The unknown alphabet could be searched by trying permutations, but the sorted words provide direct ordering evidence. In lexicographic comparison, only the first unequal letters matter. Letters after that mismatch contribute no further rule, even if their values look informative.",
+    "Compare neighboring words and turn each first mismatch into a directed edge. A valid alphabet is then a topological ordering of these character dependencies. Initialize every observed character, including letters with no discovered edges, so the output describes the whole observed alphabet rather than only constrained letters.",
+    "Two failure modes need separate checks. A longer word before its own prefix is impossible regardless of character order. A dependency cycle is impossible because no character in it can come first. Deduplicating repeated edges prevents duplicate evidence from making a correct graph appear artificially blocked."
+  ],
+  "walkthrough": {
+    "input": {
+      "words": [
+        "wrt",
+        "wrf",
+        "er",
+        "ett",
+        "rftt"
+      ]
+    },
+    "steps": [
+      "For words=[wrt,wrf,er,ett,rftt], create vertices for the five observed letters w,r,t,f,e.",
+      "Compare wrt with wrf. Their first mismatch is t versus f, giving t→f.",
+      "Compare wrf with er to get w→e; compare er with ett to get r→t; compare ett with rftt to get e→r.",
+      "Only w initially has indegree zero. Emit w, which releases e, then emit e, which releases r.",
+      "Emit r, releasing t. Emit t, releasing f, then emit f.",
+      "All five characters were emitted in order wertf. Every adjacent-word mismatch agrees with this alphabet, so return that string."
+    ],
+    "result": "wertf"
+  },
+  "codeNotes": [
+    {
+      "code": "if len(first) > len(second) and first.startswith(second):",
+      "note": "A longer word cannot precede its exact prefix under any alphabet, so this must be rejected before graph ordering."
+    },
+    {
+      "code": "if b not in graph[a]:",
+      "note": "Repeated evidence for the same precedence rule is one edge, not multiple prerequisites requiring separate removals."
+    },
+    {
+      "code": "break",
+      "note": "After the first differing letters, later positions no longer affect lexicographic order and must not create extra constraints."
+    }
+  ]
+}

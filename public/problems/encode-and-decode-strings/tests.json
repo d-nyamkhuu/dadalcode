@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Official words",
+    "input": {
+      "strs": [
+        "Hello",
+        "World"
+      ]
+    },
+    "expected": [
+      "Hello",
+      "World"
+    ]
+  },
+  {
+    "name": "Official empty string",
+    "input": {
+      "strs": [
+        ""
+      ]
+    },
+    "expected": [
+      ""
+    ]
+  },
+  {
+    "name": "Delimiter payload",
+    "input": {
+      "strs": [
+        "#",
+        "12#abc",
+        "x##y"
+      ]
+    },
+    "expected": [
+      "#",
+      "12#abc",
+      "x##y"
+    ]
+  },
+  {
+    "name": "Adjacent empty records",
+    "input": {
+      "strs": [
+        "",
+        "",
+        "a",
+        ""
+      ]
+    },
+    "expected": [
+      "",
+      "",
+      "a",
+      ""
+    ]
+  },
+  {
+    "name": "Control characters",
+    "input": {
+      "strs": [
+        "a\u0000b",
+        "line\nnext",
+        "\t"
+      ]
+    },
+    "expected": [
+      "a\u0000b",
+      "line\nnext",
+      "\t"
+    ]
+  },
+  {
+    "name": "Two digit length",
+    "input": {
+      "strs": [
+        "012345678901",
+        "end"
+      ]
+    },
+    "expected": [
+      "012345678901",
+      "end"
+    ]
+  }
+]

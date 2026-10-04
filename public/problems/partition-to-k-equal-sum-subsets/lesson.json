@@ -1,0 +1,67 @@
+{
+  "slug": "partition-to-k-equal-sum-subsets",
+  "headline": "A bitmask remembers used elements; a remainder remembers the current bucket",
+  "statement": "Decide whether every element of nums can be assigned to exactly k nonempty groups with identical sums. Values are positive and group order does not matter.",
+  "prerequisites": [
+    "Bitmasks",
+    "Dynamic programming",
+    "Subset states"
+  ],
+  "constraints": [
+    "1 <= k <= len(nums) <= 16.",
+    "1 <= nums[i] <= 10000.",
+    "Each value appears at most four times."
+  ],
+  "intuition": "Equal groups must sum to total/k. Build one group at a time. A used-element mask fixes the total used sum, so its unfinished group sum is that total modulo target; the internal grouping history need not be stored.",
+  "approach": [
+    "Reject totals not divisible by k, or any value larger than target.",
+    "Set remainder[0]=0 and all other masks unreachable.",
+    "For every reachable mask, add an unused element only if it fits the current group.",
+    "Store the resulting sum modulo target; accept if the full mask is reachable."
+  ],
+  "correctness": "A reachable mask represents completed target-sum groups plus one unfinished group whose sum is its stored remainder. Adding a fitting unused value maintains this invariant, and reaching target completes a group. Every legal partition can be built group by group through these transitions. Since all values are positive, groups are nonempty; the full total equals k*target, so a reachable full mask completes exactly k groups.",
+  "bruteForce": "Assign each element to one of k labeled buckets, giving up to k^n combinations. Bitmask DP merges equivalent used-element states.",
+  "complexity": {
+    "time": "O(n · 2ⁿ)",
+    "space": "O(2ⁿ)",
+    "explanation": "At most 2^n masks each inspect n unused positions."
+  },
+  "pitfalls": [
+    "Divisibility alone does not prove a partition exists.",
+    "Do not reuse an element whose bit is already set.",
+    "Zero remainder means a completed bucket; reset by modulo only after fitting the target."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "nums",
+      "remainder"
+    ],
+    "pointers": [
+      "mask",
+      "i",
+      "next_mask"
+    ],
+    "watch": [
+      "target",
+      "current",
+      "value"
+    ],
+    "labels": {
+      "nums": "Input occurrences",
+      "remainder": "Unfinished bucket sum per mask",
+      "mask": "Used-position mask",
+      "i": "Candidate occurrence index",
+      "next_mask": "Mask including candidate",
+      "target": "Required bucket sum",
+      "current": "Current unfinished sum",
+      "value": "Candidate value"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+.nv-root {
+  --nv-lime: #c0eb8c;
+  --nv-blue: #7ebbd9;
+  --nv-muted: #84959d;
+  border: 1px solid #29363c;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #151e24, #11191f);
+}
+.nv-root .nv-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  color: #aebdc3;
+  font-size: 11px;
+  letter-spacing: 0.025em;
+  border-bottom: 1px solid #253139;
+}
+.nv-root .nv-summary span:first-child {
+  color: #e1e9ec;
+  font-weight: 600;
+}
+.nv-root .nv-scroll {
+  overflow: auto;
+  max-height: 570px;
+  background-image: radial-gradient(#2c3941 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.nv-root .nv-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.nv-root .nv-edge {
+  stroke: #637c88;
+  stroke-width: 1.7;
+  fill: none;
+}
+.nv-root .nv-edge-changed {
+  stroke: #d8ac66;
+  stroke-width: 2.8;
+}
+.nv-root .nv-edge-removed {
+  stroke: #b5747b;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+  opacity: 0.72;
+}
+.nv-root .nv-arrow-normal {
+  fill: #637c88;
+}
+.nv-root .nv-arrow-changed {
+  fill: #d8ac66;
+}
+.nv-root .nv-arrow-removed {
+  fill: #b5747b;
+}
+.nv-root .nv-edge-label-bg {
+  fill: #18222a;
+  stroke: #354750;
+}
+.nv-root .nv-edge-label {
+  fill: #b8c9d2;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 600;
+}
+.nv-root .nv-node-circle {
+  fill: #1b2a34;
+  stroke: #678b9e;
+  stroke-width: 1.6;
+}
+.nv-root .nv-node-value {
+  fill: #eaf0f2;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: monospace;
+}
+.nv-root .nv-node-current .nv-node-circle {
+  stroke: var(--nv-lime);
+  fill: #2b3d30;
+  stroke-width: 2.4;
+}
+.nv-root .nv-node-current .nv-node-value {
+  fill: #e5f9d1;
+}
+.nv-root .nv-frontier-ring {
+  fill: none;
+  stroke: var(--nv-blue);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+  opacity: 0.9;
+}
+.nv-root .nv-node-frontier .nv-node-circle {
+  stroke: var(--nv-blue);
+}
+.nv-root .nv-node-visited .nv-node-circle {
+  fill: #24313b;
+  stroke: #8794a4;
+}
+.nv-root .nv-terminal-ring {
+  fill: none;
+  stroke: #d6a4df;
+  stroke-width: 1.3;
+}
+.nv-root .nv-origin-label {
+  fill: #93a7b2;
+  font-size: 10px;
+  font-family: monospace;
+  letter-spacing: 0.06em;
+}
+.nv-root .nv-badge {
+  fill: #243b49;
+  stroke: #395365;
+  stroke-width: 0.8;
+}
+.nv-root .nv-badge-current {
+  fill: #304334;
+  stroke: #648457;
+}
+.nv-root .nv-badge-text {
+  fill: #d4e5ed;
+  font-size: 10px;
+  font-family: monospace;
+}
+.nv-root .nv-more-label {
+  fill: #97aab3;
+  font-size: 10px;
+}
+.nv-root .nv-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+  padding: 12px 16px;
+  border-top: 1px solid #253139;
+  color: #9bafb9;
+  font-size: 10px;
+}
+.nv-root .nv-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nv-root .nv-legend i {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #778b98;
+}
+.nv-root .nv-legend .nv-key-current {
+  background: #a1c880;
+  border-color: #c0eb8c;
+}
+.nv-root .nv-legend .nv-key-frontier {
+  border-color: #7ebbd9;
+  border-style: dashed;
+}
+.nv-root .nv-legend .nv-key-visited {
+  background: #607486;
+}
+.nv-root .nv-legend .nv-key-terminal {
+  border-color: #d6a4df;
+  border-width: 2px;
+}
+.nv-root .nv-legend .nv-key-changed {
+  background: #d8ac66;
+  border-color: #d8ac66;
+  border-radius: 2px;
+  height: 3px;
+  width: 13px;
+}
+.nv-root .nv-legend .nv-key-removed {
+  border-color: #b5747b;
+  border-style: dashed;
+  border-radius: 0;
+  height: 3px;
+  width: 13px;
+}
+.nv-root .nv-note {
+  padding: 0 16px 12px;
+  font-size: 11px;
+  color: #91a4ae;
+  line-height: 1.5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nv-root * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+.nv-stored-index {
+  fill: #e5c18b;
+  font: 10px var(--font-mono);
+}

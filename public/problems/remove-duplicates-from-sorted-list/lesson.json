@@ -1,0 +1,52 @@
+{
+  "slug": "remove-duplicates-from-sorted-list",
+  "headline": "Skip equal successors in a sorted chain",
+  "statement": "Given a sorted singly linked list, remove duplicate nodes in place so that each value appears once. Return the head of the resulting sorted list. Input and output use arrays in the trainer. Any original node from each equal-value run may represent that run; preserve its value and reuse original nodes.",
+  "prerequisites": [
+    "Linked-list pointer updates",
+    "Sorted order"
+  ],
+  "constraints": [
+    "0 <= number of nodes <= 300",
+    "-100 <= node.val <= 100",
+    "Values are in nondecreasing order"
+  ],
+  "intuition": "Sorting places all copies of a value next to each other. Keep one representative node and bypass equal successors until the next value differs.",
+  "approach": [
+    "Start current at head.",
+    "If current and its next node have equal values, link current directly to next.next.",
+    "Otherwise advance current; stop when no successor remains."
+  ],
+  "correctness": "All nodes before current are distinct representatives of their original sorted runs. Skipping an equal successor preserves one representative; advancing occurs only when the next run begins. At termination each original run contributes exactly one node.",
+  "bruteForce": "Copy all values into a set, sort it, and build a new list. This uses O(n) extra memory and loses the direct pointer-editing approach.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "Each iteration skips a duplicate or advances once; only a current pointer is needed."
+  },
+  "pitfalls": [
+    "Do not advance immediately after skipping: a run can contain more than two copies.",
+    "This keeps one copy, unlike the separate problem that removes entire duplicate runs.",
+    "An empty list is valid."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "current"
+    ],
+    "labels": {
+      "head": "Head",
+      "current": "Current"
+    }
+  }
+}

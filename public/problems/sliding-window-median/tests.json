@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Example: odd windows",
+    "input": {
+      "nums": [
+        1,
+        3,
+        -1,
+        -3,
+        5,
+        3,
+        6,
+        7
+      ],
+      "k": 3
+    },
+    "expected": [
+      1,
+      -1,
+      -1,
+      3,
+      5,
+      6
+    ]
+  },
+  {
+    "name": "Example: repeated values",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4,
+        2,
+        3,
+        1,
+        4,
+        2
+      ],
+      "k": 3
+    },
+    "expected": [
+      2,
+      3,
+      3,
+      3,
+      2,
+      3,
+      2
+    ]
+  },
+  {
+    "name": "Even windows",
+    "input": {
+      "nums": [
+        1,
+        4,
+        2,
+        3
+      ],
+      "k": 2
+    },
+    "expected": [
+      2.5,
+      3,
+      2.5
+    ]
+  },
+  {
+    "name": "One-value windows",
+    "input": {
+      "nums": [
+        5,
+        -1,
+        0
+      ],
+      "k": 1
+    },
+    "expected": [
+      5,
+      -1,
+      0
+    ]
+  },
+  {
+    "name": "All equal",
+    "input": {
+      "nums": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "k": 3
+    },
+    "expected": [
+      2,
+      2
+    ]
+  },
+  {
+    "name": "Integer extremes",
+    "input": {
+      "nums": [
+        -2147483648,
+        2147483647
+      ],
+      "k": 2
+    },
+    "expected": [
+      -0.5
+    ]
+  },
+  {
+    "name": "Buried expired values",
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "k": 3
+    },
+    "expected": [
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "name": "Descending windows",
+    "input": {
+      "nums": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "k": 3
+    },
+    "expected": [
+      5,
+      4,
+      3,
+      2
+    ]
+  },
+  {
+    "name": "Full odd window",
+    "input": {
+      "nums": [
+        7,
+        -2,
+        4,
+        4,
+        0
+      ],
+      "k": 5
+    },
+    "expected": [
+      4
+    ]
+  }
+]

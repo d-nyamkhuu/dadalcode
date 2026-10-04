@@ -1,0 +1,67 @@
+{
+  "intuition": [
+    "Allocating a second matrix gives an easy coordinate-based rotation, but violates the required in-place update. A clockwise rotation moves an original cell at row r, column c to row c, column n-1-r. We can split that mapping into two transformations made entirely of swaps.",
+    "First transpose across the main diagonal, which exchanges row and column coordinates. Then reverse every row, turning the new column r into n-1-r. Their composition is precisely the clockwise mapping. Reversing before transposing would instead compose the transformations in a different order.",
+    "Transpose only entries above the diagonal, so each mirrored pair is exchanged once. Row reversal similarly swaps only opposite positions until its pointers meet. No additional matrix is needed, and every original value survives exactly once in the caller’s original matrix object."
+  ],
+  "walkthrough": {
+    "input": {
+      "matrix": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          7,
+          8,
+          9
+        ]
+      ]
+    },
+    "steps": [
+      "Begin with [[1,2,3],[4,5,6],[7,8,9]]. Swap positions (0,1) and (1,0), exchanging values 2 and 4.",
+      "Swap positions (0,2) and (2,0), exchanging 3 and 7. Swap positions (1,2) and (2,1), exchanging 6 and 8.",
+      "The transpose is now [[1,4,7],[2,5,8],[3,6,9]]. Diagonal values 1,5,9 have not moved yet.",
+      "Reverse the first row by exchanging 1 and 7, giving [7,4,1].",
+      "Reverse the second row to [8,5,2] and the third row to [9,6,3].",
+      "The original matrix now equals [[7,4,1],[8,5,2],[9,6,3]], the required clockwise rotation."
+    ],
+    "result": [
+      [
+        7,
+        4,
+        1
+      ],
+      [
+        8,
+        5,
+        2
+      ],
+      [
+        9,
+        6,
+        3
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "for col in range(row + 1, n):",
+      "note": "Visit only the upper triangle. Visiting the mirrored lower entries later would swap each pair back and undo the transpose."
+    },
+    {
+      "code": "matrix[row][col], matrix[col][row] = matrix[col][row], matrix[row][col]",
+      "note": "Tuple assignment preserves both original values while exchanging them, requiring no allocated replacement matrix."
+    },
+    {
+      "code": "while left < right:",
+      "note": "Each opposite row pair is swapped once. Stopping when the pointers meet prevents reversing the same pair twice."
+    }
+  ]
+}

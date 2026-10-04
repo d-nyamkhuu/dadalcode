@@ -1,0 +1,39 @@
+{
+  "intuition": [
+    "A membership set or a sorted scan can locate the absent value, but both use more resources than necessary. The domain is especially structured: every integer from 0 through n should appear once, and exactly one is missing. We can cancel the expected and supplied values directly.",
+    "XOR has three useful properties here: a value XOR itself becomes zero, a value XOR zero remains unchanged, and operand order does not matter. XORing all expected values with all input values removes every matching pair, leaving only the absent integer.",
+    "The loop pairs each array index with its stored value. Indices cover 0 through n-1, so initialize the accumulator to n to include the final expected domain value. Input ordering is irrelevant because cancellation works globally rather than requiring an index to equal its own value.",
+    "One update can be checked in binary: at i=2 with accumulator 1 and value 1, compute 01 XOR 10 XOR 01 = 10. The matching 01 terms cancel, leaving binary 10, which is decimal 2. This is cancellation of values, independent of their array positions."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        3,
+        0,
+        1
+      ]
+    },
+    "steps": [
+      "For nums=[3,0,1], the length n is 3 and the expected domain is {0,1,2,3}. Initialize missing=3.",
+      "At i=0, value=3: compute 3 XOR 0 XOR 3, leaving the accumulator 0.",
+      "At i=1, value=0: compute 0 XOR 1 XOR 0, leaving 1.",
+      "At i=2, value=1: compute 1 XOR 2 XOR 1, leaving 2 after the two ones cancel.",
+      "Return 2. Across the full expression, present values 0, 1, and 3 each appeared twice; only absent value 2 appeared once."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "missing = len(nums)",
+      "note": "The loop indexes do not include n, so seeding with n completes the expected range before any input values are canceled."
+    },
+    {
+      "code": "for i, value in enumerate(nums):",
+      "note": "Enumeration contributes every expected value below n exactly once while reading every supplied value exactly once, regardless of input order."
+    },
+    {
+      "code": "missing ^= i ^ value",
+      "note": "The accumulator is a running XOR of both domains. This avoids an auxiliary set and does not depend on arithmetic sum overflow behavior."
+    }
+  ]
+}

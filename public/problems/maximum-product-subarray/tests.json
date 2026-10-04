@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Positive run",
+    "input": {
+      "nums": [
+        2,
+        3,
+        -2,
+        4
+      ]
+    },
+    "expected": 6
+  },
+  {
+    "name": "Zero separates negatives",
+    "input": {
+      "nums": [
+        -2,
+        0,
+        -1
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Two negatives",
+    "input": {
+      "nums": [
+        -2,
+        3,
+        -4
+      ]
+    },
+    "expected": 24
+  },
+  {
+    "name": "Negative singleton",
+    "input": {
+      "nums": [
+        -7
+      ]
+    },
+    "expected": -7
+  },
+  {
+    "name": "Restart after zero",
+    "input": {
+      "nums": [
+        0,
+        2,
+        0,
+        3,
+        4
+      ]
+    },
+    "expected": 12
+  },
+  {
+    "name": "All ones",
+    "input": {
+      "nums": [
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Odd negative run excludes endpoint",
+    "input": {
+      "nums": [
+        -2,
+        -3,
+        -4
+      ]
+    },
+    "expected": 12
+  },
+  {
+    "name": "Reset then negative sign flip",
+    "input": {
+      "nums": [
+        -2,
+        0,
+        -3,
+        -4
+      ]
+    },
+    "expected": 12
+  }
+]

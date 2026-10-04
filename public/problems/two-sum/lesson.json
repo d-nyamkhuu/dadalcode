@@ -1,0 +1,59 @@
+{
+  "slug": "two-sum",
+  "headline": "Find the pair. Remember the past.",
+  "statement": "Given an integer array nums and target, return the two distinct indices whose values sum to target. Exactly one pair exists; either index order is valid.",
+  "prerequisites": [
+    "Array indices",
+    "Hash-map lookup"
+  ],
+  "constraints": [
+    "2 <= len(nums) <= 10,000",
+    "Values and target are integers between -10^9 and 10^9",
+    "Exactly one valid pair; an element cannot pair with itself"
+  ],
+  "intuition": "Remember the numbers already visited so each new number can ask for its missing partner. A lookup replaces an entire inner search.",
+  "approach": [
+    "Create an empty map from value to earlier index.",
+    "At index i, compute target - nums[i]. Check the map before recording nums[i].",
+    "If the complement exists, return its stored index and i; otherwise record the current value."
+  ],
+  "correctness": "Before processing i, the map contains only indices smaller than i. A found complement therefore uses distinct elements and sums to target. For the guaranteed pair, its later element finds the earlier one.",
+  "bruteForce": "Try every pair i < j: O(n\u00b2) time and O(1) extra space.",
+  "complexity": {
+    "time": "O(n) expected",
+    "space": "O(n)",
+    "explanation": "Hash-map operations take expected constant time, giving O(n) expected time and O(n) auxiliary storage. Pathological collisions can worsen the time bound."
+  },
+  "pitfalls": [
+    "Record after lookup, or target = 2*x could reuse one element.",
+    "Return indices, not values.",
+    "Negative numbers work without a special case."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/two-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "seen"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "value",
+      "complement"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "seen": "Seen",
+      "i": "I",
+      "value": "Value",
+      "complement": "Complement"
+    }
+  }
+}

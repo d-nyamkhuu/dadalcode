@@ -1,0 +1,64 @@
+{
+  "slug": "spiral-matrix",
+  "headline": "Peel off one rectangular boundary at a time",
+  "statement": "Return all values of an m by n matrix in clockwise spiral order, beginning at the top-left corner.",
+  "prerequisites": [
+    "Matrix coordinates",
+    "Loop boundaries"
+  ],
+  "constraints": [
+    "1 <= m, n <= 10",
+    "All rows have equal length",
+    "-100 <= matrix[r][c] <= 100"
+  ],
+  "intuition": "The next values lie on the outer border. Walk top, right, bottom, and left, then shrink the rectangle. A final single row or column needs guards so it is not visited twice.",
+  "approach": [
+    "Track top, bottom, left, and right inclusive boundaries.",
+    "Traverse the top row and right column, shrinking those sides.",
+    "If rows remain, traverse the bottom row; if columns remain, traverse the left column."
+  ],
+  "correctness": "Before each round the unvisited cells form the tracked rectangle. The traversals visit its perimeter exactly once, and the guards prevent repeated cells when the rectangle collapses. Shrinking all sides leaves precisely the inner rectangle.",
+  "bruteForce": "Simulate turns using a visited grid; also O(mn) time but O(mn) additional bookkeeping.",
+  "complexity": {
+    "time": "O(mn)",
+    "space": "O(1) auxiliary, O(mn) output",
+    "explanation": "Each cell is appended once; four boundaries replace a visited grid."
+  },
+  "pitfalls": [
+    "After shrinking the top/right boundaries, recheck before bottom/left traversal.",
+    "Use inclusive endpoints correctly.",
+    "A one-column matrix should visit each cell once."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/spiral-matrix/"
+    }
+  ],
+  "visualization": {
+    "kind": "grid",
+    "focus": [
+      "matrix",
+      "result"
+    ],
+    "pointers": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "row",
+      "col"
+    ],
+    "watch": [],
+    "labels": {
+      "matrix": "Matrix",
+      "result": "Result",
+      "top": "Top",
+      "bottom": "Bottom",
+      "left": "Left",
+      "right": "Right",
+      "row": "Row",
+      "col": "Col"
+    }
+  }
+}

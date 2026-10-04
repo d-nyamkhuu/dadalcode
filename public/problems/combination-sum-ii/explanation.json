@@ -1,0 +1,63 @@
+{
+  "intuition": [
+    "Enumerating subsets of candidate indices finds target sums but creates duplicate value combinations whenever the input repeats a number. Deduplicating only afterward spends time on branches known to be equivalent. Sorting lets us recognize that equivalence before exploring the branch.",
+    "At one recursion depth, choosing a later copy of the same value creates the same family of continuations as choosing the first available copy. Skip those equal sibling choices. However, another copy remains valid at a deeper depth: [1,1,6] uses two different indices and must not be removed by a global duplicate rule.",
+    "The recursion carries the next usable index and remaining sum. Moving to i+1 prevents an index from being reused. Positive sorted values also permit early stopping once a candidate exceeds the remaining budget, because every later candidate is at least as large. Save a copy when the budget becomes exactly zero."
+  ],
+  "walkthrough": {
+    "input": {
+      "candidates": [
+        10,
+        1,
+        2,
+        7,
+        6,
+        1,
+        5
+      ],
+      "target": 8
+    },
+    "steps": [
+      "Sort the first fixture into [1,1,2,5,6,7,10], with target 8 and an empty path.",
+      "Choose the first 1, then the second 1. Their remaining budget is 6; trying value 6 eventually produces [1,1,6].",
+      "Backtrack to path [1]. Choosing 2 leaves budget 5, so choosing 5 produces [1,2,5].",
+      "From path [1], choosing 7 also completes the budget and records [1,7]. Other over-budget continuations stop at their first too-large value.",
+      "At the root, skip the second 1 because it is an equal sibling choice. Choosing 2 then 6 produces [2,6].",
+      "No later root choice can form another sum. Return these four combinations, each recorded once despite the duplicated input 1."
+    ],
+    "result": [
+      [
+        1,
+        1,
+        6
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        6
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "if i > start and candidates[i] == candidates[i - 1]:",
+      "note": "Skip equal alternatives only among siblings of the same call. An equal value at start can still be used in a deeper combination."
+    },
+    {
+      "code": "search(i + 1, remaining - value)",
+      "note": "Advancing past the chosen index enforces one use per input occurrence while carrying the unfinished target to the next call."
+    },
+    {
+      "code": "result.append(path.copy())",
+      "note": "Backtracking mutates path after a result is found. A copy freezes the completed combination instead of letting later removals erase it."
+    }
+  ]
+}

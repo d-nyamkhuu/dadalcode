@@ -1,0 +1,67 @@
+{
+  "slug": "minimum-window-substring",
+  "headline": "Shrink only after all required copies are present",
+  "statement": "Return the shortest contiguous substring of s containing every character of t with its required multiplicity. If no such substring exists, return the empty string. A smallest answer, when it exists, is unique.",
+  "prerequisites": [
+    "Frequency dictionaries",
+    "Sliding window",
+    "Two pointers"
+  ],
+  "constraints": [
+    "1 <= len(s), len(t) <= 100,000",
+    "s and t contain uppercase and lowercase English letters"
+  ],
+  "intuition": "A window is valid only after it contains all copies required by t. Expand right until it is valid, then shrink left while recording shorter answers. A single missing counter counts unmatched copies, not merely distinct character kinds.",
+  "approach": [
+    "Build needed counts from t and initialize missing to len(t).",
+    "Consume the next s character; decrease missing only when that copy was still needed.",
+    "While missing is zero, update the answer and release the leftmost character; stop shrinking when a required copy goes missing."
+  ],
+  "correctness": "The deficit map tracks required count minus window count. missing is exactly the total positive deficit. During each shrink loop every window recorded is valid, and the shortest valid window ending at right is considered. All right endpoints are visited, so the global shortest valid window is found.",
+  "bruteForce": "Enumerate O(n²) substrings and recount their characters; this repeatedly inspects the same characters.",
+  "complexity": {
+    "time": "O(len(s) + len(t))",
+    "space": "O(alphabet size)",
+    "explanation": "Each boundary moves forward at most len(s) times; the map has a bounded alphabet."
+  },
+  "pitfalls": [
+    "Repeated letters in t require repeated copies in the window.",
+    "Treat uppercase and lowercase separately.",
+    "Do not reset the whole window on an irrelevant character."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/minimum-window-substring/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "s",
+      "t",
+      "needed"
+    ],
+    "pointers": [
+      "left",
+      "right",
+      "best_start"
+    ],
+    "watch": [
+      "missing",
+      "best_length",
+      "ch"
+    ],
+    "labels": {
+      "s": "S",
+      "t": "T",
+      "needed": "Needed",
+      "left": "Left",
+      "right": "Right",
+      "best_start": "Best start",
+      "missing": "Missing",
+      "best_length": "Best length",
+      "ch": "Ch"
+    }
+  }
+}

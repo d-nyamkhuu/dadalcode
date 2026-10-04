@@ -1,0 +1,61 @@
+{
+  "slug": "product-of-array-except-self",
+  "headline": "The product excluding i is the product strictly to its left times the product strictly to its right",
+  "statement": "Return an array whose i-th value is the product of every nums element except nums[i]. Use O(n) time without division. Products of all prefixes and suffixes fit signed 32-bit integers. Use constant auxiliary space excluding the returned array.",
+  "prerequisites": [
+    "Prefix and suffix aggregates",
+    "Multiplication identity"
+  ],
+  "constraints": [
+    "2 <= len(nums) <= 100,000",
+    "-30 <= nums[i] <= 30",
+    "No division"
+  ],
+  "intuition": "The product excluding i is the product strictly to its left times the product strictly to its right. Two passes avoid division and naturally handle zeros.",
+  "approach": [
+    "Fill result[i] with the running product before including nums[i].",
+    "Scan backwards with a suffix product initially 1.",
+    "Multiply result[i] by the suffix, then include nums[i] in the suffix."
+  ],
+  "correctness": "The first pass stores exactly the product of indices below i. The reverse pass carries exactly the product of indices above i. Their product covers every index except i exactly once; empty sides contribute the identity 1.",
+  "bruteForce": "For each index multiply every other element: O(n²) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1) excluding result",
+    "explanation": "Two linear scans reuse the returned array for left products. Only the scalar prefix and suffix products and loop indices occupy auxiliary storage; the n output entries are excluded."
+  },
+  "pitfalls": [
+    "Update running products after writing the current index.",
+    "One zero differs from two zeros; the two-pass method handles both automatically.",
+    "Division violates the requirement and fails at zero."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/product-of-array-except-self/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "nums",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "prefix",
+      "suffix",
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "result": "Result",
+      "i": "I",
+      "prefix": "Prefix",
+      "suffix": "Suffix",
+      "value": "Value"
+    }
+  }
+}

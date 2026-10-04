@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Whole chain",
+    "input": {
+      "words": [
+        "w",
+        "wo",
+        "wor",
+        "worl",
+        "world"
+      ]
+    },
+    "expected": "world"
+  },
+  {
+    "name": "Lexicographic tie",
+    "input": {
+      "words": [
+        "a",
+        "banana",
+        "app",
+        "appl",
+        "ap",
+        "apply",
+        "apple"
+      ]
+    },
+    "expected": "apple"
+  },
+  {
+    "name": "No root prefixes",
+    "input": {
+      "words": [
+        "ab",
+        "abc"
+      ]
+    },
+    "expected": ""
+  },
+  {
+    "name": "Single letters",
+    "input": {
+      "words": [
+        "z",
+        "a",
+        "b"
+      ]
+    },
+    "expected": "a"
+  },
+  {
+    "name": "Missing middle prefix",
+    "input": {
+      "words": [
+        "a",
+        "ab",
+        "abcd",
+        "b",
+        "ba",
+        "bat"
+      ]
+    },
+    "expected": "bat"
+  },
+  {
+    "name": "Unsorted valid chain",
+    "input": {
+      "words": [
+        "cats",
+        "cat",
+        "c",
+        "ca"
+      ]
+    },
+    "expected": "cats"
+  },
+  {
+    "name": "Repeated dictionary entries",
+    "input": {
+      "words": [
+        "a",
+        "a",
+        "ab",
+        "abc"
+      ]
+    },
+    "expected": "abc"
+  }
+]

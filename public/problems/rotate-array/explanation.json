@@ -1,0 +1,51 @@
+{
+  "intuition": [
+    "Repeating a one-step right rotation shifts nearly the entire array each time. A copied slice can rotate in linear time but uses extra storage. The in-place solution instead treats the array as two consecutive segments and rearranges their order through reversals.",
+    "Let A be the first n-k values and B the final k values. The desired result is B followed by A. Reversing the whole array gives reverse(B) followed by reverse(A), so reversing those two segments separately restores their internal order while retaining their swapped positions.",
+    "Normalize k modulo n because n right shifts return every value to its original position. Each reversal swaps endpoint values while moving its pointers inward, without allocating slices. The three passes modify the same list, and the method\u2019s output is the mutation rather than a newly returned rotated array."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "k": 3
+    },
+    "steps": [
+      "For nums=[1,2,3,4,5,6,7] and k=3, modulo reduction leaves k=3 and divides the original into A=[1,2,3,4], B=[5,6,7].",
+      "Reverse the full list to obtain [7,6,5,4,3,2,1], with reversed B before reversed A.",
+      "Reverse indices 0 through 2. The first segment becomes [5,6,7], producing [5,6,7,4,3,2,1].",
+      "Reverse indices 3 through 6 to restore [1,2,3,4] in the second segment.",
+      "The original list now contains [5,6,7,1,2,3,4]. That mutation is the three-position right rotation; no separate result list is created."
+    ],
+    "result": [
+      5,
+      6,
+      7,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "k %= n",
+      "note": "Full-length rotations are identity operations. Reducing k also ensures the two segment boundaries remain valid even when the requested shift exceeds n."
+    },
+    {
+      "code": "nums[left], nums[right] = nums[right], nums[left]",
+      "note": "Swapping inward endpoints reverses a segment in the original list, using constant extra space rather than creating copied slices."
+    },
+    {
+      "code": "reverse(k, n - 1)",
+      "note": "After the whole-list and first-segment reversals, this final pass restores the original order of A behind the already restored segment B."
+    }
+  ]
+}

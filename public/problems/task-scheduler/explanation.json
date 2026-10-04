@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "Enumerate permutations and insert the minimum necessary idle slots, which is factorial in the number of tasks. A heap simulation is another practical option, especially when an actual schedule is needed. A complete task ordering is unnecessary when only its minimum length is required; frequency constraints provide matching lower bounds.",
+    "Let f be the largest frequency. Its f occurrences force f-1 separation frames, each at least n+1 intervals from one occurrence start to the next. If t different labels have that maximum frequency, all t still appear in the final partial frame. This yields (f-1)(n+1)+t. Other labels fill the separation slots, reducing idle time; if there are enough of them, the total task count becomes the stronger bound. The answer is the larger of these two limits, not their sum.",
+    "The f occurrences of a most-frequent label require f-1 separations of n+1 positions; the t tied labels add t final occurrences, yielding the frame lower bound. All tasks also require their own slots. Arrange high-frequency labels across these frames and fill gaps with remaining labels; when there are more tasks than frame slots, distribute them so the gaps expand. This realizes the larger lower bound. Count N tasks, then inspect at most 26 label frequencies.",
+    "For a concrete saturated construction, consider A,A,B,B,C,C,D,D with cooldown 1. The frame bound is (2-1)*2+4=6, but eight executions are unavoidable. The ordering A,B,C,D,A,B,C,D expands the two groups to width four; each repeat has three intervening tasks and no idle time is needed. These are discrete unit intervals with a common cooldown; task-specific cooldowns would require a different analysis."
+  ],
+  "walkthrough": {
+    "input": {
+      "tasks": [
+        "A",
+        "A",
+        "A",
+        "B",
+        "B",
+        "B"
+      ],
+      "n": 2
+    },
+    "steps": [
+      "For A,A,A,B,B,B, count A=3 and B=3.",
+      "Maximum frequency f=3, and two labels share it, so t=2.",
+      "With cooldown n=2, calculate two complete frames of width 3 and a final group of 2.",
+      "The frame bound is (3-1)*3+2=8, larger than the six task executions.",
+      "A,B,idle,A,B,idle,A,B realizes eight intervals, so return 8."
+    ],
+    "result": 8
+  },
+  "codeNotes": [
+    {
+      "code": "maximum = max(counts.values())",
+      "note": "The most frequent label forces the strongest separation requirement regardless of other label ordering."
+    },
+    {
+      "code": "tied = sum(count == maximum for count in counts.values())",
+      "note": "Every maximum-frequency label needs an occurrence in the final group; counting only one would underestimate length."
+    },
+    {
+      "code": "return max(len(tasks), frame)",
+      "note": "Either executions or cooldown spacing dominates; sufficient diverse tasks fill gaps without requiring extra idle time."
+    }
+  ]
+}

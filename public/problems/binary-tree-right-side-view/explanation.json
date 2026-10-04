@@ -1,0 +1,49 @@
+{
+  "intuition": [
+    "It is tempting to follow a chain of right children, but that is not the right-side view. A left subtree can extend deeper than every node to its right and become visible at those depths. The correct question is which existing node lies farthest right at each depth of the whole tree.",
+    "A breadth-first queue produces each depth in left-to-right order. Process only the queue length captured at the start of a level. While doing so, append left children before right children. This preserves the same left-to-right relationship for the next level, including when some child positions are missing.",
+    "The last processed node in each level is therefore the visible one. Record it and continue until no depth remains. Queue order handles visibility without assigning explicit horizontal coordinates. The result has one value per nonempty level, not one value per right turn. The reference skips an absent root up front and uses a deque so removing each front node does not shift the entire queue."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        1,
+        2,
+        3,
+        4,
+        null,
+        null,
+        null,
+        5
+      ]
+    },
+    "steps": [
+      "For [1,2,3,4,null,null,null,5], the first level contains root 1, so record 1.",
+      "Enqueue children 2 then 3. At their level, 3 is processed last, so record 3.",
+      "Node 2 enqueues its left child 4; node 3 contributes no children.",
+      "The next level has only 4, which is visible despite belonging to the left subtree.",
+      "Node 4 exposes its left child 5 at the next depth, so record 5.",
+      "Return [1,3,4,5], showing why right-child-only traversal would miss the final two values."
+    ],
+    "result": [
+      1,
+      3,
+      4,
+      5
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "level_size = len(queue)",
+      "note": "Separate the current depth from children appended during its processing."
+    },
+    {
+      "code": "if index == level_size - 1:",
+      "note": "The final left-to-right node is the one visible from the right at this depth."
+    },
+    {
+      "code": "queue.append(node.left)",
+      "note": "Left children enter first so queue order preserves the level\u2019s spatial order."
+    }
+  ]
+}

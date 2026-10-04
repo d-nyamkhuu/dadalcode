@@ -1,0 +1,46 @@
+{
+  "intuition": [
+    "Squaring a sorted array does not preserve its order when negative values occur: -4 becomes 16 while -1 becomes 1. Squaring everything and sorting would work, but wastes the useful structure of the original ascending values. Their absolute values are largest at one of the remaining endpoints.",
+    "Use left and right pointers to compare those endpoint squares. The larger is the largest square still unplaced, so write it into the last empty output position. Move only its endpoint inward, keeping all other candidates available for later positions.",
+    "Filling from right to left is the essential ordering choice. Selecting maxima while writing forward would produce descending values; writing them backward places each maximum where it belongs in the ascending output. Tied squares may consume either endpoint, because both represent equally large occurrences that must be retained."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -4,
+        -1,
+        0,
+        3,
+        10
+      ]
+    },
+    "steps": [
+      "For nums=[-4,-1,0,3,10], compare endpoint squares 16 and 100. Place 100 at output index 4 and move right to value 3.",
+      "Now compare 16 and 9. Place 16 at index 3 and advance left from -4 to -1.",
+      "Compare 1 and 9. Place 9 at index 2 and move right to value 0.",
+      "Compare 1 and 0. Place 1 at index 1 and advance left to the same remaining zero.",
+      "The last square is 0 at index 0. Return [0,1,9,16,100], having consumed each original occurrence once."
+    ],
+    "result": [
+      0,
+      1,
+      9,
+      16,
+      100
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "result = [0] * len(nums)",
+      "note": "The output holds every input occurrence, including duplicate squares. It is separate returned storage rather than a sorted copy of the original values."
+    },
+    {
+      "code": "for write in range(len(nums) - 1, -1, -1):",
+      "note": "Each iteration selects a maximum, so writing backward gives that maximum its correct final ascending position."
+    },
+    {
+      "code": "if a > b:",
+      "note": "Only the winning endpoint is consumed. The unchosen endpoint remains available because it may be the next largest remaining square."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "intuition": [
+    "Enumerating subsequences creates exponentially many choices, and a quadratic dynamic program still compares each value with every earlier value. Most of that information is unnecessary if we only want the best length. Several subsequences of the same length differ only in how easily a later number can extend them.",
+    "Among equally long increasing subsequences, the one with the smaller final value is always at least as useful. Any future value that extends a larger tail also extends the smaller one. Keep the minimum known tail for each achievable length, allowing less useful endings to be replaced.",
+    "These minimum tails are sorted, so binary search locates the length that the next number can improve. Replacing a tail does not destroy an achievable length; it supplies a better ending for that length. Appending adds a new achievable length. The summary array itself need not describe one actual subsequence.",
+    "For nums=[3,5,6,2,4], the final tails are [2,4,6]. Their input indices are 3,4,2, so those entries cannot be one subsequence. The length three remains valid because [3,5,6] was achieved earlier; each stored tail certifies its own length independently."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        10,
+        9,
+        2,
+        5,
+        3,
+        7,
+        101,
+        18
+      ]
+    },
+    "steps": [
+      "Start with tails=[] for nums=[10,9,2,5,3,7,101,18].",
+      "Reading 10 creates tails=[10]. Reading 9 replaces its first entry, and reading 2 replaces it again: tails=[2].",
+      "Value 5 is greater than every tail, so append it: tails=[2,5].",
+      "Value 3 replaces the first tail at least 3, producing [2,3]; length 2 remains achievable with a better ending.",
+      "Values 7 and 101 extend the summary to [2,3,7,101], representing achievable lengths 1 through 4.",
+      "Value 18 replaces 101, leaving [2,3,7,18]. The final summary length, 4, is the answer."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "position = bisect_left(tails, value)",
+      "note": "The first tail greater than or equal to value identifies the length to improve. Equal values replace rather than extend, enforcing strict increase."
+    },
+    {
+      "code": "tails[position] = value",
+      "note": "Replacing an ending preserves its subsequence length while leaving more opportunities for future numbers to extend it."
+    },
+    {
+      "code": "return len(tails)",
+      "note": "The invariant concerns achievable lengths. Returning the number of entries is valid even when the entries do not form one recovered subsequence."
+    }
+  ]
+}

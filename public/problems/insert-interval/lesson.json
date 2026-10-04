@@ -1,0 +1,59 @@
+{
+  "slug": "insert-interval",
+  "headline": "Only one contiguous block can overlap the inserted interval",
+  "statement": "Insert newInterval into intervals, which are sorted by start and pairwise disjoint. Merge any overlapping closed intervals and return the sorted disjoint result.",
+  "prerequisites": [
+    "Interval overlap",
+    "Sorted scans"
+  ],
+  "constraints": [
+    "0 <= len(intervals) <= 10,000",
+    "Each interval has start <= end, within 0..100,000",
+    "newInterval has exactly two endpoints with 0 <= start <= end <= 100,000"
+  ],
+  "intuition": "Only one contiguous block can overlap the inserted interval. Copy the strictly earlier block, expand across overlaps, then copy the later block.",
+  "approach": [
+    "Append intervals ending strictly before the new start.",
+    "While the next start is at most the merged end, expand the start/end bounds.",
+    "Append the merged interval and all untouched later intervals."
+  ],
+  "correctness": "The earlier block cannot intersect the insertion. Every interval encountered during expansion intersects the current union, so their min start and max end describe exactly its merged coverage. The first remaining interval starts after that union, and sorted order ensures all subsequent intervals are also disjoint.",
+  "bruteForce": "Append and sort all intervals, then merge in O(n log n) time.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1) excluding result",
+    "explanation": "Time O(n); auxiliary space O(1) excluding result. Output storage is excluded unless stated."
+  },
+  "pitfalls": [
+    "Touching endpoints overlap because intervals are closed.",
+    "Do not mutate the source newInterval unnecessarily.",
+    "An empty intervals list is valid."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/insert-interval/"
+    }
+  ],
+  "visualization": {
+    "kind": "intervals",
+    "focus": [
+      "intervals",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "start",
+      "end"
+    ],
+    "labels": {
+      "intervals": "Intervals",
+      "result": "Result",
+      "i": "I",
+      "start": "Start",
+      "end": "End"
+    }
+  }
+}

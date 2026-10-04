@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Three by seven",
+    "input": {
+      "m": 3,
+      "n": 7
+    },
+    "expected": 28
+  },
+  {
+    "name": "Three by two",
+    "input": {
+      "m": 3,
+      "n": 2
+    },
+    "expected": 3
+  },
+  {
+    "name": "One cell",
+    "input": {
+      "m": 1,
+      "n": 1
+    },
+    "expected": 1
+  },
+  {
+    "name": "One row",
+    "input": {
+      "m": 1,
+      "n": 10
+    },
+    "expected": 1
+  },
+  {
+    "name": "Square",
+    "input": {
+      "m": 3,
+      "n": 3
+    },
+    "expected": 6
+  },
+  {
+    "name": "Tall single column",
+    "input": {
+      "m": 100,
+      "n": 1
+    },
+    "expected": 1
+  },
+  {
+    "name": "Larger square",
+    "input": {
+      "m": 10,
+      "n": 10
+    },
+    "expected": 48620
+  }
+]

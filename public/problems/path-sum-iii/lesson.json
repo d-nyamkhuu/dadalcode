@@ -1,0 +1,64 @@
+{
+  "slug": "path-sum-iii",
+  "headline": "Along a root-to-node route, a downward path sum is the difference of two prefix sums",
+  "statement": "Count downward paths in a binary tree whose values sum to targetSum. A path may begin or end at any node, but always follows child edges. A path contains at least one node.",
+  "prerequisites": [
+    "Prefix sums",
+    "Depth-first traversal",
+    "Frequency maps"
+  ],
+  "constraints": [
+    "0 <= node count <= 1,000",
+    "-10^9 <= node values <= 10^9",
+    "-1,000 <= targetSum <= 1,000"
+  ],
+  "intuition": "Along a root-to-node route, a downward path sum is the difference of two prefix sums. Count matching ancestor prefixes and remove them when leaving a subtree.",
+  "approach": [
+    "Seed prefix counts with {0:1} for a path beginning at root.",
+    "On entering a node, add its value to total and count prefixes equal to total-targetSum.",
+    "Register total while traversing this node’s descendants.",
+    "Use explicit exit events to remove total after its subtree, preventing sibling contamination."
+  ],
+  "correctness": "At entry, the map contains exactly the prefixes immediately before possible path starts on the current ancestor route. Each matching prefix defines one distinct downward path ending at the node. Adding the current prefix admits paths starting below it, and exit removal restricts siblings to their own ancestor routes; every valid endpoint/path is counted once.",
+  "bruteForce": "Start a fresh DFS at every node and sum all descendant paths: O(n²) worst case.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(h)",
+    "explanation": "Every node creates one entry and one exit event, and expected-constant-time frequency lookups count all matching starts. The explicit DFS stack and active ancestor-prefix map have O(h) entries, where h is tree height."
+  },
+  "pitfalls": [
+    "Prefixes are frequencies: equal sums can represent different starts.",
+    "Remove a prefix on exit so unrelated branches are not joined.",
+    "Zero and negative values prevent monotone pruning."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/path-sum-iii/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "counts",
+      "stack"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "total",
+      "exiting",
+      "result"
+    ],
+    "labels": {
+      "root": "Root",
+      "counts": "Counts",
+      "stack": "Stack",
+      "node": "Node",
+      "total": "Total",
+      "exiting": "Exiting",
+      "result": "Result"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "intuition": [
+    "Scan all positions in O(n) time. Binary search exploits the one-drop structure for O(log n). Ordinary binary search cannot compare target with mid alone because a rotation disrupts global ordering, even though most local ordering survives.",
+    "At most one rotation drop appears inside the candidate interval. If nums[left] is no larger than nums[mid], the left half has no drop and is sorted. A target between those endpoint values belongs there; all other targets must be sought in the right half. When the left half is not sorted, the right half is. Distinct values remove ambiguous equal-boundary cases and guarantee a substantial reduction on every iteration.",
+    "The target, if present, remains inside the candidate interval. A sorted half either contains the target in its numeric range or cannot contain it, so discarding the appropriate half preserves the invariant. The interval shrinks each iteration; exhaustion proves absence. Each iteration discards at least half the candidate positions."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        4,
+        5,
+        6,
+        7,
+        0,
+        1,
+        2
+      ],
+      "target": 0
+    },
+    "steps": [
+      "For [4,5,6,7,0,1,2], left=0, right=6, and mid=3 stores 7.",
+      "The left half [4,5,6,7] is sorted, but target 0 is outside its value interval.",
+      "Keep indices 4 through 6; mid=5 stores 1.",
+      "The left half [0,1] is sorted and contains target 0, so right becomes 4.",
+      "Now mid=4 equals the target; return index 4."
+    ],
+    "result": 4
+  },
+  "codeNotes": [
+    {
+      "code": "if nums[left] <= nums[mid]:",
+      "note": "This endpoint comparison identifies a half with reliable increasing order after the failed equality check."
+    },
+    {
+      "code": "if nums[left] <= target < nums[mid]:",
+      "note": "The half-open value comparison excludes mid because its value was already checked and rejected."
+    },
+    {
+      "code": "return -1",
+      "note": "Exhausting the candidate range proves the target is absent rather than merely hidden near the pivot."
+    }
+  ]
+}

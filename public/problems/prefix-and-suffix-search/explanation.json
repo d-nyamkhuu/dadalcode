@@ -1,0 +1,45 @@
+{
+  "intuition": [
+    "Scanning the word list backward for every query answers the problem but repeats prefix and suffix checks. The goal is to encode both conditions into one structure that can be traversed using only the query characters.",
+    "For each word, insert every suffix followed by a separator and then the full word into a trie. A query for suffix suff and prefix pref follows suff + separator + pref. The separator fixes where the suffix ends, while the trailing traversal only needs to match the beginning of the full word. Prefix and suffix may overlap in the original word; this representation still works because the stored sequence deliberately contains a suffix followed by a full copy of the word.",
+    "Each visited trie node remembers the current word’s index. Insert words in increasing index order so later matching words overwrite earlier indices automatically. The final query node therefore contains the largest matching index, including when duplicate words appear. A missing character edge proves no stored suffix-and-prefix combination fits. The separator must be outside the lowercase alphabet, so it cannot be confused with actual word characters.",
+    "The insertion loop includes start=len(word), yielding the extra sequence \"{\" + word for an empty suffix. Current query constraints require a nonempty suffix, so no legal query starts along this extra branch. Its presence is harmless and keeps the suffix-enumeration loop simple; it would also support empty suffixes if the interface were extended. The separator is essential: matching a suffix must reach it exactly, whereas the prefix portion may stop before the full word ends."
+  ],
+  "walkthrough": {
+    "input": {
+      "words": [
+        "apple"
+      ],
+      "queries": [
+        [
+          "a",
+          "e"
+        ]
+      ]
+    },
+    "steps": [
+      "The example constructs WordFilter from [\"apple\"], whose only index is 0.",
+      "One stored sequence is \"e{apple\", generated from the suffix beginning at the final character.",
+      "The query pref=\"a\", suff=\"e\" becomes the traversal sequence \"e{a\".",
+      "Follow the e edge, then the separator edge, then a. Each of these nodes was visited by the insertion for word index 0.",
+      "The final node stores 0, so return 0. A query starting with an absent suffix or prefix would stop early with -1."
+    ],
+    "result": [
+      0
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "sequence = word[start:] + '{' + word",
+      "note": "Combining an exact suffix and a full-word prefix makes the two independent conditions searchable as one trie path."
+    },
+    {
+      "code": "node['$'] = index",
+      "note": "Increasing-index insertion overwrites the stored answer at every matching path, directly maintaining the largest index."
+    },
+    {
+      "code": "sequence = suff + '{' + pref",
+      "note": "The query stops after its prefix rather than needing the complete word; the reached node already summarizes all longer matching words."
+    }
+  ]
+}

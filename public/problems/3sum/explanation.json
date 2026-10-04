@@ -1,0 +1,52 @@
+{
+  "intuition": [
+    "Try all index triples in O(n^3) time, then deduplicate their sorted values. Sorting exposes monotonic choices and reduces the search to O(n^2). Repeated values make enumeration especially wasteful: many distinct position triples describe exactly the same three values.",
+    "Sorting gives pointer movement a direction. With anchor -1, a total below zero cannot be fixed by decreasing the right value, so only increasing left can help. A positive total requires decreasing right. This argument lets one comparison eliminate many pairs. Duplicates need separate treatment because a correct zero-sum pair might be followed by identical values at adjacent positions; skipping them preserves completeness while enforcing unique output triplets.",
+    "For a fixed first value, a sum below zero rules out every pair using that left value with a smaller right value. A sum above zero similarly rules out that right value with a larger left value. Therefore pointer movements cannot skip a solution. Distinct anchors and duplicate skipping emit each value triplet exactly once. Sorting uses a copied array; each anchor scans the remaining range once."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -1,
+        0,
+        1,
+        2,
+        -1,
+        -4
+      ]
+    },
+    "steps": [
+      "Sort the example into [-4,-1,-1,0,1,2].",
+      "Anchor -4 cannot reach zero: even the largest available pair gives -4+1+2=-1.",
+      "For anchor -1, pointer values -1 and 2 give the triple sum -1-1+2=0; record [-1,-1,2].",
+      "Move inward to 0 and 1; their total with -1 is zero, giving [-1,0,1].",
+      "Skip the next equal anchor -1; later anchors produce no additional distinct triplets."
+    ],
+    "result": [
+      [
+        -1,
+        -1,
+        2
+      ],
+      [
+        -1,
+        0,
+        1
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "values = sorted(nums)",
+      "note": "The sorted copy creates monotonic order without requiring the original array to remain reordered."
+    },
+    {
+      "code": "if i and anchor == values[i - 1]:",
+      "note": "A repeated anchor would re-enumerate the same value triplets, even though its position is different."
+    },
+    {
+      "code": "while left < right and values[left] == values[left - 1]:",
+      "note": "After a match, ignore equal left values so that the same triplet cannot be emitted again."
+    }
+  ]
+}

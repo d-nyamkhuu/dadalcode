@@ -1,0 +1,59 @@
+{
+  "intuition": [
+    "An index-based subset search generates every selection, but repeated values can make different index selections look identical. For [1,2,2], either occurrence of 2 alone yields the same subset. Deduplicating complete results afterward spends time building branches that were already known to be equivalent.",
+    "Sort the values, then explore increasing indices. At one recursion depth, equal values are interchangeable next choices: only their first occurrence needs its own branch. At a deeper depth, another equal value is meaningful because it increases that value\u2019s multiplicity in the current subset.",
+    "This explains the condition i>start rather than i>0. It skips equal siblings while preserving equal descendants. Save the path at every call, not only at leaves, because every partial selection is a valid subset, including the empty root path. Copy before future choices modify the shared path."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        2
+      ]
+    },
+    "steps": [
+      "For sorted nums=[1,2,2], visit the empty path first and save the empty subset.",
+      "Choose 1 and save [1]. Its first 2 produces [1,2], and the later 2 at the next depth produces [1,2,2].",
+      "Return to path [1]. Skip the second 2 as a sibling because the first 2 already represented that choice.",
+      "At the root, choose its first 2 and save [2]. The following equal 2 is now a descendant, so save [2,2].",
+      "Skip the root\u2019s later 2 sibling. The result contains exactly six distinct subsets, with zero, one, or two copies of 2 as appropriate."
+    ],
+    "result": [
+      [],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "result.append(path[:])",
+      "note": "Each call represents a subset already chosen, regardless of whether more numbers will be added. Copying captures this exact intermediate selection."
+    },
+    {
+      "code": "if i > start and nums[i] == nums[i - 1]:",
+      "note": "The start boundary identifies siblings at this depth. An equal value at i==start remains legal because it extends an existing duplicate run."
+    },
+    {
+      "code": "visit(i + 1)",
+      "note": "An input occurrence may enter a subset only once. Advancing past its index retains increasing-index paths and legal multiplicities."
+    }
+  ]
+}

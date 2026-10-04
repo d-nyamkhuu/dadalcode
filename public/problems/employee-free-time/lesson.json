@@ -1,0 +1,59 @@
+{
+  "slug": "employee-free-time",
+  "headline": "Find gaps in the union of everyone's working intervals",
+  "statement": "Each employee has sorted, nonoverlapping working intervals. Return sorted finite positive-length intervals during which every employee is free. Exclude the unbounded time before all work and after all work. Input and output intervals have start and end attributes.",
+  "prerequisites": [
+    "Interval merging",
+    "Sorting"
+  ],
+  "constraints": [
+    "1 to 50 employees, each with 1 to 50 working intervals.",
+    "0 <= start < end <= 100000000.",
+    "Each employee's own intervals are sorted and do not overlap."
+  ],
+  "intuition": "Everyone is free precisely where nobody is working. Flatten all busy intervals, sort by start, and sweep their union. If a new interval starts strictly after the farthest busy endpoint, the space between is a common free interval.",
+  "approach": [
+    "Flatten intervals into start/end pairs and sort.",
+    "Initialize busy_end from the first interval.",
+    "For each later interval, emit [busy_end,start] only when start > busy_end.",
+    "Extend busy_end to the larger endpoint."
+  ],
+  "correctness": "After each interval, busy_end is the right boundary of the processed busy union's final component. Sorted starts ensure that no unseen interval can cover a gap preceding the current start. A strictly later start therefore identifies an exact finite free component; overlapping or touching intervals extend the busy union without a gap.",
+  "bruteForce": "Inspect every time coordinate and test all employees, impractical for endpoints up to 100 million. A heap merge of the already sorted employee lists can reduce sorting cost when employee count is small.",
+  "complexity": {
+    "time": "O(N log N)",
+    "space": "O(N) auxiliary plus output",
+    "explanation": "N is the total number of busy intervals; flattening and sorting dominate."
+  },
+  "pitfalls": [
+    "Touching intervals create no positive-length gap.",
+    "Keep the maximum endpoint when intervals nest.",
+    "Do not return infinite leading or trailing free intervals."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode original",
+      "url": "https://leetcode.com/problems/employee-free-time/"
+    },
+    {
+      "label": "Public statement: Leetcode.ca",
+      "url": "https://leetcode.ca/all/759.html"
+    }
+  ],
+  "visualization": {
+    "kind": "intervals",
+    "focus": [
+      "busy",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "start",
+      "end",
+      "busy_end"
+    ],
+    "labels": {}
+  }
+}

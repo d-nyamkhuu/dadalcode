@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Example: two steps",
+    "input": {
+      "head": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "k": 2
+    },
+    "expected": [
+      4,
+      5,
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Example: modulo",
+    "input": {
+      "head": [
+        0,
+        1,
+        2
+      ],
+      "k": 4
+    },
+    "expected": [
+      2,
+      0,
+      1
+    ]
+  },
+  {
+    "name": "Empty",
+    "input": {
+      "head": [],
+      "k": 10
+    },
+    "expected": []
+  },
+  {
+    "name": "Single",
+    "input": {
+      "head": [
+        7
+      ],
+      "k": 2000000000
+    },
+    "expected": [
+      7
+    ]
+  },
+  {
+    "name": "No rotation",
+    "input": {
+      "head": [
+        1,
+        2,
+        3
+      ],
+      "k": 0
+    },
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Full revolution",
+    "input": {
+      "head": [
+        1,
+        2,
+        3
+      ],
+      "k": 6
+    },
+    "expected": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "name": "Huge rotation on multiple nodes",
+    "input": {
+      "head": [
+        1,
+        2,
+        3
+      ],
+      "k": 2000000000
+    },
+    "expected": [
+      2,
+      3,
+      1
+    ]
+  }
+]

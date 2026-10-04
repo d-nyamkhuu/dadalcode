@@ -1,0 +1,63 @@
+{
+  "slug": "word-break",
+  "headline": "Mark reachable prefix boundaries",
+  "statement": "Determine whether the entire string s can be segmented into one or more words from wordDict. A dictionary word may be reused as often as needed.",
+  "prerequisites": [
+    "Sets",
+    "Prefix indexing",
+    "Dynamic programming"
+  ],
+  "constraints": [
+    "1 <= len(s) <= 300",
+    "1 <= len(wordDict) <= 1000",
+    "Each dictionary word has 1 to 20 lowercase letters",
+    "s is lowercase and dictionary words are unique"
+  ],
+  "intuition": "Imagine boundaries between characters. Boundary end is reachable if an earlier reachable boundary start is followed by a dictionary word. A valid segmentation reaches the final boundary; a locally longest word is not always the right choice.",
+  "approach": [
+    "Convert wordDict to a set and record the maximum word length.",
+    "Set dp[0] true for the empty prefix.",
+    "For each end, try reachable starts no farther than the longest word; mark dp[end] true on a match."
+  ],
+  "correctness": "Induct on end. A successful transition appends one dictionary word to a valid prefix, yielding a valid segmentation. Conversely the last word of any valid segmentation starts at a reachable earlier boundary considered by the transition. Thus dp describes all and only segmentable prefixes.",
+  "bruteForce": "Recursively try every next dictionary word without memoization. Repeatedly exploring the same suffix can take exponential time.",
+  "complexity": {
+    "time": "O(nL\u00b2)",
+    "space": "O(n + D)",
+    "explanation": "n=len(s), L is the maximum dictionary word length, and D is the total number of dictionary characters. At most L candidate slices of length up to L are created and hashed per boundary; DP storage is O(n) and the dictionary uses O(D) as an upper bound."
+  },
+  "pitfalls": [
+    "A word may be reused; do not remove it after matching.",
+    "Greedy longest-prefix matching can miss a valid segmentation.",
+    "True for a short prefix does not guarantee true for the entire string."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/word-break/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "s",
+      "words",
+      "dp"
+    ],
+    "pointers": [
+      "start",
+      "end"
+    ],
+    "watch": [
+      "longest"
+    ],
+    "labels": {
+      "s": "S",
+      "words": "Words",
+      "dp": "Dp",
+      "start": "Start",
+      "end": "End",
+      "longest": "Longest"
+    }
+  }
+}

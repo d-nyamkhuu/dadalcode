@@ -1,0 +1,51 @@
+{
+  "intuition": [
+    "Scan all k values in every window, giving O(nk) time. Adjacent windows share k-1 values, so repeatedly scanning all k entries discards almost all previously learned information.",
+    "Store only values that can still become a future window maximum, using their indices for expiration. An older value no larger than a newly arrived value is permanently dominated: the new value is at least as useful and survives longer. Removing such values from the deque\u2019s back leaves decreasing candidates. The oldest remaining candidate sits at the front, where expiry and maximum lookup are both immediate. The deque is not the complete window; discarded values remain in the input but are no longer relevant to this question.",
+    "The deque contains current-window candidates in decreasing value order. Any removed back candidate has a newer value no smaller, so it cannot become the maximum before it expires. Expired front indices are invalid. Thus the front is the largest value among all relevant candidates and the true maximum. Each index enters once and leaves at most once from either end."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        3,
+        -1,
+        -3,
+        5,
+        3,
+        6,
+        7
+      ],
+      "k": 3
+    },
+    "steps": [
+      "After reading 1 and 3, remove index 0 because newer value 3 dominates 1.",
+      "Read -1 to complete the first window; candidates [1,2] give maximum 3.",
+      "Read -3; index 1 is still present, so the next maximum remains 3.",
+      "Read 5: expire index 1, then remove the smaller back candidates; maximum becomes 5.",
+      "Subsequent windows produce 5,6,7, yielding [3,3,5,5,6,7]."
+    ],
+    "result": [
+      3,
+      3,
+      5,
+      5,
+      6,
+      7
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "while candidates and candidates[0] <= i - k:",
+      "note": "Window membership depends on indices; the current window begins at i-k+1."
+    },
+    {
+      "code": "while candidates and nums[candidates[-1]] <= value:",
+      "note": "The newer value dominates every removed candidate and has a later expiry, including equal values."
+    },
+    {
+      "code": "result.append(nums[candidates[0]])",
+      "note": "The decreasing candidate invariant makes the front the maximum without scanning the full window."
+    }
+  ]
+}

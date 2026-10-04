@@ -1,0 +1,56 @@
+{
+  "intuition": [
+    "A Sudoku fill is not nine independent row problems: each proposed digit must satisfy its row, column, and box simultaneously. Trying every digit everywhere and validating only complete boards wastes effort on contradictions that were visible immediately. Store occupied digits in three groups of sets so each placement can be checked before recursion.",
+    "The reference also chooses the empty cell with the fewest remaining candidates. A forced one-candidate cell is more informative than an unconstrained cell with many choices. If a cell has no candidates, this branch cannot lead to a solution. Selecting the most constrained cell changes search order, not the set of valid boards.",
+    "For each allowed digit, write the board and update all three sets before recursively filling another cell. If the branch fails, undo all four changes. Forgetting even one removal contaminates sibling choices. Completion means every originally empty position has received a legal digit; the valid, uniquely solvable input guarantee lets the first complete board serve as the answer.",
+    "A locally legal digit can still reveal a contradiction. In one failed branch of the sparse-puzzle fixture, zero-based cells (6,0) and (6,5) both have only candidate 2. The reference selects (6,0) first and writes 2; the other cell in that row then has no candidates, so recursion rejects the branch. It restores the dot at (6,0) and removes 2 from its row, column, and box sets, then unwinds earlier choices until another alternative can be tried. The MRV scan stops at a singleton for efficiency, so a zero-candidate cell later in the scan may be discovered at the following level. This changes discovery timing, not completeness."
+  ],
+  "walkthrough": {
+    "input": {
+      "board": [
+        ".34678912",
+        "6.2195348",
+        "19.342567",
+        "859.61423",
+        "4268.3791",
+        "71392.856",
+        "961537.84",
+        "2874196.5",
+        "34528617."
+      ]
+    },
+    "steps": [
+      "The diagonal-holes example has one dot in each row: r0c0, r1c1, through r8c8.",
+      "Initialize sets from the fixed clues. At r0c0, its row lacks only 5, so the candidate set is {5}.",
+      "Write 5 and add it to row 0, column 0, and box 0 before searching the next position.",
+      "The next diagonal cell r1c1 is forced to 7; later forced placements are 8, 7, 5, 4, 2, 3, 9.",
+      "Each recursive level fills one hole while preserving all fixed clues and three-group constraints.",
+      "After nine placements, index equals the empty-cell count. The board is complete; successful recursion returns without undoing its digits."
+    ],
+    "result": [
+      "534678912",
+      "672195348",
+      "198342567",
+      "859761423",
+      "426853791",
+      "713924856",
+      "961537284",
+      "287419635",
+      "345286179"
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "candidates = digits - rows[row] - cols[col] - boxes[box_id]",
+      "note": "A legal digit must be absent from all three overlapping constraint groups."
+    },
+    {
+      "code": "empty[index], empty[best_index] = empty[best_index], empty[index]",
+      "note": "Bring the most constrained remaining cell into the next recursion slot without losing other coordinates."
+    },
+    {
+      "code": "board[row][col] = '.'",
+      "note": "Failed branches restore the cell; matching set removals restore exactly the prior search state."
+    }
+  ]
+}

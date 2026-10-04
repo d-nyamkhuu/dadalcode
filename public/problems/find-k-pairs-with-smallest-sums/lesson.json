@@ -1,0 +1,58 @@
+{
+  "slug": "find-k-pairs-with-smallest-sums",
+  "headline": "Merge sorted rows of the pair-sum matrix",
+  "statement": "Given sorted nums1 and nums2, return k value pairs using one entry from each array with the smallest sums. Equal values from different positions supply distinct pairs; ties may be returned in any order.",
+  "prerequisites": [
+    "Min-heaps",
+    "Merging sorted streams"
+  ],
+  "constraints": [
+    "1 <= len(nums1), len(nums2) <= 100000",
+    "Both arrays are nonempty and sorted nondecreasingly.",
+    "1 <= k <= 10000 and k <= len(nums1)*len(nums2).",
+    "Values range from -1000000000 to 1000000000."
+  ],
+  "intuition": "Fixing a nums1 index creates a row of increasing sums as nums2 advances. Put each relevant row's first pair in a min-heap. Popping the smallest row front and advancing that row is the same idea as merging sorted lists.",
+  "approach": [
+    "Seed up to k rows with their pair at column zero.",
+    "Pop the heap's smallest sum and append its two values.",
+    "Push the next column from that same row if one exists.",
+    "Repeat until k pairs have been returned."
+  ],
+  "correctness": "The heap holds the smallest unreturned pair in every seeded row, so its minimum is the next globally smallest pair among those rows. Unseeded rows begin no earlier than the kth row; the k seeded row starts already provide k sums no greater than any unseeded start. Thus omitting those rows cannot invalidate the first k sums.",
+  "bruteForce": "Build every pair and sort by sum, requiring O(mn log(mn)) time and O(mn) space.",
+  "complexity": {
+    "time": "O(k log(min(m, k) + 1))",
+    "space": "O(min(m, k)) auxiliary plus O(k) output",
+    "explanation": "Heap size is at most the number of seeded rows; each emitted pair causes at most one insertion."
+  },
+  "pitfalls": [
+    "Keep array indices to preserve duplicate-pair multiplicity.",
+    "Push only the next column of the popped row.",
+    "Different tied pairs can all be correct."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/find-k-pairs-with-smallest-sums/"
+    }
+  ],
+  "visualization": {
+    "kind": "heap",
+    "focus": [
+      "nums1",
+      "nums2",
+      "heap",
+      "result"
+    ],
+    "pointers": [
+      "i",
+      "j"
+    ],
+    "watch": [
+      "total",
+      "k"
+    ],
+    "labels": {}
+  }
+}

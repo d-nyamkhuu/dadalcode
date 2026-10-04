@@ -1,0 +1,52 @@
+{
+  "intuition": [
+    "Searching only target\u2019s descendants misses nodes reached by moving toward the root and into another branch. Distance is measured on the tree\u2019s edges in either direction, so the problem is naturally a graph search starting at target rather than a root-down traversal.",
+    "Tree nodes do not store parent references, so first walk the tree and build a parent map. Now each node has at most three neighbors: its left child, right child, and parent. Breadth-first search from target discovers these neighbors in increasing shortest-path distance.",
+    "Adding parent moves introduces immediate backtracking paths, so mark nodes seen when enqueued. At distance k, collect a node\u2019s value without expanding it farther. This keeps the search restricted to relevant layers and handles k=0 naturally: target itself is the entire initial frontier."
+  ],
+  "walkthrough": {
+    "input": {
+      "root": [
+        3,
+        5,
+        1,
+        6,
+        2,
+        0,
+        8,
+        null,
+        null,
+        7,
+        4
+      ],
+      "target": 5,
+      "k": 2
+    },
+    "steps": [
+      "For target=5 and k=2, build parent links in the tree rooted at 3; parent[5]=3 and parent[2]=5.",
+      "Start the BFS queue with (5,0). Its unseen neighbors are left child 6, right child 2, and parent 3, all at distance 1.",
+      "Node 6 adds nobody because its only neighbor 5 is already seen. Node 2 adds children 7 and 4 at distance 2.",
+      "Node 3 skips already-seen child 5 and adds its other child 1 at distance 2. The next frontier is [7,4,1].",
+      "Collect these three values and do not expand them into farther nodes. Return [7,4,1]; answer order is unrestricted."
+    ],
+    "result": [
+      7,
+      4,
+      1
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "parents[child] = node",
+      "note": "This records the reverse of each existing child edge, allowing later search to leave target\u2019s subtree and reach ancestors or sibling branches."
+    },
+    {
+      "code": "seen.add(neighbor)",
+      "note": "Marking discovery before enqueueing prevents parent-child edges from repeatedly sending the search back over already visited nodes."
+    },
+    {
+      "code": "if distance == k:",
+      "note": "BFS associates the shortest distance with each discovery. At the requested layer, the node is an answer and its farther neighbors are unnecessary."
+    }
+  ]
+}

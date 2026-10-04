@@ -1,0 +1,52 @@
+{
+  "counts": {
+    "path-sum-iii": 2808,
+    "peak-index-in-a-mountain-array": 2283,
+    "permutation-in-string": 1866,
+    "permutations": 131,
+    "permutations-ii": 124,
+    "prefix-and-suffix-search": 306,
+    "product-of-array-except-self": 19531,
+    "range-sum-query-immutable": 36,
+    "rearrange-string-k-distance-apart": 1387,
+    "remove-duplicates-from-sorted-list": 36,
+    "remove-linked-list-elements": 161,
+    "remove-nth-node-from-end-of-list": 471,
+    "reorder-list": 36,
+    "reorganize-string": 186,
+    "reverse-bits": 1013,
+    "reverse-linked-list": 37,
+    "reverse-linked-list-ii": 4966,
+    "reverse-nodes-in-k-group": 471,
+    "rotate-array": 186,
+    "rotate-image": 26,
+    "rotate-list": 223,
+    "same-tree": 806,
+    "search-a-2d-matrix": 3207,
+    "search-a-2d-matrix-ii": 5605,
+    "search-in-rotated-sorted-array": 3974,
+    "search-in-rotated-sorted-array-ii": 1896,
+    "serialize-and-deserialize-binary-tree": 407,
+    "set-matrix-zeroes": 807,
+    "single-number": 386,
+    "sliding-window-maximum": 112306
+  },
+  "errors": [],
+  "codec_cache_mutant_fixtures_passed": 6,
+  "reversed_duplicate_condition_valid_cases": 119,
+  "total_checks": 165678,
+  "reversed_predicate_equal8_reference_calls": 9,
+  "reversed_predicate_equal8_mutant_calls": 2781,
+  "codec_cached_prior_roundtrip": {
+    "original": [
+      1,
+      2
+    ],
+    "later": [
+      9
+    ],
+    "decoded_original": [
+      9
+    ]
+  }
+}

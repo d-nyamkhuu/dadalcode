@@ -1,0 +1,41 @@
+{
+  "intuition": [
+    "Assign each element to one of k labeled buckets, giving up to k^n combinations. Bitmask DP merges equivalent used-element states. Different assignment orders often reach the same set of used positions, so memoizing that set avoids rediscovering equivalent partial work.",
+    "Each bit identifies whether one particular input position has been used, keeping equal-valued elements distinct. A mask fixes the sum already used; therefore its incomplete group sum is fixed modulo target. No separate bucket arrangement is necessary. Add an unused element only when it fits the remaining capacity, resetting the remainder to zero when a group completes. Positivity matters: target is nonzero, and completed groups cannot be empty. The small maximum input length makes the exponential mask table practical.",
+    "A reachable mask represents completed target-sum groups plus one unfinished group whose sum is its stored remainder. Adding a fitting unused value maintains this invariant, and reaching target completes a group. Every legal partition can be built group by group through these transitions. Since all values are positive, groups are nonempty; the full total equals k*target, so a reachable full mask completes exactly k groups. At most 2^n masks each inspect n unused positions.",
+    "The walkthrough follows one successful path in the state graph rather than claiming consecutive loop iterations. The increasing-mask scan processes 0001 (decimal 1) before 1001 (decimal 9), and 1001 before 1111 (decimal 15), while other masks may be processed between them. Adding any unused bit makes next_mask strictly larger than mask, so every predecessor is considered before its successors in one forward pass."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "k": 2
+    },
+    "steps": [
+      "For [1,2,3,4] and k=2, total is 10 and each group must sum to target 5.",
+      "Follow one successful DP path: mask 0000 has remainder 0; adding value 1 reaches mask 0001 (decimal 1), which the increasing-mask loop later processes.",
+      "Adding value 4 completes a group, reaching mask 1001 (decimal 9) with remainder 0. Other masks are processed before the loop reaches 9.",
+      "From that state, add value 2 and then 3; mask 1111 returns to remainder 0.",
+      "The full mask represents groups [1,4] and [2,3], so return True."
+    ],
+    "result": true
+  },
+  "codeNotes": [
+    {
+      "code": "remainder = [-1] * (1 << len(nums))",
+      "note": "Each used-position subset gets one state; -1 distinguishes unreachable masks from reachable completed-group states with remainder zero."
+    },
+    {
+      "code": "if mask & (1 << i) or current + value > target:",
+      "note": "Reject reused positions and overfilled groups before creating a successor state."
+    },
+    {
+      "code": "remainder[next_mask] = (current + value) % target",
+      "note": "The used sum determines this remainder, so different histories reaching one mask can share the same state."
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "intuition": [
+    "Trying every vertex as a root and measuring its height is correct but repeats full-tree traversals. A tree has one or two central vertices that minimize the farthest distance. We can discover this center without choosing roots by repeatedly removing the outermost layer of leaves.",
+    "Leaves have degree one. Removing all of them together shortens every outer branch by one edge and preserves the center of the longest paths. Their neighbors may become new leaves for the next round. Degree counts allow this update without physically deleting every adjacency-list entry.",
+    "Remove a complete layer before deciding whether to continue. A tree center may be a single vertex or the two vertices of a central edge, so stop when at most two vertices remain. The single-vertex input needs a separate return because its vertex has degree zero and would not enter a degree-one queue. Layered removal does linear work: each vertex becomes a leaf once, and each edge triggers only a bounded number of degree updates.",
+    "In a star, removing its simultaneous outer leaves can first lower the center to degree one and enqueue it, then lower it to zero as the last leaf is removed. It still belongs to the answer: the queue holds vertices exposed by this complete layer, and remaining already says one vertex survives. Degree zero here means no remaining edge, not that the center was removed."
+  ],
+  "walkthrough": {
+    "input": {
+      "n": 6,
+      "edges": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    "steps": [
+      "For n=6 with edges [[3,0],[3,1],[3,2],[3,4],[5,4]], initial leaves are 0,1,2,5.",
+      "There are six remaining vertices; removing this four-vertex layer will leave two.",
+      "Removing 0 and 1 lowers node 3’s degree from 4 to 2.",
+      "Removing 2 lowers node 3’s degree to 1, so enqueue 3 as a new leaf.",
+      "Removing 5 lowers node 4’s degree to 1, so enqueue 4.",
+      "Stop with two remaining vertices and return [3,4]; either is a minimum-height root."
+    ],
+    "result": [
+      3,
+      4
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "layer_size = len(leaves)",
+      "note": "Freeze the current outer layer so newly exposed leaves are not removed in the same round."
+    },
+    {
+      "code": "remaining -= layer_size",
+      "note": "Track how many vertices survive, stopping at one or two centers."
+    },
+    {
+      "code": "if degree[neighbor] == 1:\n                            leaves.append(neighbor)",
+      "note": "A neighbor becomes part of the next outside layer exactly when only one live connection remains."
+    }
+  ]
+}

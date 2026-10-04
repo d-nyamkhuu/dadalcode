@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Overlapping schedule",
+    "input": {
+      "intervals": [
+        [
+          0,
+          30
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          15,
+          20
+        ]
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Unsorted disjoint meetings",
+    "input": {
+      "intervals": [
+        [
+          7,
+          10
+        ],
+        [
+          2,
+          4
+        ]
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Empty schedule",
+    "input": {
+      "intervals": []
+    },
+    "expected": true
+  },
+  {
+    "name": "Touching endpoints",
+    "input": {
+      "intervals": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Nested meeting",
+    "input": {
+      "intervals": [
+        [
+          1,
+          10
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Single meeting",
+    "input": {
+      "intervals": [
+        [
+          5,
+          9
+        ]
+      ]
+    },
+    "expected": true
+  },
+  {
+    "name": "Equal starting times",
+    "input": {
+      "intervals": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "expected": false
+  },
+  {
+    "name": "Unsorted touching chain",
+    "input": {
+      "intervals": [
+        [
+          6,
+          8
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    "expected": true
+  }
+]

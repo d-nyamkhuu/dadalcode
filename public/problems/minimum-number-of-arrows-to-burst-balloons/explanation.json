@@ -1,0 +1,53 @@
+{
+  "intuition": [
+    "One arrow may burst several balloons, so treating balloons independently wastes shots. Trying all combinations of arrow positions becomes expensive. The key is that only the horizontal interval occupied by each balloon matters, and the earliest-ending uncovered balloon imposes the next deadline.",
+    "Any valid solution must shoot somewhere inside that balloon. Move the necessary shot to its right endpoint. This cannot lose a later-ending balloon previously hit by the shot, because moving right stays below its end and cannot cross backward below its start. Shooting at the deadline is therefore safe.",
+    "Sort by end coordinate and retain the current shot position. Each later balloon either contains that shot or begins strictly after it and requires another. Unlike non-overlapping scheduling, shared endpoints count as a hit because balloon intervals are closed.",
+    "Although an arrow can be placed anywhere inside a balloon, some optimal solution uses only right endpoints: shift each necessary shot to the earliest-ending balloon it serves. The exchange argument preserves every balloon previously hit by that shot. Equal ending coordinates need no special sorting tie rule because either balloon gives the same safe shot position."
+  ],
+  "walkthrough": {
+    "input": {
+      "points": [
+        [
+          10,
+          16
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          7,
+          12
+        ]
+      ]
+    },
+    "steps": [
+      "For [[10,16],[2,8],[1,6],[7,12]], sorting by end gives [1,6], [2,8], [7,12], [10,16].",
+      "Initially no arrow exists. Shoot at end 6 of the first balloon and set arrows=1.",
+      "The balloon [2,8] contains position 6 because 2<=6<=8, so reuse that shot.",
+      "Balloon [7,12] starts beyond 6 and was not burst. Shoot the next arrow at 12, making arrows=2.",
+      "Balloon [10,16] contains 12 and needs no additional shot.",
+      "Return 2. The first shot handles the first two sorted balloons, and the second handles the final two."
+    ],
+    "result": 2
+  },
+  "codeNotes": [
+    {
+      "code": "sorted(points, key=lambda pair: pair[1])",
+      "note": "The first-ending uncovered balloon supplies a deadline that lets the next necessary shot be chosen without searching positions."
+    },
+    {
+      "code": "if arrow is None or start > arrow:",
+      "note": "Only a strict start beyond the shot requires another arrow. An equal start still contains the shot at its endpoint."
+    },
+    {
+      "code": "arrow = end",
+      "note": "Move the new shot to the latest position allowed by the first-ending balloon, maximizing its chance of hitting later balloons."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "intuition": [
+    "Sorting all values by distance would identify the answer, but costs extra work and requires sorting the selected values again. The input is already sorted, and an optimal set of k closest values can be chosen as one contiguous window: skipping an interior value cannot improve closeness.",
+    "Adjacent k-value windows differ in only two entries: the left value being dropped and the right value being gained. Compare x-arr[mid] with arr[mid+k]-x. If the left side is strictly worse, move the candidate start right; otherwise keep the left window, including distance ties.",
+    "This boundary preference changes monotonically across possible starts, allowing binary search over 0 through n-k. The expressions are directed distances, not absolute distances, so they also handle x lying outside a candidate window. The final slice is already ascending and includes exactly k values."
+  ],
+  "walkthrough": {
+    "input": {
+      "arr": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "k": 4,
+      "x": 3
+    },
+    "steps": [
+      "For arr=[1,2,3,4,5], k=4, and x=3, there are only two window starts: 0 and 1.",
+      "The search starts with left=0 and right=1, so mid=0 compares the competing boundary values 1 and 5.",
+      "The directed distances are x-arr[0]=2 and arr[4]-x=2. They tie.",
+      "Because a tie favors the smaller value, keep the window containing 1 by setting right=0 rather than shifting to start 1.",
+      "The search finishes at start 0. Return arr[0:4], giving [1,2,3,4] in the requested sorted order."
+    ],
+    "result": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "left, right = 0, len(arr) - k",
+      "note": "Every possible answer window has one start in this interval. Restricting starts also makes the gained boundary mid+k a valid index."
+    },
+    {
+      "code": "if x - arr[mid] > arr[mid + k] - x:",
+      "note": "Only a strictly worse left boundary justifies shifting right. The equality case must preserve the smaller left value for the tie rule."
+    },
+    {
+      "code": "return arr[left:left + k]",
+      "note": "The binary search identifies a window rather than individual ranks. Its slice has the required size and inherits the input\u2019s ascending order."
+    }
+  ]
+}

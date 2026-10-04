@@ -1,0 +1,57 @@
+{
+  "slug": "linked-list-cycle-ii",
+  "headline": "Find the cycle entrance using Floyd\u2019s two phases",
+  "statement": "Return the original node where a singly linked list\u2019s cycle begins, or None if there is no cycle. The input fixture uses pos as the tail\u2019s connection index; pos is not a parameter of detectCycle. Do not modify the list.",
+  "prerequisites": [
+    "Node identity",
+    "Slow/fast pointers",
+    "Modular distances"
+  ],
+  "constraints": [
+    "0 <= list length <= 10000",
+    "pos is -1 for no cycle or an existing zero-based index",
+    "-100000 <= node value <= 100000"
+  ],
+  "intuition": "Moving one and two steps detects a cycle because their relative position changes by one per round. At a meeting, the number of steps taken by slow is a multiple of the cycle length. Resetting one pointer to head lets both meet at the entrance when moved equally.",
+  "approach": [
+    "Advance slow by one and fast by two until they meet or fast reaches the end.",
+    "On a meeting, reset an entrance pointer to head.",
+    "Move entrance and slow one step at a time until their identities match."
+  ],
+  "correctness": "Let the entrance be \u03bc links from head, the meeting be x links into a cycle of length \u03bb, and slow\u2019s meeting distance be t. Fast has travelled 2t, so their distance difference t is a multiple of \u03bb; t=\u03bc+x modulo \u03bb gives \u03bc=-x modulo \u03bb. Thus a pointer from head and a pointer from the meeting reach the entrance together after \u03bc steps. An acyclic list makes fast reach None.",
+  "bruteForce": "Store visited node identities in a set; the first repeated node is the entrance, requiring O(n) space.",
+  "complexity": {
+    "time": "O(length)",
+    "space": "O(1)",
+    "explanation": "Detection and entrance localization each walk at most a constant multiple of the number of distinct nodes."
+  },
+  "pitfalls": [
+    "Compare node identities, not equal values.",
+    "Guard fast.next before taking two steps.",
+    "Keep the input links unchanged."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/linked-list-cycle-ii/"
+    }
+  ],
+  "visualization": {
+    "kind": "linked-list",
+    "focus": [
+      "head"
+    ],
+    "pointers": [],
+    "watch": [
+      "slow",
+      "fast",
+      "entrance"
+    ],
+    "labels": {
+      "head": "Head",
+      "slow": "Slow",
+      "fast": "Fast",
+      "entrance": "Entrance"
+    }
+  }
+}

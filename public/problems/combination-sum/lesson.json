@@ -1,0 +1,62 @@
+{
+  "slug": "combination-sum",
+  "headline": "Reuse a candidate without repeating combinations",
+  "statement": "Given distinct positive integers candidates and a positive target, return every combination whose values sum to target. A candidate may be chosen any number of times. Combination order and result order do not matter; no duplicate combinations are allowed.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Recursion and undoing choices"
+  ],
+  "constraints": [
+    "1 <= len(candidates) <= 30",
+    "2 <= candidates[i] <= 40; candidates are distinct.",
+    "1 <= target <= 40"
+  ],
+  "intuition": "Allow reuse by keeping the chosen index available in the recursive call. Prevent duplicate orderings by never returning to an earlier candidate. Sorted candidates let us stop once a value exceeds the remaining target.",
+  "approach": [
+    "Sort candidates and keep a path and remaining target.",
+    "From start onward, try each value no larger than the remainder.",
+    "Recurse with the same index to allow reuse; pop the value on return.",
+    "Save a copy when the remainder reaches zero."
+  ],
+  "correctness": "Every path is nondecreasing, so permutations of one combination cannot produce duplicates. Any valid multiset can be written in that order and follows a permitted path. Positive values reduce the remainder, and stopping at zero saves exactly combinations totaling target.",
+  "bruteForce": "Enumerate ordered sequences of candidates. This explores permutations of the same answer and requires deduplication afterward.",
+  "complexity": {
+    "time": "O(n log n + n^d * d), d = floor(target/min(candidates))",
+    "space": "O(n+d) auxiliary, excluding output",
+    "explanation": "n is the number of candidates and d=floor(target/min(candidates)) is maximum path depth. Sorting costs O(n log n); at most n choices per depth give a conservative exponential search bound. Each saved result costs O(d) to copy. The sorted copy uses O(n), and path plus recursion use O(d), excluding output."
+  },
+  "pitfalls": [
+    "Reuse requires passing i, not i+1.",
+    "Save path[:] rather than the mutable path.",
+    "Positive candidates are essential for termination."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/combination-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "backtracking",
+    "focus": [
+      "candidates",
+      "path",
+      "result"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "remaining",
+      "start"
+    ],
+    "labels": {
+      "candidates": "Candidates",
+      "path": "Path",
+      "result": "Result",
+      "i": "I",
+      "remaining": "Remaining",
+      "start": "Start"
+    }
+  }
+}

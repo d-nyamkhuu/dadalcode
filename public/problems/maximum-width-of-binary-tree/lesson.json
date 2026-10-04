@@ -1,0 +1,63 @@
+{
+  "slug": "maximum-width-of-binary-tree",
+  "headline": "Preserve conceptual positions while normalizing each level",
+  "statement": "Return the maximum width of a binary tree. Width counts positions between the leftmost and rightmost non-null nodes at a depth, including gaps where nodes would occur in a complete binary tree.",
+  "prerequisites": [
+    "Breadth-first search",
+    "Complete-tree indexing"
+  ],
+  "constraints": [
+    "1 <= node count <= 3000",
+    "-100 <= node value <= 100",
+    "Answer fits a signed 32-bit integer"
+  ],
+  "intuition": "Counting existing nodes misses empty gaps. Give a node’s children positions 2i and 2i+1. The difference between the last and first positions plus one gives the width. Subtract the level’s first position before producing child indices to keep numbers small.",
+  "approach": [
+    "Queue pairs of node and conceptual position.",
+    "For each level, remember its first position and process the original queue length.",
+    "Normalize positions relative to that first value and enqueue children at 2i and 2i+1.",
+    "The final normalized position plus one is this level’s width."
+  ],
+  "correctness": "Complete-tree indices preserve every horizontal gap. BFS orders a level left to right, so its first and final positions bound exactly the required width. Subtracting a common offset preserves differences; generating children after normalization shifts every next-level index by the same amount, again preserving differences. The maximum computed width is therefore correct.",
+  "bruteForce": "Build the complete-tree slots explicitly, including every null position. Sparse trees can require exponentially many empty slots.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(w_real)",
+    "explanation": "w_real is the maximum number of present nodes at any depth, not the conceptual width including gaps. Only real nodes are enqueued; during a level transition the queue holds parts of two adjacent levels, still O(w_real). Normalization avoids coordinate growth caused solely by a deep one-sided path."
+  },
+  "pitfalls": [
+    "Width includes missing positions between real nodes.",
+    "Queue length is not the width.",
+    "Normalize every level before calculating child indices."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/problems/maximum-width-of-binary-tree/"
+    }
+  ],
+  "visualization": {
+    "kind": "tree",
+    "focus": [
+      "root",
+      "queue"
+    ],
+    "pointers": [],
+    "watch": [
+      "node",
+      "position",
+      "offset",
+      "best",
+      "width"
+    ],
+    "labels": {
+      "root": "Root",
+      "queue": "Queue",
+      "node": "Node",
+      "position": "Position",
+      "offset": "Offset",
+      "best": "Best",
+      "width": "Width"
+    }
+  }
+}

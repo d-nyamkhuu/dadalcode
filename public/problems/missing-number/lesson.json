@@ -1,0 +1,56 @@
+{
+  "slug": "missing-number",
+  "headline": "Cancel matching indices and values with XOR",
+  "statement": "nums contains n distinct integers from 0 through n with exactly one absent. Return the missing value. Prefer linear time and constant extra space.",
+  "prerequisites": [
+    "Basic Python lists, loops, and functions",
+    "Binary representation and bitwise operators"
+  ],
+  "constraints": [
+    "0 <= nums[i] <= n; every value is distinct.",
+    "1 <= n <= 10^4"
+  ],
+  "intuition": "XOR cancels equal values because x XOR x is zero. XOR every expected number 0..n and every supplied number; all present values occur twice, leaving only the absent value. Starting with n and pairing each index with its array value avoids a separate pass.",
+  "approach": [
+    "Initialize missing to len(nums), the final expected value.",
+    "For each index i, XOR missing with i and nums[i].",
+    "Return the remaining accumulator."
+  ],
+  "correctness": "The accumulator after the full scan is the XOR of all integers in 0..n and all input values. Each present number appears twice and cancels, while the single absent number appears once and remains. XOR is associative and commutative, so input ordering is irrelevant.",
+  "bruteForce": "Sort and find the first index unequal to its value in O(n log n), or use a membership set with O(n) storage.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "explanation": "One scan uses one XOR accumulator; no arithmetic overflow or auxiliary set is needed."
+  },
+  "pitfalls": [
+    "Include n in the expected domain.",
+    "A missing zero leaves no special marker but is still correctly returned.",
+    "Do not assume the input is sorted."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/missing-number/"
+    }
+  ],
+  "visualization": {
+    "kind": "bits",
+    "focus": [
+      "nums"
+    ],
+    "pointers": [
+      "i"
+    ],
+    "watch": [
+      "missing",
+      "value"
+    ],
+    "labels": {
+      "nums": "Nums",
+      "i": "I",
+      "missing": "Missing",
+      "value": "Value"
+    }
+  }
+}

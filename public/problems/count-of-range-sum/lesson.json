@@ -1,0 +1,61 @@
+{
+  "slug": "count-of-range-sum",
+  "headline": "Count prefix differences while merging sorted halves",
+  "statement": "Count nonempty contiguous subarrays whose sum lies in the inclusive interval [lower, upper].",
+  "prerequisites": [
+    "Prefix sums",
+    "Merge sort",
+    "Monotonic pointers"
+  ],
+  "constraints": [
+    "1 <= len(nums) <= 100000.",
+    "nums values fit signed 32-bit integers.",
+    "-100000 <= lower <= upper <= 100000."
+  ],
+  "intuition": "A subarray sum is prefix[j]-prefix[i] for i<j. Divide prefix positions into original-order halves. All cross-half pairs have valid index order; after sorting each half by value, two monotone right-half boundaries count differences inside the interval.",
+  "approach": [
+    "Create prefix sums including the initial zero.",
+    "Recursively count pairs inside each half.",
+    "For each sorted left value, move two right pointers to the first difference >= lower and first difference > upper.",
+    "Add their distance, then merge the two halves into sorted order."
+  ],
+  "correctness": "Every index pair belongs uniquely to a recursive left half, right half, or cross-half pair. Recursive calls count the first two classes. For cross pairs, sorted right values make the accepted differences a contiguous interval, counted exactly by the two boundaries. Sorting only after partitioning preserves the original index-order relation at every level.",
+  "bruteForce": "Accumulate each start/end subarray sum, taking O(n\u00b2). Merge-sort counting reduces work by processing whole monotone value ranges.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)",
+    "explanation": "Each recursion level does linear counting and merging using a reusable buffer."
+  },
+  "pitfalls": [
+    "Include the zero prefix to count subarrays starting at index zero.",
+    "Use <= upper but < lower for the two boundaries.",
+    "Sorting all prefix sums before dividing would lose index order."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/count-of-range-sum/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "prefix",
+      "buffer"
+    ],
+    "pointers": [
+      "start",
+      "mid",
+      "end",
+      "low",
+      "high",
+      "i",
+      "j"
+    ],
+    "watch": [
+      "count",
+      "value"
+    ],
+    "labels": {}
+  }
+}

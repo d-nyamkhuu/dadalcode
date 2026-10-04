@@ -1,0 +1,46 @@
+{
+  "intuition": [
+    "Trying every arrangement of cuts is feasible only for short strings, and independently checking each resulting piece repeats many palindrome tests. We can separate deciding whether a range is palindromic from deciding which palindromic ranges belong in a partition.",
+    "A substring is palindromic when its endpoints agree and its interior is palindromic. Length-one and length-two ranges supply the base cases. Filling a boolean table by increasing length makes every interior answer available before its surrounding range is examined.",
+    "Backtracking then starts at the first uncovered position and considers every palindromic range beginning there. Each chosen piece advances directly to its successor, so the path covers the string without gaps or overlap. Reaching the end records a complete partition; returning removes the piece and tries another cut.",
+    "A complete partition is recorded with path.copy() because path is shared working state: returning from recursion pops pieces before exploring sibling cuts. Saving path itself would make every recorded answer change with later backtracking. The copied outer list preserves that completed sequence, while its immutable substring strings may safely be shared."
+  ],
+  "walkthrough": {
+    "input": {
+      "s": "aab"
+    },
+    "steps": [
+      "For s=aab, single-character ranges a, a, and b are all marked true in the palindrome table.",
+      "The length-two range aa also has equal endpoints, so mark it true. Range ab and the whole range aab are false.",
+      "Begin at start=0 and choose the first a. At start=1, choose the second a, then choose b at start=2.",
+      "Start reaches 3, the string length, so record [a,a,b] and backtrack through those choices.",
+      "Return to start=0 and choose range aa instead. Its suffix begins at index 2, where b is a valid piece.",
+      "Record [aa,b]. There are no other valid first pieces, so return these two complete partitions."
+    ],
+    "result": [
+      [
+        "a",
+        "a",
+        "b"
+      ],
+      [
+        "aa",
+        "b"
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "for length in range(1, n + 1):",
+      "note": "Increasing range length ensures a longer palindrome’s interior table entry has already been decided."
+    },
+    {
+      "code": "if palindrome[start][end]:",
+      "note": "A constant-time table lookup admits only valid next pieces, avoiding repeated symmetry scans during the exponential output search."
+    },
+    {
+      "code": "search(end + 1)",
+      "note": "The next piece begins immediately after the chosen range, guaranteeing every recorded partition covers the string continuously and in order."
+    }
+  ]
+}

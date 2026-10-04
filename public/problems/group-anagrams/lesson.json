@@ -1,0 +1,60 @@
+{
+  "slug": "group-anagrams",
+  "headline": "Use letter multiplicities as a dictionary key",
+  "statement": "Group strings into anagram classes. Two strings are anagrams when they contain the same characters with the same counts. Return groups in any order, and allow any order within each group. Repeated input strings must remain repeated output entries.",
+  "prerequisites": [
+    "Hash maps and dictionary keys",
+    "Immutable tuples",
+    "Character-frequency maps"
+  ],
+  "constraints": [
+    "1 <= len(strs) <= 10^4",
+    "0 <= len(each string) <= 100",
+    "Strings contain lowercase English letters."
+  ],
+  "intuition": "Word order is irrelevant to anagrams but character counts are not. A tuple of 26 counts is an immutable dictionary key that exactly identifies an anagram class. Store each original word under its signature.",
+  "approach": [
+    "Create a map from count tuples to word lists.",
+    "Count each word into a fresh 26-entry vector.",
+    "Append the original word under the tuple signature.",
+    "Return all accumulated groups."
+  ],
+  "correctness": "Two lowercase words have equal signatures if and only if every letter occurs equally often, which is precisely the anagram relation. Each input occurrence is appended once, so no words are lost, duplicated, or merged across different classes.",
+  "bruteForce": "Compare each word with every existing group representative, costing quadratic group comparisons. Sorting each word is a simpler O(W*L log L) alternative.",
+  "complexity": {
+    "time": "O(total characters + 26*W)",
+    "space": "O(26*G + W) references, including output",
+    "explanation": "W is the number of input words and G is the number of anagram groups. Each of G keys stores 26 counts, and the grouped output stores W references to existing input strings; their character data is not copied. Counting costs O(total characters + 26*W)."
+  },
+  "pitfalls": [
+    "Use tuples rather than mutable lists as map keys.",
+    "Empty strings all share the zero-count signature.",
+    "Keep duplicate word occurrences."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/group-anagrams/"
+    }
+  ],
+  "visualization": {
+    "kind": "array",
+    "focus": [
+      "strs",
+      "counts",
+      "groups"
+    ],
+    "pointers": [],
+    "watch": [
+      "word",
+      "signature"
+    ],
+    "labels": {
+      "strs": "Strs",
+      "counts": "Counts",
+      "groups": "Groups",
+      "word": "Word",
+      "signature": "Signature"
+    }
+  }
+}

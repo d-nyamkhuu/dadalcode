@@ -1,0 +1,50 @@
+{
+  "intuition": [
+    "Sorting all points by distance gives a straightforward answer, but only k points need to survive. A bounded heap maintains the closest group while scanning the input. Its root should expose the farthest retained point, because that is the candidate to evict when a better point arrives.",
+    "Euclidean distance contains a square root, but square root preserves ordering for nonnegative values. Compare x\u00b2+y\u00b2 directly to avoid unnecessary computation and rounding. Store negative squared distances so Python\u2019s min heap behaves as a max heap for the retained group. Include the input index to identify the original point and handle equal-distance heap ordering safely.",
+    "Before the heap reaches k entries, accept every point. Afterward replace its root only when the new squared distance is smaller. Ignoring a farther point cannot harm the current closest group. After all inputs, return the original coordinate pairs referenced by the retained indices. Output order is irrelevant, but coordinates and multiplicities must be preserved: returning distances or inventing another point at the same distance would not satisfy the contract."
+  ],
+  "walkthrough": {
+    "input": {
+      "points": [
+        [
+          1,
+          3
+        ],
+        [
+          -2,
+          2
+        ]
+      ],
+      "k": 1
+    },
+    "steps": [
+      "For points [[1,3],[-2,2]] and k=1, start with an empty retained heap.",
+      "Point [1,3] has squared distance 1+9=10. Insert (-10,index 0).",
+      "Point [-2,2] has squared distance 4+4=8.",
+      "Since 8 is smaller than the farthest retained distance 10, replace the heap root.",
+      "The heap now references only index 1, so reconstruct the answer from the original points array.",
+      "Return [[-2,2]]; no square roots were needed to compare the two distances."
+    ],
+    "result": [
+      [
+        -2,
+        2
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "distance = point[0] * point[0] + point[1] * point[1]",
+      "note": "Squared distance preserves nearest-point ordering while staying exact for these integer coordinates."
+    },
+    {
+      "code": "elif distance < -heap[0][0]:",
+      "note": "Negating the root recovers the farthest retained squared distance to compare against."
+    },
+    {
+      "code": "return [points[index] for _, index in heap]",
+      "note": "Return original coordinate pairs, not the internal distances or indices."
+    }
+  ]
+}

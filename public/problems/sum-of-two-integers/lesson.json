@@ -1,0 +1,53 @@
+{
+  "slug": "sum-of-two-integers",
+  "headline": "Separate bit sums from carries",
+  "statement": "Return a+b for integers a and b without using the arithmetic addition or subtraction operators. The reference uses fixed-width bit operations to handle negative Python integers.",
+  "prerequisites": [
+    "Binary arithmetic",
+    "XOR and AND",
+    "Two's-complement representation"
+  ],
+  "constraints": [
+    "-1000 <= a,b <= 1000.",
+    "The answer fits in a signed 32-bit integer."
+  ],
+  "intuition": "XOR adds bits without carrying: equal one bits become zero. AND finds positions generating a carry, and shifting left moves that carry into the next position. Repeat until no carries remain. Python integers have unbounded sign extension, so mask to 32 bits and convert the final unsigned representation back to signed.",
+  "approach": [
+    "Mask both inputs into 32-bit representations.",
+    "Compute carry as (a & b) shifted left and masked.",
+    "Set a to the XOR sum and b to the carry.",
+    "When b is zero, interpret a as signed two's complement."
+  ],
+  "correctness": "For fixed-width words, XOR plus shifted AND preserves the arithmetic sum modulo 2^32. Every iteration moves outstanding carry bits left, so all disappear after at most 32 shifts. The final word therefore represents the correct sum. Because the result fits signed 32-bit range, signed conversion yields the ordinary integer answer.",
+  "bruteForce": "Simulate binary column addition with an explicit bit list and a carry. XOR/AND apply those same column operations to every bit at once.",
+  "complexity": {
+    "time": "O(32), effectively O(1)",
+    "space": "O(1)",
+    "explanation": "The bounded word width guarantees carry termination even for negative inputs."
+  },
+  "pitfalls": [
+    "Mask carries or Python's infinite negative sign extension can prevent termination.",
+    "Convert an unsigned high-bit result back to a negative integer.",
+    "Use ^ for XOR and & for carry generation."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode statement",
+      "url": "https://leetcode.com/problems/sum-of-two-integers/"
+    }
+  ],
+  "visualization": {
+    "kind": "bits",
+    "focus": [
+      "a",
+      "b"
+    ],
+    "pointers": [],
+    "watch": [
+      "carry",
+      "mask",
+      "signed_max"
+    ],
+    "labels": {}
+  }
+}

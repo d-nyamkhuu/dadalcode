@@ -1,0 +1,59 @@
+{
+  "slug": "unique-paths",
+  "headline": "Add the paths from above and left",
+  "statement": "A robot starts in the upper-left cell of an m by n grid. Each move goes one cell right or down. Count the routes to the lower-right cell; the grid has no obstacles.",
+  "prerequisites": [
+    "Dynamic programming",
+    "Grid coordinates"
+  ],
+  "constraints": [
+    "1 <= m, n <= 100",
+    "The answer is guaranteed at most 2 \u00d7 10^9"
+  ],
+  "intuition": "Every route to a cell ends with a move from above or from the left. These disjoint possibilities add. One row of counts is enough because the old value is the count from above and the just-updated neighbor is the count from the left.",
+  "approach": [
+    "Swap the dimensions if needed so n is min(original m, original n); transposing exchanges right/down moves without changing route counts.",
+    "Initialize the first row of dp to ones: each cell has one horizontal route.",
+    "For each subsequent row, leave dp[0] as one and add dp[col - 1] into dp[col].",
+    "Return the last column count."
+  ],
+  "correctness": "Induct on rows and columns. Border cells each have one route. For an interior cell, the two possible last moves partition all routes, so their counts sum to the correct count. Row-major updates preserve the required above and left values.",
+  "bruteForce": "Recursively branch right and down for each move; without memoization the same cells are recomputed exponentially often.",
+  "complexity": {
+    "time": "O(mn)",
+    "space": "O(min(m,n))",
+    "explanation": "A single row along the smaller dimension stores all needed subproblems; transposition preserves the number of paths."
+  },
+  "pitfalls": [
+    "There are no obstacles in this problem.",
+    "Initialize borders to one, not zero.",
+    "The dimensions count cells, so the route uses m+n-2 moves."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/unique-paths/"
+    }
+  ],
+  "visualization": {
+    "kind": "dp",
+    "focus": [
+      "dp"
+    ],
+    "pointers": [
+      "row",
+      "col"
+    ],
+    "watch": [
+      "m",
+      "n"
+    ],
+    "labels": {
+      "dp": "Dp",
+      "row": "Row",
+      "col": "Col",
+      "m": "M",
+      "n": "N"
+    }
+  }
+}

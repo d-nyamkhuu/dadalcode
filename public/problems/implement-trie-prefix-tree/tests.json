@@ -1,0 +1,206 @@
+[
+  {
+    "name": "Word versus prefix",
+    "input": {
+      "operations": [
+        "Trie",
+        "insert",
+        "search",
+        "search",
+        "startsWith",
+        "insert",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "apple"
+        ],
+        [
+          "apple"
+        ],
+        [
+          "app"
+        ],
+        [
+          "app"
+        ],
+        [
+          "app"
+        ],
+        [
+          "app"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      true,
+      false,
+      true,
+      null,
+      true
+    ]
+  },
+  {
+    "name": "Missing branch",
+    "input": {
+      "operations": [
+        "Trie",
+        "insert",
+        "search",
+        "startsWith"
+      ],
+      "args": [
+        [],
+        [
+          "dog"
+        ],
+        [
+          "dot"
+        ],
+        [
+          "ca"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      false,
+      false
+    ]
+  },
+  {
+    "name": "Empty trie",
+    "input": {
+      "operations": [
+        "Trie",
+        "search",
+        "startsWith"
+      ],
+      "args": [
+        [],
+        [
+          "a"
+        ],
+        [
+          "a"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      false,
+      false
+    ]
+  },
+  {
+    "name": "Repeated insertion",
+    "input": {
+      "operations": [
+        "Trie",
+        "insert",
+        "insert",
+        "search"
+      ],
+      "args": [
+        [],
+        [
+          "a"
+        ],
+        [
+          "a"
+        ],
+        [
+          "a"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      true
+    ]
+  },
+  {
+    "name": "Shared prefixes",
+    "input": {
+      "operations": [
+        "Trie",
+        "insert",
+        "insert",
+        "search",
+        "search",
+        "startsWith"
+      ],
+      "args": [
+        [],
+        [
+          "car"
+        ],
+        [
+          "cat"
+        ],
+        [
+          "car"
+        ],
+        [
+          "ca"
+        ],
+        [
+          "ca"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      true,
+      false,
+      true
+    ]
+  },
+  {
+    "name": "Short word remains after extending it",
+    "input": {
+      "operations": [
+        "Trie",
+        "insert",
+        "insert",
+        "search",
+        "search",
+        "startsWith"
+      ],
+      "args": [
+        [],
+        [
+          "app"
+        ],
+        [
+          "apple"
+        ],
+        [
+          "app"
+        ],
+        [
+          "apple"
+        ],
+        [
+          "appl"
+        ]
+      ]
+    },
+    "expected": [
+      null,
+      null,
+      null,
+      true,
+      true,
+      true
+    ]
+  }
+]

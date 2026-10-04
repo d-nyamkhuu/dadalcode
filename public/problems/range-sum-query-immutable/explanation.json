@@ -1,0 +1,59 @@
+{
+  "intuition": [
+    "A single interval sum can be computed by scanning its elements. With many queries, however, the same values are added repeatedly. Because the array never changes, we can do that repeated work once before any query is asked.",
+    "prefix[k] stores the sum of the first k values, including prefix[0]=0 for the empty prefix. A query from left through right consists of the prefix through right with everything before left removed. Its answer is therefore prefix[right+1]-prefix[left]. The extra initial zero makes a query starting at index zero use the same expression as every other query.",
+    "This indexing convention separates element positions from prefix boundaries. The element at index right belongs in the query, so its enclosing prefix ends at boundary right+1. Negative values and zero do not require any special handling because subtraction cancels the unwanted prefix exactly. Constructor work is linear and each query is constant time, trading one auxiliary array for faster repeated access. An update operation would invalidate these stored prefixes, but updates are explicitly outside this class\u2019s interface."
+  ],
+  "walkthrough": {
+    "input": {
+      "nums": [
+        -2,
+        0,
+        3,
+        -5,
+        2,
+        -1
+      ],
+      "queries": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    "steps": [
+      "Construct NumArray from [-2,0,3,-5,2,-1]. Begin prefix=[0].",
+      "Accumulating one value at a time produces prefix=[0,-2,-2,1,-4,-2,-3].",
+      "sumRange(0,2) subtracts prefix[0]=0 from prefix[3]=1, giving 1.",
+      "sumRange(2,5) subtracts prefix[2]=-2 from prefix[6]=-3, giving -1.",
+      "sumRange(0,5) reads the complete total -3. The three query results are [1,-1,-3]."
+    ],
+    "result": [
+      1,
+      -1,
+      -3
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "self.prefix = [0]",
+      "note": "The empty-prefix boundary lets left=0 queries avoid a special branch and makes every stored index mean a count of consumed values."
+    },
+    {
+      "code": "self.prefix.append(self.prefix[-1] + value)",
+      "note": "Each appended entry extends the previous prefix by exactly one input value, establishing the preprocessing invariant."
+    },
+    {
+      "code": "return prefix[right + 1] - prefix[left]",
+      "note": "The inclusive right endpoint requires right+1; subtracting boundary left removes only the elements strictly before the requested interval."
+    }
+  ]
+}

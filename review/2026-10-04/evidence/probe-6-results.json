@@ -1,0 +1,126 @@
+{
+  "notes": {
+    "sliding-window-median": [
+      "All 7 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach.",
+      "100000-element monotone input with k=3 returns all expected medians."
+    ],
+    "smallest-range-covering-elements-from-k-lists": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "sort-characters-by-frequency": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against multiset, contiguity, and descending group-size invariants."
+    ],
+    "sort-colors": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "sort-list": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach.",
+      "Direct 50000-node reverse-list call sorts correctly; shared adapter fails on 10001 nodes because list_values caps output at 10000."
+    ],
+    "spiral-matrix": [
+      "All 5 existing fixtures pass through the shared trainer harness.",
+      "100 additional independent checks passed against a visited-grid direction simulation across every allowed shape."
+    ],
+    "squares-of-a-sorted-array": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "subarray-product-less-than-k": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "subsets": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "subsets-ii": [
+      "All 5 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "substring-with-concatenation-of-all-words": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "subtree-of-another-tree": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against recursive full shape/value equality at every candidate node.",
+      "2000-node skewed tree succeeds without recursion."
+    ],
+    "sudoku-solver": [
+      "All 9 existing fixtures pass through the shared trainer harness.",
+      "30 additional independent checks passed against independent row, column, box, and fixed-clue validity checks on permuted unique puzzles."
+    ],
+    "sum-of-two-integers": [
+      "All 8 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "swap-nodes-in-pairs": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "target-sum": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach.",
+      "Maximum-length all-zero input yields 2^20 assignments."
+    ],
+    "task-scheduler": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "252 additional independent checks passed against exhaustive memoized schedule search for three labels and cooldowns 0..3."
+    ],
+    "top-k-frequent-elements": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "trapping-rain-water": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "two-sum": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "7465 additional independent checks passed against enumeration of all legal unique-pair targets on short signed arrays."
+    ],
+    "unique-paths": [
+      "All 5 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "valid-anagram": [
+      "All 5 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "valid-palindrome": [
+      "All 7 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "valid-parentheses": [
+      "All 7 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "validate-binary-search-tree": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against full descendant scans for every ancestor.",
+      "10000-node increasing chain succeeds without recursion."
+    ],
+    "word-break": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "600 additional independent checks passed against a brute-force, sorted, combinatorial, or structural oracle independent of the reference approach."
+    ],
+    "word-search": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "400 additional independent checks passed against coordinate-set DFS with board-restoration assertions."
+    ],
+    "word-search-ii": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "400 additional independent checks passed against independent DFS per dictionary word with board-restoration assertions."
+    ],
+    "word-squares": [
+      "All 6 existing fixtures pass through the shared trainer harness.",
+      "400 additional independent checks passed against all row-sequence enumeration and full symmetry checks for lengths 1..4."
+    ]
+  },
+  "failures": []
+}

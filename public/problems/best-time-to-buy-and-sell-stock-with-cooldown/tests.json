@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Example: cooldown matters",
+    "input": {
+      "prices": [
+        1,
+        2,
+        3,
+        0,
+        2
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Example: single day",
+    "input": {
+      "prices": [
+        1
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Falling",
+    "input": {
+      "prices": [
+        5,
+        4,
+        3
+      ]
+    },
+    "expected": 0
+  },
+  {
+    "name": "Two days",
+    "input": {
+      "prices": [
+        1,
+        4
+      ]
+    },
+    "expected": 3
+  },
+  {
+    "name": "Wait before second buy",
+    "input": {
+      "prices": [
+        1,
+        4,
+        0,
+        2,
+        5
+      ]
+    },
+    "expected": 6
+  },
+  {
+    "name": "Zero price",
+    "input": {
+      "prices": [
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    "expected": 1
+  },
+  {
+    "name": "Skip an early sale for a better later trade",
+    "input": {
+      "prices": [
+        1,
+        4,
+        0,
+        5
+      ]
+    },
+    "expected": 5
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "slug": "prefix-and-suffix-search",
+  "headline": "Turn suffix and prefix matching into one trie prefix query: insert every suffix followed by a separator and the full word",
+  "statement": "Implement WordFilter(words) and f(pref,suff), returning the largest zero-based word index whose word starts with pref and ends with suff. Return -1 when no word matches.",
+  "prerequisites": [
+    "Trie traversal",
+    "Prefix and suffix strings",
+    "Class preprocessing"
+  ],
+  "constraints": [
+    "1 <= len(words) <= 10,000",
+    "1 <= len(word), len(pref), len(suff) <= 7",
+    "Words and queries contain lowercase English letters",
+    "At most 10,000 queries"
+  ],
+  "intuition": "Turn suffix and prefix matching into one trie prefix query: insert every suffix followed by a separator and the full word. Later words overwrite indices so each trie node remembers the largest match.",
+  "approach": [
+    "For each word index and each suffix start, build suffix + separator + word.",
+    "Insert that sequence in a trie, storing the word index at every visited node.",
+    "Query suff + separator + pref; return -1 if any edge is absent.",
+    "Otherwise return the largest index stored at the last query node."
+  ],
+  "correctness": "A trie path suff+separator+pref occurs for exactly those inserted sequences whose chosen suffix is suff and whose full word begins with pref. Storing indices during increasing-index insertion leaves the greatest matching index at every node. Therefore the final query node contains precisely the required answer.",
+  "bruteForce": "Scan the dictionary backwards for each query and test startswith/endswith: O(N*(P+S)) per query.",
+  "complexity": {
+    "time": "O(N*L²) construction; O(P+S) per query",
+    "space": "O(N*L²)",
+    "explanation": "Each of N words of maximum length L has L+1 suffix sequences, each O(L) long, giving O(N*L²) inserted characters and trie storage. A query follows only its P prefix letters, S suffix letters, and separator."
+  },
+  "pitfalls": [
+    "Return the largest index, even for duplicate words.",
+    "The separator must not belong to the word alphabet.",
+    "A suffix may overlap a prefix within the same word."
+  ],
+  "sources": [
+    {
+      "label": "LeetCode problem",
+      "url": "https://leetcode.com/problems/prefix-and-suffix-search/"
+    },
+    {
+      "label": "Public problem statement — LeetCode Wiki",
+      "url": "https://leetcode.doocs.org/en/lc/745/"
+    }
+  ],
+  "visualization": {
+    "kind": "trie",
+    "focus": [
+      "trie",
+      "node",
+      "sequence"
+    ],
+    "pointers": [
+      "index",
+      "start"
+    ],
+    "watch": [
+      "word",
+      "letter",
+      "pref",
+      "suff"
+    ],
+    "labels": {
+      "trie": "Trie",
+      "node": "Node",
+      "sequence": "Sequence",
+      "index": "Index",
+      "start": "Start",
+      "word": "Word",
+      "letter": "Letter",
+      "pref": "Pref",
+      "suff": "Suff"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "intuition": [
+    "Immediately clearing a row and column when a zero is found creates new zeros. If those new zeros later trigger more clearing, the result becomes too aggressive. The decisions must therefore reflect only zeros present in the original matrix, with their effects applied afterward.",
+    "Normally we would store sets of affected row and column indices. Constant extra space is possible because the first cell of each row and column can act as its marker. Scan only the interior when writing these markers, so no generated header zero is mistaken for a new interior discovery.",
+    "The first row and column also contain original data, so save whether they originally contained a zero before reusing them. Apply interior markers first, then use the two saved flags to finish the headers. Keeping these phases separate preserves the information needed by later cells."
+  ],
+  "walkthrough": {
+    "input": {
+      "matrix": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    "steps": [
+      "Start with [[1,1,1],[1,0,1],[1,1,1]]. Neither the first row nor first column originally contains zero, so both saved flags are false.",
+      "The interior zero at (1,1) sets matrix[1][0]=0 and matrix[0][1]=0 as row and column markers.",
+      "After marking, the matrix is [[1,0,1],[0,0,1],[1,1,1]]. No interior cell other than the original zero was changed.",
+      "During application, row marker matrix[1][0]=0 clears the remaining interior cell (1,2).",
+      "Column marker matrix[0][1]=0 clears cell (2,1). Cell (2,2) keeps value 1 because neither of its markers is zero.",
+      "Both original-header flags remain false, so no whole header is additionally cleared. Return the mutated matrix [[1,0,1],[0,0,0],[1,0,1]]."
+    ],
+    "result": [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ]
+  },
+  "codeNotes": [
+    {
+      "code": "first_row_zero = any(matrix[0][col] == 0 for col in range(cols))",
+      "note": "Save original first-row zero presence before header markers overwrite its values."
+    },
+    {
+      "code": "matrix[0][col] = 0",
+      "note": "An interior zero marks its column in the header without changing other interior cells during discovery."
+    },
+    {
+      "code": "if matrix[row][0] == 0 or matrix[0][col] == 0:",
+      "note": "Either marked line is sufficient to clear this interior cell; the markers summarize only original zero discoveries."
+    }
+  ]
+}
