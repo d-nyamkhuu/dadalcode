@@ -1,4 +1,4 @@
 class Solution:
-    def findKthLargest(self, nums, k: int) -> int:
+    def findKthLargest(self, nums: list[int], k: int) -> int:
         """Implement the algorithm described in Learn."""
         pass

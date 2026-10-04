@@ -1,5 +1,5 @@
 class Solution:
-    def longestWord(self, words):
+    def longestWord(self, words: list[str]) -> str:
         words = sorted(words, key=lambda word: (len(word), word))
         buildable, best = {''}, ''
         for word in words:

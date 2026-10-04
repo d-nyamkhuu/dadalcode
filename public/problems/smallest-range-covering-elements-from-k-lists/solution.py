@@ -1,7 +1,7 @@
 from heapq import heappush, heappop
 
 class Solution:
-    def smallestRange(self, nums):
+    def smallestRange(self, nums: list[list[int]]) -> list[int]:
         heap = []
         high = max(row[0] for row in nums)
         for row, values in enumerate(nums):

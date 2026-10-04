@@ -1,5 +1,5 @@
 class Solution:
-    def oddEvenList(self, head):
+    def oddEvenList(self, head: ListNode | None) -> ListNode | None:
         if head is None:
             return None
         odd, even = head, head.next

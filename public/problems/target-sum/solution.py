@@ -1,5 +1,5 @@
 class Solution:
-    def findTargetSumWays(self, nums, target: int) -> int:
+    def findTargetSumWays(self, nums: list[int], target: int) -> int:
         total_sum = sum(nums)
         # Signed sums stay inside this range and share total_sum's parity.
         if abs(target) > total_sum or (total_sum - target) % 2:

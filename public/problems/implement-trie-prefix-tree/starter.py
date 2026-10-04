@@ -1,5 +1,5 @@
 class Trie:
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize your prefix tree."""
         pass
 

@@ -1,5 +1,5 @@
 class Solution:
-    def invertTree(self, root):
+    def invertTree(self, root: TreeNode | None) -> TreeNode | None:
         stack = [root] if root else []
         while stack:
             node = stack.pop()

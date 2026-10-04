@@ -1,7 +1,7 @@
 from collections import deque
 
 class Solution:
-    def levelOrderBottom(self, root):
+    def levelOrderBottom(self, root: TreeNode | None) -> list[list[int]]:
         if root is None:
             return []
         queue = deque([root])

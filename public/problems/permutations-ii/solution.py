@@ -1,5 +1,5 @@
 class Solution:
-    def permuteUnique(self, nums):
+    def permuteUnique(self, nums: list[int]) -> list[list[int]]:
         nums = sorted(nums)
         used = [False] * len(nums)
         path, result = [], []

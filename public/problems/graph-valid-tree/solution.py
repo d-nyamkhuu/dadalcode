@@ -1,5 +1,5 @@
 class Solution:
-    def validTree(self, n: int, edges) -> bool:
+    def validTree(self, n: int, edges: list[list[int]]) -> bool:
         # A tree must have exactly one fewer edge than vertices.
         if len(edges) != n - 1:
             return False

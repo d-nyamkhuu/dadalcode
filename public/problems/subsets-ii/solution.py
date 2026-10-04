@@ -1,5 +1,5 @@
 class Solution:
-    def subsetsWithDup(self, nums):
+    def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
         nums = sorted(nums)
         result, path = [], []
         def visit(start):

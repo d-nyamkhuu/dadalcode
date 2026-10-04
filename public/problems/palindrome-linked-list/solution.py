@@ -1,5 +1,5 @@
 class Solution:
-    def isPalindrome(self, head) -> bool:
+    def isPalindrome(self, head: ListNode) -> bool:
         def reverse(node):
             previous = None
             current = node

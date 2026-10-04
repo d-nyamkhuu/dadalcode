@@ -1,5 +1,5 @@
 class Solution:
-    def maxPathSum(self, root) -> int:
+    def maxPathSum(self, root: TreeNode) -> int:
         best = float('-inf')
         gains = {}
         stack = [(root, False)]

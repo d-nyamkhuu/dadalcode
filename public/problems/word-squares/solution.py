@@ -1,6 +1,6 @@
 from collections import defaultdict
 class Solution:
-    def wordSquares(self, words):
+    def wordSquares(self, words: list[str]) -> list[list[str]]:
         length = len(words[0])
         prefixes = defaultdict(list)
         for word in words:

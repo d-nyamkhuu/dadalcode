@@ -1,5 +1,5 @@
 class WordDictionary:
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize an empty dictionary; the constructor and addWord return None."""
         pass
 

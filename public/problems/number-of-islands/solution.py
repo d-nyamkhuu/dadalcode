@@ -1,6 +1,9 @@
 from collections import deque
 class Solution:
-    def numIslands(self, grid):
+    def numIslands(self, grid: list[list[str]]) -> int:
+        """Return the number of islands in a rectangular character grid.
+
+        grid[row][col] is "1" for land or "0" for water, not an integer."""
         rows, cols = len(grid), len(grid[0])
         islands = 0
         for row in range(rows):

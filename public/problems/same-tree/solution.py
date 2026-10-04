@@ -1,5 +1,5 @@
 class Solution:
-    def isSameTree(self, p, q) -> bool:
+    def isSameTree(self, p: TreeNode | None, q: TreeNode | None) -> bool:
         stack = [(p, q)]
         while stack:
             a, b = stack.pop()

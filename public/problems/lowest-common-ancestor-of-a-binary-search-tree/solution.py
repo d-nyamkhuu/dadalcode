@@ -1,5 +1,5 @@
 class Solution:
-    def lowestCommonAncestor(self, root, p, q):
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         node = root
         while node is not None:
             # Both search paths continue left, so their lowest shared node is below.

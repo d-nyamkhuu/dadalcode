@@ -1,5 +1,5 @@
 class Solution:
-    def findClosestElements(self, arr, k, x):
+    def findClosestElements(self, arr: list[int], k: int, x: int) -> list[int]:
         left, right = 0, len(arr) - k
         while left < right:
             mid = (left + right) // 2

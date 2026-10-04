@@ -1,5 +1,5 @@
 class Solution:
-    def rotate(self, nums, k):
+    def rotate(self, nums: list[int], k: int) -> None:
         n = len(nums)
         k %= n
         # Complete revolutions need no swaps.

@@ -1,5 +1,5 @@
 class Solution:
-    def combine(self, n, k):
+    def combine(self, n: int, k: int) -> list[list[int]]:
         path, result = [], []
         def visit(start):
             needed = k - len(path)

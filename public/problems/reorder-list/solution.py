@@ -1,5 +1,5 @@
 class Solution:
-    def reorderList(self, head) -> None:
+    def reorderList(self, head: ListNode) -> None:
         slow, fast = head, head
         # Stop slow at the first-half tail; an odd middle stays in the front half.
         while fast.next and fast.next.next:

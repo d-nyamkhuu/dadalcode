@@ -1,5 +1,5 @@
 class Solution:
-    def threeSumClosest(self, nums, target: int) -> int:
+    def threeSumClosest(self, nums: list[int], target: int) -> int:
         nums = sorted(nums)
         best = sum(nums[:3])
         for i in range(len(nums) - 2):

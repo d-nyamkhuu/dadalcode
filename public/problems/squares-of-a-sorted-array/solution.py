@@ -1,5 +1,5 @@
 class Solution:
-    def sortedSquares(self, nums):
+    def sortedSquares(self, nums: list[int]) -> list[int]:
         left, right = 0, len(nums) - 1
         result = [0] * len(nums)
         for write in range(len(nums) - 1, -1, -1):

@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 class Solution:
 
     def middleNode(self, head: ListNode) -> ListNode:

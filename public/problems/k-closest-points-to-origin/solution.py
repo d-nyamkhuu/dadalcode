@@ -1,7 +1,7 @@
 from heapq import heappush, heapreplace
 
 class Solution:
-    def kClosest(self, points, k: int):
+    def kClosest(self, points: list[list[int]], k: int) -> list[list[int]]:
         heap = []
         for index, point in enumerate(points):
             distance = point[0] * point[0] + point[1] * point[1]

@@ -1,7 +1,7 @@
 from heapq import heappush, heappop
 
 class MedianFinder:
-    def __init__(self):
+    def __init__(self) -> None:
         self.lower = []
         self.upper = []
 

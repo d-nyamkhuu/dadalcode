@@ -1,5 +1,5 @@
 class Solution:
-    def swapPairs(self, head):
+    def swapPairs(self, head: ListNode | None) -> ListNode | None:
         dummy = ListNode(0, head)
         previous = dummy
         while previous.next is not None and previous.next.next is not None:

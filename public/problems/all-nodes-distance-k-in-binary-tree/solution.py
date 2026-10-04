@@ -1,6 +1,6 @@
 from collections import deque
 class Solution:
-    def distanceK(self, root, target, k):
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> list[int]:
         parents = {root: None}
         stack = [root]
         while stack:

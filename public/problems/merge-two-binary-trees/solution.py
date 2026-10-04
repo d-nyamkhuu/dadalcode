@@ -1,5 +1,5 @@
 class Solution:
-    def mergeTrees(self, root1, root2):
+    def mergeTrees(self, root1: TreeNode | None, root2: TreeNode | None) -> TreeNode | None:
         if not root1:
             return root2
         if not root2:

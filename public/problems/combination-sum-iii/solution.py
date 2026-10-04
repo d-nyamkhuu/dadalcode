@@ -1,5 +1,5 @@
 class Solution:
-    def combinationSum3(self, k, n):
+    def combinationSum3(self, k: int, n: int) -> list[list[int]]:
         path, result = [], []
         def visit(start, remaining):
             if len(path) == k:
