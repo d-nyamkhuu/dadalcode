@@ -14,7 +14,7 @@
     "Input contains lowercase letters, spaces, or #; completed queries have length 1..200",
     "At most 5000 input calls"
   ],
-  "intuition": "A prefix corresponds to one trie node. If every node already remembers its three hottest descendants, a keystroke only needs to follow one edge. Finishing a sentence changes the ranking only along that sentence\u2019s path. The new or changed sentence is the only candidate that can enter a node\u2019s top three.",
+  "intuition": "Typed letters define a prefix. A trie follows that prefix without scanning every sentence. At each prefix node, save the three best matching sentences. When '#' finishes a sentence, increase its count and refresh the affected saved suggestions. Start a new prefix after that marker.",
   "approach": [
     "Build a character trie whose nodes contain children and a top-three sentence list. Keep complete sentence counts separately.",
     "Insert each historical sentence, updating its count and reranking the cached list at every node on its path.",
@@ -22,7 +22,7 @@
     "For an ordinary character, advance the node and copy its cached suggestions.",
     "For #, increment the completed sentence, refresh its prefix caches, and reset to the root."
   ],
-  "correctness": "Initially every prefix cache is formed by considering all inserted sentences. When one sentence\u2019s count increases, the relative order of every other sentence is unchanged. Thus the previous top three together with the updated sentence contain the new top three. Sorting that candidate set by (-count, sentence) restores each affected cache. The current trie node represents exactly the characters typed since the last #, so its cache contains precisely the requested highest-ranked matches.",
+  "correctness": "Initially every prefix cache is formed by considering all inserted sentences. When one sentence’s count increases, the relative order of every other sentence is unchanged. Thus the previous top three together with the updated sentence contain the new top three. Sorting that candidate set by (-count, sentence) restores each affected cache. The current trie node represents exactly the characters typed since the last #, so its cache contains precisely the requested highest-ranked matches.",
   "bruteForce": "Store sentence counts in a dictionary; after every character scan all sentences, retain prefix matches, sort by frequency and text, and take three. This repeatedly scans the entire history.",
   "complexity": {
     "time": "O(L) trie updates and O(1) node transitions, plus string comparison/copy costs",

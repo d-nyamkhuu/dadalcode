@@ -487,6 +487,406 @@ try {
     assert.match(html, /\[0, 1\]: water/);
     assert.match(html, /\[1, 0\]: unvisited land/);
   });
+  test("long DP pages include the active cell and compare original indices", () => {
+    const values = Array(128).fill(-1),
+      previous = [...values];
+    values[48] = 3;
+    const html = s({
+      value: values,
+      previousValue: previous,
+      variable: "remainder",
+      pointers: { mask: 48, next_mask: 96 },
+    });
+    assert.match(html, /Showing indices 32–63/);
+    assert.match(html, /Index 48: 3; mask; changed since previous step/);
+    assert.doesNotMatch(html, /aria-label="Index 0:/);
+    assert.match(html, /outside displayed range/);
+    assert.match(html, /128 captured entries · showing 32/);
+  });
+  test("sentinel pointers do not select an uncaptured page", () => {
+    const html = s({
+      value: Array(40).fill(0),
+      variable: "dp",
+      pointers: { i: 40 },
+    });
+    assert.match(html, /Showing indices 0–31/);
+    assert.match(html, /outside captured range/);
+  });
+  test("focused LCS keeps both DP rows visible", () => {
+    const parts = sections(
+      v(
+        {
+          text1: "abc",
+          text2: "ac",
+          previous: [0, 1, 1],
+          current: [0, 1, 2],
+          col: 2,
+        },
+        props("dp", ["text1", "text2", "previous", "current"], ["col"]),
+        {},
+        { slug: "longest-common-subsequence", part: "primary" },
+      ),
+    );
+    assert.equal(parts.length, 2);
+    assert.match(parts[0], /previous/);
+    assert.match(parts[1], /current/);
+    assert.match(parts[1], /Index 2: 2; col/);
+  });
+  test("focused Sudoku keeps constraints in details", () => {
+    const state = {
+        board: [["1", "."]],
+        rows: [[1]],
+        cols: [[1]],
+        boxes: [[1]],
+      },
+      config = props("grid", ["board", "rows", "cols"], [], ["boxes"]);
+    const primary = v(
+      state,
+      config,
+      {},
+      { slug: "sudoku-solver", part: "primary" },
+    );
+    const details = v(
+      state,
+      config,
+      {},
+      { slug: "sudoku-solver", part: "details" },
+    );
+    assert.equal(sections(primary).length, 1);
+    assert.match(primary, /board/);
+    assert.match(details, /rows/);
+    assert.match(details, /cols/);
+    assert.match(details, /boxes/);
+  });
+  test("subtree aliases use the canonical tree while separate trees remain", () => {
+    const nodes = [n("a", 1, { left: "b" }), n("b", 2)];
+    const config = props("tree", ["root", "node"]);
+    const state = {
+      root: snapshot("tree", nodes),
+      node: snapshot("tree", [nodes[1]], "b"),
+    };
+    assert.equal(sections(v(state, config, {}, { part: "primary" })).length, 1);
+    assert.match(v(state, config, {}, { part: "summary" }), /node-reference/);
+    assert.equal(
+      sections(
+        v(
+          { p: state.root, q: state.node },
+          props("tree", ["p", "q"]),
+          {},
+          { part: "primary" },
+        ),
+      ).length,
+      2,
+    );
+  });
+  test("trie fits a single canonical structure", () => {
+    const trie = { a: { b: { "#": true } } };
+    assert.equal(
+      sections(
+        v(
+          { trie, node: trie.a, structure: trie },
+          props("trie", ["trie", "node"]),
+          {},
+          { part: "primary" },
+        ),
+      ).length,
+      1,
+    );
+    const html = node({ value: trie, kind: "trie", variable: "trie" });
+    const positions = [
+      ...html.matchAll(
+        /class="nv-node[^"]*"[^>]*transform="translate\(([\d.]+) ([\d.]+)\)"/g,
+      ),
+    ].map((m) => [Number(m[1]), Number(m[2])]);
+    assert.equal(positions.length, 3);
+    assert(positions[1][0] > positions[0][0]);
+    assert.equal(positions[1][1], positions[0][1]);
+  });
+  test("full collection returns remain available in state details", () => {
+    const returned = {
+      ...step(
+        { returnValue: [1, 2, 3] },
+        { returnValue: "Sequence capture limited to 3 entries" },
+      ),
+      event: "return",
+    };
+    const config = props("array");
+    assert.match(
+      v({}, config, {}, { step: returned, part: "summary" }),
+      /return value · State details/,
+    );
+    const details = v({}, config, {}, { step: returned, part: "details" });
+    assert.match(details, /Index 2: 3/);
+    assert.match(details, /Sequence capture limited to 3 entries/);
+    assert.doesNotMatch(details, /No additional state/);
+  });
+  test("combined list inputs render once with every pointer and node", () => {
+    const l1 = snapshot("linked-list", [n("a", 1, { next: "b" }), n("b", 2)]);
+    const l2 = snapshot("linked-list", [n("c", 3, { next: "d" }), n("d", 4)]);
+    const dummy = snapshot("linked-list", [n("e", 0)]);
+    const config = props("linked-list", ["l1", "l2", "dummy"]);
+    const primary = v({ l1, l2, dummy }, config, {}, { part: "primary" });
+    assert.equal(sections(primary).length, 1);
+    assert.equal((primary.match(/class="nv-node /g) || []).length, 5);
+    assert.match(primary, /Linked lists and pointers/);
+    assert.match(primary, /pointers: l2/);
+    assert.match(primary, /pointers: dummy/);
+    assert.match(v({ l1, l2, dummy }, config, {}, { part: "summary" }), /l2/);
+  });
+  test("large list forests retain separate captured roots", () => {
+    const lists = Object.fromEntries(
+      ["l1", "l2"].map((key) => [
+        key,
+        snapshot(
+          "linked-list",
+          Array.from({ length: 40 }, (_, i) =>
+            n(`${key}-${i}`, i, i < 39 ? { next: `${key}-${i + 1}` } : {}),
+          ),
+        ),
+      ]),
+    );
+    const primary = v(
+      lists,
+      props("linked-list", ["l1", "l2"]),
+      {},
+      { part: "primary" },
+    );
+    assert.equal(sections(primary).length, 2);
+    assert.match(primary, /additional nodes omitted/);
+  });
+  test("unnamed detached list pointers retain their captured chains", () => {
+    const head = snapshot("linked-list", [n("a", 1, { next: "c" }), n("c", 3)]);
+    const even_head = snapshot("linked-list", [
+      n("b", 2, { next: "d" }),
+      n("d", 4),
+    ]);
+    const html = node({
+      value: head,
+      kind: "linked-list",
+      variables: { head, even_head },
+    });
+    assert.equal((html.match(/class="nv-node /g) || []).length, 4);
+    assert.match(html, /pointers: even_head/);
+  });
+  test("list links skip intervening nodes with a clear arc", () => {
+    const html = node({
+      value: snapshot("linked-list", [
+        n("a", 1, { next: "c" }),
+        n("b", 2),
+        n("c", 3),
+      ]),
+      kind: "linked-list",
+    });
+    assert.match(html, /d="M 106 100 Q 182 4 258 100"/);
+    assert.match(html, /next link from 1 to 3/);
+  });
+  test("changes to secondary list chains remain highlighted", () => {
+    const l1 = snapshot("linked-list", [n("a", 1)]);
+    const oldDummy = snapshot("linked-list", [n("d", 0)]);
+    const dummy = snapshot("linked-list", [
+      n("d", 0, { next: "e" }),
+      n("e", 7),
+    ]);
+    const html = node({
+      value: l1,
+      previousValue: l1,
+      kind: "linked-list",
+      variables: { l1, dummy },
+      previousVariables: { l1, dummy: oldDummy },
+    });
+    assert.match(html, /nv-edge-changed/);
+    assert.match(html, /next link from 0 to 7 \(changed\)/);
+  });
+  test("subtree aliases with additional captured nodes stay visible", () => {
+    const root = snapshot("tree", [
+      n("a", 1, { left: "b" }),
+      n("b", 2, { left: "c" }),
+    ]);
+    const target = snapshot("tree", [n("b", 2, { left: "c" }), n("c", 3)], "b");
+    const config = props("tree", ["root", "target"]);
+    assert.equal(
+      sections(v({ root, target }, config, {}, { part: "primary" })).length,
+      2,
+    );
+    const complete = snapshot("tree", [...root.nodes, target.nodes[1]]);
+    assert.equal(
+      sections(v({ root: complete, target }, config, {}, { part: "primary" }))
+        .length,
+      1,
+    );
+  });
+  test("plain trie pointers reuse the captured root without losing deeper state", () => {
+    const leaf = { __ref: "dict-2", "#": true };
+    const child = { __ref: "dict-1", b: leaf };
+    const trie = { __ref: "dict-0", a: child };
+    const config = props("trie", ["trie", "node"]);
+    assert.equal(
+      sections(v({ trie, node: child }, config, {}, { part: "primary" }))
+        .length,
+      1,
+    );
+    assert.match(
+      v({ trie, node: child }, config, {}, { part: "summary" }),
+      /dict-1/,
+    );
+    const limited = { __ref: "dict-0", a: { __ref: "dict-1", b: "…" } };
+    assert.equal(
+      sections(
+        v({ trie: limited, node: child }, config, {}, { part: "primary" }),
+      ).length,
+      2,
+    );
+  });
+  const choose = (
+    await server.ssrLoadModule("/src/data/visualizationBindings.ts")
+  ).visualizationFor;
+  test("Two Sum keeps its lookup table beside the indexed input", () => {
+    const config = choose("two-sum", props("array", ["nums", "seen"], ["i"]));
+    const html = v(
+      { nums: [2, 7], seen: { 2: 0 }, i: 1 },
+      config,
+      {},
+      { part: "primary" },
+    );
+    assert.equal(sections(html).length, 2);
+    assert.match(html, /collection-map/);
+    assert.match(html, /Index 1: 7; i/);
+  });
+  test("explicit heap wins over interval shape in Meeting Rooms II", () => {
+    const config = choose(
+      "meeting-rooms-ii",
+      props("intervals", ["active_ends"]),
+    );
+    const html = v({ active_ends: [3, 8] }, config);
+    assert.match(html, /seq-heap-tree/);
+    assert.doesNotMatch(html, /seq-interval-bar/);
+  });
+  test("explicit matrix override works inside an array lesson", () => {
+    const html = v(
+      {
+        cells: [
+          [1, 2],
+          [3, 4],
+        ],
+        row: 1,
+        col: 0,
+      },
+      {
+        ...props("array", ["cells"], ["row", "col"]),
+        renderers: { cells: "matrix" },
+      },
+    );
+    assert.match(html, /seq-matrix-visual/);
+    assert.match(html, /seq-crosshair/);
+    assert.match(html, /seq-axis-current/);
+  });
+  test("membership changes ignore set iteration order", () => {
+    const config = choose("contains-duplicate", props("array", ["seen"]));
+    const html = v(
+      { seen: [7, 2] },
+      config,
+      {},
+      { previousStep: step({ seen: [2, 7] }) },
+    );
+    assert.match(html, /membership, unordered/);
+    assert.doesNotMatch(html, /collection-added|collection-removed/);
+    const changed = v(
+      { seen: [7, 3] },
+      config,
+      {},
+      { previousStep: step({ seen: [2, 7] }) },
+    );
+    assert.match(changed, /collection-added/);
+    assert.match(changed, /Removed:/);
+  });
+  test("map edits show prior values and additions without leaking identity keys", () => {
+    const html = v(
+      { counts: { a: 2, b: 1, __ref: "internal" } },
+      { ...props("array", ["counts"]), renderers: { counts: "map" } },
+      {},
+      { previousStep: step({ counts: { a: 1, c: 4 } }) },
+    );
+    assert.match(html, /collection-before/);
+    assert.match(html, /collection-new/);
+    assert.match(html, /1 removed since previous step/);
+    assert.doesNotMatch(html, /internal/);
+  });
+  test("node value edits remain distinct from link edits", () => {
+    const html = node({
+      value: snapshot("tree", [n("a", 8)]),
+      previousValue: snapshot("tree", [n("a", 4)]),
+      kind: "tree",
+    });
+    assert.match(html, /value changed from 4/);
+    assert.match(html, /nv-value-change/);
+    assert.match(html, /Changed value/);
+  });
+  test("list figures expose null next pointers and split value cells", () => {
+    const html = node({
+      value: snapshot("linked-list", [n("a", 2)]),
+      kind: "linked-list",
+    });
+    assert.match(html, /nv-list-divider/);
+    assert.match(html, /nv-list-null/);
+    assert.match(html, /next = None/);
+  });
+  test("DP presentation does not label the problem input as a DP row", () => {
+    const input = s({ kind: "dp", variable: "nums", value: [2, 7] });
+    assert.doesNotMatch(input, /seq-dp-strip/);
+    assert.match(
+      s({ kind: "dp", variable: "dp", value: [0, 1] }),
+      /seq-dp-strip/,
+    );
+  });
+  test("explicit node renderers support custom variable names", () => {
+    const html = v(
+      { hierarchy: [1, 2, 3] },
+      { ...props("array", ["hierarchy"]), renderers: { hierarchy: "tree" } },
+    );
+    assert.match(html, /data-kind="tree"/);
+    assert.equal((html.match(/class="nv-node /g) || []).length, 3);
+  });
+  test("duplicate heap snapshots move to details without losing captured state", () => {
+    const state = { lower: [-2], upper: [3] };
+    const variables = { ...state, structure: state };
+    const config = choose(
+      "find-median-from-data-stream",
+      props("heap", ["lower", "upper"]),
+    );
+    const html = v(variables, config, {}, { part: "primary" });
+    assert.equal((html.match(/seq-heap-tree/g) || []).length, 2);
+    assert.doesNotMatch(html, /Data structure state/);
+    assert.match(
+      v(variables, config, {}, { part: "details" }),
+      /collection-map/,
+    );
+  });
+  test("unrelated numeric pointers do not repeat on result strips", () => {
+    assert.doesNotMatch(
+      s({
+        kind: "grid",
+        variable: "result",
+        value: [1, 2],
+        pointers: { row: 1, col: 0 },
+      }),
+      /seq-index-legend/,
+    );
+  });
+  test("truncated list inputs retain unknown next links instead of claiming None", () => {
+    const html = node({
+      value: Array.from({ length: 48 }, (_, i) => i),
+      kind: "linked-list",
+      variable: "head",
+    });
+    assert.match(html, /additional nodes omitted/);
+    assert.doesNotMatch(html, /next = None/);
+  });
+  test("user map keys starting with underscores remain visible", () => {
+    assert.match(
+      v({ counts: { __word: 2 } }, props("array", ["counts"])),
+      /__word/,
+    );
+  });
   console.log(
     `Visualization regressions: ${checked.length} passed, ${failures.length} failures`,
   );

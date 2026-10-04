@@ -10,7 +10,7 @@
     "1 <= len(nums) <= 300.",
     "Each value is 0, 1, or 2."
   ],
-  "intuition": "Three pointers describe four regions: zeros before low, ones from low to mid, unknown values from mid to high, and twos after high. Each swap shrinks the unknown region without disturbing the classified regions.",
+  "intuition": "Keep four regions: zeros, ones, unknown values, and twos. Read the first unknown value. Move a zero to the left region, leave a one in the middle, or move a two to the right region. Each step reduces the unknown region without sorting the whole array again.",
   "approach": [
     "Set low and mid to zero and high to the last index.",
     "Move a zero to low, advancing both low and mid.",

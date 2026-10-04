@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Checking every prefix independently for every word repeats work across shared chains. A word is buildable if its immediate shorter prefix is buildable, because that prefix already certifies every earlier construction step. This turns the requirement into a small dependency between successive word lengths.",
+    "Build longer words only from words that are already buildable. Process shorter words first. A word qualifies when removing its final letter leaves a qualifying word; this proves all its earlier prefixes exist too. Process equal lengths in character order to resolve ties.",
     "Process words by increasing length, with lexicographic order breaking length ties. A set of certified buildable words begins with the empty string, allowing every one-letter dictionary word to start a chain. Add a longer word only after its word[:-1] prefix has entered that set.",
     "The result also needs a lexicographic tie rule. Since equal-length words arrive alphabetically, update best only for a strictly longer buildable word. The first qualifying word at a new maximum length is already its smallest tie candidate, and later equally long words should not overwrite it."
   ],
@@ -20,7 +20,7 @@
       "For [a,banana,app,appl,ap,apply,apple], sorting gives a, ap, app, appl, apple, apply, banana.",
       "The empty prefix certifies a. Then a certifies ap, ap certifies app, and app certifies appl.",
       "When apple arrives, its prefix appl is buildable. Add apple and make it best because length five exceeds the previous maximum four.",
-      "apply also has buildable prefix appl, but its length equals best\u2019s length. Keep apple, the lexicographically earlier candidate.",
+      "apply also has buildable prefix appl, but its length equals best’s length. Keep apple, the lexicographically earlier candidate.",
       "banana lacks buildable prefix banan and is rejected despite being longer. Return apple, whose entire prefix chain exists."
     ],
     "result": "apple"
@@ -38,5 +38,6 @@
       "code": "if len(word) > len(best):",
       "note": "Strict improvement preserves the first alphabetical winner among equal-length buildable words, making the tie rule follow from processing order."
     }
-  ]
+  ],
+  "keyDecision": "Accept word only if word[:-1] is already buildable. Replace the answer only for a longer word."
 }

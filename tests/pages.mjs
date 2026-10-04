@@ -87,7 +87,7 @@ try {
   await page
     .getByRole("heading", { name: "Your next breakthrough." })
     .waitFor();
-  assert.equal(await page.title(), "Pattern Lab — Algorithm Trainer");
+  assert.equal(await page.title(), "Loopcraft — Algorithm Trainer");
   assert.equal(await page.locator(".problem-table tbody tr").count(), 179);
   assert.equal(
     await page.locator("vite-error-overlay, .page-error, .error").count(),
@@ -178,7 +178,7 @@ try {
   assert.equal(illustrationURL.origin, root.origin);
   assert.equal(
     illustrationURL.pathname,
-    `${basePath}illustrations/house-robber.png`,
+    `${basePath}illustrations/house-robber.webp`,
   );
   assertHealthy();
   await page.screenshot({
@@ -207,12 +207,7 @@ try {
   );
   assertHealthy();
 
-  for (const directory of [
-    "assets",
-    "problems",
-    "pyodide",
-    "illustrations",
-  ])
+  for (const directory of ["assets", "problems", "pyodide", "illustrations"])
     assert(
       [...assetRequests].some((url) =>
         new URL(url).pathname.startsWith(`${basePath}${directory}/`),
@@ -220,11 +215,10 @@ try {
       `Smoke test observed a successful ${directory} request under ${basePath}`,
     );
   assert(
-    [...assetRequests].some((url) => {
-      const pathname = new URL(url).pathname;
-      return pathname.startsWith(`${basePath}assets/`) && pathname.endsWith(".woff2");
-    }),
-    "Bundled fonts load from the deployment's assets directory",
+    ![...assetRequests].some((url) =>
+      /\.(woff2?|ttf|otf)$/.test(new URL(url).pathname),
+    ),
+    "System fonts require no font download",
   );
   console.log(
     `PASS: production Pages at ${root.href}; 179 catalog entries, lesson, walkthrough, Python acceptance, illustration, hash reload, asset base paths, console`,

@@ -10,15 +10,15 @@
     "1 <= len(prices) <= 5000.",
     "0 <= prices[i] <= 1000."
   ],
-  "intuition": "Not holding a share is not one state: someone who sold today cannot buy tomorrow, while someone who has rested can. Keep hold, sold, and rest profits separately so the cooldown rule is enforced by allowed transitions.",
+  "intuition": "At the end of a day, you either hold a share, have just sold it, or are resting without one. Save the best profit for each situation. Compute tomorrow's situations from today's saved values. Buying is allowed from rest, but not immediately after a sale.",
   "approach": [
     "Initialize hold and sold as impossible and rest as zero.",
     "New hold is the better of keeping a share or buying from yesterday's rest.",
     "New sold comes only from yesterday's hold; new rest keeps rest or follows yesterday's sale.",
     "Return the better nonholding final state."
   ],
-  "correctness": "Each state stores the best profit for its exact end-of-day condition. The transitions list every legal action and exclude buying from yesterday's sold state. Induction over days preserves the optima. The final answer excludes holding because unrealized shares are not completed profit.",
-  "bruteForce": "Recursively enumerate buy, sell, and wait actions for every day, tracking cooldown. Repeated states create exponential work without memoization.",
+  "correctness": "Each state stores the best profit for its exact end-of-day condition. The transitions list every legal action and exclude buying from yesterday's sold state. Induction over days preserves the best results. The final answer excludes holding because unrealized shares are not completed profit.",
+  "bruteForce": "Recursively list buy, sell, and wait actions for every day, tracking cooldown. Repeated states create exponential work without memoization.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

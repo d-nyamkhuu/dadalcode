@@ -10,7 +10,7 @@
     "2 <= k <= 9",
     "1 <= n <= 60"
   ],
-  "intuition": "The count and sum must both match. Use increasing choices to enforce distinctness and eliminate reorderings. Because all values are positive, any value exceeding the remaining sum and all later values are impossible.",
+  "intuition": "Choose exactly k different digits from 1 through 9. Always choose larger digits next, so a selection is not repeated in another order. Track the sum still needed and stop when a choice would exceed it. Save only a full selection with the exact target sum.",
   "approach": [
     "Track path, next value start, and remaining sum.",
     "Save only when len(path)==k and remaining==0.",
@@ -18,7 +18,7 @@
     "Recurse with value+1 to prohibit reuse, then pop.",
     "Optional pruning: for needed slots beginning at start, the minimum possible suffix sum is needed*(2*start+needed-1)//2; the maximum is needed*(19-needed)//2 using the largest available digits. Reject a remainder outside these bounds. The reference uses simpler count and overshoot bounds for an inspectable search."
   ],
-  "correctness": "Every saved path has k distinct values from the required range and totals n. Every valid set has a unique increasing ordering visited by the recursion. Positive-value pruning only removes paths that would overshoot, so the enumeration is complete without duplicates.",
+  "correctness": "Every saved path has k distinct values from the required range and totals n. Every valid set has a unique increasing ordering visited by the recursion. Positive-value pruning only removes paths that would overshoot, so the listing all possibilities is complete without duplicates.",
   "bruteForce": "Choose all subsets of the nine digits and filter by size and sum. Backtracking exposes the same choices but prunes impossible partial sums.",
   "complexity": {
     "time": "O(k * C(9,k))",

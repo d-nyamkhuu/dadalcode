@@ -11,7 +11,7 @@
     "Node values range from -100 to 100.",
     "0 <= k <= 2000000000."
   ],
-  "intuition": "Rotating by the list length changes nothing, so reduce k modulo n. The last k nodes become the front. Connect the old tail to the old head, walk to the node just before the new head, and break that one link.",
+  "intuition": "A rotation moves the last k nodes to the front. Rotating by the full list length changes nothing, so first reduce k by that length. Temporarily connect the tail to the head, then cut the circle just before the nodes that should become the new front.",
   "approach": [
     "Handle an empty or singleton list.",
     "Find the length and old tail, then reduce k modulo length.",

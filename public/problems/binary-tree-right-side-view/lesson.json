@@ -10,7 +10,7 @@
     "0 <= node count <= 100",
     "-100 <= node.val <= 100"
   ],
-  "intuition": "Visit each level from left to right. The last node is the one visible from the right; following only right-child pointers would miss visible nodes from a deeper left branch.",
+  "intuition": "Collect nodes one level at a time, from left to right. The last node in each level is the one visible from the right. It may belong to a left subtree when the right subtree ends earlier, so following only right-child links would miss some visible nodes.",
   "approach": [
     "Enqueue a present root.",
     "Process the queue size captured at the start of each level.",

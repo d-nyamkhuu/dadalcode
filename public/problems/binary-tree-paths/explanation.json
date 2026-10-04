@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Copy a path list for every child and retain all partial paths. A shared path avoids those repeated intermediate copies. Partial root paths are shared by sibling branches, so copying them at every descent stores repeated ancestry unnecessarily.",
-    "Maintain one path list for the current recursive branch. A node is appended on entry, and removed after its descendants finish. Only a node with neither child completes a requested path. Joining the list at that moment captures a stable string before backtracking changes working storage. A node with one child must continue downward; stopping there would report an internal prefix rather than a root-to-leaf path. Output strings can repeat when distinct leaves have equal value sequences, and those occurrences must be preserved.",
-    "On entering a node, path contains exactly its ancestors. Appending the current value creates its complete root path. Only leaves produce results, and DFS reaches each leaf once. Popping restores the ancestor path for sibling exploration, so all and only root-to-leaf paths are emitted. L is the total number of characters in all returned paths; joining at leaves accounts for output size."
+    "Carry the values along the current route from the root. At a leaf, join those values into a path string and save it. Remove the current value when returning to the parent so that another branch starts with the right ancestor path.",
+    "Maintain one path list for the current recursive branch. A node is appended on entry, and removed after its descendants finish. Only a node with neither child completes a requested path. Joining the list at that moment captures a stable string before backtracking changes working storage.",
+    "A node with one child must continue downward; stopping there would report an internal prefix rather than a root-to-leaf path. Output strings can repeat when distinct leaves have equal value sequences, and those occurrences must be preserved.",
+    "On entering a node, path contains exactly its ancestors. Appending the current value creates its complete root path. Only leaves produce results, and DFS reaches each leaf once. Popping restores the ancestor path for sibling exploration, so all and only root-to-leaf paths are emitted.",
+    "L is the total number of characters in all returned paths; joining at leaves accounts for output size."
   ],
   "walkthrough": {
     "input": {
@@ -37,7 +39,8 @@
     },
     {
       "code": "path.pop()",
-      "note": "Undo this node\u2019s append so the next sibling inherits exactly the parent path, without leftover values."
+      "note": "Undo this node’s append so the next sibling inherits exactly the parent path, without leftover values."
     }
-  ]
+  ],
+  "keyDecision": "Save paths only at leaves. Undo the appended value after exploring the node."
 }

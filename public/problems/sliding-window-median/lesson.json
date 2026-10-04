@@ -12,7 +12,7 @@
     "Values fit signed 32-bit integers.",
     "Output accepts absolute error up to 0.00001."
   ],
-  "intuition": "Split active values into a lower half in a max-heap and an upper half in a min-heap. The lower half has the same active size or one extra. Arbitrary heap deletion is expensive, so mark expired values and remove them only when they reach a heap root. Track active sizes separately from physical heap lengths.",
+  "intuition": "Keep the current window's smaller and larger halves in two heaps. Balance their active sizes to expose the middle values. Removing a buried heap value is difficult, so mark it as expired and discard it when it reaches the top. Active counts must change immediately.",
   "approach": [
     "Insert values into the appropriate half and rebalance their active sizes.",
     "Mark the outgoing value in a delayed-count map and subtract it from its logical half.",
@@ -29,7 +29,7 @@
   "pitfalls": [
     "Physical heap lengths include expired entries and cannot drive balancing.",
     "Prune roots before using their values.",
-    "Duplicate values are interchangeable, but delayed removal counts must preserve multiplicity."
+    "Duplicate values are interchangeable, but delayed removal counts must preserve occurrence count."
   ],
   "sources": [
     {

@@ -10,7 +10,7 @@
     "1 <= len(word) <= 15",
     "The word contains only lowercase English letters."
   ],
-  "intuition": "Choosing keep or omit creates two branches per character. Delay writing omitted counts until a kept letter breaks the run or the word ends. This pending count prevents invalid adjacent numbers like 11 for two omitted letters.",
+  "intuition": "At each letter, choose to keep it or omit it. Count consecutive omitted letters rather than writing a separate number for each one. Write that count just before the next kept letter, or at the end. This generates every valid abbreviation from a clear sequence of choices.",
   "approach": [
     "Track character index i, emitted prefix path, and pending omitted count.",
     "The omit branch increments count without writing characters.",
@@ -18,11 +18,11 @@
     "At the end flush any remaining count and save the abbreviation."
   ],
   "correctness": "Each binary keep/omit pattern is visited once. Pending counts represent exactly the maximal omitted suffix of the processed prefix. Flushing only at a kept letter or the end creates valid separated numeric runs. Every abbreviation corresponds to one keep/omit pattern, so the result is complete and duplicate-free.",
-  "bruteForce": "Enumerate 2^n bitmasks and scan each mask to compress omitted runs. This has the same asymptotic output cost but hides the recursive decisions.",
+  "bruteForce": "List 2^n bitmasks and scan each mask to compress omitted runs. This has the same asymptotic output cost but hides the recursive decisions.",
   "complexity": {
     "time": "O(n * 2^n)",
     "space": "O(n^2) auxiliary with copied Python prefixes, excluding output",
-    "explanation": "There are 2^n outputs, each of at most n characters. Immutable prefixes along a recursion stack can occupy O(n^2); a mutable token path can reduce auxiliary storage."
+    "explanation": "There are 2^n outputs, each of at most n characters. Immutable prefixes along a recursion stack can occupy O(n^2); a mutable token path can reduce additional storage."
   },
   "pitfalls": [
     "Flush a trailing count at the base case.",
@@ -35,7 +35,7 @@
       "url": "https://leetcode.com/problems/generalized-abbreviation/"
     },
     {
-      "label": "Public problem statement \u00b7 LeetCode Wiki",
+      "label": "Public problem statement · LeetCode Wiki",
       "url": "https://leetcode.doocs.org/en/lc/320/"
     }
   ],

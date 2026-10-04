@@ -11,7 +11,7 @@
     "1 <= k <= n*n",
     "Values range from -10^9 to 10^9; rows and columns are sorted."
   ],
-  "intuition": "Search the value range rather than flattening the matrix. To count entries <=mid, begin at the bottom-left corner: a qualifying cell certifies every cell above it in that column; an oversized cell means move upward. This count is monotone in mid.",
+  "intuition": "Search possible answer values rather than matrix positions. For a trial value, count how many entries are no larger than it. If that count is below k, the answer must be larger. Otherwise, keep that value and smaller candidates. Sorted rows and columns make the count efficient.",
   "approach": [
     "Set low to the top-left and high to the bottom-right value.",
     "Count <=mid using a bottom-left staircase with row and col pointers.",

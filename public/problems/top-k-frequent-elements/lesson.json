@@ -12,7 +12,7 @@
     "1 <= k <= number of distinct values",
     "The top-k answer set is unique"
   ],
-  "intuition": "Frequencies range only from 1 to n, so they can index buckets directly. Sorting values is unnecessary: collecting buckets from highest frequency to lowest visits the most common values first.",
+  "intuition": "First count how often each value appears. Put values into buckets labeled by their counts. Read the buckets from the largest count downward and stop after collecting k values. Frequencies cannot exceed the input length, so there is no need to sort all values by frequency.",
   "approach": [
     "Count each value with a frequency map.",
     "Place each distinct value in the bucket indexed by its count.",

@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Scanning for the maximum would return the peak, but the requested logarithmic time asks us to exploit the guaranteed mountain shape. Before the unique peak, each adjacent edge rises; from the peak onward, each edge falls. An adjacent comparison tells which side of a middle position contains the peak.",
+    "A mountain rises before its peak and falls after it. Compare the middle value with the next value to learn which side you are on. A rising comparison keeps the right side; a falling comparison keeps the middle and left side. Repeat until one index remains.",
     "Maintain an inclusive interval containing the peak. If arr[mid] is smaller than arr[mid+1], the peak must be strictly after mid, so discard mid and everything before it. Otherwise the edge falls, and mid itself may be the peak, so retain mid as the new right boundary.",
-    "Each update shrinks the interval while preserving the peak. When left and right coincide, only the peak can remain. The loop condition left<right also guarantees mid+1 is in bounds: midpoint rounding places mid strictly before right. This reasoning depends on the strict mountain guarantee; plateaus or arbitrary arrays would need different handling. The answer is an index, so the final return must not substitute the corresponding maximum value."
+    "Each update shrinks the interval while preserving the peak. When left and right coincide, only the peak can remain. The loop condition left<right also guarantees mid+1 is in bounds: midpoint rounding places mid strictly before right. This reasoning depends on the strict mountain guarantee; plateaus or arbitrary arrays would need different handling.",
+    "The answer is an index, so the final return must not substitute the corresponding maximum value."
   ],
   "walkthrough": {
     "input": {
@@ -35,5 +36,6 @@
       "code": "right = mid",
       "note": "A falling edge allows mid itself to be the peak, so it must not be discarded."
     }
-  ]
+  ],
+  "keyDecision": "On a fall, set right = mid because mid itself may be the peak."
 }

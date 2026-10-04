@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Sorting every input value makes the kth largest easy to index, but it orders values that never affect the answer. We only need retain the strongest k candidates seen so far. A heap lets us maintain that group while reading the array once.",
+    "Keep only the largest k values seen so far in a min-heap. Its smallest value is the current kth largest. A new value matters only if it is larger than that heap minimum. This avoids sorting values that cannot enter the final top k.",
     "Use a min heap, even though the question asks for a largest rank. The root should be the weakest retained candidate, because that is the element to evict when a stronger value appears. Fill the heap until it has k values. Afterward ignore values no larger than its root and replace the root when a larger value arrives.",
-    "This preserves exactly the largest k processed values, including repeated values as separate items. The root of the final group is the kth largest: k-1 retained entries are at least as large, and every discarded entry is no larger. Distinct-value filtering would solve a different problem. For k=1 the heap keeps only the current maximum; for k equal to input length it keeps all values and exposes the minimum."
+    "This preserves exactly the largest k processed values, including repeated values as separate items. The root of the final group is the kth largest: k-1 retained entries are at least as large, and every discarded entry is no larger. Distinct-value filtering would solve a different problem.",
+    "For k=1 the heap keeps only the current maximum; for k equal to input length it keeps all values and exposes the minimum."
   ],
   "walkthrough": {
     "input": {
@@ -39,5 +40,6 @@
       "code": "heapreplace(heap, value)",
       "note": "Replace the root in one bounded-heap operation while keeping the group size fixed."
     }
-  ]
+  ],
+  "keyDecision": "Count duplicate values separately. The kth largest is a rank among occurrences, not distinct values."
 }

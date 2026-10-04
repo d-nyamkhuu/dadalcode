@@ -10,7 +10,7 @@
     "1 <= len(s), len(t) <= 200.",
     "Only lowercase letters and # appear."
   ],
-  "intuition": "Scanning backward lets a # announce that a previous letter must be skipped. Count outstanding backspaces until finding a surviving letter, then compare the two strings' next surviving characters without constructing their edited versions.",
+  "intuition": "Read each string backward. A backspace tells you to skip one earlier character, and several backspaces may skip several characters. Compare the next surviving characters from the two strings. This avoids building the edited strings in extra storage.",
   "approach": [
     "Start indices at the final characters.",
     "Move each index backward past backspaces and erased letters using a skip counter.",

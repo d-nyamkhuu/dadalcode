@@ -10,7 +10,7 @@
     "1 <= number of intervals <= 10000",
     "0 <= start <= end <= 10000"
   ],
-  "intuition": "Once intervals are ordered by start, only the latest merged interval can overlap the next one. An overlapping interval extends the same continuous union; a later start beyond the current end begins a new disjoint component.",
+  "intuition": "Sort intervals by their starting point. Then compare each interval with the last range you have saved. If they overlap, extend that saved range. Otherwise, begin a new range. Sorting means the next interval cannot overlap an earlier saved range without also reaching the last one.",
   "approach": [
     "Sort intervals by start.",
     "Append the first interval. For each later interval, compare its start with the latest merged end.",

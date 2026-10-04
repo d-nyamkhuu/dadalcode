@@ -12,7 +12,7 @@
     "1 <= k <= 10000 and k <= len(nums1)*len(nums2).",
     "Values range from -1000000000 to 1000000000."
   ],
-  "intuition": "Fixing a nums1 index creates a row of increasing sums as nums2 advances. Put each relevant row's first pair in a min-heap. Popping the smallest row front and advancing that row is the same idea as merging sorted lists.",
+  "intuition": "For one value from the first sorted array, pairing it with the second array gives a sorted row of sums. Treat these rows as sorted lists. Keep each row's next pair in a heap, take the smallest pair, then advance only that row.",
   "approach": [
     "Seed up to k rows with their pair at column zero.",
     "Pop the heap's smallest sum and append its two values.",
@@ -27,7 +27,7 @@
     "explanation": "Heap size is at most the number of seeded rows; each emitted pair causes at most one insertion."
   },
   "pitfalls": [
-    "Keep array indices to preserve duplicate-pair multiplicity.",
+    "Keep array indices to preserve duplicate-pair occurrence count.",
     "Push only the next column of the popped row.",
     "Different tied pairs can all be correct."
   ],

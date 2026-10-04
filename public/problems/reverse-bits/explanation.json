@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "The integer\u2019s decimal representation is irrelevant: the operation reverses its complete 32-position binary representation. Leading zero bits still matter because they become trailing zeros after reversal. A loop that stops when the remaining input becomes zero would lose those positions.",
+    "Read the input from its least significant bit. Shift the result left to make room, then append that input bit. Repeat for all 32 positions, including zeros. Reading bits in this order writes their original positions in reverse order.",
     "Read one input bit at a time from the least significant end using n&1. Shift the accumulated result left to make room, then append that bit with bitwise OR. Right-shifting n exposes the next original bit. The first extracted bit ultimately becomes the highest bit because every later iteration shifts it left again.",
-    "After k iterations, the result contains exactly the original lowest k bits in reversed order. Repeating precisely 32 times establishes the complete fixed-width result. Python\u2019s integers do not overflow, but the loop still supplies the intended width. For zero the loop simply appends 32 zeros; for a lone low bit it eventually reaches the high position. This arithmetic implementation avoids constructing or parsing a padded binary string."
+    "After k iterations, the result contains exactly the original lowest k bits in reversed order. Repeating precisely 32 times establishes the complete fixed-width result. Python’s integers do not overflow, but the loop still supplies the intended width. For zero the loop simply appends 32 zeros; for a lone low bit it eventually reaches the high position.",
+    "This arithmetic implementation avoids constructing or parsing a padded binary string."
   ],
   "walkthrough": {
     "input": {
@@ -30,5 +31,6 @@
       "code": "result = (result << 1) | bit",
       "note": "Shift makes one empty low position, and OR appends the extracted bit to the growing reversed sequence."
     }
-  ]
+  ],
+  "keyDecision": "Run exactly 32 iterations. Stopping when the input becomes zero would lose leading zero positions."
 }

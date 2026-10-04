@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Greedily taking the first or longest matching dictionary word can strand the remaining suffix. Recursively trying every split avoids that mistake, but many choices lead to the same remaining suffix. A dynamic program remembers which prefix boundaries are reachable instead of remembering every sequence of chosen words.",
+    "Think of positions between characters as possible word boundaries. Position 0 is reachable before reading anything. From a reachable boundary, a dictionary word can take us to another boundary. Save which positions are reachable so the same earlier text does not need to be solved again.",
     "Boundary end is reachable when some earlier reachable start is followed by a dictionary word s[start:end]. The empty prefix is reachable before any words are chosen. After that, a successful transition adds exactly one complete word. A dictionary set makes membership checks direct, and the longest word length limits how far backward to search.",
-    "Think of the table as possible stopping positions, not a single committed segmentation. Several boundaries may stay true simultaneously even when only one leads to the final answer. For cars, both car and ca are available prefixes, but ca followed by rs succeeds while car followed by s fails. Returning the final boundary asks whether at least one whole-string segmentation exists; it does not require reconstructing which one.",
-    "A possible refinement stores the distinct dictionary word lengths and checks only those lengths at each boundary, skipping slice lengths that cannot match any entry. A trie can instead follow dictionary prefixes directly to avoid repeatedly constructing slices. These alternatives trade extra indexing or traversal logic for fewer substring operations; the reference keeps its straightforward bounded backward scan and accounts for Python slicing in O(nL^2)."
+    "Think of the table as possible stopping positions, not a single committed segmentation. Several boundaries may stay true simultaneously even when only one leads to the final answer. For cars, both car and ca are available prefixes, but ca followed by rs succeeds while car followed by s fails.",
+    "Returning the final boundary asks whether at least one whole-string segmentation exists; it does not require reconstructing which one.",
+    "A possible refinement stores the distinct dictionary word lengths and checks only those lengths at each boundary, skipping slice lengths that cannot match any entry. A trie can instead follow dictionary prefixes directly to avoid repeatedly constructing slices.",
+    "These alternatives trade extra indexing or traversal logic for fewer substring operations; the reference keeps its straightforward bounded backward scan and accounts for Python slicing in O(nL^2)."
   ],
   "walkthrough": {
     "input": {
@@ -35,7 +37,95 @@
     },
     {
       "code": "range(max(0, end - longest), end)",
-      "note": "No valid final word can start farther away than the dictionary\u2019s maximum word length."
+      "note": "No valid final word can start farther away than the dictionary’s maximum word length."
+    }
+  ],
+  "keyDecision": "Mark an end reachable only when an earlier start is reachable and the piece between them is a dictionary word.",
+  "figures": [
+    {
+      "title": "Keep more than one possible boundary",
+      "caption": "For cars and dictionary [car, ca, rs], choosing the longest word first would get stuck at s.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: two prefixes can be split",
+          "rows": [
+            {
+              "label": "Characters",
+              "values": [
+                "c",
+                "a",
+                "r",
+                "s"
+              ],
+              "labels": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            {
+              "label": "Reachable boundaries",
+              "values": [
+                "0",
+                "2",
+                "3"
+              ],
+              "labels": [
+                "start",
+                "after ca",
+                "after car"
+              ]
+            }
+          ],
+          "note": "Both ca and car are dictionary words. Keep both reachable boundaries instead of committing to one."
+        },
+        {
+          "title": "Check: finish from boundary 2",
+          "rows": [
+            {
+              "label": "Successful split",
+              "values": [
+                "ca",
+                "rs"
+              ],
+              "highlight": [
+                0,
+                1
+              ],
+              "connector": "＋"
+            },
+            {
+              "label": "Unsuccessful split",
+              "values": [
+                "car",
+                "s"
+              ],
+              "connector": "＋"
+            }
+          ],
+          "note": "rs is a dictionary word after ca. The alternative after car leaves s, which is not in the dictionary."
+        },
+        {
+          "title": "After: mark the end reachable",
+          "rows": [
+            {
+              "label": "Reachable boundaries",
+              "values": [
+                "0",
+                "2",
+                "3",
+                "4"
+              ],
+              "highlight": [
+                3
+              ]
+            }
+          ],
+          "note": "Boundary 4 is reachable, so return true. Saving all valid prefix boundaries preserves this alternative."
+        }
+      ]
     }
   ]
 }

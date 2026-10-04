@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/
+src/data/*.json
+tests/review-ledger.json
+design/
+review/
+package-lock.json

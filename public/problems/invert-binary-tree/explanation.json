@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A mirror transformation changes the direction of every edge: a left child becomes a right child and vice versa. Swapping only the root\u2019s children leaves the interiors of those subtrees unchanged, so it does not complete the reflection.",
+    "Visit every node and swap its left and right child links. Apply the same swap to all descendants. Each left turn in the original tree becomes a right turn in the result, and each right turn becomes a left turn. The values themselves stay the same.",
     "The same local operation must be applied to every node. An explicit stack starts with the root and holds nodes still needing their child swap. After a node is swapped, push both of its existing children; their new ordering is irrelevant because both will eventually be processed. The algorithm changes links rather than exchanging node values.",
-    "Each node is visited once, so every original left/right path becomes the opposite sequence of choices while preserving the nodes themselves. The original root stays the root because a mirror does not change the topmost position. For an empty tree the stack starts empty and returning root gives None immediately. A second complete inversion would restore the original links, illustrating that this transformation is its own inverse."
+    "Each node is visited once, so every original left/right path becomes the opposite sequence of choices while preserving the nodes themselves. The original root stays the root because a mirror does not change the topmost position. For an empty tree the stack starts empty and returning root gives None immediately.",
+    "A second complete inversion would restore the original links, illustrating that this transformation is its own inverse."
   ],
   "walkthrough": {
     "input": {
@@ -18,7 +19,7 @@
     },
     "steps": [
       "For root [4,2,7,1,3,6,9], begin with node 4 on the stack.",
-      "Swap root\u2019s children: 7 becomes its left child and 2 becomes its right child.",
+      "Swap root’s children: 7 becomes its left child and 2 becomes its right child.",
       "Process node 2 and exchange children 1 and 3, placing 3 on its left and 1 on its right.",
       "Process node 7 and exchange children 6 and 9, placing 9 on its left and 6 on its right.",
       "Leaf swaps change nothing further. The mirrored level order is [4,7,2,9,6,3,1], returned through the original root."
@@ -46,5 +47,6 @@
       "code": "return root",
       "note": "The transformation preserves the root object and all node values; only descendant child links have been exchanged."
     }
-  ]
+  ],
+  "keyDecision": "Swap each node's children exactly once, including nodes with only one child."
 }

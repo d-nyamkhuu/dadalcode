@@ -11,7 +11,7 @@
     "Node values are unique integers from 0 through 500.",
     "0 <= k <= 1000; target exists in the tree."
   ],
-  "intuition": "A target-to-node route may go upward before descending another branch. Record each node\u2019s parent to turn the tree into an undirected graph, then perform BFS from target using left, right, and parent neighbors. A visited set prevents immediate backtracking around those two-way edges.",
+  "intuition": "From the target, a move may go to a child or to a parent. First remember parent links, then use a queue to expand outward from the target one edge at a time. Mark visited nodes so moving back along an edge does not repeat them.",
   "approach": [
     "Traverse from root to build the parent map.",
     "Start a queue with (target,0) and mark target seen.",

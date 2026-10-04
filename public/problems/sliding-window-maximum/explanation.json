@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Scan all k values in every window, giving O(nk) time. Adjacent windows share k-1 values, so repeatedly scanning all k entries discards almost all previously learned information.",
-    "Store only values that can still become a future window maximum, using their indices for expiration. An older value no larger than a newly arrived value is permanently dominated: the new value is at least as useful and survives longer. Removing such values from the deque\u2019s back leaves decreasing candidates. The oldest remaining candidate sits at the front, where expiry and maximum lookup are both immediate. The deque is not the complete window; discarded values remain in the input but are no longer relevant to this question.",
+    "Keep possible maximum positions in a queue whose values decrease from front to back. A newer value can replace older candidates that are no larger, because it will remain in the window longer. Remove positions that have left the window. The front then gives the maximum.",
+    "Store only values that can still become a future window maximum, using their indices for expiration. An older value no larger than a newly arrived value is permanently dominated: the new value is at least as useful and survives longer. Removing such values from the deque’s back leaves decreasing candidates.",
+    "The oldest remaining candidate sits at the front, where expiry and maximum lookup are both immediate. The deque is not the complete window; discarded values remain in the input but are no longer relevant to this question.",
     "The deque contains current-window candidates in decreasing value order. Any removed back candidate has a newer value no smaller, so it cannot become the maximum before it expires. Expired front indices are invalid. Thus the front is the largest value among all relevant candidates and the true maximum. Each index enters once and leaves at most once from either end."
   ],
   "walkthrough": {
@@ -46,6 +47,89 @@
     {
       "code": "result.append(nums[candidates[0]])",
       "note": "The decreasing candidate invariant makes the front the maximum without scanning the full window."
+    }
+  ],
+  "keyDecision": "Remove expired positions from the front and weaker candidates from the back before adding the new position.",
+  "figures": [
+    {
+      "title": "A newer larger value replaces weaker candidates",
+      "caption": "Window size is 3. After reading index 3, candidate indices are [1, 2, 3]. Now read value 5 at index 4.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: candidates are decreasing",
+          "rows": [
+            {
+              "label": "Candidate indices",
+              "values": [
+                "1",
+                "2",
+                "3"
+              ],
+              "labels": [
+                "value 3",
+                "value -1",
+                "value -3"
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "The queue stores indices; their values are 3, -1, -3."
+        },
+        {
+          "title": "Check: expiry, then strength",
+          "rows": [
+            {
+              "label": "Remove front",
+              "values": [
+                "index 1: expired"
+              ]
+            },
+            {
+              "label": "Remove back",
+              "values": [
+                "index 3: weaker",
+                "index 2: weaker"
+              ]
+            }
+          ],
+          "note": "Index 1 is outside the new window [2, 4]. Values -1 and -3 are smaller than the new 5 and expire earlier."
+        },
+        {
+          "title": "After: one candidate is enough",
+          "rows": [
+            {
+              "label": "Current window",
+              "values": [
+                "-1",
+                "-3",
+                "5"
+              ],
+              "highlight": [
+                2
+              ],
+              "labels": [
+                "2",
+                "3",
+                "4"
+              ]
+            },
+            {
+              "label": "Candidate queue",
+              "values": [
+                "4"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "value 5"
+              ]
+            }
+          ],
+          "note": "Keep index 4. Its value 5 is the maximum of the current window [-1, -3, 5]."
+        }
+      ]
     }
   ]
 }

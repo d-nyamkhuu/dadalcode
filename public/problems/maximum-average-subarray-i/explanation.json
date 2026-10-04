@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Every candidate has exactly k elements, so every average has the same denominator. Maximizing the sum therefore maximizes the average. A brute-force solution resums each neighboring length-k slice even though almost all its values overlap with the previous slice.",
+    "All candidate sections have the same length k, so the largest sum also has the largest average. Compute the first sum, then slide one position at a time by removing the leaving value and adding the entering value. Keep the largest sum and divide by k at the end.",
     "Maintain the sum of one fixed-width window. Moving its right boundary by one introduces nums[right] and removes nums[right-k]. Updating those two values gives the next exact window sum in constant time. Initialize the running maximum from the first actual window, rather than from zero.",
-    "That initialization matters for an array containing only negatives: zero may be larger than every legitimate average, but it is not a candidate. Keep integer sums during the scan and divide by k once at the end. The first window plus each subsequent one-step slide covers every permitted subarray exactly once. The technique would need different reasoning if lengths varied, because a larger sum would no longer necessarily imply a larger average."
+    "That initialization matters for an array containing only negatives: zero may be larger than every legitimate average, but it is not a candidate. Keep integer sums during the scan and divide by k once at the end. The first window plus each subsequent one-step slide covers every permitted subarray exactly once.",
+    "The technique would need different reasoning if lengths varied, because a larger sum would no longer necessarily imply a larger average."
   ],
   "walkthrough": {
     "input": {
@@ -38,5 +39,6 @@
       "code": "return best / k",
       "note": "The denominator is shared by every candidate; delaying division retains exact integer sums while comparing windows."
     }
-  ]
+  ],
+  "keyDecision": "Each update subtracts nums[right - k] and adds nums[right], keeping exactly k values."
 }

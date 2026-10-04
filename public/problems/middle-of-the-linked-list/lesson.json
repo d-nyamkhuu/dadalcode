@@ -10,7 +10,7 @@
     "1 <= list length <= 100",
     "1 <= node value <= 100"
   ],
-  "intuition": "After t rounds, slow has advanced t links and fast has advanced 2t. When fast runs out of pairs of links, slow has advanced floor(n/2), which is exactly the requested zero-based middle index.",
+  "intuition": "Move a slow pointer one link and a fast pointer two links on every turn. When the fast pointer reaches the end, the slow pointer is halfway through the list. The loop condition makes an even-length list return the second of its two middle nodes.",
   "approach": [
     "Start slow and fast at head.",
     "While fast and fast.next exist, advance slow one link and fast two.",
@@ -21,7 +21,7 @@
   "complexity": {
     "time": "O(length)",
     "space": "O(1)",
-    "explanation": "The two pointers traverse the list with no auxiliary collection."
+    "explanation": "The two pointers traverse the list with no additional collection."
   },
   "pitfalls": [
     "Use the loop condition that returns the second middle for even length.",

@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Choosing one value from every list in all combinations quickly becomes impractical. A more useful candidate keeps one current representative per sorted list. The minimum and maximum of those representatives define a range that already covers every list.",
+    "Choose one current value from every sorted list. Their smallest and largest values define a range covering all lists. To make that range better, advance the list containing the smallest current value. A heap finds that minimum, while a saved maximum gives the other boundary.",
     "To improve this range, advance the list that supplies its minimum. Advancing another representative cannot raise the lower endpoint and cannot reduce the upper endpoint, so it cannot produce a better range before the current minimum changes. A min heap locates the next list to advance, while a separate high value tracks the largest representative.",
-    "Each popped minimum yields a valid candidate before its list advances. Compare candidates by width first and left endpoint second, since equal-width ties must favor the earlier range. Sorted lists mean replacement values never move backward, so high only needs to increase. If the minimum\u2019s list has no successor, stop: proceeding would drop that list\u2019s coverage, and no later covering selection is possible. The heap remains one entry per list throughout the search."
+    "Each popped minimum yields a valid candidate before its list advances. Compare candidates by width first and left endpoint second, since equal-width ties must favor the earlier range. Sorted lists mean replacement values never move backward, so high only needs to increase.",
+    "If the minimum’s list has no successor, stop: proceeding would drop that list’s coverage, and no later covering selection is possible. The heap remains one entry per list throughout the search."
   ],
   "walkthrough": {
     "input": {
@@ -44,7 +45,7 @@
   "codeNotes": [
     {
       "code": "low, row, index = heappop(heap)",
-      "note": "The minimum identifies both the current range\u2019s lower endpoint and the only list worth advancing."
+      "note": "The minimum identifies both the current range’s lower endpoint and the only list worth advancing."
     },
     {
       "code": "if (high - low, low) < (best[1] - best[0], best[0]):",
@@ -54,5 +55,6 @@
       "code": "if index + 1 == len(nums[row]):",
       "note": "An exhausted list prevents any later selection from retaining coverage of all lists."
     }
-  ]
+  ],
+  "keyDecision": "Stop when a list runs out, because later choices would no longer cover every list."
 }

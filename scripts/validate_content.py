@@ -1,6 +1,6 @@
 """Validate curriculum completeness and execute its references with the shared harness."""
 import argparse, json, pathlib, sys, signal, importlib.util, re
-from content_contracts import validate_package, validate_review
+from content_contracts import validate_package, validate_review, validate_teaching_figures
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('harness',ROOT/'src/runtime/harness.py'); harness=importlib.util.module_from_spec(spec); spec.loader.exec_module(harness)
 parser=argparse.ArgumentParser();parser.add_argument('--slug');parser.add_argument('--available',action='store_true');parser.add_argument('--json',action='store_true');parser.add_argument('--check-review',action='store_true',help='Require current reviews of all six package files');args=parser.parse_args()
@@ -43,6 +43,7 @@ def validate_explanation(explanation,code,tests):
     prose=intuition+steps+[note['note'] for note in notes]
     words=sum(len(re.findall(r'\S+',text)) for text in prose)
     assert words>=180,f'Editorial prose is too short: {words} words; at least 180 required'
+    validate_teaching_figures(explanation)
     return words,len(notes)
 
 def timeout(signum,frame): raise TimeoutError('Reference exceeded 3 seconds')

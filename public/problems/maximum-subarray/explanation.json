@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Enumerate every start/end pair and accumulate sums in O(n\u00b2) time. Every new endpoint shares almost all earlier candidates, suggesting that a compact summary should replace repeated subarray enumeration.",
-    "The summary is ending: the best sum of a nonempty subarray ending at the immediately previous position. To include the next value, either extend that subarray or abandon it and start fresh. A negative prefix is a burden, while a positive one improves the next choice. Keep a separate best because the globally optimal subarray may end long before the last element. Initializing with an actual element preserves the nonempty requirement on all-negative input.",
-    "Every subarray ending at i either starts at i or extends a subarray ending at i-1. Choosing the better option gives the optimal ending sum by induction. Taking the maximum over all ending positions therefore covers every nonempty subarray. Only two running sums are needed."
+    "At each number, choose between starting a new continuous section and extending the previous section. If the previous total is negative, it would make the new section worse. Keep the best total ending at the current number, and separately remember the best total seen anywhere.",
+    "The summary is ending: the best sum of a nonempty subarray ending at the immediately previous position. To include the next value, either extend that subarray or abandon it and start fresh. A negative prefix is a burden, while a positive one improves the next choice.",
+    "Keep a separate best because the globally best possible subarray may end long before the last element. Initializing with an actual element preserves the nonempty requirement on all-negative input.",
+    "Every subarray ending at i either starts at i or extends a subarray ending at i-1. Choosing the better option gives the best possible ending sum by induction. Taking the maximum over all ending positions therefore covers every nonempty subarray. Only two running sums are needed."
   ],
   "walkthrough": {
     "input": {
@@ -23,7 +24,7 @@
       "At value 1, restarting beats extending -2, so ending=1 and best=1.",
       "At value 4, restarting beats the preceding ending=-2, beginning the useful middle segment.",
       "Extend through -1,2,1 to reach ending=6 for [4,-1,2,1].",
-      "Later values do not exceed best=6, so return that stored global optimum."
+      "Later values do not exceed best=6, so return that stored global best possible result."
     ],
     "result": 6
   },
@@ -34,11 +35,84 @@
     },
     {
       "code": "ending = max(value, ending + value)",
-      "note": "These are the only ways a contiguous subarray can end here: start here or extend the previous prefix optimum."
+      "note": "These are the only ways a contiguous subarray can end here: start here or extend the previous prefix best possible result."
     },
     {
       "code": "best = max(best, ending)",
-      "note": "Preserve earlier optimal endpoints instead of accidentally returning only the last ending sum."
+      "note": "Preserve earlier best possible endpoints instead of accidentally returning only the last ending sum."
+    }
+  ],
+  "keyDecision": "Compare the current number alone with the previous ending sum plus the current number.",
+  "figures": [
+    {
+      "title": "Restart or extend?",
+      "caption": "At index 3, the next value is 4. The best sum ending at the previous index is -2.",
+      "afterStep": 2,
+      "panels": [
+        {
+          "title": "Before: the previous ending sum is negative",
+          "rows": [
+            {
+              "label": "Current choice point",
+              "values": [
+                "-2",
+                "4"
+              ],
+              "labels": [
+                "previous ending sum",
+                "new value"
+              ]
+            }
+          ],
+          "note": "Adding that previous section would reduce the new total."
+        },
+        {
+          "title": "Check: two possibilities",
+          "rows": [
+            {
+              "label": "Restart",
+              "values": [
+                "4"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Extend",
+              "values": [
+                "-2 + 4 = 2"
+              ]
+            }
+          ],
+          "note": "A section ending here either starts here or extends a section ending just before it."
+        },
+        {
+          "title": "After: begin a new section",
+          "rows": [
+            {
+              "label": "New ending sum",
+              "values": [
+                "4"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Later winning section",
+              "values": [
+                "4",
+                "-1",
+                "2",
+                "1"
+              ],
+              "connector": "＋"
+            }
+          ],
+          "note": "Keep ending = 4. Later, extending through -1, 2, and 1 gives the best sum 6."
+        }
+      ]
     }
   ]
 }

@@ -11,7 +11,7 @@
     "0 <= n <= 2^32 - 1",
     "Always reverse exactly 32 bits"
   ],
-  "intuition": "Read the original low bit and append it to a growing reversed result. Processing all 32 positions moves original leading zeros to final trailing zeros.",
+  "intuition": "Read the input from its least significant bit. Shift the result left to make room, then append that input bit. Repeat for all 32 positions, including zeros. Reading bits in this order writes their original positions in reverse order.",
   "approach": [
     "Start result=0.",
     "Repeat 32 times: shift result left and append n&1.",
@@ -23,7 +23,7 @@
   "complexity": {
     "time": "O(32), hence O(1)",
     "space": "O(1)",
-    "explanation": "Exactly 32 iterations each perform one mask, two shifts, and one bit append. The fixed width and two scalar integers make both time and auxiliary storage constant."
+    "explanation": "Exactly 32 iterations each perform one mask, two shifts, and one bit append. The fixed width and two scalar integers make both time and additional storage constant."
   },
   "pitfalls": [
     "Stopping when n becomes zero omits leading zero positions.",

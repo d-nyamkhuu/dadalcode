@@ -118,6 +118,44 @@ def package_hashes(path):
     return {name: hashlib.sha256((Path(path) / name).read_bytes()).hexdigest() for name in PACKAGE_FILES}
 
 
+def validate_teaching_figures(explanation):
+    """Keep static example diagrams attached to real steps and well-formed cells."""
+    if 'keyDecision' in explanation:
+        text(explanation['keyDecision'], 'keyDecision')
+    figures = explanation.get('figures', [])
+    assert isinstance(figures, list), 'figures must be a list'
+    for figure in figures:
+        assert isinstance(figure, dict), 'Figure must be an object'
+        text(figure.get('title'), 'Figure title')
+        text(figure.get('caption'), 'Figure caption')
+        step = figure.get('afterStep')
+        assert type(step) is int and 0 <= step < len(explanation['walkthrough']['steps']), 'Figure must follow an existing walkthrough step'
+        panels = figure.get('panels')
+        assert isinstance(panels, list) and len(panels) >= 2, 'Figure needs at least two panels'
+        for panel in panels:
+            assert isinstance(panel, dict), 'Panel must be an object'
+            text(panel.get('title'), 'Panel title')
+            text(panel.get('note'), 'Panel note')
+            rows = panel.get('rows')
+            assert isinstance(rows, list) and rows, 'Panel needs rows'
+            for row in rows:
+                assert isinstance(row, dict), 'Figure row must be an object'
+                text(row.get('label'), 'Row label')
+                values = row.get('values')
+                string_list(values, 'Row values')
+                if 'labels' in row:
+                    assert isinstance(row['labels'], list) and len(row['labels']) == len(values), 'Cell labels must match cell count'
+                    assert all(isinstance(label, str) for label in row['labels']), 'Cell labels must be strings'
+                if 'highlight' in row:
+                    assert isinstance(row['highlight'], list), 'Cell highlights must be a list'
+                    assert all(type(i) is int and 0 <= i < len(values) for i in row['highlight']), 'Highlighted cell is out of range'
+                if 'columns' in row:
+                    columns = row['columns']
+                    assert type(columns) is int and 1 <= columns <= len(values) and len(values) % columns == 0, 'Grid needs a whole number of rows'
+                if 'connector' in row:
+                    text(row['connector'], 'Row connector')
+
+
 def validate_review(path, entry):
     """Any changed package file invalidates its recorded review fingerprint."""
     assert entry.get('reviewed') and entry.get('resolved'), 'Package review is incomplete'

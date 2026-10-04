@@ -9,20 +9,20 @@
   "constraints": [
     "1 <= n <= 45"
   ],
-  "intuition": "Every route to stair i ends with either a one-step move from i-1 or a two-step move from i-2. These two groups are disjoint and exhaustive, so adding their counts gives the new count. Keep a visible DP table to see the recurrence accumulate.",
+  "intuition": "The last move to a stair is either one step or two steps. So every route to stair i comes from stair i - 1 or stair i - 2. Add those two counts and save the result. This counts all routes without listing every sequence of moves.",
   "approach": [
     "Define dp[i] as the number of routes to stair i.",
     "Set dp[0]=1: the empty sequence is one way to start. Set dp[1]=1.",
     "For each stair i from 2 through n, compute dp[i]=dp[i-1]+dp[i-2].",
     "Return dp[n].",
-    "Optional optimization: retain only the two predecessor counts for O(1) auxiliary space; the full table makes every intermediate state visible."
+    "Optional optimization: retain only the two predecessor counts for O(1) additional space; the full table makes every intermediate state visible."
   ],
   "correctness": "The base cases count the empty route and single one-step route correctly. Assuming earlier DP values count all routes correctly, appending one or two steps creates every route to i exactly once according to its final move. Induction proves the final count.",
   "bruteForce": "Recursively branch on a one-step or two-step move. Repeated suffix subproblems make uncached recursion exponential, approximately O(2^n).",
   "complexity": {
     "time": "O(n)",
     "space": "O(n)",
-    "explanation": "Each table cell is filled once. Two rolling counts can reduce auxiliary storage to O(1), but the full table exposes all states for learning."
+    "explanation": "Each table cell is filled once. Two rolling counts can reduce additional storage to O(1), but the full table exposes all states for learning."
   },
   "pitfalls": [
     "dp[0] must be 1, not 0; it seeds the route made entirely of two-step moves.",

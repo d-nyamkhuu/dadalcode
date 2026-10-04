@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "Repeating a one-step right rotation shifts nearly the entire array each time. A copied slice can rotate in linear time but uses extra storage. The in-place solution instead treats the array as two consecutive segments and rearranges their order through reversals.",
+    "A right rotation moves the last k values in front of the rest. Reverse the entire array, then reverse each of those two parts. The first reversal moves the parts; the next two restore their internal order. Reduce k by the array length because full-length rotations change nothing.",
     "Let A be the first n-k values and B the final k values. The desired result is B followed by A. Reversing the whole array gives reverse(B) followed by reverse(A), so reversing those two segments separately restores their internal order while retaining their swapped positions.",
-    "Normalize k modulo n because n right shifts return every value to its original position. Each reversal swaps endpoint values while moving its pointers inward, without allocating slices. The three passes modify the same list, and the method\u2019s output is the mutation rather than a newly returned rotated array."
+    "Normalize k modulo n because n right shifts return every value to its original position. Each reversal swaps endpoint values while moving its pointers inward, without allocating slices. The three passes modify the same list, and the method’s output is the mutation rather than a newly returned rotated array."
   ],
   "walkthrough": {
     "input": {
@@ -46,6 +46,102 @@
     {
       "code": "reverse(k, n - 1)",
       "note": "After the whole-list and first-segment reversals, this final pass restores the original order of A behind the already restored segment B."
+    }
+  ],
+  "keyDecision": "After reducing k modulo n, reverse the whole array, then 0..k - 1, then k..n - 1.",
+  "figures": [
+    {
+      "title": "Move two parts while restoring their order",
+      "caption": "With k = 3, the last part [5, 6, 7] must move in front of [1, 2, 3, 4].",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: identify the parts",
+          "rows": [
+            {
+              "label": "Original array",
+              "values": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ],
+              "highlight": [
+                4,
+                5,
+                6
+              ]
+            }
+          ],
+          "note": "The last three values move to the front without changing their relative order."
+        },
+        {
+          "title": "Actions: reverse whole, then first part",
+          "rows": [
+            {
+              "label": "After whole reversal",
+              "values": [
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+              ],
+              "highlight": [
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "label": "After first-part reversal",
+              "values": [
+                "5",
+                "6",
+                "7",
+                "4",
+                "3",
+                "2",
+                "1"
+              ],
+              "highlight": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "note": "The whole reversal moves the parts but reverses both internally. The first small reversal restores [5, 6, 7]."
+        },
+        {
+          "title": "After: reverse the remaining part",
+          "rows": [
+            {
+              "label": "Final array",
+              "values": [
+                "5",
+                "6",
+                "7",
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "highlight": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "note": "Restoring [1, 2, 3, 4] completes the right rotation."
+        }
+      ]
     }
   ]
 }

@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "A linear scan always finds the minimum, but ignores the structure that survives rotation. A distinct sorted array consists of at most two ascending segments separated by a single downward jump. The minimum is the first value after that jump, or the first array value when no jump exists.",
+    "Compare the middle value with the last value in the current search range. If the middle is larger, the rotation's smallest value lies to its right. Otherwise, the minimum is at the middle or to its left. Keep narrowing the range until one position remains.",
     "Compare the middle value with the right endpoint. If the middle is larger, it belongs to the high segment before the rotation break, so the minimum lies strictly after it. Otherwise the middle-to-right segment is ascending, and its minimum is the middle itself.",
     "These comparisons shrink an inclusive interval that always contains the answer. Keep mid in the second case because it may be exactly the minimum; exclude it in the first because it is known too large. Distinct values make each comparison decisive without ambiguity from equal endpoints.",
-    "For [3,4,5,1,2], the original high segment is [3,4,5] and the low segment is [1,2]. Comparing 5 with right endpoint 2 crosses the downward break, so discard through 5. Inside the remaining [1,2], comparing 1 with 2 finds an ascending interval; keep 1 because it may itself be the minimum. The same right-endpoint rule applies to the narrowed interval, not only to the original two segments."
+    "For [3,4,5,1,2], the original high segment is [3,4,5] and the low segment is [1,2]. Comparing 5 with right endpoint 2 crosses the downward break, so discard through 5. Inside the remaining [1,2], comparing 1 with 2 finds an ascending interval; keep 1 because it may itself be the minimum.",
+    "The same right-endpoint rule applies to the narrowed interval, not only to the original two segments."
   ],
   "walkthrough": {
     "input": {
@@ -35,7 +36,8 @@
     },
     {
       "code": "right = mid",
-      "note": "In this branch the middle may be the segment\u2019s smallest value. Keeping it prevents losing the answer at the rotation boundary."
+      "note": "In this branch the middle may be the segment’s smallest value. Keeping it prevents losing the answer at the rotation boundary."
     }
-  ]
+  ],
+  "keyDecision": "When keeping the left side, keep mid itself by setting right = mid."
 }

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Every input element can either belong to a subset or not, giving exponentially many outputs that cannot be avoided. The challenge is to enumerate them without producing the same subset in several orders. Values are distinct, so a subset can be identified by its selected input indices.",
+    "Start with the empty subset. Add one number, save the new subset, and try adding later numbers. Then undo the choice and try the next alternative. Moving only to later positions gives every subset one path through the search, regardless of the order in which we discover it.",
     "Choose indices in strictly increasing order. At any call, the current path is already one valid subset, including the empty initial path. Extending it with each available later index generates larger subsets while giving each selected-index sequence exactly one route through the search.",
     "Backtracking reuses the path list: append a choice, explore its descendants, then remove it before trying a sibling. Results must store copies because their contents must survive those later changes. This method spends its dominant work constructing the required outputs rather than filtering duplicate permutations."
   ],
@@ -63,5 +63,6 @@
       "code": "search(i + 1)",
       "note": "After choosing i, only later indices may extend the path. This creates one unique increasing-index representation for every subset."
     }
-  ]
+  ],
+  "keyDecision": "Save a copy of the current subset at every call, including the empty starting call."
 }

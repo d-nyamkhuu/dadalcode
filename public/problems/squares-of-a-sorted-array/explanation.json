@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Squaring a sorted array does not preserve its order when negative values occur: -4 becomes 16 while -1 becomes 1. Squaring everything and sorting would work, but wastes the useful structure of the original ascending values. Their absolute values are largest at one of the remaining endpoints.",
+    "Squaring negative values reverses their size order, so the squared array may no longer be sorted. The largest remaining square must come from one of the two ends. Compare those endpoints and fill the result from its last position backward, taking the larger square each time.",
     "Use left and right pointers to compare those endpoint squares. The larger is the largest square still unplaced, so write it into the last empty output position. Move only its endpoint inward, keeping all other candidates available for later positions.",
     "Filling from right to left is the essential ordering choice. Selecting maxima while writing forward would produce descending values; writing them backward places each maximum where it belongs in the ascending output. Tied squares may consume either endpoint, because both represent equally large occurrences that must be retained."
   ],
@@ -42,5 +42,6 @@
       "code": "if a > b:",
       "note": "Only the winning endpoint is consumed. The unchosen endpoint remains available because it may be the next largest remaining square."
     }
-  ]
+  ],
+  "keyDecision": "Move only the endpoint whose square was selected, then move the output position left."
 }

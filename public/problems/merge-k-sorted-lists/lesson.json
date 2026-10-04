@@ -12,7 +12,7 @@
     "At most 10,000 total nodes",
     "Each input list is sorted; node values are from -10,000 to 10,000"
   ],
-  "intuition": "The smallest unmerged node must be at the front of one input list. Keep exactly those front nodes in a heap. After choosing a node, expose only the next node from that same list.",
+  "intuition": "Only the first remaining node of each sorted list can be the next smallest node. Put those candidates in a heap, which lets us quickly take the smallest. After taking a node, add its successor from the same list. This avoids sorting all the nodes again.",
   "approach": [
     "Push every nonempty list head with its value and a unique list number.",
     "Pop the smallest head and attach it to the output tail.",

@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Choosing any of n columns independently for every row produces many illegal boards. A better search builds only conflict-free prefixes. Place exactly one queen in each row; row attacks then disappear from the checks because the construction already guarantees row uniqueness.",
+    "Place one queen in each row. Before choosing a column, check whether another queen already uses that column or either diagonal. If no later row can be filled, remove the last queen and try a different column. This avoids exploring boards that already contain an attack.",
     "A queen at (row,col) occupies one column and two diagonals. Squares share the descending diagonal precisely when row-col is equal, and share the ascending diagonal when row+col is equal. Three sets make each safety check immediate. The placement list remembers only selected columns, postponing string construction until a complete board exists.",
-    "Backtracking means that these occupancy marks belong to one branch, not to the whole search. After exploring a queen’s descendants, remove its column and diagonals before trying the next column. This restoration makes each sibling start from the same parent board. Reaching row n certifies a complete legal arrangement; reaching a row with no safe column simply closes a failed branch."
+    "Backtracking means that these occupancy marks belong to one branch, not to the whole search. After exploring a queen’s descendants, remove its column and diagonals before trying the next column. This restoration makes each sibling start from the same parent board.",
+    "Reaching row n certifies a complete legal arrangement; reaching a row with no safe column simply closes a failed branch."
   ],
   "walkthrough": {
     "input": {
@@ -44,5 +45,6 @@
       "code": "placement.pop()",
       "note": "Removing the choice and its three occupancy marks is what makes later sibling branches independent."
     }
-  ]
+  ],
+  "keyDecision": "A placement is safe only when its column and both diagonal identifiers are unused."
 }

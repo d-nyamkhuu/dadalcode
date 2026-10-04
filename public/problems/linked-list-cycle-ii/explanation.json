@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A set of visited node identities finds the cycle entrance at the first repeated node, but needs linear extra space. Equal node values are not enough to detect repetition: different nodes may carry identical values. Floyd’s method instead uses their positions and two movement speeds.",
+    "First use a slow and a fast pointer to find a meeting inside a cycle. The meeting is not necessarily the entrance. Start a new pointer at the head, then move it and the meeting pointer one link at a time. Their next meeting is the entrance.",
     "Inside a cycle, a pointer moving two links per round gains one position per round on a pointer moving one link. They eventually meet. That meeting need not be the entrance; it only establishes a distance relationship between the path before the cycle and the cycle itself.",
     "At the meeting, fast has traveled twice as far as slow, so their traveled-distance difference is a multiple of the cycle length. Reset one pointer to head and move both one link per round. Their offsets now align exactly at the entrance. If fast reaches None first, the list is acyclic."
   ],
@@ -37,5 +37,6 @@
       "code": "while entrance is not slow:",
       "note": "Equal-speed motion after resetting one pointer uses the meeting-distance relation to find the entrance, rather than returning the initial meeting."
     }
-  ]
+  ],
+  "keyDecision": "If the fast pointer reaches the end, return no entrance. Otherwise use the second, equal-speed phase."
 }

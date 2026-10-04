@@ -11,7 +11,7 @@
     "1 <= len(s) <= 500",
     "s contains lowercase English letters"
   ],
-  "intuition": "Use the most frequent currently available character, but keep the previously used character aside for one turn. This prevents adjacent duplicates while spending the largest remaining counts early. A character occurring more than half the rounded-up length makes any arrangement impossible.",
+  "intuition": "Choose the available character with the most copies left, but hold the just-used character out of the choices for the next position. After choosing a different character, make the previous one available again. A heap helps choose the most frequent available character each time.",
   "approach": [
     "Reject if a character count exceeds (len(s)+1)//2.",
     "Heapify negative frequencies and repeatedly choose the most frequent available character.",

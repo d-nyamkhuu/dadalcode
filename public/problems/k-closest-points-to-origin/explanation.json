@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Sorting all points by distance gives a straightforward answer, but only k points need to survive. A bounded heap maintains the closest group while scanning the input. Its root should expose the farthest retained point, because that is the candidate to evict when a better point arrives.",
-    "Euclidean distance contains a square root, but square root preserves ordering for nonnegative values. Compare x\u00b2+y\u00b2 directly to avoid unnecessary computation and rounding. Store negative squared distances so Python\u2019s min heap behaves as a max heap for the retained group. Include the input index to identify the original point and handle equal-distance heap ordering safely.",
-    "Before the heap reaches k entries, accept every point. Afterward replace its root only when the new squared distance is smaller. Ignoring a farther point cannot harm the current closest group. After all inputs, return the original coordinate pairs referenced by the retained indices. Output order is irrelevant, but coordinates and multiplicities must be preserved: returning distances or inventing another point at the same distance would not satisfy the contract."
+    "A point's squared distance is x² + y²; taking a square root would not change which point is closer. Keep the closest k points seen so far, with the farthest saved point easy to remove. Replace it only when a closer new point arrives.",
+    "Euclidean distance contains a square root, but square root preserves ordering for nonnegative values. Compare x²+y² directly to avoid unnecessary computation and rounding. Store negative squared distances so Python’s min heap behaves as a max heap for the retained group. Include the input index to identify the original point and handle equal-distance heap ordering safely.",
+    "Before the heap reaches k entries, accept every point. Afterward replace its root only when the new squared distance is smaller. Ignoring a farther point cannot harm the current closest group. After all inputs, return the original coordinate pairs referenced by the retained indices.",
+    "Output order is irrelevant, but coordinates and occurrence counts must be preserved: returning distances or inventing another point at the same distance would not satisfy the contract."
   ],
   "walkthrough": {
     "input": {
@@ -46,5 +47,6 @@
       "code": "return [points[index] for _, index in heap]",
       "note": "Return original coordinate pairs, not the internal distances or indices."
     }
-  ]
+  ],
+  "keyDecision": "Compare squared distances. Keep input occurrences separately even when coordinates or distances tie."
 }

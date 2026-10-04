@@ -1,0 +1,13 @@
+name: Improvement
+description: Suggest an improvement to desktop learning or practice
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What learning or practice problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested behavior and alternatives

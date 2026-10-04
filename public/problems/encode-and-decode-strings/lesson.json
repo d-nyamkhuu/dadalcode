@@ -12,7 +12,7 @@
     "0 <= length of each string <= 200",
     "Input strings may contain characters with codes 0 through 255"
   ],
-  "intuition": "A delimiter alone cannot distinguish a separator from the same character inside a message. Put each payload\u2019s character count before a #. The decoder reads # only while parsing the length, then consumes exactly that many payload characters.",
+  "intuition": "A separator alone is unsafe because the text may contain that separator. Instead, write each string's length before its text. During decoding, read the length header, then take exactly that many characters. The next header begins immediately afterward, even for an empty string.",
   "approach": [
     "For each string, append decimal length, #, and the original text. Join all chunks once.",
     "During decoding, locate the next # from the current header start.",

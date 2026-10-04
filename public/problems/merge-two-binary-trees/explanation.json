@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "The two trees are aligned by position, not by value or traversal order. At a position occupied in both trees, add the values. At a position occupied in only one tree, every existing node in that one-sided subtree should remain unchanged in the result.",
+    "Visit the two trees at corresponding positions. If both nodes exist, add their values into the first tree. If only one exists, keep that whole branch. Continue comparing overlapping child pairs. This handles missing children without treating them as actual zero-valued nodes.",
     "Use the first tree as the output structure. A stack holds pairs of nodes present at the same position. Add the second node’s value into the first, then inspect their left children and right children separately. If the first tree lacks a child, attach the second tree’s entire child subtree. If both children exist, queue that overlapping pair.",
-    "One-sided subtrees need no further traversal because their values already equal the required merged values at every position. This is why the algorithm can skip large nonoverlapping sections. An absent input root is simply the extreme form of the same rule: return the other root. The reference deliberately reuses input nodes, so callers needing unchanged input trees would choose an allocating variant instead. Both approaches satisfy the merge’s value and shape requirements."
+    "One-sided subtrees need no further traversal because their values already equal the required merged values at every position. This is why the algorithm can skip large nonoverlapping sections. An absent input root is simply the extreme form of the same rule: return the other root.",
+    "The reference deliberately reuses input nodes, so callers needing unchanged input trees would choose an allocating variant instead. Both approaches satisfy the merge’s value and shape requirements."
   ],
   "walkthrough": {
     "input": {
@@ -52,5 +53,6 @@
       "code": "setattr(first, direction, b)",
       "note": "When the output side is absent, attach the complete one-sided subtree because none of its descendants require addition."
     }
-  ]
+  ],
+  "keyDecision": "Add values only at overlapping nodes. Attach a one-sided branch as it is."
 }

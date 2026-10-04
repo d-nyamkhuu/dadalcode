@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "Listing every complete route would branch into right and down choices at many cells. Different routes repeatedly reach the same cell, so solving the remaining journey separately for each route repeats work. Count routes to each cell instead: that cell only needs the totals for its two possible predecessors.",
+    "A cell can be reached from the cell above it or from the cell on its left. Add those two route counts to get the count for this cell. Save the counts as you move through the grid, so different routes do not make you solve the same smaller question repeatedly.",
     "Every arrival comes from above or from the left. These groups cannot overlap because their final moves differ, so their counts add. Border cells have exactly one route: along the top row all moves are right, and along the left column all moves are down. These give the recurrence a concrete starting point.",
-    "The reference compresses the table into one row. Before updating a column, dp[col] still holds the previous row\u2019s count from above. The neighboring dp[col-1] has already been updated and holds the current row\u2019s count from the left. Adding them overwrites a value that is no longer needed. The traversal order is therefore part of the algorithm, not merely a convenient loop arrangement.",
-    "Transposing the grid exchanges right and down moves in a one-to-one correspondence, so its number of paths is unchanged. The reference swaps dimensions when needed to retain the shorter DP row, reducing auxiliary storage to O(min(m,n))."
+    "The reference compresses the table into one row. Before updating a column, dp[col] still holds the previous row’s count from above. The neighboring dp[col-1] has already been updated and holds the current row’s count from the left. Adding them overwrites a value that is no longer needed.",
+    "The traversal order is therefore part of the algorithm, not merely a convenient loop arrangement.",
+    "Transposing the grid exchanges right and down moves in a one-to-one correspondence, so its number of paths is unchanged. The reference swaps dimensions when needed to retain the shorter DP row, reducing additional storage to O(min(m,n))."
   ],
   "walkthrough": {
     "input": {
@@ -32,5 +33,6 @@
       "code": "dp[col] += dp[col - 1]",
       "note": "The old cell is above, while the already-updated neighbor is left; reversing traversal would break this interpretation."
     }
-  ]
+  ],
+  "keyDecision": "The first row and first column each have one route. Every other count is above + left."
 }

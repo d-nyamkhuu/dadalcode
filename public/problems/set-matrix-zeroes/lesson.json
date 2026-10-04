@@ -11,7 +11,7 @@
     "1 <= rows, columns <= 200",
     "Matrix values are signed 32-bit integers"
   ],
-  "intuition": "Zeroing immediately would create new zeros that incorrectly erase unrelated rows. First record which lines need clearing. The first cell of each row and column can serve as its marker; separate flags preserve whether the first row and column originally contained a zero.",
+  "intuition": "Do not clear rows as soon as you find a zero. A zero created by your own update could wrongly trigger more clearing. First remember which rows and columns originally contained a zero. Use the first row and column as markers, then apply those markers in a separate pass.",
   "approach": [
     "Record original zero presence in row zero and column zero.",
     "Scan the interior and put zero in its row/column headers whenever an original interior cell is zero.",

@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "Flattening and sorting the matrix ignores that every row and column is already ordered. Instead, ask a decision question: how many entries are at most a proposed value mid? If that count is below k, the kth value must be larger; otherwise it is no larger than mid.",
+    "Search possible answer values rather than matrix positions. For a trial value, count how many entries are no larger than it. If that count is below k, the answer must be larger. Otherwise, keep that value and smaller candidates. Sorted rows and columns make the count efficient.",
     "Count with a staircase starting at the bottom-left corner. A cell at most mid certifies every cell above it in that column, so add row+1 and move right. An oversized cell rules out that row position and everything to its right, so move upward.",
     "The count grows monotonically with the proposed value, allowing binary search over the integer value interval. Search for the smallest threshold containing at least k entries. Duplicates count separately, and a threshold need not itself appear in the matrix during the search; the final threshold does.",
-    "At mid=12 in the worked matrix, start at row 2, column 0: value 12 qualifies, so add three entries and move right. Value 13 is too large, so move up to 11 and add two. At the last column, move up from 13 to 9 and add one. The count is 3+2+1=6; the same sweep uses both upward moves and column-prefix additions."
+    "At mid=12 in the worked matrix, start at row 2, column 0: value 12 qualifies, so add three entries and move right. Value 13 is too large, so move up to 11 and add two. At the last column, move up from 13 to 9 and add one.",
+    "The count is 3+2+1=6; the same sweep uses both upward moves and column-prefix additions."
   ],
   "walkthrough": {
     "input": {
@@ -48,5 +49,6 @@
       "code": "if count < k:",
       "note": "This compares rank information, not membership. Fewer than k qualifying entries proves the desired value lies above mid, even across value gaps."
     }
-  ]
+  ],
+  "keyDecision": "Find the smallest value whose count of entries <= value is at least k. Count duplicates separately."
 }

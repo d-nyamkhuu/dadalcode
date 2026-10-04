@@ -9,7 +9,7 @@
   "constraints": [
     "1 <= n <= 2147483647"
   ],
-  "intuition": "Subtracting one flips the lowest 1 bit to 0 and changes all lower zero bits to 1. ANDing with the original value removes that lowest 1 while leaving all higher bits unchanged. Each operation therefore accounts for exactly one set bit.",
+  "intuition": "Clear one set bit at a time. The operation n & (n - 1) removes the rightmost 1 from a positive binary number while leaving the other 1s intact. Count how many times this can be done before the number becomes zero.",
   "approach": [
     "Set count to zero.",
     "While n is nonzero, replace it with n & (n-1) and increment count.",

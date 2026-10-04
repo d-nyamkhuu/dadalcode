@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Comparing only node values is insufficient: the same values could occur in different child positions. Trees are equal only when both shape and values match. Consider each structural position as a pair of nodes, one from each tree, and reject as soon as that position disagrees.",
+    "Compare the trees at matching positions. If both positions are empty, they match. If only one is empty, the shapes differ. Otherwise compare the values and continue with both left children and both right children. Values alone are not enough to prove the trees are equal.",
     "An absent node matches another absent node. If exactly one member of a pair is absent, one tree has a branch where the other does not, so no descendant comparison can repair the mismatch. When both nodes exist, compare their values and then create pairs for their corresponding left children and corresponding right children.",
-    "The reference uses an explicit stack rather than recursion. Pushing left and then right means the right pair is processed first, but the order does not affect equality because all structural positions must agree. At every point, pending pairs refer to the same position in the two trees. Exhausting the stack without rejection means every position was checked successfully, including the missing-child positions that value-only traversals would overlook."
+    "The reference uses an explicit stack rather than recursion. Pushing left and then right means the right pair is processed first, but the order does not affect equality because all structural positions must agree. At every point, pending pairs refer to the same position in the two trees.",
+    "Exhausting the stack without rejection means every position was checked successfully, including the missing-child positions that value-only traversals would overlook."
   ],
   "walkthrough": {
     "input": {
@@ -40,5 +41,6 @@
       "code": "stack.append((a.left, b.left))",
       "note": "Pair the same child position across trees, rather than comparing unrelated traversal neighbors."
     }
-  ]
+  ],
+  "keyDecision": "Both node presence and node value must match at every corresponding position."
 }

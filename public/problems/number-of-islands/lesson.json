@@ -10,7 +10,7 @@
     "1 <= number of rows, columns <= 300",
     "Every cell is the character \"0\" or \"1\"."
   ],
-  "intuition": "When the scan finds unvisited land, that cell begins exactly one new island. Flood all connected land and mark it as water so no later scan position can count that island again. An iterative queue avoids recursion depth limits.",
+  "intuition": "Find a land cell that has not yet been counted, then visit all land connected to it. That whole group is one island. Mark cells as you visit them so the next scan does not count the group again. Only cells sharing a side connect; diagonal contact is not enough.",
   "approach": [
     "Scan cells in row-major order.",
     "For each remaining 1, increment islands, mark it 0, and enqueue it.",

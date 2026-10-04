@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "A candidate root with the correct value may still have the wrong descendants. Comparing only a traversal\u2019s values is also unsafe because different shapes can produce the same sequence when missing children are omitted. We need full structural equality at a possible starting node.",
-    "Search every node of the larger tree. When its value matches the smaller tree\u2019s root, compare paired nodes with a second stack. Two absent nodes agree; exactly one absent node rejects the candidate. Two present nodes must have equal values before their children are compared.",
+    "Try each node of the larger tree as the start of the candidate subtree. If its value matches the smaller tree's root, compare the complete shapes and values below them. A matching root value alone is not enough; an extra child also makes the trees different.",
+    "Search every node of the larger tree. When its value matches the smaller tree’s root, compare paired nodes with a second stack. Two absent nodes agree; exactly one absent node rejects the candidate. Two present nodes must have equal values before their children are compared.",
     "A failed comparison eliminates only that candidate, not its descendants or other branches. Continuing the outer search covers every possible subtree root, including repeated-valued candidates. Both traversals use explicit stacks, so deep trees avoid recursive-call limits, though repeated comparisons can still cost O(nm) in the worst case.",
-    "An advanced alternative serializes each tree once with explicit null tokens, then finds the smaller token sequence in the larger using a linear sequence-matching algorithm such as KMP. Null markers preserve shape, and distinct tokens or delimiters prevent values such as 2 and 12 from matching partially. This reduces worst-case time to O(n+m), at the cost of O(n+m) serialization storage; the reference favors direct structural comparison."
+    "An advanced alternative serializes each tree once with explicit null tokens, then finds the smaller token sequence in the larger using a linear sequence-matching algorithm such as KMP. Null markers preserve shape, and distinct tokens or delimiters prevent values such as 2 and 12 from matching partially.",
+    "This reduces worst-case time to O(n+m), at the cost of O(n+m) serialization storage; the reference favors direct structural comparison."
   ],
   "walkthrough": {
     "input": {
@@ -22,7 +23,7 @@
     },
     "steps": [
       "For root=[3,4,5,1,2] and subRoot=[4,1,2], start the candidate stack at root node 3.",
-      "Node 3 differs from subRoot\u2019s root value 4, so no equality comparison is needed there. Push its children, with node 4 processed first.",
+      "Node 3 differs from subRoot’s root value 4, so no equality comparison is needed there. Push its children, with node 4 processed first.",
       "At node 4, the root values agree. Begin paired comparison with the two nodes carrying value 4.",
       "Their right children both carry 2, and their absent child pairs agree. Their left children both carry 1 and also have matching absent children.",
       "The pair stack empties without a value or shape mismatch, proving the entire candidate subtree is identical.",
@@ -43,5 +44,6 @@
       "code": "if node.val == subRoot.val and identical(node, subRoot):",
       "note": "Value equality cheaply filters candidates, while the helper supplies the required complete structural comparison before accepting."
     }
-  ]
+  ],
+  "keyDecision": "The subtree comparison must match empty child positions as well as every node value."
 }

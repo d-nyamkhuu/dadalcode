@@ -1,9 +1,12 @@
 {
   "intuition": [
-    "Sort each window independently, taking O(nk log k). Maintaining a sorted Python list reduces comparison work but list insertion/removal still costs O(k) per slide. The challenge is removing an expired value efficiently; heaps readily expose middle boundaries but do not cheaply delete arbitrary buried entries.",
-    "Maintain the lower half as a max-heap via negated values and the upper half as a min-heap. Their active sizes, not their physical lengths, determine balancing. Expiry immediately reduces the appropriate logical size and increments a delayed count; physical deletion waits until that value reaches a root. Duplicate values are interchangeable, but each delayed count corresponds to one occurrence. Because buried expired entries can accumulate, this implementation honestly uses up to linear retained storage rather than claiming the window-sized bound of an eagerly cleaned structure.",
-    "All active lower-half values are no greater than active upper-half values, and rebalancing keeps lower size equal to upper size or one larger. Lazy removals adjust logical sizes immediately; pruning ensures reported roots are active. These invariants identify the correct middle value or middle pair after every complete window. Each entry is pushed and eventually popped at most once. Lazy expired entries can remain buried, so this version may retain O(n) entries rather than O(k).",
-    "For an optional O(k) retained-space variant, rebuild both heaps from the active window whenever physical storage exceeds a fixed multiple of k. Sorting that window to repartition costs O(k log k), but it occurs only after enough expired entries accumulate. Clear the delayed counts and reset logical sizes during each rebuild. The reference keeps the simpler lazy-deletion version and its honest O(n) space bound."
+    "Keep the current window's smaller and larger halves in two heaps. Balance their active sizes to expose the middle values. Removing a buried heap value is difficult, so mark it as expired and discard it when it reaches the top. Active counts must change immediately.",
+    "Maintain the lower half as a max-heap via negated values and the upper half as a min-heap. Their active sizes, not their physical lengths, determine balancing. Expiry immediately reduces the appropriate logical size and increments a delayed count; physical deletion waits until that value reaches a root. Duplicate values are interchangeable, but each delayed count corresponds to one occurrence.",
+    "Because buried expired entries can accumulate, this implementation honestly uses up to linear retained storage rather than claiming the window-sized bound of an eagerly cleaned structure.",
+    "All active lower-half values are no greater than active upper-half values, and rebalancing keeps lower size equal to upper size or one larger. Lazy removals adjust logical sizes immediately; pruning ensures reported roots are active. These invariants identify the correct middle value or middle pair after every complete window. Each entry is pushed and eventually popped at most once.",
+    "Lazy expired entries can remain buried, so this version may retain O(n) entries rather than O(k).",
+    "For an optional O(k) retained-space variant, rebuild both heaps from the active window whenever physical storage exceeds a fixed multiple of k. Sorting that window to repartition costs O(k log k), but it occurs only after enough expired entries accumulate. Clear the delayed counts and reset logical sizes during each rebuild.",
+    "The reference keeps the simpler lazy-deletion version and its honest O(n) space bound."
   ],
   "walkthrough": {
     "input": {
@@ -17,7 +20,7 @@
     },
     "steps": [
       "For [1,4,2,3] with k=2, insert 1 into the lower heap and 4 into the upper heap.",
-      "The first window\u2019s middle values are 1 and 4, producing median 2.5.",
+      "The first window’s middle values are 1 and 4, producing median 2.5.",
       "Insert 2 and expire 1; the active halves contain 2 and 4, producing median 3.",
       "The expired 1 may remain buried physically, but it no longer contributes to the active lower size.",
       "Insert 3 and expire 4; the active halves become 2 and 3, producing median 2.5.",
@@ -41,6 +44,77 @@
     {
       "code": "prune(small)",
       "note": "After moving a root out, discard expired entries exposed beneath it before the next boundary comparison."
+    }
+  ],
+  "keyDecision": "Prune expired roots before reading a median or moving a value between heaps.",
+  "figures": [
+    {
+      "title": "Expired values do not count as active",
+      "caption": "For [1, 4, 2, 3] with k = 2, move from window [1, 4] to [4, 2]. Heaps below are shown as logical halves.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: the first window",
+          "rows": [
+            {
+              "label": "Window",
+              "values": [
+                "1",
+                "4"
+              ]
+            },
+            {
+              "label": "Median",
+              "values": [
+                "(1 + 4) / 2 = 2.5"
+              ]
+            }
+          ],
+          "note": "The median is the average of its two active values."
+        },
+        {
+          "title": "Check: insert 2, expire 1",
+          "rows": [
+            {
+              "label": "Active lower half",
+              "values": [
+                "2"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Active upper half",
+              "values": [
+                "4"
+              ]
+            },
+            {
+              "label": "Delayed removal",
+              "values": [
+                "1: expired"
+              ]
+            }
+          ],
+          "note": "The expired 1 may remain buried in heap storage. Mark it expired and reduce the active size immediately."
+        },
+        {
+          "title": "After: read active roots",
+          "rows": [
+            {
+              "label": "Median",
+              "values": [
+                "(2 + 4) / 2 = 3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The active roots are 2 and 4. The expired 1 is excluded from both size and median calculations."
+        }
+      ]
     }
   ]
 }

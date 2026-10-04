@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A person cannot attend two overlapping intervals, so comparing every pair is an obvious solution. Its quadratic cost is unnecessary once meetings are arranged by start time. In that order, each meeting only needs to be checked against its immediate predecessor to establish a conflict-free schedule.",
+    "Sort the meetings by starting time. Then compare each meeting with the one before it. If the next meeting starts before the previous one ends, one person cannot attend both. If every neighboring pair fits, the whole schedule fits.",
     "If every predecessor ends before or exactly when the next meeting begins, chaining those inequalities shows that all earlier meetings finish before any later one starts. Conversely, a neighboring overlap immediately proves that attending the full schedule is impossible. A nested meeting is caught when it follows its containing interval.",
     "Intervals are half-open: [start,end) includes the starting time but excludes the ending time. Therefore a meeting ending at 10 is compatible with one starting at 10. The overlap test must be strict. Sorting a copy keeps the teaching scan simple without requiring the original input order to be changed."
   ],
@@ -43,5 +43,6 @@
       "code": "if intervals[i][0] < intervals[i - 1][1]:",
       "note": "A strictly earlier start conflicts with the preceding end. Equality is allowed because an ending meeting no longer occupies that instant."
     }
-  ]
+  ],
+  "keyDecision": "Use start < previous_end for a conflict. A meeting may start exactly when another ends."
 }

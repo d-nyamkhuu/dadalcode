@@ -13,7 +13,7 @@
     "Input edges form a connected tree without repeated edges",
     "Each edge [a,b] has 0 <= a,b < n and a != b"
   ],
-  "intuition": "Outer leaves are farthest from the central region. Removing all leaves together shrinks every longest branch symmetrically. Continue until one or two vertices remain: these are the tree’s centers and best roots.",
+  "intuition": "A tree's outer leaves are farthest from its center. Remove all current leaves together, then repeat with the smaller tree. When one or two vertices remain, they are the central choices of root that give the minimum height. Removing one leaf at a time would lose this symmetry.",
   "approach": [
     "Return vertex zero for a one-vertex tree.",
     "Build adjacency and degrees; enqueue all degree-one vertices.",

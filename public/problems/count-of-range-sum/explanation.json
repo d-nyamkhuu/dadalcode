@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Accumulate each start/end subarray sum, taking O(n²). Merge-sort counting reduces work by processing whole monotone value ranges. Prefix sums make each range sum cheap to calculate, but there are still quadratically many ordered prefix pairs to inspect.",
-    "For nums [-2,5,-1], prefix sums are [0,-2,3,2]. Each answer is a later prefix minus an earlier one. Divide the original prefix positions into halves before sorting their values; this preserves the fact that every left-half position precedes every right-half position. Sorted right values place accepted differences in a contiguous interval. As left values increase, both interval boundaries only move forward. The merge step prepares this sorted ordering for the next recursion level while counting each ordered pair exactly once.",
-    "Every index pair belongs uniquely to a recursive left half, right half, or cross-half pair. Recursive calls count the first two classes. For cross pairs, sorted right values make the accepted differences a contiguous interval, counted exactly by the two boundaries. Sorting only after partitioning preserves the original index-order relation at every level. Each recursion level does linear counting and merging using a reusable buffer."
+    "A continuous range sum is the difference of two running totals. Split those totals by original position, count valid pairs within each half, then count pairs crossing the split. Sorted halves let two moving boundaries find all right-side totals in the allowed difference range.",
+    "For nums [-2,5,-1], prefix sums are [0,-2,3,2]. Each answer is a later prefix minus an earlier one. Divide the original prefix positions into halves before sorting their values; this preserves the fact that every left-half position precedes every right-half position. Sorted right values place accepted differences in a contiguous interval. As left values increase, both interval boundaries only move forward.",
+    "The merge step prepares this sorted ordering for the next recursion level while counting each ordered pair exactly once.",
+    "Every index pair belongs uniquely to a recursive left half, right half, or cross-half pair. Recursive calls count the first two classes. For cross pairs, sorted right values make the accepted differences a contiguous interval, counted exactly by the two boundaries. Sorting only after partitioning preserves the original index-order relation at every level.",
+    "Each recursion level does linear counting and merging using a reusable buffer."
   ],
   "walkthrough": {
     "input": {
@@ -36,6 +38,74 @@
     {
       "code": "while high < end and prefix[high] - prefix[i] <= upper:",
       "note": "Stop just after the inclusive upper bound, making high-low the accepted pair count."
+    }
+  ],
+  "keyDecision": "Count cross pairs before merging. The left total must come from an earlier original position than the right total.",
+  "figures": [
+    {
+      "title": "Count differences while preserving earlier/later positions",
+      "caption": "Original prefixes are [0, -2, 3, 2]. At the top split, sorted halves are [-2, 0] and [2, 3]. Bounds are inclusive: -2 through 2.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: halves keep their original membership",
+          "rows": [
+            {
+              "label": "Sorted left half",
+              "values": [
+                "-2",
+                "0"
+              ]
+            },
+            {
+              "label": "Sorted right half",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          ],
+          "note": "Every prefix in the left half comes from an earlier position than every prefix in the right half."
+        },
+        {
+          "title": "Check: one left value at a time",
+          "rows": [
+            {
+              "label": "For left -2",
+              "values": [
+                "2 - (-2) = 4",
+                "3 - (-2) = 5"
+              ]
+            },
+            {
+              "label": "For left 0",
+              "values": [
+                "2 - 0 = 2",
+                "3 - 0 = 3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Subtract the left prefix from each right prefix. Only difference 2 is within the allowed range."
+        },
+        {
+          "title": "After: add separate pair classes",
+          "rows": [
+            {
+              "label": "Total",
+              "values": [
+                "1 + 1 + 1 = 3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "There is one valid cross pair, plus one inside each original half. Count first, then merge for the parent call."
+        }
+      ]
     }
   ]
 }

@@ -10,19 +10,19 @@
   "constraints": [
     "1 <= n <= 10^7"
   ],
-  "intuition": "Choose factors in nondecreasing order to avoid permutations. For any factorization, its smallest factor is at most the square root of the remaining product.",
+  "intuition": "Build a factorization in increasing order. Try a divisor of the amount still left, pair it with the remaining quotient, and then try splitting that quotient further. Starting later choices at the current divisor avoids repeating the same factors in different orders.",
   "approach": [
     "Search factors from a minimum allowed factor through sqrt(remaining).",
     "For each divisor f, emit path + [f, remaining//f].",
     "Recurse on the quotient with minimum factor f to allow repeats without decreasing order.",
     "Undo f when returning."
   ],
-  "correctness": "Every emitted list multiplies to n and has at least two factors. Nondecreasing choices make each unordered factorization unique. Any factorization with at least two factors has a smallest factor no greater than sqrt(remaining), which the loop reaches; recursion enumerates all decompositions of the quotient.",
-  "bruteForce": "Enumerate sequences of candidate integers and multiply them, generating many permutations and impossible products.",
+  "correctness": "Every emitted list multiplies to n and has at least two factors. Nondecreasing choices make each unordered factorization unique. Any factorization with at least two factors has a smallest factor no greater than sqrt(remaining), which the loop reaches; recursion lists all decompositions of the quotient.",
+  "bruteForce": "List sequences of candidate integers and multiply them, generating many permutations and impossible products.",
   "complexity": {
     "time": "Output-sensitive search; divisor scans cost O(sqrt(r)) per remaining product r",
     "space": "O(log n) recursion excluding output",
-    "explanation": "Time Output-sensitive search; divisor scans cost O(sqrt(r)) per remaining product r; auxiliary space O(log n) recursion excluding output. Output storage is excluded unless stated."
+    "explanation": "Time Output-sensitive search; divisor scans cost O(sqrt(r)) per remaining product r; additional space O(log n) recursion excluding output. Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Do not emit [n].",
@@ -35,7 +35,7 @@
       "url": "https://leetcode.com/problems/factor-combinations/"
     },
     {
-      "label": "Public problem statement \u2014 LeetCode Wiki",
+      "label": "Public problem statement — LeetCode Wiki",
       "url": "https://leetcode.doocs.org/en/lc/254/"
     }
   ],

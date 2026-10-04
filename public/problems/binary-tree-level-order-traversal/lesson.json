@@ -10,7 +10,7 @@
     "0 <= number of nodes <= 2000",
     "Node values lie between -1000 and 1000."
   ],
-  "intuition": "A FIFO queue visits parents before their children. Freeze the queue length at the start of a level: those nodes are exactly the current frontier. Appending children while processing that many nodes builds the next frontier without mixing depths.",
+  "intuition": "Visit the tree one level at a time using a queue. At the start of a level, count the nodes already in the queue. Process exactly that many nodes, adding their children for the next level. This keeps children out of their parents' output group.",
   "approach": [
     "Return [] for a missing root; otherwise enqueue it.",
     "Record size=len(queue) before each level.",

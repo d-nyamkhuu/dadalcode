@@ -1,0 +1,246 @@
+.plan-tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 32px 0 24px;
+}
+.plan-track {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 22px;
+}
+.plan-track.active {
+  border-color: var(--lime);
+  background: #20291f;
+}
+.plan-track-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 19px;
+  font-weight: 650;
+}
+.plan-track-title > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.plan-track-description {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.plan-next {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  background: var(--surface);
+}
+.plan-eyebrow {
+  display: block;
+  color: var(--lime);
+  font-size: 11px;
+  letter-spacing: 1.3px;
+  margin-bottom: 10px;
+}
+.plan-next h2 {
+  margin-bottom: 6px;
+}
+.plan-next p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.plan-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--lime);
+  border-radius: 5px;
+  color: #14200b;
+  font-size: 14px;
+  font-weight: 650;
+  flex-shrink: 0;
+}
+.plan-action:hover {
+  background: #d2ff99;
+  color: #14200b;
+}
+.plan-guidance {
+  margin: 22px 0 32px;
+  max-width: 900px;
+}
+.plan-guidance p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.plan-outline-heading,
+.plan-stage-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.plan-outline-heading {
+  margin-bottom: 24px;
+}
+.plan-outline-heading h2 {
+  margin: 0;
+}
+.plan-stage {
+  margin-bottom: 32px;
+}
+.plan-stage-heading {
+  margin-bottom: 12px;
+}
+.plan-stage-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-size: 17px;
+}
+.plan-stage-heading h2 .difficulty {
+  min-width: 62px;
+  font-weight: 500;
+}
+.plan-stage-heading > span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.plan-group {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.plan-group summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+.plan-group summary::-webkit-details-marker {
+  display: none;
+}
+.plan-group summary::after {
+  content: "+";
+  font-size: 20px;
+  color: var(--muted);
+  width: 16px;
+  text-align: center;
+}
+.plan-group[open] summary::after {
+  content: "−";
+}
+.plan-group summary:hover {
+  background: #20292e;
+}
+.plan-group summary:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: -3px;
+}
+.plan-group-number {
+  color: #8c9da9;
+  font: 13px var(--font-mono);
+}
+.plan-group-info {
+  flex: 1;
+  min-width: 0;
+}
+.plan-group-info strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+.plan-group-info > span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 5px;
+}
+.plan-group-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.plan-group-count.solved {
+  color: var(--lime);
+}
+.plan-problems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+.plan-problems li {
+  margin: 0;
+}
+.plan-problems a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 22px 13px 54px;
+  font-size: 14px;
+  color: #e6ecf2;
+  border-bottom: 1px solid #252e34;
+}
+.plan-problems li:last-child a {
+  border-bottom: 0;
+}
+.plan-problems a:hover {
+  background: #20292e;
+  color: var(--lime);
+}
+.plan-problems a > span:first-child {
+  display: flex;
+}
+.plan-problem-title {
+  flex: 1;
+}
+.plan-next-label {
+  font-size: 11px;
+  color: var(--lime);
+}
+.plan-problems .difficulty {
+  font-size: 12px;
+  min-width: 52px;
+}
+.plan-problems a > svg {
+  color: var(--muted);
+}
+.plan-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.plan-context a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--lime);
+}

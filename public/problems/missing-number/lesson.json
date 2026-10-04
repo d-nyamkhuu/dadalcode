@@ -10,7 +10,7 @@
     "0 <= nums[i] <= n; every value is distinct.",
     "1 <= n <= 10^4"
   ],
-  "intuition": "XOR cancels equal values because x XOR x is zero. XOR every expected number 0..n and every supplied number; all present values occur twice, leaving only the absent value. Starting with n and pairing each index with its array value avoids a separate pass.",
+  "intuition": "The full range is 0 through n, but one value is absent from the input. XOR the full expected range with the input values. Each present value occurs twice in that combined calculation and cancels. Only the missing value remains.",
   "approach": [
     "Initialize missing to len(nums), the final expected value.",
     "For each index i, XOR missing with i and nums[i].",
@@ -21,7 +21,7 @@
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "One scan uses one XOR accumulator; no arithmetic overflow or auxiliary set is needed."
+    "explanation": "One scan uses one XOR accumulator; no arithmetic overflow or additional set is needed."
   },
   "pitfalls": [
     "Include n in the expected domain.",

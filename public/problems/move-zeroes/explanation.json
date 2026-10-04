@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "The required result is a stable compaction of nonzero values followed by zeros. Removing individual zeros and shifting the array repeatedly can be quadratic, while constructing a second array violates the in-place requirement. Two positions are enough to describe the compaction.",
+    "Keep a write position for the next nonzero value. Read the array from left to right. Whenever a nonzero value appears, swap it into that write position and advance the write position. This keeps the nonzero values in their original order while zeros collect at the end.",
     "read examines every original position from left to right. write marks the first available slot after the already compacted nonzero prefix. If read finds a zero, leave write unchanged. If it finds a nonzero, swap that value into write and advance write. This always appends nonzero values in their original encounter order.",
-    "Between write and read, any processed gaps consist of zeros. The swap therefore leaves a zero behind rather than disturbing another nonzero’s relative order. When write equals read, swapping the value with itself is harmless. At the end every nonzero belongs to the compact prefix, and the remaining positions must be zeros because no value has been created or lost. The public method communicates its result through mutation, not a return value."
+    "Between write and read, any processed gaps consist of zeros. The swap therefore leaves a zero behind rather than disturbing another nonzero’s relative order. When write equals read, swapping the value with itself is harmless. At the end every nonzero belongs to the compact prefix, and the remaining positions must be zeros because no value has been created or lost.",
+    "The public method communicates its result through mutation, not a return value."
   ],
   "walkthrough": {
     "input": {
@@ -42,5 +43,6 @@
       "code": "nums[write], nums[read] = nums[read], nums[write]",
       "note": "The swap moves a retained value forward while carrying a zero back into the unused suffix, preserving all values in place."
     }
-  ]
+  ],
+  "keyDecision": "Advance write only for a nonzero value; always advance read."
 }

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "An array of length n cannot contain all n+1 positive values from 1 through n+1, so the answer lies in this small range regardless of how large or negative the input values are. A set would track membership easily, but the constant-space requirement asks us to store that information inside the array itself.",
+    "For n input positions, the smallest missing positive number must be between 1 and n + 1. Use the array itself to remember which of these numbers exist. Place value 1 at index 0, value 2 at index 1, and so on. Then look for the first position with the wrong value.",
     "Give each relevant value x a home at index x-1. If the current value belongs somewhere else, swap it into that home and inspect the new value that arrived. Repeating this operation is essential because a single index may expose an entire chain of misplaced values. Out-of-range values carry no useful membership information.",
     "A duplicate needs special care: if its home already contains the same value, swapping makes no progress and would loop forever. Otherwise every swap establishes one correct home permanently. A final scan asks whether position i contains i+1; its first failure is the missing positive. If every home is filled, n+1 is the answer.",
     "A swap cannot displace a correct home: if destination x-1 already contained x, the duplicate guard would prevent that swap. Therefore every executed swap permanently fills one new correct home, even if its displaced value starts another chain."
@@ -36,5 +36,6 @@
       "code": "if value != i + 1:",
       "note": "After placement, membership is encoded positionally. The first mismatched slot identifies the smallest absent positive, not merely any missing number."
     }
-  ]
+  ],
+  "keyDecision": "Swap only a value in 1..n whose destination does not already contain that value."
 }

@@ -10,7 +10,7 @@
     "1 <= rows, columns <= 200.",
     "0 <= heights[r][c] <= 100000."
   ],
-  "intuition": "Searching downhill from every cell repeats work. Reverse the arrows: start at an ocean's boundary and move to neighbors of equal or greater height. Those cells can send water back along the reversed path to that ocean. Intersect the two reachable sets.",
+  "intuition": "Searching downhill from every cell repeats work. Search in reverse instead: start at each ocean border and move to neighbors of equal or greater height. A reverse path proves water could flow back down to that ocean. Keep cells reached by both ocean searches.",
   "approach": [
     "Collect Pacific and Atlantic border cells.",
     "Run a visited-set traversal uphill from each set of seeds.",

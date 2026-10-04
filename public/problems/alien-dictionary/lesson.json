@@ -12,7 +12,7 @@
     "1 <= word length <= 100",
     "Words contain lowercase English letters"
   ],
-  "intuition": "Two neighboring words reveal only one rule: their first unequal letters must appear in the same order as the words. These rules form a directed graph. Characters with no unfinished prerequisites can be emitted next.",
+  "intuition": "Compare neighboring words to learn letter-order rules. Only the first differing letters tell us which letter comes first. Treat each rule as an arrow, then repeatedly choose a letter with no unmet earlier-letter rules. A cycle means the rules cannot form an alphabet.",
   "approach": [
     "Create a vertex for every observed character, even isolated ones.",
     "For each adjacent pair, reject a longer word before its exact prefix; otherwise add only the first differing-character edge.",

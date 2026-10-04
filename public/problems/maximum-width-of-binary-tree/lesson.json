@@ -11,7 +11,7 @@
     "-100 <= node value <= 100",
     "Answer fits a signed 32-bit integer"
   ],
-  "intuition": "Counting existing nodes misses empty gaps. Give a node’s children positions 2i and 2i+1. The difference between the last and first positions plus one gives the width. Subtract the level’s first position before producing child indices to keep numbers small.",
+  "intuition": "Width includes empty positions between real nodes. Give nodes the positions they would have in a complete binary tree, then measure the distance from the first to last position at each level. Subtract the level's starting position to keep the numbers small without changing the gaps.",
   "approach": [
     "Queue pairs of node and conceptual position.",
     "For each level, remember its first position and process the original queue length.",

@@ -12,7 +12,7 @@
     "0 <= number of edges <= 5,000",
     "Edges connect distinct valid vertices and contain no duplicates"
   ],
-  "intuition": "A traversal from one unvisited vertex reaches exactly its component. Count how many times a new traversal must be started.",
+  "intuition": "Start from an unvisited vertex and follow every reachable edge. All vertices found belong to one connected group. Mark them so the next scan does not count that group again. Repeat from each remaining unvisited vertex, including isolated vertices with no edges.",
   "approach": [
     "Build adjacency lists in both directions.",
     "Scan all n vertices, skipping previously visited ones.",
@@ -24,7 +24,7 @@
   "complexity": {
     "time": "O(n+e)",
     "space": "O(n+e)",
-    "explanation": "Time O(n+e); auxiliary space O(n+e). Output storage is excluded unless stated."
+    "explanation": "Time O(n+e); additional space O(n+e). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Add both directions for every undirected edge.",

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Counting nodes at each depth misses empty slots between distant branches. Constructing every slot of a complete tree would represent those gaps, but a sparse deep tree could require exponentially many placeholders. Instead, keep only real nodes with coordinates describing where they would sit.",
+    "Width includes empty positions between real nodes. Give nodes the positions they would have in a complete binary tree, then measure the distance from the first to last position at each level. Subtract the level's starting position to keep the numbers small without changing the gaps.",
     "Assign a node at position i the child positions 2i and 2i+1. Within a level, the rightmost coordinate minus the leftmost coordinate plus one counts real nodes and all intervening gaps. Breadth-first order gives those endpoints directly.",
     "Normalize each level by subtracting its first coordinate before generating child positions. This shifts all positions equally and therefore preserves differences. It avoids large coordinates caused solely by a one-sided path while retaining the spacing that actually affects width. The queue never needs to store missing nodes."
   ],
@@ -38,6 +38,72 @@
     {
       "code": "width = position + 1",
       "note": "After subtracting the first coordinate, the last coordinate plus one equals the full endpoint span, including internal gaps."
+    }
+  ],
+  "keyDecision": "Width is last_position - first_position + 1, not simply the number of real nodes.",
+  "figures": [
+    {
+      "title": "Empty interior positions still count",
+      "caption": "The deepest shown level has values 5, 3, and 9, with a missing position between 3 and 9.",
+      "afterStep": 5,
+      "panels": [
+        {
+          "title": "Before: assign complete-tree positions",
+          "rows": [
+            {
+              "label": "Level positions",
+              "values": [
+                "5",
+                "3",
+                "∅",
+                "9"
+              ],
+              "labels": [
+                "0",
+                "1",
+                "2: empty",
+                "3"
+              ]
+            }
+          ],
+          "note": "Position labels measure horizontal gaps; they are not node values."
+        },
+        {
+          "title": "Check: use the outer positions",
+          "rows": [
+            {
+              "label": "Width formula",
+              "values": [
+                "3 - 0 + 1 = 4"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The first position is 0 and the last is 3. Include both endpoints."
+        },
+        {
+          "title": "After: width differs from node count",
+          "rows": [
+            {
+              "label": "Comparison",
+              "values": [
+                "3",
+                "4"
+              ],
+              "highlight": [
+                1
+              ],
+              "labels": [
+                "real nodes",
+                "width"
+              ]
+            }
+          ],
+          "note": "There are three real nodes, but the required width is four positions."
+        }
+      ]
     }
   ]
 }

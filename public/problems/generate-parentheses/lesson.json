@@ -10,7 +10,7 @@
   "constraints": [
     "1 <= n <= 8."
   ],
-  "intuition": "A prefix is extendable only if it never closes more pairs than it has opened. Track counts instead of generating all strings and checking them later. Add an opening bracket while some remain; add a closing bracket only when an unmatched opening exists.",
+  "intuition": "Build a valid bracket string one character at a time. An opening bracket starts a pair. A closing bracket must close a pair that is already open. Reject an invalid choice immediately instead of generating every possible string and checking it afterward.",
   "approach": [
     "Recursively track path, opened, and closed.",
     "Append an opening parenthesis when opened < n.",
@@ -18,11 +18,11 @@
     "Record the path when both counts reach n."
   ],
   "correctness": "Every recursive prefix has 0 <= closed <= opened <= n. Thus a completed prefix is balanced. Every valid string obeys these inequalities at every prefix, so the recursion follows its characters and eventually emits it. Each character-choice path is unique.",
-  "bruteForce": "Enumerate 2^(2n) binary strings and validate each balance. Backtracking rejects invalid prefixes immediately.",
+  "bruteForce": "List 2^(2n) binary strings and validate each balance. Backtracking rejects invalid prefixes immediately.",
   "complexity": {
-    "time": "O(n \u00b7 C\u2099)",
-    "space": "O(n) auxiliary plus O(n \u00b7 C\u2099) output",
-    "explanation": "C\u2099 is the nth Catalan number, the count of valid strings."
+    "time": "O(n · Cₙ)",
+    "space": "O(n) auxiliary plus O(n · Cₙ) output",
+    "explanation": "Cₙ is the nth Catalan number, the count of valid strings."
   },
   "pitfalls": [
     "A close is legal only when closed < opened.",

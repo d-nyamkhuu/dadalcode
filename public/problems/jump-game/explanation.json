@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A direct search can try every permitted jump, but many routes reach the same indices. The actual question is whether an index is reachable, not which route reached it. Since shorter jumps are allowed, reaching one position often certifies an entire interval of landing positions at once.",
+    "Track the farthest position you can reach. When you visit a reachable position, its jump length may extend that distance. You do not need to remember the route. If you reach a position beyond the farthest reachable point, no earlier jump can cross that gap.",
     "All currently reachable indices form a continuous prefix beginning at zero. Keep only its farthest endpoint. Scanning a reachable index extends that endpoint to the larger of the old frontier and i+nums[i]. There is no benefit in retaining the routes that created the frontier.",
     "If the next index lies beyond farthest, no earlier processed jump can cross that gap; later positions cannot help because they are unreachable too. Conversely, once farthest reaches the last index, some sequence of legal jumps already reaches the goal, and the scan can end immediately."
   ],
@@ -19,7 +19,7 @@
       "At i=0, jump=2 extends the frontier to 2. Indices 1 and 2 are now reachable landing positions.",
       "At i=1, first verify 1<=2. This position is inside the reachable prefix, so its jump can be considered.",
       "Its maximum landing index is 1+3=4. Updating farthest gives 4, expanding the known prefix through the goal.",
-      "The final index is 4, so return true now. A concrete successful route is 0\u21921\u21924."
+      "The final index is 4, so return true now. A concrete successful route is 0→1→4."
     ],
     "result": true
   },
@@ -36,5 +36,6 @@
       "code": "if farthest >= len(nums) - 1:",
       "note": "Jump lengths are upper bounds, so crossing the final index also permits landing on it using a shorter jump."
     }
-  ]
+  ],
+  "keyDecision": "Visit index i only if i <= farthest. Update farthest with i + nums[i]."
 }

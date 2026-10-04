@@ -10,7 +10,7 @@
     "0 <= len(intervals) <= 10^4",
     "0 <= start < end <= 10^6"
   ],
-  "intuition": "Sort by start time so any conflict becomes visible between neighboring intervals. If no neighboring meeting begins before its predecessor ends, all meetings can be attended in that sorted order. A nested meeting immediately conflicts with the outer meeting.",
+  "intuition": "Sort the meetings by starting time. Then compare each meeting with the one before it. If the next meeting starts before the previous one ends, one person cannot attend both. If every neighboring pair fits, the whole schedule fits.",
   "approach": [
     "Sort a copy of intervals by start time.",
     "For each interval after the first, compare its start to the previous end.",

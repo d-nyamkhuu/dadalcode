@@ -12,7 +12,7 @@
     "1 <= k <= list length",
     "0 <= node value <= 1000"
   ],
-  "intuition": "Before modifying a group, find its kth node. Its successor is the boundary the reversal must reconnect to. Reversing with prev initialized to that successor automatically connects the old group head, now the tail, to the remainder.",
+  "intuition": "First check whether the next group contains exactly k nodes. If it does, reverse its links and reconnect both ends to the surrounding list. If fewer than k nodes remain, stop. Checking the size first prevents accidentally reversing a final incomplete group.",
   "approach": [
     "Track group_before, initially the dummy node.",
     "Walk k links to find a complete group; stop if too short.",

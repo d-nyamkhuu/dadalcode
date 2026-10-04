@@ -1,0 +1,76 @@
+# Contributing to Loopcraft
+
+Loopcraft supports desktop browsers. Test at 1536×1024, 1280×800, and 1280×600;
+phone layouts are not a release requirement. A narrow expanded diagram window is
+still tested because desktop users resize windows.
+
+## Local setup
+
+Use Node.js 24 LTS (or 22.13+), npm, and Python 3.12. Application use requires no
+local Python installation; Python is needed for content and regression tests.
+The Python validator currently requires Linux/macOS or WSL because it uses
+`SIGALRM`. CI runs Ubuntu with Python 3.12.
+
+```sh
+npm ci
+npx playwright install chromium
+npm run dev
+```
+
+`npm ci` installs the lockfile versions and copies the matching local Pyodide
+runtime. No API keys are needed. Keep the same local origin to retain progress.
+
+## Before a pull request
+
+```sh
+npm run format
+npm run lint
+npm test
+npm run test:e2e
+npm run build:pages
+npm run test:production
+```
+
+The browser commands start and stop their own servers. Do not start another
+server on ports 5190 or 4175. Screenshots go to the system temporary directory.
+CI runs these checks on every pull request. Keep generated `dist/`, runtime files,
+and distribution notices out of commits.
+
+Describe the user-visible problem, change, and verification. Include a desktop
+screenshot for visible UI changes. Keep refactoring and lesson corrections
+focused. Do not submit API keys, personal backups, private examples, or credentials.
+
+## Lessons and review
+
+Follow [the problem contract](PROBLEM_CONTRACT.md). Each problem has six files:
+lesson, editorial, solution, starter, adapter, and tests. Write original prose and
+code, attribute sources, and retain the source catalog's CC BY-NC license.
+
+Run `npm run test:content` during editing. Add meaningful independent regression
+cases for grading or algorithm changes. Ask a separate reviewer to check the
+reasoning, intermediate states, and invalid-answer handling. Only after that
+review should the maintainer run:
+
+```sh
+python scripts/record_content_review.py --slug problem-slug
+```
+
+The review ledger is a fingerprint of reviewed files, not proof of correctness.
+The command records a completed review; it does not perform one. Include the
+reviewer's findings and checks in the pull request. The existing curriculum was
+created and checked with an agent-assisted workflow; do not interpret separate
+agent reviews as external human certification.
+
+## Runtime and storage changes
+
+Preserve the existing IndexedDB name and old progress records. Test simultaneous
+tabs, write conflicts, denied storage, backup validation, and reload persistence.
+Never change an existing draft simply because a lesson is opened. Runtime changes
+must pass the browser Python suite as well as native Python checks; a Web Worker
+provides cancellation, not isolation from the browser origin.
+
+## Release
+
+See [the release guide](RELEASING.md). A public repository does not change the
+catalog's license. Original application code is MIT; adapted catalog/roadmaps are
+CC BY-NC 4.0. Every build must include the credits page and full runtime notices.

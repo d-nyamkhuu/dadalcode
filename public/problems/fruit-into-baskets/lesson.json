@@ -10,15 +10,15 @@
     "1 <= len(fruits) <= 100000.",
     "0 <= fruits[i] < len(fruits)."
   ],
-  "intuition": "The basket rule means the chosen segment contains at most two distinct values. Grow a window rightward; if a third type appears, remove leftmost fruits until one type disappears. The remaining window is the longest legal one ending here.",
+  "intuition": "Two baskets allow at most two fruit types. Keep a continuous section and count its types. Extend the right end, then move the left end forward if a third type appears. Delete a type from the counts when its last fruit leaves. Save the longest valid section.",
   "approach": [
     "Count the new rightmost fruit.",
     "While more than two types remain, decrement the leftmost type and move left.",
     "Remove a type from the map when its count reaches zero.",
     "Update the largest legal window length."
   ],
-  "correctness": "After shrinking, the window contains at most two types. Its left boundary is the earliest feasible start for that right endpoint: earlier starts still contain the third type that forced shrinking. Any optimal segment has some right endpoint, so comparing the longest feasible window at every endpoint finds the global optimum.",
-  "bruteForce": "Try each starting tree and extend until the third type, taking O(n\u00b2) in the worst case.",
+  "correctness": "After shrinking, the window contains at most two types. Its left boundary is the earliest feasible start for that right endpoint: earlier starts still contain the third type that forced shrinking. Any best possible segment has some right endpoint, so comparing the longest feasible window at every endpoint finds the global best possible result.",
+  "bruteForce": "Try each starting tree and extend until the third type, taking O(n²) in the worst case.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

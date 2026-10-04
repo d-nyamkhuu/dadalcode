@@ -12,15 +12,15 @@
     "1 <= candidate <= 50",
     "1 <= target <= 30"
   ],
-  "intuition": "Sorting groups equal values. At one decision depth, picking the second identical value would reproduce combinations from picking the first, so skip it. Deeper recursion may still choose another copy because using two equal input indices can be a valid combination.",
+  "intuition": "Sort the candidates, then build each combination from left to right through their positions. Move past a position after choosing it because each occurrence can be used only once. Equal numbers need special care: allow another copy deeper in a combination, but skip duplicate choices at the same step.",
   "approach": [
     "Sort candidates and search using a start index, remaining sum, and current path.",
     "Record a copy of path when remaining becomes zero.",
     "Skip equal values only when their index is greater than this call’s start.",
     "Stop when a value exceeds remaining; recurse with index+1 so an index is used once."
   ],
-  "correctness": "Every recursive path selects strictly increasing indices, so no candidate is reused. Positive sorted values make the over-budget cutoff safe. Equal values at the same depth generate identical value-prefix families, so retaining only their first occurrence loses no distinct combination. Equal values at later depths remain available, allowing valid multiplicities. Therefore all and only unique target combinations are produced.",
-  "bruteForce": "Enumerate all 2^n subsets of candidate indices, sum each, and deduplicate equal-value subsets afterward.",
+  "correctness": "Every recursive path selects strictly increasing indices, so no candidate is reused. Positive sorted values make the over-budget cutoff safe. Equal values at the same depth generate identical value-prefix families, so retaining only their first occurrence loses no distinct combination. Equal values at later depths remain available, allowing valid occurrence counts. Therefore all and only unique target combinations are produced.",
+  "bruteForce": "List all 2^n subsets of candidate indices, sum each, and deduplicate equal-value subsets afterward.",
   "complexity": {
     "time": "O(2^n × n) worst case",
     "space": "O(n) auxiliary plus output",

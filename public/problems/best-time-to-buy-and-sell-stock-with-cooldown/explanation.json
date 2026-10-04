@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Recursively enumerate buy, sell, and wait actions for every day, tracking cooldown. Repeated states create exponential work without memoization. Simple unlimited-trading logic would buy immediately after a sale, but that transition is forbidden for one whole day.",
-    "Separate three end-of-day conditions. hold means a share is owned; sold means a sale occurred today; rest means no share is owned and buying is permitted on the following day. Only yesterday’s rest may fund a purchase today. Yesterday’s sold can transition into rest, representing the required day off. Impossible initial hold and sold states use negative infinity so they cannot contribute fictitious profit. Computing all next states before replacing old ones prevents an accidental same-day dependency.",
-    "Each state stores the best profit for its exact end-of-day condition. The transitions list every legal action and exclude buying from yesterday's sold state. Induction over days preserves the optima. The final answer excludes holding because unrealized shares are not completed profit. Three profits summarize all histories."
+    "At the end of a day, you either hold a share, have just sold it, or are resting without one. Save the best profit for each situation. Compute tomorrow's situations from today's saved values. Buying is allowed from rest, but not immediately after a sale.",
+    "Separate three end-of-day conditions. hold means a share is owned; sold means a sale occurred today; rest means no share is owned and buying is permitted on the following day. Only yesterday’s rest may fund a purchase today. Yesterday’s sold can transition into rest, representing the required day off.",
+    "Impossible initial hold and sold states use negative infinity so they cannot contribute invalid profit. Computing all next states before replacing old ones prevents an accidental same-day dependency.",
+    "Each state stores the best profit for its exact end-of-day condition. The transitions list every legal action and exclude buying from yesterday's sold state. Induction over days preserves the best results. The final answer excludes holding because unrealized shares are not completed profit. Three profits summarize all histories."
   ],
   "walkthrough": {
     "input": {
@@ -37,5 +38,6 @@
       "code": "hold, sold, rest = next_hold, next_sold, next_rest",
       "note": "Replace the states together only after all choices have been evaluated against yesterday’s values."
     }
-  ]
+  ],
+  "keyDecision": "Use the previous day's states for every update. The day after selling cannot be a buying day."
 }

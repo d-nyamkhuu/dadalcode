@@ -40,7 +40,7 @@ export default function ConceptIllustration({
   return (
     <figure className="concept-illustration">
       <img
-        src={`${import.meta.env.BASE_URL}illustrations/${concept.file}.png`}
+        src={`${import.meta.env.BASE_URL}illustrations/${concept.file}.webp`}
         alt={concept.alt}
         width="1536"
         height="1024"

@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "A linear membership scan is O(n). Binary search usually reduces work, although indistinguishable duplicates force linear behavior in the worst case. With duplicates, identical endpoint values can conceal the rotation location, so the distinct-value shortcut sometimes loses its justification.",
-    "After checking mid, equal values at left, mid, and right reveal that both endpoints are non-targets. Removing them gains a small but safe amount of information. Otherwise the remaining endpoint comparisons distinguish a sorted half, allowing the usual target-range decision. The algorithm therefore adapts its progress to the evidence available: halve when order is clear, trim when duplicates hide it. An all-equal array with an absent target demonstrates why logarithmic worst-case time is impossible here.",
+    "As in the version without duplicates, look for a sorted half around the middle. Equal values can hide which half is sorted. If both endpoints equal the middle and the middle is not the target, remove those endpoints. Then try the sorted-half check again.",
+    "After checking mid, equal values at left, mid, and right reveal that both endpoints are non-targets. Removing them gains a small but safe amount of information. Otherwise the remaining endpoint comparisons distinguish a sorted half, allowing the usual target-range decision. The algorithm therefore adapts its progress to the evidence available: halve when order is clear, trim when duplicates hide it.",
+    "An all-equal array with an absent target demonstrates why logarithmic worst-case time is impossible here.",
     "Removing equal endpoints after a failed mid check cannot remove the target because those values equal the known non-target mid. In all other cases, the sorted-half bounds identify a half that cannot contain the target. Thus the candidate range preserves any possible match until found or exhausted. Long runs of identical values may allow only endpoint removal."
   ],
   "walkthrough": {
@@ -37,5 +38,6 @@
       "code": "left += 1",
       "note": "In the ambiguous duplicate case, move only one position rather than discarding a potentially useful half."
     }
-  ]
+  ],
+  "keyDecision": "Check the middle for a match before trimming equal endpoints."
 }

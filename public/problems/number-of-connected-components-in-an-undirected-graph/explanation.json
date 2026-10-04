@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Connectivity is a reachability relation: two vertices belong to the same component exactly when a path connects them. Starting a traversal from every vertex independently would rediscover the same connected groups many times. A visited set allows each group to be discovered just once.",
+    "Start from an unvisited vertex and follow every reachable edge. All vertices found belong to one connected group. Mark them so the next scan does not count that group again. Repeat from each remaining unvisited vertex, including isolated vertices with no edges.",
     "Build an adjacency list in both directions for every undirected edge. Then scan every vertex label, not merely the labels occurring in edges. An unvisited vertex identifies a new component, even when it has no neighbors. Increase the count and use an explicit stack to visit everything reachable from that start.",
-    "Mark a neighbor when it is discovered and pushed, rather than waiting until it is popped. A cycle or multiple incoming routes could otherwise put the same vertex on the stack several times. Once a traversal finishes, all vertices in that component are marked; later outer-loop visits skip them. The number of traversal starts is consequently the number of components. This reasoning includes isolated vertices naturally and does not depend on the graph being acyclic."
+    "Mark a neighbor when it is discovered and pushed, rather than waiting until it is popped. A cycle or multiple incoming routes could otherwise put the same vertex on the stack several times. Once a traversal finishes, all vertices in that component are marked; later outer-loop visits skip them. The number of traversal starts is consequently the number of components.",
+    "This reasoning includes isolated vertices naturally and does not depend on the graph being acyclic."
   ],
   "walkthrough": {
     "input": {
@@ -44,5 +45,6 @@
       "code": "seen.add(neighbor)",
       "note": "Discovery-time marking prevents cycles and shared routes from scheduling duplicate visits."
     }
-  ]
+  ],
+  "keyDecision": "Increase the group count once per new traversal, not once per vertex visited."
 }

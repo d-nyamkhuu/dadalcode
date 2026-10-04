@@ -10,15 +10,15 @@
     "1 <= len(s) <= 1000.",
     "s contains lowercase English letters."
   ],
-  "intuition": "A palindrome expands symmetrically around a character or a gap. There are n odd centers and n-1 even centers. Extend matching endpoints and count every successful expansion.",
+  "intuition": "A palindrome grows outward from a middle character or a gap between two characters. Try every such center. Each matching expansion gives one palindromic substring at that position, so count it before expanding again. Equal text in different positions counts separately.",
   "approach": [
-    "Enumerate 2n-1 centers.",
+    "List 2n-1 centers.",
     "Map each center to equal pointers for odd length or neighboring pointers for even length.",
     "While endpoints are in bounds and equal, increment the count and expand outward.",
     "Return the total."
   ],
   "correctness": "Every palindromic substring has a unique center and radius. For that center, all its inner pairs match, so expansion reaches and counts it. Conversely, each successful expansion creates matching endpoints around a palindrome, so every counted substring is valid. Unique center/radius pairs prevent double counting positions.",
-  "bruteForce": "Enumerate all O(n²) substrings and test each in O(n), for O(n³) time. Expansion reuses the inner palindrome property.",
+  "bruteForce": "List all O(n²) substrings and test each in O(n), for O(n³) time. Expansion reuses the inner palindrome property.",
   "complexity": {
     "time": "O(n²)",
     "space": "O(1)",

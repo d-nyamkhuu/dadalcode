@@ -12,7 +12,7 @@
     "nums values fit signed 32-bit integers.",
     "-100000 <= lower <= upper <= 100000."
   ],
-  "intuition": "A subarray sum is prefix[j]-prefix[i] for i<j. Divide prefix positions into original-order halves. All cross-half pairs have valid index order; after sorting each half by value, two monotone right-half boundaries count differences inside the interval.",
+  "intuition": "A continuous range sum is the difference of two running totals. Split those totals by original position, count valid pairs within each half, then count pairs crossing the split. Sorted halves let two moving boundaries find all right-side totals in the allowed difference range.",
   "approach": [
     "Create prefix sums including the initial zero.",
     "Recursively count pairs inside each half.",
@@ -20,7 +20,7 @@
     "Add their distance, then merge the two halves into sorted order."
   ],
   "correctness": "Every index pair belongs uniquely to a recursive left half, right half, or cross-half pair. Recursive calls count the first two classes. For cross pairs, sorted right values make the accepted differences a contiguous interval, counted exactly by the two boundaries. Sorting only after partitioning preserves the original index-order relation at every level.",
-  "bruteForce": "Accumulate each start/end subarray sum, taking O(n\u00b2). Merge-sort counting reduces work by processing whole monotone value ranges.",
+  "bruteForce": "Accumulate each start/end subarray sum, taking O(n²). Merge-sort counting reduces work by processing whole monotone value ranges.",
   "complexity": {
     "time": "O(n log n)",
     "space": "O(n)",

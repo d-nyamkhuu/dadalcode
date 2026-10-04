@@ -5,26 +5,26 @@
   "prerequisites": [
     "Dynamic programming",
     "Subsequence vs subarray",
-    "Counting optimal paths"
+    "Counting best possible paths"
   ],
   "constraints": [
     "1 <= len(nums) <= 2,000",
     "-10^6 <= nums[i] <= 10^6",
     "The answer fits a signed 32-bit integer"
   ],
-  "intuition": "At each endpoint, track both the best increasing length and how many ways attain it. Equal-valued elements are separate choices but cannot extend each other.",
+  "intuition": "For each position, save the longest increasing subsequence ending there and how many ways achieve that length. Extend from earlier smaller values. A better length replaces the saved count; an equal length adds more ways. Finally add counts for all endpoints with the overall best length.",
   "approach": [
     "Initialize length[i]=1 and ways[i]=1 for every endpoint.",
     "For each earlier j with nums[j]<nums[i], consider length[j]+1.",
     "Replace ways[i] when this improves the length; add ways[j] when it ties.",
     "Sum ways at endpoints whose length equals the global maximum."
   ],
-  "correctness": "Every non-singleton increasing subsequence ending at i has a unique previous index j with smaller value. The transition selects the largest achievable length and sums disjoint counts classified by that j. Induction over i establishes each length/count pair; summing optimal endpoints counts each global longest subsequence once.",
-  "bruteForce": "Enumerate all 2^n index subsets and test whether their values increase.",
+  "correctness": "Every non-singleton increasing subsequence ending at i has a unique previous index j with smaller value. The transition selects the largest achievable length and sums disjoint counts classified by that j. Induction over i establishes each length/count pair; summing best possible endpoints counts each global longest subsequence once.",
+  "bruteForce": "List all 2^n index subsets and test whether their values increase.",
   "complexity": {
     "time": "O(n²)",
     "space": "O(n)",
-    "explanation": "Time O(n²); auxiliary space O(n). Output storage is excluded unless stated."
+    "explanation": "Time O(n²); additional space O(n). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Strict comparison excludes equal adjacent values.",

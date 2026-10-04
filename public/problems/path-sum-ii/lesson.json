@@ -11,7 +11,7 @@
     "Node values range from -1,000 to 1,000",
     "-1,000 <= targetSum <= 1,000"
   ],
-  "intuition": "Carry each partial path and its running sum. A matching sum is an answer only when the path has reached a leaf.",
+  "intuition": "Save both the values and the running total of each root-to-node path. When you reach a leaf, keep the path if its total matches the target. Give separate path state to different branches so that exploring one branch cannot change the values saved for another.",
   "approach": [
     "Use an explicit stack containing node, prefix path, and prefix sum.",
     "Append the current value and update the sum.",
@@ -23,7 +23,7 @@
   "complexity": {
     "time": "O(n*h + L)",
     "space": "O(h²) auxiliary plus O(L) output",
-    "explanation": "n is node count, h is height, and L is the total number of returned path values. Copying a prefix at each visited node costs O(n*h), with a quadratic chain worst case. At most O(h) pending binary-tree DFS entries retain paths of length O(h), so auxiliary storage is O(h²); returned lists use O(L)."
+    "explanation": "n is node count, h is height, and L is the total number of returned path values. Copying a prefix at each visited node costs O(n*h), with a quadratic chain worst case. At most O(h) pending binary-tree DFS entries retain paths of length O(h), so additional storage is O(h²); returned lists use O(L)."
   },
   "pitfalls": [
     "Do not accept a matching internal node.",

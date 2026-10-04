@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Count occurrences with a dictionary in O(n) space, then return the count-one key. XOR uses the promised multiplicities to remove that storage. Counting solves the task but stores information about every distinct value, even though paired values ultimately contribute nothing to the answer.",
-    "View XOR as a reversible bit toggle. Encountering a value changes the accumulator’s bits; encountering that same value again undoes exactly those changes. Associativity lets values cancel even when their two appearances are far apart. Zero is the neutral starting value, and negative integers obey the same bitwise cancellation identities in Python. This is a promise-driven algorithm: if some ordinary value occurred three times rather than twice, one copy would remain and corrupt the intended result.",
+    "The XOR operation cancels two equal numbers: x XOR x is zero. Apply XOR to every input value. All the pairs cancel, leaving only the number that appears once. The order does not matter, so no sorting or count table is needed.",
+    "View XOR as a reversible bit toggle. Encountering a value changes the accumulator’s bits; encountering that same value again undoes exactly those changes. Associativity lets values cancel even when their two appearances are far apart. Zero is the neutral starting value, and negative integers obey the same bitwise cancellation identities in Python.",
+    "This is a promise-driven algorithm: if some ordinary value occurred three times rather than twice, one copy would remain and corrupt the intended result.",
     "After any prefix, result is its XOR. For the full array, associativity and commutativity allow identical values to be grouped; each pair becomes zero. The sole unpaired value remains, including when it is negative. One accumulator processes every value once.",
-    "Python evaluates bitwise operations on negative integers as though their two's complement representation has infinitely many sign bits. We do not need to choose a finite width here: x^x is still zero for a negative x, and zero^x is x. Associativity and commutativity therefore let negative pairs cancel exactly like positive pairs. This differs from fixed-width bit reversal, where the number of positions must be supplied explicitly."
+    "Python evaluates bitwise operations on negative integers as though their two's complement representation has infinitely many sign bits. We do not need to choose a finite width here: x^x is still zero for a negative x, and zero^x is x. Associativity and commutativity therefore let negative pairs cancel exactly like positive pairs.",
+    "This differs from fixed-width bit reversal, where the number of positions must be supplied explicitly."
   ],
   "walkthrough": {
     "input": {
@@ -33,7 +35,8 @@
     },
     {
       "code": "return result",
-      "note": "The promised multiplicities ensure exactly one unpaired value survives the complete XOR reduction."
+      "note": "The promised occurrence counts ensure exactly one unpaired value survives the complete XOR reduction."
     }
-  ]
+  ],
+  "keyDecision": "This method relies on exactly one unpaired value and every other value appearing exactly twice."
 }

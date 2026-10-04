@@ -12,7 +12,7 @@
     "-1000 <= node values <= 1000",
     "-1000 <= targetSum <= 1000"
   ],
-  "intuition": "Every stack entry should contain both a node and the total along the unique root-to-that-node path. Siblings inherit the same parent total but accumulate independently. Only leaves can complete the requested path.",
+  "intuition": "Carry the running sum as you move from the root toward a leaf. Add each child's value when visiting it. A matching sum counts only at a leaf, because the requested path must end there. Negative values mean a large partial sum is not a reason to stop early.",
   "approach": [
     "Return false for an empty tree.",
     "Start a DFS stack with root and its value.",
@@ -20,7 +20,7 @@
     "For each child, push the child with total plus the child’s value."
   ],
   "correctness": "The initial total equals the root path’s sum. Pushing a child adds exactly its value, preserving the stack invariant for every entry. Every leaf is visited unless a matching one is found earlier, so true is returned exactly when a root-to-leaf path meets the target.",
-  "bruteForce": "Enumerate all root-to-leaf node sequences, then sum each sequence separately; storing and summing paths adds repeated work.",
+  "bruteForce": "List all root-to-leaf node sequences, then sum each sequence separately; storing and summing paths adds repeated work.",
   "complexity": {
     "time": "O(n)",
     "space": "O(h)",

@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "For each column scan both sides for their maxima, taking O(n\u00b2) time. Prefix/suffix arrays reduce time to O(n) with O(n) storage; two pointers retain only the needed boundaries. The repeated scans ask the same question many times: what boundary wall constrains water over the next bar?",
-    "Imagine two walls growing as the pointers move inward. The smaller known wall is enough to settle its own side, because the opposite known wall is already at least that high. Unknown interior bars may raise future boundaries but cannot reduce this established waterline. Refreshing maxima before subtraction ensures a newly taller bar contributes zero water. This differs from comparing only the endpoint heights: the relevant boundaries summarize everything already traversed.",
+    "Water above a column needs a wall on both sides. The shorter of those two walls limits its depth. Move inward from both ends while remembering the tallest wall seen on each side. When one remembered wall is lower, the water depth on that side is already known.",
+    "Imagine two walls growing as the pointers move inward. The smaller known wall is enough to settle its own side, because the opposite known wall is already at least that high. Unknown interior bars may raise future boundaries but cannot reduce this established waterline. Refreshing maxima before subtraction ensures a newly taller bar contributes zero water.",
+    "This differs from comparing only the endpoint heights: the relevant boundaries summarize everything already traversed.",
     "For the processed smaller-maximum side, a wall at least that tall exists on the other side. Its limiting waterline is therefore known exactly. Each step adds the correct contribution for one unprocessed column and removes it. Summing these disjoint contributions gives the volume. Each pointer moves monotonically inward and each column is processed once."
   ],
   "walkthrough": {
@@ -41,7 +42,92 @@
     },
     {
       "code": "water += left_max - height[left]",
-      "note": "Subtract the solid bar from the known waterline to obtain exactly this column\u2019s retained volume."
+      "note": "Subtract the solid bar from the known waterline to obtain exactly this column’s retained volume."
+    }
+  ],
+  "keyDecision": "Process the side with the smaller remembered maximum. Its water depth is that maximum minus the column height.",
+  "figures": [
+    {
+      "title": "Water needs a boundary on both sides",
+      "caption": "Inspect the valley between indices 3 and 7 in the worked example. Column widths are one.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: locate the two walls",
+          "rows": [
+            {
+              "label": "Column heights",
+              "values": [
+                "2",
+                "1",
+                "0",
+                "1",
+                "3"
+              ],
+              "highlight": [
+                0,
+                4
+              ],
+              "labels": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            }
+          ],
+          "note": "The left wall is height 2 and the right wall is height 3. The lower wall limits this valley."
+        },
+        {
+          "title": "Check: subtract each column height",
+          "rows": [
+            {
+              "label": "Water at index 4",
+              "values": [
+                "2 - 1 = 1"
+              ]
+            },
+            {
+              "label": "Water at index 5",
+              "values": [
+                "2 - 0 = 2"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Water at index 6",
+              "values": [
+                "2 - 1 = 1"
+              ]
+            }
+          ],
+          "note": "The waterline is 2. Only the space above a column contributes water."
+        },
+        {
+          "title": "After: add this valley",
+          "rows": [
+            {
+              "label": "Valley contribution",
+              "values": [
+                "1 + 2 + 1 = 4"
+              ]
+            },
+            {
+              "label": "Full example",
+              "values": [
+                "4 + 1 + 1 = 6"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "This valley holds 4 units. Index 2 and index 9 each hold one more, giving the full answer 6."
+        }
+      ]
     }
   ]
 }

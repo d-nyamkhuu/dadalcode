@@ -1,9 +1,9 @@
 {
   "intuition": [
-    "One arrow may burst several balloons, so treating balloons independently wastes shots. Trying all combinations of arrow positions becomes expensive. The key is that only the horizontal interval occupied by each balloon matters, and the earliest-ending uncovered balloon imposes the next deadline.",
+    "Sort balloons by their ending coordinate. Shoot at the end of the first uncovered balloon, and use that arrow for every balloon containing that point. The earliest ending gives a position that hits this balloon while leaving as many future balloons covered as possible.",
     "Any valid solution must shoot somewhere inside that balloon. Move the necessary shot to its right endpoint. This cannot lose a later-ending balloon previously hit by the shot, because moving right stays below its end and cannot cross backward below its start. Shooting at the deadline is therefore safe.",
     "Sort by end coordinate and retain the current shot position. Each later balloon either contains that shot or begins strictly after it and requires another. Unlike non-overlapping scheduling, shared endpoints count as a hit because balloon intervals are closed.",
-    "Although an arrow can be placed anywhere inside a balloon, some optimal solution uses only right endpoints: shift each necessary shot to the earliest-ending balloon it serves. The exchange argument preserves every balloon previously hit by that shot. Equal ending coordinates need no special sorting tie rule because either balloon gives the same safe shot position."
+    "Although an arrow can be placed anywhere inside a balloon, some best possible solution uses only right endpoints: shift each necessary shot to the earliest-ending balloon it serves. The exchange argument preserves every balloon previously hit by that shot. Equal ending coordinates need no special sorting tie rule because either balloon gives the same safe shot position."
   ],
   "walkthrough": {
     "input": {
@@ -49,5 +49,6 @@
       "code": "arrow = end",
       "note": "Move the new shot to the latest position allowed by the first-ending balloon, maximizing its chance of hitting later balloons."
     }
-  ]
+  ],
+  "keyDecision": "Reuse the arrow when start <= arrow_position. A balloon includes both endpoints."
 }

@@ -10,18 +10,18 @@
     "2 <= len(height) <= 100,000",
     "0 <= height[i] <= 10,000"
   ],
-  "intuition": "The shorter wall limits the water. Keeping that wall while narrowing the container can never improve its area, so discard it.",
+  "intuition": "Two lines form the sides of a container. Its area is their distance multiplied by the shorter height. Start with the widest pair. After measuring it, move the shorter side inward: keeping that short side and reducing the width cannot give a larger area.",
   "approach": [
     "Start left at 0 and right at the last index.",
     "Measure (right-left) * min(height[left],height[right]) and update best.",
     "Advance the pointer at the shorter wall, repeating until pointers meet."
   ],
-  "correctness": "If height[left] <= height[right], every pair using left and an interior right has no greater height limit and a smaller width. Discarding left loses no better pair. The symmetric argument handles right; the best measured pair is therefore optimal.",
-  "bruteForce": "Enumerate every pair of walls in O(n\u00b2) time.",
+  "correctness": "If height[left] <= height[right], every pair using left and an interior right has no greater height limit and a smaller width. Discarding left loses no better pair. The symmetric argument handles right; the best measured pair is therefore best possible.",
+  "bruteForce": "List every pair of walls in O(n²) time.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+    "explanation": "Time O(n); additional space O(1). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Use the shorter height, not the larger.",

@@ -10,7 +10,7 @@
     "0 <= len(digits) <= 4",
     "Only digits 2 through 9 are permitted."
   ],
-  "intuition": "A result chooses exactly one letter for each position. The choices for a later digit do not affect earlier digits, so recursively extend a partial string with every allowed letter. The recursion tree is the Cartesian product of the digit letter sets.",
+  "intuition": "Build each possible word from left to right. The first digit gives the choices for the first letter, the next digit gives the choices for the next letter, and so on. Finish a word only after choosing one allowed letter for every digit.",
   "approach": [
     "Store the telephone mapping.",
     "At index i, append each letter for digits[i] to the partial word.",
@@ -21,7 +21,7 @@
   "complexity": {
     "time": "O(n * 4^n)",
     "space": "O(n^2) auxiliary; O(n * 4^n) output",
-    "explanation": "There are at most four branches per digit and each resulting word has n letters. Copied immutable prefixes held by active recursive calls use O(n^2) auxiliary characters."
+    "explanation": "There are at most four branches per digit and each resulting word has n letters. Copied immutable prefixes held by active recursive calls use O(n^2) additional characters."
   },
   "pitfalls": [
     "Digits 7 and 9 have four letters.",

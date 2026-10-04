@@ -10,7 +10,7 @@
     "1 <= len(s) <= 100",
     "s contains decimal digits, possibly leading zeros"
   ],
-  "intuition": "Every valid decoding of a prefix ends in either a one-digit code or a two-digit code. These cases are disjoint. Their counts come from shorter prefixes, so counting never requires constructing all decoded strings.",
+  "intuition": "A letter code uses either one digit or two digits. For each prefix of the input, consider those two possible endings and add the counts for the remaining earlier digits. Save each prefix count so it can be reused. A zero cannot form a one-digit letter by itself.",
   "approach": [
     "Set dp[0]=1: the empty prefix supplies one way to begin a decoding.",
     "For each prefix length i, add dp[i-1] if its final digit is not zero.",

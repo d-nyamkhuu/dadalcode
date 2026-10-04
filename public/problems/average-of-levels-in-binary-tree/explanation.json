@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "A tree-wide sum cannot produce per-depth averages, and averaging previously computed child averages is wrong when their level populations differ. Each level needs its own total and actual node count. Breadth-first traversal naturally groups nodes at the same distance from the root.",
-    "Freeze the queue size at the start of a level, then process exactly that many nodes. Sum their values while appending existing children for later processing. The frozen denominator counts only the current frontier, so those children cannot accidentally dilute their parents\u2019 average.",
-    "Use ordinary division to preserve fractional results. Values may be negative or large, but Python\u2019s integer accumulator handles the exact sum before conversion to a floating-point average. Queue order is convenient for traversal, although the average itself depends only on the members of each level, not their ordering."
+    "Visit the tree one level at a time using a queue. Save the number of nodes in the level before adding any children. Sum exactly those node values and divide by that saved count. Then repeat with the children, which now form the next level.",
+    "Freeze the queue size at the start of a level, then process exactly that many nodes. Sum their values while appending existing children for later processing. The frozen denominator counts only the current frontier, so those children cannot accidentally dilute their parents’ average.",
+    "Use ordinary division to preserve fractional results. Values may be negative or large, but Python’s integer accumulator handles the exact sum before conversion to a floating-point average. Queue order is convenient for traversal, although the average itself depends only on the members of each level, not their ordering."
   ],
   "walkthrough": {
     "input": {
@@ -40,7 +40,8 @@
     },
     {
       "code": "averages.append(total / size)",
-      "note": "Ordinary division retains fractional means. The fixed size is exactly the number of values added during this frontier\u2019s processing."
+      "note": "Ordinary division retains fractional means. The fixed size is exactly the number of values added during this frontier’s processing."
     }
-  ]
+  ],
+  "keyDecision": "The level average is its value total divided by its node count, including negative values."
 }

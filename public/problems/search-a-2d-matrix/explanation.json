@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "This matrix has a stronger property than merely sorted rows: every new row begins after every value in the previous row. Reading row by row therefore produces one globally sorted sequence. The visual grid can remain two-dimensional while the search uses a single linear coordinate.",
-    "For a matrix with columns columns, linear index mid identifies row mid//columns and column mid%columns. These operations are just quotient and remainder from counting full rows. Binary search can inspect that cell without allocating a flattened list, preserving constant auxiliary space.",
-    "Each comparison discards half the remaining linear indices. If the midpoint value is smaller than target, the entire prefix through mid is too small; if larger, the suffix from mid is too large. The inclusive left/right bounds need mid+1 and mid-1 updates to ensure progress. This proof depends on the row-boundary rule and does not apply unchanged to a matrix sorted independently by rows and columns."
+    "Reading the rows in order gives one sorted sequence, because each row begins after the previous row's last value. We can use binary search on that sequence without copying the matrix. Convert a sequence position back to a row and column whenever we need to read a value.",
+    "For a matrix with columns columns, linear index mid identifies row mid//columns and column mid%columns. These operations are just quotient and remainder from counting full rows. Binary search can inspect that cell without allocating a flattened list, preserving constant additional space.",
+    "Each comparison discards half the remaining linear indices. If the midpoint value is smaller than target, the entire prefix through mid is too small; if larger, the suffix from mid is too large. The inclusive left/right bounds need mid+1 and mid-1 updates to ensure progress.",
+    "This proof depends on the row-boundary rule and does not apply unchanged to a matrix sorted independently by rows and columns."
   ],
   "walkthrough": {
     "input": {
@@ -50,5 +51,6 @@
       "code": "right = mid - 1",
       "note": "The inspected midpoint is known not to match, so excluding it both preserves correctness and guarantees the search shrinks."
     }
-  ]
+  ],
+  "keyDecision": "For position i, row = i // columns and column = i % columns."
 }

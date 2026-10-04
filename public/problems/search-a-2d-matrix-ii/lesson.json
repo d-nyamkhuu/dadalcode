@@ -12,7 +12,7 @@
     "-10^9 <= values and target <= 10^9",
     "Rows and columns are sorted in nondecreasing order"
   ],
-  "intuition": "At the top-right corner, all values to the left are smaller and all values below are larger. If the corner is too big, its whole column can be removed; if too small, its whole row can be removed.",
+  "intuition": "Start in the top-right corner. If that value is too large, every value below it in the same column is also too large, so move left. If it is too small, every value to its left in that row is too small, so move down.",
   "approach": [
     "Begin at row zero and the final column.",
     "Return true on equality; move left when the value is above target.",

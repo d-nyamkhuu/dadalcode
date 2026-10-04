@@ -11,7 +11,7 @@
     "1 <= node value <= 50",
     "0 <= val <= 50"
   ],
-  "intuition": "A pointer to the predecessor can remove its next node without moving itself. This is essential for consecutive matching nodes: after deletion the next neighbor must be checked again.",
+  "intuition": "Keep a pointer to the node before the next node you will inspect. If that next node has the unwanted value, skip it by changing the link. Otherwise, move forward. A dummy node before the head makes removing the first node work in the same way.",
   "approach": [
     "Place a dummy before head and set prev to dummy.",
     "While prev.next exists, bypass it when its value equals val.",

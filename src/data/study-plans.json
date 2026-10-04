@@ -1,0 +1,327 @@
+[
+  {
+    "id": "beginner",
+    "title": "Beginner",
+    "description": "Build foundations with guided practice across 11 pattern groups.",
+    "groups": [
+      {
+        "id": "arrays-hash-tables",
+        "title": "Arrays & Hash Tables",
+        "goal": "Practice indexing, frequency counts, and fast lookup with maps and sets.",
+        "slugs": [
+          "contains-duplicate",
+          "two-sum",
+          "find-all-numbers-disappeared-in-an-array",
+          "missing-number",
+          "majority-element",
+          "product-of-array-except-self",
+          "find-all-duplicates-in-an-array"
+        ]
+      },
+      {
+        "id": "two-pointers",
+        "title": "Two Pointers",
+        "goal": "Learn when to move each pointer while preserving the search invariant.",
+        "slugs": [
+          "move-zeroes",
+          "squares-of-a-sorted-array",
+          "backspace-string-compare",
+          "3sum",
+          "3sum-closest",
+          "container-with-most-water",
+          "sort-colors"
+        ]
+      },
+      {
+        "id": "sliding-window",
+        "title": "Sliding Window",
+        "goal": "Maintain a valid window and decide when to expand or shrink it.",
+        "slugs": [
+          "maximum-average-subarray-i",
+          "is-subsequence",
+          "longest-substring-without-repeating-characters",
+          "minimum-size-subarray-sum",
+          "longest-repeating-character-replacement",
+          "permutation-in-string",
+          "fruit-into-baskets",
+          "subarray-product-less-than-k"
+        ]
+      },
+      {
+        "id": "linked-lists",
+        "title": "Linked Lists",
+        "goal": "Build confidence moving, reversing, and reconnecting node references.",
+        "slugs": [
+          "reverse-linked-list",
+          "middle-of-the-linked-list",
+          "linked-list-cycle",
+          "merge-two-sorted-lists",
+          "remove-linked-list-elements",
+          "remove-duplicates-from-sorted-list",
+          "palindrome-linked-list",
+          "remove-nth-node-from-end-of-list"
+        ]
+      },
+      {
+        "id": "binary-search",
+        "title": "Binary Search",
+        "goal": "Define boundaries and prove which half can be discarded each step.",
+        "slugs": [
+          "binary-search",
+          "find-smallest-letter-greater-than-target",
+          "peak-index-in-a-mountain-array",
+          "search-in-rotated-sorted-array",
+          "find-minimum-in-rotated-sorted-array",
+          "search-a-2d-matrix",
+          "find-peak-element"
+        ]
+      },
+      {
+        "id": "trees-dfs-bfs",
+        "title": "Trees - DFS & BFS",
+        "goal": "Practice recursive subtree reasoning and traversal with a queue.",
+        "slugs": [
+          "maximum-depth-of-binary-tree",
+          "minimum-depth-of-binary-tree",
+          "same-tree",
+          "invert-binary-tree",
+          "path-sum",
+          "subtree-of-another-tree",
+          "binary-tree-paths",
+          "merge-two-binary-trees",
+          "average-of-levels-in-binary-tree",
+          "binary-tree-level-order-traversal",
+          "validate-binary-search-tree"
+        ]
+      },
+      {
+        "id": "sorting-intervals",
+        "title": "Sorting & Intervals",
+        "goal": "Sort intervals, recognize overlaps, and combine or select ranges.",
+        "slugs": [
+          "meeting-rooms",
+          "merge-intervals",
+          "insert-interval",
+          "non-overlapping-intervals",
+          "interval-list-intersections"
+        ]
+      },
+      {
+        "id": "graphs-bfs-dfs",
+        "title": "Graphs - BFS & DFS",
+        "goal": "Track visited nodes, explore components, and detect dependency cycles.",
+        "slugs": [
+          "number-of-islands",
+          "pacific-atlantic-water-flow",
+          "graph-valid-tree",
+          "number-of-connected-components-in-an-undirected-graph",
+          "course-schedule"
+        ]
+      },
+      {
+        "id": "heaps-priority-queues",
+        "title": "Heaps & Priority Queues",
+        "goal": "Use a heap to keep the most useful candidates or next event available.",
+        "slugs": [
+          "kth-largest-element-in-an-array",
+          "top-k-frequent-elements",
+          "k-closest-points-to-origin",
+          "meeting-rooms-ii",
+          "kth-smallest-element-in-a-sorted-matrix"
+        ]
+      },
+      {
+        "id": "matrix-traversal",
+        "title": "Matrix Traversal",
+        "goal": "Track coordinates and boundaries while changing or traversing a grid.",
+        "slugs": [
+          "convert-1d-array-into-2d-array",
+          "set-matrix-zeroes",
+          "spiral-matrix",
+          "rotate-image"
+        ]
+      },
+      {
+        "id": "prefix-sums",
+        "title": "Prefix Sums",
+        "goal": "Precompute cumulative totals to answer repeated range queries.",
+        "slugs": ["range-sum-query-immutable"]
+      }
+    ]
+  },
+  {
+    "id": "experienced",
+    "title": "Experienced",
+    "description": "Refresh interview patterns with the Blind 75 across 15 groups.",
+    "groups": [
+      {
+        "id": "arrays-hashing",
+        "title": "Arrays & Hashing",
+        "goal": "Choose useful hash keys and track frequencies, complements, and sequences.",
+        "slugs": [
+          "two-sum",
+          "contains-duplicate",
+          "valid-anagram",
+          "group-anagrams",
+          "encode-and-decode-strings",
+          "product-of-array-except-self",
+          "longest-consecutive-sequence"
+        ]
+      },
+      {
+        "id": "two-pointers",
+        "title": "Two Pointers",
+        "goal": "Learn when to move each pointer while preserving the search invariant.",
+        "slugs": ["valid-palindrome", "3sum", "container-with-most-water"]
+      },
+      {
+        "id": "sliding-window",
+        "title": "Sliding Window",
+        "goal": "Maintain a valid window and decide when to expand or shrink it.",
+        "slugs": [
+          "best-time-to-buy-and-sell-stock",
+          "longest-substring-without-repeating-characters",
+          "longest-repeating-character-replacement",
+          "minimum-window-substring"
+        ]
+      },
+      {
+        "id": "stack",
+        "title": "Stack",
+        "goal": "Match nested structures using the most recently opened item.",
+        "slugs": ["valid-parentheses"]
+      },
+      {
+        "id": "binary-search",
+        "title": "Binary Search",
+        "goal": "Define boundaries and prove which half can be discarded each step.",
+        "slugs": [
+          "search-in-rotated-sorted-array",
+          "find-minimum-in-rotated-sorted-array"
+        ]
+      },
+      {
+        "id": "linked-lists",
+        "title": "Linked Lists",
+        "goal": "Build confidence moving, reversing, and reconnecting node references.",
+        "slugs": [
+          "reverse-linked-list",
+          "merge-two-sorted-lists",
+          "linked-list-cycle",
+          "reorder-list",
+          "remove-nth-node-from-end-of-list",
+          "merge-k-sorted-lists"
+        ]
+      },
+      {
+        "id": "trees",
+        "title": "Trees",
+        "goal": "Combine traversal, BST invariants, and information returned by subtrees.",
+        "slugs": [
+          "invert-binary-tree",
+          "maximum-depth-of-binary-tree",
+          "same-tree",
+          "subtree-of-another-tree",
+          "lowest-common-ancestor-of-a-binary-search-tree",
+          "binary-tree-level-order-traversal",
+          "validate-binary-search-tree",
+          "kth-smallest-element-in-a-bst",
+          "construct-binary-tree-from-preorder-and-inorder-traversal",
+          "binary-tree-maximum-path-sum",
+          "serialize-and-deserialize-binary-tree"
+        ]
+      },
+      {
+        "id": "tries",
+        "title": "Tries",
+        "goal": "Represent shared prefixes and combine trie lookup with recursive search.",
+        "slugs": [
+          "implement-trie-prefix-tree",
+          "design-add-and-search-words-data-structure",
+          "word-search-ii"
+        ]
+      },
+      {
+        "id": "heap-priority-queue",
+        "title": "Heap / Priority Queue",
+        "goal": "Maintain top candidates and balance two heaps for streaming medians.",
+        "slugs": ["top-k-frequent-elements", "find-median-from-data-stream"]
+      },
+      {
+        "id": "graphs",
+        "title": "Graphs",
+        "goal": "Apply traversal, cloning, connectivity checks, and topological ordering.",
+        "slugs": [
+          "number-of-islands",
+          "clone-graph",
+          "pacific-atlantic-water-flow",
+          "course-schedule",
+          "graph-valid-tree",
+          "number-of-connected-components-in-an-undirected-graph",
+          "alien-dictionary"
+        ]
+      },
+      {
+        "id": "dynamic-programming",
+        "title": "Dynamic Programming",
+        "goal": "Define the state, recurrence, and base cases before writing the loops.",
+        "slugs": [
+          "climbing-stairs",
+          "house-robber",
+          "house-robber-ii",
+          "longest-palindromic-substring",
+          "palindromic-substrings",
+          "decode-ways",
+          "coin-change",
+          "maximum-product-subarray",
+          "word-break",
+          "longest-increasing-subsequence",
+          "longest-common-subsequence",
+          "unique-paths",
+          "combination-sum-iv"
+        ]
+      },
+      {
+        "id": "greedy",
+        "title": "Greedy",
+        "goal": "Explain why each local choice preserves an optimal result.",
+        "slugs": ["maximum-subarray", "jump-game"]
+      },
+      {
+        "id": "intervals",
+        "title": "Intervals",
+        "goal": "Compare merge, insertion, scheduling, and overlap-removal strategies.",
+        "slugs": [
+          "insert-interval",
+          "merge-intervals",
+          "non-overlapping-intervals",
+          "meeting-rooms",
+          "meeting-rooms-ii"
+        ]
+      },
+      {
+        "id": "matrix",
+        "title": "Matrix",
+        "goal": "Practice in-place transformations and backtracking over grid coordinates.",
+        "slugs": [
+          "set-matrix-zeroes",
+          "spiral-matrix",
+          "rotate-image",
+          "word-search"
+        ]
+      },
+      {
+        "id": "bit-manipulation",
+        "title": "Bit Manipulation",
+        "goal": "Use shifts, masks, and XOR to reason about binary representations.",
+        "slugs": [
+          "number-of-1-bits",
+          "counting-bits",
+          "reverse-bits",
+          "missing-number",
+          "sum-of-two-integers"
+        ]
+      }
+    ]
+  }
+]

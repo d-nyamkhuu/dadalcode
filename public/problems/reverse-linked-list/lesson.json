@@ -10,7 +10,7 @@
     "0 <= node count <= 5,000",
     "-5,000 <= node values <= 5,000"
   ],
-  "intuition": "Split the list conceptually into an already reversed prefix and an untouched suffix. Move one node from the suffix to the prefix at each step.",
+  "intuition": "Reverse one link at a time. Before changing a node's next link, save where it originally led. Point the current node back to the reversed part, then continue from the saved next node. Saving that link is what keeps the rest of the list reachable.",
   "approach": [
     "Initialize previous=None and current=head.",
     "Save current.next as following before modifying it.",
@@ -18,7 +18,7 @@
     "Return previous after the original suffix is empty."
   ],
   "correctness": "The reversed prefix initially is empty. Each iteration links the first untouched node in front of that prefix while preserving every untouched node through following. Thus all processed links are reversed with no lost nodes; when current is None, previous is the complete reversed list.",
-  "bruteForce": "Store all node references, then reconnect them in reverse: O(n) auxiliary space.",
+  "bruteForce": "Store all node references, then reconnect them in reverse: O(n) additional space.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
@@ -33,6 +33,10 @@
     {
       "label": "LeetCode problem",
       "url": "https://leetcode.com/problems/reverse-linked-list/"
+    },
+    {
+      "label": "VisuAlgo · linked-list diagrams",
+      "url": "https://visualgo.net/en/list"
     }
   ],
   "visualization": {

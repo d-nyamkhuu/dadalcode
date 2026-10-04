@@ -225,3 +225,10 @@ public/pyodide/
 *.tsbuildinfo
 test-results/
 playwright-report/
+
+# Generated distribution notices and local credentials
+public/third-party-licenses.txt
+.env.*
+!.env.example
+*.pem
+*.key

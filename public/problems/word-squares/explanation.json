@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Trying every sequence of words and checking symmetry only after completion wastes most of the search. A partial square already determines the beginning of its next row: the new row must agree with the characters appearing in that column of every previously chosen row.",
+    "In a word square, row r and column r must spell the same word. When choosing the next row, its first letters are already fixed by the earlier rows. Use a prefix index to find only words that start with those letters, then try each possible continuation.",
     "Index each word under all its prefixes. At depth k, read character k from each existing row and join those letters into the required prefix. The map immediately supplies only words that could fit. This reference uses a prefix-to-word-list dictionary rather than traversing a trie.",
     "Backtracking then appends each compatible candidate and undoes it afterward. Words may be reused because the problem does not limit occurrences. Each appended row preserves all established row-column crossings, so a path containing the required number of rows is a complete valid square without a separate full symmetry scan.",
     "Only proper prefixes are queried: when k reaches the word length, the base case saves the completed square before another lookup. The reference therefore indexes prefix lengths zero through L-1 and omits the unused full-length entry. This saves one stored reference per word while preserving every candidate needed by the search."
@@ -50,5 +50,6 @@
       "code": "for word in prefixes.get(prefix, []):",
       "note": "A missing prefix has no compatible candidate and ends the branch immediately. Existing words remain reusable, so no used-word set is applied."
     }
-  ]
+  ],
+  "keyDecision": "At row k, the required prefix is square[0][k], square[1][k], through square[k - 1][k]."
 }

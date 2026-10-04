@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A concatenated word is a dictionary entry that can also be segmented into at least two shorter entries. Repeated component words are allowed. Checking whether the complete word belongs to the dictionary is therefore useless by itself: every candidate already does.",
+    "For each word, try splitting it into shorter dictionary words. Save which character boundaries can be reached by valid pieces. Reaching the end proves a split exists, but the original word alone must not count. Skip the transition that uses the entire candidate as one piece.",
     "Treat character positions as boundaries. reachable[end] means the prefix ending immediately before end can be segmented. Begin with boundary zero, then try every earlier reachable start whose substring word[start:end] is a dictionary entry. This turns many repeated cut-pattern explorations into one dynamic-programming table per word.",
-    "The sole forbidden transition is using the entire candidate from boundary zero to its final boundary. Excluding it ensures that reaching the final boundary requires at least two pieces. All other dictionary entries can be reused, including entries that are themselves concatenated words. A set provides fast lookup, though Python still copies substring characters. The original dictionary order does not matter because every candidate is tested against the full set rather than only earlier inputs."
+    "The sole forbidden transition is using the entire candidate from boundary zero to its final boundary. Excluding it ensures that reaching the final boundary requires at least two pieces. All other dictionary entries can be reused, including entries that are themselves concatenated words. A set provides fast lookup, though Python still copies substring characters.",
+    "The original dictionary order does not matter because every candidate is tested against the full set rather than only earlier inputs."
   ],
   "walkthrough": {
     "input": {
@@ -43,5 +44,6 @@
       "code": "if reachable[start] and word[start:end] in dictionary:",
       "note": "A transition extends an already segmented prefix by one complete dictionary word; both conditions are necessary."
     }
-  ]
+  ],
+  "keyDecision": "A valid result uses at least two dictionary words. The reference excludes the one-piece whole-word match."
 }

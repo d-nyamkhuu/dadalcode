@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "For each digit, several letters are possible. Checking whether an arbitrary word matches the digits would waste time on letters that cannot occur. Instead, construct only valid words by choosing one permitted letter at each position. Every completed construction is already an answer.",
+    "Build each possible word from left to right. The first digit gives the choices for the first letter, the next digit gives the choices for the next letter, and so on. Finish a word only after choosing one allowed letter for every digit.",
     "The state is a digit index and a partial word. The prefix describes decisions already made; the index identifies the next independent choice. For digit 2, the next letters are a, b, c. For digit 3, they are d, e, f.",
-    "Backtracking here needs no rejection rule because every partial prefix is feasible. The recursion simply enumerates the Cartesian product of these letter sets. A new string is passed into each branch, so sibling branches cannot overwrite one another\u2019s prefix. Empty input is handled separately."
+    "Backtracking here needs no rejection rule because every partial prefix is feasible. The recursion simply lists the Cartesian product of these letter sets. A new string is passed into each branch, so sibling branches cannot overwrite one another’s prefix. Empty input is handled separately."
   ],
   "walkthrough": {
     "input": {
@@ -30,7 +30,7 @@
   "codeNotes": [
     {
       "code": "if not digits:",
-      "note": "Without this early return, the recursion\u2019s terminal case would save an empty string, whereas empty input requires an empty result list."
+      "note": "Without this early return, the recursion’s terminal case would save an empty string, whereas empty input requires an empty result list."
     },
     {
       "code": "if i == len(digits):",
@@ -40,5 +40,6 @@
       "code": "visit(i + 1, path + letter)",
       "note": "Advancing the index fixes exactly one more position. String concatenation gives the child its own prefix and preserves the parent branch."
     }
-  ]
+  ],
+  "keyDecision": "Save a word when its length equals the number of input digits."
 }

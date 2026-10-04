@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Every answer identifies an occurrence, so overlapping matches and repeated appearances at different positions must be retained. A word set could test every constructed substring, but longer substring construction repeats characters and continues even after no dictionary word could possibly match the prefix.",
-    "A trie summarizes the dictionary\u2019s prefixes. For each starting text index, advance one character at a time through that trie. Reaching a terminal marker gives an inclusive pair [start,end]. A terminal does not end the scan because the same text prefix may also begin a longer dictionary word.",
-    "Once the next trie edge is absent, every longer substring from that same start is impossible, so stop that inner scan immediately. The outer start loop and inner end loop both move in increasing order, automatically producing the required sorting without a final sort. Separate starts are independent: finding one word does not consume its text characters or prevent another start from overlapping it. The trie stores unique words, ensuring each matching start/end pair is emitted only once."
+    "Store the dictionary words as paths in a trie. From each starting position in the text, follow letters until a path is missing. Every word-ending marker reached gives one matching start/end pair. Trying starts and ends in increasing order also gives the required output order.",
+    "A trie summarizes the dictionary’s prefixes. For each starting text index, advance one character at a time through that trie. Reaching a terminal marker gives an inclusive pair [start,end]. A terminal does not end the scan because the same text prefix may also begin a longer dictionary word.",
+    "Once the next trie edge is absent, every longer substring from that same start is impossible, so stop that inner scan immediately. The outer start loop and inner end loop both move in increasing order, automatically producing the required sorting without a final sort.",
+    "Separate starts are independent: finding one word does not consume its text characters or prevent another start from overlapping it. The trie stores unique words, ensuring each matching start/end pair is emitted only once."
   ],
   "walkthrough": {
     "input": {
@@ -48,5 +49,6 @@
       "code": "result.append([start, end])",
       "note": "The current end is inclusive, and nested increasing loops already provide the required output order."
     }
-  ]
+  ],
+  "keyDecision": "Save a pair at every word-ending marker, and stop this start as soon as a trie edge is missing."
 }

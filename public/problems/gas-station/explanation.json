@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Trying every station as a start repeats the same failed portions of the circle. Replace each station with its net contribution gas[i]-cost[i]. A candidate start is feasible through the current station only while the running tank remains nonnegative after paying each outgoing cost.",
+    "Track fuel gained minus fuel spent as you try a starting station. If the tank first becomes negative, that start cannot work. None of the intermediate stations can fix that failed section either, so try the next station. Separately check whether total fuel can cover the whole circle.",
     "If the tank first becomes negative at i, discard not only the candidate but every later start inside that failed segment. Before failure, the prefix from the candidate to each intermediate station had nonnegative balance. Removing such a prefix cannot improve the negative segment ending at i. The next possible start is therefore i+1.",
-    "Keep two balances because they answer different questions. tank tests the current candidate\u2019s segment, while total tests the entire route\u2019s fuel budget. Resetting tank does not change total. A negative total makes every start impossible. When total is nonnegative, the final surviving candidate has enough suffix surplus to complete the wrapped prefix as well; the problem guarantees that a feasible start is unique.",
-    "Let P[j] be the total net balance before station j, with P[0]=0. A negative local tank means P[i+1] is strictly below the prefix balance at the candidate start; resetting chooses this new minimum boundary. The final candidate s therefore has a minimum prefix balance. Every suffix partial balance is P[j]-P[s]>=0. After wrapping, the balance is total+P[j]-P[s]>=0 when total>=0, proving the full circuit is feasible. Resetting on equality is unnecessary: a zero tank has not failed, and the one-station [0]/[0] case must return index 0 rather than the beyond-end candidate 1."
+    "Keep two balances because they answer different questions. tank tests the current candidate’s segment, while total tests the entire route’s fuel budget. Resetting tank does not change total. A negative total makes every start impossible.",
+    "When total is nonnegative, the final surviving candidate has enough suffix surplus to complete the wrapped prefix as well; the problem guarantees that a feasible start is unique.",
+    "Let P[j] be the total net balance before station j, with P[0]=0. A negative local tank means P[i+1] is strictly below the prefix balance at the candidate start; resetting chooses this new minimum boundary. The final candidate s therefore has a minimum prefix balance. Every suffix partial balance is P[j]-P[s]>=0.",
+    "After wrapping, the balance is total+P[j]-P[s]>=0 when total>=0, proving the full circuit is feasible. Resetting on equality is unnecessary: a zero tank has not failed, and the one-station [0]/[0] case must return index 0 rather than the beyond-end candidate 1."
   ],
   "walkthrough": {
     "input": {
@@ -44,5 +46,6 @@
       "code": "start = i + 1",
       "note": "The first station after the failed segment is the earliest candidate not already ruled out by the same deficit."
     }
-  ]
+  ],
+  "keyDecision": "On a negative tank, restart after the failed station. A negative total means no start can work."
 }

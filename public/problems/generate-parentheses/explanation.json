@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Enumerate 2^(2n) binary strings and validate each balance. Backtracking rejects invalid prefixes immediately. Most arbitrary strings fail before their last character; exploring their remaining suffixes contributes no useful answers.",
-    "Track two budgets: openings used and closings used. Openings cannot exceed n, and closings cannot overtake openings. These restrictions are enough to describe valid prefixes, so the recursion never needs to repair an invalid one. The path list is shared along the current recursion branch, making append/pop an explicit record of choosing and undoing a character. Joining occurs only at a complete answer, which separates working storage from the returned strings.",
-    "Every recursive prefix has 0 <= closed <= opened <= n. Thus a completed prefix is balanced. Every valid string obeys these inequalities at every prefix, so the recursion follows its characters and eventually emits it. Each character-choice path is unique. C\u2099 is the nth Catalan number, the count of valid strings.",
-    "The number of valid outputs is the Catalan number C_n. Pair the first opening parenthesis with its matching close: if i pairs lie inside it, n-1-i pairs lie after it. These independent choices give C_n=sum(C_i*C_(n-1-i) for i=0..n-1), with C_0=1. Prefix pruning follows only paths whose closes never exceed opens, so it reaches precisely those C_n leaves. Each output needs 2n characters, accounting for O(n*C_n) time and output storage."
+    "Build a valid bracket string one character at a time. An opening bracket starts a pair. A closing bracket must close a pair that is already open. Reject an invalid choice immediately instead of generating every possible string and checking it afterward.",
+    "Track two budgets: openings used and closings used. Openings cannot exceed n, and closings cannot overtake openings. These restrictions are enough to describe valid prefixes, so the recursion never needs to repair an invalid one. The path list is shared along the current recursion branch, making append/pop an explicit record of choosing and undoing a character.",
+    "Joining occurs only at a complete answer, which separates working storage from the returned strings.",
+    "Every recursive prefix has 0 <= closed <= opened <= n. Thus a completed prefix is balanced. Every valid string obeys these inequalities at every prefix, so the recursion follows its characters and eventually emits it. Each character-choice path is unique. Cₙ is the nth Catalan number, the count of valid strings.",
+    "The number of valid outputs is the Catalan number C_n. Pair the first opening parenthesis with its matching close: if i pairs lie inside it, n-1-i pairs lie after it. These independent choices give C_n=sum(C_i*C_(n-1-i) for i=0..n-1), with C_0=1. Prefix pruning follows only paths whose closes never exceed opens, so it reaches precisely those C_n leaves.",
+    "Each output needs 2n characters, accounting for O(n*C_n) time and output storage."
   ],
   "walkthrough": {
     "input": {
@@ -36,6 +38,76 @@
     {
       "code": "result.append(''.join(path))",
       "note": "Copy the complete path into a string before later backtracking changes the shared list."
+    }
+  ],
+  "keyDecision": "Add '(' only if opened < n. Add ')' only if closed < opened.",
+  "figures": [
+    {
+      "title": "A closing bracket needs an open pair",
+      "caption": "For n = 3, inspect prefix (( with opened = 2 and closed = 0. Both next choices are legal here.",
+      "afterStep": 2,
+      "panels": [
+        {
+          "title": "Before: two pairs are open",
+          "rows": [
+            {
+              "label": "Current prefix",
+              "values": [
+                "(("
+              ]
+            },
+            {
+              "label": "Counts",
+              "values": [
+                "2",
+                "0"
+              ],
+              "labels": [
+                "opened",
+                "closed"
+              ]
+            }
+          ],
+          "note": "Only two of the three allowed opening brackets have been used."
+        },
+        {
+          "title": "Check: each choice has its own condition",
+          "rows": [
+            {
+              "label": "Try opening",
+              "values": [
+                "2 < 3: allowed",
+                "((("
+              ]
+            },
+            {
+              "label": "Try closing",
+              "values": [
+                "0 < 2: allowed",
+                "(()"
+              ]
+            }
+          ],
+          "note": "An opening needs opened < 3. A closing needs closed < opened."
+        },
+        {
+          "title": "After: explore and undo each choice",
+          "rows": [
+            {
+              "label": "Two completions",
+              "values": [
+                "((()))",
+                "(()())"
+              ],
+              "highlight": [
+                0,
+                1
+              ]
+            }
+          ],
+          "note": "The opening branch eventually gives ((())). The closing branch can give (()()). Return to (( before trying the next branch."
+        }
+      ]
     }
   ]
 }

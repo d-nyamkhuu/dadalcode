@@ -10,14 +10,14 @@
     "1 <= k <= len(arr) <= 10^4",
     "arr is sorted; values and x lie between -10^4 and 10^4."
   ],
-  "intuition": "An optimal answer is a contiguous window of k sorted values: skipping an interior value cannot improve distance. Compare the two competing boundary values of adjacent windows. If x-arr[mid] exceeds arr[mid+k]-x, shifting right improves the window; ties retain the smaller left value.",
+  "intuition": "In a sorted array, the best k values can be taken as one continuous block. Search for that block's start. Neighboring blocks differ only in the value dropped from the left and the value gained on the right. Compare those two boundary values to choose the search direction.",
   "approach": [
     "Search possible starts from 0 through len(arr)-k.",
     "Compare the dropped left value arr[mid] with the gained right value arr[mid+k].",
     "Shift right only when the left distance is strictly worse.",
     "Return the k-value slice at the final start."
   ],
-  "correctness": "Sorted distances form a valley around x, so a best k-element set can be chosen contiguously. Adjacent windows differ in only their two boundary values; the strict comparison chooses the better side and resolves ties toward smaller values. This decision is monotone in the start index, so binary search finds the leftmost optimal window.",
+  "correctness": "Sorted distances form a valley around x, so a best k-element set can be chosen contiguously. Adjacent windows differ in only their two boundary values; the strict comparison chooses the better side and resolves ties toward smaller values. This decision is monotone in the start index, so binary search finds the leftmost best possible window.",
   "bruteForce": "Sort every value by (absolute distance, value), take k, then sort the result. That costs O(n log n).",
   "complexity": {
     "time": "O(log(n-k+1)+k)",

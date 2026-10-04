@@ -10,7 +10,7 @@
     "0 <= len(nums) <= 10^5",
     "-10^9 <= nums[i] <= 10^9"
   ],
-  "intuition": "In a set, membership checks are expected constant time. Start a walk only when value-1 is absent; then every run is counted once. Starting a walk at every value would repeatedly scan the same long run and become quadratic.",
+  "intuition": "Put the values in a set so you can quickly check whether a number exists. Begin counting a consecutive run only at a value whose previous number is absent. This avoids counting the same long run again from every point inside it.",
   "approach": [
     "Put nums in a set to remove duplicates.",
     "For every value without a predecessor, walk through value+1, value+2, and so on.",

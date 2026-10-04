@@ -1,30 +1,30 @@
 {
   "headline": "Keep a window with no repeated character",
-  "statement": "Given a string s, return the length of its longest contiguous substring whose characters are all distinct. A subsequence is not sufficient: chosen characters must be adjacent in the original string.",
+  "statement": "Given a string `s`, return the length of its longest **contiguous substring** whose characters are **all distinct**. A *subsequence* is not sufficient: chosen characters must be adjacent in the original string.",
   "prerequisites": [
     "Dictionary lookups",
     "Indices and slices",
     "Sliding window"
   ],
   "constraints": [
-    "0 <= len(s) <= 50,000",
-    "s contains letters, digits, symbols, and spaces"
+    "`0 <= len(s) <= 50,000`",
+    "`s` contains letters, digits, symbols, and spaces"
   ],
-  "intuition": "When a character repeats inside the current window, every window that keeps both copies is invalid. Jump the left boundary just beyond the earlier copy. The dictionary remembers positions even outside the window, so the left boundary must never move backward.",
+  "intuition": "Keep one continuous part of the string with no repeated letters. Extend it by reading the next character. If that character already occurs inside the current part, move the start just past its earlier copy. Remember the longest valid part you have seen.",
   "approach": [
-    "Scan s from left to right, keeping last-seen positions in last.",
-    "If ch was seen at or after left, move left to last[ch] + 1.",
-    "Record the current position and compare the window length with best."
+    "Scan `s` from left to right, keeping last-seen positions in `last`.",
+    "If `ch` was seen at or after `left`, move `left` to `last[ch] + 1`.",
+    "Record the current position and compare the window length with `best`."
   ],
-  "correctness": "After processing right, s[left:right+1] has no duplicates. Moving left just past a repeated copy is the smallest change that restores this property, so this is the longest valid window ending at right. Taking the maximum over all right endpoints covers the optimum.",
-  "bruteForce": "Start at every position and extend until a duplicate appears. Repeatedly scanning these overlapping windows costs O(n\u00b2) time.",
+  "correctness": "After processing `right`, `s[left:right+1]` has no duplicates. Moving `left` just past a repeated copy is the smallest change that restores this property, so this is the longest valid window ending at `right`. Taking the maximum over all right endpoints covers the best possible result.",
+  "bruteForce": "Start at every position and extend until a duplicate appears. Repeatedly scanning these overlapping windows costs O(n²) time.",
   "complexity": {
     "time": "O(n)",
     "space": "O(min(n, alphabet size))",
-    "explanation": "Each position is scanned once; last holds at most one position per distinct character."
+    "explanation": "Each position is scanned once; `last` holds at most one position per distinct character."
   },
   "pitfalls": [
-    "Do not move left backward for a repeat outside the current window.",
+    "Do not move `left` backward for a repeat outside the current window.",
     "Return a substring length, not a subsequence length.",
     "Count spaces and punctuation as ordinary characters."
   ],

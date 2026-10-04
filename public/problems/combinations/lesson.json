@@ -10,18 +10,18 @@
     "1 <= n <= 20",
     "1 <= k <= n"
   ],
-  "intuition": "Make each combination increasing. After choosing value v, only numbers larger than v are eligible. If r positions remain, a starting value above n-r+1 cannot leave enough choices, so cut those branches before recursing.",
+  "intuition": "Choose k different numbers from 1 through n. Always choose the next number after the previous one, so the same set is not repeated in another order. Stop a branch early when there are too few numbers left to fill the remaining positions.",
   "approach": [
     "Maintain an increasing path and its next allowed start.",
     "When the path has k values, save a copy.",
     "Try values from start through n-needed+1, recurse with value+1, then pop."
   ],
   "correctness": "Increasing choices ensure every path contains k distinct allowed values. Any k-element subset has exactly one increasing ordering, which is visited. The upper bound prunes only starts lacking enough remaining numbers, so it cannot remove a valid completion.",
-  "bruteForce": "Enumerate all 2^n subsets and retain those of size k. This explores many irrelevant sizes.",
+  "bruteForce": "List all 2^n subsets and retain those of size k. This explores many irrelevant sizes.",
   "complexity": {
     "time": "O(k * C(n,k))",
     "space": "O(k) auxiliary, excluding output",
-    "explanation": "There are C(n,k) answers, each containing k values, so copying output alone costs O(k*C(n,k)). At n=20,k=10 there are 184756 answers. The working path and recursion stack use only O(k) auxiliary storage; storing the required output is separate."
+    "explanation": "There are C(n,k) answers, each containing k values, so copying output alone costs O(k*C(n,k)). At n=20,k=10 there are 184756 answers. The working path and recursion stack use only O(k) additional storage; storing the required output is separate."
   },
   "pitfalls": [
     "Recurse with value+1 to prohibit reuse.",

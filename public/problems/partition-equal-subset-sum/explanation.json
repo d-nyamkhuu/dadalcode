@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Every value must go into one of two equal-sum groups. If the total is odd, no integer half exists and the answer is immediately false. Otherwise it is enough to find one subset summing to half; all remaining elements automatically form the other half.",
+    "If the total is odd, two equal sums are impossible. Otherwise, try to reach half the total with some of the numbers. Save which sums are possible as you process each number. The numbers left out will automatically have the other half if the target is reached.",
     "This is a 0/1 selection problem, not a contiguous-window problem. reachable[s] records whether processed elements can make sum s. Sum zero begins reachable because the empty subset is always available. When a value arrives, each subtotal can remain reachable without it or become reachable by extending a previously reachable subtotal-value.",
-    "The one-dimensional table must be updated backward. A forward scan would read entries already created by the current value and effectively allow that value to be selected several times. Descending order reads only the state from before including this value. The resulting table retains all possible subset sums up to the target while discarding irrelevant larger sums. Duplicate values are still separate input elements, so each copy gets its own update pass.",
-    "Strictly positive inputs let us discard sums above target: adding another value can never bring them back down. Negative values would invalidate that truncation; zeros are outside this problem's domain, though a 0/1 subset DP can handle them with care. Once target is reachable, later values can be excluded from the chosen subset, so the reference returns early without losing a valid partition."
+    "The one-dimensional table must be updated backward. A forward scan would read entries already created by the current value and effectively allow that value to be selected several times. Descending order reads only the state from before including this value. The resulting table retains all possible subset sums up to the target while discarding irrelevant larger sums.",
+    "Duplicate values are still separate input elements, so each copy gets its own update pass.",
+    "Strictly positive inputs let us discard sums above target: adding another value can never bring them back down. Negative values would invalidate that truncation; zeros are outside this problem's domain, though a 0/1 subset DP can handle them with care.",
+    "Once target is reachable, later values can be excluded from the chosen subset, so the reference returns early without losing a valid partition."
   ],
   "walkthrough": {
     "input": {
@@ -35,6 +37,69 @@
     {
       "code": "reachable[subtotal] = reachable[subtotal] or reachable[subtotal - value]",
       "note": "The two possibilities correspond to excluding the current value or including it after an already constructible smaller sum."
+    }
+  ],
+  "keyDecision": "Update possible sums from high to low so the current input occurrence is used at most once.",
+  "figures": [
+    {
+      "title": "Why sum updates go backward",
+      "caption": "The example starts by processing value 1 with target 11. Each occurrence may be chosen only once.",
+      "afterStep": 1,
+      "panels": [
+        {
+          "title": "Before: only zero is reachable",
+          "rows": [
+            {
+              "label": "Reachable sums",
+              "values": [
+                "0"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The empty subset makes sum 0. No positive sum is reachable yet."
+        },
+        {
+          "title": "Check: scan from 11 down to 1",
+          "rows": [
+            {
+              "label": "Order near the end",
+              "values": [
+                "3",
+                "2",
+                "1"
+              ],
+              "connector": "→"
+            },
+            {
+              "label": "Updates",
+              "values": [
+                "2 stays false",
+                "1 becomes true"
+              ]
+            }
+          ],
+          "note": "When checking sum 2, sum 1 is still false. Only afterward does sum 1 become true from sum 0."
+        },
+        {
+          "title": "After: one new sum",
+          "rows": [
+            {
+              "label": "Reachable sums",
+              "values": [
+                "0",
+                "1"
+              ],
+              "highlight": [
+                1
+              ]
+            }
+          ],
+          "note": "Reachable sums are {0, 1}. A forward scan would wrongly reuse this same 1 to make 2, 3, and more."
+        }
+      ]
     }
   ]
 }

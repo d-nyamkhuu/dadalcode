@@ -289,7 +289,7 @@
   display: block;
   width: 100%;
   max-height: 430px;
-  background: linear-gradient(180deg, rgba(30, 43, 54, 0.35), transparent);
+  background: #151a1f;
   border-radius: 5px;
 }
 .seq-heap-edge {
@@ -464,4 +464,139 @@
     transition: none !important;
     animation: none !important;
   }
+}
+
+/* Shared semantic colors, with geometry specific to each figure family. */
+.seq-visual {
+  --seq-blue: #83bde6;
+  --seq-amber: #e5b66e;
+}
+.seq-cell {
+  height: 52px;
+  border-radius: 8px;
+  background: #20252b;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 16px;
+}
+.seq-prior-value {
+  color: #e5b66e;
+  font-size: 9px;
+  max-width: 68px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.seq-array-slot {
+  position: relative;
+  padding-bottom: 5px;
+}
+.seq-within-bounds::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -3px;
+  right: -3px;
+  border-bottom: 1px solid #83bde6;
+}
+.seq-bound-start::after {
+  left: 0;
+  border-left: 1px solid #83bde6;
+  height: 6px;
+}
+.seq-bound-end::after {
+  right: 0;
+  border-right: 1px solid #83bde6;
+  height: 6px;
+}
+.seq-string-strip .seq-cell {
+  font-size: 18px;
+}
+.seq-dp-strip .seq-cell {
+  background: #202933;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.seq-dp-strip .seq-cell-index {
+  color: #a4c4da;
+}
+.seq-matrix td {
+  background: #20252b;
+  border-radius: 5px;
+}
+.seq-matrix .seq-crosshair {
+  background: #23303b;
+  border-color: #4b6379;
+}
+.seq-matrix .seq-axis-current {
+  color: #c1f17a;
+  font-weight: 600;
+}
+.seq-dp-matrix td {
+  border-radius: 2px;
+}
+.seq-queue .seq-structure-item {
+  border-radius: 7px;
+  border-bottom: 2px solid #83bde6;
+}
+.seq-stack .seq-structure-item {
+  border-radius: 3px;
+}
+.seq-heap-edge {
+  stroke: #8299aa;
+  stroke-width: 1.6;
+}
+.seq-heap-node circle {
+  fill: #202b35;
+  stroke: #83bde6;
+}
+.seq-heap-priority {
+  font-size: 14px;
+}
+.seq-bit-one {
+  color: #c1f17a;
+  border-color: #6d874d;
+}
+.seq-interval-axis,
+.seq-interval-row {
+  grid-template-columns: 104px minmax(0, 1fr);
+}
+.seq-interval-index {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+.seq-interval-index small {
+  color: #84929f;
+  font-size: 9px;
+  min-width: 14px;
+}
+.seq-interval-index code {
+  font: 11px var(--font-mono, monospace);
+  color: #d8e5ed;
+}
+.seq-interval-bar {
+  background: #263b4b;
+  border-color: #83bde6;
+  height: 9px;
+  top: 10px;
+  border-radius: 8px;
+  min-width: 2px;
+}
+.seq-interval-bar > i {
+  background: #83bde6;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.seq-interval-bar.seq-changed {
+  border-color: #e5b66e;
+  background: #473a24;
+}
+.seq-interval-bar.seq-changed > i {
+  background: #e5b66e;
+}
+.seq-interval-bar.seq-current > i {
+  background: #c1f17a;
 }

@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "A graph may contain cycles and multiple routes to the same node. Blindly copying each neighbor recursively can loop forever or create several copies of one original. A deep clone must preserve shared graph structure while ensuring every returned node is a new object.",
+    "Make one new node for each original node, and remember that mapping. Before exploring a neighbor, create its copy if needed. Connect copies to copies according to the original edges. Recording a copy before exploring its neighbors prevents cycles from creating duplicate copies forever.",
     "Keep a map from each original node object to its unique clone. Create and store a clone as soon as an original is discovered, before examining any of its outgoing connections. The same map doubles as a visited record and a way to retrieve previously copied neighbors.",
-    "Process originals through a queue. For every edge, create an unseen neighbor\u2019s clone if needed, then append that mapped clone to the current clone\u2019s neighbor list. Edges point only between new objects, but cycles and shared neighbors are preserved because all references to one original use the same map entry."
+    "Process originals through a queue. For every edge, create an unseen neighbor’s clone if needed, then append that mapped clone to the current clone’s neighbor list. Edges point only between new objects, but cycles and shared neighbors are preserved because all references to one original use the same map entry."
   ],
   "walkthrough": {
     "input": {
@@ -30,7 +30,7 @@
       "Processing 1 creates clones 2 and 4, links clone 1 to them, and queues both originals.",
       "Processing original 2 reuses clone 1 for its back edge and creates clone 3 for its other neighbor.",
       "Processing original 4 reuses existing clones 1 and 3. It must not create a second clone of shared neighbor 3.",
-      "Finally original 3 links its clone to clones 2 and 4. Return clone 1, preserving the cycle\u2019s adjacency with entirely new node identities."
+      "Finally original 3 links its clone to clones 2 and 4. Return clone 1, preserving the cycle’s adjacency with entirely new node identities."
     ],
     "result": [
       [
@@ -64,5 +64,6 @@
       "code": "copies[current].neighbors.append(copies[neighbor])",
       "note": "Each original edge becomes one connection between corresponding new objects. This preserves adjacency without exposing original nodes in the returned graph."
     }
-  ]
+  ],
+  "keyDecision": "Never connect a copied node to an original node. Reuse the same copy for every visit to one original node."
 }

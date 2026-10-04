@@ -55,9 +55,11 @@ try {
   await page.locator(".step-count").filter({ hasText: "Step 2 of" }).waitFor();
   await page.keyboard.press("Home");
   await page.locator(".step-count").filter({ hasText: "Step 1 of" }).waitFor();
+  await page.locator(".wt-input-editor > summary").click();
   await page.getByLabel("Example input").focus();
   await page.keyboard.press("ArrowRight");
   assert.match(await page.locator(".step-count").innerText(), /Step 1 of/);
+  await page.locator(".wt-input-editor > summary").click();
   await page
     .getByRole("button", { name: "Every Python line", exact: true })
     .click();

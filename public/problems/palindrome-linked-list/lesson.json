@@ -10,7 +10,7 @@
     "1 <= node count <= 100,000",
     "0 <= node.val <= 9"
   ],
-  "intuition": "Reverse the second half so it can be compared against the first half in forward traversal. For odd lengths skip the middle node. Restore the reversed suffix after comparison.",
+  "intuition": "Compare the front half with the back half in reverse order. Find the middle, reverse the second half, and walk the two halves together. For an odd-length list, the middle value needs no comparison. Reverse the changed half again before returning to restore the input.",
   "approach": [
     "Find the middle using slow and fast pointers.",
     "Skip an odd center and reverse the second half.",

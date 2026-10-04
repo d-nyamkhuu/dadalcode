@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Factorizations are unordered: [2,6] and [6,2] represent the same answer. A search that chooses arbitrary factors must spend extra effort deduplicating permutations. Choosing factors in nondecreasing order removes those duplicate branches at their source.",
+    "Build a factorization in increasing order. Try a divisor of the amount still left, pair it with the remaining quotient, and then try splitting that quotient further. Starting later choices at the current divisor avoids repeating the same factors in different orders.",
     "At any remaining product r, a nontrivial factorization has a smallest factor no greater than sqrt(r). Search candidate divisors only up to that boundary. When factor divides remaining, the pair factor and remaining/factor already completes one valid answer after the current path. The quotient may itself split into more factors, so recurse to discover those longer answers.",
-    "The next recursive search starts at the selected factor, not at two. This permits repeated factors while preserving nondecreasing order. Emitting the pair before recursion covers the decomposition that leaves the quotient whole; recursion covers its further decomposition. A prime offers no divisor and produces no answer, while n=1 likewise has no permitted factorization. The original n alone never appears because every emission introduces a divisor and a quotient."
+    "The next recursive search starts at the selected factor, not at two. This permits repeated factors while preserving nondecreasing order. Emitting the pair before recursion covers the decomposition that leaves the quotient whole; recursion covers its further decomposition. A prime offers no divisor and produces no answer, while n=1 likewise has no permitted factorization.",
+    "The original n alone never appears because every emission introduces a divisor and a quotient."
   ],
   "walkthrough": {
     "input": {
@@ -44,5 +45,6 @@
       "code": "search(quotient, factor)",
       "note": "The next factor may equal the current one, allowing repeated factors, but may not be smaller, preventing permutation duplicates."
     }
-  ]
+  ],
+  "keyDecision": "Try divisors only through the square root of the remainder, and allow a chosen factor to appear again."
 }

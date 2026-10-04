@@ -11,7 +11,7 @@
     "Each interval has start <= end, within 0..100,000",
     "newInterval has exactly two endpoints with 0 <= start <= end <= 100,000"
   ],
-  "intuition": "Only one contiguous block can overlap the inserted interval. Copy the strictly earlier block, expand across overlaps, then copy the later block.",
+  "intuition": "The existing intervals are already sorted and do not overlap. Keep the intervals before the new one, combine the intervals that overlap it, then keep the intervals after it. Expand the new interval as you merge, because its growing end may reach another interval.",
   "approach": [
     "Append intervals ending strictly before the new start.",
     "While the next start is at most the merged end, expand the start/end bounds.",
@@ -22,7 +22,7 @@
   "complexity": {
     "time": "O(n)",
     "space": "O(1) excluding result",
-    "explanation": "Time O(n); auxiliary space O(1) excluding result. Output storage is excluded unless stated."
+    "explanation": "Time O(n); additional space O(1) excluding result. Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Touching endpoints overlap because intervals are closed.",

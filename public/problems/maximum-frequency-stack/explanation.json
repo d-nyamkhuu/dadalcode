@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A normal stack answers recency questions, while a frequency map answers popularity questions. This structure needs both: remove a maximum-frequency value, then use recency only among those tied values. Recomputing frequencies and scanning backward on every pop would be unnecessarily expensive.",
-    "Organize push events by the frequency level they reach. When a value\u2019s count becomes f, append it to groups[f]. That group\u2019s stack order records which values most recently reached that level. maximum identifies the highest currently occupied level, so popping its final entry satisfies both the frequency priority and the recency tie-break.",
-    "Lower-level entries remain as history when a high-level occurrence is removed. They are not duplicates to delete: once a value drops back to that frequency, its earlier level event is again relevant. After popping, decrement the value count; if the highest group empties, move maximum down one level. These updates maintain constant-time operations without stale heap priorities. The input guarantees pop is requested only when an occurrence remains in the structure."
+    "Group push events by the frequency a value reaches. Keep a stack for each frequency level. The highest nonempty level contains the most frequent values, and its last entry is the most recent one among ties. Popping that entry restores the earlier frequency history.",
+    "Organize push events by the frequency level they reach. When a value’s count becomes f, append it to groups[f]. That group’s stack order records which values most recently reached that level. maximum identifies the highest currently occupied level, so popping its final entry satisfies both the frequency priority and the recency tie-break.",
+    "Lower-level entries remain as history when a high-level occurrence is removed. They are not duplicates to delete: once a value drops back to that frequency, its earlier level event is again relevant. After popping, decrement the value count; if the highest group empties, move maximum down one level. These updates maintain constant-time operations without stale heap priorities.",
+    "The input guarantees pop is requested only when an occurrence remains in the structure."
   ],
   "walkthrough": {
     "input": {
@@ -78,5 +79,6 @@
       "code": "self.maximum -= 1",
       "note": "The maximum drops only when its group becomes empty; lower-frequency histories already contain the next valid choices."
     }
-  ]
+  ],
+  "keyDecision": "Pop from the highest frequency group, then lower max_frequency only when that group becomes empty."
 }

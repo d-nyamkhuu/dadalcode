@@ -11,7 +11,7 @@
     "Values are distinct signed integers.",
     "p and q are different nodes already in the tree."
   ],
-  "intuition": "In a BST, every smaller value is in the left subtree and every larger value is in the right. If both targets are on the same side, their lowest ancestor is there too. Their first split, including equality with the current root, is the answer.",
+  "intuition": "Use the tree's ordering to follow the two target nodes together. If both values are smaller than the current node, go left. If both are larger, go right. Their first split, or a node equal to a target, identifies the lowest node containing both targets.",
   "approach": [
     "Start at the root.",
     "If both targets are smaller, descend left.",

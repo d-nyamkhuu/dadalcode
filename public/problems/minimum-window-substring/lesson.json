@@ -11,14 +11,14 @@
     "1 <= len(s), len(t) <= 100,000",
     "s and t contain uppercase and lowercase English letters"
   ],
-  "intuition": "A window is valid only after it contains all copies required by t. Expand right until it is valid, then shrink left while recording shorter answers. A single missing counter counts unmatched copies, not merely distinct character kinds.",
+  "intuition": "Keep a continuous part of s and count how many required characters are still missing. Extend the right end until every required copy is present. Then move the left end forward while the part remains valid. Save the shortest valid part found during this process.",
   "approach": [
     "Build needed counts from t and initialize missing to len(t).",
     "Consume the next s character; decrease missing only when that copy was still needed.",
     "While missing is zero, update the answer and release the leftmost character; stop shrinking when a required copy goes missing."
   ],
   "correctness": "The deficit map tracks required count minus window count. missing is exactly the total positive deficit. During each shrink loop every window recorded is valid, and the shortest valid window ending at right is considered. All right endpoints are visited, so the global shortest valid window is found.",
-  "bruteForce": "Enumerate O(n²) substrings and recount their characters; this repeatedly inspects the same characters.",
+  "bruteForce": "List O(n²) substrings and recount their characters; this repeatedly inspects the same characters.",
   "complexity": {
     "time": "O(len(s) + len(t))",
     "space": "O(alphabet size)",
@@ -33,6 +33,10 @@
     {
       "label": "LeetCode problem",
       "url": "https://leetcode.com/problems/minimum-window-substring/"
+    },
+    {
+      "label": "LeetCode Wiki · window counts",
+      "url": "https://leetcode.doocs.org/en/lc/76/"
     }
   ],
   "visualization": {

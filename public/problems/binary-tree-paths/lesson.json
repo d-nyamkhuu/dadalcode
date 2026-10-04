@@ -11,7 +11,7 @@
     "1 to 100 nodes.",
     "Node values range from -100 to 100."
   ],
-  "intuition": "All descendants share the path to their ancestor. Maintain one list of value strings, append on entry, and pop on return. Copy it into a result string only when reaching a leaf.",
+  "intuition": "Carry the values along the current route from the root. At a leaf, join those values into a path string and save it. Remove the current value when returning to the parent so that another branch starts with the right ancestor path.",
   "approach": [
     "Append the current value to a shared path.",
     "At a leaf, join the path with -> and record it.",

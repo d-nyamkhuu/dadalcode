@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Each input position independently chooses plus or minus, so straightforward enumeration explores 2^n assignments. Many partial assignments have the same running total, though. For future choices they are equivalent except for how many ways reached that total, which suggests storing a count per reachable sum.",
+    "Choose a plus or minus sign for each number. Different sign choices may give the same total, so save a count for each possible total. For the next number, send each old count to both the plus total and the minus total in a new map.",
     "Start with one way to make zero before reading any numbers. For every existing total, adding the next value and subtracting it produce two extensions. Accumulate the old count into both new totals using a fresh map. Equal totals merge by addition, but their distinct underlying sign choices are still counted.",
-    "Using a new map is essential: updating the old map while iterating could consume the same number multiple times. Zero deserves special attention because plus zero and minus zero both preserve the total yet are different assignments. Both updates therefore land on the same key and double its count. Negative targets need no special conversion; the map naturally carries negative as well as positive sums. At the end, return the target count or zero if it was never reached.",
+    "Using a new map is essential: updating the old map while iterating could consume the same number multiple times. Zero deserves special attention because plus zero and minus zero both preserve the total yet are different assignments. Both updates therefore land on the same key and double its count.",
+    "Negative targets need no special conversion; the map naturally carries negative as well as positive sums. At the end, return the target count or zero if it was never reached.",
     "Every reachable signed sum lies between -S and S, where S=sum(nums). Flipping a sign changes the sum by twice that value, so every signed sum has the same parity as S. The reference rejects targets outside the range or with incompatible parity before constructing the count maps; zero still follows both sign updates and doubles its assignment count."
   ],
   "walkthrough": {
@@ -38,6 +39,68 @@
     {
       "code": "next_ways[minus] = next_ways.get(minus, 0) + count",
       "note": "Accumulate all minus extensions, including when zero makes plus and minus reach the same sum."
+    }
+  ],
+  "keyDecision": "Use a fresh map for each number. For zero, plus and minus are two distinct choices that both add to the same count.",
+  "figures": [
+    {
+      "title": "Add counts for two distinct last choices",
+      "caption": "After four ones, there are four assignments totaling 2 and one assignment totaling 4. One input 1 remains.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: counts for four inputs",
+          "rows": [
+            {
+              "label": "Saved ways",
+              "values": [
+                "4",
+                "1"
+              ],
+              "labels": [
+                "sum 2",
+                "sum 4"
+              ]
+            }
+          ],
+          "note": "We count assignments, not just distinct totals."
+        },
+        {
+          "title": "Check: reach target 3 in two ways",
+          "rows": [
+            {
+              "label": "Final plus choice",
+              "values": [
+                "2 + 1 = 3",
+                "4 assignments"
+              ]
+            },
+            {
+              "label": "Final minus choice",
+              "values": [
+                "4 - 1 = 3",
+                "1 assignment"
+              ]
+            }
+          ],
+          "note": "Each assignment at 2 may add the final 1. The assignment at 4 may subtract it."
+        },
+        {
+          "title": "After: combine the counts",
+          "rows": [
+            {
+              "label": "Ways to target 3",
+              "values": [
+                "4 + 1 = 5"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The final signs differ, so these two groups do not overlap."
+        }
+      ]
     }
   ]
 }

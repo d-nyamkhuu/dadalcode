@@ -10,13 +10,13 @@
     "1 <= len(s) <= 5*10^5",
     "Characters are English letters or digits."
   ],
-  "intuition": "Count first, then emit whole groups rather than sorting individual occurrences by their original location. Sorting distinct characters by negative frequency makes the dominant group appear first and lets each character contribute one contiguous block.",
+  "intuition": "Count each character, then order the distinct characters by decreasing count. Write each character as one block containing all its copies. This gives the requested frequency order without losing any copies. Characters with equal counts may appear in either order.",
   "approach": [
     "Count every character with a frequency map.",
     "Sort distinct keys by decreasing count, using character order only as a deterministic tie-breaker.",
     "Append character repeated count times and join the groups."
   ],
-  "correctness": "The frequency map records each input multiplicity exactly. Every key contributes one block of that size, so the returned multiset matches the input and each character is contiguous. Sorting by descending frequency enforces the requested block order; tie order is unrestricted.",
+  "correctness": "The frequency map records each input occurrence count exactly. Every key contributes one block of that size, so the returned multiset matches the input and each character is contiguous. Sorting by descending frequency enforces the requested block order; tie order is unrestricted.",
   "bruteForce": "Sort all n occurrences by their frequency after counting, costing O(n log n). Sorting only u distinct keys is cheaper when characters repeat.",
   "complexity": {
     "time": "O(n + u log u)",

@@ -10,7 +10,7 @@
     "Each tree has 0 to 100 nodes",
     "-10,000 <= node.val <= 10,000"
   ],
-  "intuition": "Matching values alone cannot prove that trees match: a left child and a right child occupy different positions. Compare paired nodes at the same position. If a position exists in only one tree, or its values differ, the entire answer is false.",
+  "intuition": "Compare the trees at matching positions. If both positions are empty, they match. If only one is empty, the shapes differ. Otherwise compare the values and continue with both left children and both right children. Values alone are not enough to prove the trees are equal.",
   "approach": [
     "Start a stack with the pair of roots.",
     "Skip a pair of absent nodes; reject when exactly one is absent.",
@@ -21,7 +21,7 @@
   "complexity": {
     "time": "O(n + m)",
     "space": "O(h)",
-    "explanation": "n and m are the node counts of the two trees; h is their maximum height. At most every corresponding node/null position is inspected before a mismatch. The depth-first stack stores deferred sibling pairs along a path, using O(h) auxiliary space."
+    "explanation": "n and m are the node counts of the two trees; h is their maximum height. At most every corresponding node/null position is inspected before a mismatch. The depth-first stack stores deferred sibling pairs along a path, using O(h) additional space."
   },
   "pitfalls": [
     "Do not compare only traversal values: preserve missing-child positions.",

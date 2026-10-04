@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Taking the largest available coin feels natural, but arbitrary denominations break that rule. With coins 1,3,4 and amount 6, greedy takes 4+1+1, while 3+3 uses fewer coins. Trying all ordered coin sequences finds the answer but revisits the same remaining amounts repeatedly.",
+    "For each amount, ask which coin could be the last one used. Removing that coin leaves a smaller amount whose best answer is already saved. Add one coin to that answer and choose the smallest count. This avoids repeatedly solving the same smaller amounts.",
     "Every nonempty composition has a final coin. Removing it leaves a smaller amount whose minimum coin count can be reused. If that smaller amount is reachable, adding the chosen coin gives one candidate cost for the current amount. Comparing all final coins avoids committing to a locally attractive denomination.",
     "Process amounts in ascending order because positive coin values always refer backward to already computed entries. An unreachable sentinel distinguishes impossible amounts from valid costs. The table stores only the cheapest count, since a more expensive composition of the same amount cannot help any later amount."
   ],
@@ -35,6 +35,95 @@
     {
       "code": "dp[value] = min(dp[value], candidate)",
       "note": "Multiple final coins can reach the same amount. Retaining only the cheapest result prevents a greedy denomination choice from determining the answer."
+    }
+  ],
+  "keyDecision": "Use only coins no larger than the current amount. An unreachable smaller amount cannot produce a valid candidate.",
+  "figures": [
+    {
+      "title": "Try every possible last coin",
+      "caption": "For coins [1, 3, 4] and amount 6, smaller amounts already have saved minimum counts.",
+      "afterStep": 5,
+      "panels": [
+        {
+          "title": "Before: reuse smaller answers",
+          "rows": [
+            {
+              "label": "DP counts",
+              "values": [
+                "0",
+                "1",
+                "2",
+                "1",
+                "1",
+                "2"
+              ],
+              "labels": [
+                "amount 0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          ],
+          "note": "The first six entries are ready before solving amount 6."
+        },
+        {
+          "title": "Check: compare all last coins",
+          "rows": [
+            {
+              "label": "Last coin 1",
+              "values": [
+                "dp[5] + 1 = 3"
+              ]
+            },
+            {
+              "label": "Last coin 3",
+              "values": [
+                "dp[3] + 1 = 2"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Last coin 4",
+              "values": [
+                "dp[2] + 1 = 3"
+              ]
+            }
+          ],
+          "note": "A final coin c adds one to the saved answer for amount 6 - c."
+        },
+        {
+          "title": "After: two coins are best",
+          "rows": [
+            {
+              "label": "Chosen coins",
+              "values": [
+                "3",
+                "3"
+              ],
+              "highlight": [
+                0,
+                1
+              ],
+              "connector": "＋"
+            },
+            {
+              "label": "Minimum count",
+              "values": [
+                "2"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Use 3 + 3. Taking the largest coin 4 first would need two more 1s, giving three coins."
+        }
+      ]
     }
   ]
 }

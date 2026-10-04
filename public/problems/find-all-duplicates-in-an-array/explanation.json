@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Count values in a dictionary, taking O(n) space. The constrained value range lets the input itself store visited flags. The bounded positive value range gives every value an available marker position, eliminating the separate counting table.",
-    "Value v is assigned marker slot v-1. Its first occurrence negates the marker, while its second observes that negative sign and emits v. An unread input position might already have been negated because another value owned it as a marker; reading abs therefore recovers the original value. The promise that no value occurs more than twice guarantees a duplicate is emitted exactly once. Unlike the no-mutation duplicate-number problem, this reference deliberately uses the input as working storage.",
+    "Values lie between 1 and n, so value v can use position v - 1 as a marker. Make that position negative the first time v appears. If it is already negative, v has appeared before. Read absolute values because markers may change the signs of values still to inspect.",
+    "Value v is assigned marker slot v-1. Its first occurrence negates the marker, while its second observes that negative sign and emits v. An unread input position might already have been negated because another value owned it as a marker; reading abs therefore recovers the original value.",
+    "The promise that no value occurs more than twice guarantees a duplicate is emitted exactly once. Unlike the no-mutation duplicate-number problem, this reference deliberately uses the input as working storage.",
     "Initially every marker is positive. Its first corresponding value negates it, and its second sees that negative marker and records the value. Because values occur at most twice, every duplicate is emitted once and single-occurrence values never are. Absolute value preserves the original value mapping. Each position is processed once; signs in the original array store flags."
   ],
   "walkthrough": {
@@ -42,5 +43,6 @@
       "code": "if nums[index] < 0:",
       "note": "A negative owned slot proves this value was already encountered; its second occurrence belongs in the answer."
     }
-  ]
+  ],
+  "keyDecision": "A negative marker means the value was already seen. This relies on each value appearing at most twice."
 }

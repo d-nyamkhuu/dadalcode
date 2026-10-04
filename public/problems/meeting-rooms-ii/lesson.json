@@ -11,7 +11,7 @@
     "1 <= number of meetings <= 10000",
     "0 <= start < end <= 1000000"
   ],
-  "intuition": "At a meeting’s start, only meetings that have not ended still occupy rooms. A min-heap lets us remove every finished meeting cheaply. The largest active heap size is the busiest instant and therefore the required capacity.",
+  "intuition": "Process meetings by their start times. Keep the end times of meetings still in progress in a min-heap. Before adding a meeting, remove every meeting that has ended. The largest number of simultaneous meetings is the number of rooms required.",
   "approach": [
     "Sort intervals by start time.",
     "Before inserting a meeting, pop all end times at or before its start.",

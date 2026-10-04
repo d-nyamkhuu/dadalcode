@@ -12,7 +12,7 @@
     "At most 20,000 push and pop calls",
     "pop is called only on a nonempty stack"
   ],
-  "intuition": "Organize push events by the frequency level they reach. The top of the highest-frequency group is also the most recent event among tied values.",
+  "intuition": "Group push events by the frequency a value reaches. Keep a stack for each frequency level. The highest nonempty level contains the most frequent values, and its last entry is the most recent one among ties. Popping that entry restores the earlier frequency history.",
   "approach": [
     "Count the frequency of each pushed value.",
     "Append it to the stack for its new frequency and update the maximum frequency.",
@@ -24,7 +24,7 @@
   "complexity": {
     "time": "O(1) amortized per operation",
     "space": "O(number of active pushes)",
-    "explanation": "Time O(1) amortized per operation; auxiliary space O(number of active pushes). Output storage is excluded unless stated."
+    "explanation": "Time O(1) amortized per operation; additional space O(number of active pushes). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "A simple heap needs stale-entry management; frequency alone does not encode recency.",

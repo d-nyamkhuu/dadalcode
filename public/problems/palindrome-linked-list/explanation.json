@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Copying all node values to an array makes reverse comparison simple, but it uses memory proportional to list length. A linked list can instead temporarily reverse half its own links. That gives access to the last values in the order needed to compare them against the first values.",
+    "Compare the front half with the back half in reverse order. Find the middle, reverse the second half, and walk the two halves together. For an odd-length list, the middle value needs no comparison. Reverse the changed half again before returning to restore the input.",
     "Slow and fast pointers locate the midpoint: slow moves one link while fast moves two. If fast is still present at the end, the length is odd and slow points at the unpaired middle value. Skip that value. Reverse the remaining suffix, then walk from the original head and the reversed suffix together, comparing mirrored values.",
-    "The suffix has only half the nodes, so comparison stops when its pointer ends. A mismatch disproves the palindrome immediately, but the function postpones returning so it can reverse the suffix back. Restoring the chain makes this technique safe for callers that still need the original list. Within reversal, save the next link before overwriting it or the remaining suffix would be lost."
+    "The suffix has only half the nodes, so comparison stops when its pointer ends. A mismatch disproves the palindrome immediately, but the function postpones returning so it can reverse the suffix back. Restoring the chain makes this technique safe for callers that still need the original list.",
+    "Within reversal, save the next link before overwriting it or the remaining suffix would be lost."
   ],
   "walkthrough": {
     "input": {
@@ -36,5 +37,6 @@
       "code": "reverse(second)",
       "note": "Restore original links before returning, even when comparison stopped on a mismatch."
     }
-  ]
+  ],
+  "keyDecision": "Compare every mirrored pair, then restore the second half even if a mismatch was found."
 }

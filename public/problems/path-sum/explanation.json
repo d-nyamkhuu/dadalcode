@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A root-to-leaf path is stricter than any downward path or any prefix whose sum reaches the target. Listing every complete path and summing it afterward repeats additions along shared prefixes. Instead, carry the accumulated total while traversing the tree.",
+    "Carry the running sum as you move from the root toward a leaf. Add each child's value when visiting it. A matching sum counts only at a leaf, because the requested path must end there. Negative values mean a large partial sum is not a reason to stop early.",
     "Each stack item contains a node and the sum from the root through that node. Pushing a child adds exactly its value to the parent’s total. Siblings receive independent totals, so exploring one branch cannot contaminate another branch’s sum.",
     "Only a node without either child completes a valid path. Compare the total there and stop early on a match. Negative values mean exceeding the target at an internal node is not a reason to prune; a later negative child could reduce the sum. An explicit stack also supports deep trees without Python recursion limits."
   ],
@@ -46,5 +46,6 @@
       "code": "stack.append((node.left, total + node.left.val))",
       "note": "The child inherits the parent total plus its own value, avoiding repeated summation or shared mutable path totals."
     }
-  ]
+  ],
+  "keyDecision": "Accept only when the node is a leaf and the full running sum equals targetSum."
 }

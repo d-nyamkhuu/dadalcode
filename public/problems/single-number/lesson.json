@@ -11,14 +11,14 @@
     "Values range from -30000 to 30000.",
     "Exactly one value occurs once; all others occur twice."
   ],
-  "intuition": "XOR has a useful cancellation rule: x XOR x is zero, and zero XOR x is x. Because order does not matter, XORing every value cancels all pairs and leaves only the unpaired value.",
+  "intuition": "The XOR operation cancels two equal numbers: x XOR x is zero. Apply XOR to every input value. All the pairs cancel, leaving only the number that appears once. The order does not matter, so no sorting or count table is needed.",
   "approach": [
     "Start result at zero.",
     "XOR each value into result.",
     "Return the remaining unpaired value."
   ],
   "correctness": "After any prefix, result is its XOR. For the full array, associativity and commutativity allow identical values to be grouped; each pair becomes zero. The sole unpaired value remains, including when it is negative.",
-  "bruteForce": "Count occurrences with a dictionary in O(n) space, then return the count-one key. XOR uses the promised multiplicities to remove that storage.",
+  "bruteForce": "Count occurrences with a dictionary in O(n) space, then return the count-one key. XOR uses the promised occurrence counts to remove that storage.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

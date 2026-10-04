@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A list of node values cannot uniquely describe a tree. For example, a root with a left child and a root with a right child can have the same preorder values. Serialization must record missing child positions as well as real values so the decoder can reconstruct the exact structure.",
+    "A list of values alone cannot describe a tree's shape. Record empty child positions as well as node values while visiting root, left, then right. Read those records in the same order to rebuild each child position. The empty markers make reconstruction unambiguous.",
     "Preorder visits a node before its left and right subtrees. Emit a value for a real node and # for an absent child. On a LIFO stack, push the right child before the left to preserve that order. Iteration avoids recursion limits on long, one-sided trees.",
     "Decoding mirrors the same traversal through pending child slots. Each token fills one slot with either a new node or None. A real node then introduces its two child slots, again pushing right before left. The serialized string alone drives reconstruction; the decoder must not retain or reuse the original tree."
   ],
@@ -20,8 +20,8 @@
       "The fixture root is 1 with children 2 and 3; node 3 has children 4 and 5, while node 2 is a leaf.",
       "Serialize 1, then process its left subtree: emit 2 and its two missing-child markers #,#.",
       "Process the right subtree: emit 3, then 4,#,#, then 5,#,#. The string is 1,2,#,#,3,4,#,#,5,#,#.",
-      "The decoder creates root 1, fills its left slot with node 2, and fills node 2\u2019s two slots with None.",
-      "It then fills root 1\u2019s right slot with 3 and reconstructs children 4 and 5. The restored level-order values match the original fixture exactly."
+      "The decoder creates root 1, fills its left slot with node 2, and fills node 2’s two slots with None.",
+      "It then fills root 1’s right slot with 3 and reconstructs children 4 and 5. The restored level-order values match the original fixture exactly."
     ],
     "result": [
       1,
@@ -46,5 +46,6 @@
       "code": "parent, side = slots.pop()",
       "note": "The next token belongs to this precise pending child position. Filling slots in preorder reconstructs both node values and absent links."
     }
-  ]
+  ],
+  "keyDecision": "Write a marker for every absent child, and consume each value or marker in the same traversal order."
 }

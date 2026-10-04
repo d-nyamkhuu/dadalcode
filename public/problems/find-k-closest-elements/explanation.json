@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Sorting all values by distance would identify the answer, but costs extra work and requires sorting the selected values again. The input is already sorted, and an optimal set of k closest values can be chosen as one contiguous window: skipping an interior value cannot improve closeness.",
+    "In a sorted array, the best k values can be taken as one continuous block. Search for that block's start. Neighboring blocks differ only in the value dropped from the left and the value gained on the right. Compare those two boundary values to choose the search direction.",
     "Adjacent k-value windows differ in only two entries: the left value being dropped and the right value being gained. Compare x-arr[mid] with arr[mid+k]-x. If the left side is strictly worse, move the candidate start right; otherwise keep the left window, including distance ties.",
     "This boundary preference changes monotonically across possible starts, allowing binary search over 0 through n-k. The expressions are directed distances, not absolute distances, so they also handle x lying outside a candidate window. The final slice is already ascending and includes exactly k values."
   ],
@@ -41,7 +41,8 @@
     },
     {
       "code": "return arr[left:left + k]",
-      "note": "The binary search identifies a window rather than individual ranks. Its slice has the required size and inherits the input\u2019s ascending order."
+      "note": "The binary search identifies a window rather than individual ranks. Its slice has the required size and inherits the input’s ascending order."
     }
-  ]
+  ],
+  "keyDecision": "Shift right only when x - arr[mid] > arr[mid + k] - x. On a tie, keep the smaller values."
 }

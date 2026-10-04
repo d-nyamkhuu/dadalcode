@@ -12,7 +12,7 @@
     "sum(nums) <= 1000",
     "-1000 <= target <= 1000"
   ],
-  "intuition": "Many different sign choices reach the same running sum. Store a count per sum instead of storing each expression. For a zero, plus and minus land at the same sum but must both be counted.",
+  "intuition": "Choose a plus or minus sign for each number. Different sign choices may give the same total, so save a count for each possible total. For the next number, send each old count to both the plus total and the minus total in a new map.",
   "approach": [
     "Reject abs(target)>sum(nums) or incompatible parity before building states.",
     "Begin with one way to make zero using no numbers.",
@@ -20,9 +20,9 @@
     "Read the final count for target, defaulting to zero."
   ],
   "correctness": "Each assignment of the first i numbers extends uniquely with a plus or minus choice for number i+1. The two updates accumulate all such extensions, including different choices producing the same sum. Induction gives exact counts after the final number.",
-  "bruteForce": "Enumerate all 2^n sign assignments and compute each sum; this does not merge identical intermediate sums.",
+  "bruteForce": "List all 2^n sign assignments and compute each sum; this does not merge identical intermediate sums.",
   "complexity": {
-    "time": "O(n \u00d7 (S + 1))",
+    "time": "O(n × (S + 1))",
     "space": "O(S + 1)",
     "explanation": "S is sum(nums). At most 2S+1 signed sums occur, including one sum for an all-zero input; only two maps are retained."
   },

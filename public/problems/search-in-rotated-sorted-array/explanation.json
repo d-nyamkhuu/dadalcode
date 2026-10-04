@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Scan all positions in O(n) time. Binary search exploits the one-drop structure for O(log n). Ordinary binary search cannot compare target with mid alone because a rotation disrupts global ordering, even though most local ordering survives.",
-    "At most one rotation drop appears inside the candidate interval. If nums[left] is no larger than nums[mid], the left half has no drop and is sorted. A target between those endpoint values belongs there; all other targets must be sought in the right half. When the left half is not sorted, the right half is. Distinct values remove ambiguous equal-boundary cases and guarantee a substantial reduction on every iteration.",
+    "The array was sorted before it was rotated. Around any middle position, at least one side is still sorted. Identify that side and check whether its value range includes the target. This tells us which half to keep without scanning every number.",
+    "At most one rotation drop appears inside the candidate interval. If nums[left] is no larger than nums[mid], the left half has no drop and is sorted. A target between those endpoint values belongs there; all other targets must be sought in the right half. When the left half is not sorted, the right half is.",
+    "Distinct values remove ambiguous equal-boundary cases and guarantee a substantial reduction on every iteration.",
     "The target, if present, remains inside the candidate interval. A sorted half either contains the target in its numeric range or cannot contain it, so discarding the appropriate half preserves the invariant. The interval shrinks each iteration; exhaustion proves absence. Each iteration discards at least half the candidate positions."
   ],
   "walkthrough": {
@@ -38,6 +39,94 @@
     {
       "code": "return -1",
       "note": "Exhausting the candidate range proves the target is absent rather than merely hidden near the pivot."
+    }
+  ],
+  "keyDecision": "Check which half is sorted before deciding whether the target belongs in it.",
+  "figures": [
+    {
+      "title": "Check a sorted half before discarding it",
+      "caption": "For target 0, begin with left = 0, mid = 3, right = 6.",
+      "afterStep": 1,
+      "panels": [
+        {
+          "title": "Before: rotation breaks global order",
+          "rows": [
+            {
+              "label": "Array",
+              "values": [
+                "4",
+                "5",
+                "6",
+                "7",
+                "0",
+                "1",
+                "2"
+              ],
+              "highlight": [
+                0,
+                3,
+                6
+              ],
+              "labels": [
+                "left",
+                "1",
+                "2",
+                "mid",
+                "4",
+                "5",
+                "right"
+              ]
+            }
+          ],
+          "note": "The whole array is not sorted, but indices 0 through 3 are sorted."
+        },
+        {
+          "title": "Check: can target 0 be in the left half?",
+          "rows": [
+            {
+              "label": "Sorted half",
+              "values": [
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "label": "Value-range test",
+              "values": [
+                "4 <= 0 < 7: false"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The left range contains only values from 4 through 7. Target 0 cannot be there."
+        },
+        {
+          "title": "After: retain the right half",
+          "rows": [
+            {
+              "label": "Remaining indices",
+              "values": [
+                "0",
+                "1",
+                "2"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "4: left",
+                "5",
+                "6: right"
+              ]
+            }
+          ],
+          "note": "Set left = mid + 1 = 4. The target is still among the remaining candidates."
+        }
+      ]
     }
   ]
 }

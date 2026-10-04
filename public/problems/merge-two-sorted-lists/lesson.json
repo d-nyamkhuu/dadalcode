@@ -11,7 +11,7 @@
     "Node values range from -100 to 100",
     "Both input lists are sorted in nondecreasing order"
   ],
-  "intuition": "The first remaining node of each list is its smallest remaining value. Repeatedly attach the smaller of those two choices.",
+  "intuition": "Each input list is sorted, so its first remaining node has its smallest remaining value. Compare those two nodes and attach the smaller one to the result. Repeat until one list ends, then attach the rest of the other list.",
   "approach": [
     "Create a dummy head and a tail pointer.",
     "Compare remaining heads, attach the smaller node, and advance that list.",
@@ -22,7 +22,7 @@
   "complexity": {
     "time": "O(m+n)",
     "space": "O(1)",
-    "explanation": "Time O(m+n); auxiliary space O(1). Output storage is excluded unless stated."
+    "explanation": "Time O(m+n); additional space O(1). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Return dummy.next rather than dummy.",

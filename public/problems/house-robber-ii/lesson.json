@@ -10,15 +10,15 @@
     "1 <= len(nums) <= 100.",
     "0 <= nums[i] <= 1000."
   ],
-  "intuition": "Any legal choice omits at least one of the two endpoints. Solve the line excluding the last house and the line excluding the first house, then take the larger optimum. A single house is a separate case because it can be taken.",
+  "intuition": "In a circle, the first and last houses are neighbors. Any valid selection must leave out at least one of them. Solve two ordinary streets: one without the last house and one without the first. The larger result covers every valid circular selection.",
   "approach": [
     "Return the only amount for a singleton.",
     "Run the linear robber recurrence on indices 0 through n-2.",
     "Run it again on indices 1 through n-1.",
     "Return the larger result."
   ],
-  "correctness": "Every valid circular selection belongs to at least one endpoint-excluded line because it cannot contain both endpoints. Conversely, a nonadjacent selection in either line is circularly legal. Therefore the maximum of their optima is precisely the circular optimum.",
-  "bruteForce": "Enumerate all subsets and reject adjacent selected houses, including the endpoint pair. This takes exponential time.",
+  "correctness": "Every valid circular selection belongs to at least one endpoint-excluded line because it cannot contain both endpoints. Conversely, a nonadjacent selection in either line is circularly legal. Therefore the maximum of their best results is precisely the circular best possible result.",
+  "bruteForce": "List all subsets and reject adjacent selected houses, including the endpoint pair. This takes exponential time.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
@@ -27,7 +27,7 @@
   "pitfalls": [
     "Treat one house separately.",
     "The first and last houses cannot both be selected.",
-    "Do not simply subtract the smaller endpoint from a linear optimum."
+    "Do not simply subtract the smaller endpoint from a linear best possible result."
   ],
   "sources": [
     {

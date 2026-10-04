@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A cycle is a repeated node reference, not a repeated numeric value. Recording every visited node in a set detects this directly, but uses memory proportional to the list size. The two-pointer method preserves the same identity-based reasoning while using only a constant number of references.",
+    "Move one pointer one link at a time and another pointer two links at a time. If the list ends, there is no cycle. If it loops, the faster pointer eventually catches the slower one. Compare the actual nodes, because equal stored values do not mean the pointers have met.",
     "Move slow one link and fast two links each iteration. If the list ends, fast reaches an absent node or absent next link and the search terminates. If a cycle exists, both pointers eventually enter it and keep moving around the same finite ring.",
     "Inside a cycle of length c, fast gains one position on slow per iteration. Their relative offset modulo c must eventually reach zero, so they meet at the same object. Compare after moving rather than at initialization, since both pointers initially reference head even in a perfectly ordinary acyclic list."
   ],
@@ -17,8 +17,8 @@
     "steps": [
       "In [3,2,0,-4] with pos=1, the tail node -4 links back to the node whose value is 2.",
       "Both pointers start at node 3. After the first move, slow is at 2 and fast is at 0.",
-      "After the second move, slow is at 0. Fast travels 0\u2192-4\u21922, so the pointers remain distinct.",
-      "After the third move, slow reaches -4. Fast travels 2\u21920\u2192-4 and reaches that same node object.",
+      "After the second move, slow is at 0. Fast travels 0→-4→2, so the pointers remain distinct.",
+      "After the third move, slow reaches -4. Fast travels 2→0→-4 and reaches that same node object.",
       "The identity comparison succeeds, proving a revisit in the structure. Return true; matching numeric values alone would not have been enough."
     ],
     "result": true
@@ -36,5 +36,6 @@
       "code": "if slow is fast:",
       "note": "Object identity tests whether the pointers occupy the same actual node. Equal values in separate acyclic nodes must not trigger success."
     }
-  ]
+  ],
+  "keyDecision": "After moving, check whether slow and fast refer to the same node."
 }

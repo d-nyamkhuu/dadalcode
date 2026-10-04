@@ -12,18 +12,18 @@
     "-10 <= nums[i] <= 10",
     "Every input integer is distinct"
   ],
-  "intuition": "A subset can be represented uniquely by an increasing sequence of input indices. At each call, the current path already represents one subset; choosing any later index extends it into a larger one.",
+  "intuition": "Start with the empty subset. Add one number, save the new subset, and try adding later numbers. Then undo the choice and try the next alternative. Moving only to later positions gives every subset one path through the search, regardless of the order in which we discover it.",
   "approach": [
     "Start with an empty path at index zero.",
     "Record a copy of the path at the beginning of every call.",
     "For every index at or after start, append its value, recurse from i+1, then remove it."
   ],
   "correctness": "The empty path represents the empty subset. Every nonempty subset has one unique increasing index sequence; the recursion follows that sequence and records it exactly once. Increasing start prevents an index from being selected twice or the same subset from being generated in another order.",
-  "bruteForce": "Iterate all bit masks from 0 to 2^n-1 and include values whose bits are set. This is also optimal in output order of growth.",
+  "bruteForce": "Iterate all bit masks from 0 to 2^n-1 and include values whose bits are set. This is also best possible in output order of growth.",
   "complexity": {
-    "time": "O(n \u00d7 2^n)",
-    "space": "O(n) auxiliary plus O(n \u00d7 2^n) output",
-    "explanation": "There are 2^n subsets and copying their contents totals n\u00d72^(n-1) entries."
+    "time": "O(n × 2^n)",
+    "space": "O(n) auxiliary plus O(n × 2^n) output",
+    "explanation": "There are 2^n subsets and copying their contents totals n×2^(n-1) entries."
   },
   "pitfalls": [
     "Record the empty subset.",

@@ -13,6 +13,22 @@ export type TestCase = {
   expected: unknown;
   evaluateOnly?: boolean;
 };
+export type FigureKind =
+  | "array"
+  | "string"
+  | "matrix"
+  | "dp"
+  | "map"
+  | "set"
+  | "stack"
+  | "queue"
+  | "heap"
+  | "intervals"
+  | "bits"
+  | "tree"
+  | "linked-list"
+  | "graph"
+  | "trie";
 export type Visualization = {
   kind: string;
   focus: string[];
@@ -20,6 +36,8 @@ export type Visualization = {
   watch: string[];
   labels: Record<string, string>;
   pointerTargets?: Record<string, string[]>;
+  /** Per-variable presentation; captured data and pointer semantics stay intact. */
+  renderers?: Record<string, FigureKind>;
 };
 export type Lesson = {
   slug: string;
@@ -46,12 +64,32 @@ export type ProblemDefinition = CatalogEntry & {
 };
 export type Explanation = {
   intuition: string[];
+  keyDecision?: string;
+  figures?: LessonFigure[];
   walkthrough: {
     input: Record<string, unknown>;
     steps: string[];
     result: unknown;
   };
   codeNotes: { code: string; note: string }[];
+};
+export type LessonFigure = {
+  title: string;
+  caption: string;
+  /** Place the figure immediately after this zero-based worked-example step. */
+  afterStep: number;
+  panels: {
+    title: string;
+    rows: {
+      label: string;
+      values: string[];
+      labels?: string[];
+      highlight?: number[];
+      connector?: string;
+      columns?: number;
+    }[];
+    note: string;
+  }[];
 };
 export type TraceStep = {
   line: number;
@@ -96,6 +134,7 @@ export type WorkerResponse = {
   error?: string;
 };
 export type Progress = {
+  revision?: string;
   slug: string;
   draft: string;
   status: "started" | "solved";

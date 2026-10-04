@@ -11,13 +11,13 @@
     "-10^4 <= nums[i] <= 10^4",
     "nums is sorted in nondecreasing order."
   ],
-  "intuition": "On a sorted interval, the largest absolute value is at its left or right endpoint. Choose the larger square and write it into the last unfilled output position. Work backward so the resulting array is already sorted.",
+  "intuition": "Squaring negative values reverses their size order, so the squared array may no longer be sorted. The largest remaining square must come from one of the two ends. Compare those endpoints and fill the result from its last position backward, taking the larger square each time.",
   "approach": [
     "Put left and right at the endpoints and create an output array.",
     "Compare endpoint squares. Place the larger at write, the last empty slot.",
     "Move only the selected endpoint inward and decrement write."
   ],
-  "correctness": "Every interior value lies between the endpoints, so its absolute value is no greater than the larger endpoint absolute value. The selected square is therefore the largest remaining square. Filling positions from right to left repeatedly places the correct maximum, yielding ascending order with all multiplicities retained.",
+  "correctness": "Every interior value lies between the endpoints, so its absolute value is no greater than the larger endpoint absolute value. The selected square is therefore the largest remaining square. Filling positions from right to left repeatedly places the correct maximum, yielding ascending order with all occurrence counts retained.",
   "bruteForce": "Square then sort in O(n log n) time.",
   "complexity": {
     "time": "O(n)",

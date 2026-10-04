@@ -9,7 +9,7 @@
   "constraints": [
     "0 <= n <= 10^5"
   ],
-  "intuition": "The representation of i without its final binary digit is i//2. Its bit count is already known because it is smaller. The discarded digit contributes one precisely when i is odd. This yields a direct recurrence.",
+  "intuition": "Removing a number's last binary digit leaves a smaller number. Its count of one bits is already in the table. Add one if the removed digit was 1, or zero if it was 0. This reuses earlier answers instead of inspecting every bit of every number separately.",
   "approach": [
     "Create counts of length n+1, initially zero.",
     "For i from 1 to n, set counts[i]=counts[i>>1]+(i&1).",

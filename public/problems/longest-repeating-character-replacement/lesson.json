@@ -11,14 +11,14 @@
     "0 <= k <= len(s)",
     "Only uppercase English letters occur"
   ],
-  "intuition": "Within a window, keep its most common letter and replace every other letter. Its replacement cost is window length minus the largest count. Recompute that largest count after shrinking so every displayed window is genuinely valid.",
+  "intuition": "For any continuous window, keep its most common letter and replace the others. The required number of replacements is the window length minus that letter's count. Extend the window, then shrink it if that cost exceeds k. Save the longest window that fits.",
   "approach": [
     "Add the right character to a frequency map.",
     "While window length minus the maximum frequency exceeds k, remove the left character and advance left.",
     "Record the largest valid window length."
   ],
-  "correctness": "For a fixed window, replacing all non-majority letters is both sufficient and minimal. Extending right and removing left until this exact cost fits retains the longest valid window ending there: shrinking cannot make an invalid window larger and valid. Maximizing over endpoints finds the optimum.",
-  "bruteForce": "Examine every substring and count its majority letter, costing O(n\u00b2) windows and repeated work.",
+  "correctness": "For a fixed window, replacing all non-majority letters is both sufficient and minimal. Extending right and removing left until this exact cost fits retains the longest valid window ending there: shrinking cannot make an invalid window larger and valid. Maximizing over endpoints finds the best possible result.",
+  "bruteForce": "Examine every substring and count its majority letter, costing O(n²) windows and repeated work.",
   "complexity": {
     "time": "O(26n), equivalent to O(n)",
     "space": "O(26)",

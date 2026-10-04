@@ -10,19 +10,19 @@
     "1 <= len(nums) <= 100.",
     "0 <= nums[i] <= 400."
   ],
-  "intuition": "For each house, either skip it and retain the previous best, or take it and add its money to the best before its neighbor. Only the previous two prefix optima matter.",
+  "intuition": "At each house, compare two choices. Skip it and keep the best total through the previous house. Or take it and add its money to the best total from two houses back. Save these two earlier totals so you do not repeatedly solve the same smaller street.",
   "approach": [
     "Initialize two_back and one_back to zero.",
     "For each amount, compute max(one_back, two_back + amount).",
-    "Advance the two saved prefix optima.",
+    "Advance the two saved prefix best results.",
     "Return the best for the full street."
   ],
-  "correctness": "An optimal selection of a prefix either omits its last house, giving the previous-prefix optimum, or contains it, excluding its neighbor and leaving an optimal selection two houses back. The recurrence exhausts both choices. Starting with empty-prefix totals of zero makes the induction valid.",
+  "correctness": "A best possible selection of a prefix either omits its last house, giving the previous-prefix best possible result, or contains it, excluding its neighbor and leaving a best possible selection two houses back. The recurrence exhausts both choices. Starting with empty-prefix totals of zero makes the induction valid.",
   "bruteForce": "Explore take/skip choices recursively, excluding the next house after a take. Without memoization, overlapping prefixes cause exponential work.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "Only the two preceding prefix optima are needed."
+    "explanation": "Only the two preceding prefix best results are needed."
   },
   "pitfalls": [
     "Do not greedily take the larger neighboring house: choices affect later houses.",
@@ -33,6 +33,10 @@
     {
       "label": "LeetCode statement",
       "url": "https://leetcode.com/problems/house-robber/"
+    },
+    {
+      "label": "LeetCode Wiki · take or skip",
+      "url": "https://leetcode.doocs.org/en/lc/198/"
     }
   ],
   "visualization": {

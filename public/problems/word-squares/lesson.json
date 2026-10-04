@@ -11,7 +11,7 @@
     "All words have the same length from 1 through 4.",
     "Words contain lowercase letters and are unique."
   ],
-  "intuition": "When k rows are selected, the next row must begin with their characters at column k. A prefix lookup turns this forced prefix into a short list of candidates, pruning rows that cannot match the already fixed columns.",
+  "intuition": "In a word square, row r and column r must spell the same word. When choosing the next row, its first letters are already fixed by the earlier rows. Use a prefix index to find only words that start with those letters, then try each possible continuation.",
   "approach": [
     "Index each word under its proper prefixes, including the empty prefix; full-length prefixes are never queried.",
     "At depth k, build the required prefix by reading square[r][k] for all r<k.",
@@ -36,7 +36,7 @@
       "url": "https://leetcode.com/problems/word-squares/"
     },
     {
-      "label": "Public problem statement \u00b7 LeetCode Wiki",
+      "label": "Public problem statement · LeetCode Wiki",
       "url": "https://leetcode.doocs.org/en/lc/425/"
     }
   ],

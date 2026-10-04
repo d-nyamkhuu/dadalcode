@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Comparing every pair of elements asks the same membership question repeatedly and can take quadratic time. Sorting would bring equal values together, but uses more work than necessary when all we need is whether some earlier value matches the current one.",
+    "Save each value in a set as you read the array. If a value is already there, an earlier position contained the same value, so a duplicate exists. This replaces comparing each number with every other number.",
     "A set retains the distinct values already encountered. Before inserting the next value, ask whether it is present. Presence means an earlier occurrence exists, so the current index completes a duplicate pair. Absence means this is its first appearance and it should be remembered.",
     "The set intentionally ignores occurrence positions and exact frequencies because neither affects the answer. Early return avoids scanning the rest after a duplicate is proved. If the scan completes, every insertion was a first occurrence, which proves that all elements are distinct. Hash lookup gives expected linear total time."
   ],
@@ -36,5 +36,6 @@
       "code": "return False",
       "note": "This line is reached only after every element was absent when examined, which proves that no duplicate pair exists."
     }
-  ]
+  ],
+  "keyDecision": "Check membership before adding the current value. Return false only after the whole scan."
 }

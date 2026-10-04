@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Every pair of lines defines a rectangle whose width is the index difference and whose water level is capped by the shorter line. Checking every pair is straightforward but quadratic. The challenge is to reject many pairs using a reason that does not depend on knowing the final answer.",
+    "Two lines form the sides of a container. Its area is their distance multiplied by the shorter height. Start with the widest pair. After measuring it, move the shorter side inward: keeping that short side and reducing the width cannot give a larger area.",
     "Start with the widest possible pair. Suppose its left wall is shorter. Every narrower pair that keeps this wall has width no larger and water level no higher than this wall. None can beat the pair just measured. That entire family of candidates can therefore be discarded by advancing the left pointer.",
     "The taller wall remains because a new, taller opposite wall might raise the limiting level enough to offset the reduced width. Apply the same argument symmetrically when the right wall is shorter. Measure before moving, keep a running maximum, and stop when no pair remains. Equal heights permit either pointer to move."
   ],
@@ -21,7 +21,7 @@
     "steps": [
       "For [1,8,6,2,5,4,8,3,7], left=0 and right=8 give width 8, level 1, and area 8.",
       "The left wall is shorter, so discard index 0. Indices 1 and 8 give width 7, level 7, and area 49.",
-      "Now the right wall is shorter. Move right to 7; the area falls to 6\u00d73=18, so best stays 49.",
+      "Now the right wall is shorter. Move right to 7; the area falls to 6×3=18, so best stays 49.",
       "Moving the shorter right wall again reaches index 6: width 5 and level 8 give area 40.",
       "Equal heights at indices 1 and 6 let left advance. The remaining measured areas are 24, 6, 10, and 4: narrowing can raise or lower the area, but none beats 49. When pointers meet, return 49."
     ],
@@ -39,6 +39,80 @@
     {
       "code": "if height[left] <= height[right]:",
       "note": "This comparison implements the elimination proof. Moving a taller side instead would lose the reason that skipped pairs cannot improve the answer."
+    }
+  ],
+  "keyDecision": "Move the pointer at the shorter line after recording the current area.",
+  "figures": [
+    {
+      "title": "A shorter wall is the limiting height",
+      "caption": "The first pair is at indices 0 and 8. Width is the distance between indices, not the number of bars.",
+      "afterStep": 1,
+      "panels": [
+        {
+          "title": "Before: widest pair",
+          "rows": [
+            {
+              "label": "Boundary heights",
+              "values": [
+                "1",
+                "7"
+              ],
+              "labels": [
+                "index 0",
+                "index 8"
+              ]
+            },
+            {
+              "label": "Area",
+              "values": [
+                "8 × min(1, 7) = 8"
+              ]
+            }
+          ],
+          "note": "Heights 1 and 7 give width 8 but only height 1 of water."
+        },
+        {
+          "title": "Check: which side can help?",
+          "rows": [
+            {
+              "label": "Pointer move",
+              "values": [
+                "left: 0 → 1"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Keeping height 1 while reducing width cannot improve area 8. Move the shorter left wall."
+        },
+        {
+          "title": "After: less width, more height",
+          "rows": [
+            {
+              "label": "Boundary heights",
+              "values": [
+                "8",
+                "7"
+              ],
+              "labels": [
+                "index 1",
+                "index 8"
+              ]
+            },
+            {
+              "label": "Area",
+              "values": [
+                "7 × min(8, 7) = 49"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The new walls have heights 8 and 7, with width 7. The area improves to 49."
+        }
+      ]
     }
   ]
 }

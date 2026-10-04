@@ -1,9 +1,9 @@
 {
   "intuition": [
-    "Trying every split into one-digit and two-digit letters works, but different split paths repeatedly ask how many ways the same prefix can be decoded. We can count these possibilities directly without constructing decoded words. The essential question is how a valid decoding ends.",
+    "A letter code uses either one digit or two digits. For each prefix of the input, consider those two possible endings and add the counts for the remaining earlier digits. Save each prefix count so it can be reused. A zero cannot form a one-digit letter by itself.",
     "The last letter uses either the final one digit or the final two digits. These two groups cannot overlap because their final code lengths differ. A valid final code can be appended to every valid decoding of the preceding prefix, so shorter-prefix counts combine into a recurrence.",
     "Zero makes code validity important: it cannot stand alone, and 06 is not a valid two-digit code. The empty prefix has one decoding choice, meaning do nothing; this base allows the first valid code to contribute one. Each table entry then counts exactly its complete prefix.",
-    "The full prefix table makes every subproblem visible. For a memory-focused extension, retain only the counts for prefixes i-2 and i-1: compute the new count from the same valid single/pair checks before advancing both old values together. This keeps O(n) time and reduces auxiliary storage to O(1), while making earlier table entries unavailable for inspection."
+    "The full prefix table makes every subproblem visible. For a memory-focused extension, retain only the counts for prefixes i-2 and i-1: compute the new count from the same valid single/pair checks before advancing both old values together. This keeps O(n) time and reduces additional storage to O(1), while making earlier table entries unavailable for inspection."
   ],
   "walkthrough": {
     "input": {
@@ -30,7 +30,70 @@
     },
     {
       "code": "if 10 <= pair <= 26:",
-      "note": "The lower bound rejects leading-zero pairs; the upper bound restricts pairs to the alphabet\u2019s final code, 26."
+      "note": "The lower bound rejects leading-zero pairs; the upper bound restricts pairs to the alphabet’s final code, 26."
+    }
+  ],
+  "keyDecision": "Use one digit only for 1..9. Use two digits only for 10..26.",
+  "figures": [
+    {
+      "title": "Two possible endings give separate counts",
+      "caption": "For 226, every decoding ends with either the single digit 6 or the pair 26. A | separates letter codes.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: save shorter counts",
+          "rows": [
+            {
+              "label": "Ways to decode 22",
+              "values": [
+                "2 | 2",
+                "22"
+              ]
+            },
+            {
+              "label": "Ways to decode 2",
+              "values": [
+                "2"
+              ]
+            }
+          ],
+          "note": "The prefix 22 has two decodings, and the prefix 2 has one."
+        },
+        {
+          "title": "Check: append a legal final code",
+          "rows": [
+            {
+              "label": "End with 6",
+              "values": [
+                "2 | 2 | 6",
+                "22 | 6"
+              ]
+            },
+            {
+              "label": "End with 26",
+              "values": [
+                "2 | 26"
+              ]
+            }
+          ],
+          "note": "6 is in 1..9, and 26 is in 10..26. Both endings are allowed."
+        },
+        {
+          "title": "After: add disjoint possibilities",
+          "rows": [
+            {
+              "label": "Count",
+              "values": [
+                "2 + 1 = 3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The groups have different final code lengths, so no decoding is counted in both."
+        }
+      ]
     }
   ]
 }

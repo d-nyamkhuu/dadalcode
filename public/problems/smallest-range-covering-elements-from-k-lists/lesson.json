@@ -13,11 +13,11 @@
     "Values lie between -100,000 and 100,000",
     "Each list is sorted in nondecreasing order"
   ],
-  "intuition": "Choose one current representative from each list. The smallest and largest representatives define a covering range. To improve its width, advance the list supplying the smallest value; moving any other representative cannot raise the minimum.",
+  "intuition": "Choose one current value from every sorted list. Their smallest and largest values define a range covering all lists. To make that range better, advance the list containing the smallest current value. A heap finds that minimum, while a saved maximum gives the other boundary.",
   "approach": [
     "Put the first value from each list in a heap and track the largest representative.",
     "Pop the minimum and compare its range to best using width and left endpoint.",
-    "Advance that minimum\u2019s list, updating the maximum; stop when a list runs out."
+    "Advance that minimum’s list, updating the maximum; stop when a list runs out."
   ],
   "correctness": "With a fixed leftmost representative, advancing a different list cannot improve the lower endpoint and cannot reduce the maximum. Advancing the minimum explores the next possible left endpoint while preserving coverage. Once that list is exhausted, no later representative selection can cover all lists.",
   "bruteForce": "Choose one value from each list in all combinations and compare their ranges; the number of combinations is the product of list lengths.",

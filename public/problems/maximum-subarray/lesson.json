@@ -10,14 +10,14 @@
     "1 <= len(nums) <= 100000.",
     "Values range from -10000 to 10000."
   ],
-  "intuition": "The best subarray ending at the next value has only two possibilities: extend the previous best ending sum, or start at this value. A negative previous sum makes extending worse than starting fresh at the new value. Keep both the best ending here and the best seen anywhere.",
+  "intuition": "At each number, choose between starting a new continuous section and extending the previous section. If the previous total is negative, it would make the new section worse. Keep the best total ending at the current number, and separately remember the best total seen anywhere.",
   "approach": [
     "Initialize ending and best to the first value.",
     "At each later value, compare starting fresh with extending ending.",
     "Update the global best and return it."
   ],
-  "correctness": "Every subarray ending at i either starts at i or extends a subarray ending at i-1. Choosing the better option gives the optimal ending sum by induction. Taking the maximum over all ending positions therefore covers every nonempty subarray.",
-  "bruteForce": "Enumerate every start/end pair and accumulate sums in O(n²) time.",
+  "correctness": "Every subarray ending at i either starts at i or extends a subarray ending at i-1. Choosing the better option gives the best possible ending sum by induction. Taking the maximum over all ending positions therefore covers every nonempty subarray.",
+  "bruteForce": "List every start/end pair and accumulate sums in O(n²) time.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

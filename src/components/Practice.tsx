@@ -9,12 +9,7 @@ import {
   LoaderCircle,
   Terminal,
 } from "lucide-react";
-import type {
-  ProblemDefinition,
-  Progress,
-  RunResult,
-  TestCase,
-} from "../types";
+import type { ProblemDefinition, RunResult, TestCase } from "../types";
 import { PythonRunner } from "../runtime/runner";
 const CodeEditor = lazy(() => import("./CodeEditor"));
 export default function Practice({

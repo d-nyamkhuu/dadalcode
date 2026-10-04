@@ -12,7 +12,7 @@
     "-10^9 <= node values <= 10^9",
     "-1,000 <= targetSum <= 1,000"
   ],
-  "intuition": "Along a root-to-node route, a downward path sum is the difference of two prefix sums. Count matching ancestor prefixes and remove them when leaving a subtree.",
+  "intuition": "A valid path can begin below the root, but it must move downward. Along the current ancestor route, save counts of running sums. If the current total is T, an earlier total T - target identifies a path ending here. Remove a total when leaving its branch.",
   "approach": [
     "Seed prefix counts with {0:1} for a path beginning at root.",
     "On entering a node, add its value to total and count prefixes equal to total-targetSum.",

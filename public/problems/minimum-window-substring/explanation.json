@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Checking every substring and recounting its characters is expensive, especially because adjacent candidates share almost all their contents. A useful window can be expanded or shrunk by adjusting just one character count. The crucial detail is multiplicity: if t contains two As, finding one A does not satisfy the requirement.",
+    "Keep a continuous part of s and count how many required characters are still missing. Extend the right end until every required copy is present. Then move the left end forward while the part remains valid. Save the shortest valid part found during this process.",
     "The needed dictionary records each required count minus its count in the window. Positive values are deficits; zero means exactly enough copies, and negative values mean surplus. missing counts the total number of unmatched copies. Consuming a character reduces missing only while its deficit is positive.",
     "Once missing reaches zero, the window covers t. Record its length and advance left, restoring the released character’s deficit. Surplus characters can leave without invalidating coverage; releasing an essential copy makes missing positive and ends shrinking. Right then resumes expanding. Both boundaries only move forward, yet the shortest valid window ending at every relevant right position is considered.",
     "Characters absent from t also acquire Counter entries as s is scanned. Their initial deficit is zero, consumption makes it negative, and release restores it toward zero without changing missing. Thus irrelevant letters behave like surplus; they neither satisfy a needed copy nor invalidate coverage when removed."
@@ -33,6 +33,118 @@
     {
       "code": "if needed[leaving] > 0:\n                    missing += 1",
       "note": "After release, a positive deficit means this exact copy is required to recover coverage."
+    }
+  ],
+  "keyDecision": "Shrink only when missing is zero. Repeated characters in t need repeated copies in the window.",
+  "figures": [
+    {
+      "title": "Valid counts allow shrinking",
+      "caption": "In ADOBECODEBANC, target ABC needs one A, one B, and one C. This figure follows the last shrink, after reading index 12.",
+      "afterStep": 5,
+      "panels": [
+        {
+          "title": "Before: coverage is complete",
+          "rows": [
+            {
+              "label": "Current window",
+              "values": [
+                "O",
+                "D",
+                "E",
+                "B",
+                "A",
+                "N",
+                "C"
+              ],
+              "highlight": [
+                3,
+                4,
+                6
+              ],
+              "labels": [
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
+            },
+            {
+              "label": "Missing copies",
+              "values": [
+                "0"
+              ]
+            }
+          ],
+          "note": "At left = 6 and right = 12, every required copy is present. The leading O, D, and E are surplus."
+        },
+        {
+          "title": "Check: remove surplus characters",
+          "rows": [
+            {
+              "label": "Shortest valid ending here",
+              "values": [
+                "B",
+                "A",
+                "N",
+                "C"
+              ],
+              "highlight": [
+                0,
+                1,
+                3
+              ],
+              "labels": [
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
+            },
+            {
+              "label": "Required counts present",
+              "values": [
+                "A: 1",
+                "B: 1",
+                "C: 1"
+              ]
+            }
+          ],
+          "note": "Removing O, D, and E keeps the window valid. left reaches index 9."
+        },
+        {
+          "title": "After: save before breaking coverage",
+          "rows": [
+            {
+              "label": "Saved answer",
+              "values": [
+                "BANC"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "After removing B",
+              "values": [
+                "ANC"
+              ]
+            },
+            {
+              "label": "Missing copies",
+              "values": [
+                "B: 1"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Save BANC, length 4. Removing its B next makes a required copy missing, so shrinking stops."
+        }
+      ]
     }
   ]
 }

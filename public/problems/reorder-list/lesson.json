@@ -11,18 +11,18 @@
     "1 <= list length <= 50,000",
     "1 <= node value <= 1,000"
   ],
-  "intuition": "The requested order alternates the front half with the back half read backwards. Split the list, reverse its second half, then weave the two chains.",
+  "intuition": "We need nodes alternately from the front and back, but a singly linked list cannot walk backward. Split the list into two halves and reverse the second half. Then take one node from each half in turn. This changes links while keeping the original nodes.",
   "approach": [
     "Find the end of the first half with slow and fast pointers.",
     "Detach the second half and reverse its links.",
     "Alternate nodes from the first half and the reversed second half, preserving their next pointers before relinking."
   ],
   "correctness": "The split gives the first half at least as many nodes as the second. Reversal orders the second half from Ln downwards. Each merge step appends the next front node then the next back node; a possible extra middle node stays last, yielding exactly the required order without replacing nodes.",
-  "bruteForce": "Store all nodes in an array and reconnect using alternating endpoints: O(n) time and O(n) auxiliary space.",
+  "bruteForce": "Store all nodes in an array and reconnect using alternating endpoints: O(n) time and O(n) additional space.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "Finding the midpoint, reversing the second half, and weaving each visit a linear number of original nodes. A fixed number of node pointers replaces any auxiliary node array."
+    "explanation": "Finding the midpoint, reversing the second half, and weaving each visit a linear number of original nodes. A fixed number of node pointers replaces any additional node array."
   },
   "pitfalls": [
     "Detach halves before merging to prevent cycles.",

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A sorted list exposes its smallest remaining element at its head. Instead of collecting values and sorting them again, compare the two heads and repeatedly select the smaller one. This is the same merge operation used by merge sort, except that the output is built by reconnecting existing nodes.",
+    "Each input list is sorted, so its first remaining node has its smallest remaining value. Compare those two nodes and attach the smaller one to the result. Repeat until one list ends, then attach the rest of the other list.",
     "The output tail marks the last node already chosen. A dummy node gives that tail an initial home before any real node has been selected, avoiding a separate first-node branch. After attaching a node, advance the pointer for the input it came from and then advance the output tail.",
     "When one input becomes empty, the other suffix needs no more comparisons. It is already sorted, and every value in it is at least the last selected value. Splicing this suffix onto the tail finishes the merge without allocating replacement nodes. Equal values may come from either input; both original nodes still have to appear."
   ],
@@ -46,5 +46,6 @@
       "code": "tail.next = list1 or list2",
       "note": "The remaining suffix is already ordered, so a single link completes all remaining work."
     }
-  ]
+  ],
+  "keyDecision": "Choose the smaller current head. Move only the pointer for the list you chose."
 }

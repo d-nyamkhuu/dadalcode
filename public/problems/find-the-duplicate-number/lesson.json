@@ -11,15 +11,15 @@
     "len(nums) is n+1.",
     "All values lie in [1,n], and exactly one distinct value is repeated."
   ],
-  "intuition": "Each index points to index nums[index]. Starting at zero eventually enters a cycle because the graph is finite. Zero cannot be a destination. The cycle entrance has two incoming edges along this path, so its index is the repeated value. Floyd's two speeds detect the cycle without a visited set.",
+  "intuition": "Read each number as the index to visit next. This turns the array into a chain that eventually loops, and the duplicate is the loop's entrance. Use the same two-phase pointer method as finding a cycle entrance in a linked list. No array values need to change.",
   "approach": [
     "Move slow by one edge and fast by two until they meet.",
     "Reset a finder pointer to index zero.",
     "Move finder and slow one edge at a time until they meet.",
     "Return that cycle entrance."
   ],
-  "correctness": "Let \u03bc be the path length before the cycle and \u03bb its length. At the first meeting after t slow steps, t is a multiple of \u03bb. Advancing one pointer from zero and the other from the meeting for \u03bc steps makes them meet at the entrance. This entrance has distinct incoming predecessors from the path and cycle, identifying the unique repeated value.",
-  "bruteForce": "Use a seen set in O(n) space, or compare all pairs in O(n\u00b2). Neither meets both requested resource constraints.",
+  "correctness": "Let μ be the path length before the cycle and λ its length. At the first meeting after t slow steps, t is a multiple of λ. Advancing one pointer from zero and the other from the meeting for μ steps makes them meet at the entrance. This entrance has distinct incoming predecessors from the path and cycle, identifying the unique repeated value.",
+  "bruteForce": "Use a seen set in O(n) space, or compare all pairs in O(n²). Neither meets both requested resource constraints.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

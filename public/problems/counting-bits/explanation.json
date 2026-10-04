@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "Counting the bits of each number independently repeats work: neighboring numbers share binary prefixes that have already been examined. Instead of repeatedly dividing every value until zero, store the bit count for each smaller value and build the next answer from one known prefix.",
+    "Removing a number's last binary digit leaves a smaller number. Its count of one bits is already in the table. Add one if the removed digit was 1, or zero if it was 0. This reuses earlier answers instead of inspecting every bit of every number separately.",
     "Right shifting i by one removes its final binary digit. That final digit is zero for an even number and one for an odd number. Thus the count of i is the count of i>>1 plus i&1. The shifted value is always smaller, so its table entry is ready.",
-    "Start with the count for zero, which is zero. Fill entries in ascending numeric order, making each recurrence lookup valid without recursion. The required result already contains one entry per integer, so the full table is output storage rather than an avoidable auxiliary data structure."
+    "Start with the count for zero, which is zero. Fill entries in ascending numeric order, making each recurrence lookup valid without recursion. The required result already contains one entry per integer, so the full table is output storage rather than an avoidable additional data structure."
   ],
   "walkthrough": {
     "input": {
@@ -31,7 +31,7 @@
   "codeNotes": [
     {
       "code": "counts = [0] * (n + 1)",
-      "note": "The range includes zero and n, so it needs n+1 entries. Initializing zeros supplies the recurrence\u2019s correct zero-value base case."
+      "note": "The range includes zero and n, so it needs n+1 entries. Initializing zeros supplies the recurrence’s correct zero-value base case."
     },
     {
       "code": "for i in range(1, n + 1):",
@@ -41,5 +41,6 @@
       "code": "counts[i] = counts[i >> 1] + (i & 1)",
       "note": "The shifted prefix contributes all earlier bits, and the bitwise AND contributes exactly the one removed least-significant bit."
     }
-  ]
+  ],
+  "keyDecision": "counts[i] = counts[i >> 1] + (i & 1). Begin with counts[0] = 0."
 }

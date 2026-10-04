@@ -11,7 +11,7 @@
     "0 <= arr[i] <= 10^6",
     "A strict mountain shape with an interior peak is guaranteed"
   ],
-  "intuition": "Compare the middle value to the next value. A rising edge places the peak strictly to the right; a falling edge places the peak at middle or to its left. This slope test discards half the search interval.",
+  "intuition": "A mountain rises before its peak and falls after it. Compare the middle value with the next value to learn which side you are on. A rising comparison keeps the right side; a falling comparison keeps the middle and left side. Repeat until one index remains.",
   "approach": [
     "Maintain inclusive bounds containing the peak.",
     "When arr[mid] < arr[mid+1], set left to mid+1.",

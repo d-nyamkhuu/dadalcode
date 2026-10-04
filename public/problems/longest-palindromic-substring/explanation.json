@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Checking every substring repeats the same interior comparisons. For example, once bb is known to read identically in both directions, testing a larger substring around it should only require comparing the newly exposed endpoints. We need a way to organize candidates so their interiors stay valid automatically.",
+    "A palindrome reads the same forward and backward. Start at its middle and compare the characters on either side. Keep moving outward while they match. Try every possible middle, including a gap between two characters, and keep the longest match.",
     "Every palindrome is symmetric around a center. Odd lengths use one character as the center; even lengths use the gap between two characters. Starting with either kind, equal endpoint characters let us expand while keeping the entire enclosed substring palindromic. A mismatch ends just that center’s search.",
     "Trying both centers at every index covers every possible palindrome. We keep only the best starting index and length rather than storing all candidates. The search is quadratic in the worst case, but it avoids the cubic work of rescanning each candidate’s interior."
   ],
@@ -31,5 +31,6 @@
       "code": "return s[best_start:best_start + best_length]",
       "note": "Store coordinates during the search and allocate the answer only once. The exclusive slicing endpoint is starting index plus length."
     }
-  ]
+  ],
+  "keyDecision": "Stop expanding when the characters differ or either position is outside the string."
 }

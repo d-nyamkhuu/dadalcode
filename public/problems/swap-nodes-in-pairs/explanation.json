@@ -1,7 +1,7 @@
 {
   "intuition": [
-    "Swapping values would make the displayed list look right, but the problem requires moving the original nodes. Rebuilding a list also violates that requirement. We must change next references while keeping every node\u2019s value and the unprocessed suffix intact throughout the operation.",
-    "The first pair normally lacks a predecessor, creating an awkward head special case. A dummy node supplies that predecessor. For previous\u2192first\u2192second\u2192suffix, the desired links are previous\u2192second\u2192first\u2192suffix. The order of assignments matters because overwriting a link can otherwise lose the suffix.",
+    "Work on two neighboring nodes at a time. Save the node after the pair, reconnect the pair in the opposite order, and join it back to the rest of the list. Change links between the original nodes; swapping their stored values would not meet the requirement.",
+    "The first pair normally lacks a predecessor, creating an awkward head special case. A dummy node supplies that predecessor. For previous→first→second→suffix, the desired links are previous→second→first→suffix. The order of assignments matters because overwriting a link can otherwise lose the suffix.",
     "After reconnecting one pair, first becomes its last node. It is therefore the predecessor needed for the following pair. This invariant lets the same loop handle the head, interior pairs, and an odd final node. A singleton suffix is left alone because there is nothing to swap."
   ],
   "walkthrough": {
@@ -16,7 +16,7 @@
     "steps": [
       "The dummy points to 1, followed by 2, 3, and 4. previous initially refers to the dummy.",
       "Name first=1 and second=2. Set first.next to 3, preserving the suffix after the current pair.",
-      "Set second.next to 1 and dummy.next to 2. The chain is now 2\u21921\u21923\u21924.",
+      "Set second.next to 1 and dummy.next to 2. The chain is now 2→1→3→4.",
       "Move previous to node 1. Reconnect the next pair so 1 points to 4 and 4 points to 3.",
       "Node 3 has no following pair, so stop and return dummy.next: the original nodes now read [2,1,4,3]."
     ],
@@ -30,7 +30,7 @@
   "codeNotes": [
     {
       "code": "dummy = ListNode(0, head)",
-      "note": "The dummy\u2019s value is irrelevant. Its next reference allows changing the returned head using the same predecessor operation as every later pair."
+      "note": "The dummy’s value is irrelevant. Its next reference allows changing the returned head using the same predecessor operation as every later pair."
     },
     {
       "code": "first.next = second.next",
@@ -40,5 +40,6 @@
       "code": "previous = first",
       "note": "The first node moved to the end of the processed pair, so it becomes the correct predecessor for the next iteration."
     }
-  ]
+  ],
+  "keyDecision": "Start a swap only when two nodes remain. Leave a final single node alone."
 }

@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "The usual maximum-sum idea of remembering one best ending value does not transfer directly to products. Multiplying by a negative number reverses ordering. A very negative ending product that looks unhelpful now could become the next position\u2019s largest positive product. Keeping only the maximum would discard that possibility.",
+    "A negative number can turn the smallest negative product into the largest positive product. For that reason, save both the smallest and largest products ending at each position. For the next value, compare starting fresh with extending each of those two products.",
     "Track high and low for nonempty subarrays ending at the current position. Every next ending subarray either starts fresh at the current value or extends an old ending subarray. Compare the current value with its products against both old extremes, then choose a new maximum and minimum. Zero automatically makes both products zero and permits a later fresh start.",
-    "The old extremes must be read together before either is overwritten. Updating high and then using that new value to compute low would accidentally apply the current factor twice. The global best is separate: an earlier ending subarray may remain optimal after later negatives or zeros arrive. Initializing all three values from nums[0] respects the requirement that the selected subarray is nonempty."
+    "The old extremes must be read together before either is overwritten. Updating high and then using that new value to compute low would accidentally apply the current factor twice. The global best is separate: an earlier ending subarray may remain best possible after later negatives or zeros arrive.",
+    "Initializing all three values from nums[0] respects the requirement that the selected subarray is nonempty."
   ],
   "walkthrough": {
     "input": {
@@ -26,7 +27,7 @@
   "codeNotes": [
     {
       "code": "old_high, old_low = high, low",
-      "note": "Both transitions need the previous position\u2019s extremes, not one partially updated value."
+      "note": "Both transitions need the previous position’s extremes, not one partially updated value."
     },
     {
       "code": "high = max(value, value * old_high, value * old_low)",
@@ -34,7 +35,8 @@
     },
     {
       "code": "best = max(best, high)",
-      "note": "An earlier subarray can remain optimal even when the current ending product worsens."
+      "note": "An earlier subarray can remain best possible even when the current ending product worsens."
     }
-  ]
+  ],
+  "keyDecision": "Compute both new extremes from the old extremes before updating either saved value."
 }

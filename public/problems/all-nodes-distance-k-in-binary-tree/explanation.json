@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "Searching only target\u2019s descendants misses nodes reached by moving toward the root and into another branch. Distance is measured on the tree\u2019s edges in either direction, so the problem is naturally a graph search starting at target rather than a root-down traversal.",
+    "From the target, a move may go to a child or to a parent. First remember parent links, then use a queue to expand outward from the target one edge at a time. Mark visited nodes so moving back along an edge does not repeat them.",
     "Tree nodes do not store parent references, so first walk the tree and build a parent map. Now each node has at most three neighbors: its left child, right child, and parent. Breadth-first search from target discovers these neighbors in increasing shortest-path distance.",
-    "Adding parent moves introduces immediate backtracking paths, so mark nodes seen when enqueued. At distance k, collect a node\u2019s value without expanding it farther. This keeps the search restricted to relevant layers and handles k=0 naturally: target itself is the entire initial frontier."
+    "Adding parent moves introduces immediate backtracking paths, so mark nodes seen when enqueued. At distance k, collect a node’s value without expanding it farther. This keeps the search restricted to relevant layers and handles k=0 naturally: target itself is the entire initial frontier."
   ],
   "walkthrough": {
     "input": {
@@ -38,7 +38,7 @@
   "codeNotes": [
     {
       "code": "parents[child] = node",
-      "note": "This records the reverse of each existing child edge, allowing later search to leave target\u2019s subtree and reach ancestors or sibling branches."
+      "note": "This records the reverse of each existing child edge, allowing later search to leave target’s subtree and reach ancestors or sibling branches."
     },
     {
       "code": "seen.add(neighbor)",
@@ -48,5 +48,6 @@
       "code": "if distance == k:",
       "note": "BFS associates the shortest distance with each discovery. At the requested layer, the node is an answer and its farther neighbors are unnecessary."
     }
-  ]
+  ],
+  "keyDecision": "Collect nodes at distance k and do not expand them farther."
 }

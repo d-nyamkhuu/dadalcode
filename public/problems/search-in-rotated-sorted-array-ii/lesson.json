@@ -11,7 +11,7 @@
     "Values and target range from -10000 to 10000.",
     "The input is a rotation of a sorted array."
   ],
-  "intuition": "Duplicates can hide which side contains the rotation point. If left, mid, and right are equal and mid is not the target, the endpoints can safely be removed. Otherwise one sorted half can guide ordinary rotated binary search.",
+  "intuition": "As in the version without duplicates, look for a sorted half around the middle. Equal values can hide which half is sorted. If both endpoints equal the middle and the middle is not the target, remove those endpoints. Then try the sorted-half check again.",
   "approach": [
     "Check mid for target.",
     "If both endpoints equal mid, shrink both ends.",

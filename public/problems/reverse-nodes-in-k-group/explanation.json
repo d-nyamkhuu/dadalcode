@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "An array of node references could make group reversal straightforward, but it costs space proportional to the list. We can reverse links directly with only a few pointers. The difficult part is recognizing each complete group before modifying it and reconnecting its two boundaries afterward.",
+    "First check whether the next group contains exactly k nodes. If it does, reverse its links and reconnect both ends to the surrounding list. If fewer than k nodes remain, stop. Checking the size first prevents accidentally reversing a final incomplete group.",
     "First find the kth node after the previous group. If it does not exist, the remaining nodes are a short tail and must stay unchanged. Otherwise the kth node’s successor marks the exclusive reversal boundary, so the loop knows exactly where to stop.",
     "Set the reversal’s initial previous pointer to the following group rather than None. Then the old head, which becomes the reversed group’s tail, already points to the correct suffix. The old kth node becomes the new head; the previous group reconnects to it. Repeating this preserves every original node."
   ],
@@ -44,5 +44,6 @@
       "code": "group_before = old_head",
       "note": "After reversal, the old head is the tail and therefore the predecessor needed to begin the following group."
     }
-  ]
+  ],
+  "keyDecision": "Find the kth node before changing any link in that group."
 }

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A separator-only encoding is ambiguous when the separator occurs inside a string. Escaping can solve that problem, but adds another set of rules to synchronize. An explicit payload length lets the decoder distinguish record boundaries without restricting what characters the payload contains.",
+    "A separator alone is unsafe because the text may contain that separator. Instead, write each string's length before its text. During decoding, read the length header, then take exactly that many characters. The next header begins immediately afterward, even for an empty string.",
     "Encode each record as decimal length, a #, and the original text. The decoder searches for # only while reading a numeric header. After that header, it consumes the stated number of characters, treating every character inside the payload as ordinary data, including other # symbols.",
     "Joining all records once avoids repeatedly copying a growing string. Decoding advances one cursor from header to payload to the next header, so records need no global separator. A zero-length record is still represented by 0#, distinguishing an empty string from an absent record. A separate receiver can recover everything from the encoded text alone.",
     "The character count and Python slicing both use the same character units. The decoder assumes a valid stream produced by encode; it need not reject missing headers, negative lengths, or truncated records supplied by unrelated callers. Testing a fresh receiving Codec enforces that recovery uses the transmitted stream alone."
@@ -32,11 +32,12 @@
     },
     {
       "code": "end = s.index('#', i)",
-      "note": "Search begins at the next header, never within an already-sized payload; a payload\u2019s # cannot become a separator accidentally."
+      "note": "Search begins at the next header, never within an already-sized payload; a payload’s # cannot become a separator accidentally."
     },
     {
       "code": "i += length",
       "note": "Skipping the exact payload length positions the cursor at the next header, including when length is zero."
     }
-  ]
+  ],
+  "keyDecision": "Read '#' only inside a length header. Inside a payload, it is an ordinary character."
 }

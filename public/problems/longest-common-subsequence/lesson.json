@@ -10,14 +10,14 @@
     "1 <= len(text1), len(text2) <= 1000",
     "Both strings contain lowercase English letters"
   ],
-  "intuition": "For two prefixes, matching final characters can extend the common subsequence of both shorter prefixes. When final characters differ, an optimal subsequence must skip at least one of them. Keep one previous row and one current row of this prefix table.",
+  "intuition": "Compare prefixes of the two strings. If their final characters match, add one to the answer for the two shorter prefixes. Otherwise, keep the better answer from dropping either final character. Save these smaller answers in rows so the same prefix pair is not solved repeatedly.",
   "approach": [
     "Start a zero row representing an empty text1 prefix.",
     "For each text1 character, build a row over text2: match uses diagonal+1, mismatch uses max(above,left).",
     "Replace the previous row and return its final value."
   ],
-  "correctness": "If the last characters match, an optimal common subsequence can include that match after an optimal shorter-prefix subsequence. If they differ, they cannot both end the same subsequence, so dropping either last character covers the optimum. Induction over both prefix lengths proves the recurrence.",
-  "bruteForce": "Enumerate all subsequences of one string and check each against the other; there are up to 2^m candidates.",
+  "correctness": "If the last characters match, a best possible common subsequence can include that match after a best possible shorter-prefix subsequence. If they differ, they cannot both end the same subsequence, so dropping either last character covers the best possible result. Induction over both prefix lengths proves the recurrence.",
+  "bruteForce": "List all subsequences of one string and check each against the other; there are up to 2^m candidates.",
   "complexity": {
     "time": "O(mn)",
     "space": "O(n)",

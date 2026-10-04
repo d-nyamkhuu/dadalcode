@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A room can be reused once its meeting ends. Assigning rooms by checking every prior meeting repeats a large amount of overlap work. Instead, process meetings in start order and keep only the ending times of meetings that are still active.",
+    "Process meetings by their start times. Keep the end times of meetings still in progress in a min-heap. Before adding a meeting, remove every meeting that has ended. The largest number of simultaneous meetings is the number of rooms required.",
     "A min-heap exposes the earliest active end. Before adding a new meeting, remove every end at or before its start; those rooms have become available. The remaining entries describe meetings competing with the new one for space at that instant.",
     "The room requirement is the largest active count, not the active count after the final start. That peak is necessary because all those meetings overlap simultaneously, and sufficient because ended rooms can always be reused. Equal end and start times do not overlap in this scheduling problem."
   ],
@@ -44,5 +44,6 @@
       "code": "peak = max(peak, len(active_ends))",
       "note": "An earlier busy moment may require more rooms than the final heap size. Retaining the maximum preserves that capacity requirement."
     }
-  ]
+  ],
+  "keyDecision": "Remove end times <= the new start time before counting active meetings."
 }

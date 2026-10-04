@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "The unknown alphabet could be searched by trying permutations, but the sorted words provide direct ordering evidence. In lexicographic comparison, only the first unequal letters matter. Letters after that mismatch contribute no further rule, even if their values look informative.",
+    "Compare neighboring words to learn letter-order rules. Only the first differing letters tell us which letter comes first. Treat each rule as an arrow, then repeatedly choose a letter with no unmet earlier-letter rules. A cycle means the rules cannot form an alphabet.",
     "Compare neighboring words and turn each first mismatch into a directed edge. A valid alphabet is then a topological ordering of these character dependencies. Initialize every observed character, including letters with no discovered edges, so the output describes the whole observed alphabet rather than only constrained letters.",
     "Two failure modes need separate checks. A longer word before its own prefix is impossible regardless of character order. A dependency cycle is impossible because no character in it can come first. Deduplicating repeated edges prevents duplicate evidence from making a correct graph appear artificially blocked."
   ],
@@ -37,5 +37,6 @@
       "code": "break",
       "note": "After the first differing letters, later positions no longer affect lexicographic order and must not create extra constraints."
     }
-  ]
+  ],
+  "keyDecision": "Reject a longer word before its exact prefix. Add only the first differing-letter rule for each adjacent pair."
 }

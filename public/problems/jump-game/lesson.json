@@ -10,7 +10,7 @@
     "1 <= len(nums) <= 10^4",
     "0 <= nums[i] <= 10^5"
   ],
-  "intuition": "Reachable indices form a continuous prefix: from a reachable index you can land anywhere up to its maximum reach. Keep the farthest endpoint of this prefix and grow it while scanning reachable positions. A gap cannot be crossed by any earlier jump if it lies beyond that endpoint.",
+  "intuition": "Track the farthest position you can reach. When you visit a reachable position, its jump length may extend that distance. You do not need to remember the route. If you reach a position beyond the farthest reachable point, no earlier jump can cross that gap.",
   "approach": [
     "Initialize farthest=0.",
     "If index i exceeds farthest, return false.",

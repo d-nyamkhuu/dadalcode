@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Counting land cells is not enough: several cells can represent one island, while diagonal neighbors belong to different islands. The task is to count four-direction connected components. A grid scan needs a way to distinguish a new component from land already reached through an earlier cell.",
+    "Find a land cell that has not yet been counted, then visit all land connected to it. That whole group is one island. Mark cells as you visit them so the next scan does not count the group again. Only cells sharing a side connect; diagonal contact is not enough.",
     "When an unvisited land cell is found, increment the count once and flood its entire component. The reference changes discovered land to water to record visitation without a separate boolean grid. Later scan positions therefore cannot start another flood for that same island.",
     "Use a queue for the flood, considering only up, down, left, and right. Mark a neighbor immediately when it is enqueued, not later when it is removed. Otherwise two frontier cells could discover the same neighbor before either copy is processed, causing unnecessary repeated queue entries.",
     "The reference deliberately mutates grid to reuse its storage for discovery marks. A caller that needs the original terrain can instead keep a set of visited coordinates or a boolean visited grid and leave the characters unchanged. That variant has the same O(rows*cols) time bound, with additional O(rows*cols) visitation storage."
@@ -59,6 +59,96 @@
     {
       "code": "grid[nr][nc] = '0'",
       "note": "Marking before enqueueing guarantees each land cell is discovered once, even when several neighboring cells can reach it."
+    }
+  ],
+  "keyDecision": "Count an island once at its first unvisited land cell. Mark neighbors before adding them to the queue.",
+  "figures": [
+    {
+      "title": "Shared sides connect; corners do not",
+      "caption": "Labels A, B, and C identify the three connected land groups in the exact 4 × 5 example. A dot means water.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: group the land",
+          "rows": [
+            {
+              "label": "Rows 0 through 3, left to right",
+              "values": [
+                "A",
+                "A",
+                "·",
+                "·",
+                "·",
+                "A",
+                "A",
+                "·",
+                "·",
+                "·",
+                "·",
+                "·",
+                "B",
+                "·",
+                "·",
+                "·",
+                "·",
+                "·",
+                "C",
+                "C"
+              ],
+              "highlight": [
+                0,
+                1,
+                5,
+                6,
+                12,
+                18,
+                19
+              ],
+              "columns": 5
+            }
+          ],
+          "note": "The four A cells connect through shared sides. B and C touch only at a corner."
+        },
+        {
+          "title": "Check: allowed neighbors",
+          "rows": [
+            {
+              "label": "B neighbor check",
+              "values": [
+                "up: water",
+                "down: water",
+                "left: water",
+                "right: water"
+              ]
+            },
+            {
+              "label": "Diagonal C at (3,3)",
+              "values": [
+                "not a neighbor"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "From B at (2,2), check up, down, left, and right. All four neighbors are water."
+        },
+        {
+          "title": "After: count groups",
+          "rows": [
+            {
+              "label": "Island count",
+              "values": [
+                "1 + 1 + 1 = 3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "A is one island, B is a second, and the two C cells form a third."
+        }
+      ]
     }
   ]
 }

@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "Each character can either remain visible or join an omitted run. Enumerating those binary choices gives all abbreviations, but writing a separate 1 for every omitted character would create invalid adjacent numeric tokens. Consecutive omitted positions must be represented by a single combined count.",
+    "At each letter, choose to keep it or omit it. Count consecutive omitted letters rather than writing a separate number for each one. Write that count just before the next kept letter, or at the end. This generates every valid abbreviation from a clear sequence of choices.",
     "Keep a pending count alongside the already emitted prefix. Omitting a character increments the count without writing anything. Keeping a character first writes any pending count, then that letter, and resets the count. A real letter is what separates numeric runs in a valid abbreviation.",
     "At the end, flush a remaining count even if no later letter exists to trigger it. Every keep-or-omit pattern follows one recursion path, so all abbreviations appear exactly once. Passing immutable prefixes keeps sibling decisions independent, while the count summarizes a run that has not yet been emitted.",
-    "This teaching implementation passes immutable prefix strings, making sibling branches independent but keeping O(n\u00b2) prefix characters across a recursion stack. An optional mutable token path can instead append a pending count and kept letter, recurse, then pop exactly those appended tokens; the omit branch changes only the pending counter. Joining the token path only at a leaf reduces auxiliary storage to O(n), with the same O(n*2^n) output cost. The undo steps must restore the shared path before exploring a sibling."
+    "This teaching implementation passes immutable prefix strings, making sibling branches independent but keeping O(n²) prefix characters across a recursion stack. An optional mutable token path can instead append a pending count and kept letter, recurse, then pop exactly those appended tokens; the omit branch changes only the pending counter.",
+    "Joining the token path only at a leaf reduces additional storage to O(n), with the same O(n*2^n) output cost. The undo steps must restore the shared path before exploring a sibling."
   ],
   "walkthrough": {
     "input": {
@@ -40,5 +41,6 @@
       "code": "result.append(path + (str(count) if count else ''))",
       "note": "The terminal case must flush a trailing run because there may be no kept letter after it to perform that operation."
     }
-  ]
+  ],
+  "keyDecision": "Flush the pending omitted count before writing a kept letter and when the word ends."
 }

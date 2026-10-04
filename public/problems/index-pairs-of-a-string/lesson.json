@@ -12,7 +12,7 @@
     "1 <= word length <= 50",
     "text and distinct words are lowercase English letters"
   ],
-  "intuition": "Starting from each text position, walk a dictionary trie until the text stops matching a prefix. Every terminal node gives one matching endpoint.",
+  "intuition": "Store the dictionary words as paths in a trie. From each starting position in the text, follow letters until a path is missing. Every word-ending marker reached gives one matching start/end pair. Trying starts and ends in increasing order also gives the required output order.",
   "approach": [
     "Insert words into a trie with a terminal marker.",
     "For each start index, traverse subsequent characters in increasing end order.",
@@ -20,11 +20,11 @@
     "The nested scan order already sorts all emitted pairs."
   ],
   "correctness": "The trie node after scanning start..end represents exactly that substring. A terminal marker is present exactly for dictionary words. Missing edges make every longer substring from the same start impossible. Increasing start and then end emits every valid pair once in the required order.",
-  "bruteForce": "Construct every substring and check dictionary membership: O(n\u00b3) character copying in the worst case.",
+  "bruteForce": "Construct every substring and check dictionary membership: O(n³) character copying in the worst case.",
   "complexity": {
     "time": "O(total word characters + n*min(n,L))",
     "space": "O(total word characters) excluding output",
-    "explanation": "Time O(total word characters + n*min(n,L)); auxiliary space O(total word characters) excluding output. Output storage is excluded unless stated."
+    "explanation": "Time O(total word characters + n*min(n,L)); additional space O(total word characters) excluding output. Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Endpoints are inclusive.",
@@ -37,7 +37,7 @@
       "url": "https://leetcode.com/problems/index-pairs-of-a-string/"
     },
     {
-      "label": "Public problem statement \u2014 LeetCode Wiki",
+      "label": "Public problem statement — LeetCode Wiki",
       "url": "https://leetcode.doocs.org/en/lc/1065/"
     }
   ],

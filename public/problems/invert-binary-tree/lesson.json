@@ -1,7 +1,7 @@
 {
   "slug": "invert-binary-tree",
   "headline": "Mirroring exchanges left and right at every depth",
-  "statement": "Mirror a binary tree by swapping every node\u2019s left and right child. Return the same root with inverted links.",
+  "statement": "Mirror a binary tree by swapping every node’s left and right child. Return the same root with inverted links.",
   "prerequisites": [
     "Binary trees",
     "Iterative depth-first traversal"
@@ -10,7 +10,7 @@
     "0 <= node count <= 100",
     "-100 <= node values <= 100"
   ],
-  "intuition": "Mirroring exchanges left and right at every depth. Swapping children locally and then visiting both children performs the entire reflection.",
+  "intuition": "Visit every node and swap its left and right child links. Apply the same swap to all descendants. Each left turn in the original tree becomes a right turn in the result, and each right turn becomes a left turn. The values themselves stay the same.",
   "approach": [
     "Initialize a stack with root when it exists.",
     "Pop a node and swap its left and right children.",
@@ -22,7 +22,7 @@
   "complexity": {
     "time": "O(n)",
     "space": "O(h)",
-    "explanation": "Time O(n); auxiliary space O(h). Output storage is excluded unless stated."
+    "explanation": "Time O(n); additional space O(h). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Return the root even when it is None.",

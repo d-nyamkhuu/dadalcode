@@ -10,7 +10,7 @@
     "1 <= number of nodes <= 10^4",
     "Node values are signed 32-bit integers."
   ],
-  "intuition": "A level is a breadth-first frontier. Sum only the nodes already in the queue at its start, then divide by that fixed count. Children are queued for the next level and must not enter the current denominator.",
+  "intuition": "Visit the tree one level at a time using a queue. Save the number of nodes in the level before adding any children. Sum exactly those node values and divide by that saved count. Then repeat with the children, which now form the next level.",
   "approach": [
     "Queue the root.",
     "At each iteration freeze size=len(queue) and initialize total=0.",

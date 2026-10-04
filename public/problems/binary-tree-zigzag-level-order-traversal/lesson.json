@@ -11,7 +11,7 @@
     "0 <= number of nodes <= 2000",
     "-100 <= node value <= 100"
   ],
-  "intuition": "Queue order should remain ordinary left-to-right BFS so children are enqueued predictably. Zigzag is an output rule: reverse the completed level when its direction is right-to-left.",
+  "intuition": "First collect each tree level from left to right using a queue. Reverse the collected values on every other level. Keep the queue traversal itself in the same order, which makes the alternating output easier to manage.",
   "approach": [
     "Start a queue containing the root, or return [] for an empty tree.",
     "At each level, process exactly the queue length measured before adding children.",

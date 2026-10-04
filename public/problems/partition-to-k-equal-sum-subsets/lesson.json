@@ -12,7 +12,7 @@
     "1 <= nums[i] <= 10000.",
     "Each value appears at most four times."
   ],
-  "intuition": "Equal groups must sum to total/k. Build one group at a time. A used-element mask fixes the total used sum, so its unfinished group sum is that total modulo target; the internal grouping history need not be stored.",
+  "intuition": "Each group must sum to total divided by k. Use a bit mask to record which input positions are already used, and save the sum in the current unfinished group. Add an unused number only if it fits. Reaching the group target starts a fresh group.",
   "approach": [
     "Reject totals not divisible by k, or any value larger than target.",
     "Set remainder[0]=0 and all other masks unreachable.",

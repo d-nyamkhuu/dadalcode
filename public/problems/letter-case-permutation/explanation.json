@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Enumerating bit masks for every character position wastes choices on digits, because toggling a digit changes nothing and creates duplicate outputs. The meaningful decisions occur only at letters. Each letter contributes two possibilities, while each digit contributes exactly one.",
+    "Read the string one position at a time. For a letter, try its lowercase and uppercase forms. For a digit, keep it unchanged. Continue each choice through the remaining positions, then save the completed string. Each sequence of letter-case choices gives one result.",
     "Build the result left to right using a character path. For a letter, recurse once with its lowercase form and once with its uppercase form. For a digit, recurse once with the unchanged character. Taking one allowed variant at every position describes every possible final string exactly once.",
     "After each recursive branch, remove its character before trying the next choice. When the path reaches the input length, join it into a fresh string. Starting with explicit lowercase and uppercase variants also handles input that is already uppercase without depending on its original case."
   ],
@@ -36,5 +36,6 @@
       "code": "path.pop()",
       "note": "Undo exactly the character chosen by this branch so its sibling starts with the same prefix rather than accumulated choices."
     }
-  ]
+  ],
+  "keyDecision": "Only letters branch into two choices. Digits have one unchanged choice."
 }

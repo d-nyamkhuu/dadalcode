@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Depth is the number of nodes on a root-to-leaf path, not the number of edges. Computing it does not depend on node values. The main information needed while exploring the tree is therefore each node\u2019s distance from the root measured in nodes.",
-    "A recursive solution can return one plus the larger child depth, but a highly skewed tree may exceed Python\u2019s recursion limit. An explicit stack stores pairs of node and depth instead. Start the root at depth one, and give every pushed child its parent\u2019s depth plus one.",
-    "The maximum over all visited node depths equals the maximum leaf depth because an internal node with a child cannot be the end of a longest path. There is no need to store complete paths or to separately recognize leaves. An empty root produces an empty stack and leaves the answer at zero. The stack retains only unfinished branches rather than every visited node."
+    "Carry a depth beside each node you visit. The root has depth 1, and each child has its parent's depth plus 1. Save the largest depth seen. This measures the longest root-to-leaf path without needing to list every complete path.",
+    "A recursive solution can return one plus the larger child depth, but a highly skewed tree may exceed Python’s recursion limit. An explicit stack stores pairs of node and depth instead. Start the root at depth one, and give every pushed child its parent’s depth plus one.",
+    "The maximum over all visited node depths equals the maximum leaf depth because an internal node with a child cannot be the end of a longest path. There is no need to store complete paths or to separately recognize leaves. An empty root produces an empty stack and leaves the answer at zero.",
+    "The stack retains only unfinished branches rather than every visited node."
   ],
   "walkthrough": {
     "input": {
@@ -38,5 +39,6 @@
       "code": "stack.append((node.left, depth + 1))",
       "note": "Adding a child extends its root path by exactly one node; recording the depth alongside the node preserves that invariant."
     }
-  ]
+  ],
+  "keyDecision": "Depth counts nodes here. An empty tree has depth 0."
 }

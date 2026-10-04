@@ -11,7 +11,7 @@
     "-1000 <= a,b <= 1000.",
     "The answer fits in a signed 32-bit integer."
   ],
-  "intuition": "XOR adds bits without carrying: equal one bits become zero. AND finds positions generating a carry, and shifting left moves that carry into the next position. Repeat until no carries remain. Python integers have unbounded sign extension, so mask to 32 bits and convert the final unsigned representation back to signed.",
+  "intuition": "Binary addition separates into a sum without carry and a carry. XOR gives the sum bits, while AND finds positions where two 1s create a carry. Shift those carries left and repeat until none remain. Use 32-bit masking so negative Python integers also have a fixed-width representation.",
   "approach": [
     "Mask both inputs into 32-bit representations.",
     "Compute carry as (a & b) shifted left and masked.",

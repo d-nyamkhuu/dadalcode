@@ -13,22 +13,22 @@
     "All words have equal length between 1 and 30",
     "s and words contain lowercase English letters"
   ],
-  "intuition": "Treat each whole word as one token. For each possible alignment, maintain a window whose token counts never exceed the required counts.",
+  "intuition": "All the words have the same length, so read the string in whole-word chunks. Keep a moving group of chunks and count each word. Remove chunks from the left if a word appears too often. Try each possible starting alignment so no valid starting position is missed.",
   "approach": [
-    "Count required word multiplicities and scan each offset modulo word length.",
+    "Count required word occurrence counts and scan each offset modulo word length.",
     "Add a word-sized token; clear the window if it is not required.",
-    "When a count exceeds its quota, remove left tokens until valid again.",
+    "When a count exceeds its required count, remove left tokens until valid again.",
     "Once the window contains exactly len(words) tokens, record its start."
   ],
-  "correctness": "Each aligned window contains only required words and no count above its quota. If its token count equals the total quota, every required count must be exactly satisfied. Shrinking removes only invalid starts; scanning all offsets includes every possible starting index.",
+  "correctness": "Each aligned window contains only required words and no count above its required count. If its token count equals the total required count, every required count must be exactly satisfied. Shrinking removes only invalid starts; scanning all offsets includes every possible starting index.",
   "bruteForce": "For each start, slice and count all words in the candidate: O(n*m*w) work for n characters, m words and width w.",
   "complexity": {
     "time": "O(n*w + m*w)",
     "space": "O(m*w)",
-    "explanation": "Time O(n*w + m*w); auxiliary space O(m*w). Output storage is excluded unless stated."
+    "explanation": "Time O(n*w + m*w); additional space O(m*w). Output storage is excluded unless stated."
   },
   "pitfalls": [
-    "Duplicate words need multiplicities, not a set.",
+    "Duplicate words need occurrence counts, not a set.",
     "Scan every offset, including starts inside the first word width.",
     "Shrink repeatedly on overflow; overlapping answers are allowed."
   ],

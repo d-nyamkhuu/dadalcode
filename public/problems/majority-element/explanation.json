@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "The majority is more frequent than all other values combined, not merely the most common value. That stronger guarantee permits cancellation: removing a pair of unequal values cannot eliminate the identity of a strict majority. A frequency dictionary works, but it remembers much more than this guarantee requires.",
+    "Imagine canceling a pair of different values whenever possible. A value appearing more than half the time cannot be completely canceled. Keep one candidate and a balance of unmatched votes. Change the candidate only when the balance reaches zero.",
     "Keep one candidate and a vote balance. Matching values add a vote; different values cancel one. A balance of zero means the processed group has completely cancelled in unequal pairs, so the next value can start a new candidate group. The balance is not the candidate’s actual frequency in the full array.",
-    "Even if several candidate groups disappear, the guaranteed majority must survive the complete cancellation process. It has more copies than all potential opponents combined. Under this problem’s guarantee, returning the final candidate is enough. If a task only asked whether an arbitrary array had a majority, the same scan would propose a candidate but would still require a second pass to verify its count.",
+    "Even if several candidate groups disappear, the guaranteed majority must survive the complete cancellation process. It has more copies than all potential opponents combined. Under this problem’s guarantee, returning the final candidate is enough.",
+    "If a task only asked whether an arbitrary array had a majority, the same scan would propose a candidate but would still require a second pass to verify its count.",
     "When reusing this method outside the guaranteed-majority contract, count the returned candidate in a second pass and require more than len(nums)//2 occurrences. Returning the cancellation survivor alone is justified only by the explicit existence guarantee."
   ],
   "walkthrough": {
@@ -35,5 +36,6 @@
       "code": "return candidate",
       "note": "The strict-majority guarantee is what makes verification unnecessary. Without it, a surviving candidate could still fail to exceed half the array."
     }
-  ]
+  ],
+  "keyDecision": "The guarantee of a strict majority is necessary here. Without it, verify the final candidate's count."
 }
