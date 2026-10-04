@@ -19,6 +19,9 @@ page.on("console", (message) => {
 });
 const root = process.env.APP_URL || "http://127.0.0.1:5173";
 const catalog = JSON.parse(await readFile("src/data/catalog.json", "utf8"));
+const pythonTypes = JSON.parse(
+  await readFile("src/data/pythonTypes.json", "utf8"),
+);
 const illustrated = [];
 await mkdir(screenshotDirectory, { recursive: true });
 
@@ -52,6 +55,21 @@ try {
   for (const problem of catalog) {
     await open(problem.slug);
     assert.equal(await page.title(), `${problem.title} — DadalCode`);
+    const contract = pythonTypes.problems[problem.slug];
+    const suppliedTypes = page.getByRole("region", {
+      name: "Provided Python types",
+    });
+    assert.equal(await suppliedTypes.count(), contract ? 1 : 0);
+    if (contract) {
+      assert.equal(
+        await suppliedTypes.locator("pre code").textContent(),
+        pythonTypes.types[contract.type].code,
+      );
+      assert.match(
+        await suppliedTypes.innerText(),
+        /without defining or importing/,
+      );
+    }
     assert(
       await page
         .getByRole("heading", { name: "The main idea", exact: true })
@@ -107,11 +125,65 @@ try {
     "Practice should not reveal the solution guide",
   );
 
+  // The flow under test is: open a node problem -> change learning views ->
+  // keep its supplied class and input contract visible, including saved drafts.
+  await open("swap-nodes-in-pairs", "learn");
+  const suppliedTypes = page.getByRole("region", {
+    name: "Provided Python types",
+  });
+  for (const mode of ["Practice", "Solution", "Learn", "Practice"]) {
+    await page
+      .getByRole("navigation", { name: "Learning views" })
+      .getByRole("link", { name: mode, exact: true })
+      .click();
+    await suppliedTypes.waitFor();
+    assert.match(await suppliedTypes.innerText(), /ListNode\(0, head\)/);
+    assert.match(
+      await suppliedTypes.innerText(),
+      /head.*argument is the first ListNode/,
+    );
+  }
+  const editor = page.getByRole("textbox", { name: "Python code editor" });
+  const swapSolution = await readFile(
+    "public/problems/swap-nodes-in-pairs/solution.py",
+    "utf8",
+  );
+  await editor.fill(swapSolution + "\n# Keep my saved draft\n");
+  await page.getByRole("button", { name: "Submit", exact: true }).click();
+  await page
+    .getByText("Accepted — all tests passed.", { exact: true })
+    .waitFor({ timeout: 60000 });
+  await page.reload();
+  await editor.waitFor();
+  assert.match(await editor.innerText(), /Keep my saved draft/);
+  await suppliedTypes.waitFor();
+  await suppliedTypes.scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: `${screenshotDirectory}/provided-python-types-desktop.png`,
+  });
+
   for (const viewport of [
     { width: 1280, height: 800 },
     { width: 1280, height: 600 },
   ]) {
     await page.setViewportSize(viewport);
+    for (const slug of [
+      "swap-nodes-in-pairs",
+      "construct-binary-tree-from-preorder-and-inorder-traversal",
+      "clone-graph",
+    ]) {
+      await open(slug);
+      await fits();
+      await page
+        .getByRole("region", { name: "Provided Python types" })
+        .scrollIntoViewIfNeeded();
+      assert.equal(
+        await page
+          .locator(".provided-python-types pre")
+          .evaluate((el) => el.scrollWidth <= el.clientWidth),
+        true,
+      );
+    }
     for (const slug of illustrated) {
       await open(slug);
       await fits();

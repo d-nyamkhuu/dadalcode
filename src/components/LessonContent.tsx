@@ -1,6 +1,7 @@
 import type { ProblemDefinition } from "../types";
 import ConceptIllustration from "./ConceptIllustration";
 import LessonFigure from "./LessonFigure";
+import ProvidedPythonTypes from "./ProvidedPythonTypes";
 import { lessonVocabulary } from "../data/lessonVocabulary";
 import Text, { LessonTextProvider } from "./LessonText";
 import "./lesson-enhancements.css";
@@ -90,6 +91,11 @@ export default function LessonContent({
             <p>
               <Text>{l.statement}</Text>
             </p>
+          </>
+        )}
+        <ProvidedPythonTypes slug={problem.slug} />
+        {mode !== "solution" && (
+          <>
             <ConceptIllustration slug={problem.slug} mode="problem" />
             <Example problem={problem} />
           </>
