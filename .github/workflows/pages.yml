@@ -10,24 +10,49 @@ concurrency:
   group: release-checks-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
+  changes:
+    name: Classify changes
+    runs-on: ubuntu-latest
+    outputs:
+      web: ${{ steps.changes.outputs.web }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - id: changes
+        run: python3 scripts/ci_changes.py
   quality:
     name: Quality
+    needs: changes
+    if: always()
     runs-on: ubuntu-latest
     steps:
+      - name: Require successful change detection
+        env:
+          DETECTION_RESULT: ${{ needs.changes.result }}
+        run: test "$DETECTION_RESULT" = success
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "24"
           cache: npm
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        if: needs.changes.outputs.web == 'true'
         with:
           python-version: "3.12"
       - run: npm ci
+        if: needs.changes.outputs.web == 'true'
+      - run: npm ci --ignore-scripts
+        if: needs.changes.outputs.web == 'false'
       - run: npm run lint
+        if: needs.changes.outputs.web == 'true'
       - run: npm run format:check
       - run: npm test
+        if: needs.changes.outputs.web == 'true'
   browser:
     name: Browser tests
+    needs: changes
+    if: needs.changes.outputs.web == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -41,6 +66,8 @@ jobs:
         timeout-minutes: 15
   production:
     name: Production build
+    needs: changes
+    if: needs.changes.outputs.web == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -59,8 +86,8 @@ jobs:
           path: dist
   deploy:
     name: Deploy website
-    needs: [quality, browser, production]
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [changes, quality, browser, production]
+    if: needs.changes.outputs.web == 'true' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

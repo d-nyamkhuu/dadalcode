@@ -8,6 +8,20 @@ A desktop Python algorithm trainer covering all **179 problems** in [Sean Prasha
 
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Releasing](RELEASING.md)
 
+## Screenshots
+
+**Choose a study plan.** Follow the beginner roadmap or the experienced Blind 75 track, with progress saved locally.
+
+![Beginner study plan showing the next recommended problem and ordered practice groups](docs/screenshots/study-plan.png)
+
+**Step through an algorithm.** Read the lesson alongside a live visualization of Python execution.
+
+![Two Sum lesson and walkthrough showing array values, the complement calculation, and the lookup map](docs/screenshots/walkthrough.png)
+
+**Practice in Python.** Edit your solution and submit it against the problem's test cases.
+
+![Python practice workspace with a Two Sum solution and an accepted submission](docs/screenshots/practice.png)
+
 ## Run locally
 
 Requires Node.js 24 LTS (or 22.13+) and npm. Python 3.12 on Linux/macOS or WSL is needed only for development tests. In this directory:

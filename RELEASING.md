@@ -45,12 +45,17 @@ DEPLOY_BASE_PATH=/dadalcode/ npm run test:production
 ```
 
 The **Release checks and deploy** workflow runs on PRs and pushes to `main`.
-After a PR is merged, the resulting push runs **Quality**, **Browser tests**, and
+For app-affecting changes, the resulting push runs **Quality**, **Browser tests**, and
 **Production build**. If all three pass, **Deploy website** publishes that run's
 verified artifact to this repository's GitHub Pages site. Direct pushes to `main`
 also deploy; PRs and manual runs on other branches never deploy. A manual run on
 `main` can retry deployment. An in-progress main-branch deployment is not canceled
 by a newer push.
+
+Documentation-only changes run formatting in **Quality** and skip browser tests,
+the production build, and deployment. Bundled licenses and third-party notices
+still trigger the full pipeline. A manual workflow run always runs all checks
+and can deploy from `main`, even when the last commit only changed documentation.
 
 One-time setup: in **Settings → Pages → Build and deployment**, select **GitHub
 Actions** as the source. The expected site URL for this repository is
