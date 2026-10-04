@@ -1,4 +1,3 @@
-from __future__ import annotations
 class Solution:
     def numDecodings(self, s: str) -> int:
         dp = [0] * (len(s) + 1)

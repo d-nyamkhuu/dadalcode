@@ -1,6 +1,6 @@
 from collections import defaultdict
 class Solution:
-    def groupAnagrams(self, strs):
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         groups = defaultdict(list)
         for word in strs:
             counts = [0] * 26

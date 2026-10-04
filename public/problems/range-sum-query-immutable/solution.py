@@ -1,5 +1,5 @@
 class NumArray:
-    def __init__(self, nums: list[int]):
+    def __init__(self, nums: list[int]) -> None:
         self.prefix = [0]
         for value in nums:
             # Entry k stores exactly the first k values, including an empty prefix.

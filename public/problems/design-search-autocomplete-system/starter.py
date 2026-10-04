@@ -1,7 +1,7 @@
 from typing import List
 
 class AutocompleteSystem:
-    def __init__(self, sentences: List[str], times: List[int]):
+    def __init__(self, sentences: List[str], times: List[int]) -> None:
         """Initialize historical sentences and frequencies."""
         pass
 

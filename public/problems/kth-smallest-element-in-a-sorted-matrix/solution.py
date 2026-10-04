@@ -1,5 +1,6 @@
 class Solution:
-    def kthSmallest(self, matrix, k):
+    def kthSmallest(self, matrix: list[list[int]], k: int) -> int:
+        """Return the kth smallest integer in the square matrix; k is one-based."""
         n = len(matrix)
         low, high = matrix[0][0], matrix[-1][-1]
         while low < high:

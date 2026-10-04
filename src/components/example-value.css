@@ -1,0 +1,200 @@
+.example-fields {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  min-width: 0;
+}
+.example-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 7px;
+  min-width: 0;
+}
+.example-field dt {
+  color: #a9bac8;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.example-field dd {
+  margin: 0;
+  min-width: 0;
+}
+.example-scalar {
+  display: inline-block;
+  font: 13px/1.6 var(--font-mono);
+  color: #e2eaf0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+.example-link {
+  color: #91a6b6;
+}
+.example-empty {
+  color: #a9bac8;
+}
+.example .example-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-bottom: 18px;
+}
+.example .example-heading h3,
+.example .example-heading p {
+  margin: 0;
+}
+.example .example-body {
+  display: grid;
+  gap: 18px;
+}
+.example .example-panel {
+  min-width: 0;
+}
+.example-panel h4 {
+  margin: 0 0 12px;
+  color: #a9bac8;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.example .example-result {
+  padding-top: 16px;
+  border-top: 1px solid #344339;
+}
+.example-result h4,
+.example-result .example-scalar,
+.worked-output .example-scalar {
+  color: #c1f17a;
+}
+.example-index,
+.example-note {
+  display: block;
+  color: #9eafbd;
+  font: 11px/1.6 var(--font-mono);
+}
+.example-groups {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.example-group {
+  min-width: 0;
+  border-left: 2px solid #34434d;
+  padding-left: 10px;
+}
+.example-linked {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.example-list-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.example-list-node code {
+  border: 1px solid #3c4b56;
+  border-radius: 4px;
+  padding: 3px 9px;
+}
+.example-table-scroll,
+.example-tree {
+  min-width: 0;
+  max-width: 100%;
+  overflow: auto;
+}
+.example-table-scroll:focus-visible {
+  outline: 2px solid #c1f17a;
+  outline-offset: 3px;
+}
+.example-table,
+.example-grid {
+  border-collapse: collapse;
+  font: 12px/1.5 var(--font-mono);
+  color: #dce6ec;
+}
+.example-table {
+  width: 100%;
+}
+.example-table caption,
+.example-grid caption {
+  text-align: left;
+  color: #9eafbd;
+  font: 11px/1.6 var(--font-mono);
+  padding-bottom: 8px;
+}
+.example-table th,
+.example-table td {
+  text-align: left;
+  padding: 7px 9px;
+  border: 1px solid #34434d;
+  vertical-align: top;
+}
+.example-table th {
+  color: #a9bac8;
+  font-weight: 500;
+  background: #11191e;
+}
+.example-grid th {
+  color: #9eafbd;
+  font-size: 10px;
+  font-weight: 400;
+  padding: 3px 6px;
+}
+.example-grid td {
+  border: 1px solid #3c4b56;
+  text-align: center;
+  min-width: 25px;
+  height: 28px;
+  padding: 3px 6px;
+  background: #11191e;
+}
+.example-sudoku {
+  border: 2px solid #91a6b6;
+}
+.example-sudoku td {
+  min-width: 26px;
+  height: 28px;
+  padding: 3px;
+}
+.example-sudoku td:nth-child(3n) {
+  border-right: 2px solid #91a6b6;
+}
+.example-sudoku tr:nth-child(3n) td {
+  border-bottom: 2px solid #91a6b6;
+}
+.example-grid .example-grid-empty {
+  color: #82929f;
+  background: #1e292f;
+}
+.example-tree ul {
+  list-style: none;
+  border-left: 1px solid #465764;
+  margin: 5px 0 0 5px;
+  padding-left: 14px;
+}
+.example-tree > ul {
+  margin: 0;
+}
+.example-tree li {
+  margin: 4px 0;
+  white-space: nowrap;
+}
+.example-tree-side {
+  display: inline-block;
+  min-width: 38px;
+  color: #9eafbd;
+  font: 11px var(--font-mono);
+}
+.example-result .example-grid td,
+.worked-output .example-grid td {
+  color: #c1f17a;
+}
+.editorial-lesson .example-type-note {
+  font-size: 12px !important;
+  line-height: 1.7 !important;
+  color: #a9bac8;
+  margin: 0 0 12px;
+}

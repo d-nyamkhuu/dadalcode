@@ -1,5 +1,5 @@
 class Solution:
-    def mergeTwoLists(self, list1, list2):
+    def mergeTwoLists(self, list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
         dummy = ListNode(0)
         tail = dummy
         while list1 and list2:

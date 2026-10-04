@@ -1,6 +1,6 @@
 class NumArray:
 
-    def __init__(self, nums: list[int]):
+    def __init__(self, nums: list[int]) -> None:
         """Store boundary prefix sums for the immutable input array."""
         pass
 

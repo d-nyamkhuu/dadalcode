@@ -1,6 +1,6 @@
 class WordFilter:
 
-    def __init__(self, words: list[str]):
+    def __init__(self, words: list[str]) -> None:
         """Preprocess words so queries can return their largest matching input index."""
         pass
 

@@ -1,5 +1,5 @@
 class Solution:
-    def checkInclusion(self, s1, s2):
+    def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
             return False
         target, window = [0] * 26, [0] * 26

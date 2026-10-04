@@ -1,5 +1,5 @@
 class Solution:
-    def maxDepth(self, root) -> int:
+    def maxDepth(self, root: TreeNode | None) -> int:
         stack = [(root, 1)] if root else []
         best = 0
         while stack:

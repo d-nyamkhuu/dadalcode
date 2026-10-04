@@ -1,6 +1,6 @@
 from collections import deque
 class Solution:
-    def averageOfLevels(self, root):
+    def averageOfLevels(self, root: TreeNode | None) -> list[float]:
         queue, averages = deque([root]), []
         while queue:
             size, total = len(queue), 0

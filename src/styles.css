@@ -650,23 +650,6 @@ svg {
   font-size: 16px;
   margin-bottom: 15px;
 }
-.example > div {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 8px;
-  font-size: 13px;
-  line-height: 1.8;
-}
-.example code {
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
-  color: #c9d6e2;
-}
-.example b {
-  font-family: var(--font-mono);
-  flex-shrink: 0;
-}
 .example p {
   font-size: 12px;
   color: #96aabd;

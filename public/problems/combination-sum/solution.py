@@ -1,5 +1,5 @@
 class Solution:
-    def combinationSum(self, candidates, target):
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
         candidates = sorted(candidates)
         result, path = [], []
         def visit(start, remaining):

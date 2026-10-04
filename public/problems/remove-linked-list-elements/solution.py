@@ -1,4 +1,3 @@
-from __future__ import annotations
 class Solution:
     def removeElements(self, head: ListNode, val: int) -> ListNode:
         dummy = ListNode(0, head)

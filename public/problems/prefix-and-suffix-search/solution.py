@@ -1,5 +1,5 @@
 class WordFilter:
-    def __init__(self, words: list[str]):
+    def __init__(self, words: list[str]) -> None:
         trie = self.trie = {}
         for index, word in enumerate(words):
             for start in range(len(word) + 1):

@@ -63,8 +63,8 @@
     "packageHashes": {
       "lesson.json": "64167574a8e3bc15b4975e5e38fa26d13175a193265cc4d718c8c2587e537f81",
       "explanation.json": "a434b820e23442239292b64307b99f7c665ed3f6a54b402440e230ee85b75525",
-      "solution.py": "2f560f3af122ca110426df80304180fe0116c0f36910844be954bead1eda443b",
-      "starter.py": "9c019b70417ce0c6c2f68e134d9cf89ee0fd42768d2e3f67e5ea033899a1ac56",
+      "solution.py": "9f61cdea5d70d71ca687166b1be67a1f163ae4d7d10413c9c97f73bdc6ea8d22",
+      "starter.py": "f0aa31214aa2285e6ad70b0001ae6e8923bf0c01bc6c58c5c770380c0e5fc0dc",
       "tests.json": "43d88de43f2c460819d403801bbf9c77b3e49ceb6549736511790d149336f15d",
       "adapter.py": "338c9e10f629815d99cce1a5cb60e0f2baa547e214b637a56c3ccb4e46b6c74c"
     },
@@ -113,8 +113,8 @@
     "packageHashes": {
       "lesson.json": "91705b644f57024e638836b8e8c32c16a9f8ce252a7439d50d9793ee75d6344a",
       "explanation.json": "ef87cafef0d98bc9114523d5e93d278ace99025d81edad0b880826023f6e7d6c",
-      "solution.py": "368851829783349b9fdb86a227eb5921d3458a0054a09aaa7144760d9b6dc223",
-      "starter.py": "5fb3c78c0d33e214af6eeea75aed6b05319c2fbca71d267cce423be0ef9f0e6b",
+      "solution.py": "efff41d8493247383f08fd75e7cb9d9939733e64b2c0888ce9d11ea10c17f6b7",
+      "starter.py": "df2c719cce59fc603cf6cf3824280d3bb3a6b60b03c44ea64f28d7c9c5cd62aa",
       "tests.json": "d2c34ea92cb319453920dee84c2d4f3330d15db8edc0c55a84d4864896e282d9",
       "adapter.py": "ffc32cd8c293e1d3c741afaedd42e6154b6d7cbf68fae2812f19bfcbdf5428b6"
     },
@@ -138,8 +138,8 @@
     "packageHashes": {
       "lesson.json": "d67497e0dc52864570c479ace0fa0aaed640168b7b7e728a16cabdb8ef9af3f6",
       "explanation.json": "2a206025f289a46dd43100d1ae04f67458982cf8822b9c778f290a2105f0d13e",
-      "solution.py": "841b2f480303482282f56b07ec64144d5f09f83376cd13fdf6cebc62744b9ff5",
-      "starter.py": "66e8b31c919b52e009f2500a634610e83c2aafb7335ea2f969e6e86aeb18090e",
+      "solution.py": "60350c038604f16a7da71e74a9a2bebb8645b5c3121ba38c89a71c7afcebd21d",
+      "starter.py": "e206c6a934a13792fe6a244cde5fdc361df6fa961d05cb47f2b8342c7a3dda77",
       "tests.json": "334e2dd4258ed2307d81796d5f8c83c11582ba4b7a9af6ad4543d638190fd42f",
       "adapter.py": "0edb72d1cab45d521cd0ea6a13b7bc744e07ffa5e8723b96f04a318713a32bbd"
     },
@@ -163,8 +163,8 @@
     "packageHashes": {
       "lesson.json": "04e7601f4eff6a259f4bac7ef2c7d70e221c4eea8d9fa7a30f42b525958335aa",
       "explanation.json": "5f2b3413dd010899d397eaaab3514ceddce49d1c7d694135fad2d371f8b33b30",
-      "solution.py": "1da8f008219e60734b1987fee7dfc8054c6ed6aeec6e6469d59e570573d10ee4",
-      "starter.py": "d0ed9654d0972dd748c929bf48ca8ddef98b5b0e29a25fc7b1c1ae9c7189202f",
+      "solution.py": "bc6ef9d05ffe53469a8ea6820adcf751cc643680aa6663eedeb106348c90d1e8",
+      "starter.py": "feefd8fddbd05950a217efaaeb6c58b73578393402bb23811fcfc520ea11a91f",
       "tests.json": "2ddcaa657d90697c5a739fcb8b50d60c6bf9d66781fbf65f717a6c9daeef032d",
       "adapter.py": "038ab740192654ce225e9ad2db8b606cc771bbc6f97dd0b85e7eed5352805eac"
     },
@@ -294,8 +294,8 @@
     "packageHashes": {
       "lesson.json": "33ebcbee80e47ad43de047445619a81e45818859924bad816eb4ff74bb8c3d8f",
       "explanation.json": "9fbc779b86b965e2b7fb3f4169d5a9fd046af5bfe428b1aaeaad34d33bd4f374",
-      "solution.py": "a459253182c7827b7a7aff97f38b425deeab1db6b31a218de87ea977cd208221",
-      "starter.py": "2bcb1a2d564c0d1113f465aac573d41b6ca86cef22f56db6bdf92a4ae78b0303",
+      "solution.py": "5d2157ba1694c11b3a5a26d7310c193f3d092f91c512c96eddb4220d23e5e854",
+      "starter.py": "91417e1f6718cf1f8706f5d59631fea5a5c4bde521fbf169ad7c5aa1733bf22f",
       "tests.json": "dbabf56b00b8d91cee91d04888ec111c904c4e0ca9655cf07bd4ef1e88fc2a0d",
       "adapter.py": "d44e743b53c7028b9c9ecbb83632854f102bc186e83c8c13f1b0f7e64493302f"
     },
@@ -319,8 +319,8 @@
     "packageHashes": {
       "lesson.json": "0abdceafb4bd608932b3b8fdf873978f440c3f4902da72ab0903a513f69b2d8b",
       "explanation.json": "e00febee1d9f997175fc225b6883e547076795aace3f33dac52edc23377e1342",
-      "solution.py": "cf6ac5605556567994d46e2539910710a40ccd035448dc917acb413efb05e9e3",
-      "starter.py": "ff7ea0f253761fe9dc5e3bbacd3cf4729553c5f538047e5f3ea6fd3a366d22e3",
+      "solution.py": "42828eee067217dda8b9e5857447d8cb1d27ea30fe31b61b63d89b020cf4d935",
+      "starter.py": "330ec2dc586ef515975af0329f66e8da588a2f274a840122d6ba9e0f82f02f6a",
       "tests.json": "e83556aea9f13c0135d7b06bd617a2a78e03a110d3598edb67b9e5942df8c4e1",
       "adapter.py": "c051009e5da78f16e3f06f47cbd9a7e86332701bd8b50e8f5db29452dbf1a459"
     },
@@ -347,8 +347,8 @@
     "packageHashes": {
       "lesson.json": "421679c3456a57ea9fe48e72494f9ec90b465dccb2cbca3301487b5c87fc04d7",
       "explanation.json": "a13f8e386cf6cef4b6c7421b4c65810c8b25ea4751c083ca5027c72ebb939793",
-      "solution.py": "15a909076f5518e23b8dd0100175c393b85ada698df5fc3c80430d6d85194700",
-      "starter.py": "6e6c1fcfa223ad1230fa03f67dd4aba0a62c7a1a0ff3236d88b843b3d70ce3cd",
+      "solution.py": "26f36bbd12aa7d9439940fef499c2d74d912de4051bf043756f34fb9485a897f",
+      "starter.py": "1305dff226115e9be886dc8a14539850e50102f1fa814ce22cbcafc92d9d581a",
       "tests.json": "b10cccd1332084689487e76f1b2205b1024f8a0aba719cdff791bec8914b75c9",
       "adapter.py": "742b8f80a9e0eae678242069f6458c2ee254068da8e4d134058d3702f6fc03eb"
     },
@@ -374,8 +374,8 @@
     "packageHashes": {
       "lesson.json": "8cabab875127e905e679cf41048ef5265daa0e061a6c202e00594b843b46c6bf",
       "explanation.json": "b2ff32cb33ea3b22c711c344f8f29d1be800825a770a984fcb2e935cd2709a65",
-      "solution.py": "3c3209567793b8bf2e305e23e3bd40ff357a8583bda030d51843f37dae6249d8",
-      "starter.py": "0b9dabe339478370f4726f51cddb22ce7fcf2b9ad84144b3840a5f9573e65d1e",
+      "solution.py": "bc7abe71d1c8a98020ef6e21e04f16769501228d2fdaa5d403fd3682dcf47a09",
+      "starter.py": "ad2b601bf0a0f9ee8e52725f7f8ba46ed65c8c97df58fbaf2444f41d96af50c5",
       "tests.json": "05e3dc68710c0c09a739c6399b3d8e4e8399cd1c32e64e476429adeddfe4e395",
       "adapter.py": "2e15a37716ed964f7cfba4902bb537e63bb2573ead222bb9c3807ba59909783e"
     },
@@ -424,8 +424,8 @@
     "packageHashes": {
       "lesson.json": "0bbf8fe728cf36a067df37a80354acf4380bc8f5b301e28c6e620d55eab04e9b",
       "explanation.json": "5d835cfa425703de56f258709398141beb6b4b77fcad579640cb54322148371c",
-      "solution.py": "3ff6963f688ad42e0de1849b251a9a2cf597489a4cd0cffb27a5c802fa699052",
-      "starter.py": "3be164d8ac77f54c4e9a7a7070f7ce3ba7c43a0afcdfbf3c2656e4e6f8df7e12",
+      "solution.py": "969546b133b3989e9fa7cfff56d8447335d15db205d6143f3057f80ceba362f9",
+      "starter.py": "ed5a08e34370a2948e0e7da3cda2a606b6302519edf7f6517ac2f3110b870c53",
       "tests.json": "77789d0f029b98f10118c906d8b39d376d6b2e12742e8da9ff97d320dd8516ae",
       "adapter.py": "5327f7010468af328812a47eb567ee1e4d2999f44c5f121ff1ae3341dd59a189"
     },
@@ -505,8 +505,8 @@
     "packageHashes": {
       "lesson.json": "1fc76395380db321514a7fd1954020fc5662f3e6731d2aeeb0c5d9f8d0ef457a",
       "explanation.json": "40b2e6529920c01d6ff94fd2304d9933068987da600db107df914172bfd70fe6",
-      "solution.py": "ab477913446579f16ddebbf0bf99c02d69d381612889ca2bc379ca9cdd345dc7",
-      "starter.py": "a037790b00f05267b19ff7970c45b46948158855f522c5ca58180488e50f9310",
+      "solution.py": "e40da0b718e87454e14ca42c41ab2fb31d6bd1bed7375828ae4c2e749ff7b016",
+      "starter.py": "5c5cbee1364aacadfb93d5826ab4fe52444497ee2c8630ec0407d0c89d4f4642",
       "tests.json": "744a1e2cd280a91c57c2b506c794eef55081de124b6e9982cc55645d666f1f6b",
       "adapter.py": "2ee3316277612ac23f01b5a1b8ddd9a091ad10b444686b7af2deed6a6e3a6577"
     },
@@ -530,8 +530,8 @@
     "packageHashes": {
       "lesson.json": "2fd83f0b699a4943d7a45554d6dfc93b71f7fb32f633e4aa48905e94ca126c31",
       "explanation.json": "5e1e0764120fe9d01ddfee1947f9c598e12506615741f6c4d2be1930a793ca04",
-      "solution.py": "7899987569fec9f8f1ecf1a893b87cf11279f569afb0053e1f9ff62d6deb58d8",
-      "starter.py": "5e577c63f92025f2e232163c5237c3c995631a735af7b5c4fd8cc389c52a05ee",
+      "solution.py": "076a3376c6dcd058c8a74bcf71bc540479576ca6a40429b70bf522c2ab5d938f",
+      "starter.py": "f9b2b1df0296a9029c89837d2ac3aa23dbffa6a9d69b9dfbd8d2720572abe0fe",
       "tests.json": "5b1f18fbadd7e320043b58d4218b068a4a9147d79044db9f3ef2faa48301c81c",
       "adapter.py": "0564f629baef63f70dbb811405aeb9b194eb5623cef0e5bc3f9a47c7cbaf1d89"
     },
@@ -557,8 +557,8 @@
     "packageHashes": {
       "lesson.json": "8e8ab8c52390a2950f38bd4faa61f4c79ec678d4cdf7fc97f5af9cf963b65734",
       "explanation.json": "e83cb92114f6e40c8af40370cb71969f22781bebc7986664d9bdadcd88f04426",
-      "solution.py": "e3e90548d55ce2ed10d3d0af241bb52055a4842e495dc4650fc119da269d6b78",
-      "starter.py": "7ef9d6522148c2b5bd4bc846d32a3de19ef62202813fcdb8c8bc97b1f255abfa",
+      "solution.py": "74c05644d18ff908ea8fc133ab2ba72dd3a07480734eb48faa5d791e6144293a",
+      "starter.py": "bdfe5a1245eae74e7426d16dbdd8f555411d8afbe28b516c02affa7855c44752",
       "tests.json": "2f520cd776e999879d0ab957be22d40bc526e766f82e4de7fbde7ca52d4935af",
       "adapter.py": "1f9a209b765e4232959a3f39900902617ffaf06ea0a608ecab009652e69c7815"
     },
@@ -609,8 +609,8 @@
     "packageHashes": {
       "lesson.json": "36f3896435d3aee6333308f051778a0ef469d34adad73dfb116c9748b6b6a955",
       "explanation.json": "003b98d8a184e9a41c33db982fe92fe6f513f4d24311e532d87fb6b3487cd641",
-      "solution.py": "bbe1698312a492d7641551973ccf485eecb356f74cbdcde3fc7ea756a4965ad3",
-      "starter.py": "b03c2374f7351a4fc1b66fca60310a886f11b5766f8029629c01643336955320",
+      "solution.py": "0a32ebf7b2957d0d9a65b874dd07e1033289cecd70a51b274dd4130aafa1fe8d",
+      "starter.py": "3290e714d592b41fe0bce5879d491821c85f2c2b000dccf3ad8ed00ac78e3fc1",
       "tests.json": "71d0508401958ffc131a328ec3770a08c7efc4bc4952bb3c80fcc55ef2f01ecb",
       "adapter.py": "8a484d6c2c0b4bc45eea4fd8fd39a1d367d3f26d031906b6225817e081edf9e8"
     },
@@ -634,8 +634,8 @@
     "packageHashes": {
       "lesson.json": "b6c94e173c09ca747059454f6e9566d21783cfada4574b7afb405902ed834559",
       "explanation.json": "d61ee4f3abb15d4cc751e7b13745e0dfb23e65104d78775c2d6cb0ce1d38e319",
-      "solution.py": "149d9088c46a714d1cfebbaeb39c712a405a117ca295569129348156f5cee302",
-      "starter.py": "1ea4e6e30ad991da7a307141944b26d1b796eea0a02aa75b530a8365188d04a7",
+      "solution.py": "5ff0798951da3e885838db62d8ebc521244b2b9d5119c1830f55be7db85c4fa1",
+      "starter.py": "9f2fd41c5f295b129a7cada944311b6b8bd14920e837e153189039307f55b894",
       "tests.json": "3e8f1bdef1e01c6c83b5da2d0e6c0329d8536bfcd70ab8bff6d563c2729cdf34",
       "adapter.py": "3fdc37ab75629dccd86b5646213b7e1ee104590858ea27fffacfd5bcae7e62b8"
     },
@@ -686,8 +686,8 @@
     "packageHashes": {
       "lesson.json": "f88f72c201c555f907bc6caac15401af1ddede2c0f590283f18a15bc080d0c02",
       "explanation.json": "cccc6dcf471c293f81c6da0246de5cb9bed2592bcf5ee0674bc3bac485e66cb2",
-      "solution.py": "4b43b8265920c5cf2e62603a95343f5dc16d01c8c2451097c5187843c7316556",
-      "starter.py": "e1c0782e3a927cc8e0e500be66a3830e400b121a685e0c1aa5a8436653b41947",
+      "solution.py": "9b7b12eea661acf55026c9c8dd0584ad9a96067c0c635db8250b0f8ea3fd0e0b",
+      "starter.py": "96ba0b1e272d93b689ba45474fabe204ad1b32714d6af15f5be5b2139575f61c",
       "tests.json": "777384cc89f299031267e3366cded48f4ba4f08bc60e67756db32e73b50cfcdc",
       "adapter.py": "89056e685c42dcae947e440cedf651a5d5c7a32567786d872cb5d5411f6d4603"
     },
@@ -713,8 +713,8 @@
     "packageHashes": {
       "lesson.json": "d025edef837ac74c0ddd80e3e3f30332f299c4c00d0480ff8b1880c47d40ee69",
       "explanation.json": "b9e3205cdb0a86cbbb161891dbb9780e8af9e1cfb786c071d54e56c5986fd867",
-      "solution.py": "2c4c0a410f08a0137f6d6246adb4c4ce110dd8f4fd75861ab0851977c4221a13",
-      "starter.py": "e7a4e457190b599680bc5e240883bd90787e65d4e3796ded83b4ba06ea238655",
+      "solution.py": "5cabdd4a4301788ac90f4111dd56d52a7e72b2b43f806d2ecd6fc352a7f83432",
+      "starter.py": "030ee3463f02756dbcfbc851692eb99f57da97110c9a50894f21b7922b42d876",
       "tests.json": "dc1011335abd1285c2fbef69039c4388800b732c69ac8c120091642d00e1c990",
       "adapter.py": "6667c7d03c783be3a5c2ce2e28412eef10beacdf45083192af75a4326ec913bb"
     },
@@ -815,8 +815,8 @@
     "packageHashes": {
       "lesson.json": "5784d48e891ab675d1d49636ff17d1b964960932c2c93594ca8a40d5af8049d0",
       "explanation.json": "e3d8761dd35e18ffd4a65c79b157831c62fffb17a912d58d9bb418f4be680569",
-      "solution.py": "3638eaf2bb18eb65448f8616e9012a48b4b55380139ee6c4f345a000de657211",
-      "starter.py": "2fcaf3eaa1bbeb0f7e8a36048c60d6d98467ae4258f9641e8db5e9ecdb5af275",
+      "solution.py": "a94caf246eba6b4ec887b4f527d7f4423b29f16e1f16c7f8bab8e7ecf70155b8",
+      "starter.py": "06a98f3caf2ef1a2bd3cf42f85f9d847718b2c6099182729b217a062bf0b2bab",
       "tests.json": "d9ca6f81ad3be62101fffd34b9df4abe0fdeed0102c2f0f644fdad024da2a7b1",
       "adapter.py": "85f3c92279743067d724520c29210058125f23f763e379f543daf72101d5fecb"
     },
@@ -840,8 +840,8 @@
     "packageHashes": {
       "lesson.json": "a6a95f70aef334f0f87f1139eb77fc7e982a03077a258b0af4b4f3725ba5613e",
       "explanation.json": "f67d2472d9bde14a2ae5bc676743f20ec818ee2703e2033b36f22043f9fbb268",
-      "solution.py": "04ee6b062bb5a2d0694b1bb7a55e0a71101ce82ad110bf1ce78e7d8c4eabaf0c",
-      "starter.py": "3f7e22d4dcf445a1382ee351459fabf266e9853ccb99b95203dd0171a0312bae",
+      "solution.py": "59ffd0a44c9cb16681e6f1231557327b10895c161ba62ef266f97141a8a450de",
+      "starter.py": "48f35b4384e7461925b8e07ddf039761e27c15633ce0c9359eb68434f26a932b",
       "tests.json": "9fe517bf2fd380dfd01ea79f0a1e8477a4012b821e981733d1feacfe28a1dcf0",
       "adapter.py": "7658fe0d0ddb641b96b244a0dbd955159839458baf448a23f4b0ad3e02206eb7"
     },
@@ -890,8 +890,8 @@
     "packageHashes": {
       "lesson.json": "74566d09536ed93ae9afb45bf6715dfef45caead64f7c1ee63a91bc20d284d7e",
       "explanation.json": "8a10e4079f318d14ed5cf26f9d0861ba0755105eba0fb1ae51b886bba68e08f8",
-      "solution.py": "02529427c0e2acb0a068d8c177116c826a7c0b5f4f77770fd31314cecb8a84fb",
-      "starter.py": "05fd59a8dfa97c49a84badcf8106fcf62cc9b254e0bed40bc054fb807c572abb",
+      "solution.py": "e80bdd73fb487cd4c5849ecb1abac2407d5f3f25c0a8797688bb24eeb1e33465",
+      "starter.py": "515375a77abfc19782eb431dbcd1529e8784ea8c99cf4bf6e456bccaf126e403",
       "tests.json": "d960a249b8c45bd141f609f555ce803130603f7135de88613a5b8f1abd9832e2",
       "adapter.py": "26aa38bbaf45cef53b2d71e4bbef7caa4f32cc94cce6b92ce253d9662f05a3ab"
     },
@@ -942,8 +942,8 @@
     "packageHashes": {
       "lesson.json": "65be6cbe9e8033fad21d2756a58dfcbf56b2171e9e73c685d4b66720a81ee6ff",
       "explanation.json": "e31241343ca6bf64a52a7b7afea671facafeac3ded90784d7fd2bc899acaf620",
-      "solution.py": "013c480b4415bf2a9bf54daaf5730614efa27dbfa79540dcf21ee7750ce1221c",
-      "starter.py": "df871e2eae9efcae374370a81c3d658799959d68b2deacfd8dd97eb99947e70c",
+      "solution.py": "cfe965fda23650817e770bacf0c10f6fa1e7a44b14a7d052f79832d2c6a4b33d",
+      "starter.py": "6b5c91b0c20fd93ac321a6544b4dd1654e0a543028ff3c7519d51f79a41a5285",
       "tests.json": "06ceebb7ef341c7ec5afad00adc2b30849d8191ff26395bd33fab2e3d4ea3a41",
       "adapter.py": "a0239f6dbdcbea136a5ed8de9cf889b7c85124f85358c73f0b905a16cfd1a5a5"
     },
@@ -967,8 +967,8 @@
     "packageHashes": {
       "lesson.json": "ca291dd155b4519108d46c3ce40ff7777ddbf449da1140a6bff16baebe930a31",
       "explanation.json": "c891c20a3636bc2d28d910fdc0d118efe82220705824eb96d362c867e0d23793",
-      "solution.py": "24dc8d5a7b8bcbb127228977b08ee5c315b83cec04d61e63e41cad1c41fa92e9",
-      "starter.py": "4a2c6b832abbf152723a117c9edbc45016e04608529944f37d0ed49a220e0121",
+      "solution.py": "e5ebcdc768a4bf9431d2169c9a1889189e7ff013c485ea51fc3c46ccd7d3df3c",
+      "starter.py": "60265a8420a16b7675a85ed6fdcd938b2b502e6c3b368ced31a57e4d7f151a74",
       "tests.json": "b608b87b7ff39912679371c949ce47720f9134f11fff854a3f9a43f0f0ae98b5",
       "adapter.py": "a6028606443b395a88c872cb7e744cb3693275c02b5a7c94aef1335e161acf93"
     },
@@ -1042,8 +1042,8 @@
     "packageHashes": {
       "lesson.json": "ae820497d5554a01a5b4e6c9f88891e7bdadf28fb7dee54758cae5297c909136",
       "explanation.json": "3b5d59de240bfeb9e7144e4f65fa06406745e09b37c4e9154a3d1dd200e26f50",
-      "solution.py": "585f15860f7cf7a507ca992fb76a477ecfaafed4247e98b643cf96f34b38f367",
-      "starter.py": "f8fab7b073766e03e6ef2cc1e1d7dc00af7f111c1cfb820ce40f8145e5ddac3c",
+      "solution.py": "49ec40089816485e13bbf020ca81ec09a559e937926f651075b69adfab908d4b",
+      "starter.py": "e601122164cb687fc7a1538cfb874c855d2089bff0795f4eae240641768cd428",
       "tests.json": "f5d1de11cbfbd8646d069d4ba256f6e8b8e2bbdbd950e0a9efbd1c8ef3091467",
       "adapter.py": "3239414fb7be33ef85547bac28d7aa420474836c41d6d50335dd13feba33b4ce"
     },
@@ -1067,8 +1067,8 @@
     "packageHashes": {
       "lesson.json": "811d7c5acb400b27e1534a5447ed4019085e2b8bddd8ed6933ceeb78bd5cbd01",
       "explanation.json": "7b2cc87499fcf5b9bd58ef65f1f72e7a532216a3420fda3d2036ca0755e30c05",
-      "solution.py": "01ab79400d3416f5dd907e4e2e7d0e1afc2f48b0f214aa4f5ddb0c11cf3ddb49",
-      "starter.py": "8bd5db4b62e4f176717b184c39b783e747cfe97f32a6e88fed4b3fa8032384f7",
+      "solution.py": "4566a09be96a02a3bce5fdac56d199128a26ec3033f097537b3809f13ab6070c",
+      "starter.py": "159cf66e93cba003d37ea40fa22a80801cce7232eccf9e08b8824043950b87cf",
       "tests.json": "1df33e1442d4b0a93bcd36c9abac2e0de01922672a76b9560508d8cabda2618f",
       "adapter.py": "83714b15544f5721f17c9877ca992984f3ee7dc9bb78d5cc0a7e7294f3271af6"
     },
@@ -1117,8 +1117,8 @@
     "packageHashes": {
       "lesson.json": "37ab60b3560bdd64f495c0dbb7a2a27eec61e98006991cf9edd3d3cad2b3b2f6",
       "explanation.json": "0509731c72fcbb827cf879de1b69e3b498cf147c1ecd105467c38c96f60d0e76",
-      "solution.py": "282aeaedcf728d717b99a08722c546d38d462928c8694870cadb911a5ea698b0",
-      "starter.py": "742d97424b9dcfd2621dce0e5b5004f7dd38f23f641b96b545a7388071809a94",
+      "solution.py": "91827a21ecdd872a952bd490edde972f1668ba20200c5cedf73176bb06b41e29",
+      "starter.py": "6ca706bff2f35c34b1bad1867f541a359b439234fabf973e726d3a3c533fb590",
       "tests.json": "662f6111df3cf72847d3f2f03cc1faaa79b965c1b7c0ab299fd2c3ebd577a84f",
       "adapter.py": "cf2d2a98c8d66367690be3684b4a95adc42134065ea21f1d027f2962e8d9b973"
     },
@@ -1142,8 +1142,8 @@
     "packageHashes": {
       "lesson.json": "9f7eb1f7d7db9dca0ea04c5db2a3e56c71d735ce0d2b64ef09c4eec8673bb78f",
       "explanation.json": "5b5754a09b972298e853a85d284d4c066374c0b0ebfc04da4d16c011221cf4f7",
-      "solution.py": "f85611529e83cb5ff3d6c503206ff69e2aec1b3414a3eaca9eef04b098d20b2a",
-      "starter.py": "30e5da92cb9c0c9f27bf8a7fd816738a2c471df91ee2152e439431218cdde8af",
+      "solution.py": "4533f746c7eea256d5b787289352e9960d9725bebef7fa7f5b688f527f09df84",
+      "starter.py": "0b0b2fc99c708ab3b6e869151edca2c52990b243f5043e223925511d70fd5f70",
       "tests.json": "ed359c2c525a96959c2e5d28d0999ecdb4dd793d404b01c1267747a36d8dc250",
       "adapter.py": "58d2b1cc53301a427178b58ec74f9e018b10832b96dd925f16532fb7506e735b"
     },
@@ -1217,8 +1217,8 @@
     "packageHashes": {
       "lesson.json": "fa5ccb713e0c510663f1d67d47470b25fc47035dbf97e0601460baf79f5db425",
       "explanation.json": "e93fefa06b38526a285d2ff59634c5744b9f305524051a8d1aa275e90bfcfd17",
-      "solution.py": "a311e6808cfd0273a0bc276edcb2e271b1aa876e03ebf8da8924e2958e8dd997",
-      "starter.py": "88103d0a09bde32d3f3317f6ff246570d7ca33a55609f4799b3bad30d10f263b",
+      "solution.py": "8f807ce16d0bc161324caeb3f8406dd7bc1b90ac8b1c71e68902d91d3c2de342",
+      "starter.py": "feee3be634de51d3aff0d8ca95da91251ee00e1280b632b3a5c9cb84b5738d32",
       "tests.json": "55f7f67239f287b78533d49f55f7b9d316c8b019569df32c5fb19341690ef776",
       "adapter.py": "5d7bb840fe56aa78226c773fcff88adb0aabc9af6cfa5dc4d1080b343f45f08f"
     },
@@ -1242,8 +1242,8 @@
     "packageHashes": {
       "lesson.json": "a9c1bba11f13066d95cd59ab1ab40c3fd5a93e22f82e4974a08287cd2272168f",
       "explanation.json": "aec396e8b7792a01d791dafa7050c0e398e8c1d36f0cc539071447599fcd2f62",
-      "solution.py": "a87118ecacb1b0340d68344e774c66d1a3d61bc9e179261c48efc17767a8daf2",
-      "starter.py": "10eb63e897f02171d1d9bd42fb5c7ba97a0162602d92a7e06a604aad10cf1554",
+      "solution.py": "b7ba90a83ad6b537b4978e59ba19d850d3756df06947f6f1a695afcb1782c49a",
+      "starter.py": "bfc647ce551b00eb1f2036095cb7064bc51c6e632f2e609e0017b535619ff218",
       "tests.json": "53782e0038ca4186dd4e9e27ed893021276b09db9f7617c8ed1f251cd7c65e12",
       "adapter.py": "a9224c3500b7038516d8ee9feaa088f08a28ddb66d22b352eb1c786332182fef"
     },
@@ -1267,8 +1267,8 @@
     "packageHashes": {
       "lesson.json": "5e30811427005d2ccb1d0e28b6775b8252f5d1e9ec56c8dea66ad8c2f453d56b",
       "explanation.json": "23e8e6325d0e1e5075cf9f3be0c378fe7f0898fb699d9259cd28559333509ddd",
-      "solution.py": "2b6a437de7e88473f837ef7d32e61db13ad32bb535de8e0910b464c35140ab6d",
-      "starter.py": "6f0ca3c6097b38629b9a273659ab48319ec4e06772eff0d368ba7f45371e2929",
+      "solution.py": "e5e8a6ebc13a1990d6621cd8cdc21242cdc773fd3201cfd2b5b13fe7c7256c1d",
+      "starter.py": "b4ab17b4548cb481fbffe3ad991ff5247676e6d346d9c50560e1c9c3c2beaac0",
       "tests.json": "2fa73ba804ea92c7f2bc8d00bdfa8151edb071d9807df7bb5581664029e7d2e9",
       "adapter.py": "fa0f137e9c4c84596d79545e0131c31312a106bfadc02df9ae0b0aa2a2cdff35"
     },
@@ -1292,8 +1292,8 @@
     "packageHashes": {
       "lesson.json": "daee1ea408b64f8da7bdfd73cd5eec3dcffffbe769ecdc7a4977176316050620",
       "explanation.json": "847982d68e0f00ed39eb8b69b878fddec683ecd5747dccb33cfaef3a8f6a42a1",
-      "solution.py": "901d766e9da7d640b1101c893832cae79e0d5a2fb834415efd1d96448ff788c1",
-      "starter.py": "e98b83d0f1cfdcc1e07cc80ec5d09d7ec7cd0cce9e8fb956008d72da53a41cbd",
+      "solution.py": "a69086b74c19557adc8de5000e9d927d091dbda2ef9fc1b4347496364862f455",
+      "starter.py": "ddad12ee664d1fbe98558258c07b3c7222a048151a9f9ac957ce10868e7887f0",
       "tests.json": "68712c272aae38a78df09ab9b30987e7bdec5c5c7fb48b5a0fd53072cd25df10",
       "adapter.py": "95b6039df859c8c6f70ff3439c323ada1b69c33013b3840aa8dd3e4de0fac459"
     },
@@ -1342,8 +1342,8 @@
     "packageHashes": {
       "lesson.json": "17c5fadb2928e7ca7c25b8cdf37a19a6c5220443bb9f92b1f8e19548225ba5ae",
       "explanation.json": "337f8e0d5e7854da1a058975a8f8b257c45160a58cab29c4b82ed0a890142d56",
-      "solution.py": "e7995e1bc261b7a0ca1213f567519a5cec61309cfde4996e010c141732ce23e4",
-      "starter.py": "b58f1ff51b223ae0c65b3241dbb49f33122eb929416db658b5a814f2232dba8c",
+      "solution.py": "712578baa15b5c539cb482e37d310edcf5ad5078c11fb090a9a149b594613f65",
+      "starter.py": "b5e82cd0ce6eedc2aa0566442becd8045d24eab1767c20a35eb063680cf74bc9",
       "tests.json": "8d96ed626be9b74aaa6ca292ca8c767b19af6756fede84393d3d9410384bce40",
       "adapter.py": "77c5982d27d4f20f19a0ea70f999aea56e751b515237f1570ed63d7bca17fc43"
     },
@@ -1367,8 +1367,8 @@
     "packageHashes": {
       "lesson.json": "d49de1cbb84a118dc1fd80a4ef6ec9e1450bc69688a8bd842faf60cd8ed73033",
       "explanation.json": "27d52e90b08379325935bfac40ab73771dc3e0f3b9fa4dc46dc747019417bc1e",
-      "solution.py": "0545fe3706eee830dd8b1ea0b49a96c74f21c90532e7591999cfe1990b5c8d23",
-      "starter.py": "9b2d0b3099684299fc15a3518c74dd35e7a948344060e50f9f9f3d9dc45f0c8c",
+      "solution.py": "2257d4ab48293ff86b250a1f42eb5d65ab0835a7681392985579832c575f0361",
+      "starter.py": "b6fdc1a21adb66f15f538189e5aa0f6f2d25d7c586cc14f30c65e116f959965c",
       "tests.json": "fca84d0aa75029c9306e87c81d445b1717c70081a2d4888376bf22d9b79ac684",
       "adapter.py": "941c472550d75ce2aea37ac5a9f544b6d4a78d15917e67dc277026064ba2379f"
     },
@@ -1417,8 +1417,8 @@
     "packageHashes": {
       "lesson.json": "2c3d5ada3047aa7ad37de66b1b1eb84580a3510bc5f542a390d8588d73498291",
       "explanation.json": "349cbb3a6edc84562e858e2814cba32b9b06e3960872b35281545726072007ce",
-      "solution.py": "eddbd8ae804ff7c7dfca433d4bc17a2ef4f3d07baafc1cf2e7fd2e5940aefffa",
-      "starter.py": "41bda40571d63983b58bf42b0aceb2cbb0fa46658e4285fb77b2e7a06f6e66bb",
+      "solution.py": "9fc5319d186cf7d111dc19ef83646dd81448a5c0b70637dedca76d67bb92be3e",
+      "starter.py": "efb983d2f5d02f571a362c76eb5896dcb9e9b244c1a0cee45d02754e4ad7e930",
       "tests.json": "edca728ac2062e41e99627e2fcd33afd97a0ae1e62cd42540f43dce81daebb86",
       "adapter.py": "c783ef35d26c2698d07b2e177d8e2eeedd22810599acd6356f41293f886d349b"
     },
@@ -1442,8 +1442,8 @@
     "packageHashes": {
       "lesson.json": "fb37e599e8d2760b36d646cb40fc299acfa79a4bc8f94c61994ec7216e243e4d",
       "explanation.json": "bd403ca7a1d59dad8fbe43c69fa7a9c58f24045a29ed0c8a17d70c26c7dc2a48",
-      "solution.py": "f8bd603685f81450a7066c8cd7f391c8231464c64602ab5fd2ca61b6612761be",
-      "starter.py": "c63285e3a9a3139c93e4fd505823d41a95229204c9dddbf97c458cec0ece04aa",
+      "solution.py": "099d4c2f827694e7d8e0674904be09060140fe8762ee8c216a1f1a46b3907c6e",
+      "starter.py": "caa793a26838f952b7840877d1e85d4b92320321c7f0d2d3ae697dbb994c58f6",
       "tests.json": "d221e6292a33ca2d1c4b7f3238006ea51f66fb41dfb2a0d4d93f8acde1b6454a",
       "adapter.py": "2f8fdb6f3f1866e91667259ff4f228ccd127b751c3641bffa6c2fcae308b8549"
     },
@@ -1517,8 +1517,8 @@
     "packageHashes": {
       "lesson.json": "af2c0e1376028e2c2c94792276ea0a24ac8497fcd065d0617cb5918611d812d6",
       "explanation.json": "83b86f922b1294d657cac9b7557288eb837e19a514f3aa42efccb5863191e03e",
-      "solution.py": "7e4866bd08e4f308068452f2040b97c2c6558abcca3217e16b83fbb7e9d0acf0",
-      "starter.py": "d3df828fe4750cd20db4e6fd92552d04a43e8985f93b375935103ab21f2f8b3e",
+      "solution.py": "fb31be1f412e2c922ea54cdb927aba965ad03dfcbd9ba8932c53c8c44ef3e28e",
+      "starter.py": "2b938e088838f25d0509bab14949db90e9cafa4fef46e6c346c18b952f19a1ec",
       "tests.json": "9598c41a22269759e45d420970c6f14ae4684f297720781e829d1eb81a665987",
       "adapter.py": "a6e8bfcc15e82e50412aa7ecbd69c37bfa3d4fe49c4c909b9026f9545de8c994"
     },
@@ -1542,8 +1542,8 @@
     "packageHashes": {
       "lesson.json": "c3f8b13d6cbb731ac52a93542fcbd2d383ad03ba2e48868b05593da7ba7312e4",
       "explanation.json": "2b0f8fe64dcf6c3c35eb988b06d0b3485d2620cc7d7da772bc41431061d45472",
-      "solution.py": "17d72a20d1bf9181a890a297b28f84dc9b281624c9994ef71ba4c146825e85d5",
-      "starter.py": "5c8efeacfb19be76a57e056ea64d8be87b4e3bf7a47252b18679a50d730ff722",
+      "solution.py": "1145915eb065b64aa4c098e733fb3880f7384e63d610a1097beb722c3e29fd8f",
+      "starter.py": "7b76e492cc65cdc74f54ad5fc61597cfb6020e710a0460a4c47133753a93d8bc",
       "tests.json": "9c8690de4ab5df57ec5350365e214b234bf67177a7b0c1af08c75a61015b6bca",
       "adapter.py": "af2e759dc1b968d6fdb1b2794d280a8f591638ae76b7c61b9187890680377fcc"
     },
@@ -1567,8 +1567,8 @@
     "packageHashes": {
       "lesson.json": "e78d4160b678c616c49d2a3b6f3b68e5a2baf51d985243507950051612542154",
       "explanation.json": "9c0b8bd7b0796cdea8b0d71c0344a62b20c57bba584f201050653fcc1a89f829",
-      "solution.py": "10fa98c05fbf4810e6ae4ff7a22892f416f97902c3fdd80e2b839c4f7e3a53fb",
-      "starter.py": "abf98750d141b29e0a2db91fecc45884a4ba3af62a989c79fa592a6fbb6b973a",
+      "solution.py": "90df6163a85277957176de95b9028d1fc6d696e13d30c148ede3bfef0cc40ba3",
+      "starter.py": "3f01f651900a0c34e89da1a4d1b5f1cff4101f1d0ba2fbd4d29151fe002b9f54",
       "tests.json": "83ae17d27743a056babcd56603dac65a7bb838da8115a13a28caa774ed958207",
       "adapter.py": "1e2e0ef6041cd9360992717cc4545099e81cf96f4d3cb4dff056aaf1ea618578"
     },
@@ -1592,8 +1592,8 @@
     "packageHashes": {
       "lesson.json": "7ec68dd871ec9bf0398028284d551e471dabc19a0a921f99ef278a6d69453721",
       "explanation.json": "e4ce3efcbf3d192740771535286fbd6ce25f91fb080ca93d6b550acd58963ee8",
-      "solution.py": "68e7a90824e42862d953e8493207a391bb9735b0fadc88fdb914144aa576a841",
-      "starter.py": "392398dd46886d89e08192486bbe37fc194ff0249a81a3b1e2332aa509720765",
+      "solution.py": "92509cf9cc2cb0272e20c24b09c3a9e65d7a45b344192986f0621e79ee05b0e6",
+      "starter.py": "9982258b5631a225bba871b72fed176c98790d4487b08dcacc1a76541a6ed515",
       "tests.json": "a8fe8d0642a027a4652fe3c0b32ebd3bac2359e59a6100e720ad076e29f301af",
       "adapter.py": "c50a8917a2e45d2976e47276b444fe82096882cbec8510efdc4048c88b8329f5"
     },
@@ -1617,8 +1617,8 @@
     "packageHashes": {
       "lesson.json": "bebb5a11a2fe85bc34aed6bd61c1e695957618d6662c22743b7ff376e5f18d0b",
       "explanation.json": "fd0fa3181128a2309bc899a8dd6a250031db7638479624a2b70b7d630b9a6a7b",
-      "solution.py": "2297847e588dda4906bd5058319cb276f098f74c5e281d6b87d9daae85a221f0",
-      "starter.py": "77af28649168c7ff4324db3a82d1eaa6758c41bb63943ffeafad6de6843ee12f",
+      "solution.py": "3229771c398f915cc49dabe32455db79caadd4cb2184070b3733ed7d5690e357",
+      "starter.py": "7f8593be93a44fe6e48ca4033f20fbbb71c69b894e34fdb66996d63b68e4619c",
       "tests.json": "1abdc9306fba197a9cea0d906ebc947522fa5c563f9a60709cce1e761a3f08af",
       "adapter.py": "afdfc177bd50cf7af40de554e6904a73d0738b183c17ab22162c3a1c49b53349"
     },
@@ -1642,8 +1642,8 @@
     "packageHashes": {
       "lesson.json": "39f256c5d52f3e43052d170f3669dc905ee410b69aaa497f29a90554daefcbc6",
       "explanation.json": "c7ac51473c73a27e928cdc61dd4828dc5e2da873afe0415896b6734a22bf3d53",
-      "solution.py": "b3d6fdc81fe5d9dc96dcee820782a27e17d5d3b9bff5faed73d4113f2db9e04a",
-      "starter.py": "e3b62773569175c3270da4a42ff449f83940e290ccde4dd9e14cce1a34a2b6bd",
+      "solution.py": "83a959ecde5c9e0621f674bee5b4cd8c5b097d153d6079a1e1ddf2999dff46be",
+      "starter.py": "d9b6ee04e351fe49c482a313ae5aaba34481e12ec30454965ad9906ac5db3714",
       "tests.json": "23252c199d50dce470eab4efabb48ac721b4f77f92bba197ca9a9e87980e446d",
       "adapter.py": "3ccc083a8d9b50f4ee9205767eec25abd02c98708ab61163a62d678a8502342c"
     },
@@ -1667,8 +1667,8 @@
     "packageHashes": {
       "lesson.json": "919cd5ea081dbf86e89e449bfba9259847a46808b6ff0302799fe034544bf381",
       "explanation.json": "9c19a8573963b4dc289365ffd50a81ca1f7866c6d62baf7e0fbb9c3619b5e134",
-      "solution.py": "01108d2a85cc0735ad31fa7fe9ba767804f7b0dda73a3196c6a7440703e22204",
-      "starter.py": "7dac1c62ad350b8aec35331697107398859a37442bb816eed34408627790e405",
+      "solution.py": "2ee1d5e36636f42f78afa2b0d72a83bbfd5d670189599a8091b25fac487e7431",
+      "starter.py": "38466f9032c69cce6f85522732e099a9d2674d35ff11cf27d85dfce3262b3acc",
       "tests.json": "d18ea8828e7772f345c5fa1603b1865c5cd4531487a27d416bf34b2e05fbf874",
       "adapter.py": "02edbec4bc64c829a35a1b274870b31407e4230d9aa231b7dcc38cf61456002d"
     },
@@ -1794,8 +1794,8 @@
     "packageHashes": {
       "lesson.json": "e3fe42b727e1c61902f44faacf0a2f033d231bb83254dd0f79639ad6beebc899",
       "explanation.json": "de0bfe8b8b4b367ade3ab2c681ee0b3688cd819341898ac274a031ee060867ad",
-      "solution.py": "3c2f09d7198741d2c13925239158f020effa8678ad3b20ca48e7b1c76aefa0ad",
-      "starter.py": "49fb4e6fae1eff8f2fffed6b698eb1fed4fb71dd1778089703840be2c5710aed",
+      "solution.py": "3b11dd6ad30c3cc2eef44de3c50506efeb518b8ce2780e3b030d06f478099df1",
+      "starter.py": "e744dba6d0abc130163ef079c1207e5bfcc2aa828aef6f499ef5b650f46b0908",
       "tests.json": "84d0b878b044064401a85c22912432e668613ef1ee21ebd53173c6e8acdce016",
       "adapter.py": "479b6d24c18ce90cf3c81632bae7bbeb9a1a17c7f4ecf09cd50af332589628ad"
     },
@@ -1844,8 +1844,8 @@
     "packageHashes": {
       "lesson.json": "412e03caaeb9aca070fedc9fe35f7467dd627c39b306caa70155e3cd15e9b777",
       "explanation.json": "f08e3cb64cb55eb1a672e1d110e5107ab8b9f2365031392bc730721ff41b6cff",
-      "solution.py": "a155467c41d3950666758811e26e8df9110b0f31a05e701ee223bb5dd6916f79",
-      "starter.py": "130c526be70832b4e5ed14704026789b9cc44ae206d2340bee14353c01a435f9",
+      "solution.py": "2ac917e04d52e1a8a2c31c07a93125a79dccd18ff7f102af4388361ae81e6df6",
+      "starter.py": "28abbd919bfc08c8cf110df7be36df1fd68d6bee5585394ccc352a7000048246",
       "tests.json": "9d273591fa02571a8cb339f381df87b0a8876f355b84262a1d28e824827dd705",
       "adapter.py": "7bdbc12947375581a4e6135081d6f162090fad7e5c90925d9e6e8e89f4465f4e"
     },
@@ -1894,8 +1894,8 @@
     "packageHashes": {
       "lesson.json": "4b4ec42fd94f86ad746e51fcc5903e590cc0afb057973383ee04d49945f75e64",
       "explanation.json": "8f60b6673debc074133e1e8312efa3d63bb803853171528249d655de3d34f776",
-      "solution.py": "4f29438a6b38ca3a38b9baaaa7c7447b582fc7e0b0798b1ea3935d7ba3d26147",
-      "starter.py": "37270606449396104908a3877a3a7bbca5b3c78717a985fe6b655fb9d4148aed",
+      "solution.py": "430c465a7384e5d7b7a084b21b5ec30c3f0d1a402c20fc1e0e24e906c5082352",
+      "starter.py": "93f7fb76fc1dbefc3fe670b17db37b2c6c5ef96751f0bf02b019c67ad6797ea6",
       "tests.json": "f531007dc2bf52c061eebc0bb551959c6564d28bc6db964502c2093b03a71f4d",
       "adapter.py": "41a6d124b5be991b282fb7c209c4f57350f98bebd7e745dac206192a2f3a26d4"
     },
@@ -1919,8 +1919,8 @@
     "packageHashes": {
       "lesson.json": "d57bbd7ab94d61097a84d4dd857f3344c34f9067d947175cc740f78ce7586da4",
       "explanation.json": "a35b9aaf2930e3d637c3809610d944050f3b7ec4ff374d01b0b47d729030900c",
-      "solution.py": "9e0f8ae4d00fd712eb64de169c2eca26dbfd0bc84b628d032d9f7b488bdbb613",
-      "starter.py": "0833427a344ff58a7fee936fa70f2ac65a498fde1d1c2543562cdd5f5a7787c4",
+      "solution.py": "461dc3611ff8e783e1a76b4235056ed736f4c444fd2174c7875ef91fe0f04c78",
+      "starter.py": "ebb4f4dc6e44ab1599db59151e00e904bd8fa526ac624b8f6a057862d397bbd3",
       "tests.json": "a8e638507ec8a8e3ee374bebbfeff2ca1323f5eec42e24d58caf3abd0e8a2551",
       "adapter.py": "1f327c9f89e33566be185eaf5bd0d1660c311d892ca116cdb4c0cfc6e1fe3704"
     },
@@ -1944,8 +1944,8 @@
     "packageHashes": {
       "lesson.json": "a954fa4c464f139f7647d1dab04ac39d731818913404fda9d0cbda059d6a25b2",
       "explanation.json": "58850e6b4eaa8c34860728236f8a6ace0fe818b4545def150905c17d353d0134",
-      "solution.py": "c1d45f72fd6fb75473249efc0dddbc795f2dae702bedb86faa6e5ddbc69bad65",
-      "starter.py": "490e93bd9ad406b6e2aafdfcdb5dc4222015cec59dbe961fe34edef94f6c37a3",
+      "solution.py": "81783d30d11e1bbe0bc59b38927ab4f9b1bd1e1c0a7d81b687355d579c37aa35",
+      "starter.py": "f8a7dca0f5cd0d128b76c2bfe66600316ebdf9e6b3c418f9485fb27f75cb23a5",
       "tests.json": "fdb4c0394e0533e509ea0afa269973ff5cd6a7623b00b3c630744445a83b76b3",
       "adapter.py": "6e2174f9688d208b0039dd1df493ff18c6470440d52279e0debb1b2f4c98f7a2"
     },
@@ -1971,8 +1971,8 @@
     "packageHashes": {
       "lesson.json": "5eb89a7456d1f7e137c0c0cf8d1db399b21263eb59ece4d0b0ecfe364c4a8c32",
       "explanation.json": "b77f6038c54a67ee953f22fef63966f23d217cada73b62002d9eb37b3904319e",
-      "solution.py": "aba8fffad476ce9afb2de8fc473df650a4266e8dcc2079caca02464fec8d2215",
-      "starter.py": "2dd2a9e529d321a1247167fcc8de6a9125175323bab53422f548533bb920c184",
+      "solution.py": "5ac5c6a301293c452e4e00759dc3d19291e7f03196ecfe344e7bd73919a9fbe1",
+      "starter.py": "256245e044abb19a888d364981ef54609a11c6127981d368f45e4e87909e4245",
       "tests.json": "fd621944164f74f1f696b888ca944ad45c1c3474a44538d1202eda242f202687",
       "adapter.py": "7c89fc94facc3666f8f107f06c44eecc092574598a22076fa27c52d3c563105a"
     },
@@ -1996,8 +1996,8 @@
     "packageHashes": {
       "lesson.json": "78fdcb42c7e900722809f542cdca5d06d05f27955f610df3f30899ead6afc595",
       "explanation.json": "23afbba7a907485329528d4a30547111718e3183b765183c8e93c2441a38ca8e",
-      "solution.py": "d0d8d3377e62850aac166fd22c007af8975e50bedb9f628fdfdbe194c91063bf",
-      "starter.py": "00694c0abad87b407f2dbc9e6c7531d497cb4cfec93641330d2d7199732f3a7e",
+      "solution.py": "d370ba7d2cf3dc809a1c50a2cf83f1e3dd1f0734bf7a29844d04c26687ff54c9",
+      "starter.py": "690c71df7c104dfbe0bc0b9e0bd3902a87871c8617429bba8b9705ae3f364d4c",
       "tests.json": "c02d7201040f8c2d418ed756abe6a2e5be74158ce2472bdb39dad9cb55f598c7",
       "adapter.py": "a35f69df11538e3710e20be3a8cd3cb060fd3fb51a1a307051c0a2a102fd7de8"
     },
@@ -2100,8 +2100,8 @@
     "packageHashes": {
       "lesson.json": "84a05f194145e0a436b369db4bc54aafede93f449fb4d30893f5812f05f9b2a8",
       "explanation.json": "d58a97f50060b1801de7fe85964510167e6f8a23244d11738f9d34210b7278fa",
-      "solution.py": "71003a38aad83df940526d0208551d7cdcae54cb688778af7fd2dd2fbde1ae9c",
-      "starter.py": "5ac903ea94afe4880105a983b268885c67fdbbf6a20189d4be1f1af64eb39a7c",
+      "solution.py": "3c1ec83ca6b84a215d5f0948c762586356dbc08285e2003ce7edf4cfee706863",
+      "starter.py": "1bb02be1794343a3699feb8a87bda69e5cb6acb544e6814eaf101bb3ce0f1993",
       "tests.json": "1c2320f48cfcc390cbe4f60f3b24dfc34b2011084b4e813836a24d66f72a02bc",
       "adapter.py": "f5c142d8e4e23e8a0913b0d8e882da91a3f48fa501ee8e206dc8003a4f0dc405"
     },
@@ -2150,8 +2150,8 @@
     "packageHashes": {
       "lesson.json": "2205a7a0d713e8551353e06444e9cb20670141ad77e2a95ebed6f0b87a1ca34f",
       "explanation.json": "1f9468c2e9e2ee6507e9b4d35c4cdfc4808fb46c0b532b3856058ae3a760ba00",
-      "solution.py": "269e6182a8031de20e338c2f4034ae5863cb326b90103ecf0317a84e041239ae",
-      "starter.py": "a29645b917325725db4b2eccb84fc066d6bc8e148955fef03afa4a2b1db2580c",
+      "solution.py": "57656ba5a5cff07a736136b134e0759ad55b7ec449d4753474bbf4b93f7071a2",
+      "starter.py": "691e6fad5ea49387e9b73631af698363722c2b5f0d55008cf79747676b456cd0",
       "tests.json": "df2ff67847c348d5c74963d9d60eacfa9ded786656c10fe7e1c3d19216ecafd5",
       "adapter.py": "373b2d3c8d7d26f1be41bf2c0a4d4e988ee592f6adc922aed32dbec82ec6160b"
     },
@@ -2175,8 +2175,8 @@
     "packageHashes": {
       "lesson.json": "5521016b4684979b9c0b495a17d8b06fb23806eb81b72ea70e97ca7aa97f3723",
       "explanation.json": "c8fb8160bbfe8b22654846be56ebdffa4ff1c00eaa8d57f045af9ac872097812",
-      "solution.py": "d58c19110760731e29edbc5218b2a5754dadb77a0a5c65effd8d1a32e2cccf07",
-      "starter.py": "4b180078007f3cf8d3e31a35743f4ad05e49ee895bc94e6ca38fc3ea2b6c6131",
+      "solution.py": "88e7d87f51d6465b1b8a177976105cff04ea6f299867212f7e27bc7b41fb1820",
+      "starter.py": "8517bf5420ce86891e435fff2d3175ac1b1029b3170c9e51e5cf35c76192eea8",
       "tests.json": "d9266d72141a4cd721af858c6d4101d3660baea01fb29ad6291b356721ead76d",
       "adapter.py": "5dd958434862935256f4add87b5fa3faf457ef2c7fb1779f0a50464c284e8a50"
     },
@@ -2200,8 +2200,8 @@
     "packageHashes": {
       "lesson.json": "d3ac9ce05f2c5dea3eacc6f415f5add178f088781091ec55d9d4ab6ebf565bbb",
       "explanation.json": "4645fa332fb891d6707063c49666a34e99fd69395bb5a452b8c6463a1e3ff41a",
-      "solution.py": "216a905a42112633ddae4319f6ac7aa949b6e2b838ee75c2047a8f2b63c39da9",
-      "starter.py": "36de211e902e7bc6f27f5d25a2d0840556057f77714730a140a3996f621d0d17",
+      "solution.py": "aace14218276862c88468c21f0e0f54799fcdc7ff3e52c91da446ea6c002baf0",
+      "starter.py": "f7e34b24bca8550dd6e1443bdbb5012643cccda0db2e9da960305dc4cd45fc7b",
       "tests.json": "fa618cc4fce5e213843c1f08d829c90afa61b9c9c1578d9a8b86f30d0ff386af",
       "adapter.py": "d2862f604710765b592dcbb3db3d4736ced28b120036c4a441f91839ae8a4c1f"
     },
@@ -2225,8 +2225,8 @@
     "packageHashes": {
       "lesson.json": "1cc420c7a97aad27d9edfe814dac336bc211234c44b40b52ac3a86df0f1de178",
       "explanation.json": "f17a494278b2636f7ed202acd19b42c61cdf51afc197fbd1585ae0a1e20d5f81",
-      "solution.py": "7569d1526a542f3c0be736cf9c5d75e9418e3e11025d24b0de303eddbe5ca70c",
-      "starter.py": "c73551b46ec34020f25698049de6b5d1c669ba218c12213213abc328a386efea",
+      "solution.py": "9a903b89ffb7b27ba9869429c5874042540b28f04fe98569bd1d5c4bbc023e0b",
+      "starter.py": "5c44e49f0663a391438a68b6f44e26160fa83dffb5109d7d73948454aea66fb4",
       "tests.json": "123758552394917ed46e179f9fd49ee3a582026446699306fcae3fcf93bc4d6a",
       "adapter.py": "eb92a29fa136bfc7f5afe6e9f96769d2e0c9e78ab48a7bdaedfaa64da4d05a9a"
     },
@@ -2250,8 +2250,8 @@
     "packageHashes": {
       "lesson.json": "6a60d614be93a5299aebff20cdc88cb70e5615ee227a2076cc1cea8fa9bbc257",
       "explanation.json": "5d3d88ab2878ab204ebdbc3d6d4c318737442823e0a30a1c71b89c3b24594823",
-      "solution.py": "7c19e03744a7eaa420c65d4620ffd342fe9e7c5cf5db73380bdbc7314b910834",
-      "starter.py": "b5f3c5e028436b8716e999c5cd7c26850c4fac2e0b759cf8cf11135c193ad6b6",
+      "solution.py": "f8409a9c4380f10b0fdc822981a0f61fa5297be0e8be4e5fdcc1283db502b1ec",
+      "starter.py": "2dec10dad1b90407f0ebd5ec587ffb1c0edc4951b742729a1df1745c4957e197",
       "tests.json": "0ba833d016e5af9fc732d74c1d865b05300cdaba92fe4b73e2d310b35ea01a0b",
       "adapter.py": "f8f7761486ced78753643caf1894b665918f87612cf44cf8083ffd0779a36c9b"
     },
@@ -2275,8 +2275,8 @@
     "packageHashes": {
       "lesson.json": "a44dd33b0831d8b62318e1afa73c78034fa9aaa68ca7a8d8dd0b094f36869af9",
       "explanation.json": "4afbaa0be0080b911132d5c7ef3cda5603ef8d86eb549481adf49836b9601d2e",
-      "solution.py": "5f4f2c12d1f6e94c5ea40dec7c5aac17407f5adc418a4087f7135e812de698bb",
-      "starter.py": "72e99b9bdb9eed8f2bafa07cb4a688f6410a903d0ccf0f285adabb6531fa656a",
+      "solution.py": "fcf1bcaa8bf6175d39cc86f06fa70b1c00e1330a9d7dfb9a35fcd36877e4d873",
+      "starter.py": "9d62796c1458f55f6dadfe50b84f72ed09132639ce654ac24273d61f0a7c727b",
       "tests.json": "da518690148027c140b2af0a1ae686fa958cccf4c1847575b801b669690b69de",
       "adapter.py": "ae733986657ce4948ab80c590b8d1bf7407e31327fa720d3d69a322cd7198460"
     },
@@ -2300,8 +2300,8 @@
     "packageHashes": {
       "lesson.json": "c0cdd90c618d837583ddd8ce02fe46f443e0f0c943978bbcffa40f39b51379b8",
       "explanation.json": "4869fdc6632160be24645a1caeb3c40c115a552019c1095ad187aa2c02879a3d",
-      "solution.py": "08d0a4f7d1f7e7bb1e5a43bc356db3cf12707ea0d2af5374433da06708714b26",
-      "starter.py": "ce259cff47ab5a886ce248a9cd6aeb2755bb03479ffcf81321988fc70a58295a",
+      "solution.py": "966a2e5a56994672c04e8cb8ea94f21867c61bcce7a749ba68d0dfce25e6c889",
+      "starter.py": "3c26c288ecce6b0bfc1a957510da2c62ba4b1998aa4519536782f4dc83b955ac",
       "tests.json": "a44250e9fc1e6adbe797cff8c0bd75214bada663ab83eea17b31256833668032",
       "adapter.py": "cb242214c781053a6e82b32825450683b208d4c40bfaf9eea14a3845aad48a3c"
     },
@@ -2400,8 +2400,8 @@
     "packageHashes": {
       "lesson.json": "6291ef02ad33aeb8edd3d917ffd9a8ec1060d15b0fcc41930dfe0f0b0ddc8e8e",
       "explanation.json": "bcae6201c7dc47f6d22fba0ff779cb11a0f9d483c04fa2733a02167807de7dad",
-      "solution.py": "67b0dc9ea11e08a4d83d1cda42b7c989aaf8b44637283218aa70aed7b0333cd9",
-      "starter.py": "5ce30f03faacb1281cb95762aae9aca1495fdecd2ac55c90a3be93c4f6f072f2",
+      "solution.py": "2ce2b5b802aee79e76fa832b7b58a8075dfd306e67a8535b2c88167245415761",
+      "starter.py": "ee1b96926fe79f05da842a4460f514d0c9ae26d3da60d9c2854bfa6ec779f153",
       "tests.json": "6ec903d145a1169c8fbdaf5a80e2d8626fac4b8c847ec9d9601642171a6eade3",
       "adapter.py": "c70ce3c3178d1fbe6fe431adbcbfae40c3ec453529bf732b099378d93b8d628a"
     },
@@ -2425,8 +2425,8 @@
     "packageHashes": {
       "lesson.json": "e50f5353f377053c303b61f90596010b12e341591549ba0cf2e31cb6f6a53d23",
       "explanation.json": "86395eb48a1d6177273334d39b6ae2e2ac126fe6da52d9af6d19504571d431db",
-      "solution.py": "97db8822b69a71269da1da12c7ba218c290a50087fe24a80093369c53cc471c9",
-      "starter.py": "c3ddafb514fce82c3d25707938974423bb23803f0b4d19e6dfeaa7ba7820bb4b",
+      "solution.py": "9136a32f0a270902b91ba66ffcf6013076d354a39733327c5b669396e45755b7",
+      "starter.py": "dcf145856c51b9f6bc5fb9c76a92730e3da52cbfc154a128f2138e066701fcec",
       "tests.json": "548cdb26c05a390d4dab9ee1b6ae233692a2e4fdf540b9ae0b676bbda0c127e6",
       "adapter.py": "dd940723c4928264ecd06f87e2261126af9adb07da37c35d7f64ec5728388a86"
     },
@@ -2450,8 +2450,8 @@
     "packageHashes": {
       "lesson.json": "1910ef9cce14e7920df67506a3aa4bd373bf362de80b0bffc57f0efd29566135",
       "explanation.json": "4dc3abafd2f2a3b0b7f469b22e876b529ab9d30c64d19cbc3491ae5dcdc07c18",
-      "solution.py": "ef95c2963b730a346e8a3635bdf1845dd74a038a9b7884cab549b98d9c3e24f3",
-      "starter.py": "56053fbe5881e4c031057de5fe31d74f8fb8c675ca83aec41971e1af8fe1a1ae",
+      "solution.py": "8d013e10e68f9b575be4aeec69bd65dd5a00e51d11fe2dc5c8af76f38b155619",
+      "starter.py": "e2576d462521f23ca8c6846529d7e2ee67b3bd72948209c5d5e0de6bbaa9dedd",
       "tests.json": "c6b6b98d4a75463eb61b337a67b78fe3dfcf84968484136dd23a255c8bc51f4f",
       "adapter.py": "ed7f49f6776b477e595e9fb4441ace9cbdced12c3303d0b967273bb62ab92b0d"
     },
@@ -2475,8 +2475,8 @@
     "packageHashes": {
       "lesson.json": "0a1641ca7577205f3f8f261c6baeb1f65c105eed02658e3e3db8428dfb9d3079",
       "explanation.json": "604c6d9bc4bf3f857c58210f8762f5bc0ef22f6cee00443e2aecaf769b2bb893",
-      "solution.py": "e48112279e41f2a50b89d6e81139382f4a15ca865001a5257cdcdd78c537a01e",
-      "starter.py": "65cd51cf832db8c75d4d754999f06f7ecc02c4a16a4aaecc486232d0f646f5d1",
+      "solution.py": "f32e601e11a82c3bb8a1be31d90459c892cce0ea3e0ea7b1adfe929230449d40",
+      "starter.py": "2daf8bd28f741ee60dfefa79307464c356284f81ba29c283ca21ee686cf139c8",
       "tests.json": "620df945ab0debbe308d3c1f8092f2a169f102e76a91bcad85e08f965fdc9915",
       "adapter.py": "a8691da24e4b52fe056d06de9cc3b49d481fa5733eef5adcbc4536dfad0b3725"
     },
@@ -2500,8 +2500,8 @@
     "packageHashes": {
       "lesson.json": "17ce271ab70278e84694150db1de8529720b9bfc04f71e07b2a2992b6fce96f5",
       "explanation.json": "9b64d5a769ffa309477ab036023624e431be6242d0f7cc2909ea45db17958183",
-      "solution.py": "4422f6ecef6ff90b1b2d99bdb0cfcd9fcac6dd14a37ca147fb305024235c826a",
-      "starter.py": "0da99cf164573d6e2fffc51f79f025f76eb3fe230a99ba3252417f26c59d30b7",
+      "solution.py": "34d39fa87c2cfa0f56839b858ec0c6ee3fadd4273bf7bfcdb0c26dccc0f54a84",
+      "starter.py": "1e7602338e1741b7b8ef229a6ccc4dcaa3252b2a51207172c0cf054a8f665757",
       "tests.json": "c728024aa442aa563d52d9f24a9f3c8c8f1cb1ad199dcbc7e79da0a349a2ecf2",
       "adapter.py": "e21675212ffa5df965a926bfc705c4e7fa682915c3402e1633829b98b141f136"
     },
@@ -2525,8 +2525,8 @@
     "packageHashes": {
       "lesson.json": "55f955de16484c080d0f3de2bd5f627afe8aea32dd9652aeafefb7553deacdd7",
       "explanation.json": "27efce6c9ebc271033769cc07c6c424e3a0f8aba965c6f1d20821df2c2f7eae3",
-      "solution.py": "bc5525b48ac26a3c0014c4e8e7153821ae74f51e878a85bba210f9a52b7a73b5",
-      "starter.py": "07a6ecf0b7b5fecc4c07fd721180aa6c4d53f079287a7be14ccdce6541b52e1a",
+      "solution.py": "fa33e45e1c09a511ca6263bcc27c6b6e4037293e5554762d595ce353416c0889",
+      "starter.py": "fa6d8594029f2ae4e04375e1c4cec8f72a573e3b563f55620644c7934b0eaec9",
       "tests.json": "7f5110ef2ecca972ba7250f88d08e5a275a240c5f2256d456a7a3f282ff8407c",
       "adapter.py": "3763319c325a96957d98003d2bf008038e06e12f3be9542e8ff09712774c2a03"
     },
@@ -2550,8 +2550,8 @@
     "packageHashes": {
       "lesson.json": "04f14063a317ba6aca9bdefaf968a12c6b3b6acee77c7e01aba3146296b523b9",
       "explanation.json": "4c54ee6f0ef00d04201d5a3fc9cdec713c39552479d1c2b33da7a9dfdf2c38f1",
-      "solution.py": "3a6630689cf13ec9fb92eab17125fbcbba16f35abbc9759163731eb530e35a43",
-      "starter.py": "dff4fc3dfc49ad7bfe7d1bbc7347df70d693ce762385f39ba27859be1c2ee03e",
+      "solution.py": "821f31295253c2ecbfb710a60f96c7a0c654519280e61dfb8d920b8aa7b00226",
+      "starter.py": "39a03b0975ef134295765a5eac9a256905b033a532204b02dcd45a5796753a89",
       "tests.json": "6d7cc36d0e15f6c4482566b31d17749ff6f77424e789f5291b80f7627e11f814",
       "adapter.py": "07705dee93be473742755e69094931fdb00a77fab7de20f1ebecddc5ce82d9b9"
     },
@@ -2575,8 +2575,8 @@
     "packageHashes": {
       "lesson.json": "9a8251905d568134d19a8675abbeaf8ddc27e25960947ce8419677bcfe347c8b",
       "explanation.json": "a11a09bf9f2853f3328a436819b9ceb6967cde4c3f924e3daae4fcf1efdb348c",
-      "solution.py": "ae20d170cb9087d1990db31f115c2b2c1f523a5b861a7983263cb781f57e984a",
-      "starter.py": "709fdde3aa38725e9007bf8b7beb36d17d1a3c9a1aef6b9e859b74b3f8676da7",
+      "solution.py": "38851b4ed550a2804c2c1ba8bc39b0d5a94a236eb647cfb3f95c8c510c3319d8",
+      "starter.py": "6acb97b6d514fb956cf6d19b1fce53d0ad81e239b03f3967a33e2dcb82d7277d",
       "tests.json": "6053882c7e1a0a988bb6e4aa3bc4c6d18fb4b7f646be80c9654eeb8325b004c8",
       "adapter.py": "a44a2a60477a00b4b350d2eda8919424a78b9c7737fca1781f2b43d35cfc1926"
     },
@@ -2600,8 +2600,8 @@
     "packageHashes": {
       "lesson.json": "c5696d659146d574886cb58de302835b3c45e905fb8320fb3fd96cf1a16cec2d",
       "explanation.json": "088295103fc13224656eeceed1b94adb635cc92bcf91c972db6a9fd98a546bde",
-      "solution.py": "93ae491f47e940b764e55c086787e892fb44a1f7608ff1a1722d64921b8c4916",
-      "starter.py": "b60534eb875439355df5f027d9a2ab7e2dcd3661f22297ac8e4d8fc405ab6b46",
+      "solution.py": "ea47c2091df0af15bd4e5fda91d4227510a90b1af8418484e66ff1222d496a6e",
+      "starter.py": "d920713d0a0018b326528b3926a63ee093871b011663a9047cfe3391a3b9c271",
       "tests.json": "1101ca5a6de3a640115e908a783a2e47af49577071b09521f81fe67251781274",
       "adapter.py": "bddb9d299db25843874f83d9ca642e2189f7ce8beccc6c0a4975cec6271a5d0a"
     },
@@ -2625,8 +2625,8 @@
     "packageHashes": {
       "lesson.json": "38c8203814540d4660db53833ec96d7b27abc12f6bab27a0c1331066cc3165d3",
       "explanation.json": "8bd3858fc5691521bb7d969a4a1573f3719cb9872f67313c455db74a3d3002e0",
-      "solution.py": "9d95746c5a83cf803ac1f1eae8adc387ecb38a724af37a1b2469cff9bcafaa96",
-      "starter.py": "d95c5289352b9bb804f392901bba4d268dc838ee81c3933f92c6a32337643061",
+      "solution.py": "a1e6db8ef63aa7f46857495f48b2b6801ea080c9c776e29c5677267441f67ba8",
+      "starter.py": "ca2b92d46dbeeb4b74ccb2a29d7cb5628e5891c78e810e23dfa8f130f41196d1",
       "tests.json": "1cc1d5e17af4de16cfce5bb3088c8bea0e419a36e55c07f1186054e06c763827",
       "adapter.py": "37d17f5ca0771bbb7a43f4e7ef2cae7cdc5015d814bdb33fc0add0682f3965ae"
     },
@@ -2650,8 +2650,8 @@
     "packageHashes": {
       "lesson.json": "d476425e98d59ee1b6f1bbf2cec24f70a24649d3db7eb4887a9195424aa8e58e",
       "explanation.json": "b74bdcf87257273fb99bbb38557e0dde42d2da3c25c4a3838577ac1a85119c73",
-      "solution.py": "a0e6689c3bb99e1c6bd7b1e86bbed09756a1db021fe24b79454e875508c9e213",
-      "starter.py": "119e00865978c3ffc0bda7bc4de2f8748275eea987d9df41ba9a9541285d4e99",
+      "solution.py": "2014553d078a9d71afe010b674b7943ea3c7db63fa12ca2610a45b5d4584009b",
+      "starter.py": "59e9a107233cb3cee4e6e84bcee048b6e26a2ce5306254db27d95695ad040648",
       "tests.json": "3ab29a9eaefd961a6daedd7091cf4d64b1119674dd7660a3b21cb8ae37a67250",
       "adapter.py": "e2076cbe91ebfe990911dc9cfa73bfbfd36ee4cea5b0b09d5706076ab749ad4c"
     },
@@ -2727,8 +2727,8 @@
     "packageHashes": {
       "lesson.json": "2d296eb4c9bee6fd93fd14fa9901d0c5625380c01357263676560e51deffe802",
       "explanation.json": "6e7c8f4bf1bd61b93140405557944f7458feb439207eab6887847f1a29b3c7b0",
-      "solution.py": "09229c9278aa5319fc981747e8253fe22a36760893a85c3e8199fba5fc575249",
-      "starter.py": "4310a8c3eec753cb85fd4971a08c2766cb0a3fa49e13ff50ca711b383a9e4cd0",
+      "solution.py": "3c8fd09d77cf4815dd398888259f6667840eef513e52c938210e5f3f1ca6f377",
+      "starter.py": "73c9c222bfa68ef2a60fb61ca86609fec89b74ef154f59bdf05bf940238d6e9a",
       "tests.json": "6fcd1e025c8182ef9a3130fe81f64c46ef49896df2ede0c5060b6c0e80fb1fea",
       "adapter.py": "eb3a2dea106f01f4a3fa8aa043aff1a181cf555d7c4836bd6ba69c8fa9c2d215"
     },
@@ -2804,8 +2804,8 @@
     "packageHashes": {
       "lesson.json": "4a83a60a8287fd5d3512c356146184c80ba60785e976a3b25db91b5b6a971a64",
       "explanation.json": "8b4bfe4e53b8b83d7bd22388da5c0990ae1fcae4f48d757dbf6a8971e66dc86a",
-      "solution.py": "9aea9a911483b30aa68e90ad83037c517168168567e6e4a4bbd682921aced7bf",
-      "starter.py": "3563c72b3be86634edebe7d0c1c243825dac7f84de493dfd1d87d61de3293d04",
+      "solution.py": "79756253659b4f320e401bf071048304ecf98f4291324f7c4875bf4c7fc36cdd",
+      "starter.py": "dcaf6f94932105f5cb545147266ee4fe88f30d0a96bf778729e1bedd13a4f54b",
       "tests.json": "e27ee09c7c48394168ae7141302f59e8aac28f4cb44d22f62d88eef42b1fff47",
       "adapter.py": "65d14bf0152c5c1fdb4a80ca560049d051c6a737c72f837977c6ad0bc39f3b6d"
     },
@@ -2829,8 +2829,8 @@
     "packageHashes": {
       "lesson.json": "276723023f916954661f72275fc87eb224353239986c8776b6c4026854f12105",
       "explanation.json": "ea738d34832ba95e91fe24596980727ca11492d0870bca22484a8cc0f0980588",
-      "solution.py": "ad84a3a9c32047db64edd02011f760c426888b23b25caaa13d0517410d87517c",
-      "starter.py": "c694fd1fe5f33b447933196c9d39b2e4ec6676293fd8e8da55014c57215cf3e4",
+      "solution.py": "05f8b2b2fb64dd91402332292eec1d11591b94f33d55e65d297e0da7bcdc0a17",
+      "starter.py": "96bd2d796da8764606bb8ac3413a5118326d4ea1476b3c7f3371f493c5b1638b",
       "tests.json": "af996d13dc8d5e8cb69103c779b25613e09f0581f6776097f3066867a587b317",
       "adapter.py": "66a78140c96efab6d5338f8566c4890c80bc0f1006f96cd47545773586584bc7"
     },
@@ -2904,8 +2904,8 @@
     "packageHashes": {
       "lesson.json": "d1488a46ab6764d64b9a51c433ed6087b586982dedd0422bb02a47f132a0fc42",
       "explanation.json": "6ab00a5a6c78c8d9751bdf85dc05dd8a562392f85e49042fda677ddcf3383bab",
-      "solution.py": "b4cedc95c86950e008137d0ee03bf40994d512c774823f55d1ff569764b7487e",
-      "starter.py": "3e0d81d91a956e254c359a16c4a2dc7a1f7b94e5ae60c9826d4aa62ab6dfb0d7",
+      "solution.py": "f0ebbfd984b249dc2aac3cee6db0fdbeab4b6fd284910ab5dd973d2e15fbb6e5",
+      "starter.py": "9260e6aad18f772062524a183705375729b88ab9d2d33794d4d1fc02797ca60d",
       "tests.json": "61e734dae885b87b5de254aaab50d85b915bd8ad6a9a6a1a2e76f7d502dcab23",
       "adapter.py": "16f038861cf5883669ae407d84216597460cb9b9c3186b6f9688bd363a73ad05"
     },
@@ -2979,8 +2979,8 @@
     "packageHashes": {
       "lesson.json": "e6508dda38c17a3d5845aa1ebc63b5ca16343456ffb7e7ceaba3551ae3e07da6",
       "explanation.json": "073fff6194b5bb21f394a10c22696f56a1dd6bb10a0724ada51c33a2e9a4f8c4",
-      "solution.py": "97bec8f82cabbf8ae5c4191481b07265a588dfa78d9c74b441c4427c97f5f5ee",
-      "starter.py": "956d7809c28722662216cdf09dedbe0574f57e16c572ec284e057a2cf54fac3e",
+      "solution.py": "dff81cfc802821c6de22c2e8e51cbe3f627f0f28697b6ce72c3eabcbe1e854b3",
+      "starter.py": "bf718df7d93c83419cdfb731f61d6472966960d1cc9f327c6ee1e6daa41bd5f7",
       "tests.json": "1fa87f31756a6c9858f7f682508dbdf960e165186a9bffa8f768f7f638592142",
       "adapter.py": "81d6122f1d7d47bfee9ab1dc8fc420094cfa6f46afb6205701f59b7ba3a8b698"
     },
@@ -3031,8 +3031,8 @@
     "packageHashes": {
       "lesson.json": "2c348ae9e21b2d3f4f717616226c1793743565f23848b53115fb0669fa6baf12",
       "explanation.json": "1c12b721e8821c47f9e5dcf36495e621eba7825997425652574bbfab28baa9bd",
-      "solution.py": "4fa360eac015afc0146ed677fb01da3cf56aba0c3d11dec3726381560e2876ad",
-      "starter.py": "4daca908cdfc795ce398047867328dc08460c95f109c5e8af1c8c6a94b047bf3",
+      "solution.py": "b9a4a584f8226ff7223836ca2c676ec40d970af2838c24174ab331316888db84",
+      "starter.py": "8ec11680c160b1ae79c091a44f0c4173483b7ff1e8c83e21625330abb455c8c7",
       "tests.json": "163cf18219e3307e3c6ff6c625bb0babc4b245d4c3da42b4939ec332f2e2db8d",
       "adapter.py": "33be0fc4f6fd68da8cde3dbf8b640910f43818378b54850b32d8861a165d0644"
     },
@@ -3056,8 +3056,8 @@
     "packageHashes": {
       "lesson.json": "3709cfb187b9aac06cdd740dc6ac8b5cf24eade943b02b993ae55151d2cc3ea9",
       "explanation.json": "a7092c87837022470316ae70a2d745591c6b4b4896f1028cd62567a791f42416",
-      "solution.py": "52b6a771fe3ecf5cc842ee4705acc9f41751a0f51dbea27b389a67c2a3cf3b2f",
-      "starter.py": "31dc6d8eb8c58f334c10d8b15339049b0671e766215b9c3aed287b2a88f82110",
+      "solution.py": "dcbbc00f397286af20fd2da643fd4acd70e2c0cb55180510264fdf4817bf40d8",
+      "starter.py": "0890b9a7c0b481accbcb7b8a4650d758fe693b51360b3891c1f49a8c338bcf9d",
       "tests.json": "953f5a29b8c9493a86f63469a6f36a463617c539fe2dd64c141ab6660c590d4d",
       "adapter.py": "bc132f5b45e32825eade1d4519f66f60b383d73bdc6a7faac272c10f84f25d8d"
     },
@@ -3081,8 +3081,8 @@
     "packageHashes": {
       "lesson.json": "28b2a6d5019878f2398985e96f5d5bdfaeeab53c4503ee0616dc78b5c89c0d3e",
       "explanation.json": "0a1d8866f950a5da6a8cd9a1a5d37e96a60e4486ea034a08149edb7b689963fe",
-      "solution.py": "ca83addf92e1fcfe278bb3f1c28a6d7b0a83cef2d8dfd51299a48d266d500b02",
-      "starter.py": "ce7296e54e8ce70590a0ffd347bdff6b2da73a8c3e1cde1a0eb7d8e166420d1e",
+      "solution.py": "91ae0f7096c3752ec873384b768f0c2da43dce85fd69dcc6ff1efe36d50c7c45",
+      "starter.py": "2847a8dd33876878058b2e7ea968e7bcb2c473d30087fecbe32f491922f56dc5",
       "tests.json": "b211a92860739bf71851e3a54f26ba668f64c79536bab0313ed5e24b785214e1",
       "adapter.py": "8a9e96e3c45e209962f2e57a6e38b22e5b5c5ace37e7f8682599315d36324f61"
     },
@@ -3106,8 +3106,8 @@
     "packageHashes": {
       "lesson.json": "bad3413b1020f61ed9622e35aa648f6355d533fdd0a9be24122c1731b6a24595",
       "explanation.json": "9c2af687429f7c307477d6e8996c5f2422058232c5b94c3ec1b7a9549e8a4cdc",
-      "solution.py": "88e9d43dd0ce8783536c344279f2a2019f5cad2745c80617a4f2a8e14c34c85b",
-      "starter.py": "1a1c54863cefde280974626fcfd23a0d8615a492d2f26ccf9fb9bd9293050dac",
+      "solution.py": "f459e6d5978f14d16381fda9931958e96ebe020d080936ceeb5015351fde4a3e",
+      "starter.py": "85516875e168229bd361d4af29e9874a39596c95bf27e9efd228085a04266536",
       "tests.json": "8ecce0a1b838327587e119d146b9d77f2482abda32919b7f4fbccb14c01b6538",
       "adapter.py": "39ae45a823973b7c97a119a9c623e33345e236c78e5da9c8851c112b2375a26b"
     },
@@ -3156,8 +3156,8 @@
     "packageHashes": {
       "lesson.json": "d62c78f060f095cd237d47730a3b8bd4dfbbaf6659ada20e9bde9862038de430",
       "explanation.json": "6ea7305ac86a6177b2c4ce7e1e641b575231d9c0d40d024ff4951267d5e35daa",
-      "solution.py": "cc5acfff57a5a0e00e99f9b3a7244326ce695f718b3c4032102562071ebaaee2",
-      "starter.py": "1dadde098cf7791b5186d95598e9aeb11cb3de8d77563d1d6421dd38247fd23e",
+      "solution.py": "3ec7caa2c680a98440f193599a296b32eda95f48e3047cbf5dbb947f3af2a3f6",
+      "starter.py": "cddc45212398c47f8348623385a067825fec595ebb6be6f17722da64a3a26c44",
       "tests.json": "cf3d547703573f8b7fc0e296cf69f4a734241026470abef99b92cb02c25f0f03",
       "adapter.py": "1d99c9e31da1c26522cb5b297cedc3ed81b6ab741043b428a79e7d019053c832"
     },
@@ -3206,8 +3206,8 @@
     "packageHashes": {
       "lesson.json": "0e9d6fde7e6f6623fbb09b6269e418b157249cd3e698750d5445ccbe7bf7e756",
       "explanation.json": "5b5f0e3b4a384076aefc00355cfdeb198785bdc79b30a2152f4cc319dcf79bf3",
-      "solution.py": "3cd99ea5801fadc37c0a21e5afff23534dc6c21945288017b9c1efc24db47717",
-      "starter.py": "f2ecc0530fab4fbdcf44efd3b96db51b7ba57aeb665658c61d7dc011de458ca5",
+      "solution.py": "cff2526af1ac68cf78ef659e4810508d27d3c6ed250804983e34715214a49957",
+      "starter.py": "1f552790acef852d417b96d7db4274f9b6656bcbaddde0625862f20c6609935f",
       "tests.json": "eaff58ad5f5e2776d4cc26ee92be0478a14ed31c62c6b183dd999fc5bf2eb619",
       "adapter.py": "4fba6423856facdfe4b5c692e6549262c8e53ca36ee9d4b4ede220c6ff5438f0"
     },
@@ -3231,8 +3231,8 @@
     "packageHashes": {
       "lesson.json": "aee8bf9243183c98f880a6bb1ebd7351664392c8e0c2f0555e38e01c92c93e69",
       "explanation.json": "14eedd44cfcfc274abc5ea57601142d9bd7b9bc0a2a881ae4699f47065cd440c",
-      "solution.py": "60de7530cbd9e01a2f31bf5b00fbed8d7f04ab4926dbb0528e452f5f0c33f09e",
-      "starter.py": "cf86b0cda9d75cf5241e528caaea71c0bda6f426b2b6a3acb6f77314773055d0",
+      "solution.py": "b8b82cebcf31355ed589d71cca761b4762d2c39f8f736afc023a5d2627da5e6e",
+      "starter.py": "8dba4e1f80e66df29e32e53ccc8effe47622bf412c2159ca14dbabfbfd124dbe",
       "tests.json": "6b59c16242d26e11fc5ea81ee54e12c258b64dd5e76d3c0657fca8abfb999a28",
       "adapter.py": "8c7e6440def018fb2d65379bc0bea1da0098f04d3e15f02f5ba8d86764737b9d"
     },
@@ -3256,8 +3256,8 @@
     "packageHashes": {
       "lesson.json": "800671760fa961a430cfd54a180f2e44f0fcc250e352e92f00425978f0fe8ed8",
       "explanation.json": "47c8d6dc1cbf03649af60a2e01c332b1a67c1445804e0a0187e0a12be19711e8",
-      "solution.py": "b2997a0aaf24cf9575258e121021735bbf4ec95c272a89830134415b6c9b01e9",
-      "starter.py": "ca3bce1718994264a52b6d5ed1acaba8d1ac3ce67693454e8cf7e52a9caae0a5",
+      "solution.py": "affacd47194d380b6b0f7b60b8909f9bd95f5b8ed6d2e587d44a6b6b9b81f999",
+      "starter.py": "1e51de0b8a46ac0fc914c7eb67a2c38d12dd14fc4ef39683c6e53886f083c622",
       "tests.json": "ccf9b9abe627bf7d38998fb828f9e4b327a897067094edc7252264bdaddd89f0",
       "adapter.py": "ceab76ab6deca6052fc65fa1120dca936a4adf771a6f85d8d4ae34c30069d377"
     },
@@ -3281,8 +3281,8 @@
     "packageHashes": {
       "lesson.json": "56f241494016a4a921dbd5df808f1b27bbb14a6599cd2cb0aa4a943f9bf9c89a",
       "explanation.json": "2045bdbdfedc5db875c517f3fd5a07bb2467615086783476e667ef7ef92bdcb8",
-      "solution.py": "1d914d17ab12da73bc9f5004907c7ac3c4aac2ec05ed8ff26652735a8f818178",
-      "starter.py": "0984a7481d1c44ed572bfbf09dca806285fef959b05097d6dbafbfe99441b5a5",
+      "solution.py": "5dad919c576e26148efc2d40bddd5f91cb83bfe0134afb1ef06bc2f662955f51",
+      "starter.py": "349bf2ad78624bbf97f4f28bdb5a9a48f2371cf7c1ba9a8ce184663d2375feea",
       "tests.json": "14095008f822247f50a77355553e50d1fb71e319987091a6d4f82e936f94f162",
       "adapter.py": "44bef33c5a9e800183b9d1d9728adf70bda598de88c5dd40c0d133fef0eb3b60"
     },
@@ -3306,8 +3306,8 @@
     "packageHashes": {
       "lesson.json": "5cdd160263237bec8cda950a14769fe17443f68fed634434762ca7b6eae94081",
       "explanation.json": "b11434d0bcd7dacc2f370127b7399b0d162babafc135b84d44b227cc715cbeb7",
-      "solution.py": "aeb569b71c981b75106c35e1ad4bcc16b36e3f30e516b0f67d96701183fc13a1",
-      "starter.py": "b78ee494adba76759953ee458f073785f9c954a1e60b2d3c21f230a52b919756",
+      "solution.py": "650daa96dddfe6eff983661e45d1f78265f46000091730c39986907bba912b31",
+      "starter.py": "f03ae7fc09fd2f513bc92af0f18272435a01e16dcfd95188a328cbd59b99c768",
       "tests.json": "d34e0ada81b7e9914441438efe02223d9cfd55cdc19153b7ee25b0c5a40a8775",
       "adapter.py": "c70fe9a553c368024c9b14da3d8f6715ef39db7e207797d8811920ae22af1324"
     },
@@ -3331,8 +3331,8 @@
     "packageHashes": {
       "lesson.json": "9e3f6f333847b65295f7d22d86c50af76799c75fd6e095bbe9a81eb5f829568e",
       "explanation.json": "5dd92678e377fdeb6fdaf82d8f9dcbbfc6c5826137efba316d803fd7e3126be0",
-      "solution.py": "8984952da74b108a4cb4adf6851fdb568baab3ad26748d68d3262e1d44e99370",
-      "starter.py": "cb14ba4d7f85193fe6f3575d6b656cd5311c6020e7383c46dffe79bf18e09b56",
+      "solution.py": "2805f9562798f1f5dccb1c4b7e219ae09288f46f1086e4c67533333f476dfc7b",
+      "starter.py": "b0104896e80d572e280a003be9b0d17017c92b186c360cc797bbdc738531d7f1",
       "tests.json": "cdcd7b338d6d76d9e72a7da7556bf2df232d9ca149aa5feac04cdefc5345b5f0",
       "adapter.py": "a8f8a22674acc7f684dc04f5bffdd711488af79675800709fc04ee164312e179"
     },
@@ -3356,8 +3356,8 @@
     "packageHashes": {
       "lesson.json": "81254953938b80556e797321ceacff1d01a04f2ddf2bce055b87f5baf1ea465d",
       "explanation.json": "5d3af7a9f69e51910bd5ef5bd4af60de4cc3f4f6f0d6804fd0c3ef29ab072b0f",
-      "solution.py": "ae0857c2c5d208aff19fffea8f5e1815176df46eea6cca7b3e86d26b731c3ade",
-      "starter.py": "9cfffbc3746a77884a02e40d18e30759b91edd9c6b504855efe4f21efbff8733",
+      "solution.py": "63a73eb383ba1f00fd49db3ef87c6afe170ca21f271a21b135aed2b2a15441b9",
+      "starter.py": "6b622835271b347a6595a3626e755cbaa60c1433be049f9c476ddecb6c4a4f11",
       "tests.json": "bf9150d33b94ca2606bbd4a75dc11b2d63e04e623c412f83376cca452f0d4236",
       "adapter.py": "06b5885ffefb823e4c27d7416c66c0161df6186fe9d4a5b2e70c795c86cc36c0"
     },
@@ -3383,8 +3383,8 @@
     "packageHashes": {
       "lesson.json": "0ffd93842700d5f1b262c09431fd15f328396481861369e0b97ea6b0d812e330",
       "explanation.json": "b5407898c011e0341de0d13285a7af32761feebe2a7f42453ee4a2de141b4757",
-      "solution.py": "9c243492fe28ae1d28c2c267d58d3cb21b7c8342523fa819483f3888f852efa1",
-      "starter.py": "47a5bd854097b9445016a6fb750940f634881b0b90229047fe8d19c92be0a799",
+      "solution.py": "d55b33f22f8639d28fefa6ab46bb985780bbc2b6a641a5bdb79c0d01bee01932",
+      "starter.py": "9fb8df090e910b8bc17c90df4ea776d4f679839d94b817f57174cf9d80892af1",
       "tests.json": "91108d59f756cd7faded64a588c1a5e73cf95b40cfdb9476bb27178a18cbdd22",
       "adapter.py": "b0bc1d9c89449c7632155c63d8d7c66565e4b5aadf533c5cc6404bf38c92caeb"
     },
@@ -3408,8 +3408,8 @@
     "packageHashes": {
       "lesson.json": "d8cd0e62615ef3455a02658a9f92dc92edb0abe2536b246cc48d2f39084db512",
       "explanation.json": "157fa4b9826ec99fdf447c283751c8f143dd23390c64a53b8d2ac891bcf1f111",
-      "solution.py": "fbbf07485575b58933b25f73ab079d7ef9189bc6437753a24e0089a868313d7c",
-      "starter.py": "857c92f25c5cf6da25e3b9c20487fabdedaca3cac707eab8b347921f61871b11",
+      "solution.py": "3c89707791678dea864eb96ae2dd58e4fdc453d78addc4f93cd3d2f76e0b8f49",
+      "starter.py": "fa065c9da64bc2389fdae4f698a377eaa71ef98524ea372de24038970e92a1f4",
       "tests.json": "2b71483c4605d27939f92295175577c1d95821d5395a48a153b878dde0c4471d",
       "adapter.py": "b16384b0b2fb1299f475841510a2b9a7c49000d613fa17a868478ec6bcdd99bc"
     },
@@ -3460,8 +3460,8 @@
     "packageHashes": {
       "lesson.json": "4c79471d94dd78f31c387044ed28769198c09d76ee1589837dd37c64d7f29ad2",
       "explanation.json": "aadcc7d072ddba689c53af8dc422fe6cdfbe4f7369cc6a4f915953c43553873b",
-      "solution.py": "b6f4b5858b55c14032703523bbadc0dc388d4942308c6fcb803e7db68a076334",
-      "starter.py": "3dc932c4ed29d8fdf58b90a24d29a11935f9f6f4d4fce4e4d4ef5de41763f96f",
+      "solution.py": "73c1376bcb98aba9fb92906aeef426bae3f80c4addb992ad251f3a1217b36b02",
+      "starter.py": "8f4f2f984b45d291750103b66a27a0ddcf9e1ddebacca4f3aa13f6c067b0192a",
       "tests.json": "0545f8dbd37295c7b44d6bda2eec92ff5eaf3ed8411e5fad60f89b3577957ef0",
       "adapter.py": "ba80a27eb70756c92079494189f67f3584f6348eb966ed77c1fd8bd99aa2a8b2"
     },
@@ -3585,8 +3585,8 @@
     "packageHashes": {
       "lesson.json": "9504b3b0abe35217751135a9fa227e43d9a989fe1ebee75ed11c9540775797bc",
       "explanation.json": "8a9d0fcc74fcba13a08f6d25bddec265ccc8d4ecc772332c0ed70807cc688008",
-      "solution.py": "f7756c4b5eb492399bef2fdf38fc5f264200ed946d94faf3f46ceebc5abcb69e",
-      "starter.py": "6cea06b8cb33b0ed3974b5888ab5eb435f069cd5a0c62521dda171098fd14779",
+      "solution.py": "327dfa35c62f9b19f366d90e244cd6fe30075bf8aba5f8cf3904d9070e53ad91",
+      "starter.py": "1efaf6b6288a21efb55d477c5a43500444544482110057a49e18bfd550c1c048",
       "tests.json": "a0897adf1b4954f08a0cfcec97af53732ea11e84a66b179cb31228f54909d264",
       "adapter.py": "22859ddf75e07f440af6b82e6fd1a52ef946f97dff211d225fbc15cf617ab34d"
     },
@@ -3637,8 +3637,8 @@
     "packageHashes": {
       "lesson.json": "cf9087f0e7878d603b2bbecd1dd056cea04c32adb25a9f9cdba3b884d194e1ea",
       "explanation.json": "752c8652316dfa73f50933d609fac56fe4720f120df222113a9080eb465f6ed0",
-      "solution.py": "027164820e51937a803350ea13b55120cc186f531e54a81b314ac459747f2416",
-      "starter.py": "b3f6f4f26506932e3e7f42d385c7e9da3416e7a1ebbffac6c4bec0e443f1dbc8",
+      "solution.py": "a6408bfda469cd4a2ad164eb806ebf062dcf8a8fc3546f72b602faa39fdad0fa",
+      "starter.py": "06b9f7ff36cc3544ee0b9b955a7424044992520a2eb741312d422a1d55deaf15",
       "tests.json": "3e508d36fe790ad2d0e49465f0bdcaf0f6c0df49a58b2a009a75ed66428cc295",
       "adapter.py": "bf31c43273d126de5534d36c6c971e7d4f6d0a2b4c7f99593381f1a487c9492f"
     },
@@ -3662,8 +3662,8 @@
     "packageHashes": {
       "lesson.json": "edf269e8844743366cea4e75b22b4764ffe6d9b2ba03e560c3a1d181e701e7f3",
       "explanation.json": "481611653e3a91c21deff5b4133bcc2ec1a92726a2aa54e0ca2d575ee9dc24ae",
-      "solution.py": "3579ba7bcb977428eb9b553c4080eefb4d854c540780e7e62d9f493778e65f44",
-      "starter.py": "deaf382f3f81ce25c335915a44dfd58b36e3ff714fc5016e2a9e6a3bff3bd37b",
+      "solution.py": "b66accd5b25f9ccf9eedfa10f4e09076d6509e6bb9f7704392f53f68eb88bfac",
+      "starter.py": "d566cdbbc852672a8615317092ad60d242bc7e62f8a0369127e5a07211eb4fba",
       "tests.json": "a13ba9b57491ac685c5236671b4b12c896cc949d8dd41a8600d28c3474cd9965",
       "adapter.py": "406f493dd1cdcf491abe97683af07c80436ef32c4706bcbf97e50cc8f761b560"
     },
@@ -3712,8 +3712,8 @@
     "packageHashes": {
       "lesson.json": "94623262254eab9d5fa68b3e022ede5a1ea7ececcfb66112ac929bbf8a5cd857",
       "explanation.json": "3676371295304865cac81d5e20f369002a7e645db6967f1691dc1eb45777a3c7",
-      "solution.py": "a1f9c5fe1f5169d338e91830628ce3357d848adc7d2489125bd262ba88ad6c4e",
-      "starter.py": "ca98ccd9ce5e3b27dadd9e0a22ed9d7d0c69c857da114ad759c7e12c3f1b8bec",
+      "solution.py": "d28328508119c560f0734e55214a979ee940935361b388719fb3a3e333c74a4d",
+      "starter.py": "938909bbe0847c9e9c72da87dc80e4fdbe021c852fe348e5bd3e9e35db330415",
       "tests.json": "302e91b35a0144bf667bbd458686f759f9cceee4c0c262af3faaebe775b6a20f",
       "adapter.py": "e24dd5c36e777686ec0c807c48073f29a4f536227a26dd928c5a3dbfffb46322"
     },
@@ -3737,8 +3737,8 @@
     "packageHashes": {
       "lesson.json": "8fceaa3d496a1a027c1085a9b0587b92a3f8475ecd32ba42d6faee705fc5f024",
       "explanation.json": "14df7c21d3eb3511d8ba5054fe0522108573825979fef2882bbdc1072199f4c8",
-      "solution.py": "e0bd656709808a652649c177e497283320082966f3bdeefb71d7524594b31bc1",
-      "starter.py": "d9fe60c84538dbc1586a25bf63186b0f446e1b66212bcae1c77610ff5dd618b0",
+      "solution.py": "9f6bda00eaad67c2dde5c454dac0e73ad6daebccf16cfe17d565b2303eeacd12",
+      "starter.py": "9d97c21300236081538809a923986f3ff24306bfa657dc2d3fe31598c0cc5978",
       "tests.json": "e40f620d551d5acd95a2b1713ede576033228234a054b44d8b7812f937411ba5",
       "adapter.py": "d4f0c640d898e614b1c1819ffea9da9338e430a4e78018db1e2cc2ebf8146d59"
     },
@@ -3762,8 +3762,8 @@
     "packageHashes": {
       "lesson.json": "3251810d286fd8aa54851e86350d39dbd086721f086517b00c454dde7d9c87e9",
       "explanation.json": "609757cb34fd69124a4ee0b615dea84f1330f3ac3f4d3143c745a8ab036e0006",
-      "solution.py": "d3a064317ac96907f9c5ee854a66fda375cbae228930fc293020805ce899733a",
-      "starter.py": "7a957a3f81fe690345b12e65156cfd42c07d5d3505e90b35930fb8034d80d2be",
+      "solution.py": "3ea8e1f7a1b38c52ee9869641aa16e78355f859b6f40607f7208b645c14cd799",
+      "starter.py": "919be869d4ca6444bd25d2a3416da098c96c6f6fa00b2b0edd8e686d9b06506a",
       "tests.json": "c965e796399d6bd69cbd9775b2e15a91da69e51f9cb353ab690f8689c0f2f7d1",
       "adapter.py": "65f223e05b614e6d40968a0785d4544f2de99ae44215f12fc91575e2d0f62928"
     },
@@ -3812,8 +3812,8 @@
     "packageHashes": {
       "lesson.json": "567b29316bbc53255a64f02d1c5da3cdb734870276fd835be19c5e1058410452",
       "explanation.json": "132a944730c3b3bcfe3e1d7cb9712d25adca42eaa4918c24b59f4abaa4d3c6a8",
-      "solution.py": "74d2c3cb0952424972c692551211a6065dcfff25cb032f9d81658eaa6ec197e2",
-      "starter.py": "ea6d876b665932bec9a1d0f36890608a1cd31d20a5d46142e014c28a00cbe5f3",
+      "solution.py": "acb0fbafcec0318f0257d3dbb8d7c3cfaf2ca4d9c1d59c03922af12d344ec851",
+      "starter.py": "f2210e499dc21a4eba07ff77cf2c1042c92cacfea604568e5a291844261b21fd",
       "tests.json": "6d407371015391ffc88430aea15dd033025fdfe4b3adb034b70d05490d403681",
       "adapter.py": "da6b0163d5d78ed2d59315fc5aa0effbd207af2ded82ecfb21ed7d65c12b49ed"
     },
@@ -3837,8 +3837,8 @@
     "packageHashes": {
       "lesson.json": "ea454f0b5331243add057897dbeea12d99053dfc018398f7224dd296b907ac4d",
       "explanation.json": "7a0a8190984a6454cc5ac34b5b9a1dbb0ba5a111a97788bcfdb4d37ae526119c",
-      "solution.py": "8361a6b8a321983a4ea604216d6a09631f8828aa4d2a71efb557d3e5fd270188",
-      "starter.py": "5bb393bd33d63905e138d7f96d53994899fd97b0246eae6081dda8e0a978e6df",
+      "solution.py": "e7b7cea3d4606a9c89c70a8746632cf07c3caecb15a4a39252b41970b8238b7a",
+      "starter.py": "25dcdb78aa2575d4b8dbb4cd6dc4118b5b15523154a05caee221a452b3613d36",
       "tests.json": "27dd002ddb6f4d4227c98108cc02d9f1cfc0a54bb257e3591eb4c9cb85c7d75c",
       "adapter.py": "8c08725bbf66ec6b0d219d7c95af93c26592b4af8bedf16650ad18289aebdfa5"
     },
@@ -3887,8 +3887,8 @@
     "packageHashes": {
       "lesson.json": "b24ff21b9d3479492e34963c28478cc434c7347f78ab86ba9cdbedfb6885cf94",
       "explanation.json": "d043365daff2432359ca22d8e6e53b7f65c67e8154c766ac5ecbc320f7cb7ff9",
-      "solution.py": "12b8246d44084f840956617d2f26b6db066c0bb4ccb016ce6753a21478b8371c",
-      "starter.py": "9bddfd9314e96d6097ab0b0eb3f1729ba0bc729510939fb2c5b1633381c86300",
+      "solution.py": "399ee141e5d9516a9aaa47e26f9490a25c8ce34e3800d43558c024b085c3468e",
+      "starter.py": "0ee0d46348e0fbabd4594e545545f211815626af2b86cce2786d02043743fcff",
       "tests.json": "f60d37583a206c9f048ed3d7a6bf7dbe28698bac005e96ed703f54c335098051",
       "adapter.py": "727bc4f781de116c42af676bd2b6871da181aabe466ff155abff6d47f62e2ca4"
     },
@@ -3912,8 +3912,8 @@
     "packageHashes": {
       "lesson.json": "32b8000990928398d0f8f84b1ddf5d2be48fedaf0b5e61ff1d3a1898509e1b8e",
       "explanation.json": "7dd4435aaaffac13fb2eb5c886cd23c764cd19bba5babaa53b25e005edd6b014",
-      "solution.py": "82eae074b54f8307c4984a78e7dfc4953b138b2ed014c3378d92281c4891cb04",
-      "starter.py": "fa66d555ae4c5d8c188f9911e53c43194d5873b3f760c3d4ab43d512815a0aa4",
+      "solution.py": "69f75d953f79258088723f4c23cf49653272d8d1566a9af3c5d54e1c4950aa33",
+      "starter.py": "cb6a32df1f8e4b9216525cb594d7ab43d9715e72a9c0f34d1795835d2e94c476",
       "tests.json": "2c372b69911390f305b348deccf126597e4db96e207408910db2166b1c6d472a",
       "adapter.py": "b7d58b38b8eaa617a61c704ad17e749b9a56537ae60c78b57fc541f2731a2fc6"
     },
@@ -3939,8 +3939,8 @@
     "packageHashes": {
       "lesson.json": "75356019bffb344302abf21e0140d80e337716331c0a7fbe397c6bf49ecf38ba",
       "explanation.json": "32bcbae2dff926de64de782b8b998b7d05833923231e1d79206b7cd9419e6b9b",
-      "solution.py": "c8db7ccd764982b50094a2739727543a2980fa227ab6bdc5f1ba2c5e149d4dfc",
-      "starter.py": "6ba7be5698c02785336c6c072689706058757cb89da4a8277c8537ea88bc7aed",
+      "solution.py": "a312c662575b556bcd6827afe339225355859fc010429b0d9ea3f31fac98eb3a",
+      "starter.py": "1fead991e26b42da31ff1ec8e9c29101387a01fdc08592fbe16534b864231a5e",
       "tests.json": "f418bb6987e40064535b238c6c6af7265cc80e9879c236c2ac0951e061316aff",
       "adapter.py": "ab2cb5bd4cd58ef743b29a0bf4cfe3deb164eb2e1f3b45b7fe348ca5ac47dd69"
     },
@@ -3964,8 +3964,8 @@
     "packageHashes": {
       "lesson.json": "6ee97fcf6261d504fcb6de989a1244801f36fbcae6c8e55a23c4ea844f3e3e94",
       "explanation.json": "b2bf400f92c9c11c12745f5db511d0174ae4e33bcf120fcfc21299484344bf8c",
-      "solution.py": "33c352fd7ce57396cf06a38eb665c70e79b9d298337f6093b60328eb8ea63f3f",
-      "starter.py": "fda689c0bafbed2e1e366b24f10c0132458571c439ca1b59edaf8d8287bad6ae",
+      "solution.py": "182863c5bc6682563ff5f0f176d73084dc5be75263fac34557c7a5923df9d769",
+      "starter.py": "bf2bba7cb5837b3e34de9165f71d935cb59a6ad270bcb44f8bead7a6f6480c8a",
       "tests.json": "d98b97d88020a9ef83666b2a826f29f3b79eab675e634b7c6646bfdf46828e7d",
       "adapter.py": "9cc20817d8f6b9544f31072823bd7f5f19518009245e97a722bc5f37f751e454"
     },
@@ -3989,8 +3989,8 @@
     "packageHashes": {
       "lesson.json": "4abf2f5c89ebf870b78de4893b3752bac25894847644fad2e6ccecebe6704c04",
       "explanation.json": "3e742777f8e5e7f756627cd98d278fdf70da6e8d77a7fd9fe65374e979fac4f1",
-      "solution.py": "db2b88b866f992468d88300e0cd3626dbc5ed509d18770f50bf1979fd03dcb04",
-      "starter.py": "c5dc9c8085db6a723f721eea29035d9e910c0a641d0ae29391151c245e35abf6",
+      "solution.py": "d52fe5ccbae98302f93bb064eaaaeceff39731df78521ff79529738ea22665a5",
+      "starter.py": "b8ca3370398738eb13500cb4e6983716a7e3c2d79884d52f155692207480fd4e",
       "tests.json": "8ba44dfbe0143ed9803eb264e2e166a6bbf9fe8887e2e66bd1ae4da9110b001d",
       "adapter.py": "57dcca859aa320fd927ca28ede8e5322f45e85065f7a0be8524b18945f422a71"
     },
@@ -4014,8 +4014,8 @@
     "packageHashes": {
       "lesson.json": "937b57bf02fe5f6bc09cd0effa0877163185a5902d5fe93775702f4c56183fe4",
       "explanation.json": "cd23ed19fb121fed1128f457c53cca514cacf25fd779274e926bab693aea667e",
-      "solution.py": "7071813b5110ec9ffdd093257653e837b8789a060bb877e538588a35efdbabcc",
-      "starter.py": "f77db2dd5569322924200bbf11e23a41b1cea94d7b6de685dac223e5842a4eb0",
+      "solution.py": "9f82863353f3d315be9369d05ee051afd0c49ca265b05ad2702fc236bfe56314",
+      "starter.py": "b6f58c270ea0e7daa0311e4f8308aa6a5b174d6266e1f953e1610576405fb19a",
       "tests.json": "5ccc4e8291c46cc48033820c7fed5a99c1d9914d03f83b64ba4ce04d44d38add",
       "adapter.py": "bdcf46b9f9af63b0540c8811b8f2b944a0bd53c29a88cde179b38ee33549d5ff"
     },
@@ -4064,8 +4064,8 @@
     "packageHashes": {
       "lesson.json": "99db5543b3853fbb988bdf7cf83bf2d8202925240b0beef971754e32964d5e68",
       "explanation.json": "68d42f065add2b208f993d759777221a77c8ceb8d8bb7e2a2fe5dae4223fcf6d",
-      "solution.py": "15ada72bb02f5286cad440eadd7d135282b43d417f57f79d4869ce351c35336d",
-      "starter.py": "1b1dba25643fff487bfcfc4311e37d8fe87ab855f480e5cb6e7fe02599740170",
+      "solution.py": "d8c240a911ee90c5229a22749405d27c2a93b61cae31d4b4a6b31c6846e3417e",
+      "starter.py": "5c2b43626f3a348f80cd1de3c4bbb300ecb5ffcab33f560b94efc005343401ad",
       "tests.json": "07f03be6f7b3ec808a5f56fe942e961ee0b7d977da7b6e62ced1c0a0af7e68ea",
       "adapter.py": "a4c3c3c4904051f6eb3e4082441000db37e8b8dd97d46d90a33a5901fa97a760"
     },
@@ -4089,8 +4089,8 @@
     "packageHashes": {
       "lesson.json": "46442166b4432facfe655484a3f88bd9f57405f4bbab3fc5543ae43f03d70dd9",
       "explanation.json": "0b281c0ae56e26eda276fc5e50d7c7f58026cbdae750642ca083e74d4e3b08a0",
-      "solution.py": "2d95a7916f5fe25db026dc52722ac7b8b920c59b9eeb9a3528821e1bd51601b4",
-      "starter.py": "33c770b59dbafa967207e1497fba9004987020c72371d641b9fdcaa3e02630b4",
+      "solution.py": "180f4bc6d6116ea1a918c291c093f3dcba3a90aa6fab5ba6ce803032a8a3add0",
+      "starter.py": "f86ab7112d2134c8dbf58d477ffcd1c6ee8ff480ff1012cd2fa7d4ad02c1e539",
       "tests.json": "19c93b10304e5c25d51d276fef70ecd361bb45672f451b4a9347175b34f8d42e",
       "adapter.py": "6482377fea72dd3dd33786e5a777f7864da0a217822610c9cb7df22fb4529c2b"
     },
@@ -4139,8 +4139,8 @@
     "packageHashes": {
       "lesson.json": "96e74b895c51201dab679f72d0532bd7e2043cb41316422803f47cbadf8ef2b5",
       "explanation.json": "112ae34d4177f877808a91671bcb8545184883dffefed24b19567113c2d2c2b0",
-      "solution.py": "76d49ade7a5470cae18880551769802d489e89051ef3f52bc6ff3fe9ac496e30",
-      "starter.py": "2745875cb9d5649583402542fe7a9417e6c40d7415e5412de89597a2763ae442",
+      "solution.py": "4d047296ea62d41f9b8fcd770cc8407ed9fde8569f519a13d69ee740b95599e7",
+      "starter.py": "2e226f7017ea3cac83bc6f378c36355ed1d6aa8a61b055483a246993adbf40c4",
       "tests.json": "c02c5df03db2afa2762301ba4a2a86b01badb8bbba8af1f745cef3d539ec00f1",
       "adapter.py": "22397941a4ed0f05a0f20ecd3eb98d54116b7c27464058083cffa9c98a0e6822"
     },
@@ -4164,8 +4164,8 @@
     "packageHashes": {
       "lesson.json": "54376f6291fefbaf0d3c99cd7f27aaab9760abf7cd07ecb557950aa9d752f9cd",
       "explanation.json": "e61d24116309e76026f74628cf0f0a011aebaa70b4e90b16da9ae4954b011b89",
-      "solution.py": "74858d63bdf7c23f56b280a2d10b71c83f9af2fac7bc7b069f4a0d72cfb74ab1",
-      "starter.py": "76e60a140813c5372780a58431689c6754367355c403128a3cb1d74e78920667",
+      "solution.py": "3c505af449b8833d14ac3b6107620e28e64ecf9c698af514c62e042f475c14a6",
+      "starter.py": "e5a29320331ab36b844d3c030ea4b7ed56a696ab57dd84b9e0d236d41983d143",
       "tests.json": "e7df171b22ee01cb4805e4e352a773adfeac0db8877054f749e904d308385df7",
       "adapter.py": "bbdeb673c76a94127ae0dccabfec84a24db64cd2390a40948d9e7c4cb2001e7d"
     },
@@ -4189,8 +4189,8 @@
     "packageHashes": {
       "lesson.json": "805149434e41465bbf65da6c97fdd036dc5d5907db741568e2e0fd229b8d07cb",
       "explanation.json": "c93729fa66d858ae0e7bb2284b772f2245bf915c3c2d0f6930ce948706b305ed",
-      "solution.py": "5f55ebfade779af0be0a87d175ed8c65a832e77ed9110fcd825ca750c9f27f90",
-      "starter.py": "eeae9b6847f1be25a61187fd476742ef3a1f64659344ec094a29624ecd650918",
+      "solution.py": "d909daab3bcf4103821a3f862403e26e4600499f942cf0349b7e2bdd506df97f",
+      "starter.py": "ef88a160a2f01b8f50031405aba05c3ce0b29c3f1825333279f2fb197545cdfd",
       "tests.json": "beb2905614d8c25edaf7e013299919ab2cf96884d06999f096c1be732b8e2fd9",
       "adapter.py": "75e927171e891e53b6af13d703bfb6246bac9c7aabad8778e00f5d8b2add1953"
     },
@@ -4214,8 +4214,8 @@
     "packageHashes": {
       "lesson.json": "4c6fd3b337a9aca953a6553d9bf63d97b570610741288ddbffdf9c790ddb224a",
       "explanation.json": "3ad7c0756544e2fd50d01803748ec4e83f53812e654464937d4cb917b1d654f1",
-      "solution.py": "bcfe9a6594a44b6aa471a40399f614dfe009e340e8aaed9f56a3f5f3b5833181",
-      "starter.py": "767f4615035cf00a06d31751c9789432ea304e6c8d08b743476eb927f92fb421",
+      "solution.py": "61063a838caa88e27a11e77c94f04b6fcda259af2eb87938b0814275f25057f8",
+      "starter.py": "af0ae3fcbc89ecc2397315cacefd11d6e3a2565ad1d95382d4f6ec9de0c80414",
       "tests.json": "07c4bad2b109f4adb81dde6b21aff6c770e4d379ef408c3e9771f0b181ac048c",
       "adapter.py": "c5cbde3f0c5adfa3da24fb2824b31c9c106491d6b3112a8bad5413397d256812"
     },
@@ -4239,8 +4239,8 @@
     "packageHashes": {
       "lesson.json": "c5abaef9b0f6421c61797967fd7e48bcb8149aea580d01a8814d6e1af7e7f222",
       "explanation.json": "a143ed4a49ce3e2ec51b0eccccbcb727e4ab07ead3e69f76d26b133d02f1cb5d",
-      "solution.py": "c382272c5eece3b2369ac014a2f9ae1d356ebf9666abc4cdec67eefe17e74287",
-      "starter.py": "0d5de32e61a7451dc7c252635b87ae1294384c1d54c83db07db014db357c3a74",
+      "solution.py": "a9795adf53bb6b17c5f8d2369b9cb33f2cd5ead2d41ad55dc01a724b020d7b16",
+      "starter.py": "8255e68b5511edab113b2156ee08a798396732a9f22034a0e8790c7e07aa54a6",
       "tests.json": "504da219e940f2acb71036b27f1e7bde2066433733a21dd1d80bf1e7b3897b4e",
       "adapter.py": "840065dfe9d0b26da7874c03d2684eba545dac0898f20fe2ba22f40cf969e060"
     },
@@ -4264,8 +4264,8 @@
     "packageHashes": {
       "lesson.json": "6de699fe614d555bc0a9bb2066aa58f5de475b997c1661a7bffecc840265d394",
       "explanation.json": "dbbfa22e4bda78386e27dc76272f24339db901435003758c9104abbb731086df",
-      "solution.py": "554adcbaccaf4c192047d4fdf39a3924c4a3948ded02ea2f8dea13c694c1b7aa",
-      "starter.py": "efa5cb2126f0efc6a9b9963c6f588d3493d551171b03c26330715dc43ac3fcd4",
+      "solution.py": "9057f71ed6237e0e4a66d4c50d1f855af6934894cf319169e03def911821e44c",
+      "starter.py": "3750ecf16c3602ba8414335aa2e47eb3beb629f51744ad3c0202aba95b242b4e",
       "tests.json": "2e9e35147f768aaefd96a40c0f8cf2c470e88c6346a9953c63a9a680a2d25d92",
       "adapter.py": "2e613cc9a5445f458d1ee5a98e07d6cf9820067381934090590dabf4e6a3bd1b"
     },
@@ -4289,8 +4289,8 @@
     "packageHashes": {
       "lesson.json": "83465ccb5b0436a98c555d1c9522249d968fedd77d23dbe72c6e222d8879ab08",
       "explanation.json": "61b394b6ae725712ad7633daf871ef01ae0db7d29074fd148ae506579ec5f3c2",
-      "solution.py": "ada011efcff78e0fbbe5a49632726e223fa89196c2f1183b1f8cb7af316c35fa",
-      "starter.py": "adaa88c3bc14e8cff937de76f8be2d7bbf84b932561e45bc489d87c7bc202bff",
+      "solution.py": "441eb0601a0d4d477e00f7697dfce7e3811495db8669eb74dbd8b9a7cce9ccb4",
+      "starter.py": "b4baf361bc687776d56a2ba5729af699465349056df5550eceae7376c4270102",
       "tests.json": "49b8e3cfb16a67922b43a91908d7b2e88e2a1a317e15a773ddab59692a27e874",
       "adapter.py": "659abeb8df9099c835d07c9bd9b978d247eb80447c8d195df41609eb6dd2cb6a"
     },
@@ -4314,8 +4314,8 @@
     "packageHashes": {
       "lesson.json": "8474e54cfde84bde18bc8484128f35654319fe308b990bb61b300106e24e3f96",
       "explanation.json": "4ffaadc2946f33da8d5f8f5574ced7f049921e1f236a990831df19241753e584",
-      "solution.py": "616bf35a7d7b75d6272ce79a92bb69d5e2c22a019e9bc57df8e8ddeeebef2292",
-      "starter.py": "540ee3c9c3a7c63649e7a4be50ba24bf65d19620d81991222ac593e2a027b4a2",
+      "solution.py": "1cff23aaeb411d3481e3fb1bf013db29d794e2407705097c6b1bde23caeb06cd",
+      "starter.py": "adb61a8500a4dcfa7c760f5e1d9ac537f88ad693d4f78191589b59c51247220f",
       "tests.json": "5023096a7bc98f776d83f92a2ede5265088a47d6471d9efc742e023430a699b3",
       "adapter.py": "fb83c43801e04a96cd60ab6460c4f264776b0a4639406938dcf9e1b285de7294"
     },
@@ -4339,8 +4339,8 @@
     "packageHashes": {
       "lesson.json": "2d8e81a94275dae214bf75a55cc056ae840f8544ed08fad424875143f8a2a2a8",
       "explanation.json": "7fae07ff85bf96e6a76952ef730aaeaf1626c50cbb76dd2f6d0963289fc68409",
-      "solution.py": "67cf04262dac149ee3e9f7726981d8a3ffc3712d0898b4a8d5f15fda12a1454d",
-      "starter.py": "2bb933410c51fe0043ae68e4d320711279bf9e92341d16938e09d5d9508fbef6",
+      "solution.py": "591e206b828a986ff6de46d263fa75af5651595a4cd2401c6cb973aa95ec2e0d",
+      "starter.py": "2dcad2924ef2242daf16b5b53c875aa4a6fd4d66541af7c32f874b72b72e9cf8",
       "tests.json": "7523a91e19d746f4058bc21fee82a2124cdc623dd58edeba81f0bffbe4490e04",
       "adapter.py": "f99612f5c1c32078edee188246221962508483662905bf3b8ca2952722344bde"
     },
@@ -4441,8 +4441,8 @@
     "packageHashes": {
       "lesson.json": "4be2f469a68dedea60f873bc12b5f94ecca2e91812b2c836755a8a3744d2f241",
       "explanation.json": "46ebfc78dad091fac350d042dd76664fe1ce0a9983293648afc2338ce413adc3",
-      "solution.py": "b0af2d5ddf7ff64c149341fbf53379489b8d77b930a3462931f5d30ce06400a1",
-      "starter.py": "d8ffcefc2950f55dffbdc13dad7316c2732c6b0df5db476b2a24bf5bd711de72",
+      "solution.py": "7f59a3a13dbf3d7141b130df50cbc709cbc3738f6d93fdc5ff50405ae43342fa",
+      "starter.py": "0cd2372ce5a36d814273a44132ba0dfb089bc91ef8e1e49c353f9e19f8cd0c05",
       "tests.json": "b7b7012674bec1c4ea6259543f3d397fbf7ed39475907360b4889a6b7592c744",
       "adapter.py": "8cb0f7abee83f3af65c38a272b2ff33d3f791b442d9967f25924b424996eae18"
     },
@@ -4491,8 +4491,8 @@
     "packageHashes": {
       "lesson.json": "ec2939ce78546c47ac4dc54ff236733da847845e9bd901438e91c2bb23650d60",
       "explanation.json": "a2fd3a6edb7978bfdfa12904f1d17049c2871bf36b0b674ea47dad99d5f973b6",
-      "solution.py": "3c8be65e1c16d7a8b746772d64a9852633d414dd789190ff87f0f78a8009827e",
-      "starter.py": "60a1c7add581037df979d0fa9a0c2d31e13041037a82e7afdb84e6bef78663ee",
+      "solution.py": "30a9070882f0054a185f817146ef7c60add8b69750cfcf5b55283409aed29d6c",
+      "starter.py": "ed7dcb36fcc307addd347ce7d575700237255cba7ce2ca8b4020e94f70418508",
       "tests.json": "a0b8ed91c3da8a9281c6349bed6855cd2ebc4ad50e6b0c8d8af243b572366ce8",
       "adapter.py": "c364aa7a24bd4060ef93bf6ea0056b14d9b13c2c5526ff61e4524f8ffd227994"
     },

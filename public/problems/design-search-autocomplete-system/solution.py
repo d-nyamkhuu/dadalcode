@@ -1,7 +1,7 @@
 from typing import List
 
 class AutocompleteSystem:
-    def __init__(self, sentences: List[str], times: List[int]):
+    def __init__(self, sentences: List[str], times: List[int]) -> None:
         self.root = {"children": {}, "hot": []}
         self.counts = {}
         self.prefix = ""
@@ -10,7 +10,7 @@ class AutocompleteSystem:
             # Insert historical frequencies before answering any query.
             self._add(sentence, count)
 
-    def _add(self, sentence, amount):
+    def _add(self, sentence: str, amount: int) -> None:
         counts = self.counts
         counts[sentence] = counts.get(sentence, 0) + amount
         node = self.root

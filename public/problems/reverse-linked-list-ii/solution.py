@@ -1,5 +1,5 @@
 class Solution:
-    def reverseBetween(self, head, left: int, right: int):
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         dummy = ListNode(0, head)
         before = dummy
         for position in range(left - 1):

@@ -1,5 +1,5 @@
 class Solution:
-    def permute(self, nums):
+    def permute(self, nums: list[int]) -> list[list[int]]:
         result, path, used = [], [], set()
         def visit():
             # A full prefix is one complete permutation.

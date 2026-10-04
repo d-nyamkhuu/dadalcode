@@ -1,5 +1,5 @@
 class Solution:
-    def climbStairs(self, n):
+    def climbStairs(self, n: int) -> int:
         dp = [0] * (n + 1)
         # One empty route and one single-step route seed the recurrence.
         dp[0], dp[1] = 1, 1

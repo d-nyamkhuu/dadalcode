@@ -1,4 +1,3 @@
-from __future__ import annotations
 class Solution:
     def hasPathSum(self, root: TreeNode | None, targetSum: int) -> bool:
         if root is None:

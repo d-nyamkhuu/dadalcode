@@ -1,7 +1,7 @@
 from heapq import heappush, heapreplace
 
 class Solution:
-    def findKthLargest(self, nums, k: int) -> int:
+    def findKthLargest(self, nums: list[int], k: int) -> int:
         heap = []
         for value in nums:
             # Until full, every observed item belongs to the top-k group.

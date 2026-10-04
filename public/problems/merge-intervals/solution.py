@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import List
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:

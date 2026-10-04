@@ -1,6 +1,6 @@
 from typing import List
 class Interval:
-    def __init__(self, start: int = 0, end: int = 0):
+    def __init__(self, start: int = 0, end: int = 0) -> None:
         self.start = start
         self.end = end
 class Solution:

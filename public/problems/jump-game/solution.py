@@ -1,5 +1,5 @@
 class Solution:
-    def canJump(self, nums):
+    def canJump(self, nums: list[int]) -> bool:
         farthest = 0
         for i, jump in enumerate(nums):
             # A gap beyond all known jumps makes every later index unreachable.
