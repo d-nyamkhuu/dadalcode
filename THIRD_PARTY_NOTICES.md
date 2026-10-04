@@ -14,10 +14,8 @@ Each lesson links its problem sources. Premium-listed problems have an accessibl
 
 React, CodeMirror, Lucide, and Pyodide retain their respective licenses. Pyodide includes Python and its standard library. Every build collects runtime dependency licenses into `third-party-licenses.txt`, linked from the published Credits and licenses page. Exact Pyodide, Python, and Emscripten license texts are vendored in `licenses/`. Unmodified Pyodide source for the bundled version is available at https://github.com/pyodide/pyodide/tree/0.29.5; the corresponding Python and compiler sources are linked in `licenses/README.md`. Vite, TypeScript, Playwright, and lint/format tools are development dependencies. The interface uses system fonts; no font files are distributed. Earlier revisions bundled Inter under the SIL Open Font License; that dependency has been removed.
 
-## Design references
+## Illustrations and teaching references
 
-The figure-family and learning-figure references in `design/` were generated with the built-in ImageGen tool for this project. Their prompts accompany them. They guide the implemented interface and are not rendered as working application controls.
-
-The three contextual lesson illustrations in `public/illustrations/` were also generated with the built-in ImageGen tool. Their exact prompts are retained in `design/illustrations/prompts.json`. They illustrate physical concepts; executable algorithm states are rendered separately from trace data.
+The three contextual lesson illustrations in `public/illustrations/` were generated with the built-in ImageGen tool. Their generation prompts are retained in Git history. They illustrate physical concepts; executable algorithm states are rendered separately from trace data.
 
 The teaching sequence of [AlgoMonster's Word Squares explanation](https://algo.monster/liteproblems/425) was consulted as a structural reference at the user's request. The trainer's expanded intuition, worked examples, and source-code annotations were independently written against its own Python implementations. No third-party editorial text or images are reproduced.
