@@ -49,7 +49,7 @@ export function useDraft(
         let recovery: string | null = null;
         try {
           recovery = sessionStorage.getItem(
-            `loopcraft-recovery:${record.slug}`,
+            `dadalcode-recovery:${record.slug}`,
           );
         } catch {
           /* Recovery storage can be unavailable too. */
@@ -121,7 +121,7 @@ export function useDraft(
         if (!pending.current && !blocked.current) {
           try {
             if (problem)
-              sessionStorage.removeItem(`loopcraft-recovery:${problem.slug}`);
+              sessionStorage.removeItem(`dadalcode-recovery:${problem.slug}`);
           } catch {
             /* Best-effort recovery only. */
           }
@@ -136,7 +136,7 @@ export function useDraft(
     setDraft(value);
     try {
       if (problem)
-        sessionStorage.setItem(`loopcraft-recovery:${problem.slug}`, value);
+        sessionStorage.setItem(`dadalcode-recovery:${problem.slug}`, value);
     } catch {
       /* Save status still reports the IndexedDB result. */
     }
@@ -162,7 +162,7 @@ export function useDraft(
         currentDraft.current = current.draft;
         setDraft(current.draft);
         try {
-          sessionStorage.removeItem(`loopcraft-recovery:${current.slug}`);
+          sessionStorage.removeItem(`dadalcode-recovery:${current.slug}`);
         } catch {
           /* Optional recovery storage. */
         }

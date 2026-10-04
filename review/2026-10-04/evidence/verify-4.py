@@ -1,7 +1,7 @@
 import json,pathlib,random,itertools,collections,importlib.util,copy,time
-ROOT=pathlib.Path('/home/data/Projects/blind-75')
+ROOT=pathlib.Path('.')
 spec=importlib.util.spec_from_file_location('harness',ROOT/'src/runtime/harness.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
-slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-4.json')); counts={s:0 for s in slugs};failures=[]
+slugs=json.load(open('./review/2026-10-04/evidence/group-4.json')); counts={s:0 for s in slugs};failures=[]
 packages={s:{f:(ROOT/'public/problems'/s/f).read_text() for f in ['solution.py','adapter.py','starter.py','lesson.json','explanation.json','tests.json']} for s in slugs}
 def chk(slug,case,expected):
  out=h.run_case(packages[slug]['solution.py'],packages[slug]['adapter.py'],{'name':'independent','input':case,'expected':expected})['result'];counts[slug]+=1
@@ -172,4 +172,4 @@ chk('minimum-depth-of-binary-tree',{'root':chain},n)
 zerochain=[0]+[v for i in range(n-1) for v in (None,0)]
 chk('path-sum',{'root':zerochain,'targetSum':0},True);chk('path-sum-ii',{'root':zerochain,'targetSum':0},[[0]*n])
 chk('merge-two-binary-trees',{'root1':zerochain[:1999],'root2':zerochain[:1999]},zerochain[:1999])
-output={'counts':counts,'total':sum(counts.values()),'failures':failures};pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/validation-4.json').write_text(json.dumps(output,indent=2));print(json.dumps(output,indent=2))
+output={'counts':counts,'total':sum(counts.values()),'failures':failures};pathlib.Path('./review/2026-10-04/evidence/validation-4.json').write_text(json.dumps(output,indent=2));print(json.dumps(output,indent=2))

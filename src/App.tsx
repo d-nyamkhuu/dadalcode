@@ -277,8 +277,8 @@ function Workspace({
   }, [slug, attempt]);
   useEffect(() => {
     document.title = problem
-      ? `${problem.title} — Loopcraft`
-      : "Loopcraft — Algorithm Trainer";
+      ? `${problem.title} — DadalCode`
+      : "DadalCode — Visual Algorithm Practice";
   }, [problem]);
   const drag = (clientX: number) => {
     const rect = split.current?.getBoundingClientRect();
@@ -524,8 +524,8 @@ export default function App() {
     }
     if (!current.slug)
       document.title = current.studyPlan
-        ? `${current.studyPlan.title} Study Plan — Loopcraft`
-        : "Loopcraft — Algorithm Trainer";
+        ? `${current.studyPlan.title} Study Plan — DadalCode`
+        : "DadalCode — Visual Algorithm Practice";
   }, [current.slug, current.studyPlan]);
   function update(p: Progress) {
     setProgress((previous) => ({ ...previous, [p.slug]: p }));
@@ -533,7 +533,7 @@ export default function App() {
   return (
     <>
       <header className="app-header">
-        <a className="brand" href="#/problems" aria-label="Loopcraft home">
+        <a className="brand" href="#/problems" aria-label="DadalCode home">
           <svg className="brand-mark" viewBox="0 0 36 32" aria-hidden="true">
             <path
               d="M12 5H5v22h7M24 5h7v22h-7"
@@ -542,7 +542,7 @@ export default function App() {
               strokeWidth="2.5"
             />
           </svg>
-          <span>Loopcraft</span>
+          <span>DadalCode</span>
         </a>
         <nav aria-label="Main navigation">
           <a

@@ -16,7 +16,7 @@ React, CodeMirror, Lucide, and Pyodide retain their respective licenses. Pyodide
 
 ## Design references
 
-The four desktop mockups in `design/` were generated with the built-in ImageGen tool for this project. Exact prompts are retained in `design/prompts.json`. They guide the implemented interface and are not rendered as working application controls.
+The figure-family and learning-figure references in `design/` were generated with the built-in ImageGen tool for this project. Their prompts accompany them. They guide the implemented interface and are not rendered as working application controls.
 
 The three contextual lesson illustrations in `public/illustrations/` were also generated with the built-in ImageGen tool. Their exact prompts are retained in `design/illustrations/prompts.json`. They illustrate physical concepts; executable algorithm states are rendered separately from trace data.
 

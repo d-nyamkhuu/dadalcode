@@ -18,7 +18,7 @@ if (!repository || !/^[\w-]+\/[\w.-]+$/.test(repository))
   throw new Error(
     "Set PAGES_REPOSITORY=owner/repository to an existing Pages repository you control.",
   );
-const directory = process.env.PAGES_DIRECTORY || "blind-75";
+const directory = process.env.PAGES_DIRECTORY || "dadalcode";
 if (!/^[\w-]+(?:\/[\w-]+)*$/.test(directory))
   throw new Error(
     "PAGES_DIRECTORY must be a relative path with simple directory names.",
@@ -35,7 +35,7 @@ if (!html.includes(`src="/${directory}/assets/`))
   );
 await access(join(distribution, "pyodide/pyodide.asm.wasm"));
 await access(join(distribution, "third-party-licenses.txt"));
-const temporary = await mkdtemp(join(tmpdir(), "loopcraft-pages-"));
+const temporary = await mkdtemp(join(tmpdir(), "dadalcode-pages-"));
 const checkout = join(temporary, "site");
 function git(args, cwd = checkout) {
   return execFileSync("git", args, {
@@ -77,7 +77,7 @@ try {
   if (!git(["diff", "--cached", "--name-only"]))
     console.log("Published files already match this build.");
   else {
-    git(["commit", "--quiet", "-m", `Publish Loopcraft under /${directory}/`]);
+    git(["commit", "--quiet", "-m", `Publish DadalCode under /${directory}/`]);
     git(["push", "origin", `HEAD:${branch}`]);
     console.log(`Published ${git(["rev-parse", "HEAD"])} to ${repository}.`);
   }

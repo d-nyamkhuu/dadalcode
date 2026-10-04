@@ -12,7 +12,7 @@ if (status)
 const commit = execFileSync("git", ["rev-parse", "HEAD"], {
   encoding: "utf8",
 }).trim();
-const directory = await mkdtemp(join(tmpdir(), "loopcraft-release-"));
+const directory = await mkdtemp(join(tmpdir(), "dadalcode-release-"));
 try {
   const archive = join(directory, "source.tar");
   execFileSync("git", ["archive", "--format=tar", "-o", archive, commit]);

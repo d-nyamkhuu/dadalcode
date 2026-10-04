@@ -1,5 +1,5 @@
 import json,pathlib
-R=pathlib.Path('/home/data/Projects/blind-75'); results=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1-results.json')); slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-1.json'))
+R=pathlib.Path('.'); results=json.load(open('./review/2026-10-04/evidence/probes-1-results.json')); slugs=json.load(open('./review/2026-10-04/evidence/group-1.json'))
 D={
 '3sum':(
 'Clearly distinguishes value-triplet uniqueness from three distinct input positions; valid constraints and unrestricted result order.',
@@ -189,8 +189,8 @@ for s in slugs:
  if s=='3sum':
   findings=[{'severity':'P3','title':'Distinguish the largest pair sum from the anchored triple sum','file':str(R/'public/problems'/s/'explanation.json'),'line_start':20,'line_end':21,'detail':'The walkthrough says the largest available pair sums to -1. That pair is 1 and 2, so its sum is 3; only the complete triple -4+1+2 has sum -1. The following step similarly omits the anchor when stating the pointers sum to zero. The returned answer is correct, but literal arithmetic in the teaching example is misleading.','evidence':'For sorted [-4,-1,-1,0,1,2], max remaining pair=1+2=3 and anchored triple=-4+3=-1; for anchor -1 the pair -1+2=1 and full triple -1-1+2=0.','recommendation':'Write "even -4+1+2=-1" and "anchor -1 with pointer values -1 and 2 totals zero".'}]
  fixture_count=len(json.load(open(R/'public/problems'/s/'tests.json')))
- validations=[f'{fixture_count} authored fixtures passed reference+adapter through shared harness.',f'{results["counts"][s]} independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.','All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution.']
+ validations=[f'{fixture_count} authored fixtures passed reference+adapter through shared harness.',f'{results["counts"][s]} independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.','All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution.']
  rows.append({'slug':s,'verdict':'issue' if findings else 'no-confirmed-defect','formulation_review':f,'explanation_review':e,'solution_review':sol,'tests_review':t,'findings':findings,'improvements':imps,'validation':validations})
 assert len(rows)==len(slugs)==30
-json.dump(rows,open('/home/data/Projects/blind-75/review/2026-10-04/evidence/audit-1.json','w'),indent=2,ensure_ascii=False)
+json.dump(rows,open('./review/2026-10-04/evidence/audit-1.json','w'),indent=2,ensure_ascii=False)
 print(json.dumps({'packages':len(rows),'with_findings':sum(bool(r['findings']) for r in rows),'findings':sum(len(r['findings']) for r in rows),'independent_probes':results['total'],'fixtures':results['fixtures']}))

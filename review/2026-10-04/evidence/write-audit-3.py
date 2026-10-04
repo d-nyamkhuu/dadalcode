@@ -180,7 +180,7 @@ D={
  'Correct O(n) BFS with queue size bounded by real present nodes on adjacent levels. Starter and direct adapter match; no empty-root guard is required by current constraints.',
  'Useful gap, full, singleton and one-sided fixtures; deep narrow and large bounded sparse widths are absent.',
  ['Add a 3000-node one-sided chain with legal repeated values, expected width 1, to validate normalization across depth.','Add a sparse tree with far-separated extreme branches and width near the signed 32-bit bound while retaining few real nodes.','Use a symbol such as w_real for maximum number of present nodes at a level in the complexity label to distinguish queue space from conceptual width.'])}
-slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-3.json'));stats=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probes-3-results.json'));mutations=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/mutations-3-results.json'));out=[]
+slugs=json.load(open('./review/2026-10-04/evidence/group-3.json'));stats=json.load(open('./review/2026-10-04/evidence/probes-3-results.json'));mutations=json.load(open('./review/2026-10-04/evidence/mutations-3-results.json'));out=[]
 for s in slugs:
  f,e,sol,t,improvements=D[s]; findings=[]
  if s=='insert-interval':
@@ -191,4 +191,4 @@ for s in slugs:
  if st['boundary_cases']:validation.append(f"{st['boundary_cases']} valid upper-bound/deep-input checks passed through the actual adapter.")
  if s in mutations:validation.append('Targeted mutant '+('survived all current fixtures; added independent counterexample or performance rationale is described in test improvements.' if mutations[s]['survives'] else 'was rejected by: '+', '.join(mutations[s]['caught_by'])+'.'))
  out.append({'slug':s,'verdict':'issue' if findings else 'no-confirmed-defect','formulation_review':f,'explanation_review':e,'solution_review':sol,'tests_review':t,'findings':findings,'improvements':improvements,'validation':validation})
-pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/audit-3.json').write_text(json.dumps(out,indent=2,ensure_ascii=False)); print(json.dumps({'problems':len(out),'findings':sum(len(x['findings']) for x in out),'fixtures':sum(s['fixtures'] for s in stats.values()),'oracle_cases':sum(s['oracle_cases'] for s in stats.values()),'boundary_cases':sum(s['boundary_cases'] for s in stats.values())}))
+pathlib.Path('./review/2026-10-04/evidence/audit-3.json').write_text(json.dumps(out,indent=2,ensure_ascii=False)); print(json.dumps({'problems':len(out),'findings':sum(len(x['findings']) for x in out),'fixtures':sum(s['fixtures'] for s in stats.values()),'oracle_cases':sum(s['oracle_cases'] for s in stats.values()),'boundary_cases':sum(s['boundary_cases'] for s in stats.values())}))

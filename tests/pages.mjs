@@ -10,7 +10,7 @@ import {
   screenshotDirectory,
 } from "./browser-environment.mjs";
 
-const root = new URL(process.env.APP_URL || "http://127.0.0.1:4173/blind-75/");
+const root = new URL(process.env.APP_URL || "http://127.0.0.1:4173/dadalcode/");
 root.search = "";
 root.hash = "";
 if (!root.pathname.endsWith("/")) root.pathname += "/";
@@ -87,7 +87,7 @@ try {
   await page
     .getByRole("heading", { name: "Your next breakthrough." })
     .waitFor();
-  assert.equal(await page.title(), "Loopcraft — Algorithm Trainer");
+  assert.equal(await page.title(), "DadalCode — Visual Algorithm Practice");
   assert.equal(await page.locator(".problem-table tbody tr").count(), 179);
   assert.equal(
     await page.locator("vite-error-overlay, .page-error, .error").count(),

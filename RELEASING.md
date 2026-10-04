@@ -1,4 +1,4 @@
-# Releasing Loopcraft
+# Releasing DadalCode
 
 ## Source release
 
@@ -35,12 +35,12 @@ settings. Verify both settings before announcing the public release.
 
 ## Build and deploy
 
-The build defaults to `/blind-75/`. Set `DEPLOY_BASE_PATH` to the URL path used by
+The build defaults to `/dadalcode/`. Set `DEPLOY_BASE_PATH` to the URL path used by
 your hosting provider, including leading/trailing slashes:
 
 ```sh
-DEPLOY_BASE_PATH=/blind-75/ npm run build:pages
-DEPLOY_BASE_PATH=/blind-75/ npm run test:production
+DEPLOY_BASE_PATH=/dadalcode/ npm run build:pages
+DEPLOY_BASE_PATH=/dadalcode/ npm run test:production
 ```
 
 The Actions workflow produces a verified Pages artifact on `main`; it does not
@@ -50,7 +50,7 @@ an existing branch-based Pages repository:
 
 ```sh
 PAGES_REPOSITORY=owner/site-repository \
-PAGES_DIRECTORY=blind-75 \
+PAGES_DIRECTORY=dadalcode \
 PAGES_BRANCH=main \
 npm run publish:pages
 ```

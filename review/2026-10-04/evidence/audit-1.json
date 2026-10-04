@@ -10,7 +10,7 @@
       {
         "severity": "P3",
         "title": "Distinguish the largest pair sum from the anchored triple sum",
-        "file": "/home/data/Projects/blind-75/public/problems/3sum/explanation.json",
+        "file": "./public/problems/3sum/explanation.json",
         "line_start": 20,
         "line_end": 21,
         "detail": "The walkthrough says the largest available pair sums to -1. That pair is 1 and 2, so its sum is 3; only the complete triple -4+1+2 has sum -1. The following step similarly omits the anchor when stating the pointers sum to zero. The returned answer is correct, but literal arithmetic in the teaching example is misleading.",

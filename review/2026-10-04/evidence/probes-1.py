@@ -1,7 +1,7 @@
 import sys,json,pathlib,random,itertools,collections,functools,importlib.util
-R=pathlib.Path('/home/data/Projects/blind-75'); spec=importlib.util.spec_from_file_location('h',R/'src/runtime/harness.py'); h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+R=pathlib.Path('.'); spec=importlib.util.spec_from_file_location('h',R/'src/runtime/harness.py'); h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
 rng=random.Random(1042026); stats=collections.Counter(); failures=[]
-slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-1.json')); code={}; adapters={}
+slugs=json.load(open('./review/2026-10-04/evidence/group-1.json')); code={}; adapters={}
 for s in slugs:
  ns=dict(vars(h));exec((R/'public/problems'/s/'solution.py').read_text(),ns);code[s]=ns
  an=dict(vars(h));exec((R/'public/problems'/s/'adapter.py').read_text(),an);adapters[s]=an
@@ -143,5 +143,5 @@ for s in slugs:
  assert any(t['input']==e['walkthrough']['input'] and t['expected']==e['walkthrough']['result'] for t in tests),s
  assert all(note['code'] in sol for note in e['codeNotes']),s
  compile((R/'public/problems'/s/'starter.py').read_text(),s,'exec')
-json.dump({'counts':stats,'failures':failures,'total':sum(stats.values()),'fixtures':sum(len(json.loads((R/'public/problems'/s/'tests.json').read_text())) for s in slugs)},open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1-results.json','w'),indent=2)
+json.dump({'counts':stats,'failures':failures,'total':sum(stats.values()),'fixtures':sum(len(json.loads((R/'public/problems'/s/'tests.json').read_text())) for s in slugs)},open('./review/2026-10-04/evidence/probes-1-results.json','w'),indent=2)
 print(json.dumps({'counts':stats,'failures':failures,'total':sum(stats.values())}))

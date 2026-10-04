@@ -6,7 +6,7 @@ import {
   browserExecutable,
   screenshotDirectory,
 } from "./browser-environment.mjs";
-const root = process.env.APP_URL || "http://127.0.0.1:4175/blind-75/";
+const root = process.env.APP_URL || "http://127.0.0.1:4175/dadalcode/";
 const browser = await chromium.launch({
   headless: true,
   executablePath: browserExecutable(chromium, process.env.CHROME_PATH),
@@ -83,7 +83,7 @@ try {
     await readFile(await draftDownload.path(), "utf8"),
     /conflicting B/,
   );
-  await b.getByRole("link", { name: "Loopcraft home" }).click();
+  await b.getByRole("link", { name: "DadalCode home" }).click();
   await b
     .locator(".problem-table")
     .getByRole("link", { name: "Contains Duplicate", exact: true })
@@ -123,7 +123,7 @@ try {
   const backupDownload = await backupPromise,
     backupPath = await backupDownload.path();
   const backup = JSON.parse(await readFile(backupPath, "utf8"));
-  assert.equal(backup.format, "loopcraft-progress");
+  assert.equal(backup.format, "dadalcode-progress");
   assert.match(backup.entries[0].draft, /keep this version B/);
   const other = await browser.newContext({
       viewport: { width: 1536, height: 1024 },
@@ -220,7 +220,7 @@ try {
     await failure.getByRole("button", { name: "Download draft" }).isVisible(),
   );
   assert(
-    await failure.getByRole("link", { name: "Loopcraft home" }).isVisible(),
+    await failure.getByRole("link", { name: "DadalCode home" }).isVisible(),
   );
   assert(
     expectedErrors.every((e) => e.includes("dynamically imported module")),

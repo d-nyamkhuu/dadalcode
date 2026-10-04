@@ -1,4 +1,4 @@
-# Loopcraft
+# DadalCode
 
 A desktop Python algorithm trainer covering all **179 problems** in [Sean Prashad's LeetCode Patterns collection](https://seanprashad.com/leetcode-patterns/). Includes beginner-friendly theory, executable reference walkthroughs, a Python editor, commented solutions, and locally saved progress. All 13 premium-listed problems include publicly accessible alternative statement sources.
 
@@ -49,7 +49,7 @@ npm run test:viewer      # fitted/expanded diagrams, zoom, focus, short/narrow w
 npm run test:runtime     # all 179 suites and traces in browser Pyodide
 ```
 
-Browser tests default to `http://127.0.0.1:5173`. UI tests accept `APP_URL` and `CHROME_PATH`; runtime tests accept `TRAINER_BASE_URL` and `PLAYWRIGHT_CHROMIUM_EXECUTABLE`. Screenshots go to the operating system's temporary directory under `pattern-lab-qa`, not the application bundle. Tests use fresh browser storage.
+Browser tests default to `http://127.0.0.1:5173`. UI tests accept `APP_URL` and `CHROME_PATH`; runtime tests accept `TRAINER_BASE_URL` and `PLAYWRIGHT_CHROMIUM_EXECUTABLE`. Screenshots go to the operating system's temporary directory under `dadalcode-qa`, not the application bundle. Tests use fresh browser storage.
 
 ## Project structure
 
@@ -78,9 +78,9 @@ The built-in ImageGen figure-family reference is saved in [design/figure-familie
 
 ## GitHub Pages
 
-Published site: [Loopcraft](https://d-nyamkhuu.github.io/blind-75/).
+Deployment path: `/dadalcode/`. Publish the built site to your configured GitHub Pages destination before sharing its URL.
 
-The production build targets `/blind-75/`. Lessons, illustrations, the Python worker, and the Pyodide runtime all resolve under that path. Hash routes support direct links and reloads on static hosting.
+The production build targets `/dadalcode/`. Lessons, illustrations, the Python worker, and the Pyodide runtime all resolve under that path. Hash routes support direct links and reloads on static hosting.
 
 ```sh
 npm test
@@ -89,7 +89,7 @@ npm run preview:pages       # leave running in another terminal
 npm run test:pages          # production-build browser checks
 ```
 
-`APP_URL` can point the Pages test at another preview port or the published site. For example, `APP_URL=http://127.0.0.1:4175/blind-75/ npm run test:pages`.
+`APP_URL` can point the Pages test at another preview port or the published site. For example, `APP_URL=http://127.0.0.1:4175/dadalcode/ npm run test:pages`.
 
 See [RELEASING.md](RELEASING.md) for configurable publishing, required checks, and verification from an exact source commit. Publishing requires an explicit destination; forks never default to a personal repository.
 

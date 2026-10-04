@@ -92,7 +92,7 @@
       {
         "severity": "P2",
         "title": "Include the scan of k input heads in the runtime bound",
-        "file": "/home/data/Projects/blind-75/public/problems/merge-k-sorted-lists/lesson.json",
+        "file": "./public/problems/merge-k-sorted-lists/lesson.json",
         "line_start": 24,
         "line_end": 26,
         "detail": "N is total node count, while k also includes empty lists. The solution always enumerates every list head (solution.py:6), so initialization is Theta(k) even when N is zero or very small. O(N log(k+1)) alone does not describe valid all-empty or sparse collections.",
@@ -428,7 +428,7 @@
       {
         "severity": "P2",
         "title": "Sorted output adds a logarithmic factor to the taught linear traversal",
-        "file": "/home/data/Projects/blind-75/public/problems/pacific-atlantic-water-flow/solution.py",
+        "file": "./public/problems/pacific-atlantic-water-flow/solution.py",
         "line_start": 19,
         "line_end": 19,
         "detail": "The two traversals are linear, but the final return sorts the entire reachability intersection. If K cells reach both oceans, total time is O(RC + K log K). A flat grid has K=RC, so lesson.json:23 understates the worst-case runtime as O(RC).",

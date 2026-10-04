@@ -51,7 +51,7 @@ async function fits() {
 try {
   for (const problem of catalog) {
     await open(problem.slug);
-    assert.equal(await page.title(), `${problem.title} — Loopcraft`);
+    assert.equal(await page.title(), `${problem.title} — DadalCode`);
     assert(
       await page
         .getByRole("heading", { name: "The main idea", exact: true })

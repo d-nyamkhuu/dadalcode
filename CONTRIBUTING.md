@@ -1,6 +1,6 @@
-# Contributing to Loopcraft
+# Contributing to DadalCode
 
-Loopcraft supports desktop browsers. Test at 1536×1024, 1280×800, and 1280×600;
+DadalCode supports desktop browsers. Test at 1536×1024, 1280×800, and 1280×600;
 phone layouts are not a release requirement. A narrow expanded diagram window is
 still tested because desktop users resize windows.
 

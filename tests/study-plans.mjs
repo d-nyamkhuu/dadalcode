@@ -46,7 +46,7 @@ await mkdir(screenshotDirectory, { recursive: true });
 async function seedSolved(slugs) {
   await page.evaluate(async (slugs) => {
     const db = await new Promise((resolve, reject) => {
-      const request = indexedDB.open("pattern-lab", 1);
+      const request = indexedDB.open("dadalcode", 1);
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
     });
@@ -82,7 +82,7 @@ try {
   assert.match(page.url(), /#\/study-plan\/beginner$/);
   await page.waitForFunction(
     (title) => document.title === title,
-    "Beginner Study Plan — Loopcraft",
+    "Beginner Study Plan — DadalCode",
   );
   assert.equal(await page.locator(".plan-problems li").count(), 68);
   assert.equal(await page.locator(".plan-stage").count(), 2);
@@ -175,7 +175,7 @@ try {
   await page.locator(".plan-next").waitFor();
   await page.waitForFunction(
     (title) => document.title === title,
-    "Experienced Study Plan — Loopcraft",
+    "Experienced Study Plan — DadalCode",
   );
   assert.equal(await page.locator(".plan-problems li").count(), 75);
   assert.equal(await page.locator(".plan-stage").count(), 3);
@@ -231,7 +231,7 @@ try {
   await page.locator(".plan-next").waitFor();
   await page.waitForFunction(
     (title) => document.title === title,
-    "Beginner Study Plan — Loopcraft",
+    "Beginner Study Plan — DadalCode",
   );
   assert.equal(await page.locator("vite-error-overlay").count(), 0);
   assert.deepEqual(errors, [], "No browser errors or warnings");

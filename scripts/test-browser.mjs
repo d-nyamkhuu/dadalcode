@@ -3,7 +3,7 @@ import { setTimeout } from "node:timers/promises";
 const benchmark = process.argv.includes("--benchmark");
 const production = process.argv.includes("--production");
 const port = benchmark ? 5290 : production ? 4175 : 5190;
-const path = production ? process.env.DEPLOY_BASE_PATH || "/blind-75/" : "/";
+const path = production ? process.env.DEPLOY_BASE_PATH || "/dadalcode/" : "/";
 const origin = `http://127.0.0.1:${port}`;
 const root = origin + path;
 const args = [

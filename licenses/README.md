@@ -21,4 +21,4 @@ These are unmodified upstream texts. The build checks the bundled versions and
 fails if matching notices are missing. Pyodide's corresponding source is available
 at https://github.com/pyodide/pyodide/tree/0.29.5; Python and Emscripten source are
 available at the versioned repositories linked above. No runtime source changes
-are made by Loopcraft.
+are made by DadalCode.

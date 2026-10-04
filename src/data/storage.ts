@@ -4,7 +4,7 @@ let dbPromise: Promise<IDBDatabase> | undefined;
 const channel =
   typeof BroadcastChannel === "undefined"
     ? null
-    : new BroadcastChannel("loopcraft-progress");
+    : new BroadcastChannel("dadalcode-progress");
 const changed = new EventTarget();
 export function subscribeProgress(listener: () => void) {
   channel?.addEventListener("message", listener);
@@ -20,8 +20,7 @@ function announce() {
 }
 function database() {
   return (dbPromise ??= new Promise((resolve, reject) => {
-    // Preserve the original database name so existing users keep their drafts.
-    const request = indexedDB.open("pattern-lab", 1);
+    const request = indexedDB.open("dadalcode", 1);
     request.onupgradeneeded = () => {
       request.result.createObjectStore("progress", { keyPath: "slug" });
       request.result.createObjectStore("settings");

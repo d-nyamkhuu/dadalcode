@@ -1,6 +1,6 @@
 import json,sys,random,itertools,collections,math,pathlib,importlib.util
 spec=importlib.util.spec_from_file_location('h','src/runtime/harness.py'); h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
-R=random.Random(103); slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-3.json')); stats={s:{'fixtures':0,'oracle_cases':0,'boundary_cases':0,'failures':[]} for s in slugs}
+R=random.Random(103); slugs=json.load(open('./review/2026-10-04/evidence/group-3.json')); stats={s:{'fixtures':0,'oracle_cases':0,'boundary_cases':0,'failures':[]} for s in slugs}
 source={s:(pathlib.Path('public/problems')/s/'solution.py').read_text() for s in slugs}; adapters={s:(pathlib.Path('public/problems')/s/'adapter.py').read_text() for s in slugs}
 def test(s,inp,expected,kind='oracle_cases'):
  result=h.run_case(source[s],adapters[s],{'input':inp,'expected':expected})['result'];stats[s][kind]+=1
@@ -139,4 +139,4 @@ test('majority-element',{'nums':[0]*50000},0,'boundary_cases')
 test('maximum-average-subarray-i',{'nums':[-10000]*100000,'k':100000},-10000,'boundary_cases')
 test('maximum-product-subarray',{'nums':[-1]*20000},1,'boundary_cases')
 test('maximum-subarray',{'nums':[-10000]*100000},-10000,'boundary_cases')
-pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/probes-3-results.json').write_text(json.dumps(stats,indent=2)); print(json.dumps({s:{k:v if k!='failures' else len(v) for k,v in st.items()} for s,st in stats.items()},indent=2))
+pathlib.Path('./review/2026-10-04/evidence/probes-3-results.json').write_text(json.dumps(stats,indent=2)); print(json.dumps({s:{k:v if k!='failures' else len(v) for k,v in st.items()} for s,st in stats.items()},indent=2))

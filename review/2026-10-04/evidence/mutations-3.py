@@ -1,4 +1,4 @@
-exec(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probes-3.py').read().split('for s in slugs:\n for t in')[0])
+exec(open('./review/2026-10-04/evidence/probes-3.py').read().split('for s in slugs:\n for t in')[0])
 mutations={
 'is-subsequence': source['is-subsequence'].replace('matched = 0',"if not s and t: return False\n        matched = 0"),
 'k-closest-points-to-origin': source['k-closest-points-to-origin'].replace('heap = []',"points = [list(p) for p in dict.fromkeys(map(tuple, points))]\n        heap = []"),
@@ -17,4 +17,4 @@ for slug,code in mutations.items():
 probes=[('is-subsequence',{'s':'','t':'abc'},True),('k-closest-points-to-origin',{'points':[[0,0],[0,0],[1,0]],'k':2},[[0,0],[0,0]]),('letter-combinations-of-a-phone-number',{'digits':'4'},['g','h','i'])]
 for slug,inp,expected in probes:
  res=h.run_case(mutations[slug],adapters[slug],{'input':inp,'expected':expected})['result'];results[slug]['new_case']=res
-pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/mutations-3-results.json').write_text(json.dumps(results,indent=2));print(json.dumps(results,indent=2))
+pathlib.Path('./review/2026-10-04/evidence/mutations-3-results.json').write_text(json.dumps(results,indent=2));print(json.dumps(results,indent=2))

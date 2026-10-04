@@ -17,7 +17,7 @@ export function downloadFile(
 export function makeBackup(entries: Progress[]) {
   return JSON.stringify(
     {
-      format: "loopcraft-progress",
+      format: "dadalcode-progress",
       version: 1,
       exportedAt: new Date().toISOString(),
       entries: entries.map(
@@ -39,12 +39,12 @@ export function parseBackup(text: string): Progress[] {
     throw new Error("Backup must be no larger than 5 MB.");
   const data = JSON.parse(text);
   if (
-    data?.format !== "loopcraft-progress" ||
+    data?.format !== "dadalcode-progress" ||
     data.version !== 1 ||
     !Array.isArray(data.entries) ||
     data.entries.length > catalog.length
   )
-    throw new Error("Choose a Loopcraft progress backup (version 1).");
+    throw new Error("Choose a DadalCode progress backup (version 1).");
   const slugs = new Set(catalog.map((p) => p.slug)),
     seen = new Set<string>();
   return data.entries.map((entry: unknown) => {

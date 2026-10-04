@@ -16,7 +16,7 @@ export default function ProgressTools() {
     setBusy(true);
     try {
       downloadFile(
-        `loopcraft-progress-${new Date().toISOString().slice(0, 10)}.json`,
+        `dadalcode-progress-${new Date().toISOString().slice(0, 10)}.json`,
         makeBackup(await allProgress()),
         "application/json",
       );
