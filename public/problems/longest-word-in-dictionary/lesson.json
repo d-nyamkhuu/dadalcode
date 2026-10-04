@@ -12,7 +12,7 @@
     "Words contain lowercase English letters.",
     "Repeated dictionary entries are allowed and do not change which prefixes exist."
   ],
-  "intuition": "A word qualifies exactly when its one-character-shorter prefix qualifies, or it has one character. Process shorter words first and remember those that are buildable. Sorting lexicographically within each length makes the first longest candidate the tie winner.",
+  "intuition": "Build longer words only from words that are already buildable. Process shorter words first. A word qualifies when removing its final letter leaves a qualifying word; this proves all its earlier prefixes exist too. Process equal lengths in character order to resolve ties.",
   "approach": [
     "Sort by (length, word).",
     "Keep a set buildable containing the empty prefix.",
@@ -24,7 +24,7 @@
   "complexity": {
     "time": "O(W log W * L + W * L) worst case",
     "space": "O(W + L) auxiliary",
-    "explanation": "W is the number of input entries and L is maximum word length. Sorting can compare O(L) characters per comparison. The sorted array, sort keys, and certified set hold O(W) references to existing input strings; one temporary copied prefix uses O(L) characters. Input string storage is O(W × L), separate from auxiliary space."
+    "explanation": "W is the number of input entries and L is maximum word length. Sorting can compare O(L) characters per comparison. The sorted array, sort keys, and certified set hold O(W) references to existing input strings; one temporary copied prefix uses O(L) characters. Input string storage is O(W × L), separate from additional space."
   },
   "pitfalls": [
     "A missing first-letter prefix invalidates the entire word.",

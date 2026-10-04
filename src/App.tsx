@@ -9,24 +9,43 @@ import {
   Play,
   LoaderCircle,
   CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
 import { catalog, loadProblem } from "./data/problems";
 import {
   allProgress,
-  saveProgress,
+  subscribeProgress,
   setLastProblem,
   getLastProblem,
 } from "./data/storage";
 import type { ProblemDefinition, Progress } from "./types";
 import Library from "./components/Library";
+import StudyPlan from "./components/StudyPlan";
+import ProgressTools from "./components/ProgressTools";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { useDraft } from "./hooks/useDraft";
+import { downloadFile } from "./data/backup";
+import {
+  getStudyPlan,
+  orderedPlanProblems,
+  planProblemHref,
+  type StudyPlan as Plan,
+} from "./data/studyPlans";
 import LessonContent from "./components/LessonContent";
 import Walkthrough from "./components/Walkthrough";
 import Practice from "./components/Practice";
 const CodeEditor = lazy(() => import("./components/CodeEditor"));
 type Tab = "learn" | "practice" | "solution";
 function route() {
-  const parts = location.hash.replace(/^#\/?/, "").split("/");
+  const [path, query] = location.hash.replace(/^#\/?/, "").split("?");
+  const parts = path.split("/");
+  const plan = getStudyPlan(new URLSearchParams(query).get("plan"));
   return {
+    studyPlan:
+      parts[0] === "study-plan"
+        ? (getStudyPlan(parts[1]) ?? getStudyPlan("beginner"))
+        : undefined,
+    plan,
     slug: parts[0] === "problems" ? (parts[1] ?? "") : "",
     tab: (["learn", "practice", "solution"].includes(parts[2])
       ? parts[2]
@@ -38,15 +57,18 @@ function Sidebar({
   progress,
   collapsed,
   onToggle,
+  plan,
 }: {
   slug: string;
   progress: Record<string, Progress>;
   collapsed: boolean;
   onToggle: () => void;
+  plan?: Plan;
 }) {
   const [search, setSearch] = useState("");
-  const solved = Object.values(progress).filter(
-    (p) => p.status === "solved",
+  const sidebarProblems = plan ? orderedPlanProblems(plan) : catalog;
+  const solved = sidebarProblems.filter(
+    (p) => progress[p.slug]?.status === "solved",
   ).length;
   const preferred = [
     "two-sum",
@@ -64,9 +86,9 @@ function Sidebar({
     <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       <div className="sidebar-top">
         {!collapsed && (
-          <a href="#/problems">
+          <a href={plan ? `#/study-plan/${plan.id}` : "#/problems"}>
             <ArrowLeft size={17} />
-            Back to problems
+            {plan ? "Back to study plan" : "Back to problems"}
           </a>
         )}
         <button
@@ -93,38 +115,76 @@ function Sidebar({
             />
           </div>
           <nav className="sidebar-list" aria-label="Problem navigation">
-            <div className="sidebar-label">
-              {search ? "SEARCH RESULTS" : "ARRAYS & HASHING"}
-            </div>
-            {sorted
-              .filter((p) =>
-                p.title.toLowerCase().includes(search.toLowerCase()),
-              )
-              .map((p, i) => (
-                <div key={p.slug}>
-                  {!search && i === 6 && (
-                    <div className="sidebar-label additional">ALL PROBLEMS</div>
-                  )}
-                  <a
-                    className={`sidebar-problem ${p.slug === slug ? "active" : ""}`}
-                    href={`#/problems/${p.slug}/learn`}
-                    aria-current={p.slug === slug ? "page" : undefined}
-                  >
-                    <span>{p.title}</span>
-                    {progress[p.slug]?.status === "solved" && (
-                      <CheckCircle2 size={14} />
-                    )}
-                  </a>
+            {plan ? (
+              plan.groups.map((group) => {
+                const members = group.problems.filter((p) =>
+                  p.title.toLowerCase().includes(search.toLowerCase()),
+                );
+                return members.length ? (
+                  <div key={group.id}>
+                    <div className="sidebar-label">
+                      {group.title.toUpperCase()}
+                    </div>
+                    {members.map((p) => (
+                      <a
+                        key={p.slug}
+                        className={`sidebar-problem ${p.slug === slug ? "active" : ""}`}
+                        href={planProblemHref(p.slug, plan)}
+                        aria-current={p.slug === slug ? "page" : undefined}
+                      >
+                        <span>{p.title}</span>
+                        {progress[p.slug]?.status === "solved" && (
+                          <CheckCircle2 size={14} />
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                ) : null;
+              })
+            ) : (
+              <>
+                <div className="sidebar-label">
+                  {search ? "SEARCH RESULTS" : "ARRAYS & HASHING"}
                 </div>
-              ))}
+                {sorted
+                  .filter((p) =>
+                    p.title.toLowerCase().includes(search.toLowerCase()),
+                  )
+                  .map((p, i) => (
+                    <div key={p.slug}>
+                      {!search && i === 6 && (
+                        <div className="sidebar-label additional">
+                          ALL PROBLEMS
+                        </div>
+                      )}
+                      <a
+                        className={`sidebar-problem ${p.slug === slug ? "active" : ""}`}
+                        href={`#/problems/${p.slug}/learn`}
+                        aria-current={p.slug === slug ? "page" : undefined}
+                      >
+                        <span>{p.title}</span>
+                        {progress[p.slug]?.status === "solved" && (
+                          <CheckCircle2 size={14} />
+                        )}
+                      </a>
+                    </div>
+                  ))}
+              </>
+            )}
           </nav>
           <div className="sidebar-progress">
             <div>
-              <span>{solved} of 179 solved</span>
-              <span>{Math.round((solved / 179) * 100)}%</span>
+              <span>
+                {solved} of {sidebarProblems.length} solved
+              </span>
+              <span>
+                {Math.round((solved / sidebarProblems.length) * 100)}%
+              </span>
             </div>
             <div className="progress-track">
-              <span style={{ width: `${(solved / 179) * 100}%` }} />
+              <span
+                style={{ width: `${(solved / sidebarProblems.length) * 100}%` }}
+              />
             </div>
           </div>
         </>
@@ -186,37 +246,29 @@ function Workspace({
   tab,
   progress,
   onProgress,
+  plan,
 }: {
   slug: string;
   tab: Tab;
   progress: Record<string, Progress>;
   onProgress: (p: Progress) => void;
+  plan?: Plan;
 }) {
   const [problem, setProblem] = useState<ProblemDefinition | null>(null),
     [error, setError] = useState(""),
     [attempt, setAttempt] = useState(0),
     [collapsed, setCollapsed] = useState(false),
-    [ratio, setRatio] = useState(41),
-    [draft, setDraft] = useState("");
+    [ratio, setRatio] = useState(41);
+  const savedDraft = useDraft(problem, onProgress);
+  const { draft, update: updateDraft, result } = savedDraft;
   const split = useRef<HTMLDivElement>(null),
-    dragging = useRef(false),
-    latestProgress = useRef(progress);
-  latestProgress.current = progress;
+    dragging = useRef(false);
   useEffect(() => {
     let live = true;
     loadProblem(slug)
       .then((p) => {
         if (!live) return;
         setProblem(p);
-        const existing = latestProgress.current[slug];
-        setDraft(existing?.draft ?? p.starter);
-        if (!existing)
-          onProgress({
-            slug,
-            draft: p.starter,
-            status: "started",
-            updatedAt: Date.now(),
-          });
       })
       .catch((e) => live && setError(e.message));
     return () => {
@@ -225,32 +277,9 @@ function Workspace({
   }, [slug, attempt]);
   useEffect(() => {
     document.title = problem
-      ? `${problem.title} — Pattern Lab`
-      : "Pattern Lab — Algorithm Trainer";
+      ? `${problem.title} — DadalCode`
+      : "DadalCode — Visual Algorithm Practice";
   }, [problem]);
-  function updateDraft(value: string) {
-    setDraft(value);
-    onProgress({
-      ...latestProgress.current[slug],
-      slug,
-      draft: value,
-      status: latestProgress.current[slug]?.status ?? "started",
-      updatedAt: Date.now(),
-    });
-  }
-  function result(passed: number, total: number) {
-    onProgress({
-      ...latestProgress.current[slug],
-      slug,
-      draft: latestProgress.current[slug]?.draft ?? draft,
-      status:
-        passed === total
-          ? "solved"
-          : (latestProgress.current[slug]?.status ?? "started"),
-      lastResult: { passed, total, at: Date.now() },
-      updatedAt: Date.now(),
-    });
-  }
   const drag = (clientX: number) => {
     const rect = split.current?.getBoundingClientRect();
     if (rect)
@@ -259,6 +288,16 @@ function Workspace({
       );
   };
   const position = catalog.findIndex((p) => p.slug === slug) + 1;
+  const planProblems = plan ? orderedPlanProblems(plan) : [];
+  const planPosition = planProblems.findIndex((p) => p.slug === slug);
+  const nextInPlan =
+    planPosition >= 0
+      ? planProblems
+          .slice(planPosition + 1)
+          .find((p) => progress[p.slug]?.status !== "solved")
+      : undefined;
+  const problemHref = (view: Tab) =>
+    plan ? planProblemHref(slug, plan, view) : `#/problems/${slug}/${view}`;
   return (
     <div className={`workspace ${collapsed ? "sidebar-hidden" : ""}`}>
       <Sidebar
@@ -266,6 +305,7 @@ function Workspace({
         progress={progress}
         collapsed={collapsed}
         onToggle={() => setCollapsed((c) => !c)}
+        plan={plan}
       />
       <main className="workspace-main">
         {error ? (
@@ -282,7 +322,7 @@ function Workspace({
             </button>
             <a href="#/problems">Back to problems</a>
           </div>
-        ) : !problem ? (
+        ) : !problem || !savedDraft.ready ? (
           <div className="loading page-loading">
             <LoaderCircle className="spin" />
             Loading lesson…
@@ -290,6 +330,27 @@ function Workspace({
         ) : (
           <>
             <div className="problem-header">
+              {plan && (
+                <div className="plan-context">
+                  <a href={`#/study-plan/${plan.id}`}>
+                    {plan.title} study plan
+                    {planPosition >= 0
+                      ? ` · ${planPosition + 1} / ${planProblems.length}`
+                      : ""}
+                  </a>
+                  {nextInPlan ? (
+                    <a href={planProblemHref(nextInPlan.slug, plan)}>
+                      Next: {nextInPlan.title}
+                      <ArrowRight size={14} />
+                    </a>
+                  ) : (
+                    <a href={`#/study-plan/${plan.id}`}>
+                      View plan progress
+                      <ArrowRight size={14} />
+                    </a>
+                  )}
+                </div>
+              )}
               <div className="problem-position">
                 {String(position).padStart(2, "0")} / 179
               </div>
@@ -313,12 +374,37 @@ function Workspace({
                 ))}
               </div>
             </div>
+            {(tab === "practice" ||
+              savedDraft.conflict ||
+              !["Saved locally", "Saving…", "Opening saved draft…"].includes(
+                savedDraft.status,
+              )) && (
+              <div className="draft-status" aria-live="polite">
+                <span>{savedDraft.status}</span>
+                <button onClick={() => downloadFile(`${slug}-draft.py`, draft)}>
+                  Download draft
+                </button>
+                {savedDraft.conflict ? (
+                  <>
+                    <button onClick={() => savedDraft.resolve(false)}>
+                      Discard mine and load saved draft
+                    </button>
+                    <button onClick={() => savedDraft.resolve(true)}>
+                      Replace saved draft with mine
+                    </button>
+                  </>
+                ) : savedDraft.status !== "Saved locally" &&
+                  savedDraft.status !== "Saving…" ? (
+                  <button onClick={savedDraft.retry}>Retry save</button>
+                ) : null}
+              </div>
+            )}
             <nav className="workspace-tabs" aria-label="Learning views">
               {(["learn", "practice", "solution"] as Tab[]).map((t) => (
                 <a
                   key={t}
                   className={t === tab ? "active" : ""}
-                  href={`#/problems/${slug}/${t}`}
+                  href={problemHref(t)}
                   aria-current={t === tab ? "page" : undefined}
                 >
                   {t[0].toUpperCase() + t.slice(1)}
@@ -370,23 +456,25 @@ function Workspace({
                 onDoubleClick={() => setRatio(41)}
               />
               <div className="workspace-panel" key={`${slug}-${tab}-workspace`}>
-                {tab === "learn" ? (
-                  <Walkthrough problem={problem} />
-                ) : tab === "practice" ? (
-                  <Practice
-                    problem={problem}
-                    draft={draft}
-                    onDraft={updateDraft}
-                    onResult={result}
-                  />
-                ) : (
-                  <Solution
-                    problem={problem}
-                    onPractice={() => {
-                      location.hash = `/problems/${slug}/practice`;
-                    }}
-                  />
-                )}
+                <ErrorBoundary key={`${slug}-${tab}`} hasDraft>
+                  {tab === "learn" ? (
+                    <Walkthrough problem={problem} />
+                  ) : tab === "practice" ? (
+                    <Practice
+                      problem={problem}
+                      draft={draft}
+                      onDraft={updateDraft}
+                      onResult={result}
+                    />
+                  ) : (
+                    <Solution
+                      problem={problem}
+                      onPractice={() => {
+                        location.hash = problemHref("practice");
+                      }}
+                    />
+                  )}
+                </ErrorBoundary>
               </div>
             </div>
           </>
@@ -412,7 +500,20 @@ export default function App() {
       })
       .catch((e) => setStorageError(String(e.message)))
       .finally(() => setReady(true));
-    return () => window.removeEventListener("hashchange", hash);
+    const refresh = () => {
+      allProgress()
+        .then((entries) =>
+          setProgress(Object.fromEntries(entries.map((p) => [p.slug, p]))),
+        )
+        .catch((e) => setStorageError(String(e.message)));
+    };
+    const unsubscribe = subscribeProgress(refresh);
+    window.addEventListener("focus", refresh);
+    return () => {
+      window.removeEventListener("hashchange", hash);
+      window.removeEventListener("focus", refresh);
+      unsubscribe();
+    };
   }, []);
   useEffect(() => {
     if (current.slug && catalog.some((p) => p.slug === current.slug)) {
@@ -421,16 +522,18 @@ export default function App() {
         setStorageError(String(e.message)),
       );
     }
-    if (!current.slug) document.title = "Pattern Lab — Algorithm Trainer";
-  }, [current.slug]);
+    if (!current.slug)
+      document.title = current.studyPlan
+        ? `${current.studyPlan.title} Study Plan — DadalCode`
+        : "DadalCode — Visual Algorithm Practice";
+  }, [current.slug, current.studyPlan]);
   function update(p: Progress) {
     setProgress((previous) => ({ ...previous, [p.slug]: p }));
-    saveProgress(p).catch((e) => setStorageError(String(e.message)));
   }
   return (
     <>
       <header className="app-header">
-        <a className="brand" href="#/problems" aria-label="Pattern Lab home">
+        <a className="brand" href="#/problems" aria-label="DadalCode home">
           <svg className="brand-mark" viewBox="0 0 36 32" aria-hidden="true">
             <path
               d="M12 5H5v22h7M24 5h7v22h-7"
@@ -439,11 +542,20 @@ export default function App() {
               strokeWidth="2.5"
             />
           </svg>
-          <span>Pattern Lab</span>
+          <span>DadalCode</span>
         </a>
         <nav aria-label="Main navigation">
-          <a className={!current.slug ? "active" : ""} href="#/problems">
+          <a
+            className={!current.slug && !current.studyPlan ? "active" : ""}
+            href="#/problems"
+          >
             Problems
+          </a>
+          <a
+            className={current.studyPlan ? "active" : ""}
+            href={`#/study-plan/${current.studyPlan?.id ?? current.plan?.id ?? "beginner"}`}
+          >
+            Study Plan
           </a>
           <a
             className={current.slug ? "active" : ""}
@@ -452,6 +564,7 @@ export default function App() {
             Workspace
           </a>
         </nav>
+        <ProgressTools />
         <span className="runtime-label">
           Python 3 <span className="local-indicator">Local</span>
         </span>
@@ -471,6 +584,13 @@ export default function App() {
           tab={current.tab}
           progress={progress}
           onProgress={update}
+          plan={current.plan}
+        />
+      ) : current.studyPlan ? (
+        <StudyPlan
+          key={current.studyPlan.id}
+          plan={current.studyPlan}
+          progress={progress}
         />
       ) : (
         <Library progress={progress} />

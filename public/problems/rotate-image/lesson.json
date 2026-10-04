@@ -11,7 +11,7 @@
     "The matrix is square",
     "-1000 <= matrix value <= 1000"
   ],
-  "intuition": "Clockwise rotation sends (row,col) to (col,n-1-row). Transposing first swaps row and column; reversing every row then changes the new column to n-1-row. These two simple in-place operations compose into the desired mapping.",
+  "intuition": "A clockwise rotation can be done in two simple steps. First swap rows and columns by reflecting cells across the main diagonal. Then reverse each row. For example, the old top-left cell ends at the top-right. Both steps change the existing matrix without allocating another matrix.",
   "approach": [
     "Transpose by swapping each position above the main diagonal with its mirror.",
     "Reverse each row using two pointers.",

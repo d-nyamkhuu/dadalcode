@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Allocating a second matrix gives an easy coordinate-based rotation, but violates the required in-place update. A clockwise rotation moves an original cell at row r, column c to row c, column n-1-r. We can split that mapping into two transformations made entirely of swaps.",
+    "A clockwise rotation can be done in two simple steps. First swap rows and columns by reflecting cells across the main diagonal. Then reverse each row. For example, the old top-left cell ends at the top-right. Both steps change the existing matrix without allocating another matrix.",
     "First transpose across the main diagonal, which exchanges row and column coordinates. Then reverse every row, turning the new column r into n-1-r. Their composition is precisely the clockwise mapping. Reversing before transposing would instead compose the transformations in a different order.",
     "Transpose only entries above the diagonal, so each mirrored pair is exchanged once. Row reversal similarly swaps only opposite positions until its pointers meet. No additional matrix is needed, and every original value survives exactly once in the caller’s original matrix object."
   ],
@@ -62,6 +62,88 @@
     {
       "code": "while left < right:",
       "note": "Each opposite row pair is swapped once. Stopping when the pointers meet prevents reversing the same pair twice."
+    }
+  ],
+  "keyDecision": "Swap each diagonal pair once, then reverse every row.",
+  "figures": [
+    {
+      "title": "Two reflections make a clockwise rotation",
+      "caption": "Track the original value 1: top-left → top-left after transpose → top-right after row reversal.",
+      "afterStep": 5,
+      "panels": [
+        {
+          "title": "Before: original matrix",
+          "rows": [
+            {
+              "label": "Matrix",
+              "values": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ],
+              "highlight": [
+                0
+              ],
+              "columns": 3
+            }
+          ],
+          "note": "Rows are displayed from top to bottom."
+        },
+        {
+          "title": "Action 1: transpose",
+          "rows": [
+            {
+              "label": "Transposed matrix",
+              "values": [
+                "1",
+                "4",
+                "7",
+                "2",
+                "5",
+                "8",
+                "3",
+                "6",
+                "9"
+              ],
+              "highlight": [
+                0
+              ],
+              "columns": 3
+            }
+          ],
+          "note": "Swap each off-diagonal cell with its row/column mirror. The diagonal stays in place."
+        },
+        {
+          "title": "Action 2: reverse each row",
+          "rows": [
+            {
+              "label": "Rotated matrix",
+              "values": [
+                "7",
+                "4",
+                "1",
+                "8",
+                "5",
+                "2",
+                "9",
+                "6",
+                "3"
+              ],
+              "highlight": [
+                2
+              ],
+              "columns": 3
+            }
+          ],
+          "note": "Each row now reads backward. The final matrix is rotated clockwise."
+        }
+      ]
     }
   ]
 }

@@ -12,7 +12,7 @@
     "0 to 5000 unique prerequisite pairs.",
     "Labels range from 0 to numCourses-1."
   ],
-  "intuition": "A course with zero unmet prerequisites is ready. Taking it removes one prerequisite from each dependent. If courses remain but none is ready, those remaining dependencies contain a cycle.",
+  "intuition": "A course is ready when none of its prerequisites remain unfinished. Put all ready courses in a queue. Taking one removes a requirement from its dependent courses, which may make them ready. If some courses never become ready, they are blocked by a cycle of requirements.",
   "approach": [
     "Build edges from prerequisite to dependent and count incoming edges.",
     "Enqueue every zero-indegree course.",
@@ -27,7 +27,7 @@
     "explanation": "Adjacency lists hold edges; indegrees and the ready queue hold courses."
   },
   "pitfalls": [
-    "Pair [a,b] means b \u2192 a.",
+    "Pair [a,b] means b → a.",
     "Include isolated courses in the initial queue.",
     "A disconnected cyclic component still makes the answer false."
   ],

@@ -10,7 +10,7 @@
     "0 <= number of nodes <= 10^5",
     "Node values lie between -1000 and 1000."
   ],
-  "intuition": "Breadth-first traversal examines shallower nodes before deeper ones. The first leaf encountered must therefore have the smallest root-to-leaf depth. A missing child is not a leaf or a path ending; this distinction avoids treating a one-child root as depth one.",
+  "intuition": "Use a queue to visit the shallowest nodes first. The first leaf you reach ends the shortest root-to-leaf path. Return its depth immediately. A node with one missing child is not a leaf, so an empty child must not be mistaken for a shorter finished path.",
   "approach": [
     "Return zero for an absent root.",
     "Queue (root,1), recording depth in nodes rather than edges.",

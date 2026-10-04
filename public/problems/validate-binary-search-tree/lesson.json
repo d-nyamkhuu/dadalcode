@@ -11,7 +11,7 @@
     "Node values fit signed 32-bit integers.",
     "Duplicate keys invalidate a strict BST."
   ],
-  "intuition": "Comparing a node only with its children misses violations deeper in a subtree. Each ancestor contributes a bound. A right descent raises the lower bound; a left descent lowers the upper bound.",
+  "intuition": "A node must obey every ancestor's rule, not only its parent's rule. Carry a lower and upper allowed value as you visit the tree. Moving left lowers the upper limit; moving right raises the lower limit. Reject any node outside its allowed range.",
   "approach": [
     "Put root and unbounded limits on an explicit stack.",
     "Pop a node and reject values outside its open interval.",
@@ -19,7 +19,7 @@
     "Accept after every node passes."
   ],
   "correctness": "Each stack entry records exactly the bounds imposed by its ancestors. Passing those bounds means the node is correctly placed relative to all ancestors. The children receive the additional constraint from their parent. Therefore every node passes if and only if the whole tree obeys the strict subtree property.",
-  "bruteForce": "For every node, scan its whole left and right subtrees for violations, which can cost O(n\u00b2). Bound propagation visits each node once.",
+  "bruteForce": "For every node, scan its whole left and right subtrees for violations, which can cost O(n²). Bound propagation visits each node once.",
   "complexity": {
     "time": "O(n)",
     "space": "O(h)",

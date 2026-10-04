@@ -11,7 +11,7 @@
     "1 <= k <= len(points) <= 10,000",
     "-10,000 <= x,y <= 10,000"
   ],
-  "intuition": "The square root preserves ordering, so compare x*x+y*y directly. A size-k max heap exposes the farthest retained point for replacement when a closer point arrives.",
+  "intuition": "A point's squared distance is x² + y²; taking a square root would not change which point is closer. Keep the closest k points seen so far, with the farthest saved point easy to remove. Replace it only when a closer new point arrives.",
   "approach": [
     "Use negative squared distances to create a max heap on Python’s min-heap API.",
     "Insert the first k points, retaining their input indices for safe ties.",
@@ -27,7 +27,7 @@
   "pitfalls": [
     "Avoid square roots and their unnecessary rounding.",
     "Points are pairs, not just distances; return the original coordinates.",
-    "When validating, order is unrestricted but multiplicity is required."
+    "When validating, order is unrestricted but occurrence count is required."
   ],
   "sources": [
     {

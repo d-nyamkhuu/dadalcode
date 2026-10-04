@@ -13,7 +13,7 @@
     "Words and queries contain lowercase English letters",
     "At most 10,000 queries"
   ],
-  "intuition": "Turn suffix and prefix matching into one trie prefix query: insert every suffix followed by a separator and the full word. Later words overwrite indices so each trie node remembers the largest match.",
+  "intuition": "A word must match both a beginning and an ending. Store paths combining each possible suffix, a separator, and the full word. A query follows suffix + separator + prefix. Save the latest word index along each path so matching queries return the largest index.",
   "approach": [
     "For each word index and each suffix start, build suffix + separator + word.",
     "Insert that sequence in a trie, storing the word index at every visited node.",

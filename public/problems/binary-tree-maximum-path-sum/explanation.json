@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "A path can start anywhere, so the best result cannot be found by considering only root-to-leaf sums. Every simple tree path has a highest node: there it may join a downward branch on the left to one on the right. This observation separates the best completed path from the branch that can still extend toward a parent.",
-    "A child passes up its best single downward branch. Clip a negative branch to zero because omitting it improves any path through its parent. At each node, score a completed path using the node plus both nonnegative child gains. However, store for the parent only the node plus one larger gain; passing both would create a fork rather than a path.",
+    "A path may pass through a node and use both of its child branches. But a path extended to the node's parent can use only one child branch. Calculate both quantities separately: the best complete path through this node, and the best single branch to pass upward.",
+    "A child passes up its best single downward branch. Clip a negative branch to zero because omitting it improves any path through its parent. At each node, score a completed path using the node plus both nonnegative child gains.",
+    "However, store for the parent only the node plus one larger gain; passing both would create a fork rather than a path.",
     "Children must be processed before their parent. The explicit stack first defers a node with processed=True and pushes its children. When that deferred entry returns, both gains are available. This avoids Python recursion-depth failures on tall trees. Initialize best to negative infinity so an all-negative tree still chooses a real node instead of an empty zero-valued path."
   ],
   "walkthrough": {
@@ -19,10 +20,10 @@
     "steps": [
       "For [-10,9,20,null,null,15,7], process leaf 9 first; its downward gain and completed path both equal 9.",
       "Leaves 15 and 7 likewise contribute gains 15 and 7.",
-      "At node 20, the completed path 15\u219220\u21927 has sum 42, while its parent-facing gain is 20+15=35.",
+      "At node 20, the completed path 15→20→7 has sum 42, while its parent-facing gain is 20+15=35.",
       "At root -10, the through-root candidate is -10+9+35=34.",
       "The root can offer gain -10+35=25, but neither root calculation improves best=42.",
-      "Return 42, demonstrating why the optimal path need not contain the root."
+      "Return 42, demonstrating why the best possible path need not contain the root."
     ],
     "result": 42
   },
@@ -38,6 +39,86 @@
     {
       "code": "gains[node] = node.val + max(left_gain, right_gain)",
       "note": "A parent extension receives only one branch, preventing an invalid fork."
+    }
+  ],
+  "keyDecision": "Use both positive child gains for the complete path, but return only the larger child gain to the parent.",
+  "figures": [
+    {
+      "title": "A finished path and an upward branch differ",
+      "caption": "At node 20, the child gains are 15 and 7. The parent is -10. A path may not fork into three branches.",
+      "afterStep": 2,
+      "panels": [
+        {
+          "title": "Before: both children are solved",
+          "rows": [
+            {
+              "label": "Contributions",
+              "values": [
+                "15",
+                "20",
+                "7"
+              ],
+              "labels": [
+                "left child",
+                "current node",
+                "right child"
+              ],
+              "connector": "＋"
+            }
+          ],
+          "note": "Each child can offer a positive branch to node 20."
+        },
+        {
+          "title": "Check: score a complete path",
+          "rows": [
+            {
+              "label": "Completed path",
+              "values": [
+                "15",
+                "20",
+                "7"
+              ],
+              "highlight": [
+                0,
+                1,
+                2
+              ],
+              "connector": "→"
+            },
+            {
+              "label": "Total",
+              "values": [
+                "15 + 20 + 7 = 42"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Using both branches gives 15 → 20 → 7, total 42. This is a complete candidate for the global answer."
+        },
+        {
+          "title": "After: pass only one branch upward",
+          "rows": [
+            {
+              "label": "Parent-facing gain",
+              "values": [
+                "35"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Saved global best",
+              "values": [
+                "42"
+              ]
+            }
+          ],
+          "note": "Offer 20 + max(15, 7) = 35 to the parent. Passing 42 would let the parent create an invalid fork."
+        }
+      ]
     }
   ]
 }

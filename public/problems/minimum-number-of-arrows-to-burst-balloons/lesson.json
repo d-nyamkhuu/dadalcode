@@ -10,13 +10,13 @@
     "1 <= number of balloons <= 100000",
     "-2147483648 <= start < end <= 2147483647"
   ],
-  "intuition": "The balloon that ends first must be hit no later than its right endpoint. Shooting exactly there gives the shot the greatest chance to also hit later balloons. Every still-uncovered interval beginning beyond that point needs another shot.",
+  "intuition": "Sort balloons by their ending coordinate. Shoot at the end of the first uncovered balloon, and use that arrow for every balloon containing that point. The earliest ending gives a position that hits this balloon while leaving as many future balloons covered as possible.",
   "approach": [
     "Sort balloons by end coordinate.",
     "When no previous arrow lies in a balloon, shoot at its end.",
     "Reuse the current arrow for every balloon whose start is <= its position."
   ],
-  "correctness": "Take an optimal solution’s arrow that hits the earliest-ending uncovered balloon. Moving that arrow right to this balloon’s end cannot lose any uncovered balloon it hit: their right endpoints are no earlier, and their starts were at most the old position. Hence a greedy shot preserves an optimal completion. Applying this exchange repeatedly yields a minimum-arrow solution.",
+  "correctness": "Take a best possible solution’s arrow that hits the earliest-ending uncovered balloon. Moving that arrow right to this balloon’s end cannot lose any uncovered balloon it hit: their right endpoints are no earlier, and their starts were at most the old position. Hence a greedy shot preserves a best possible completion. Applying this exchange repeatedly yields a minimum-arrow solution.",
   "bruteForce": "Try candidate endpoint sets and test whether each balloon contains some chosen endpoint; the combinations can be exponential.",
   "complexity": {
     "time": "O(n log n)",

@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Build every pair and sort by sum, requiring O(mn log(mn)) time and O(mn) space. Only k pairs are requested, so generating the entire Cartesian product may create billions of unused combinations.",
-    "Think of a matrix whose row i contains nums1[i]+nums2[j] across all columns. Each row is already sorted, and its first unreturned entry is its only candidate for the next globally smallest pair. A min-heap compares those row fronts. After emitting one, advance only that row. Pair indices remain separate even when values repeat, preserving multiplicity. At most k starting rows are relevant: their first entries already supply k sums no larger than the first entry of any later row.",
-    "The heap holds the smallest unreturned pair in every seeded row, so its minimum is the next globally smallest pair among those rows. Unseeded rows begin no earlier than the kth row; the k seeded row starts already provide k sums no greater than any unseeded start. Thus omitting those rows cannot invalidate the first k sums. Heap size is at most the number of seeded rows; each emitted pair causes at most one insertion.",
+    "For one value from the first sorted array, pairing it with the second array gives a sorted row of sums. Treat these rows as sorted lists. Keep each row's next pair in a heap, take the smallest pair, then advance only that row.",
+    "Think of a matrix whose row i contains nums1[i]+nums2[j] across all columns. Each row is already sorted, and its first unreturned entry is its only candidate for the next globally smallest pair. A min-heap compares those row fronts. After emitting one, advance only that row. Pair indices remain separate even when values repeat, preserving occurrence count.",
+    "At most k starting rows are relevant: their first entries already supply k sums no larger than the first entry of any later row.",
+    "The heap holds the smallest unreturned pair in every seeded row, so its minimum is the next globally smallest pair among those rows. Unseeded rows begin no earlier than the kth row; the k seeded row starts already provide k sums no greater than any unseeded start. Thus omitting those rows cannot invalidate the first k sums.",
+    "Heap size is at most the number of seeded rows; each emitted pair causes at most one insertion.",
     "For nums1=[0,1,2,3,4,5,6,7], nums2=[10], and k=2, only row starts with sums 10 and 11 are seeded. Every omitted row begins with sum at least 12, so neither can displace a requested pair. This asymmetric case makes the k-row cap useful even though there are many potential rows."
   ],
   "walkthrough": {
@@ -54,5 +56,6 @@
       "code": "heappush(heap, (nums1[i] + nums2[j + 1], i, j + 1))",
       "note": "Only the popped row advances; adding arbitrary neighboring rows again would duplicate pair positions."
     }
-  ]
+  ],
+  "keyDecision": "After taking pair (i, j), add (i, j + 1) if that column exists."
 }

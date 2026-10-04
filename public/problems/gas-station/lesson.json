@@ -11,18 +11,18 @@
     "gas and cost have the same length",
     "0 <= gas[i], cost[i] <= 10,000"
   ],
-  "intuition": "A failed segment rules out every start inside it. Reset the candidate after a negative tank, while a separate total balance decides whether the entire route is feasible.",
+  "intuition": "Track fuel gained minus fuel spent as you try a starting station. If the tank first becomes negative, that start cannot work. None of the intermediate stations can fix that failed section either, so try the next station. Separately check whether total fuel can cover the whole circle.",
   "approach": [
     "Accumulate total += gas[i]-cost[i] and tank += the same difference.",
     "If tank becomes negative, set the next station as the candidate and reset tank.",
     "Return -1 if the total is negative; otherwise return the final candidate."
   ],
   "correctness": "When a candidate-to-i sum first becomes negative, every later start in that segment loses a nonnegative prefix and also fails by i. Resetting discards only impossible starts. If the global sum is nonnegative, the surviving candidate can cover its suffix and the wrapped prefix; if negative, no start can have enough total fuel.",
-  "bruteForce": "Simulate a full circuit from every station: O(n\u00b2) time.",
+  "bruteForce": "Simulate a full circuit from every station: O(n²) time.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+    "explanation": "Time O(n); additional space O(1). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "A locally large gas value alone does not identify the start.",

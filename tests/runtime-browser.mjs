@@ -276,7 +276,7 @@ try {
       const code =
         "import sys\n" +
         problem.solution.replace(
-          /(\n    def twoSum[^\n]*:\n)/,
+          /(\n {4}def twoSum[^\n]*:\n)/,
           '$1        print("stderr diagnostic sentinel", file=sys.stderr)\n',
         );
       assert(
@@ -294,56 +294,153 @@ try {
     // Whole-number floats lose their Python type when encoded through JS.
     async function judge(slug, input, expected, code) {
       const loaded = await loadProblem(slug);
-      const result = await runner.execute(
-        loaded,
-        code ?? loaded.solution,
-        [{ name: "Browser grading regression", input, expected }],
-      );
+      const result = await runner.execute(loaded, code ?? loaded.solution, [
+        { name: "Browser grading regression", input, expected },
+      ]);
       return result.cases[0];
     }
-    await verify("Integer answers reject nearby floats", async () => {
-      const result = await judge("climbing-stairs", { n: 45 }, 1836311903,
-        "class Solution:\n    def climbStairs(self, n):\n        return 1836311803.0\n");
-      assert(!result.passed && !result.error, "Inexact integer answer passed float tolerance");
-    }, true);
-    await verify("Sort List supports its 50000-node bound", async () => {
-      const sorted = Array.from({ length: 50000 }, (_, i) => i + 1);
-      const result = await judge("sort-list", { head: sorted.slice().reverse() }, sorted);
-      assert(result.passed, result.error || "Valid large sorted output was rejected");
-    }, true);
-    await verify("Factor combinations enforce inner order", async () => {
-      const result = await judge("factor-combinations", { n: 12 }, [[2, 2, 3], [2, 6], [3, 4]],
-        "class Solution:\n    def getFactors(self, n):\n        return [[6, 2], [3, 2, 2], [4, 3]]\n");
-      assert(!result.passed && !result.error, "Descending factor lists passed");
-    }, true);
-    await verify("Tree encoding works without class caches", async () => {
-      const result = await judge("serialize-and-deserialize-binary-tree", { root: [1, 2] }, [1, 2],
-        "import copy\nclass Codec:\n    cache = {}\n    def serialize(self, root):\n        key = str(len(self.cache))\n        self.cache[key] = copy.deepcopy(root)\n        return key\n    def deserialize(self, data):\n        return self.cache[data]\n");
-      assert(!result.passed && result.error?.includes("fresh namespace"), "Tree cache token passed independent decoding");
-    }, true);
-    await verify("Whole-number median retains float tolerance", async () => {
-      const result = await judge("median-of-two-sorted-arrays", { nums1: [1, 3], nums2: [2] }, 2,
-        "class Solution:\n    def findMedianSortedArrays(self, nums1, nums2):\n        return 2.00000005\n");
-      assert(result.passed, result.error || "Whole-number median lost floating tolerance");
-    }, true);
-    await verify("Bitwise addition enforces arithmetic restriction", async () => {
-      const result = await judge("sum-of-two-integers", { a: 3, b: 5 }, 8,
-        "class Solution:\n    def getSum(self, a, b):\n        return a + b\n");
-      assert(!result.passed && result.error, "Arithmetic-only solution passed");
-    }, true);
-    await verify("Sort Colors distinguishes library sort from custom helpers", async () => {
-      const bad = await judge("sort-colors", { nums: [2, 0, 1] }, [0, 1, 2],
-        "class Solution:\n    def sortColors(self, nums):\n        nums.sort()\n");
-      assert(!bad.passed && bad.error, "Library sort passed the teaching restriction");
-      const good = await judge("sort-colors", { nums: [2, 0, 1] }, [0, 1, 2],
-        "class Solution:\n    def sortColors(self, nums):\n        def sorted(values):\n            return [0] * values.count(0) + [1] * values.count(1) + [2] * values.count(2)\n        nums[:] = sorted(nums)\n");
-      assert(good.passed, good.error || "A valid counting helper was mistaken for library sort");
-    }, true);
-    await verify("String encoding works without class caches", async () => {
-      const result = await judge("encode-and-decode-strings", { strs: ["a", "", "b#c"] }, ["a", "", "b#c"],
-        "class Codec:\n    cached = []\n    def encode(self, strs):\n        Codec.cached = strs[:]\n        return 'cached'\n    def decode(self, data):\n        return Codec.cached\n");
-      assert(!result.passed, "String class cache passed independent decoding");
-    }, true);
+    await verify(
+      "Integer answers reject nearby floats",
+      async () => {
+        const result = await judge(
+          "climbing-stairs",
+          { n: 45 },
+          1836311903,
+          "class Solution:\n    def climbStairs(self, n):\n        return 1836311803.0\n",
+        );
+        assert(
+          !result.passed && !result.error,
+          "Inexact integer answer passed float tolerance",
+        );
+      },
+      true,
+    );
+    await verify(
+      "Sort List supports its 50000-node bound",
+      async () => {
+        const sorted = Array.from({ length: 50000 }, (_, i) => i + 1);
+        const result = await judge(
+          "sort-list",
+          { head: sorted.slice().reverse() },
+          sorted,
+        );
+        assert(
+          result.passed,
+          result.error || "Valid large sorted output was rejected",
+        );
+      },
+      true,
+    );
+    await verify(
+      "Factor combinations enforce inner order",
+      async () => {
+        const result = await judge(
+          "factor-combinations",
+          { n: 12 },
+          [
+            [2, 2, 3],
+            [2, 6],
+            [3, 4],
+          ],
+          "class Solution:\n    def getFactors(self, n):\n        return [[6, 2], [3, 2, 2], [4, 3]]\n",
+        );
+        assert(
+          !result.passed && !result.error,
+          "Descending factor lists passed",
+        );
+      },
+      true,
+    );
+    await verify(
+      "Tree encoding works without class caches",
+      async () => {
+        const result = await judge(
+          "serialize-and-deserialize-binary-tree",
+          { root: [1, 2] },
+          [1, 2],
+          "import copy\nclass Codec:\n    cache = {}\n    def serialize(self, root):\n        key = str(len(self.cache))\n        self.cache[key] = copy.deepcopy(root)\n        return key\n    def deserialize(self, data):\n        return self.cache[data]\n",
+        );
+        assert(
+          !result.passed && result.error?.includes("fresh namespace"),
+          "Tree cache token passed independent decoding",
+        );
+      },
+      true,
+    );
+    await verify(
+      "Whole-number median retains float tolerance",
+      async () => {
+        const result = await judge(
+          "median-of-two-sorted-arrays",
+          { nums1: [1, 3], nums2: [2] },
+          2,
+          "class Solution:\n    def findMedianSortedArrays(self, nums1, nums2):\n        return 2.00000005\n",
+        );
+        assert(
+          result.passed,
+          result.error || "Whole-number median lost floating tolerance",
+        );
+      },
+      true,
+    );
+    await verify(
+      "Bitwise addition enforces arithmetic restriction",
+      async () => {
+        const result = await judge(
+          "sum-of-two-integers",
+          { a: 3, b: 5 },
+          8,
+          "class Solution:\n    def getSum(self, a, b):\n        return a + b\n",
+        );
+        assert(
+          !result.passed && result.error,
+          "Arithmetic-only solution passed",
+        );
+      },
+      true,
+    );
+    await verify(
+      "Sort Colors distinguishes library sort from custom helpers",
+      async () => {
+        const bad = await judge(
+          "sort-colors",
+          { nums: [2, 0, 1] },
+          [0, 1, 2],
+          "class Solution:\n    def sortColors(self, nums):\n        nums.sort()\n",
+        );
+        assert(
+          !bad.passed && bad.error,
+          "Library sort passed the teaching restriction",
+        );
+        const good = await judge(
+          "sort-colors",
+          { nums: [2, 0, 1] },
+          [0, 1, 2],
+          "class Solution:\n    def sortColors(self, nums):\n        def sorted(values):\n            return [0] * values.count(0) + [1] * values.count(1) + [2] * values.count(2)\n        nums[:] = sorted(nums)\n",
+        );
+        assert(
+          good.passed,
+          good.error || "A valid counting helper was mistaken for library sort",
+        );
+      },
+      true,
+    );
+    await verify(
+      "String encoding works without class caches",
+      async () => {
+        const result = await judge(
+          "encode-and-decode-strings",
+          { strs: ["a", "", "b#c"] },
+          ["a", "", "b#c"],
+          "class Codec:\n    cached = []\n    def encode(self, strs):\n        Codec.cached = strs[:]\n        return 'cached'\n    def decode(self, data):\n        return Codec.cached\n",
+        );
+        assert(
+          !result.passed,
+          "String class cache passed independent decoding",
+        );
+      },
+      true,
+    );
     return {
       expectedProblems: catalog.length,
       problemCount,

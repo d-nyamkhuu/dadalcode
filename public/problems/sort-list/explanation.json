@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Insertion sort repeatedly searches the sorted prefix, taking O(n\u00b2). Top-down merge sort improves time but uses O(log n) recursion storage. Array-style sorting buffers are unnecessary because list nodes can be moved simply by changing next pointers.",
-    "A one-node run is already sorted. Merge adjacent runs, doubling the guaranteed sorted width after each pass. split temporarily terminates each run so merge cannot wander into the next pair. A dummy node tracks the changing first node, while tail identifies the end of the output assembled during the current pass. The final pair may contain a short run or no right run; the same merge logic handles it. Iteration avoids the recursion stack required by top-down merge sort.",
-    "At the start of a width pass, every width-sized run is sorted. Merging two adjacent sorted runs produces a sorted run of size at most 2*width and preserves its nodes. Thus each pass doubles the guaranteed sorted run size. Once width reaches n, the entire list is one sorted run. There are logarithmically many passes, each scanning O(n) nodes. Only a fixed number of pointers is retained."
+    "Merge neighboring sorted sections of the list. Begin with sections of one node, which are already sorted. After merging, sections of two nodes are sorted; the next pass makes sections of four, then eight, and so on. This sorts by changing links rather than copying values into an array.",
+    "A one-node run is already sorted. Merge adjacent runs, doubling the guaranteed sorted width after each pass. split temporarily terminates each run so merge cannot wander into the next pair. A dummy node tracks the changing first node, while tail identifies the end of the output assembled during the current pass.",
+    "The final pair may contain a short run or no right run; the same merge logic handles it. Iteration avoids the recursion stack required by top-down merge sort.",
+    "At the start of a width pass, every width-sized run is sorted. Merging two adjacent sorted runs produces a sorted run of size at most 2*width and preserves its nodes. Thus each pass doubles the guaranteed sorted run size. Once width reaches n, the entire list is one sorted run. There are logarithmically many passes, each scanning O(n) nodes.",
+    "Only a fixed number of pointers is retained."
   ],
   "walkthrough": {
     "input": {
@@ -40,5 +42,6 @@
       "code": "width *= 2",
       "note": "Each completed pass merges width-sized runs, making twice that width the next guaranteed sorted unit."
     }
-  ]
+  ],
+  "keyDecision": "Cut the two runs before merging them. Double the run length after each full pass."
 }

@@ -1,7 +1,7 @@
 {
   "intuition": [
-    "An index-based subset search generates every selection, but repeated values can make different index selections look identical. For [1,2,2], either occurrence of 2 alone yields the same subset. Deduplicating complete results afterward spends time building branches that were already known to be equivalent.",
-    "Sort the values, then explore increasing indices. At one recursion depth, equal values are interchangeable next choices: only their first occurrence needs its own branch. At a deeper depth, another equal value is meaningful because it increases that value\u2019s multiplicity in the current subset.",
+    "Sort the numbers so equal values are together. Build subsets by choosing later positions. At one step, choosing either of two equal values would start the same family of subsets, so try only the first. A later step may still choose another copy to include duplicates in a subset.",
+    "Sort the values, then explore increasing indices. At one recursion depth, equal values are interchangeable next choices: only their first occurrence needs its own branch. At a deeper depth, another equal value is meaningful because it increases that value’s occurrence count in the current subset.",
     "This explains the condition i>start rather than i>0. It skips equal siblings while preserving equal descendants. Save the path at every call, not only at leaves, because every partial selection is a valid subset, including the empty root path. Copy before future choices modify the shared path."
   ],
   "walkthrough": {
@@ -17,7 +17,7 @@
       "Choose 1 and save [1]. Its first 2 produces [1,2], and the later 2 at the next depth produces [1,2,2].",
       "Return to path [1]. Skip the second 2 as a sibling because the first 2 already represented that choice.",
       "At the root, choose its first 2 and save [2]. The following equal 2 is now a descendant, so save [2,2].",
-      "Skip the root\u2019s later 2 sibling. The result contains exactly six distinct subsets, with zero, one, or two copies of 2 as appropriate."
+      "Skip the root’s later 2 sibling. The result contains exactly six distinct subsets, with zero, one, or two copies of 2 as appropriate."
     ],
     "result": [
       [],
@@ -53,7 +53,76 @@
     },
     {
       "code": "visit(i + 1)",
-      "note": "An input occurrence may enter a subset only once. Advancing past its index retains increasing-index paths and legal multiplicities."
+      "note": "An input occurrence may enter a subset only once. Advancing past its index retains increasing-index paths and legal occurrence counts."
+    }
+  ],
+  "keyDecision": "Skip equal choices at the same depth, but allow equal values at successive depths.",
+  "figures": [
+    {
+      "title": "Skip equal alternatives, not equal copies",
+      "caption": "The sorted example is [1, 2, 2]. The two equal values belong to separate input positions.",
+      "afterStep": 2,
+      "panels": [
+        {
+          "title": "Before: choose the next value after 1",
+          "rows": [
+            {
+              "label": "Input positions",
+              "values": [
+                "1",
+                "2",
+                "2"
+              ],
+              "labels": [
+                "0: used",
+                "1",
+                "2"
+              ]
+            }
+          ],
+          "note": "At path [1], either input copy of 2 would start the same branch of value results."
+        },
+        {
+          "title": "Check: alternatives at the same step",
+          "rows": [
+            {
+              "label": "Same-depth alternatives",
+              "values": [
+                "choose index 1",
+                "skip index 2"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Choose index 1. Skip index 2 as a competing first choice of 2 at this depth."
+        },
+        {
+          "title": "After: a second copy is still allowed deeper",
+          "rows": [
+            {
+              "label": "Successive choices",
+              "values": [
+                "1",
+                "2",
+                "2"
+              ],
+              "highlight": [
+                1,
+                2
+              ],
+              "labels": [
+                "index 0",
+                "index 1",
+                "index 2"
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "Once index 1 is chosen, a later call may choose index 2. This correctly produces [1, 2, 2]."
+        }
+      ]
     }
   ]
 }

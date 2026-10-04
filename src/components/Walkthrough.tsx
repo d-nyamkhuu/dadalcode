@@ -14,8 +14,10 @@ import {
 import type { ProblemDefinition, TraceStep } from "../types";
 import { PythonRunner } from "../runtime/runner";
 import VisualState from "./VisualState";
+import VisualizationViewer from "./VisualizationViewer";
 import { visualizationFor } from "../data/visualizationBindings";
 import "./walkthrough.css";
+import "./visualization-viewer.css";
 
 type StepMode = "changes" | "lines";
 
@@ -258,11 +260,14 @@ export default function Walkthrough({
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
       move(event.key === "ArrowRight" ? 1 : -1);
-    } else if (event.target === event.currentTarget && event.key === " ") {
+    } else if (
+      (event.target === event.currentTarget || target.matches(".vv-content")) &&
+      event.key === " "
+    ) {
       event.preventDefault();
       togglePlayback();
     } else if (
-      event.target === event.currentTarget &&
+      (event.target === event.currentTarget || target.matches(".vv-content")) &&
       (event.key === "Home" || event.key === "End")
     ) {
       event.preventDefault();
@@ -309,7 +314,12 @@ export default function Walkthrough({
             onChange={(event) => {
               const chosen = event.target.value;
               setExample(chosen);
-              if (chosen === "custom") return;
+              if (chosen === "custom") {
+                document
+                  .querySelector<HTMLDetailsElement>(".wt-input-editor")
+                  ?.setAttribute("open", "");
+                return;
+              }
               const text = JSON.stringify(
                 problem.tests[Number(chosen)].input,
                 null,
@@ -327,28 +337,31 @@ export default function Walkthrough({
             <option value="custom">Custom input</option>
           </select>
         </div>
-        <label htmlFor="trace-input">
-          Example input <span>JSON · edit and apply</span>
-        </label>
-        <div className="input-action">
-          <textarea
-            id="trace-input"
-            value={inputText}
-            spellCheck={false}
-            onChange={(event) => {
-              setInputText(event.target.value);
-              setExample("custom");
-            }}
-            rows={Math.max(1, Math.min(4, inputText.split("\n").length))}
-          />
-          <button
-            className="primary"
-            disabled={busy}
-            onClick={() => generate(inputText)}
-          >
-            Apply
-          </button>
-        </div>
+        <details className="wt-input-editor">
+          <summary>Edit input</summary>
+          <label htmlFor="trace-input">
+            Example input <span>JSON · edit and apply</span>
+          </label>
+          <div className="input-action">
+            <textarea
+              id="trace-input"
+              value={inputText}
+              spellCheck={false}
+              onChange={(event) => {
+                setInputText(event.target.value);
+                setExample("custom");
+              }}
+              rows={Math.max(1, Math.min(4, inputText.split("\n").length))}
+            />
+            <button
+              className="primary"
+              disabled={busy}
+              onClick={() => generate(inputText)}
+            >
+              Apply
+            </button>
+          </div>
+        </details>
       </div>
       {busy ? (
         <div className="loading">
@@ -364,214 +377,268 @@ export default function Walkthrough({
         </div>
       ) : (
         <>
-          <div className="wt-toolbar">
-            <div className="wt-step-options">
-              <div className="wt-step-mode" role="group" aria-label="Step mode">
-                <button
-                  aria-pressed={mode === "changes"}
-                  onClick={() => changeMode("changes")}
-                >
-                  State changes
-                </button>
-                <button
-                  aria-pressed={mode === "lines"}
-                  onClick={() => changeMode("lines")}
-                >
-                  Every Python line
-                </button>
-              </div>
-              <span className="wt-shortcuts">Focus here · ← / → to step</span>
-            </div>
-            <div className="playback">
-              <div className="playback-buttons">
-                <button
-                  aria-label="Previous step"
-                  disabled={position === 0 || !steps.length}
-                  onClick={() => move(-1)}
-                >
-                  <SkipBack size={17} />
-                </button>
-                <button
-                  className="primary"
-                  disabled={!steps.length}
-                  onClick={togglePlayback}
-                >
-                  {playing ? <Pause size={16} /> : <Play size={16} />}{" "}
-                  {playing ? "Pause" : "Play"}
-                </button>
-                <button
-                  aria-label="Next step"
-                  disabled={
-                    !steps.length || position >= navigationIndices.length - 1
-                  }
-                  onClick={() => move(1)}
-                >
-                  <SkipForward size={17} />
-                </button>
-                <button
-                  aria-label="Reset walkthrough"
-                  disabled={!steps.length}
-                  onClick={() => {
-                    setPlaying(false);
-                    setIndex(0);
-                  }}
-                >
-                  <RotateCcw size={15} />
-                </button>
-                <button
-                  aria-label="Last step"
-                  disabled={
-                    !steps.length || position >= navigationIndices.length - 1
-                  }
-                  onClick={() => {
-                    setPlaying(false);
-                    setIndex(steps.length - 1);
-                  }}
-                >
-                  End
-                </button>
-              </div>
-              <span className="step-count">
-                Step {steps.length ? position + 1 : 0} of{" "}
-                {navigationIndices.length}
-              </span>
-              <select
-                aria-label="Playback speed"
-                value={speed}
-                onChange={(event) => setSpeed(Number(event.target.value))}
-              >
-                <option value={0.5}>0.5×</option>
-                <option value={1}>1×</option>
-                <option value={2}>2×</option>
-                <option value={4}>4×</option>
-              </select>
-            </div>
-            <input
-              className="scrubber"
-              aria-label="Algorithm step"
-              aria-valuetext={`Step ${position + 1} of ${navigationIndices.length}, Python event ${index + 1} of ${steps.length}`}
-              disabled={!steps.length}
-              type="range"
-              min={0}
-              max={Math.max(0, navigationIndices.length - 1)}
-              value={position}
-              onChange={(event) => {
-                setPlaying(false);
-                setIndex(navigationIndices[Number(event.target.value)] ?? 0);
-              }}
-            />
-            <div className="wt-progress-note">
-              <span>
-                {mode === "changes"
-                  ? `${changeIndices.length} meaningful states`
-                  : "Full Python execution trace"}
-              </span>
-              <span>
-                Python event {steps.length ? index + 1 : 0} / {steps.length}
-              </span>
-            </div>
-            {step && (
-              <div className="wt-live-instruction" title={step.explanation}>
-                <span>
-                  {step.event === "return" ? "Return" : "Before"} line{" "}
-                  {step.line}
-                </span>
-                <code>{sourceLines[step.line - 1]?.trim()}</code>
-              </div>
-            )}
-          </div>
-          <VisualState
-            slug={problem.slug}
-            step={step}
-            previousStep={steps[index - 1]}
-            config={visualizationFor(
-              problem.slug,
-              problem.lesson.visualization,
-            )}
-            input={input}
-          />
-          <div
-            className={`insight wt-instruction ${topLevelReturn ? "returned" : ""}`}
-          >
-            {topLevelReturn ? <CheckCircle2 size={18} /> : <Code2 size={18} />}
-            <div>
-              <div className="wt-event-heading">
-                <strong>
-                  {step?.event === "return"
-                    ? step.depth > 1
-                      ? "Helper returned"
-                      : "Function returned"
-                    : "Next instruction"}
-                </strong>
-                {step && (
-                  <span>
-                    {step.function} · line {step.line} · depth {step.depth}
+          <VisualizationViewer
+            title={problem.title}
+            resetKey={input}
+            truncated={truncated}
+            toolbar={
+              <div className="wt-toolbar">
+                <div className="wt-step-options">
+                  <div
+                    className="wt-step-mode"
+                    role="group"
+                    aria-label="Step mode"
+                  >
+                    <button
+                      aria-pressed={mode === "changes"}
+                      onClick={() => changeMode("changes")}
+                    >
+                      State changes
+                    </button>
+                    <button
+                      aria-pressed={mode === "lines"}
+                      onClick={() => changeMode("lines")}
+                    >
+                      Every Python line
+                    </button>
+                  </div>
+                  <span className="wt-shortcuts">
+                    Focus here · ← / → to step
                   </span>
-                )}
+                </div>
+                <div className="playback">
+                  <div className="playback-buttons">
+                    <button
+                      aria-label="Previous step"
+                      disabled={position === 0 || !steps.length}
+                      onClick={() => move(-1)}
+                    >
+                      <SkipBack size={17} />
+                    </button>
+                    <button
+                      className="primary"
+                      disabled={!steps.length}
+                      onClick={togglePlayback}
+                    >
+                      {playing ? <Pause size={16} /> : <Play size={16} />}{" "}
+                      {playing ? "Pause" : "Play"}
+                    </button>
+                    <button
+                      aria-label="Next step"
+                      disabled={
+                        !steps.length ||
+                        position >= navigationIndices.length - 1
+                      }
+                      onClick={() => move(1)}
+                    >
+                      <SkipForward size={17} />
+                    </button>
+                    <button
+                      aria-label="Reset walkthrough"
+                      disabled={!steps.length}
+                      onClick={() => {
+                        setPlaying(false);
+                        setIndex(0);
+                      }}
+                    >
+                      <RotateCcw size={15} />
+                    </button>
+                    <button
+                      aria-label="Last step"
+                      disabled={
+                        !steps.length ||
+                        position >= navigationIndices.length - 1
+                      }
+                      onClick={() => {
+                        setPlaying(false);
+                        setIndex(steps.length - 1);
+                      }}
+                    >
+                      End
+                    </button>
+                  </div>
+                  <span className="step-count">
+                    Step {steps.length ? position + 1 : 0} of{" "}
+                    {navigationIndices.length}
+                  </span>
+                  <select
+                    aria-label="Playback speed"
+                    value={speed}
+                    onChange={(event) => setSpeed(Number(event.target.value))}
+                  >
+                    <option value={0.5}>0.5×</option>
+                    <option value={1}>1×</option>
+                    <option value={2}>2×</option>
+                    <option value={4}>4×</option>
+                  </select>
+                </div>
+                <input
+                  className="scrubber"
+                  aria-label="Algorithm step"
+                  aria-valuetext={`Step ${position + 1} of ${navigationIndices.length}, Python event ${index + 1} of ${steps.length}`}
+                  disabled={!steps.length}
+                  type="range"
+                  min={0}
+                  max={Math.max(0, navigationIndices.length - 1)}
+                  value={position}
+                  onChange={(event) => {
+                    setPlaying(false);
+                    setIndex(
+                      navigationIndices[Number(event.target.value)] ?? 0,
+                    );
+                  }}
+                />
+                <div className="wt-progress-note">
+                  <span>
+                    {mode === "changes"
+                      ? `${changeIndices.length} meaningful states`
+                      : "Full Python execution trace"}
+                  </span>
+                  <span>
+                    Python event {steps.length ? index + 1 : 0} / {steps.length}
+                  </span>
+                </div>
               </div>
-              <p>
-                {step?.explanation ??
-                  "Choose a small example to follow each algorithm decision."}
-              </p>
-              <span className="wt-semantics">
-                {step?.event === "return"
-                  ? "This snapshot includes this function’s returned value; other calls may continue."
-                  : "The highlighted line has not executed yet. Values show the state before it runs."}
-              </span>
-            </div>
-          </div>
-          <div className="wt-changes">
-            <div className="wt-changes-heading">
-              <span>
-                {index === 0
-                  ? "Starting values"
-                  : "What changed since the previous Python event"}
-              </span>
-              {changes.length > 5 && (
-                <button
-                  className="subtle"
-                  onClick={() => setShowAllChanges((value) => !value)}
-                >
-                  {showAllChanges ? "Show less" : `Show all ${changes.length}`}
-                </button>
-              )}
-            </div>
-            {changes.length ? (
-              <div className="wt-change-list">
-                {(showAllChanges ? changes : changes.slice(0, 5)).map(
-                  (change) => (
-                    <div className="wt-change" key={change.name}>
-                      <strong title={change.name}>
-                        {problem.lesson.visualization.labels[change.name] ??
-                          change.name}
-                      </strong>
-                      <code title={JSON.stringify(change.before)}>
-                        {preview(change.before)}
-                      </code>
-                      <ArrowRight size={13} aria-label="changed to" />
-                      <code
-                        className="wt-after"
-                        title={JSON.stringify(change.after)}
+            }
+            visualization={
+              <VisualState
+                part="primary"
+                slug={problem.slug}
+                step={step}
+                previousStep={previousStep}
+                config={visualizationFor(
+                  problem.slug,
+                  problem.lesson.visualization,
+                )}
+                input={input}
+              />
+            }
+            summary={
+              <VisualState
+                part="summary"
+                slug={problem.slug}
+                step={step}
+                previousStep={previousStep}
+                config={visualizationFor(
+                  problem.slug,
+                  problem.lesson.visualization,
+                )}
+                input={input}
+              />
+            }
+            details={
+              <>
+                <VisualState
+                  part="details"
+                  slug={problem.slug}
+                  step={step}
+                  previousStep={previousStep}
+                  config={visualizationFor(
+                    problem.slug,
+                    problem.lesson.visualization,
+                  )}
+                  input={input}
+                />
+                <div className="wt-changes">
+                  <div className="wt-changes-heading">
+                    <span>
+                      {index === 0
+                        ? "Starting values"
+                        : "What changed since the previous Python event"}
+                    </span>
+                    {changes.length > 5 && (
+                      <button
+                        className="subtle"
+                        onClick={() => setShowAllChanges((value) => !value)}
                       >
-                        {preview(change.after)}
-                      </code>
+                        {showAllChanges
+                          ? "Show less"
+                          : `Show all ${changes.length}`}
+                      </button>
+                    )}
+                  </div>
+                  {changes.length ? (
+                    <div className="wt-change-list">
+                      {(showAllChanges ? changes : changes.slice(0, 5)).map(
+                        (change) => (
+                          <div className="wt-change" key={change.name}>
+                            <strong title={change.name}>
+                              {problem.lesson.visualization.labels[
+                                change.name
+                              ] ?? change.name}
+                            </strong>
+                            <code title={JSON.stringify(change.before)}>
+                              {preview(change.before)}
+                            </code>
+                            <ArrowRight size={13} aria-label="changed to" />
+                            <code
+                              className="wt-after"
+                              title={JSON.stringify(change.after)}
+                            >
+                              {preview(change.after)}
+                            </code>
+                          </div>
+                        ),
+                      )}
                     </div>
-                  ),
+                  ) : (
+                    <p>
+                      No tracked values changed at this event. Follow the
+                      highlighted instruction or switch to State changes.
+                    </p>
+                  )}
+                </div>
+              </>
+            }
+            instruction={
+              <>
+                {step && (
+                  <div className="wt-live-instruction" title={step.explanation}>
+                    <span>
+                      {step.event === "return" ? "Return" : "Before"} line{" "}
+                      {step.line}
+                    </span>
+                    <code>{sourceLines[step.line - 1]?.trim()}</code>
+                  </div>
                 )}
-              </div>
-            ) : (
-              <p>
-                No tracked values changed at this event. Follow the highlighted
-                instruction or switch to State changes.
-              </p>
-            )}
-          </div>
-          {truncated && (
-            <p className="notice">
-              Showing the first 2,000 Python events. Choose a smaller example
-              for a complete walkthrough.
-            </p>
-          )}
+                <div
+                  className={`insight wt-instruction ${topLevelReturn ? "returned" : ""}`}
+                >
+                  {topLevelReturn ? (
+                    <CheckCircle2 size={18} />
+                  ) : (
+                    <Code2 size={18} />
+                  )}
+                  <div>
+                    <div className="wt-event-heading">
+                      <strong>
+                        {step?.event === "return"
+                          ? step.depth > 1
+                            ? "Helper returned"
+                            : "Function returned"
+                          : "Next instruction"}
+                      </strong>
+                      {step && (
+                        <span>
+                          {step.function} · line {step.line} · depth{" "}
+                          {step.depth}
+                        </span>
+                      )}
+                    </div>
+                    <p>
+                      {step?.explanation ??
+                        "Choose a small example to follow each algorithm decision."}
+                    </p>
+                    <span className="wt-semantics">
+                      {step?.event === "return"
+                        ? "This snapshot includes this function’s returned value; other calls may continue."
+                        : "The highlighted line has not executed yet. Values show the state before it runs."}
+                    </span>
+                  </div>
+                </div>
+              </>
+            }
+          />
           <div className="trace-code">
             <div className="structure-label">
               Python reference <span> · {step?.function ?? "solution"}</span>

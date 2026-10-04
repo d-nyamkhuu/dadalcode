@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "A permutation is an ordering that uses each input value exactly once. Generating arbitrary length-n sequences and later rejecting repeats spends most effort on invalid candidates. Instead construct an ordering one position at a time and forbid values already chosen for that partial ordering.",
+    "A permutation puts all the numbers in an order. Build that order one position at a time by choosing any number not already used. After exploring a choice, remove it so another choice can use that position. Save a copy when the order contains every number.",
     "The current path is the unfinished permutation; used answers whether a value is already in it. Choose any unused value, append it, and recursively fill the next position. When the path reaches input length, all positions are assigned and every value is used once. Save a copy because the original path is about to change.",
-    "Returning from recursion does not automatically undo list or set mutations. Remove the just-added value from both path and used before trying a sibling branch. This restoration is what makes the search tree systematic: siblings share the same prefix but choose different next values. Every full permutation corresponds to one unique root-to-leaf sequence of choices, so no duplicates or omissions occur.",
-    "There are n! distinct answers: the first position has n choices, the next n-1, and so on. Each answer contains n values, so merely returning all answers requires O(n·n!) storage and time. The O(n) auxiliary-space claim counts only the current path, used set, and recursion frames; it excludes the returned lists. At the maximum n=6, there are 720 answers, which makes output growth part of the task rather than an inefficiency of backtracking."
+    "Returning from recursion does not automatically undo list or set mutations. Remove the just-added value from both path and used before trying a sibling branch. This restoration is what makes the search tree systematic: siblings share the same prefix but choose different next values.",
+    "Every full permutation corresponds to one unique root-to-leaf sequence of choices, so no duplicates or omissions occur.",
+    "There are n! distinct answers: the first position has n choices, the next n-1, and so on. Each answer contains n values, so merely returning all answers requires O(n·n!) storage and time. The O(n) additional-space claim counts only the current path, used set, and recursion frames; it excludes the returned lists.",
+    "At the maximum n=6, there are 720 answers, which makes output growth part of the task rather than an inefficiency of backtracking."
   ],
   "walkthrough": {
     "input": {
@@ -67,5 +69,6 @@
       "code": "path.pop()\n                used.remove(value)",
       "note": "Undo both state changes so the next sibling branch starts from exactly the same prefix."
     }
-  ]
+  ],
+  "keyDecision": "A position may use only an unused input number. Undo both the choice and its used marker afterward."
 }

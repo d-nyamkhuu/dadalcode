@@ -12,7 +12,7 @@
     "1 <= left <= right <= list length",
     "Node values range from -500 to 500"
   ],
-  "intuition": "Keep the node before the segment fixed. Repeatedly remove the node immediately after the segment tail and insert it at the segment front.",
+  "intuition": "Keep the node just before the section fixed. Repeatedly take the node after the section's original first node and move it to the section's front. Each move reverses one more node while keeping the parts before and after the section connected.",
   "approach": [
     "Use a dummy head and walk before to position left-1.",
     "Let current be the original first segment node; it becomes the final segment tail.",

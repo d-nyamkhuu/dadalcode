@@ -11,14 +11,14 @@
     "1 <= len(s) <= 16",
     "s contains lowercase English letters"
   ],
-  "intuition": "At an offset, any palindromic prefix of the remaining suffix may be the next piece. A palindrome table makes every proposed cut a constant-time lookup instead of repeatedly scanning its interior.",
+  "intuition": "First remember which continuous pieces of the string are palindromes. Then build a partition by choosing one valid piece at a time and continuing after it. Saving the palindrome checks avoids comparing the same piece again in different partitions.",
   "approach": [
     "Fill palindrome[left][right] for increasing substring lengths using equal endpoints and the inner range.",
     "Search from start; try every end whose table entry is true.",
     "Append that substring, recurse at end+1, and undo the choice.",
     "Record path when start reaches the string length."
   ],
-  "correctness": "The table recurrence is exact: a range is palindromic iff endpoints match and its interior is palindromic, with length one or two handled directly. Each partition has a unique sequence of cut positions. The search tries every next palindromic range and only such ranges, so it enumerates every valid partition exactly once.",
+  "correctness": "The table recurrence is exact: a range is palindromic if and only if endpoints match and its interior is palindromic, with length one or two handled directly. Each partition has a unique sequence of cut positions. The search tries every next palindromic range and only such ranges, so it lists every valid partition exactly once.",
   "bruteForce": "Try all 2^(n-1) cut masks and independently scan each resulting substring for symmetry.",
   "complexity": {
     "time": "O(n² + n × 2^n)",

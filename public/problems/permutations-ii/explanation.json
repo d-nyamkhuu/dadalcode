@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Generating permutations of input indices works for distinct values, but duplicates make many index arrangements look identical. For [1,1,2], exchanging the two occurrences of 1 does not create a new value sequence. Deduplicating only after generation wastes whole subtrees of repeated work.",
+    "Equal input values can produce the same ordering through different positions. Sort the input and build an ordering from unused positions. For equal values, use the earlier occurrence first. This keeps one way to build each distinct ordering while still allowing all copies to appear.",
     "Sorting puts equal occurrences together. Track used indices because every occurrence must still be available separately. Among equal values, require the earlier index to be selected before the later one. This canonical ordering decides which physical occurrence represents the next equal value without banning repeated values.",
     "The key distinction is whether the predecessor is already used in the current prefix. If it is used, the next equal occurrence is a legitimate additional copy. If it is unused, selecting the later occurrence would duplicate the sibling branch that selects the earlier one. Undo both the flag and the path after recursion."
   ],
@@ -50,5 +50,6 @@
       "code": "used[i] = False",
       "note": "Restoring the flag after popping the path returns the search to its parent state, making the occurrence available to other valid branches."
     }
-  ]
+  ],
+  "keyDecision": "Skip an equal value when its earlier copy is still unused in the current path."
 }

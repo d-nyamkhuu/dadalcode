@@ -1,9 +1,12 @@
 {
   "intuition": [
-    "Inspect every time coordinate and test all employees, impractical for endpoints up to 100 million. A heap merge of the already sorted employee lists can reduce sorting cost when employee count is small. Time coordinates are large, but availability changes only at interval boundaries; scanning empty coordinates wastes effort.",
-    "Everyone being free means the union of all employees\u2019 busy intervals is absent there. Once busy intervals are ordered by start, busy_end summarizes the final connected busy component processed so far. An overlapping interval may extend that endpoint, while a nested interval cannot shorten it. A later start strictly beyond busy_end reveals a gap that no future interval can fill because future starts are even later. Touching endpoints create zero time between intervals, so they do not qualify. The leading and trailing unbounded free regions are deliberately omitted.",
-    "After each interval, busy_end is the right boundary of the processed busy union's final component. Sorted starts ensure that no unseen interval can cover a gap preceding the current start. A strictly later start therefore identifies an exact finite free component; overlapping or touching intervals extend the busy union without a gap. N is the total number of busy intervals; flattening and sorting dominate.",
-    "The flatten-and-sort reference is straightforward to trace. An optional k-way merge can exploit the already sorted employee lists: put the first interval from each of E employees in a min-heap, pop the earliest start, and push the next interval from that same employee. Feed that ordered stream into the identical busy_end sweep. This takes O(N log(E+1)) time and O(E) heap storage, excluding output, at the cost of more index bookkeeping."
+    "A time is free for everyone only when nobody is working. Combine all employees' busy intervals into one sorted stream. Track the end of the combined busy range. A later start beyond that end reveals a gap when everyone is free.",
+    "Everyone being free means the union of all employees’ busy intervals is absent there. Once busy intervals are ordered by start, busy_end summarizes the final connected busy component processed so far. An overlapping interval may extend that endpoint, while a nested interval cannot shorten it.",
+    "A later start strictly beyond busy_end reveals a gap that no future interval can fill because future starts are even later. Touching endpoints create zero time between intervals, so they do not qualify. The leading and trailing unbounded free regions are deliberately omitted.",
+    "After each interval, busy_end is the right boundary of the processed busy union's final component. Sorted starts ensure that no unseen interval can cover a gap preceding the current start. A strictly later start therefore identifies an exact finite free component; overlapping or touching intervals extend the busy union without a gap.",
+    "N is the total number of busy intervals; flattening and sorting dominate.",
+    "The flatten-and-sort reference is straightforward to trace. An optional k-way merge can exploit the already sorted employee lists: put the first interval from each of E employees in a min-heap, pop the earliest start, and push the next interval from that same employee. Feed that ordered stream into the identical busy_end sweep.",
+    "This takes O(N log(E+1)) time and O(E) heap storage, excluding output, at the cost of more index bookkeeping."
   ],
   "walkthrough": {
     "input": {
@@ -59,5 +62,6 @@
       "code": "busy_end = max(busy_end, end)",
       "note": "A later nested interval must not erase coverage already established by a longer busy interval."
     }
-  ]
+  ],
+  "keyDecision": "Emit a gap only for start > busy_end. Touching busy intervals leave no positive-length free interval."
 }

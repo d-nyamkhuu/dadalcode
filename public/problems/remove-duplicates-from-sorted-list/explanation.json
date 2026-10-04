@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "One could collect values in a set and build a replacement list, but the task asks for direct edits to an existing sorted chain. Sorted order makes the key observation simple: every repeated value occurs in one consecutive run. Keeping one representative of each run does not require remembering earlier values.",
+    "Equal values are next to each other because the list is sorted. Keep the first node in each equal group. If its next node has the same value, skip that next node by changing one link. Advance only when the next value is different.",
     "Let current be that representative. If its successor has the same value, bypass the successor by connecting current to the node after it. Do not advance current yet: another equal node may follow. When the successor differs, the current run is finished, and current can move forward to represent the next run.",
-    "Each iteration either removes one duplicate or advances past one retained node, so the procedure finishes after linear work. An empty list needs no special allocation, and a singleton already meets the requirement. Distinguish this problem from removing every value that has duplicates: here a repeated run still leaves exactly one node. The returned head remains the original first node when the input is nonempty."
+    "Each iteration either removes one duplicate or advances past one retained node, so the procedure finishes after linear work. An empty list needs no special allocation, and a singleton already meets the requirement. Distinguish this problem from removing every value that has duplicates: here a repeated run still leaves exactly one node.",
+    "The returned head remains the original first node when the input is nonempty."
   ],
   "walkthrough": {
     "input": {
@@ -40,5 +41,6 @@
       "code": "while current is not None and current.next is not None:",
       "note": "The guard handles empty lists and guarantees both compared nodes exist."
     }
-  ]
+  ],
+  "keyDecision": "After removing a duplicate, keep current in place to check for another equal successor."
 }

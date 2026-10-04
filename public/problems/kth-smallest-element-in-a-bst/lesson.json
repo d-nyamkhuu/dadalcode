@@ -12,7 +12,7 @@
     "Node values range from 0 to 10000.",
     "All node values are distinct; every left descendant is smaller and every right descendant is larger."
   ],
-  "intuition": "Inorder visits a BST in ascending order: left subtree, root, right subtree. Count visited nodes until k reaches zero; no full sorted array is necessary.",
+  "intuition": "A binary search tree lists its values in sorted order when visited left subtree, node, then right subtree. Use a stack to perform that visit without recursion. Count each removed node once and stop at the kth value, rather than sorting a separate collection.",
   "approach": [
     "Push the entire left spine.",
     "Pop its smallest pending node and decrease k.",

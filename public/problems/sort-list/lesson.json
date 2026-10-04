@@ -11,7 +11,7 @@
     "0 to 50000 nodes.",
     "Node values range from -100000 to 100000."
   ],
-  "intuition": "A single node is already sorted. Merge neighboring one-node runs to obtain two-node runs, then double the run size repeatedly. Because the runs are linked lists, cutting and reconnecting them requires only pointers rather than array buffers.",
+  "intuition": "Merge neighboring sorted sections of the list. Begin with sections of one node, which are already sorted. After merging, sections of two nodes are sorted; the next pass makes sections of four, then eight, and so on. This sorts by changing links rather than copying values into an array.",
   "approach": [
     "Count the nodes.",
     "For run sizes 1, 2, 4, and so on, split two consecutive runs from the remaining list.",
@@ -19,7 +19,7 @@
     "After the final pass, return the new head."
   ],
   "correctness": "At the start of a width pass, every width-sized run is sorted. Merging two adjacent sorted runs produces a sorted run of size at most 2*width and preserves its nodes. Thus each pass doubles the guaranteed sorted run size. Once width reaches n, the entire list is one sorted run.",
-  "bruteForce": "Insertion sort repeatedly searches the sorted prefix, taking O(n\u00b2). Top-down merge sort improves time but uses O(log n) recursion storage.",
+  "bruteForce": "Insertion sort repeatedly searches the sorted prefix, taking O(n²). Top-down merge sort improves time but uses O(log n) recursion storage.",
   "complexity": {
     "time": "O(n log n)",
     "space": "O(1) auxiliary",

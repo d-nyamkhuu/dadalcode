@@ -12,14 +12,14 @@
     "-10 <= nums[i] <= 10",
     "All subarray products and the answer fit a signed 32-bit integer"
   ],
-  "intuition": "A negative value reverses ordering: the smallest previous product may become the largest new product. Keep both extremes for subarrays ending here, and allow a fresh start. Zero resets both.",
+  "intuition": "A negative number can turn the smallest negative product into the largest positive product. For that reason, save both the smallest and largest products ending at each position. For the next value, compare starting fresh with extending each of those two products.",
   "approach": [
     "Initialize low, high, and best from the first value.",
     "For each later value consider it alone and products with both old extremes.",
     "Save the new extremes and update the global maximum."
   ],
   "correctness": "Every ending subarray either starts at this value or extends a previous ending subarray. The old extreme products determine the new extremes under multiplication, whether the multiplier is positive, zero, or negative. Taking the maximum across endpoints covers all subarrays.",
-  "bruteForce": "Multiply every subarray incrementally in O(n\u00b2) time.",
+  "bruteForce": "Multiply every subarray incrementally in O(n²) time.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
@@ -27,7 +27,7 @@
   },
   "pitfalls": [
     "Use old high and low together before overwriting either.",
-    "Zero may be the optimal subarray.",
+    "Zero may be the best possible subarray.",
     "An all-negative singleton still requires a nonempty result."
   ],
   "sources": [

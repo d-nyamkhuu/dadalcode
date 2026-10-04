@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Multiplying every possible subarray requires quadratic work. Here every factor is positive and at least one, which gives a useful monotonic rule: expanding a product window cannot decrease its product, and removing its left factors cannot increase it.",
+    "Keep a continuous window whose product is below k. Multiply in the next value, then remove values from the left until the product qualifies. Every shorter suffix of that window also qualifies because all factors are at least 1. Count those suffixes by the window's length.",
     "Multiply the next value into product, then move left while product is at least k. Division is exact because each removed value is a factor currently in the product. Once the window is valid, every suffix ending at the same right position is also valid, since removing more factors cannot raise the product.",
-    "Count these suffixes directly as right-left+1 instead of listing them. Each subarray has exactly one right endpoint, so adding that number at every endpoint counts all valid subarrays once. The inequality is strict: equality must trigger shrinking. When k is zero or one, no nonempty product of allowed values can qualify, so return zero before entering the main loop. This special case also avoids trying to shrink an already-empty window."
+    "Count these suffixes directly as right-left+1 instead of listing them. Each subarray has exactly one right endpoint, so adding that number at every endpoint counts all valid subarrays once. The inequality is strict: equality must trigger shrinking. When k is zero or one, no nonempty product of allowed values can qualify, so return zero before entering the main loop.",
+    "This special case also avoids trying to shrink an already-empty window."
   ],
   "walkthrough": {
     "input": {
@@ -37,5 +38,6 @@
       "code": "count += right - left + 1",
       "note": "All suffixes of the repaired window are valid and share this unique right endpoint."
     }
-  ]
+  ],
+  "keyDecision": "The comparison is strictly product < k. For k <= 1, no nonempty window can qualify."
 }

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Exploring every root-to-leaf path would let us take the smallest length, but it may traverse a huge branch even when another leaf is near the root. Breadth-first search orders nodes by depth, so a shallow solution can end the search before deeper branches are explored.",
+    "Use a queue to visit the shallowest nodes first. The first leaf you reach ends the shortest root-to-leaf path. Return its depth immediately. A node with one missing child is not a leaf, so an empty child must not be mistaken for a shorter finished path.",
     "The endpoint must be a real leaf: a node with neither child. A missing left child beside an existing right child is not a completed path. This distinction is why simply taking the smaller of two child depths can fail when one subtree is absent.",
     "Queue each node with its depth in nodes, starting at one for the root. FIFO traversal visits nondecreasing depths; therefore the first leaf popped has the minimum possible depth. Existing children receive depth+1. An empty input is separate and returns zero because there is no root-to-leaf path."
   ],
@@ -38,5 +38,6 @@
       "code": "queue.append((node.left, depth + 1))",
       "note": "An existing child extends the path by exactly one node. Its queued depth is therefore its parent depth plus one."
     }
-  ]
+  ],
+  "keyDecision": "A leaf has neither a left child nor a right child. Count depth in nodes."
 }

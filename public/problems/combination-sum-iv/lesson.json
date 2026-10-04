@@ -12,7 +12,7 @@
     "1 <= target <= 1000",
     "The answer fits a signed 32-bit integer"
   ],
-  "intuition": "For any sequence totaling total, its final value is some value in nums; removing that final value leaves a sequence totaling total-value. Add these disjoint possibilities. Process totals outside and values inside so order is counted.",
+  "intuition": "Order matters here: [1, 2] and [2, 1] are different sequences. For each total, choose its final value and add the count of sequences for the smaller remaining total. Filling totals from small to large lets us reuse those earlier counts.",
   "approach": [
     "Set dp[0] to one for the empty sequence.",
     "For each total from one to target, sum dp[total-value] for usable values.",

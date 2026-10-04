@@ -1,20 +1,20 @@
 {
   "intuition": [
-    "Imagine checking every possible start of a substring and extending right until a character repeats. This is correct, but neighboring starts repeatedly inspect nearly the same characters. The useful question is not which substrings to list; it is how far left a valid substring ending at the current character can begin.",
-    "Keep a left boundary and a dictionary of the most recent position of each character. When the next character has already appeared inside the window, both copies cannot stay. Moving left just beyond the earlier copy removes the conflict in one jump. A remembered occurrence outside the window is harmless, so it must never pull left backward.",
-    "After this repair, the current window is the longest distinct-character substring ending here. Compare its length with best, then continue. Notice that the dictionary can remember old positions without deleting them: the left boundary tells us which positions still matter. This separates historical information from the active window and makes the algorithm linear."
+    "Keep one continuous part of the string with no repeated letters. Extend it by reading the next character. If that character already occurs inside the current part, move the start just past its earlier copy. Remember the longest valid part you have seen.",
+    "Keep a left boundary and a dictionary of the most recent position of each character. When the next character has already appeared inside the window, both copies cannot stay. Moving `left` just beyond the earlier copy removes the conflict in one jump. A remembered occurrence outside the window is harmless, so it must never pull `left` backward.",
+    "After this repair, the current window is the longest distinct-character substring ending here. Compare its length with `best`, then continue. Notice that the dictionary can remember old positions without deleting them: the left boundary tells us which positions still matter. This separates historical information from the active window and makes the algorithm linear."
   ],
   "walkthrough": {
     "input": {
       "s": "abcabcbb"
     },
     "steps": [
-      "For abcabcbb, start with left=0, best=0, and an empty last-position dictionary.",
-      "Reading a, b, c at positions 0, 1, 2 grows the distinct window abc to length 3.",
-      "At position 3, a last appeared at 0 inside the window. Move left to 1; bca is valid and still length 3.",
-      "The following b and c move left to 2 and then 3. No window becomes longer than 3.",
-      "At position 6, b previously occurred at 4, so left jumps to 5. The final b moves left to 7.",
-      "The longest recorded length is 3, returned after every right endpoint has been considered."
+      "For `abcabcbb`, start with `left=0`, `best=0`, and an empty last-position dictionary.",
+      "Reading `a`, `b`, `c` at positions 0, 1, 2 grows the distinct window `abc` to length 3.",
+      "At position 3, `a` last appeared at 0 inside the window. Move `left` to 1; `bca` is valid and still length 3.",
+      "The following `b` and `c` move `left` to 2 and then 3. No window becomes longer than 3.",
+      "At position 6, `b` previously occurred at 4, so `left` jumps to 5. The final `b` moves `left` to 7.",
+      "The longest recorded length is 3, returned after every `right` endpoint has been considered."
     ],
     "result": 3
   },
@@ -30,6 +30,88 @@
     {
       "code": "best = max(best, right - left + 1)",
       "note": "Inclusive endpoints require the extra one; compare valid windows rather than individual characters."
+    }
+  ],
+  "keyDecision": "Move the start **forward only** when the earlier copy is **inside the current window**.",
+  "figures": [
+    {
+      "title": "Move past the repeated copy",
+      "caption": "The example begins `abcabcbb`. This figure reads the second `a` at index 3.",
+      "afterStep": 2,
+      "panels": [
+        {
+          "title": "Before: the window is `abc`",
+          "rows": [
+            {
+              "label": "Current window",
+              "values": [
+                "a",
+                "b",
+                "c"
+              ],
+              "labels": [
+                "0: left",
+                "1",
+                "2"
+              ]
+            }
+          ],
+          "note": "`left` is 0. The saved last position of `a` is also 0, inside the current window."
+        },
+        {
+          "title": "Check: another `a` arrives",
+          "rows": [
+            {
+              "label": "Before moving left",
+              "values": [
+                "a",
+                "b",
+                "c",
+                "a"
+              ],
+              "highlight": [
+                0,
+                3
+              ],
+              "labels": [
+                "0",
+                "1",
+                "2",
+                "3: right"
+              ]
+            },
+            {
+              "label": "New left",
+              "values": [
+                "0 + 1 = 1"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "Keeping both `a` characters would break the no-repeat rule. Move `left` to `last[a] + 1 = 1`."
+        },
+        {
+          "title": "After: `bca` is valid",
+          "rows": [
+            {
+              "label": "Current window",
+              "values": [
+                "b",
+                "c",
+                "a"
+              ],
+              "labels": [
+                "1: left",
+                "2",
+                "3: right"
+              ]
+            }
+          ],
+          "note": "The valid window still has length 3. Update the last position of `a` to 3."
+        }
+      ]
     }
   ]
 }

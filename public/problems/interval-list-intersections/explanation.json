@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Comparing every interval from one list with every interval from the other ignores their sorted order. At any moment, the current pair is enough to determine the next possible overlap. The overlap itself starts at the greater start and ends at the smaller end.",
+    "Compare one interval from each sorted list. Their shared part starts at the later start and ends at the earlier end. Save it if those boundaries meet. Then advance the interval that ends first, because it cannot overlap any later interval from the other list.",
     "After considering that pair, discard the interval that finishes first. The other list’s later intervals start after its current interval ends, so they cannot intersect the discarded interval. This gives a safe pointer advance without missing later overlaps.",
     "Closed endpoints permit a single-point intersection when the computed start equals the end. Sorted, pairwise-disjoint lists also mean each pointer can move only forward. At least one pointer advances after every comparison, reducing a potentially quadratic search to a linear merge-like sweep.",
     "When the current ends are equal, either pointer may advance: both intervals end before every later interval in the opposite list. This implementation advances j first; the other tied interval will then be discarded without creating a duplicate intersection."
@@ -92,5 +92,6 @@
       "code": "if firstList[i][1] < secondList[j][1]:",
       "note": "The earlier-finishing interval cannot meet any later interval on the other side, making its pointer the safe one to advance."
     }
-  ]
+  ],
+  "keyDecision": "An intersection exists when max(starts) <= min(ends). A shared endpoint counts."
 }

@@ -10,7 +10,7 @@
     "1 <= len(nums) <= 5000",
     "All values are distinct and between -5000 and 5000."
   ],
-  "intuition": "A rotated array has at most one downward break. If nums[mid] exceeds nums[right], the minimum must lie beyond mid across that break. Otherwise the segment from mid to right is sorted and mid may itself be the minimum.",
+  "intuition": "Compare the middle value with the last value in the current search range. If the middle is larger, the rotation's smallest value lies to its right. Otherwise, the minimum is at the middle or to its left. Keep narrowing the range until one position remains.",
   "approach": [
     "Keep an inclusive interval left..right containing the minimum.",
     "When nums[mid]>nums[right], set left=mid+1.",

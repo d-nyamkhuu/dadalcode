@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A subsequence can skip characters but cannot reorder them. Enumerating every subsequence of one string would be exponential, and checking common substrings would solve a different problem. Compare pairs of prefixes: the best length for each pair summarizes all earlier choices.",
-    "When the two final prefix characters match, append that character to the optimum for the two shorter prefixes. Otherwise the two different final characters cannot both represent the same final match, so an optimum skips one of them. Take the larger of dropping the final character from text1 or dropping it from text2.",
-    "The reference keeps only the previous and current rows of this table. A match reads the previous row’s diagonal. A mismatch reads the previous row’s same column and the current row’s preceding column. This dependency order is why columns advance left to right. Zero border entries represent an empty prefix of either string. Skipped letters do not reset an accumulated length; carrying those prefix maxima is exactly what distinguishes a subsequence from a contiguous substring.",
+    "Compare prefixes of the two strings. If their final characters match, add one to the answer for the two shorter prefixes. Otherwise, keep the better answer from dropping either final character. Save these smaller answers in rows so the same prefix pair is not solved repeatedly.",
+    "When the two final prefix characters match, append that character to the best possible result for the two shorter prefixes. Otherwise the two different final characters cannot both represent the same final match, so a best possible result skips one of them. Take the larger of dropping the final character from text1 or dropping it from text2.",
+    "The reference keeps only the previous and current rows of this table. A match reads the previous row’s diagonal. A mismatch reads the previous row’s same column and the current row’s preceding column. This dependency order is why columns advance left to right. Zero border entries represent an empty prefix of either string.",
+    "Skipped letters do not reset an accumulated length; carrying those prefix maxima is exactly what distinguishes a subsequence from a contiguous substring.",
     "For a length-only query, one may swap the two inputs so the shorter string supplies columns, reducing row storage to O(min(m,n)). This lesson keeps the original input orientation so every visual row and column stays aligned with the named strings; the recurrence and time bound are the same."
   ],
   "walkthrough": {
@@ -23,7 +24,7 @@
   "codeNotes": [
     {
       "code": "current[col] = previous[col - 1] + 1",
-      "note": "Matching final characters extend the optimum before both characters by one."
+      "note": "Matching final characters extend the best possible result before both characters by one."
     },
     {
       "code": "current[col] = max(previous[col], current[col - 1])",
@@ -32,6 +33,85 @@
     {
       "code": "previous = current",
       "note": "Once a row is finished, older rows are no longer needed for the recurrence."
+    }
+  ],
+  "keyDecision": "A match uses diagonal + 1. A mismatch uses max(above, left). Characters may be skipped but cannot be reordered.",
+  "figures": [
+    {
+      "title": "A match extends the diagonal answer",
+      "caption": "For text1 = abcde and text2 = ace, inspect the row for c. Column labels are text2 prefixes; ∅ is the empty prefix.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: row for ab",
+          "rows": [
+            {
+              "label": "Previous DP row",
+              "values": [
+                "0",
+                "1",
+                "1",
+                "1"
+              ],
+              "labels": [
+                "∅",
+                "a",
+                "ac",
+                "ace"
+              ]
+            }
+          ],
+          "note": "The best common subsequence so far has length 1, using a."
+        },
+        {
+          "title": "Check: c matches the second column character",
+          "rows": [
+            {
+              "label": "Diagonal source",
+              "values": [
+                "1"
+              ],
+              "labels": [
+                "ab vs a"
+              ]
+            },
+            {
+              "label": "Matching update",
+              "values": [
+                "1 + 1 = 2"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "At column ac, the matching c extends the diagonal result for ab and a: 1 + 1 = 2."
+        },
+        {
+          "title": "After: row for abc",
+          "rows": [
+            {
+              "label": "Current DP row",
+              "values": [
+                "0",
+                "1",
+                "2",
+                "2"
+              ],
+              "highlight": [
+                2
+              ],
+              "labels": [
+                "∅",
+                "a",
+                "ac",
+                "ace"
+              ]
+            }
+          ],
+          "note": "The last column carries the length 2 forward because c does not match e. Later, e extends the common sequence to ace, length 3."
+        }
+      ]
     }
   ]
 }

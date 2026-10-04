@@ -10,7 +10,7 @@
     "1 <= len(s), len(t) <= 50,000",
     "Both strings contain lowercase English letters"
   ],
-  "intuition": "Order changes under an anagram, but counts do not. First reject different lengths, then consume each t character from a count of s. A negative count identifies a character used too often.",
+  "intuition": "Two strings are anagrams when each character appears equally often in both. Count the characters in the first string, then consume one count for every character in the second. A missing count rejects the match. Equal lengths ensure no unused copies remain after a successful scan.",
   "approach": [
     "Reject unequal lengths.",
     "Count each character of s in counts.",
@@ -24,7 +24,7 @@
     "explanation": "Only a count per lowercase letter is stored."
   },
   "pitfalls": [
-    "Presence alone is insufficient: multiplicity matters.",
+    "Presence alone is insufficient: occurrence count matters.",
     "Unequal lengths cannot be anagrams.",
     "The reference can count arbitrary Unicode code points if the domain is extended, but visually identical text may require Unicode normalization first."
   ],

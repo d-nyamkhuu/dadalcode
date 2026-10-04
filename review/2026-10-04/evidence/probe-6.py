@@ -1,7 +1,7 @@
 import importlib.util, json, pathlib, random, itertools, collections, math, copy
-BASE=pathlib.Path('/home/data/Projects/blind-75')
+BASE=pathlib.Path('.')
 spec=importlib.util.spec_from_file_location('harness',BASE/'src/runtime/harness.py'); h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
-slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-6.json')); notes={s:[] for s in slugs};fail=[]
+slugs=json.load(open('./review/2026-10-04/evidence/group-6.json')); notes={s:[] for s in slugs};fail=[]
 objects={}
 for s in slugs:
  p=BASE/'public/problems'/s; ns=h.base_namespace();exec((p/'solution.py').read_text(),ns); objects[s]=ns['Solution']()
@@ -160,5 +160,5 @@ for value in range(1,10000):node.right=h.TreeNode(value);node=node.right
 assert objects['validate-binary-search-tree'].isValidBST(a);notes['validate-binary-search-tree'].append('10000-node increasing chain succeeds without recursion.')
 a=list(range(100000));out=objects['sliding-window-median'].medianSlidingWindow(a,3);assert out==list(range(1,99999));notes['sliding-window-median'].append('100000-element monotone input with k=3 returns all expected medians.')
 assert objects['target-sum'].findTargetSumWays([0]*20,0)==1048576;notes['target-sum'].append('Maximum-length all-zero input yields 2^20 assignments.')
-json.dump({'notes':notes,'failures':fail},open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probe-6-results.json','w'),indent=2)
-print(json.dumps({'existing_fixtures':sum(len(json.load(open(BASE/'public/problems'/s/'tests.json'))) for s in slugs),'independent_checks':sum(int(n.split()[0]) for values in notes.values() for n in values if 'additional independent checks' in n),'failures':fail,'notes_file':'/home/data/Projects/blind-75/review/2026-10-04/evidence/probe-6-results.json'}))
+json.dump({'notes':notes,'failures':fail},open('./review/2026-10-04/evidence/probe-6-results.json','w'),indent=2)
+print(json.dumps({'existing_fixtures':sum(len(json.load(open(BASE/'public/problems'/s/'tests.json'))) for s in slugs),'independent_checks':sum(int(n.split()[0]) for values in notes.values() for n in values if 'additional independent checks' in n),'failures':fail,'notes_file':'./review/2026-10-04/evidence/probe-6-results.json'}))

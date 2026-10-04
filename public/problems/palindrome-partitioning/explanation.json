@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Trying every arrangement of cuts is feasible only for short strings, and independently checking each resulting piece repeats many palindrome tests. We can separate deciding whether a range is palindromic from deciding which palindromic ranges belong in a partition.",
+    "First remember which continuous pieces of the string are palindromes. Then build a partition by choosing one valid piece at a time and continuing after it. Saving the palindrome checks avoids comparing the same piece again in different partitions.",
     "A substring is palindromic when its endpoints agree and its interior is palindromic. Length-one and length-two ranges supply the base cases. Filling a boolean table by increasing length makes every interior answer available before its surrounding range is examined.",
     "Backtracking then starts at the first uncovered position and considers every palindromic range beginning there. Each chosen piece advances directly to its successor, so the path covers the string without gaps or overlap. Reaching the end records a complete partition; returning removes the piece and tries another cut.",
     "A complete partition is recorded with path.copy() because path is shared working state: returning from recursion pops pieces before exploring sibling cuts. Saving path itself would make every recorded answer change with later backtracking. The copied outer list preserves that completed sequence, while its immutable substring strings may safely be shared."
@@ -42,5 +42,6 @@
       "code": "search(end + 1)",
       "note": "The next piece begins immediately after the chosen range, guaranteeing every recorded partition covers the string continuously and in order."
     }
-  ]
+  ],
+  "keyDecision": "Choose a piece only when its endpoints match and its inner piece is also a palindrome."
 }

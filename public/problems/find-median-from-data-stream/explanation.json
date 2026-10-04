@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Sorting all inserted numbers after every update makes finding the middle easy but repeats a growing amount of work. The median needs only the boundary between a lower half and an upper half. Keep those halves as heaps so their boundary values stay immediately accessible without fully sorting either half.",
+    "Split the numbers into a smaller half and a larger half. Keep the largest smaller-half value and the smallest larger-half value easy to read with two heaps. Balance their sizes after each insertion. Those boundary values are exactly the middle value or middle pair.",
     "The lower half is a max heap, represented by negative numbers, and the upper half is a normal min heap. Maintain all lower values at or below all upper values. Their sizes must be equal or lower must have exactly one extra entry. Under these two rules, the roots occupy the middle ranks.",
-    "Insert into lower first, then transfer its largest value to upper to restore cross-half ordering. If upper becomes bigger, transfer its smallest value back. This compact sequence handles any arrival order, including duplicates and negative inputs. With equal sizes average the two roots; otherwise lower\u2019s root is the median. The internal negation is an implementation detail, so remember to undo it when returning actual values."
+    "Insert into lower first, then transfer its largest value to upper to restore cross-half ordering. If upper becomes bigger, transfer its smallest value back. This compact sequence handles any arrival order, including duplicates and negative inputs. With equal sizes average the two roots; otherwise lower’s root is the median.",
+    "The internal negation is an implementation detail, so remember to undo it when returning actual values."
   ],
   "walkthrough": {
     "input": {
@@ -35,7 +36,7 @@
       "The halves now represent lower=[1], upper=[2], so findMedian() returns (1+2)/2=1.5.",
       "For addNum(3), move the new lower maximum 3 into upper.",
       "Upper becomes larger, so move its minimum 2 back into lower. The halves represent [1,2] and [3].",
-      "findMedian() now returns lower\u2019s maximum 2 because the total count is odd."
+      "findMedian() now returns lower’s maximum 2 because the total count is odd."
     ],
     "result": [
       null,
@@ -58,6 +59,93 @@
     {
       "code": "return (-lower[0] + upper[0]) / 2",
       "note": "Equal-size heaps expose the two middle values whose average defines an even-size median."
+    }
+  ],
+  "keyDecision": "Keep the lower half the same size as the upper half, or one value larger.",
+  "figures": [
+    {
+      "title": "Balance two ordered halves",
+      "caption": "The diagrams show logical values in the halves, not the internal heap-array layout or the negated Python storage.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: after inserting 1 and 2",
+          "rows": [
+            {
+              "label": "Lower half",
+              "values": [
+                "1"
+              ]
+            },
+            {
+              "label": "Upper half",
+              "values": [
+                "2"
+              ]
+            },
+            {
+              "label": "Median",
+              "values": [
+                "(1 + 2) / 2 = 1.5"
+              ]
+            }
+          ],
+          "note": "The halves have equal sizes, so average the two boundary values."
+        },
+        {
+          "title": "Check: inserting 3 makes upper larger",
+          "rows": [
+            {
+              "label": "Lower half",
+              "values": [
+                "1"
+              ]
+            },
+            {
+              "label": "Upper half",
+              "values": [
+                "2",
+                "3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "After moving the new lower maximum upward, upper contains 2 and 3. Move its minimum 2 back down."
+        },
+        {
+          "title": "After: lower owns the extra value",
+          "rows": [
+            {
+              "label": "Lower half",
+              "values": [
+                "1",
+                "2"
+              ],
+              "highlight": [
+                1
+              ]
+            },
+            {
+              "label": "Upper half",
+              "values": [
+                "3"
+              ]
+            },
+            {
+              "label": "Median",
+              "values": [
+                "2"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "There are three values, so the largest lower-half value is the median."
+        }
+      ]
     }
   ]
 }

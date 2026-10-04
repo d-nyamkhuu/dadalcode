@@ -1,5 +1,5 @@
 import json, pathlib
-root=pathlib.Path('/home/data/Projects/blind-75');slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-6.json'));validated=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probe-6-results.json'))['notes']
+root=pathlib.Path('.');slugs=json.load(open('./review/2026-10-04/evidence/group-6.json'));validated=json.load(open('./review/2026-10-04/evidence/probe-6-results.json'))['notes']
 reviews={
 'sliding-window-median':(
 'Precise median definition, k bounds, signed-integer domain, and absolute-error contract. Window output order is implicit in the statement.',
@@ -184,5 +184,5 @@ for slug in slugs:
   findings=[{'severity':'P2','title':'Valid linked lists above 10000 nodes cannot be serialized','file':str(root/'src/runtime/harness.py'),'line_start':55,'line_end':55,'detail':'sort-list/lesson.json advertises up to 50000 nodes, but sort-list/adapter.py:2 converts the correct returned head with list_values, which raises as soon as output length exceeds 10000. This makes valid inputs fail independent of solution correctness.','evidence':'harness.run_case(reference solution, adapter, head=list(range(10001,0,-1)), expected=list(range(1,10002))) returns passed=false with ValueError: Linked-list output is too large. Direct reference sorting of 50000 reverse-ordered nodes succeeds and traverses in ascending order.','recommendation':'Raise or parameterize the shared serialization bound to cover each linked-list problem\'s stated maximum, retaining cycle detection; add 10001-node and 50000-node sort-list harness regressions.'}]
  result.append({'slug':slug,'verdict':'issue' if findings else 'no-confirmed-defect','formulation_review':formulation,'explanation_review':explanation,'solution_review':solution,'tests_review':tests,'findings':findings,'improvements':improvements,'validation':validated[slug]})
 assert len(result)==29 and set(reviews)==set(slugs)
-json.dump(result,open('/home/data/Projects/blind-75/review/2026-10-04/evidence/audit-6.json','w'),indent=2)
-print(json.dumps({'packages':len(result),'issues':sum(bool(r['findings']) for r in result),'findings':sum(len(r['findings']) for r in result),'output':'/home/data/Projects/blind-75/review/2026-10-04/evidence/audit-6.json'}))
+json.dump(result,open('./review/2026-10-04/evidence/audit-6.json','w'),indent=2)
+print(json.dumps({'packages':len(result),'issues':sum(bool(r['findings']) for r in result),'findings':sum(len(r['findings']) for r in result),'output':'./review/2026-10-04/evidence/audit-6.json'}))

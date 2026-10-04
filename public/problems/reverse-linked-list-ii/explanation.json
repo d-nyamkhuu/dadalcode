@@ -1,7 +1,7 @@
 {
   "intuition": [
-    "Reversing an interior list segment has two jobs: reverse its order and keep both surrounding sections connected. An array of values can imitate the appearance, but it does not actually reverse the existing nodes. A dummy head also makes a segment starting at the original head behave like any other segment.",
-    "Keep before fixed at the node immediately preceding the segment. The node named current is the original first segment node; during reversal it becomes the segment\u2019s tail. Rather than reversing every edge in a detached chain, repeatedly remove current.next and insert it immediately after before. Each operation puts the next original node in front of the reversed prefix.",
+    "Keep the node just before the section fixed. Repeatedly take the node after the section's original first node and move it to the section's front. Each move reverses one more node while keeping the parts before and after the section connected.",
+    "Keep before fixed at the node immediately preceding the segment. The node named current is the original first segment node; during reversal it becomes the segment’s tail. Rather than reversing every edge in a detached chain, repeatedly remove current.next and insert it immediately after before. Each operation puts the next original node in front of the reversed prefix.",
     "This strategy handles reconnection continuously. current.next always points to the untouched suffix, and before.next always points to the growing reversed front. Only right-left moves are needed, because the first node is already the initial reversed prefix. A one-node segment therefore needs zero moves. Saving moving before editing links prevents losing the node that is about to change position."
   ],
   "walkthrough": {
@@ -17,10 +17,10 @@
       "right": 4
     },
     "steps": [
-      "The list is 1\u21922\u21923\u21924\u21925, with left=2 and right=4. Walk before to node 1; current is node 2.",
+      "The list is 1→2→3→4→5, with left=2 and right=4. Walk before to node 1; current is node 2.",
       "Remove moving=node 3 from after current. Link node 2 to node 4, preserving the remaining suffix.",
-      "Insert node 3 after before. The list becomes 1\u21923\u21922\u21924\u21925, while current remains node 2.",
-      "Remove node 4 from after current and insert it after before. The list becomes 1\u21924\u21923\u21922\u21925.",
+      "Insert node 3 after before. The list becomes 1→3→2→4→5, while current remains node 2.",
+      "Remove node 4 from after current and insert it after before. The list becomes 1→4→3→2→5.",
       "Exactly right-left=2 moves have reversed positions 2 through 4. Return dummy.next, still node 1."
     ],
     "result": [
@@ -44,5 +44,6 @@
       "code": "moving.next = before.next",
       "note": "The extracted node is inserted before the previous segment front; together with before.next=moving this extends the reversal by one node."
     }
-  ]
+  ],
+  "keyDecision": "Perform right - left moves. The original first node stays as the section's tail."
 }

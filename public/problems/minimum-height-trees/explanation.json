@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Trying every vertex as a root and measuring its height is correct but repeats full-tree traversals. A tree has one or two central vertices that minimize the farthest distance. We can discover this center without choosing roots by repeatedly removing the outermost layer of leaves.",
+    "A tree's outer leaves are farthest from its center. Remove all current leaves together, then repeat with the smaller tree. When one or two vertices remain, they are the central choices of root that give the minimum height. Removing one leaf at a time would lose this symmetry.",
     "Leaves have degree one. Removing all of them together shortens every outer branch by one edge and preserves the center of the longest paths. Their neighbors may become new leaves for the next round. Degree counts allow this update without physically deleting every adjacency-list entry.",
-    "Remove a complete layer before deciding whether to continue. A tree center may be a single vertex or the two vertices of a central edge, so stop when at most two vertices remain. The single-vertex input needs a separate return because its vertex has degree zero and would not enter a degree-one queue. Layered removal does linear work: each vertex becomes a leaf once, and each edge triggers only a bounded number of degree updates.",
-    "In a star, removing its simultaneous outer leaves can first lower the center to degree one and enqueue it, then lower it to zero as the last leaf is removed. It still belongs to the answer: the queue holds vertices exposed by this complete layer, and remaining already says one vertex survives. Degree zero here means no remaining edge, not that the center was removed."
+    "Remove a complete layer before deciding whether to continue. A tree center may be a single vertex or the two vertices of a central edge, so stop when at most two vertices remain. The single-vertex input needs a separate return because its vertex has degree zero and would not enter a degree-one queue.",
+    "Layered removal does linear work: each vertex becomes a leaf once, and each edge triggers only a bounded number of degree updates.",
+    "In a star, removing its simultaneous outer leaves can first lower the center to degree one and enqueue it, then lower it to zero as the last leaf is removed. It still belongs to the answer: the queue holds vertices exposed by this complete layer, and remaining already says one vertex survives.",
+    "Degree zero here means no remaining edge, not that the center was removed."
   ],
   "walkthrough": {
     "input": {
@@ -57,5 +59,6 @@
       "code": "if degree[neighbor] == 1:\n                            leaves.append(neighbor)",
       "note": "A neighbor becomes part of the next outside layer exactly when only one live connection remains."
     }
-  ]
+  ],
+  "keyDecision": "Remove a whole leaf layer before counting the next layer. Stop with at most two vertices."
 }

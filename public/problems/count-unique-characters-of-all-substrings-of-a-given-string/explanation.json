@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Enumerating every substring repeats frequency work across heavily overlapping ranges. Instead of asking how many unique letters each substring contains, reverse the counting perspective: for one particular character occurrence, how many substrings count that occurrence as unique?",
+    "Count how many substrings make each character occurrence unique. The substring must include that occurrence but exclude the nearest equal occurrence on either side. Multiply the number of allowed starts by the number of allowed ends. Add these contributions instead of recounting letters in every substring.",
     "Let previous and next be the neighboring indices containing the same character, using -1 and n when a neighbor is absent. A substring containing the occurrence at p may start after previous through p, and may end from p through next-1. These choices are independent, giving (p-previous)*(next-p) valid substrings for that one occurrence.",
-    "A left-to-right scan does not know next immediately. Store the last two indices of each character; when its next occurrence arrives, the middle occurrence\u2019s contribution becomes computable. After the scan, finalize the last occurrence of each character using n as its missing next boundary. Summing occurrence contributions counts every unique-character event exactly once, even for equal substring text at different positions. Unique means frequency exactly one, so a substring containing two copies contributes nothing for that character."
+    "A left-to-right scan does not know next immediately. Store the last two indices of each character; when its next occurrence arrives, the middle occurrence’s contribution becomes computable. After the scan, finalize the last occurrence of each character using n as its missing next boundary.",
+    "Summing occurrence contributions counts every unique-character event exactly once, even for equal substring text at different positions. Unique means frequency exactly one, so a substring containing two copies contributes nothing for that character."
   ],
   "walkthrough": {
     "input": {
@@ -30,5 +31,6 @@
       "code": "contribution = (previous - before) * (len(s) - previous)",
       "note": "The final occurrence of each letter has no later equal character, so the string boundary supplies its last possible right limit."
     }
-  ]
+  ],
+  "keyDecision": "For occurrence p between equal occurrences before and after, its contribution is (p - before) × (after - p)."
 }

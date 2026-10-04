@@ -10,7 +10,7 @@
   "constraints": [
     "1 <= n <= 9"
   ],
-  "intuition": "Place one queen per row. A partial board needs only three sets to remember attacked columns and the two diagonal directions.",
+  "intuition": "Place one queen in each row. Before choosing a column, check whether another queen already uses that column or either diagonal. If no later row can be filled, remove the last queen and try a different column. This avoids exploring boards that already contain an attack.",
   "approach": [
     "Recursively choose a column in the next row.",
     "Reject columns or diagonals already occupied; record a safe queen.",
@@ -18,7 +18,7 @@
     "When n rows are filled, construct a board from the chosen columns."
   ],
   "correctness": "One queen per recursive row enforces row uniqueness. The sets enforce column and diagonal uniqueness. Each legal board has one sequence of column choices explored by the search, and undoing each choice makes sibling branches independent; thus all and only valid boards are emitted once.",
-  "bruteForce": "Enumerate every assignment of n columns to n rows and check conflicts: n^n candidates.",
+  "bruteForce": "List every assignment of n columns to n rows and check conflicts: n^n candidates.",
   "complexity": {
     "time": "O(n! * n²) including board output",
     "space": "O(n) excluding output",

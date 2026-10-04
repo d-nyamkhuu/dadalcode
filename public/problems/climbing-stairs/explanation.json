@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Trying all one-step and two-step move sequences produces the correct count, but the search repeats the same question many times: how many routes reach a particular stair? Dynamic programming stores that answer once. The position matters; the exact route taken to reach it does not.",
+    "The last move to a stair is either one step or two steps. So every route to stair i comes from stair i - 1 or stair i - 2. Add those two counts and save the result. This counts all routes without listing every sequence of moves.",
     "Partition routes by their final move. Every route to stair i either takes one step from i-1 or two steps from i-2. These possibilities cannot overlap because their final moves differ. Therefore adding the two earlier route counts gives the count for i, rather than multiplying them.",
     "The empty route is important: dp[0]=1 means there is one way to remain at the starting stair. Together with dp[1]=1, it seeds the recurrence correctly. The reference keeps a full table so you can inspect the growth, although an optimized version can retain only the last two counts."
   ],
@@ -24,11 +24,12 @@
     },
     {
       "code": "dp[i] = dp[i - 1] + dp[i - 2]",
-      "note": "Each term counts a different final move, giving an exhaustive, disjoint partition of the routes instead of enumerating their individual sequences."
+      "note": "Each term counts a different final move, giving an exhaustive, disjoint partition of the routes instead of listing their individual sequences."
     },
     {
       "code": "return dp[n]",
       "note": "The array indexes stairs rather than moves or route lengths. The requested count is the state for exactly the destination stair."
     }
-  ]
+  ],
+  "keyDecision": "Set the count for stair 0 to 1: there is one empty route before taking any steps."
 }

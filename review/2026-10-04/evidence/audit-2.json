@@ -165,7 +165,7 @@
       {
         "severity": "P2",
         "title": "Require nondecreasing factor lists before normalizing outer order",
-        "file": "/home/data/Projects/blind-75/public/problems/factor-combinations/adapter.py",
+        "file": "./public/problems/factor-combinations/adapter.py",
         "line_start": 6,
         "line_end": 6,
         "detail": "The package statement requires each combination in nondecreasing order, but the checker sorts each returned combination before comparison. A learner returning factors in descending or arbitrary order receives a passing result despite violating that representation contract. Outer answer order is unrestricted; inner order is not.",

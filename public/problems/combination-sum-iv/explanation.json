@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Although the title uses combinations, this problem counts ordered sequences: [1,2] and [2,1] are different. Recursively listing every sequence can branch heavily and repeatedly solve the same remaining total. Count how many sequences reach each total instead.",
+    "Order matters here: [1, 2] and [2, 1] are different sequences. For each total, choose its final value and add the count of sequences for the smaller remaining total. Filling totals from small to large lets us reuse those earlier counts.",
     "Partition sequences by their final value. If the final value is v, the preceding sequence must total total-v. Different final values produce disjoint groups, so their counts add. There is one empty sequence making total zero; that base case lets a one-element sequence be counted when its value equals the requested total.",
-    "The outer loop must visit totals and the inner loop must visit possible final values. This makes every ordered prefix available before adding a new last value. Reversing the loops usually counts unordered coin combinations instead. Positive input values ensure every dependency is strictly smaller than the current total, so bottom-up computation is valid and the number of sequences is finite. A total that no value can reach stays zero naturally."
+    "The outer loop must visit totals and the inner loop must visit possible final values. This makes every ordered prefix available before adding a new last value. Reversing the loops usually counts unordered coin combinations instead.",
+    "Positive input values ensure every dependency is strictly smaller than the current total, so bottom-up computation is valid and the number of sequences is finite. A total that no value can reach stays zero naturally."
   ],
   "walkthrough": {
     "input": {
@@ -36,5 +37,6 @@
       "code": "dp[total] += dp[total - value]",
       "note": "Every smaller sequence gains exactly one distinct extension ending with this value."
     }
-  ]
+  ],
+  "keyDecision": "Loop over totals first, then possible final values. dp[0] = 1 counts the empty starting sequence."
 }

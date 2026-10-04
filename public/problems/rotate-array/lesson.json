@@ -11,23 +11,23 @@
     "0 <= k <= 10^5",
     "Elements are 32-bit signed integers."
   ],
-  "intuition": "Write the array as A+B where B is the last k values. Reversing everything gives reverse(B)+reverse(A). Reverse each segment separately to restore internal order, yielding B+A without allocating another list.",
+  "intuition": "A right rotation moves the last k values in front of the rest. Reverse the entire array, then reverse each of those two parts. The first reversal moves the parts; the next two restore their internal order. Reduce k by the array length because full-length rotations change nothing.",
   "approach": [
     "Reduce k modulo the array length.",
     "Reverse the entire list with two swapping pointers.",
     "Reverse indices 0..k-1 and then k..n-1."
   ],
   "correctness": "The first reversal swaps the segment positions and reverses their interiors. The next two reversals restore both interiors, producing exactly the last k elements followed by the first n-k. Modulo reduction preserves the rotation because a full n-step rotation is identity.",
-  "bruteForce": "Move the final value to the front k times; repeated shifts cost O(n*k). An auxiliary rotated copy takes O(n) extra storage.",
+  "bruteForce": "Move the final value to the front k times; repeated shifts cost O(n*k). An additional rotated copy takes O(n) extra storage.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "Three segment reversals collectively swap O(n) pairs. The helper uses two indices and swaps in the same list, with no slices or auxiliary rotated array."
+    "explanation": "Three segment reversals collectively swap O(n) pairs. The helper uses two indices and swaps in the same list, with no slices or additional rotated array."
   },
   "pitfalls": [
     "Modify nums instead of returning a newly rotated list.",
     "Reduce k before determining segment boundaries.",
-    "Avoid slices if claiming constant auxiliary space."
+    "Avoid slices if claiming constant additional space."
   ],
   "sources": [
     {

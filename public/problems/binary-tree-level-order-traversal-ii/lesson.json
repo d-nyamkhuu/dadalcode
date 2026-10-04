@@ -11,7 +11,7 @@
     "0 <= number of nodes <= 2000",
     "-1000 <= node.val <= 1000"
   ],
-  "intuition": "A breadth-first queue naturally visits one depth at a time. Save those top-down groups, then reverse only the outer list. Reversing values inside a level would destroy the required left-to-right order.",
+  "intuition": "Collect the tree's levels from the root downward using a queue. Then reverse the list of levels. Reverse only the groups, keeping values within each group in left-to-right order. This gives the required bottom-up result with a simple, consistent traversal.",
   "approach": [
     "Return an empty list for an absent root.",
     "At each round process exactly the queue size measured at that round’s start.",

@@ -5,7 +5,7 @@
   border: 1px solid #29363c;
   border-radius: 12px;
   overflow: hidden;
-  background: linear-gradient(135deg, #151e24, #11191f);
+  background: #191c20;
 }
 .nv-root .nv-summary {
   display: flex;
@@ -24,8 +24,7 @@
 .nv-root .nv-scroll {
   overflow: auto;
   max-height: 570px;
-  background-image: radial-gradient(#2c3941 1px, transparent 1px);
-  background-size: 22px 22px;
+  background: #151a1f;
 }
 .nv-root .nv-svg {
   display: block;
@@ -76,6 +75,9 @@
   font-size: 15px;
   font-weight: 600;
   font-family: monospace;
+}
+.nv-root[data-kind="trie"] .nv-node-value {
+  font-size: 24px;
 }
 .nv-root .nv-node-current .nv-node-circle {
   stroke: var(--nv-lime);
@@ -193,4 +195,35 @@
 .nv-stored-index {
   fill: #e5c18b;
   font: 10px var(--font-mono);
+}
+.nv-root .nv-list-divider {
+  stroke: #678b9e;
+  stroke-width: 1;
+}
+.nv-root .nv-list-port {
+  fill: #83bde6;
+}
+.nv-root .nv-list-null {
+  fill: #aab7c2;
+  font: 14px var(--font-mono, monospace);
+}
+.nv-root .nv-node-current .nv-list-divider {
+  stroke: #c1f17a;
+}
+.nv-root .nv-node-current .nv-list-port {
+  fill: #c1f17a;
+}
+.nv-root .nv-value-change {
+  stroke: #e5b66e;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.nv-root[data-kind="trie"] .nv-node-circle {
+  stroke: #83bde6;
+}
+.nv-root[data-kind="trie"] .nv-node-current .nv-node-circle {
+  stroke: #c1f17a;
+}
+.nv-root[data-kind="graph"] .nv-node-circle {
+  stroke-width: 2;
 }

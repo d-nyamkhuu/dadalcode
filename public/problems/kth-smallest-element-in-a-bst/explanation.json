@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Collect all values, sort them, and return position k-1, taking O(n log n) time and O(n) space. Inorder uses the tree's existing ordering. Sorting arbitrary tree values would work, but a BST already contains the ordering information needed for rank selection.",
-    "Inorder traversal is a sorted iterator over a BST. The explicit stack stores ancestors waiting to be visited after their left descendants. After popping a node, its right subtree supplies the next values before any larger pending ancestor. Decrementing k on visits, rather than on pushes, counts actual inorder positions. Stopping immediately at rank k avoids traversing irrelevant larger values. For many queries on a changing tree, subtree-size annotations offer a separate optimization, but one query needs only this traversal.",
+    "A binary search tree lists its values in sorted order when visited left subtree, node, then right subtree. Use a stack to perform that visit without recursion. Count each removed node once and stop at the kth value, rather than sorting a separate collection.",
+    "Inorder traversal is a sorted iterator over a BST. The explicit stack stores ancestors waiting to be visited after their left descendants. After popping a node, its right subtree supplies the next values before any larger pending ancestor. Decrementing k on visits, rather than on pushes, counts actual inorder positions. Stopping immediately at rank k avoids traversing irrelevant larger values.",
+    "For many queries on a changing tree, subtree-size annotations offer a separate optimization, but one query needs only this traversal.",
     "The stack represents the unvisited ancestor chain. Popping after exhausting the left spine yields the smallest remaining value, and its right subtree comes before the remaining ancestors. Consequently the kth pop is exactly the kth value in sorted order. The traversal stops after k visits, with at most a height-sized ancestor stack.",
     "For a branching tree, returning from a right subtree eventually exposes a larger ancestor still waiting on the stack. The pop sequence, not the push sequence, is the sorted iterator; the stack can retain such ancestors across several right-subtree visits."
   ],
@@ -41,5 +42,6 @@
       "code": "node = node.right",
       "note": "After visiting a node, its right subtree precedes the larger ancestors still waiting on the stack."
     }
-  ]
+  ],
+  "keyDecision": "A node is visited only after its entire left subtree and before its right subtree."
 }

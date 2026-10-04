@@ -10,7 +10,7 @@
     "1 <= len(height) <= 20000.",
     "0 <= height[i] <= 100000."
   ],
-  "intuition": "Water above a bar is bounded by the smaller of the tallest wall to its left and right. Two pointers maintain these walls. Once the left maximum is no larger than the right maximum, the left column is settled regardless of anything farther inside.",
+  "intuition": "Water above a column needs a wall on both sides. The shorter of those two walls limits its depth. Move inward from both ends while remembering the tallest wall seen on each side. When one remembered wall is lower, the water depth on that side is already known.",
   "approach": [
     "Start pointers at opposite ends and track left/right maxima.",
     "Refresh both boundary maxima.",
@@ -18,7 +18,7 @@
     "Move that pointer inward until all columns are settled."
   ],
   "correctness": "For the processed smaller-maximum side, a wall at least that tall exists on the other side. Its limiting waterline is therefore known exactly. Each step adds the correct contribution for one unprocessed column and removes it. Summing these disjoint contributions gives the volume.",
-  "bruteForce": "For each column scan both sides for their maxima, taking O(n\u00b2) time. Prefix/suffix arrays reduce time to O(n) with O(n) storage; two pointers retain only the needed boundaries.",
+  "bruteForce": "For each column scan both sides for their maxima, taking O(n²) time. Prefix/suffix arrays reduce time to O(n) with O(n) storage; two pointers retain only the needed boundaries.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

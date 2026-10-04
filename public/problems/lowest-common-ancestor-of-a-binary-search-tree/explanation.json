@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "You could find both root-to-target paths and compare their common prefix, but that stores paths unnecessarily. A binary search tree already tells us which child contains each target from value comparisons. We can follow their shared search direction until their paths stop sharing a child.",
+    "Use the tree's ordering to follow the two target nodes together. If both values are smaller than the current node, go left. If both are larger, go right. Their first split, or a node equal to a target, identifies the lowest node containing both targets.",
     "If both target values are smaller than the current node, their lowest common ancestor must be somewhere in its left subtree. The symmetric argument applies when both are larger. Moving downward in either case preserves the answer while discarding a whole irrelevant part of the tree.",
     "The first node where the comparisons disagree is the split point: one target lies on each side, so neither child contains them both. Equality also ends the search because a target node is an ancestor of itself. Return that existing node object rather than allocating a matching value."
   ],
@@ -44,5 +44,6 @@
       "code": "return node",
       "note": "The remaining case is a split or equality with a target. It identifies the ancestor itself, and preserves the required original-node identity."
     }
-  ]
+  ],
+  "keyDecision": "Stop when the target values lie on different sides or one equals the current node's value."
 }

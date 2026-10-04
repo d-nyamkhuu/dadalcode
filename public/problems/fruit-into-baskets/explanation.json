@@ -1,9 +1,12 @@
 {
   "intuition": [
-    "Try each starting tree and extend until the third type, taking O(n\u00b2) in the worst case. The picking rule is a contiguous-segment constraint, so restarting a scan at every tree repeats nearly identical work.",
-    "Two unlimited baskets allow at most two distinct types inside the window. The frequency map records how many copies of each type remain, rather than merely whether that type was ever observed. On adding a third type, move left until an entire old type leaves the window. Partial removals of a repeated type do not release its basket. After shrinking, the current window is the earliest-starting legal segment for its right endpoint. Tracking every such endpoint is enough to discover the global optimum.",
-    "After shrinking, the window contains at most two types. Its left boundary is the earliest feasible start for that right endpoint: earlier starts still contain the third type that forced shrinking. Any optimal segment has some right endpoint, so comparing the longest feasible window at every endpoint finds the global optimum. Each pointer moves at most n steps; the map holds at most three types during adjustment.",
-    "For [0,0,1,2,2,2,1], the first two fruit types give counts {0:2,1:1}. Adding 2 creates a third type. Removing the first 0 leaves {0:1,1:1,2:1}, still illegal; removing the second 0 deletes that key and moves left to index 2. The window [1,2] is legal. Later 2,2,1 extend it to [1,2,2,2,1], length 5. Removing one copy does not free a basket while another copy of that type remains."
+    "Two baskets allow at most two fruit types. Keep a continuous section and count its types. Extend the right end, then move the left end forward if a third type appears. Delete a type from the counts when its last fruit leaves. Save the longest valid section.",
+    "Two unlimited baskets allow at most two distinct types inside the window. The frequency map records how many copies of each type remain, rather than merely whether that type was ever observed. On adding a third type, move left until an entire old type leaves the window. Partial removals of a repeated type do not release its basket.",
+    "After shrinking, the current window is the earliest-starting legal segment for its right endpoint. Tracking every such endpoint is enough to discover the global best possible result.",
+    "After shrinking, the window contains at most two types. Its left boundary is the earliest feasible start for that right endpoint: earlier starts still contain the third type that forced shrinking. Any best possible segment has some right endpoint, so comparing the longest feasible window at every endpoint finds the global best possible result.",
+    "Each pointer moves at most n steps; the map holds at most three types during adjustment.",
+    "For [0,0,1,2,2,2,1], the first two fruit types give counts {0:2,1:1}. Adding 2 creates a third type. Removing the first 0 leaves {0:1,1:1,2:1}, still illegal; removing the second 0 deletes that key and moves left to index 2. The window [1,2] is legal. Later 2,2,1 extend it to [1,2,2,2,1], length 5.",
+    "Removing one copy does not free a basket while another copy of that type remains."
   ],
   "walkthrough": {
     "input": {
@@ -35,5 +38,6 @@
       "code": "del counts[old]",
       "note": "Delete a type only when its last window occurrence disappears; zero-count keys would falsely occupy baskets."
     }
-  ]
+  ],
+  "keyDecision": "Shrink while there are more than two types, not more than two fruits."
 }

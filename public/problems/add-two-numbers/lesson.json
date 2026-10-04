@@ -12,7 +12,7 @@
     "Every node stores a digit from 0 to 9.",
     "Inputs have no leading zeros except the single digit zero."
   ],
-  "intuition": "Reverse digit order is useful: the head is the units column, exactly where ordinary addition begins. At each column, add the two available digits and the previous carry. Dividing by ten separates the next output digit from the carry.",
+  "intuition": "Add these numbers as you would add on paper, one digit at a time. The lists already start with the ones digit. Add the two current digits and any carry from the previous column. Keep the last digit of the total and carry the rest to the next column.",
   "approach": [
     "Create a dummy output head and a tail pointer. Start carry at zero.",
     "While either list has a digit or a carry remains, read available digits and substitute zero for missing digits.",

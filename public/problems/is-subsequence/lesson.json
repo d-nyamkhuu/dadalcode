@@ -11,14 +11,14 @@
     "0 <= len(t) <= 10000",
     "Strings contain lowercase English letters"
   ],
-  "intuition": "Match each required character as early as possible in t. An earlier match leaves at least as much suffix for the remaining characters as any later match could.",
+  "intuition": "Read t from left to right while waiting for the next character of s. When it matches, advance to the next required character. Skip other characters. Taking the earliest available match leaves the most space for the remaining characters, so no backtracking is needed.",
   "approach": [
     "Point matched at the next character required from s.",
     "Scan t once and advance matched only when its current character is found.",
     "Accept when matched equals the length of s, including an empty s."
   ],
   "correctness": "After every scanned prefix of t, matched is the largest prefix length of s that can fit there. A matching character increases that length by one; a nonmatch cannot satisfy the next requirement. The greedy earliest choice preserves every possible remaining suffix, so reaching len(s) is equivalent to subsequence existence.",
-  "bruteForce": "Enumerate choices of len(s) indices in t and compare their characters.",
+  "bruteForce": "List choices of len(s) indices in t and compare their characters.",
   "complexity": {
     "time": "O(len(t))",
     "space": "O(1)",

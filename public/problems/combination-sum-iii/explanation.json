@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "This problem has two simultaneous requirements: exactly k chosen digits and total n. Finding the total too early is insufficient, and choosing the right number of values with the wrong total is also insufficient. The recursive state must retain both the path length and the remaining sum.",
+    "Choose exactly k different digits from 1 through 9. Always choose larger digits next, so a selection is not repeated in another order. Track the sum still needed and stop when a choice would exceed it. Save only a full selection with the exact target sum.",
     "Choose numbers in increasing order from 1 through 9. Passing value+1 as the next start prevents reuse and eliminates reordered duplicates. Unlike Combination Sum with unlimited reuse, taking a second copy of the same digit is prohibited, even if it would make the arithmetic work.",
     "Two simple bounds cut useless branches. Enough larger digits must remain to fill the missing slots, and a chosen value must not exceed the remaining sum. When the path length reaches k, save it only if the remainder is zero. This makes the leaf condition directly match both problem requirements."
   ],
@@ -37,5 +37,6 @@
       "code": "visit(value + 1, remaining - value)",
       "note": "Advancing the next start prohibits repeated digits and guarantees a canonical increasing representation for each selected set."
     }
-  ]
+  ],
+  "keyDecision": "Both conditions must hold: the path has k digits and its remaining sum is zero."
 }

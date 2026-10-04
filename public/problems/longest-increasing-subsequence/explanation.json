@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Enumerating subsequences creates exponentially many choices, and a quadratic dynamic program still compares each value with every earlier value. Most of that information is unnecessary if we only want the best length. Several subsequences of the same length differ only in how easily a later number can extend them.",
+    "For each possible length, remember the smallest ending value of an increasing subsequence seen so far. A smaller ending is easier to extend with future values. Use binary search to replace the first saved ending that is at least the current number, or append a new ending.",
     "Among equally long increasing subsequences, the one with the smaller final value is always at least as useful. Any future value that extends a larger tail also extends the smaller one. Keep the minimum known tail for each achievable length, allowing less useful endings to be replaced.",
     "These minimum tails are sorted, so binary search locates the length that the next number can improve. Replacing a tail does not destroy an achievable length; it supplies a better ending for that length. Appending adds a new achievable length. The summary array itself need not describe one actual subsequence.",
     "For nums=[3,5,6,2,4], the final tails are [2,4,6]. Their input indices are 3,4,2, so those entries cannot be one subsequence. The length three remains valid because [3,5,6] was achieved earlier; each stored tail certifies its own length independently."
@@ -40,6 +40,68 @@
     {
       "code": "return len(tails)",
       "note": "The invariant concerns achievable lengths. Returning the number of entries is valid even when the entries do not form one recovered subsequence."
+    }
+  ],
+  "keyDecision": "The tails table stores best ending values. Its contents need not be one actual subsequence.",
+  "figures": [
+    {
+      "title": "A smaller tail is easier to extend",
+      "caption": "The first four values have produced tails = [2, 5]. Now read 3. Tail labels are subsequence lengths, not input indices.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: two lengths are achievable",
+          "rows": [
+            {
+              "label": "Saved smallest endings",
+              "values": [
+                "2",
+                "5"
+              ],
+              "labels": [
+                "length 1",
+                "length 2"
+              ]
+            }
+          ],
+          "note": "There is a length-1 subsequence ending at 2 and a length-2 subsequence ending at 5."
+        },
+        {
+          "title": "Check: locate the first tail >= 3",
+          "rows": [
+            {
+              "label": "Replacement",
+              "values": [
+                "5 → 3"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "2 is smaller than 3, so 3 can extend a length-1 subsequence. Replace 5 with the better ending 3."
+        },
+        {
+          "title": "After: improve the ending, not the length",
+          "rows": [
+            {
+              "label": "Saved smallest endings",
+              "values": [
+                "2",
+                "3"
+              ],
+              "highlight": [
+                1
+              ],
+              "labels": [
+                "length 1",
+                "length 2"
+              ]
+            }
+          ],
+          "note": "The table remains length 2. It now allows future values between 3 and 5 to extend it."
+        }
+      ]
     }
   ]
 }

@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "A tree has no cycle and connects all its vertices. Checking only for n-1 edges is tempting but incomplete: a disconnected component could contain a cycle while another vertex is isolated. The edge count is a useful first filter, and a connectivity traversal supplies the missing condition.",
+    "An undirected tree must connect every vertex and have exactly n - 1 edges. Check the edge count, then visit the graph from vertex 0. If all vertices are reached, those two facts together prove it is a tree; a disconnected graph cannot pass.",
     "Build an undirected adjacency list by inserting both directions for each edge. Start at vertex zero and use a stack to visit all reachable vertices. Mark a neighbor when it is pushed, rather than when it is popped, so multiple adjacent vertices cannot schedule duplicate visits. The visited set also prevents repeatedly following the same undirected edge.",
-    "Why does this avoid a separate cycle detector? Every connected n-vertex graph contains a spanning tree using n-1 edges. If the graph itself has exactly n-1 edges, there are no extra edges left to form cycles. Thus the count check plus reaching all n vertices is both necessary and sufficient. A singleton with no edges satisfies both conditions and correctly counts as a tree.",
-    "The explicit stack also handles a 2000-vertex chain within the stated domain. A recursive DFS would require one nested call per vertex and may exceed Python\u2019s recursion limit; marking and pushing each vertex here keeps traversal depth in ordinary heap storage."
+    "Why does this avoid a separate cycle detector? Every connected n-vertex graph contains a spanning tree using n-1 edges. If the graph itself has exactly n-1 edges, there are no extra edges left to form cycles. Thus the count check plus reaching all n vertices is both necessary and sufficient.",
+    "A singleton with no edges satisfies both conditions and correctly counts as a tree.",
+    "The explicit stack also handles a 2000-vertex chain within the stated domain. A recursive DFS would require one nested call per vertex and may exceed Python’s recursion limit; marking and pushing each vertex here keeps traversal depth in ordinary heap storage."
   ],
   "walkthrough": {
     "input": {
@@ -50,5 +51,6 @@
       "code": "visited.add(neighbor)\n                    stack.append(neighbor)",
       "note": "Mark on discovery so each vertex enters the stack once, even with several incoming visits."
     }
-  ]
+  ],
+  "keyDecision": "Require both n - 1 edges and n reachable vertices."
 }

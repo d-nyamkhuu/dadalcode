@@ -12,7 +12,7 @@
     "0 <= len(each string) <= 100",
     "Strings contain lowercase English letters."
   ],
-  "intuition": "Word order is irrelevant to anagrams but character counts are not. A tuple of 26 counts is an immutable dictionary key that exactly identifies an anagram class. Store each original word under its signature.",
+  "intuition": "Words belong together when they contain the same letters with the same counts. Make a fresh letter-count signature for each word and use it as a dictionary key. Append the original word to that key's group. Equal signatures group anagrams without comparing each pair of words.",
   "approach": [
     "Create a map from count tuples to word lists.",
     "Count each word into a fresh 26-entry vector.",

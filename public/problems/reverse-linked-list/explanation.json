@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A singly linked list only remembers the next node. Reversing one next pointer immediately destroys the direct route to the untouched suffix, so the operation must preserve that route before changing anything. The algorithm\u2019s variables describe a clean split between finished and unfinished nodes.",
+    "Reverse one link at a time. Before changing a node's next link, save where it originally led. Point the current node back to the reversed part, then continue from the saved next node. Saving that link is what keeps the rest of the list reachable.",
     "previous is the head of the already reversed prefix, and current is the head of the original remaining suffix. Save current.next as following, redirect current.next to previous, then advance both pointers. The initial previous=None makes the original head become the final tail with a null next link automatically.",
-    "Each iteration transfers exactly one original node from the untouched suffix to the front of the reversed prefix. No values are copied or changed, and no new output nodes are needed. When current becomes None, the whole input has moved into the reversed prefix, whose head is previous. Returning current at that point would return an empty list, which is a common final-step mistake."
+    "Each iteration transfers exactly one original node from the untouched suffix to the front of the reversed prefix. No values are copied or changed, and no new output nodes are needed. When current becomes None, the whole input has moved into the reversed prefix, whose head is previous.",
+    "Returning current at that point would return an empty list, which is a common final-step mistake."
   ],
   "walkthrough": {
     "input": {
@@ -15,11 +16,11 @@
       ]
     },
     "steps": [
-      "For 1\u21922\u21923\u21924\u21925, start previous=None and current=node 1.",
+      "For 1→2→3→4→5, start previous=None and current=node 1.",
       "Save node 2 as following, then point node 1 to None. Advance previous to node 1 and current to node 2.",
-      "Save node 3, then point node 2 to node 1. The completed prefix is now 2\u21921.",
+      "Save node 3, then point node 2 to node 1. The completed prefix is now 2→1.",
       "Repeat for nodes 3, 4, and 5. Each new node points to the current reversed-prefix head.",
-      "current becomes None and previous is node 5. Return the chain 5\u21924\u21923\u21922\u21921."
+      "current becomes None and previous is node 5. Return the chain 5→4→3→2→1."
     ],
     "result": [
       5,
@@ -41,6 +42,142 @@
     {
       "code": "previous, current = current, following",
       "note": "Advance the boundary between processed and unprocessed nodes; the saved following prevents accidentally walking backward along the new edge."
+    }
+  ],
+  "keyDecision": "Save current.next before assigning current.next = previous.",
+  "figures": [
+    {
+      "title": "Save the next link before reversing",
+      "caption": "One iteration at node 2. The reversed part and untouched part are separate chains. Arrows are next links, not movement directions.",
+      "afterStep": 2,
+      "panels": [
+        {
+          "title": "Before: two separate parts",
+          "rows": [
+            {
+              "label": "Reversed part",
+              "values": [
+                "1",
+                "None"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "previous",
+                ""
+              ],
+              "connector": "→"
+            },
+            {
+              "label": "Untouched part",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "None"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "current",
+                "",
+                "",
+                "",
+                ""
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "previous refers to node 1. current refers to node 2."
+        },
+        {
+          "title": "Action: save, then redirect",
+          "rows": [
+            {
+              "label": "Saved route into the suffix",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "None"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "following",
+                "",
+                "",
+                ""
+              ],
+              "connector": "→"
+            },
+            {
+              "label": "Reversed link",
+              "values": [
+                "2",
+                "1",
+                "None"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "current",
+                "",
+                ""
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "Save following = node 3. Only then change node 2.next to node 1."
+        },
+        {
+          "title": "After: advance the pointers",
+          "rows": [
+            {
+              "label": "Reversed part",
+              "values": [
+                "2",
+                "1",
+                "None"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "previous",
+                "",
+                ""
+              ],
+              "connector": "→"
+            },
+            {
+              "label": "Untouched part",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "None"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "current",
+                "",
+                "",
+                ""
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "previous becomes node 2; current becomes the saved node 3. Nodes 3, 4, and 5 remain reachable."
+        }
+      ]
     }
   ]
 }

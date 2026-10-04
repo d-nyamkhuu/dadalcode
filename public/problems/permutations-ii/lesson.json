@@ -10,7 +10,7 @@
     "1 <= len(nums) <= 8",
     "-10 <= nums[i] <= 10"
   ],
-  "intuition": "Equal values are indistinguishable in the final word but still occupy separate input positions. Sort them, track used positions, and allow a later equal occurrence only after its predecessor has been used. That gives each value sequence one canonical assignment of positions.",
+  "intuition": "Equal input values can produce the same ordering through different positions. Sort the input and build an ordering from unused positions. For equal values, use the earlier occurrence first. This keeps one way to build each distinct ordering while still allowing all copies to appear.",
   "approach": [
     "Sort nums and initialize used flags.",
     "At each depth try unused positions.",

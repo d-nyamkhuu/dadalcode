@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
-export const screenshotDirectory = join(tmpdir(), "pattern-lab-qa");
+export const screenshotDirectory = join(tmpdir(), "dadalcode-qa");
 export function browserExecutable(chromium, override) {
   if (override) return override;
   if (existsSync(chromium.executablePath())) return undefined;

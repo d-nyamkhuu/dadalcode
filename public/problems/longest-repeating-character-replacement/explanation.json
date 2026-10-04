@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "For a chosen substring, the cheapest way to make all letters equal is to keep its most frequent letter and replace everything else. The cost is window length minus the largest frequency. Counting different letter kinds would be wrong: a window containing three Bs and two As needs two changes, not one.",
+    "For any continuous window, keep its most common letter and replace the others. The required number of replacements is the window length minus that letter's count. Extend the window, then shrink it if that cost exceeds k. Save the longest window that fits.",
     "Examining every substring repeats frequency work. Maintain a window and update its counts as right advances. If its exact replacement cost exceeds k, remove characters from left until the cost fits again. The reference recomputes the maximum count after removals rather than keeping a historical maximum, so every displayed window is genuinely valid.",
-    "With a fixed right endpoint, shrinking removes invalid larger windows until the longest valid remaining one is reached. Record its length, then continue. Both boundaries move only forward; finding the maximum among at most 26 counts is constant-sized work. An optimal letter can change as the window changes, so the algorithm does not commit to making every window the same letter. It only asks whether some letter can dominate within the budget.",
+    "With a fixed right endpoint, shrinking removes invalid larger windows until the longest valid remaining one is reached. Record its length, then continue. Both boundaries move only forward; finding the maximum among at most 26 counts is constant-sized work.",
+    "A best possible letter can change as the window changes, so the algorithm does not commit to making every window the same letter. It only asks whether some letter can dominate within the budget.",
     "A common length-only optimization remembers a historical maximum frequency instead of recomputing the current one. Its temporary window may be invalid even though its recorded best length remains correct, so it needs a different proof. Keep the exact current counts here because the displayed window is intended to satisfy the replacement budget after every repair."
   ],
   "walkthrough": {
@@ -33,5 +34,6 @@
       "code": "best = max(best, right - left + 1)",
       "note": "Record only a repaired valid window, while preserving larger answers from earlier endpoints."
     }
-  ]
+  ],
+  "keyDecision": "Use the actual maximum count in this reference: window length - maximum frequency must be <= k."
 }

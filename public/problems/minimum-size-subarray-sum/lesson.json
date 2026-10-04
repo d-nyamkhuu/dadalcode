@@ -11,7 +11,7 @@
     "1 <= nums[i] <= 10^4",
     "1 <= target <= 10^9"
   ],
-  "intuition": "Positive values make the sum grow when extending the right end and shrink when removing the left end. For each right endpoint, repeatedly remove left values while the window still qualifies. This finds its shortest valid window without revisiting discarded positions.",
+  "intuition": "Keep a continuous group of numbers and its sum. Add a number on the right until the sum reaches the target. Then remove numbers from the left while the sum still qualifies. Positive inputs make this safe: removing a number always reduces the sum.",
   "approach": [
     "Extend right and add nums[right] to total.",
     "While total>=target, update the best length and remove nums[left].",

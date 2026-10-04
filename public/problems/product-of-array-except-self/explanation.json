@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Computing the product of every other element separately repeats most multiplications. Dividing a total product by each element seems faster, but division is prohibited and zeros make that strategy awkward. Instead, split the required product into values strictly before the index and values strictly after it.",
+    "For each position, multiply everything before it by everything after it. First make a forward pass to save the product on the left. Then make a backward pass to multiply in the product on the right. Excluding the current value happens naturally, without division or special handling for zero.",
     "The output array can store the left-side products during a forward pass. Begin prefix at the multiplication identity 1, write that prefix into the current output slot, and only then include the current input value. This order is what excludes the value at the slot being answered.",
-    "A backward pass carries the right-side product in one scalar suffix. Multiply each stored prefix by that suffix before including the current element in the suffix. The two disjoint portions cover every other index exactly once. Empty portions contribute 1 naturally, so both endpoint cases work without branches. Zero behavior also follows from the same arithmetic: one zero leaves only its own output potentially nonzero, while two zeros make every output zero."
+    "A backward pass carries the right-side product in one scalar suffix. Multiply each stored prefix by that suffix before including the current element in the suffix. The two disjoint portions cover every other index exactly once. Empty portions contribute 1 naturally, so both endpoint cases work without branches.",
+    "Zero behavior also follows from the same arithmetic: one zero leaves only its own output potentially nonzero, while two zeros make every output zero."
   ],
   "walkthrough": {
     "input": {
@@ -39,6 +40,85 @@
     {
       "code": "suffix *= nums[i]",
       "note": "Including the current value only after writing its answer makes it available to earlier indices, where it belongs on the right side."
+    }
+  ],
+  "keyDecision": "Store the running product before multiplying in the current number on each pass.",
+  "figures": [
+    {
+      "title": "Multiply the two sides of one index",
+      "caption": "At index 2, the input value 3 must be excluded. The forward and backward products meet at this position.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: split around index 2",
+          "rows": [
+            {
+              "label": "Input",
+              "values": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "highlight": [
+                2
+              ],
+              "labels": [
+                "0",
+                "1",
+                "2: exclude",
+                "3"
+              ]
+            }
+          ],
+          "note": "The values to the left are 1 and 2; the only value to the right is 4."
+        },
+        {
+          "title": "Check: use saved side products",
+          "rows": [
+            {
+              "label": "Left product",
+              "values": [
+                "1 × 2 = 2"
+              ]
+            },
+            {
+              "label": "Right product",
+              "values": [
+                "4"
+              ]
+            }
+          ],
+          "note": "The forward pass saved 1 × 2 = 2. The backward pass currently holds suffix = 4."
+        },
+        {
+          "title": "After: write this answer cell",
+          "rows": [
+            {
+              "label": "Output at index 2",
+              "values": [
+                "8"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Completed output",
+              "values": [
+                "24",
+                "12",
+                "8",
+                "6"
+              ],
+              "highlight": [
+                2
+              ]
+            }
+          ],
+          "note": "Multiply 2 × 4 = 8. The current value 3 never enters the product for this cell."
+        }
+      ]
     }
   ]
 }

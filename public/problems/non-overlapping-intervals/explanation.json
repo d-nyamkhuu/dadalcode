@@ -1,7 +1,7 @@
 {
   "intuition": [
-    "The requested removals are the complement of a largest compatible set. Searching all subsets is exponential, but viewing the task as selecting intervals suggests a greedy rule. We want each retained interval to leave as much timeline as possible for the remaining ones.",
-    "An earliest-finishing interval is safe to retain first. Replacing an optimal schedule’s first interval with this one cannot invalidate its later intervals, because the replacement ends no later. The same argument applies after every selected interval, giving an optimal chain rather than a merely plausible heuristic.",
+    "Keep as many non-overlapping intervals as possible, then remove the rest. Choose the interval that ends earliest because it leaves the most room for future intervals. Repeat among intervals starting after the chosen end. Sorting by start alone would not guarantee this best choice.",
+    "An earliest-finishing interval is safe to retain first. Replacing a best possible schedule’s first interval with this one cannot invalidate its later intervals, because the replacement ends no later. The same argument applies after every selected interval, giving a best possible chain rather than a merely plausible heuristic.",
     "Sort by end time and remember only the last retained end. An interval starting before that boundary conflicts and is skipped; one starting at the boundary is compatible. Counting retained intervals and subtracting from the original count converts the selection result into minimum removals.",
     "Endpoint equality is compatible in this scheduling problem: [-5,-3] and [-3,-1] can both remain. In merge-intervals, the intervals are closed and share their boundary point, so touching components are merged instead. The inequality must follow each problem's stated meaning, rather than a memorized interval template."
   ],
@@ -49,5 +49,6 @@
       "code": "return len(intervals) - kept",
       "note": "The greedy scan maximizes retained count; subtracting translates that result into the requested minimum number removed."
     }
-  ]
+  ],
+  "keyDecision": "Keep a next interval when start >= the last kept end. Touching endpoints are allowed here."
 }

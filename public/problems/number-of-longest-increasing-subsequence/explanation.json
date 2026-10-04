@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Finding an increasing subsequence’s maximum length is not enough to count how many achieve it. Different earlier choices can produce the same length, and equal-valued elements at different indices are distinct choices even though they cannot extend one another in a strictly increasing sequence.",
+    "For each position, save the longest increasing subsequence ending there and how many ways achieve that length. Extend from earlier smaller values. A better length replaces the saved count; an equal length adds more ways. Finally add counts for all endpoints with the overall best length.",
     "For each endpoint i, store length[i], the best increasing length ending there, and ways[i], the number of index sequences achieving that length. A single element begins with length one and count one. Every smaller earlier value at j proposes a continuation of length length[j]+1.",
-    "An improved proposal replaces the previous count because shorter constructions no longer matter. An equally good proposal adds its count: sequences with different previous indices are disjoint, so their counts combine without duplication. After processing all endpoints, find the global longest length and sum ways over every endpoint attaining it. Counting only the final index would miss longest sequences finishing earlier. This endpoint-based decomposition explains both the transition and why the final sum counts each optimal subsequence exactly once.",
+    "An improved proposal replaces the previous count because shorter constructions no longer matter. An equally good proposal adds its count: sequences with different previous indices are disjoint, so their counts combine without duplication. After processing all endpoints, find the global longest length and sum ways over every endpoint attaining it.",
+    "Counting only the final index would miss longest sequences finishing earlier. This endpoint-based decomposition explains both the transition and why the final sum counts each best possible subsequence exactly once.",
     "For the main example, the complete length/ways arrays after each endpoint are: after 1, [1,1,1,1,1]/[1,1,1,1,1]; after 3, [1,2,1,1,1]/[1,1,1,1,1]; after 5, [1,2,3,1,1]/[1,1,1,1,1]; after 4, [1,2,3,3,1]/[1,1,1,1,1]; after 7, [1,2,3,3,4]/[1,1,1,1,2]. Entries after the processed endpoint still hold their singleton initialization."
   ],
   "walkthrough": {
@@ -37,5 +38,6 @@
       "code": "ways[i] += ways[j]",
       "note": "A tied best length contributes disjoint sequences classified by their different previous index, so the counts add."
     }
-  ]
+  ],
+  "keyDecision": "Add counts only for equal best lengths. Replace the count when a strictly longer candidate is found."
 }

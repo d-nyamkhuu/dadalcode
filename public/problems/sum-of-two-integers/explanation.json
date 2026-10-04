@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Simulate binary column addition with an explicit bit list and a carry. XOR/AND apply those same column operations to every bit at once. Ordinary arithmetic is disallowed, so the algorithm must reproduce binary column addition using allowed bit operations.",
-    "At each bit position, XOR computes the sum bit when incoming carries are temporarily ignored. AND finds pairs of one bits that generate a carry; shifting moves those carries into the next higher positions. Repeat this decomposition until the carry word vanishes. Python integers need special handling because negative values have unbounded sign extension: a 32-bit mask makes carry propagation finite. Finally interpret a word with its high bit set as a signed two\u2019s-complement integer, using complement operations rather than prohibited subtraction.",
-    "For fixed-width words, XOR plus shifted AND preserves the arithmetic sum modulo 2^32. Every iteration moves outstanding carry bits left, so all disappear after at most 32 shifts. The final word therefore represents the correct sum. Because the result fits signed 32-bit range, signed conversion yields the ordinary integer answer. The bounded word width guarantees carry termination even for negative inputs.",
+    "Binary addition separates into a sum without carry and a carry. XOR gives the sum bits, while AND finds positions where two 1s create a carry. Shift those carries left and repeat until none remain. Use 32-bit masking so negative Python integers also have a fixed-width representation.",
+    "At each bit position, XOR computes the sum bit when incoming carries are temporarily ignored. AND finds pairs of one bits that generate a carry; shifting moves those carries into the next higher positions. Repeat this decomposition until the carry word vanishes.",
+    "Python integers need special handling because negative values have unbounded sign extension: a 32-bit mask makes carry propagation finite. Finally interpret a word with its high bit set as a signed two’s-complement integer, using complement operations rather than prohibited subtraction.",
+    "For fixed-width words, XOR plus shifted AND preserves the arithmetic sum modulo 2^32. Every iteration moves outstanding carry bits left, so all disappear after at most 32 shifts. The final word therefore represents the correct sum. Because the result fits signed 32-bit range, signed conversion yields the ordinary integer answer.",
+    "The bounded word width guarantees carry termination even for negative inputs.",
     "The trainer enforces the explicit operator rule by rejecting binary or augmented addition and subtraction in submitted source. Unary negative literals remain legal. This teaching check does not claim to detect every possible way to delegate arithmetic; use the bitwise algorithm rather than hiding an addition elsewhere."
   ],
   "walkthrough": {
@@ -30,7 +32,85 @@
     },
     {
       "code": "return a if a <= signed_max else ~(a ^ mask)",
-      "note": "A high-bit word represents a negative signed result; complementing its inverted low bits reconstructs Python\u2019s negative integer."
+      "note": "A high-bit word represents a negative signed result; complementing its inverted low bits reconstructs Python’s negative integer."
+    }
+  ],
+  "keyDecision": "Mask every carry to 32 bits, then convert the final word back to a signed integer.",
+  "figures": [
+    {
+      "title": "Carry moves one bit to the left",
+      "caption": "Show only the low four bits of 32-bit words. For a = 3 and b = 5, each round uses the old a and b for both calculations.",
+      "afterStep": 1,
+      "panels": [
+        {
+          "title": "Before: input bits",
+          "rows": [
+            {
+              "label": "a and b",
+              "values": [
+                "0011",
+                "0101"
+              ],
+              "labels": [
+                "a = 3",
+                "b = 5"
+              ]
+            }
+          ],
+          "note": "Bitwise XOR combines differing bits. Bitwise AND finds shared one bits."
+        },
+        {
+          "title": "Check: sum without carry and carry",
+          "rows": [
+            {
+              "label": "XOR sum",
+              "values": [
+                "0110"
+              ],
+              "labels": [
+                "6"
+              ]
+            },
+            {
+              "label": "Shifted AND carry",
+              "values": [
+                "0010"
+              ],
+              "labels": [
+                "2"
+              ]
+            }
+          ],
+          "note": "0011 XOR 0101 = 0110. Shared one bits are 0001, shifted left to 0010."
+        },
+        {
+          "title": "After: repeat until carry is zero",
+          "rows": [
+            {
+              "label": "Next (a, b) pairs",
+              "values": [
+                "(4, 4)",
+                "(0, 8)",
+                "(8, 0)"
+              ],
+              "connector": "→"
+            },
+            {
+              "label": "Final bits",
+              "values": [
+                "1000"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "8"
+              ]
+            }
+          ],
+          "note": "The sum is preserved across rounds. The final carry is zero, so a contains 8."
+        }
+      ]
     }
   ]
 }

@@ -6,15 +6,17 @@ The catalog is adapted from [Sean Prashad's LeetCode Patterns](https://seanprash
 
 Changes include corrected canonical LeetCode numbers, omission of company-frequency data from the working catalog, original teaching material, Python solutions, fixtures, adapters, and visualizations. Original source IDs and the unmodified metadata snapshot are retained for provenance. This trainer is intended for personal noncommercial study. The repository's MIT license applies to original application code, not a relicensing of the source catalog or third-party material.
 
+Study plan memberships, group titles, and ordering in `src/data/study-plans.json` are adapted from Sean Prashad’s [beginner](https://seanprashad.com/leetcode-patterns/?view=beginner) and [experienced](https://seanprashad.com/leetcode-patterns/?view=experienced) roadmaps, retrieved on 2026-10-04, under the same source license. The beginner track contains 68 problems and the experienced track contains the Blind 75. Group goals and interface guidance are paraphrased for this trainer, and beginner group numbers are sequential rather than retaining gaps and duplicates in the source labels.
+
 Each lesson links its problem sources. Premium-listed problems have an accessible alternative statement, primarily [Doocs LeetCode Wiki](https://leetcode.doocs.org/) and [LeetCode.ca](https://leetcode.ca/). Educational prose, examples, implementation comments, and reference implementations were independently authored. Third-party pages remain the property of their respective authors; links do not imply affiliation or endorsement.
 
 ## Runtime and interface dependencies
 
-React, Vite, TypeScript, CodeMirror, Lucide, Pyodide, and Playwright retain their respective package licenses, available in installed package directories. Pyodide includes Python and its standard library. [Inter](https://rsms.me/inter/) by Rasmus Andersson is distributed under the SIL Open Font License through `@fontsource-variable/inter`; its license is included in that package.
+React, CodeMirror, Lucide, and Pyodide retain their respective licenses. Pyodide includes Python and its standard library. Every build collects runtime dependency licenses into `third-party-licenses.txt`, linked from the published Credits and licenses page. Exact Pyodide, Python, and Emscripten license texts are vendored in `licenses/`. Unmodified Pyodide source for the bundled version is available at https://github.com/pyodide/pyodide/tree/0.29.5; the corresponding Python and compiler sources are linked in `licenses/README.md`. Vite, TypeScript, Playwright, and lint/format tools are development dependencies. The interface uses system fonts; no font files are distributed. Earlier revisions bundled Inter under the SIL Open Font License; that dependency has been removed.
 
 ## Design references
 
-The four desktop mockups in `design/` were generated with the built-in ImageGen tool for this project. Exact prompts are retained in `design/prompts.json`. They guide the implemented interface and are not rendered as working application controls.
+The figure-family and learning-figure references in `design/` were generated with the built-in ImageGen tool for this project. Their prompts accompany them. They guide the implemented interface and are not rendered as working application controls.
 
 The three contextual lesson illustrations in `public/illustrations/` were also generated with the built-in ImageGen tool. Their exact prompts are retained in `design/illustrations/prompts.json`. They illustrate physical concepts; executable algorithm states are rendered separately from trace data.
 

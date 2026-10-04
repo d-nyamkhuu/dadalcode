@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Enumerate permutations and insert the minimum necessary idle slots, which is factorial in the number of tasks. A heap simulation is another practical option, especially when an actual schedule is needed. A complete task ordering is unnecessary when only its minimum length is required; frequency constraints provide matching lower bounds.",
-    "Let f be the largest frequency. Its f occurrences force f-1 separation frames, each at least n+1 intervals from one occurrence start to the next. If t different labels have that maximum frequency, all t still appear in the final partial frame. This yields (f-1)(n+1)+t. Other labels fill the separation slots, reducing idle time; if there are enough of them, the total task count becomes the stronger bound. The answer is the larger of these two limits, not their sum.",
-    "The f occurrences of a most-frequent label require f-1 separations of n+1 positions; the t tied labels add t final occurrences, yielding the frame lower bound. All tasks also require their own slots. Arrange high-frequency labels across these frames and fill gaps with remaining labels; when there are more tasks than frame slots, distribute them so the gaps expand. This realizes the larger lower bound. Count N tasks, then inspect at most 26 label frequencies.",
+    "Repeated tasks need enough space between their copies. The most frequent task creates the minimum number of separated groups. Other tasks can fill those gaps. Compare the length forced by those repeats with the total number of tasks; the larger number is the required schedule length.",
+    "Let f be the largest frequency. Its f occurrences force f-1 separation frames, each at least n+1 intervals from one occurrence start to the next. If t different labels have that maximum frequency, all t still appear in the final partial frame. This yields (f-1)(n+1)+t.",
+    "Other labels fill the separation slots, reducing idle time; if there are enough of them, the total task count becomes the stronger bound. The answer is the larger of these two limits, not their sum.",
+    "The f occurrences of a most-frequent label require f-1 separations of n+1 positions; the t tied labels add t final occurrences, yielding the frame lower bound. All tasks also require their own slots. Arrange high-frequency labels across these frames and fill gaps with remaining labels; when there are more tasks than frame slots, distribute them so the gaps expand.",
+    "This realizes the larger lower bound. Count N tasks, then inspect at most 26 label frequencies.",
     "For a concrete saturated construction, consider A,A,B,B,C,C,D,D with cooldown 1. The frame bound is (2-1)*2+4=6, but eight executions are unavoidable. The ordering A,B,C,D,A,B,C,D expands the two groups to width four; each repeat has three intervening tasks and no idle time is needed. These are discrete unit intervals with a common cooldown; task-specific cooldowns would require a different analysis."
   ],
   "walkthrough": {
@@ -39,5 +41,6 @@
       "code": "return max(len(tasks), frame)",
       "note": "Either executions or cooldown spacing dominates; sufficient diverse tasks fill gaps without requiring extra idle time."
     }
-  ]
+  ],
+  "keyDecision": "With maximum frequency f and t labels tied at f, the bound is (f - 1) × (n + 1) + t."
 }

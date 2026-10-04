@@ -11,19 +11,19 @@
     "1 <= coin <= 2147483647",
     "0 <= amount <= 10000"
   ],
-  "intuition": "Choosing the final coin leaves a smaller amount with the same kind of problem. Store the best answer for every smaller amount, and try all possible final coins. This handles denomination sets for which taking the largest coin greedily is wrong.",
+  "intuition": "For each amount, ask which coin could be the last one used. Removing that coin leaves a smaller amount whose best answer is already saved. Add one coin to that answer and choose the smallest count. This avoids repeatedly solving the same smaller amounts.",
   "approach": [
     "Set dp[0]=0 and every other entry to an unreachable sentinel.",
     "For each amount from 1 upward, try every coin not exceeding it.",
     "Minimize dp[value] using dp[value-coin]+1.",
     "Convert an unreachable final value to -1."
   ],
-  "correctness": "Any nonempty coin composition has a final coin c and a composition of value-c. Inductively dp[value-c] is its optimal cost. Trying every c therefore considers an optimal composition\u2019s last coin, and no candidate can be cheaper than a real composition. The minimum is exact.",
+  "correctness": "Any nonempty coin composition has a final coin c and a composition of value-c. Inductively dp[value-c] is its best possible cost. Trying every c therefore considers a best possible composition’s last coin, and no candidate can be cheaper than a real composition. The minimum is exact.",
   "bruteForce": "Recursively try every possible next coin without storing repeated amounts; the branching causes exponential repeated work.",
   "complexity": {
-    "time": "O(amount \u00d7 number of coins)",
+    "time": "O(amount × number of coins)",
     "space": "O(amount)",
-    "explanation": "Each table entry examines all denominations; amount+1 slots hold optimal counts."
+    "explanation": "Each table entry examines all denominations; amount+1 slots hold best possible counts."
   },
   "pitfalls": [
     "Largest-coin-first is not valid for arbitrary denominations.",
@@ -34,6 +34,10 @@
     {
       "label": "LeetCode",
       "url": "https://leetcode.com/problems/coin-change/"
+    },
+    {
+      "label": "Runestone · saved smaller answers",
+      "url": "https://runestone.academy/ns/books/published/pythonds3/Recursion/DynamicProgramming.html"
     }
   ],
   "visualization": {

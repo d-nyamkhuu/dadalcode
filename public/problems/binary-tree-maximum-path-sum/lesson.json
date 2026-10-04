@@ -11,14 +11,14 @@
     "1 <= number of nodes <= 30,000",
     "-1000 <= node.val <= 1000"
   ],
-  "intuition": "A path can turn at one highest node and use both its child branches. But a branch passed to a parent may use only one child, or it would fork. Negative child contributions are best excluded; the node itself must still be counted.",
+  "intuition": "A path may pass through a node and use both of its child branches. But a path extended to the node's parent can use only one child branch. Calculate both quantities separately: the best complete path through this node, and the best single branch to pass upward.",
   "approach": [
     "Use an explicit postorder stack to visit children before their parent.",
-    "Read each child\u2019s best downward gain and clip negative gains to zero.",
+    "Read each child’s best downward gain and clip negative gains to zero.",
     "Score a path through the node using both gains, then store one-branch gain for its parent."
   ],
   "correctness": "Every simple tree path has a unique highest node. At that node, its two downward parts are optimized by the child gains, and including a negative part cannot help. Evaluating every possible highest node finds the best path; storing only one branch ensures a parent extension remains a path.",
-  "bruteForce": "Try every pair of endpoints and compute their connecting path, costing up to O(n\u00b3) without additional preprocessing.",
+  "bruteForce": "Try every pair of endpoints and compute their connecting path, costing up to O(n³) without additional preprocessing.",
   "complexity": {
     "time": "O(n)",
     "space": "O(n)",
@@ -33,6 +33,10 @@
     {
       "label": "LeetCode problem",
       "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/"
+    },
+    {
+      "label": "LeetCode Wiki · branch gains",
+      "url": "https://leetcode.doocs.org/en/lc/124/"
     }
   ],
   "visualization": {

@@ -12,7 +12,7 @@
     "nums is a rotation of an increasing sequence.",
     "-10000 <= nums[i], target <= 10000."
   ],
-  "intuition": "Rotation introduces at most one drop. Splitting at mid therefore leaves at least one half sorted. Use that half's endpoints to decide whether the target belongs inside it, then discard the other half.",
+  "intuition": "The array was sorted before it was rotated. Around any middle position, at least one side is still sorted. Identify that side and check whether its value range includes the target. This tells us which half to keep without scanning every number.",
   "approach": [
     "Keep an inclusive left/right candidate range.",
     "Return mid immediately on a match.",

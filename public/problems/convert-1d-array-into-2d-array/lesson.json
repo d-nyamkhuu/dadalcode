@@ -11,7 +11,7 @@
     "1 <= original[i] <= 100000.",
     "1 <= m,n <= 40000."
   ],
-  "intuition": "Reshaping changes grouping rather than order. A valid shape needs exactly m*n entries, and row r receives the block beginning at r*n. Check the size before allocating rows.",
+  "intuition": "A matrix with m rows and n columns needs exactly m × n values. Check that size first. Then take consecutive groups of n input values as rows. The groups preserve the original order and use each value exactly once; no rearrangement is required.",
   "approach": [
     "Reject unless len(original) equals m*n.",
     "For each row index, compute its starting offset.",

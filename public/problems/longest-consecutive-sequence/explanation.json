@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "Sorting the input would group consecutive values, but its O(n log n) cost exceeds the requested expected linear bound. A hash set supplies constant-time membership checks and removes duplicates, which are irrelevant to the length of a sequence of distinct consecutive integer values.",
+    "Put the values in a set so you can quickly check whether a number exists. Begin counting a consecutive run only at a value whose previous number is absent. This avoids counting the same long run again from every point inside it.",
     "The potential trap is repeatedly walking the same run. If values 1 through 1000 exist, starting a forward scan at every value repeats most of that run and becomes quadratic. Begin only at a value whose predecessor is absent; that value is the unique beginning of its maximal run.",
-    "From a certified start, increase current until membership fails. The difference current-value is the run length. Every set value belongs to one maximal run and is walked from that run\u2019s unique start, so total walking work is linear even though the algorithm contains a loop inside a loop."
+    "From a certified start, increase current until membership fails. The difference current-value is the run length. Every set value belongs to one maximal run and is walked from that run’s unique start, so total walking work is linear even though the algorithm contains a loop inside a loop."
   ],
   "walkthrough": {
     "input": {
@@ -27,7 +27,7 @@
   "codeNotes": [
     {
       "code": "values = set(nums)",
-      "note": "The set removes duplicate occurrences and makes each membership lookup expected constant time, matching the problem\u2019s value-based sequence definition."
+      "note": "The set removes duplicate occurrences and makes each membership lookup expected constant time, matching the problem’s value-based sequence definition."
     },
     {
       "code": "if value - 1 in values:",
@@ -37,5 +37,6 @@
       "code": "length = current - value",
       "note": "current is the first absent value after the run, so subtracting the starting value gives exactly the count of consecutive present integers."
     }
-  ]
+  ],
+  "keyDecision": "Start a run at x only when x - 1 is absent. Then count x, x + 1, and so on."
 }

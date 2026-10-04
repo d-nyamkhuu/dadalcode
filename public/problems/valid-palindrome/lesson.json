@@ -10,7 +10,7 @@
     "1 <= len(s) <= 200,000",
     "s contains printable ASCII characters"
   ],
-  "intuition": "Compare the outermost meaningful characters directly. Skipping punctuation on each side avoids constructing a separate normalized string.",
+  "intuition": "Compare the first and last relevant characters, then move inward. Skip punctuation and spaces, and compare letters without case differences. A mismatch proves the string is not a palindrome. If all mirrored pairs match, the normalized text reads the same in both directions.",
   "approach": [
     "Initialize left and right at the string ends.",
     "Advance each pointer past non-alphanumeric characters.",
@@ -22,7 +22,7 @@
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",
-    "explanation": "Time O(n); auxiliary space O(1). Output storage is excluded unless stated."
+    "explanation": "Time O(n); additional space O(1). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Digits are alphanumeric and must be compared.",

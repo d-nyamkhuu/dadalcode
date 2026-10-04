@@ -13,7 +13,7 @@
     "Words are distinct lowercase strings of length 1..10",
     "Board cells are lowercase English letters."
   ],
-  "intuition": "Search the board once against a trie of all words. When the current path is not any dictionary prefix, stop that branch immediately.",
+  "intuition": "Many words share their first letters. Store those shared beginnings in a trie, then walk the board while following trie paths. If a board path does not match any stored beginning, stop that search immediately. This avoids searching the entire board separately for every word.",
   "approach": [
     "Insert each word into a nested dictionary trie and store the complete word at its terminal node.",
     "Start DFS from each board cell; follow the corresponding trie edge only if present.",

@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "For every node, scan its whole left and right subtrees for violations, which can cost O(n\u00b2). Bound propagation visits each node once. A node can satisfy its parent\u2019s comparison and still violate a more distant ancestor, so local child checks do not establish the global property.",
-    "Associate each pending node with an open numeric interval. The interval summarizes every ancestor constraint without retaining all ancestor values separately. For a left child, the parent becomes a stricter upper bound; for a right child, it becomes a stricter lower bound. Infinite initial endpoints admit any legal integer at the root. The explicit stack gives the same depth-first reasoning as recursion while avoiding the interpreter\u2019s recursion-depth limit on a long chain.",
-    "Each stack entry records exactly the bounds imposed by its ancestors. Passing those bounds means the node is correctly placed relative to all ancestors. The children receive the additional constraint from their parent. Therefore every node passes if and only if the whole tree obeys the strict subtree property. The depth-first stack contains pending branches bounded by tree height h; worst-case h=n."
+    "A node must obey every ancestor's rule, not only its parent's rule. Carry a lower and upper allowed value as you visit the tree. Moving left lowers the upper limit; moving right raises the lower limit. Reject any node outside its allowed range.",
+    "Associate each pending node with an open numeric interval. The interval summarizes every ancestor constraint without retaining all ancestor values separately. For a left child, the parent becomes a stricter upper bound; for a right child, it becomes a stricter lower bound. Infinite initial endpoints admit any legal integer at the root.",
+    "The explicit stack gives the same depth-first reasoning as recursion while avoiding the interpreter’s recursion-depth limit on a long chain.",
+    "Each stack entry records exactly the bounds imposed by its ancestors. Passing those bounds means the node is correctly placed relative to all ancestors. The children receive the additional constraint from their parent. Therefore every node passes if and only if the whole tree obeys the strict subtree property.",
+    "The depth-first stack contains pending branches bounded by tree height h; worst-case h=n."
   ],
   "walkthrough": {
     "input": {
@@ -33,6 +35,72 @@
     {
       "code": "stack.append((node.left, low, node.val))",
       "note": "The left subtree preserves the ancestor lower bound while narrowing its upper endpoint to the parent."
+    }
+  ],
+  "keyDecision": "Require lower < value < upper. Equal values are not allowed in this binary search tree.",
+  "figures": [
+    {
+      "title": "A descendant must obey ancestor bounds",
+      "caption": "Separate counterexample from the lesson tests: [5, 4, 6, null, null, 3, 7]. Node 3 is the left child of 6, inside the right subtree of 5.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: follow the ancestor route",
+          "rows": [
+            {
+              "label": "Route to the candidate",
+              "values": [
+                "5",
+                "6",
+                "3"
+              ],
+              "labels": [
+                "root",
+                "right child",
+                "then left child"
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "A right turn at 5 sets a lower limit of 5. A left turn at 6 sets an upper limit of 6."
+        },
+        {
+          "title": "Check: both limits apply",
+          "rows": [
+            {
+              "label": "Required bounds",
+              "values": [
+                "5 < value < 6"
+              ]
+            },
+            {
+              "label": "Actual check",
+              "values": [
+                "5 < 3 < 6: false"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "3 is smaller than its parent 6, but it is also smaller than ancestor 5. The parent check alone would miss this."
+        },
+        {
+          "title": "After: reject the tree",
+          "rows": [
+            {
+              "label": "Result for this counterexample",
+              "values": [
+                "False"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "This is not a valid binary search tree. Carrying both bounds finds the ancestor violation."
+        }
+      ]
     }
   ]
 }

@@ -11,7 +11,7 @@
     "Node values range from -10^5 to 10^5.",
     "pos is -1 or a valid index; hasCycle receives only head."
   ],
-  "intuition": "Use a slow pointer moving one link and a fast pointer moving two. In an acyclic list fast eventually reaches null. In a cycle, once both pointers enter it, their relative position changes by one per iteration, so fast must meet slow.",
+  "intuition": "Move one pointer one link at a time and another pointer two links at a time. If the list ends, there is no cycle. If it loops, the faster pointer eventually catches the slower one. Compare the actual nodes, because equal stored values do not mean the pointers have met.",
   "approach": [
     "Initialize slow and fast at head.",
     "While fast and fast.next exist, advance slow once and fast twice.",

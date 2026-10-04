@@ -11,7 +11,7 @@
     "-1000 <= node values <= 1000",
     "deserialize receives a string emitted by serialize."
   ],
-  "intuition": "Values alone cannot distinguish a left child from a right child. Preorder visits the parent before both children; explicit null tokens delimit every subtree. Deserialize by maintaining a stack of the next child slots to fill, avoiding recursive depth limits for skewed trees.",
+  "intuition": "A list of values alone cannot describe a tree's shape. Record empty child positions as well as node values while visiting root, left, then right. Read those records in the same order to rebuild each child position. The empty markers make reconstruction unambiguous.",
   "approach": [
     "Serialize with an explicit stack, emitting a value or # and pushing right then left children.",
     "Deserialize comma-separated tokens into pending (parent,side) slots.",

@@ -12,7 +12,7 @@
     "1 <= k <= len(nums).",
     "Values range from -10000 to 10000."
   ],
-  "intuition": "A newer value at least as large as an older candidate dominates it: the newer value is no smaller and expires later. Store surviving indices in decreasing value order so the front is always the current maximum.",
+  "intuition": "Keep possible maximum positions in a queue whose values decrease from front to back. A newer value can replace older candidates that are no larger, because it will remain in the window longer. Remove positions that have left the window. The front then gives the maximum.",
   "approach": [
     "Remove expired indices from the front.",
     "Remove back indices whose values are at most the new value.",

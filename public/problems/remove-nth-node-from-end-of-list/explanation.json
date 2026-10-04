@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A forward-only list does not provide the distance from a node to the tail. Counting the list and walking it again is valid, but we can locate the target during one coordinated traversal. The complication is that deletion requires the target’s predecessor rather than the target alone.",
+    "We need the node just before the one to remove. Use two pointers with a fixed gap between them. Move the front pointer first, then move both together. When the front pointer passes the end, the back pointer is in the right place to change one link.",
     "Place a dummy before the head and separate two pointers by n+1 links. Once the leading pointer has passed the tail, the trailing pointer sits immediately before the nth node from the end. The fixed gap converts an unknown total length into a known relative distance.",
     "The dummy makes removing the original head look exactly like any other deletion: change a predecessor’s next link. No values need changing, and the surviving nodes retain their order. Returning dummy.next also handles a list whose only node was removed."
   ],
@@ -43,5 +43,6 @@
       "code": "slow.next = slow.next.next",
       "note": "Bypass exactly one node. Both neighboring links already identify the retained prefix and suffix, so no additional reconstruction is needed."
     }
-  ]
+  ],
+  "keyDecision": "Keep the pointers n + 1 links apart, starting from a dummy node before the head."
 }

@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "The existing intervals are already sorted and disjoint, so sorting again throws away useful structure. Relative to the inserted interval, they form three consecutive regions: strictly earlier intervals, one possible overlap block, and strictly later intervals. A single scan can treat each region differently.",
-    "Every existing interval that overlaps the original insertion belongs to one contiguous block. The merged start and end track the union of that block and newInterval. Because the existing intervals are pairwise disjoint, extending the merged end cannot newly reach a later interval that was beyond the original insertion. Testing against the current end still gives a simple invariant: each interval accepted by the loop intersects the union being built.",
+    "The existing intervals are already sorted and do not overlap. Keep the intervals before the new one, combine the intervals that overlap it, then keep the intervals after it. Expand the new interval as you merge, because its growing end may reach another interval.",
+    "Every existing interval that overlaps the original insertion belongs to one contiguous block. The merged start and end track the union of that block and newInterval. Because the existing intervals are pairwise disjoint, extending the merged end cannot newly reach a later interval that was beyond the original insertion.",
+    "Testing against the current end still gives a simple invariant: each interval accepted by the loop intersects the union being built.",
     "The inequalities encode closed intervals. An existing interval ending exactly at the new start belongs to the merge, and an interval starting exactly at the merged end does too. Once a later start is strictly greater than that end, sorted order proves no following interval can overlap. The result can then append the untouched suffix in order."
   ],
   "walkthrough": {
@@ -52,5 +53,6 @@
       "code": "result.append([start, end])",
       "note": "Only after the overlap block is complete are its final bounds emitted, preventing several partially merged output intervals."
     }
-  ]
+  ],
+  "keyDecision": "Merge while the next interval starts at or before the current merged end."
 }

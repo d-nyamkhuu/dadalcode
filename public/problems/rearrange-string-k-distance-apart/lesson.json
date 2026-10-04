@@ -12,7 +12,7 @@
     "s contains lowercase English letters",
     "0 <= k <= len(s)"
   ],
-  "intuition": "Schedule the most frequent available character first so it does not run out of future slots. A cooldown queue hides each used character until its next legal position.",
+  "intuition": "Choose a character that is allowed now, favoring the one with the most copies left. After using it, keep it out of the available choices until k positions have passed. A heap chooses among available characters, while a queue remembers when waiting characters become available again.",
   "approach": [
     "Count characters and put negative counts in a min-heap to simulate a max-heap.",
     "Before each output position, release cooldown entries whose ready index has arrived.",
@@ -24,7 +24,7 @@
   "complexity": {
     "time": "O(n log σ), σ <= 26",
     "space": "O(σ) excluding output",
-    "explanation": "Time O(n log σ), σ <= 26; auxiliary space O(σ) excluding output. Output storage is excluded unless stated."
+    "explanation": "Time O(n log σ), σ <= 26; additional space O(σ) excluding output. Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Distance k means an index difference of at least k.",

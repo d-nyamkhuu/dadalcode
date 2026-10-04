@@ -10,18 +10,18 @@
     "0 <= number of nodes <= 10,000",
     "Node values range from -100 to 100"
   ],
-  "intuition": "Depth counts nodes along a path, so carry a depth with each node and remember the greatest depth visited. An explicit stack also handles a very skewed tree.",
+  "intuition": "Carry a depth beside each node you visit. The root has depth 1, and each child has its parent's depth plus 1. Save the largest depth seen. This measures the longest root-to-leaf path without needing to list every complete path.",
   "approach": [
     "Put (root,1) on a stack if root exists.",
     "Pop a node and depth, update the largest depth.",
     "Push existing children with depth+1; stop when the stack is empty."
   ],
   "correctness": "Every node is pushed once with its exact root-to-node depth because each child increases its parent depth by one. Every longest path ends at a visited leaf, so the maximum visited depth is exactly the maximum tree depth.",
-  "bruteForce": "Enumerate and copy every root-to-leaf path, then measure lengths; repeatedly copying paths can cost O(n*h).",
+  "bruteForce": "List and copy every root-to-leaf path, then measure lengths; repeatedly copying paths can cost O(n*h).",
   "complexity": {
     "time": "O(n)",
     "space": "O(h)",
-    "explanation": "Time O(n); auxiliary space O(h). Output storage is excluded unless stated."
+    "explanation": "Time O(n); additional space O(h). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Depth counts nodes rather than edges.",

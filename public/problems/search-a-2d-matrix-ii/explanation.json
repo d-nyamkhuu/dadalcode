@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Scanning every matrix cell ignores the information in its sorted rows and columns. Binary-searching the flattened matrix would also be unsafe: the last value of one row need not precede the first value of the next. Instead use a corner whose two possible movement directions have opposite effects on values.",
+    "Start in the top-right corner. If that value is too large, every value below it in the same column is also too large, so move left. If it is too small, every value to its left in that row is too small, so move down.",
     "At the top-right cell, every value to its left is no larger, while every value below is no smaller. If this corner is above target, its entire remaining column is too large, so move left. If it is below target, its entire remaining row is too small, so move down. Equality finishes the search immediately.",
-    "The unsearched candidates always form a rectangle below and to the left of the current corner. Each comparison removes a whole side without removing any possible target. Row and column indices only move in one direction, bounding the search by their combined lengths. This approach also handles repeated values: the eliminated side inequalities are sufficient even when neighboring values are equal."
+    "The unsearched candidates always form a rectangle below and to the left of the current corner. Each comparison removes a whole side without removing any possible target. Row and column indices only move in one direction, bounding the search by their combined lengths.",
+    "This approach also handles repeated values: the eliminated side inequalities are sufficient even when neighboring values are equal."
   ],
   "walkthrough": {
     "input": {
@@ -46,7 +47,7 @@
       "target": 5
     },
     "steps": [
-      "For the 5\u00d75 example and target 5, start at row 0, column 4, whose value is 15.",
+      "For the 5×5 example and target 5, start at row 0, column 4, whose value is 15.",
       "Since 15 is too large, eliminate column 4 and move left to 11.",
       "Eliminate the next column as well, then compare 7 at column 2.",
       "Seven is still above target, so move left to 4 at column 1.",
@@ -68,5 +69,6 @@
       "code": "row += 1",
       "note": "When the corner is too small, every remaining value leftward in that row is too small."
     }
-  ]
+  ],
+  "keyDecision": "One comparison removes an entire remaining row or column. Stop when you leave the matrix."
 }

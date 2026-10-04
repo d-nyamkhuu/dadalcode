@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "This is a general binary tree, so comparing p and q’s values cannot tell us which branch contains their ancestor. Repeated subtree searches can revisit many nodes. A direct alternative is to first provide the upward links that a normal binary-tree node does not store.",
+    "First remember each node's parent. Mark the ancestors of the first target, including the target itself. Then walk upward from the second target. The first marked node you reach is their lowest shared ancestor, because you encounter nearer ancestors before higher ones.",
     "An iterative traversal records each discovered node’s parent by identity. Once p and q are discovered, those records already include their complete chains to the root. Mark every ancestor of p, including p itself, then walk upward from q.",
     "The first marked node encountered from q is the lowest common ancestor: any later shared node is strictly higher on q’s chain. Using original node objects rather than values preserves the required identity. A target that is itself above the other target naturally becomes the answer because nodes count as their own ancestors."
   ],
@@ -39,5 +39,6 @@
       "code": "while current not in ancestors:",
       "note": "Starting from q makes the first intersection deepest on q’s chain and therefore lower than every other common ancestor."
     }
-  ]
+  ],
+  "keyDecision": "Compare node identities. Different nodes may store equal values."
 }

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Choosing k numbers in arbitrary order creates duplicate answers because [1,2] and [2,1] represent the same selection. Restricting every next number to be larger than the previous one gives each subset one unique construction. The search now creates combinations directly instead of repairing duplicates later.",
+    "Choose k different numbers from 1 through n. Always choose the next number after the previous one, so the same set is not repeated in another order. Stop a branch early when there are too few numbers left to fill the remaining positions.",
     "The state records the selected path and the smallest next allowed value. After choosing value, recurse with value+1. Distinctness and ascending order follow automatically from that boundary; there is no need for a used array or a set of completed results.",
     "The remaining count also limits the next choice. If needed numbers are missing from the path, the first must be at most n-needed+1 so enough larger values remain. This pruning removes unfinished branches before they begin, and saving a copied path prevents subsequent backtracking from changing an answer."
   ],
@@ -50,11 +50,12 @@
     },
     {
       "code": "for value in range(start, n - needed + 2):",
-      "note": "Python\u2019s range excludes its endpoint, so +2 includes the largest feasible start, n-needed+1, without entering branches too short to finish."
+      "note": "Python’s range excludes its endpoint, so +2 includes the largest feasible start, n-needed+1, without entering branches too short to finish."
     },
     {
       "code": "visit(value + 1)",
       "note": "Moving beyond the chosen value enforces distinctness and ascending construction, eliminating alternative orderings of the same selected set."
     }
-  ]
+  ],
+  "keyDecision": "A choice must leave enough larger numbers to complete all k positions."
 }

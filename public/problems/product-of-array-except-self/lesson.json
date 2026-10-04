@@ -11,7 +11,7 @@
     "-30 <= nums[i] <= 30",
     "No division"
   ],
-  "intuition": "The product excluding i is the product strictly to its left times the product strictly to its right. Two passes avoid division and naturally handle zeros.",
+  "intuition": "For each position, multiply everything before it by everything after it. First make a forward pass to save the product on the left. Then make a backward pass to multiply in the product on the right. Excluding the current value happens naturally, without division or special handling for zero.",
   "approach": [
     "Fill result[i] with the running product before including nums[i].",
     "Scan backwards with a suffix product initially 1.",
@@ -22,7 +22,7 @@
   "complexity": {
     "time": "O(n)",
     "space": "O(1) excluding result",
-    "explanation": "Two linear scans reuse the returned array for left products. Only the scalar prefix and suffix products and loop indices occupy auxiliary storage; the n output entries are excluded."
+    "explanation": "Two linear scans reuse the returned array for left products. Only the scalar prefix and suffix products and loop indices occupy additional storage; the n output entries are excluded."
   },
   "pitfalls": [
     "Update running products after writing the current index.",

@@ -11,7 +11,7 @@
     "Labels are uppercase A through Z.",
     "0 <= n <= 100."
   ],
-  "intuition": "If the highest frequency is f, its repeats force f-1 gaps of width n+1 between starts. If t labels share frequency f, the final group has t tasks. This creates a lower bound (f-1)(n+1)+t. The schedule also needs at least one interval per task. Enough other labels fill all gaps; otherwise idle slots supply the remainder.",
+  "intuition": "Repeated tasks need enough space between their copies. The most frequent task creates the minimum number of separated groups. Other tasks can fill those gaps. Compare the length forced by those repeats with the total number of tasks; the larger number is the required schedule length.",
   "approach": [
     "Count each label's frequency.",
     "Find f, the maximum frequency, and t, the number of labels achieving it.",
@@ -19,7 +19,7 @@
     "Return max(number of tasks, frame length)."
   ],
   "correctness": "The f occurrences of a most-frequent label require f-1 separations of n+1 positions; the t tied labels add t final occurrences, yielding the frame lower bound. All tasks also require their own slots. Arrange high-frequency labels across these frames and fill gaps with remaining labels; when there are more tasks than frame slots, distribute them so the gaps expand. This realizes the larger lower bound. For A,A,B,B,C,C,D,D with n=1, the bound from repeats is 6 while the task count is 8. Expanding the two groups to A,B,C,D realizes A,B,C,D,A,B,C,D with no idle intervals.",
-  "bruteForce": "Enumerate permutations and insert the minimum necessary idle slots, which is factorial in the number of tasks. A heap simulation is another practical option, especially when an actual schedule is needed.",
+  "bruteForce": "List permutations and insert the minimum necessary idle slots, which is factorial in the number of tasks. A heap simulation is another practical option, especially when an actual schedule is needed.",
   "complexity": {
     "time": "O(N + 26)",
     "space": "O(26), effectively O(1)",

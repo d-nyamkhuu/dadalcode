@@ -1,8 +1,10 @@
 {
   "intuition": [
-    "Try all index triples in O(n^3) time, then deduplicate their sorted values. Sorting exposes monotonic choices and reduces the search to O(n^2). Repeated values make enumeration especially wasteful: many distinct position triples describe exactly the same three values.",
-    "Sorting gives pointer movement a direction. With anchor -1, a total below zero cannot be fixed by decreasing the right value, so only increasing left can help. A positive total requires decreasing right. This argument lets one comparison eliminate many pairs. Duplicates need separate treatment because a correct zero-sum pair might be followed by identical values at adjacent positions; skipping them preserves completeness while enforcing unique output triplets.",
-    "For a fixed first value, a sum below zero rules out every pair using that left value with a smaller right value. A sum above zero similarly rules out that right value with a larger left value. Therefore pointer movements cannot skip a solution. Distinct anchors and duplicate skipping emit each value triplet exactly once. Sorting uses a copied array; each anchor scans the remaining range once."
+    "Sort the numbers so that larger values are to the right. Choose one number, then look for the other two using pointers at opposite ends of the remaining part. If the total is too small, move the left pointer. If it is too large, move the right pointer.",
+    "Sorting gives pointer movement a direction. With anchor -1, a total below zero cannot be fixed by decreasing the right value, so only increasing left can help. A positive total requires decreasing right. This argument lets one comparison eliminate many pairs.",
+    "Duplicates need separate treatment because a correct zero-sum pair might be followed by identical values at adjacent positions; skipping them preserves completeness while enforcing unique output triplets.",
+    "For a fixed first value, a sum below zero rules out every pair using that left value with a smaller right value. A sum above zero similarly rules out that right value with a larger left value. Therefore pointer movements cannot skip a solution. Distinct anchors and duplicate skipping emit each value triplet exactly once.",
+    "Sorting uses a copied array; each anchor scans the remaining range once."
   ],
   "walkthrough": {
     "input": {
@@ -42,11 +44,12 @@
     },
     {
       "code": "if i and anchor == values[i - 1]:",
-      "note": "A repeated anchor would re-enumerate the same value triplets, even though its position is different."
+      "note": "A repeated anchor would re-list the same value triplets, even though its position is different."
     },
     {
       "code": "while left < right and values[left] == values[left - 1]:",
       "note": "After a match, ignore equal left values so that the same triplet cannot be emitted again."
     }
-  ]
+  ],
+  "keyDecision": "After finding a triplet, skip equal values so the same value combination is not saved twice."
 }

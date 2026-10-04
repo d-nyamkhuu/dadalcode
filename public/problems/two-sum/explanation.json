@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "If you fix one number, its required partner is already determined: target minus that number. A brute-force solution nevertheless checks every later value, repeating nearly identical searches. The useful question is not which pair to try next, but whether the particular missing value has already appeared.",
+    "For each number, ask: what other number would make the target sum? Subtract the current number from the target to find that partner. Save earlier numbers and their positions in a dictionary. Then you can find the partner without trying every pair.",
     "A dictionary converts that question into a fast lookup. Its keys are values and its entries remember indices, because the requested answer is positional. Before index i is processed, the dictionary contains only earlier elements. This small invariant makes the distinct-index rule automatic rather than something to repair afterward.",
     "The order of operations is the important detail. Look for the complement first and insert the current value only after an unsuccessful lookup. With two equal values, the later copy can find the earlier copy; a lone value can never find itself. This works equally well for negatives and zero, since the reasoning uses addition rather than sorted order."
   ],
@@ -38,6 +38,111 @@
     {
       "code": "seen[value] = i",
       "note": "Insertion follows the lookup. Reversing those operations could incorrectly reuse the current element when target is twice its value."
+    }
+  ],
+  "keyDecision": "Look for the partner before saving the current number. This prevents using the same position twice.",
+  "figures": [
+    {
+      "title": "Find the missing partner",
+      "caption": "Use the example target 9. Small labels show array indices, not the values to return.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: save the first number",
+          "rows": [
+            {
+              "label": "Array",
+              "values": [
+                "2",
+                "7",
+                "11",
+                "15"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            {
+              "label": "Saved value → index",
+              "values": [
+                "2 → 0"
+              ]
+            }
+          ],
+          "note": "For value 2, the needed 7 is not saved yet. Save 2 at index 0."
+        },
+        {
+          "title": "Check: read the next number",
+          "rows": [
+            {
+              "label": "Array",
+              "values": [
+                "2",
+                "7",
+                "11",
+                "15"
+              ],
+              "highlight": [
+                1
+              ],
+              "labels": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            {
+              "label": "Needed partner",
+              "values": [
+                "9 - 7 = 2"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "For value 7, calculate 9 - 7 = 2. The saved map contains 2."
+        },
+        {
+          "title": "After: return two positions",
+          "rows": [
+            {
+              "label": "Matching values",
+              "values": [
+                "2",
+                "7"
+              ],
+              "highlight": [
+                0,
+                1
+              ],
+              "labels": [
+                "index 0",
+                "index 1"
+              ]
+            },
+            {
+              "label": "Answer indices",
+              "values": [
+                "0",
+                "1"
+              ],
+              "highlight": [
+                0,
+                1
+              ]
+            }
+          ],
+          "note": "Positions 0 and 1 are different, and their values add to 9."
+        }
+      ]
     }
   ]
 }

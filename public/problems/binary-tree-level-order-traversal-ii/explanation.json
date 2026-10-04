@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A bottom-up answer does not require discovering the deepest nodes first. Breadth-first traversal already groups nodes by depth with little bookkeeping. Collect those groups from the root down, then reverse the groups. Trying a separate traversal for every depth would repeatedly revisit upper nodes.",
+    "Collect the tree's levels from the root downward using a queue. Then reverse the list of levels. Reverse only the groups, keeping values within each group in left-to-right order. This gives the required bottom-up result with a simple, consistent traversal.",
     "At the start of a breadth-first round, the queue contains exactly the nodes for one depth. Save its length before processing them. The children appended during this round belong to the next depth and must wait until the next round. Enqueue each left child before its right child to preserve the required spatial ordering.",
-    "The distinction between reversing the outer list and reversing each row matters. The task wants deepest levels first but still left-to-right values inside every level. A final outer slice reversal changes only depth order. Queue size is bounded by tree width, and the complete answer necessarily stores every node value. An empty root yields no levels, while a singleton produces one one-element group."
+    "The distinction between reversing the outer list and reversing each row matters. The task wants deepest levels first but still left-to-right values inside every level. A final outer slice reversal changes only depth order. Queue size is bounded by tree width, and the complete answer necessarily stores every node value.",
+    "An empty root yields no levels, while a singleton produces one one-element group."
   ],
   "walkthrough": {
     "input": {
@@ -41,7 +42,7 @@
   "codeNotes": [
     {
       "code": "level_size = len(queue)",
-      "note": "Freeze this depth\u2019s size before new children are appended to the same queue."
+      "note": "Freeze this depth’s size before new children are appended to the same queue."
     },
     {
       "code": "queue.append(node.left)",
@@ -51,5 +52,6 @@
       "code": "return levels[::-1]",
       "note": "Reverse depth order without reversing values inside any level."
     }
-  ]
+  ],
+  "keyDecision": "Process exactly the queue's starting size for each level, then reverse the completed level list."
 }

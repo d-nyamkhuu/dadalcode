@@ -1,7 +1,8 @@
 import harness from "./harness.py?raw";
 import type { WorkerRequest, WorkerResponse } from "../types";
 
-let runtime: Promise<any> | undefined;
+import type { PyodideInterface } from "pyodide";
+let runtime: Promise<PyodideInterface> | undefined;
 function loadRuntime() {
   return (runtime ??= (async () => {
     const indexURL = new URL(

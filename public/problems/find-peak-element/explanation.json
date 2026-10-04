@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Scanning all positions finds a peak, but the required logarithmic time means we must discard a large part of the array after each comparison. Searching for the global maximum is unnecessary: any value greater than both neighbors is acceptable, including an endpoint with its outside neighbor treated as negative infinity.",
+    "Look at the slope between the middle value and the next value. If it rises, a peak exists on the right. If it falls, a peak exists at the middle or on the left. Keep that side. We need any peak, so finding the global maximum is unnecessary.",
     "Compare the middle value with the next value. A rise guarantees a peak somewhere to the right: either the rising run eventually falls, creating a local peak, or it reaches the final element. A fall guarantees a peak in the left part, including the middle itself.",
     "Keep an inclusive candidate interval and preserve a side containing a peak at every update. Adjacent values are unequal, so the comparison always supplies a direction. When one index remains, the maintained boundary slopes ensure it is a valid peak. Multiple possible peaks do not require tie-breaking."
   ],
@@ -39,5 +39,6 @@
       "code": "right = mid",
       "note": "A falling edge allows mid itself to be the peak. Keeping it avoids accidentally discarding the correct answer."
     }
-  ]
+  ],
+  "keyDecision": "Compare nums[mid] with nums[mid + 1], keeping mid on the falling side."
 }

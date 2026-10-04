@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Enumerating subsets of candidate indices finds target sums but creates duplicate value combinations whenever the input repeats a number. Deduplicating only afterward spends time on branches known to be equivalent. Sorting lets us recognize that equivalence before exploring the branch.",
+    "Sort the candidates, then build each combination from left to right through their positions. Move past a position after choosing it because each occurrence can be used only once. Equal numbers need special care: allow another copy deeper in a combination, but skip duplicate choices at the same step.",
     "At one recursion depth, choosing a later copy of the same value creates the same family of continuations as choosing the first available copy. Skip those equal sibling choices. However, another copy remains valid at a deeper depth: [1,1,6] uses two different indices and must not be removed by a global duplicate rule.",
     "The recursion carries the next usable index and remaining sum. Moving to i+1 prevents an index from being reused. Positive sorted values also permit early stopping once a candidate exceeds the remaining budget, because every later candidate is at least as large. Save a copy when the budget becomes exactly zero."
   ],
@@ -59,5 +59,6 @@
       "code": "result.append(path.copy())",
       "note": "Backtracking mutates path after a result is found. A copy freezes the completed combination instead of letting later removals erase it."
     }
-  ]
+  ],
+  "keyDecision": "After choosing index i, continue at i + 1. Skip equal alternatives within the same call."
 }

@@ -1,0 +1,741 @@
+.walkthrough .trace-input {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+.walkthrough .wt-example-row {
+  margin-bottom: 6px;
+}
+.wt-input-editor > summary {
+  cursor: pointer;
+  color: #a7bac7;
+  font-size: 11px;
+  padding: 3px 0;
+  width: fit-content;
+}
+.wt-input-editor[open] > summary {
+  margin-bottom: 10px;
+}
+.vv-inline {
+  height: 440px;
+  margin-bottom: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 8;
+}
+.vv-inline > div,
+.vv-modal-slot,
+.vv-modal-slot > div {
+  height: 100%;
+}
+.vv-dialog {
+  position: fixed;
+  inset: 12px;
+  width: calc(100vw - 24px);
+  height: calc(100dvh - 24px);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  margin: 0;
+  color: #dbe5ed;
+  background: #171e22;
+  border: 1px solid #3a4b55;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.vv-dialog::backdrop {
+  background: #080e13e8;
+}
+.vv-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #34434b;
+  border-radius: 7px;
+  background: #141d23;
+  color: #dbe5ed;
+}
+.vv-content:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: -2px;
+}
+.vv-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 9px 12px;
+  border-bottom: 1px solid #2c3a43;
+}
+.vv-heading h3 {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+.vv-eyebrow {
+  display: block;
+  color: #8fa5b5;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+.vv-view-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.vv-content button {
+  font-size: 11px;
+  padding: 6px 8px;
+  gap: 5px;
+  white-space: nowrap;
+}
+.vv-content button[aria-pressed="true"] {
+  border-color: #6f8b50;
+  color: var(--lime);
+  background: #263425;
+}
+.vv-content button:focus-visible,
+.vv-content select:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+.vv-zoom {
+  color: #b1c2cc;
+  font-size: 10px;
+  min-width: 35px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.vv-enlarge {
+  margin-left: 5px;
+}
+.vv-body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.vv-viewport {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px;
+  position: relative;
+  background-color: #111315;
+}
+.vv-fit {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vv-manual {
+  overflow: auto;
+}
+.vv-scaled {
+  position: relative;
+  flex-shrink: 0;
+}
+.vv-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 720px;
+  transform-origin: top left;
+}
+.vv-expanded .vv-canvas {
+  width: 1120px;
+}
+.vv-canvas .structure,
+.vv-canvas .watch,
+.vv-canvas .nv-root {
+  overflow: visible;
+}
+.vv-canvas .structure {
+  margin-bottom: 12px;
+}
+.vv-canvas .structure-label {
+  margin-bottom: 6px;
+}
+.vv-canvas .state-legend {
+  margin-bottom: 10px;
+}
+.vv-canvas .algorithm-focus {
+  margin-bottom: 12px;
+  padding: 12px;
+}
+.vv-canvas .primary-structures {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+}
+.vv-expanded .primary-structures {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.vv-expanded .primary-structures > :only-child {
+  grid-column: 1 / -1;
+}
+/* The viewer owns scrolling and scaling; renderer-local caps would hide data
+   before its natural bounds can be measured. */
+.vv-canvas
+  :is(
+    .nv-scroll,
+    .seq-array-scroll,
+    .seq-matrix-scroll,
+    .seq-structure-items,
+    .map-wrap,
+    .islands-grid-scroll,
+    .word-square-board,
+    .queens-board,
+    .elevation-profile
+  ) {
+  overflow: visible;
+  max-height: none;
+  max-width: none;
+}
+.vv-canvas .nv-svg {
+  min-width: 0 !important;
+}
+.vv-canvas .seq-heap-tree {
+  max-height: none;
+}
+.vv-canvas .nv-summary {
+  padding: 8px 12px;
+}
+.vv-canvas .nv-legend {
+  padding: 8px 12px;
+}
+.vv-canvas .seq-caption {
+  margin-top: 6px;
+}
+/* Small collections retain readable dimensions within the shared fitted canvas. */
+.vv-canvas .seq-array-visual,
+.vv-canvas .seq-matrix-visual,
+.vv-canvas .collection-set {
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.vv-canvas .seq-linear-structure {
+  width: max-content;
+  min-width: 180px;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.vv-canvas .seq-stack {
+  width: 340px;
+}
+.vv-canvas .collection-map {
+  width: min(100%, 480px);
+  margin-inline: auto;
+}
+.vv-canvas .seq-heap-visual {
+  width: min(100%, 640px);
+  margin-inline: auto;
+}
+.vv-canvas .structure:has(.seq-visual, .collection-visual) > .structure-label {
+  text-align: center;
+}
+.vv-canvas .structure:has(.collection-visual) {
+  grid-column: 1 / -1;
+}
+.vv-canvas
+  .primary-structures:has(
+    > .structure[data-figure="heap"] ~ .structure[data-figure="heap"]
+  )
+  > .structure[data-figure="heap"] {
+  grid-column: auto;
+}
+.vv-canvas
+  .primary-structures:has(
+    > .structure[data-figure="heap"] ~ .structure[data-figure="heap"]
+  ) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.vv-summary {
+  flex-shrink: 0;
+  padding: 0 12px;
+  background: #182229;
+}
+.vv-summary .pointer-values {
+  margin: 6px 0;
+  gap: 5px;
+}
+.vv-summary .pointer-values > span {
+  padding: 3px 6px;
+  font-size: 10px;
+  gap: 6px;
+}
+.vv-summary .return-value {
+  margin: 6px 0;
+  padding: 5px 8px;
+  font-size: 10px;
+}
+.vv-summary .return-value code {
+  max-height: 50px;
+}
+.vv-controls {
+  position: relative;
+  flex-shrink: 0;
+  border-top: 1px solid #2c3a43;
+}
+.vv-content .wt-toolbar {
+  position: static;
+  z-index: auto;
+  border: none;
+  border-radius: 0;
+  padding: 8px 12px;
+  margin: 0;
+  box-shadow: none;
+  background: #182229;
+}
+.vv-content .wt-step-options {
+  margin-bottom: 5px;
+  padding-right: 95px;
+}
+.vv-content .wt-step-mode button {
+  font-size: 9px;
+  padding: 4px 6px;
+}
+.vv-content .wt-shortcuts {
+  display: none;
+}
+.vv-content .playback {
+  margin: 0 0 4px;
+  gap: 6px;
+}
+.vv-content .playback-buttons {
+  gap: 4px;
+}
+.vv-content .playback-buttons button {
+  padding: 6px 8px;
+  font-size: 10px;
+}
+.vv-content .playback select {
+  padding: 4px;
+  font-size: 10px;
+}
+.vv-content .wt-progress-note {
+  font-size: 8px;
+  margin: 0;
+}
+.vv-content .step-count {
+  font-size: 10px;
+}
+.vv-content .scrubber {
+  margin: 4px 0;
+  display: block;
+}
+.vv-details-toggle {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  z-index: 1;
+}
+.vv-content .vv-details-toggle {
+  font-size: 9px;
+  padding: 4px 5px;
+}
+.vv-instruction {
+  flex-shrink: 0;
+  padding: 6px 12px 8px;
+  background: #1b2829;
+  border-top: 1px solid #344536;
+}
+.vv-content .wt-live-instruction {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 9px;
+}
+.vv-content .wt-live-instruction code {
+  font-size: 10px;
+}
+.vv-content .wt-instruction {
+  border: none;
+  background: none;
+  margin: 4px 0 0;
+  padding: 0;
+  font-size: 10px;
+  min-height: 0;
+}
+.vv-content .wt-event-heading {
+  display: none;
+}
+.vv-content .wt-instruction p {
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 0;
+}
+.vv-content .wt-semantics {
+  display: none;
+}
+.vv-details {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(350px, 90%);
+  overflow: auto;
+  padding: 12px;
+  border-left: 1px solid #40505a;
+  background: #17232bf5;
+  box-shadow: -8px 0 25px #080e1366;
+  z-index: 2;
+}
+.vv-details[hidden] {
+  display: none;
+}
+.vv-details-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.vv-details-heading h4 {
+  margin: 0;
+  font-size: 13px;
+}
+.vv-details .wt-changes {
+  margin-bottom: 0;
+}
+.vv-details .wt-change {
+  grid-template-columns: minmax(65px, 0.8fr) minmax(0, 1fr) 13px minmax(0, 1fr);
+}
+.vv-expanded .vv-heading {
+  padding: 12px 18px;
+}
+.vv-expanded .vv-heading h3 {
+  font-size: 18px;
+}
+.vv-expanded .vv-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.vv-expanded .vv-content button {
+  padding: 8px 10px;
+}
+.vv-expanded .vv-instruction {
+  padding: 10px 18px;
+}
+.vv-expanded .wt-instruction p {
+  font-size: 12px;
+}
+.vv-expanded .vv-summary {
+  padding: 0 18px;
+}
+@media (max-width: 900px) {
+  .vv-expanded .vv-canvas {
+    width: 720px;
+  }
+  .vv-expanded .primary-structures {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .vv-dialog {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+  .vv-expanded .vv-heading {
+    padding: 8px;
+    flex-wrap: wrap;
+  }
+  .vv-expanded .vv-heading h3 {
+    font-size: 13px;
+  }
+  .vv-expanded .vv-heading > div:first-child {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .vv-expanded .vv-eyebrow {
+    margin: 0;
+  }
+  .vv-view-actions {
+    gap: 3px;
+  }
+  .vv-content .playback-buttons button {
+    padding: 6px;
+  }
+  .vv-content .wt-step-options {
+    padding-right: 90px;
+  }
+  .vv-content .wt-step-mode button {
+    padding: 4px;
+    font-size: 8px;
+  }
+  .vv-content .step-count {
+    font-size: 9px;
+  }
+}
+
+/* Paired node diagrams share a row even in the compact canvas, keeping their
+   correspondence visible. Long sequences keep the full logical canvas width. */
+.vv-canvas .primary-structures:has(> .structure .nv-root) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.vv-canvas .primary-structures > :only-child,
+.vv-canvas .primary-structures > .structure:has(.seq-visual) {
+  grid-column: 1 / -1;
+}
+/* A single node diagram gets the full width even when sequences share the
+   canvas. Reserve paired columns for two or more node diagrams. */
+.vv-canvas
+  .primary-structures:not(
+    :has(> .structure[data-diagram] ~ .structure[data-diagram])
+  )
+  > .structure[data-diagram] {
+  grid-column: 1 / -1;
+}
+
+@media (max-height: 700px) {
+  /* Reserve more of a short lesson window for the diagram itself. */
+  .workspace-main:has(.walkthrough) > .problem-header {
+    padding-top: 10px;
+    padding-bottom: 4px;
+  }
+  .workspace-main:has(.walkthrough) .problem-position {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  .workspace-main:has(.walkthrough) .title-row h1 {
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .workspace-main:has(.walkthrough) .problem-meta {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .walkthrough.panel {
+    padding: 10px;
+  }
+  .walkthrough > .panel-heading {
+    margin-bottom: 8px;
+  }
+  .walkthrough > .panel-heading h2 {
+    font-size: 15px;
+  }
+  .walkthrough .trace-input {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+  .walkthrough .wt-example-row {
+    flex: 1;
+    margin: 0;
+  }
+  .walkthrough .wt-example-row > label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .walkthrough .wt-example-row select {
+    padding: 5px 8px;
+  }
+  .walkthrough .trace-input:has(details[open]) {
+    display: block;
+  }
+  .vv-heading {
+    padding: 6px 10px;
+  }
+  .vv-heading .vv-eyebrow {
+    display: none;
+  }
+  .vv-content .wt-progress-note {
+    display: none;
+  }
+  .vv-content .wt-toolbar {
+    padding: 5px 10px;
+  }
+  .vv-content .wt-step-mode {
+    padding: 1px;
+  }
+  .vv-instruction {
+    padding: 5px 10px;
+  }
+  .vv-content .wt-instruction {
+    margin-top: 2px;
+  }
+}
+
+.vv-summary .summary-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 5px 0;
+}
+.vv-summary .summary-values:empty {
+  display: none;
+}
+.vv-summary .summary-values > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  border: 1px solid #34454f;
+  border-radius: 4px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: 10px;
+}
+.vv-summary .summary-values code {
+  color: #97afbe;
+  font-size: 9px;
+}
+.vv-summary .summary-values b {
+  color: #d3e9b6;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.vv-summary .node-reference {
+  font-size: 10px;
+}
+.vv-summary .node-reference b {
+  min-height: 20px;
+  min-width: 20px;
+}
+
+.vv-content.vv-expanded button {
+  font-size: 12px;
+  padding: 8px 10px;
+}
+.vv-expanded .wt-step-mode button {
+  font-size: 11px;
+  padding: 5px 8px;
+}
+.vv-expanded .playback-buttons button {
+  font-size: 12px;
+  padding: 8px 10px;
+}
+.vv-expanded .step-count,
+.vv-expanded .playback select {
+  font-size: 12px;
+}
+.vv-expanded .wt-progress-note {
+  font-size: 10px;
+}
+.vv-expanded .vv-details-toggle {
+  font-size: 11px;
+  padding: 5px 8px;
+}
+.vv-expanded .wt-step-options {
+  padding-right: 120px;
+}
+@media (max-width: 500px) {
+  .vv-content.vv-expanded button {
+    font-size: 10px;
+    padding: 6px;
+  }
+  .vv-expanded .wt-step-mode button {
+    font-size: 8px;
+    padding: 4px;
+  }
+  .vv-expanded .step-count,
+  .vv-expanded .playback select {
+    font-size: 9px;
+  }
+  .vv-expanded .vv-details-toggle {
+    font-size: 9px;
+    padding: 4px;
+  }
+  .vv-expanded .wt-step-options {
+    padding-right: 90px;
+  }
+}
+
+/* Keep pointers and small watched values in one readable strip, rather than
+   spending separate rows on each group as the trace gains variables. */
+.vv-summary .visual-state-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 0;
+}
+.vv-summary .visual-state-summary:empty {
+  padding: 0;
+}
+.vv-summary .pointer-values,
+.vv-summary .summary-values {
+  display: contents;
+}
+.vv-summary .return-value {
+  flex: 1;
+  min-width: min(100%, 220px);
+  width: auto;
+  margin: 0;
+  padding: 3px 6px;
+  align-items: center;
+  font-size: 9px;
+}
+.vv-summary .return-value code {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: none;
+}
+@media (max-height: 700px) {
+  .vv-content:not(.vv-expanded) .vv-view-actions button {
+    padding: 4px 6px;
+  }
+  .walkthrough > .panel-heading .algorithm-label {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+  .vv-content:not(.vv-expanded) .wt-toolbar .wt-step-options {
+    margin-bottom: 3px;
+  }
+  .vv-content:not(.vv-expanded) .wt-step-mode button {
+    padding: 2px 4px;
+  }
+  .vv-content:not(.vv-expanded) .wt-instruction > svg {
+    display: none;
+  }
+  .vv-summary .node-reference small {
+    display: none;
+  }
+  .vv-content:not(.vv-expanded) .vv-summary .visual-state-summary {
+    padding: 3px 0;
+    gap: 3px;
+  }
+  .vv-content:not(.vv-expanded) .summary-values > span {
+    padding: 2px 4px;
+    gap: 4px;
+  }
+  .vv-content:not(.vv-expanded) .node-reference b {
+    min-height: 16px;
+    min-width: 16px;
+  }
+}
+
+/* Use scalable SVG text metrics instead of pixel hinting at overview sizes. */
+.vv-canvas .nv-svg {
+  text-rendering: geometricPrecision;
+}
+
+.vv-content .vv-trace-notice {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 4px 12px;
+  color: #e6bc70;
+  background: #2c291f;
+  border-top: 1px solid #534a32;
+  font-size: 10px;
+  line-height: 1.4;
+}

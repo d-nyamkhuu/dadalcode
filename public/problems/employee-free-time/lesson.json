@@ -11,7 +11,7 @@
     "0 <= start < end <= 100000000.",
     "Each employee's own intervals are sorted and do not overlap."
   ],
-  "intuition": "Everyone is free precisely where nobody is working. Flatten all busy intervals, sort by start, and sweep their union. If a new interval starts strictly after the farthest busy endpoint, the space between is a common free interval.",
+  "intuition": "A time is free for everyone only when nobody is working. Combine all employees' busy intervals into one sorted stream. Track the end of the combined busy range. A later start beyond that end reveals a gap when everyone is free.",
   "approach": [
     "Flatten intervals into start/end pairs and sort.",
     "Initialize busy_end from the first interval.",

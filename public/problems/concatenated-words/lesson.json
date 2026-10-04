@@ -13,7 +13,7 @@
     "Total character count <= 100,000",
     "Words contain lowercase English letters and are unique"
   ],
-  "intuition": "Check each word as a segmentation problem, explicitly excluding the whole word as its own single piece. Reachable prefix boundaries let shorter dictionary words connect into a complete word.",
+  "intuition": "For each word, try splitting it into shorter dictionary words. Save which character boundaries can be reached by valid pieces. Reaching the end proves a split exists, but the original word alone must not count. Skip the transition that uses the entire candidate as one piece.",
   "approach": [
     "Store all words in a set.",
     "For each candidate, initialize reachable boundary 0.",

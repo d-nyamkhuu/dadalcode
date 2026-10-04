@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Merging both sorted inputs would make the median easy to locate, but it reads every value. The logarithmic requirement asks us to exploit sortedness more directly. Instead of finding the whole merged order, find only the boundary separating its lower half from its upper half.",
+    "Imagine a line separating the lower half of all values from the upper half. We do not need to merge the arrays. Instead, choose where that line cuts each sorted array. Keep the correct number of values on the left, then check the values beside the two cuts.",
     "Choose a cut in each array. Their left portions together must contain (m+n+1)//2 values. Once the first cut is chosen, the other is forced. Everything inside each portion is already sorted, so only the two cross-boundary comparisons can violate the desired ordering.",
     "Binary search the shorter array’s cut. A first-array left value above the other right value means the cut took too much from the first array. The reverse mismatch means it took too little. A valid cut reveals both central values without performing a merge.",
     "The opposite search direction occurs for nums1=[3,4], nums2=[1,2]. Initially i=j=1: a_left=3 exceeds b_right=2, so high becomes 0. The next cut i=0, j=2 passes both comparisons, and its middle values 2 and 3 average to 2.5. This complements the main example, where low moves right."
@@ -36,6 +36,107 @@
     {
       "code": "if a_left <= b_right and b_left <= a_right:",
       "note": "Both directions matter: each array’s sorted order alone cannot guarantee its left values precede the other array’s right values."
+    }
+  ],
+  "keyDecision": "The largest left value of each array must be no greater than the smallest right value of the other array.",
+  "figures": [
+    {
+      "title": "Move the cut, not the values",
+      "caption": "The reference first makes [2] the smaller array. The left side must contain two values. A | marks a cut; ∅ means no values.",
+      "afterStep": 4,
+      "panels": [
+        {
+          "title": "Before: the first cut fails",
+          "rows": [
+            {
+              "label": "Smaller array",
+              "values": [
+                "∅",
+                "|",
+                "2"
+              ]
+            },
+            {
+              "label": "Other array",
+              "values": [
+                "1, 3",
+                "|",
+                "∅"
+              ]
+            },
+            {
+              "label": "Failing comparison",
+              "values": [
+                "3 <= 2: false"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "The cross check 3 <= 2 fails. Take more values from the smaller array."
+        },
+        {
+          "title": "Check: move the smaller cut right",
+          "rows": [
+            {
+              "label": "Smaller array",
+              "values": [
+                "2",
+                "|",
+                "∅"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Other array",
+              "values": [
+                "1",
+                "|",
+                "3"
+              ],
+              "highlight": [
+                0
+              ]
+            },
+            {
+              "label": "Cross checks",
+              "values": [
+                "2 <= 3",
+                "1 <= +∞"
+              ]
+            }
+          ],
+          "note": "The new cuts put 2 and 1 on the left, and 3 on the right. Both cross checks now pass."
+        },
+        {
+          "title": "After: read the middle value",
+          "rows": [
+            {
+              "label": "Left side",
+              "values": [
+                "1",
+                "2"
+              ],
+              "highlight": [
+                1
+              ]
+            },
+            {
+              "label": "Median",
+              "values": [
+                "max(1, 2) = 2"
+              ],
+              "highlight": [
+                0
+              ]
+            }
+          ],
+          "note": "There are three values overall. The extra left value is the median: the largest left value."
+        }
+      ]
     }
   ]
 }

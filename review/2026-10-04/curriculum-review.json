@@ -61,7 +61,7 @@
       "line_start": 6,
       "line_end": 6,
       "detail": "The package statement requires each combination in nondecreasing order, but the checker sorts each returned combination before comparison. A learner returning factors in descending or arbitrary order receives a passing result despite violating that representation contract. Outer answer order is unrestricted; inner order is not.",
-      "evidence": "For n=12, check([[6,2],[3,2,2],[4,3]], [[2,2,3],[2,6],[3,4]], {\"n\":12}) returns True. Independently reproduced in /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-2.py. lesson.json:4 explicitly requires nondecreasing order.",
+      "evidence": "For n=12, check([[6,2],[3,2,2],[4,3]], [[2,2,3],[2,6],[3,4]], {\"n\":12}) returns True. Independently reproduced in ./review/2026-10-04/evidence/probe-2.py. lesson.json:4 explicitly requires nondecreasing order.",
       "recommendation": "Validate len(p)>=2 and p==sorted(p) for every returned combination before comparing sorted outer tuples without reordering their elements; add a checker regression that rejects the demonstrated descending outputs.",
       "slug": "factor-combinations",
       "id": "R02"
@@ -133,7 +133,7 @@
       "line_start": 24,
       "line_end": 26,
       "detail": "N is total node count, while k also includes empty lists. The solution always enumerates every list head (solution.py:6), so initialization is Theta(k) even when N is zero or very small. O(N log(k+1)) alone does not describe valid all-empty or sparse collections.",
-      "evidence": "A CountHeads iterable containing 10,000 empty members recorded 10,000 head examinations while returning None for N=0. See /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-4.py and probes-4.json.",
+      "evidence": "A CountHeads iterable containing 10,000 empty members recorded 10,000 head examinations while returning None for N=0. See ./review/2026-10-04/evidence/probe-4.py and probes-4.json.",
       "recommendation": "State O(k + N log(k+1)) time, identifying the input scan and heap operations separately. Optionally initialize with heapify for linear initial heap building.",
       "slug": "merge-k-sorted-lists",
       "id": "R08"
@@ -145,7 +145,7 @@
       "line_start": 19,
       "line_end": 19,
       "detail": "The two traversals are linear, but the final return sorts the entire reachability intersection. If K cells reach both oceans, total time is O(RC + K log K). A flat grid has K=RC, so lesson.json:23 understates the worst-case runtime as O(RC).",
-      "evidence": "All 40,000 cells of a valid flat 200x200 grid reach both oceans. Instrumenting lexicographic sorting over the same set iteration order counted 559,285 tuple comparisons. The adapter accepts arbitrary coordinate ordering. See /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-4.py and probes-4.json.",
+      "evidence": "All 40,000 cells of a valid flat 200x200 grid reach both oceans. Instrumenting lexicographic sorting over the same set iteration order counted 559,285 tuple comparisons. The adapter accepts arbitrary coordinate ordering. See ./review/2026-10-04/evidence/probe-4.py and probes-4.json.",
       "recommendation": "Return [list(cell) for cell in pacific & atlantic] without sorting to preserve O(RC), and update the exact explanation code snippet. Alternatively retain sorting and report O(RC + K log K) explicitly.",
       "slug": "pacific-atlantic-water-flow",
       "id": "R09"
@@ -189,7 +189,7 @@
       ],
       "validation": [
         "5 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -207,7 +207,7 @@
       ],
       "validation": [
         "5 authored fixtures passed reference+adapter through shared harness.",
-        "465 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "465 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -225,7 +225,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -243,7 +243,7 @@
       ],
       "validation": [
         "7 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -261,7 +261,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "400 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "400 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -279,7 +279,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "401 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "401 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -297,7 +297,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -315,7 +315,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -333,7 +333,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -351,7 +351,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -369,7 +369,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "401 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "401 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -387,7 +387,7 @@
       ],
       "validation": [
         "5 authored fixtures passed reference+adapter through shared harness.",
-        "401 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "401 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -405,7 +405,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "401 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "401 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -423,7 +423,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "400 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "400 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -441,7 +441,7 @@
       ],
       "validation": [
         "5 authored fixtures passed reference+adapter through shared harness.",
-        "400 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "400 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -459,7 +459,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "401 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "401 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -477,7 +477,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "45 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "45 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution.",
         "Confirmed mutant returning float(dp[n]-100) only at n=45 passes all six fixtures; this is a shared comparator defect, not a reference-solution defect."
       ]
@@ -496,7 +496,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "300 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "300 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -514,7 +514,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -532,7 +532,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -550,7 +550,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -568,7 +568,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "480 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "480 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -586,7 +586,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -604,7 +604,7 @@
       ],
       "validation": [
         "5 authored fixtures passed reference+adapter through shared harness.",
-        "55 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "55 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -622,7 +622,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -640,7 +640,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "401 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "401 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -658,7 +658,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -676,7 +676,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -694,7 +694,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "500 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "500 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -712,7 +712,7 @@
       ],
       "validation": [
         "6 authored fixtures passed reference+adapter through shared harness.",
-        "501 independent oracle/boundary probes passed; see /home/data/Projects/blind-75/review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
+        "501 independent oracle/boundary probes passed; see ./review/2026-10-04/evidence/probes-1.py and probes-1-results.json.",
         "All six files read; starter compiled; worked input/result matched an authored fixture; all codeNotes snippets exist in solution."
       ]
     },
@@ -886,7 +886,7 @@
           "line_start": 6,
           "line_end": 6,
           "detail": "The package statement requires each combination in nondecreasing order, but the checker sorts each returned combination before comparison. A learner returning factors in descending or arbitrary order receives a passing result despite violating that representation contract. Outer answer order is unrestricted; inner order is not.",
-          "evidence": "For n=12, check([[6,2],[3,2,2],[4,3]], [[2,2,3],[2,6],[3,4]], {\"n\":12}) returns True. Independently reproduced in /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-2.py. lesson.json:4 explicitly requires nondecreasing order.",
+          "evidence": "For n=12, check([[6,2],[3,2,2],[4,3]], [[2,2,3],[2,6],[3,4]], {\"n\":12}) returns True. Independently reproduced in ./review/2026-10-04/evidence/probe-2.py. lesson.json:4 explicitly requires nondecreasing order.",
           "recommendation": "Validate len(p)>=2 and p==sorted(p) for every returned combination before comparing sorted outer tuples without reordering their elements; add a checker regression that rejects the demonstrated descending outputs."
         }
       ],
@@ -1920,7 +1920,7 @@
           "line_start": 24,
           "line_end": 26,
           "detail": "N is total node count, while k also includes empty lists. The solution always enumerates every list head (solution.py:6), so initialization is Theta(k) even when N is zero or very small. O(N log(k+1)) alone does not describe valid all-empty or sparse collections.",
-          "evidence": "A CountHeads iterable containing 10,000 empty members recorded 10,000 head examinations while returning None for N=0. See /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-4.py and probes-4.json.",
+          "evidence": "A CountHeads iterable containing 10,000 empty members recorded 10,000 head examinations while returning None for N=0. See ./review/2026-10-04/evidence/probe-4.py and probes-4.json.",
           "recommendation": "State O(k + N log(k+1)) time, identifying the input scan and heap operations separately. Optionally initialize with heapify for linear initial heap building."
         }
       ]
@@ -2256,7 +2256,7 @@
           "line_start": 19,
           "line_end": 19,
           "detail": "The two traversals are linear, but the final return sorts the entire reachability intersection. If K cells reach both oceans, total time is O(RC + K log K). A flat grid has K=RC, so lesson.json:23 understates the worst-case runtime as O(RC).",
-          "evidence": "All 40,000 cells of a valid flat 200x200 grid reach both oceans. Instrumenting lexicographic sorting over the same set iteration order counted 559,285 tuple comparisons. The adapter accepts arbitrary coordinate ordering. See /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-4.py and probes-4.json.",
+          "evidence": "All 40,000 cells of a valid flat 200x200 grid reach both oceans. Instrumenting lexicographic sorting over the same set iteration order counted 559,285 tuple comparisons. The adapter accepts arbitrary coordinate ordering. See ./review/2026-10-04/evidence/probe-4.py and probes-4.json.",
           "recommendation": "Return [list(cell) for cell in pacific & atlantic] without sorting to preserve O(RC), and update the exact explanation code snippet. Alternatively retain sorting and report O(RC + K log K) explicitly."
         }
       ]
@@ -2406,7 +2406,7 @@
         "All six package files manually reviewed; 2808 fixture/oracle probes passed.",
         "Independent oracle starts a descendant traversal at every node; 400 random trees × seven targets and a 1,000-node zero chain passed.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2425,7 +2425,7 @@
         "All six package files manually reviewed; 2283 fixture/oracle probes passed.",
         "Generated every peak position for lengths 3..69 and compared with the known construction peak.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2444,7 +2444,7 @@
         "All six package files manually reviewed; 1866 fixture/oracle probes passed.",
         "Exhaustively compared binary-alphabet targets of lengths 1..4 and source strings of lengths 1..5 with an independent Counter-per-substring oracle.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2463,7 +2463,7 @@
         "All six package files manually reviewed; 131 fixture/oracle probes passed.",
         "Compared all distinct-value subsets up to six elements over -3..3 against itertools.permutations.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2493,7 +2493,7 @@
         "All six package files manually reviewed; 124 fixture/oracle probes passed.",
         "All multisets of lengths 1..7 over {-1,0,1} matched deduplicated itertools permutations; the reversed predicate also produced correct results in all 119 cases.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2513,7 +2513,7 @@
         "All six package files manually reviewed; 306 fixture/oracle probes passed.",
         "Compared 300 seeded random dictionaries and 12 queries each with a reverse-index startswith/endswith scan.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2532,7 +2532,7 @@
         "All six package files manually reviewed; 19531 fixture/oracle probes passed.",
         "Exhaustive arrays of lengths 2..6 over {-2,-1,0,1,2} matched a direct multiply-every-other-position oracle.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2551,7 +2551,7 @@
         "All six package files manually reviewed; 36 fixture/oracle probes passed.",
         "For 30 seeded arrays of lengths 1..30, every legal inclusive interval matched Python direct slice sums.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2571,7 +2571,7 @@
         "All six package files manually reviewed; 1387 fixture/oracle probes passed.",
         "Compared all nonempty three-letter count distributions with each count <=5 and total <=10 against a memoized exhaustive scheduling search for every k from 0 through n.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2590,7 +2590,7 @@
         "All six package files manually reviewed; 36 fixture/oracle probes passed.",
         "For lengths 0..30, sorted repeated-value arrays matched sorted unique-value expectations; identity-aware adapter checks ran as part of every probe.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2609,7 +2609,7 @@
         "All six package files manually reviewed; 161 fixture/oracle probes passed.",
         "Compared 155 generated list/value cases with independently filtered arrays, covering lengths 0..30 and several forbidden values.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2628,7 +2628,7 @@
         "All six package files manually reviewed; 471 fixture/oracle probes passed.",
         "Every n position for generated lengths 1..30 matched direct removal at index length-n.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2647,7 +2647,7 @@
         "All six package files manually reviewed; 36 fixture/oracle probes passed.",
         "Compared lengths 1..30 with alternating front/back index construction and exercised the identity/value/cycle guard.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2666,7 +2666,7 @@
         "All six package files manually reviewed; 186 fixture/oracle probes passed.",
         "Compared 180 nonempty three-letter count distributions with an independent exact adjacency scheduling search.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2685,7 +2685,7 @@
         "All six package files manually reviewed; 1013 fixture/oracle probes passed.",
         "Compared 1,006 chosen/random 32-bit values with padded binary-string reversal.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2704,7 +2704,7 @@
         "All six package files manually reviewed; 37 fixture/oracle probes passed.",
         "Compared lengths 0..30 with reversed arrays while the adapter verified every original identity.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2723,7 +2723,7 @@
         "All six package files manually reviewed; 4966 fixture/oracle probes passed.",
         "Every legal left/right segment for lengths 1..30 matched independent slice reversal (4,960 generated cases).",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2742,7 +2742,7 @@
         "All six package files manually reviewed; 471 fixture/oracle probes passed.",
         "Every k for lengths 1..30 matched independent complete-block slice reversal and passed identity/value checks.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2761,7 +2761,7 @@
         "All six package files manually reviewed; 186 fixture/oracle probes passed.",
         "Compared generated lengths 1..30 and six shift choices, including 100000, against independent modulo/slice rotation.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2780,7 +2780,7 @@
         "All six package files manually reviewed; 26 fixture/oracle probes passed.",
         "Compared all n=1..20 against an independent coordinate-assignment formula.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2800,7 +2800,7 @@
         "All six package files manually reviewed; 223 fixture/oracle probes passed.",
         "For lengths 0..30, seven shifts including 2000000000 matched a direct modulo slice oracle and terminated without cycles.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2819,7 +2819,7 @@
         "All six package files manually reviewed; 806 fixture/oracle probes passed.",
         "400 seeded random trees matched themselves, and 400 copies with one changed non-null value were rejected.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2838,7 +2838,7 @@
         "All six package files manually reviewed; 3207 fixture/oracle probes passed.",
         "Generated all small rectangular shapes 1..4 in each dimension with boundary/absent targets and checked membership; also tested legal within-row duplicates.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2857,7 +2857,7 @@
         "All six package files manually reviewed; 5605 fixture/oracle probes passed.",
         "Generated repeated-value monotone grids of all shapes 1..4×1..4 and compared all nearby targets with direct cell membership.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2876,7 +2876,7 @@
         "All six package files manually reviewed; 3974 fixture/oracle probes passed.",
         "Exhaustively rotated every distinct subset of -3..3 of lengths 1..6 and checked all targets -4..4 against direct index search.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2895,7 +2895,7 @@
         "All six package files manually reviewed; 1896 fixture/oracle probes passed.",
         "Exhaustively rotated all nondecreasing multisets of lengths 1..6 over {0,1,2} and compared targets -1..3 with membership.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2926,7 +2926,7 @@
         "All six package files manually reviewed; 407 fixture/oracle probes passed.",
         "400 random trees and a 10,000-node right chain round-tripped; a constant-string class-cache mutant passes all six authored fixtures yet decodes the first saved string as the later tree.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2945,7 +2945,7 @@
         "All six package files manually reviewed; 807 fixture/oracle probes passed.",
         "800 seeded matrices over -2..2 across shapes 1..4×1..4 matched row/column sets computed from an untouched original snapshot.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2964,7 +2964,7 @@
         "All six package files manually reviewed; 386 fixture/oracle probes passed.",
         "380 seeded arrays with one independently chosen unique value and duplicated distinct other values matched the known unique element.",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {
@@ -2984,7 +2984,7 @@
         "All six package files manually reviewed; 112306 fixture/oracle probes passed.",
         "All arrays of lengths 2..6 over {-2,-1,0,1,2} and every legal k matched direct max-per-slice expectations (112,300 generated cases).",
         "Explanation has >=180 substantive prose words, every code-note snippet is an exact solution substring, and its walkthrough input/result matches an authored fixture.",
-        "Independent probe runner: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5.py; results: /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json."
+        "Independent probe runner: ./review/2026-10-04/evidence/probe-5.py; results: ./review/2026-10-04/evidence/probe-5-results.json."
       ]
     },
     {

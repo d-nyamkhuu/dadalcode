@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "The direct method evaluates every choice of three positions. That works, but three nested loops cost cubic time, and most comparisons teach us nothing about the next candidate. Sorting changes this: after fixing one position, we can reason about whether changing either remaining value makes the sum larger or smaller.",
+    "Sort the numbers and choose one as the first member of the triple. Search for the other two from opposite ends. Moving the left pointer increases the total; moving the right pointer decreases it. Keep the sum whose distance from the target is smallest.",
     "Place left immediately after the fixed index and right at the array end. If the sum is below target, moving right inward would only make it smaller. Instead advance left to increase the sum. If it is above target, retreat right to decrease it. Before either move, record the candidate if its absolute distance improves best.",
-    "This movement does not claim the next sum is always better. It discards pairs that cannot beat the already checked pair on the same side of target. Repeating for each first position covers the necessary candidates. An exact match can return immediately because distance zero is unbeatable. Initialize best from real input values so even entirely negative arrays have a legitimate answer."
+    "This movement does not claim the next sum is always better. It discards pairs that cannot beat the already checked pair on the same side of target. Repeating for each first position covers the necessary candidates. An exact match can return immediately because distance zero is unbeatable.",
+    "Initialize best from real input values so even entirely negative arrays have a legitimate answer."
   ],
   "walkthrough": {
     "input": {
@@ -37,5 +38,6 @@
       "code": "left, right = i + 1, len(nums) - 1",
       "note": "Distinct ordered positions prevent reusing the fixed element or a pair position."
     }
-  ]
+  ],
+  "keyDecision": "Compare the absolute distance to the target before moving either pointer."
 }

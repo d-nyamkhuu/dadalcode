@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Scanning and sorting every historical sentence after each keystroke repeats work for the same prefixes. A trie groups sentences by their shared character prefixes, but traversing each matching subtree can still be expensive. Cache the three best full sentences directly at every prefix node instead.",
+    "Typed letters define a prefix. A trie follows that prefix without scanning every sentence. At each prefix node, save the three best matching sentences. When '#' finishes a sentence, increase its count and refresh the affected saved suggestions. Start a new prefix after that marker.",
     "A committed sentence is the only sentence whose frequency changes. For a node on its path, the new leaders must come from the previous leaders plus that changed sentence: every other outsider keeps the same rank relative to the old leaders. Sorting this at-most-four-item candidate list restores the correct cache.",
     "The object also remembers the current prefix and its trie node between calls. A missing edge means no historical sentence matches the current query; it remains missing until the query ends. On #, insert the completed sentence, update its prefix caches, and reset the cursor to the root for a new query."
   ],
@@ -60,5 +60,6 @@
       "code": "self.node = self.root",
       "note": "A commit ends the old query. Resetting the trie cursor is necessary even when its previous prefix had no matches."
     }
-  ]
+  ],
+  "keyDecision": "Rank by larger usage count first, then smaller character order for ties. '#' records the sentence and returns no suggestions."
 }

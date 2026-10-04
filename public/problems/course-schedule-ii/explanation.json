@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Testing every possible course order is factorial work, and repeatedly scanning all unfinished courses for readiness also wastes effort. A prerequisite pair describes a directed dependency: completing the prerequisite removes one obstacle preventing the course from being taken.",
+    "Build the schedule by repeatedly taking a course with no unfinished prerequisites. After taking it, lower the requirement counts of courses that depend on it. This creates a valid order directly. If the order cannot include every course, a cycle makes a full schedule impossible.",
     "Store outgoing edges from each prerequisite to its dependents and count each course’s unfinished incoming edges. Courses with zero incoming count are ready now, including courses unrelated to any prerequisite. Processing one ready course decreases the counts of exactly its dependents.",
     "The queue produces a valid prefix because every emitted course has already had all prerequisites emitted. A cycle can leave a remaining group in which every course still waits on another. If processing stops before all courses are emitted, no complete valid order exists; returning a partial prefix would hide that impossibility."
   ],
@@ -54,5 +54,6 @@
       "code": "return order if len(order) == numCourses else []",
       "note": "A shortened order indicates blocked cyclic dependencies. Reject the incomplete schedule rather than presenting its ready prefix as a full answer."
     }
-  ]
+  ],
+  "keyDecision": "Return the order only when its length equals numCourses; otherwise return an empty list."
 }

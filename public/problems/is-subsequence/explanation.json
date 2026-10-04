@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A subsequence may skip characters, so matching s against one contiguous part of t is too restrictive. Enumerating every choice of positions in t is the opposite extreme: it explores many index combinations even though most decisions can be made immediately while scanning.",
+    "Read t from left to right while waiting for the next character of s. When it matches, advance to the next required character. Skip other characters. Taking the earliest available match leaves the most space for the remaining characters, so no backtracking is needed.",
     "The useful state is the next unmatched character of s. When t supplies that character, accept the earliest available occurrence. Waiting for a later occurrence cannot create more space for the remaining characters; it only removes potential positions from the suffix.",
     "This gives a one-way scan with two kinds of progress: every character advances through t, but only a match advances through s. The matched counter always describes a prefix of s already found in order. Reaching the length of s proves all required characters have distinct matching positions.",
     "The full scan makes every t position available to the visual walkthrough. A result-only variant can return true immediately for empty s or after its final required character matches; that saves work on easy inputs while preserving the same worst-case O(len(t)) bound."
@@ -33,5 +33,6 @@
       "code": "matched += 1",
       "note": "Advance on the earliest matching occurrence. This leaves the longest available suffix for all remaining requirements."
     }
-  ]
+  ],
+  "keyDecision": "Accept when all characters of s have matched in order. They do not need to be adjacent in t."
 }

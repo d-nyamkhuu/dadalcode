@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Count each color and overwrite the array in a second pass. This is O(n) time and O(1) storage; the Dutch-national-flag partition accomplishes it in one pass. A comparison sort learns unnecessary information because there are only three possible values; explicit regions encode all needed ordering.",
-    "Think of mid as the boundary between examined and unknown values. Zeros occupy [0,low), ones occupy [low,mid), unknown values occupy [mid,high], and twos occupy (high,n). The midpoint position itself is still unknown. A zero can be exchanged into its final left region because the displaced value is already known. A two swapped from high brings an unexamined value to mid, so advancing mid immediately would skip a decision. The whole algorithm is organized around preserving these four regions.",
+    "Keep four regions: zeros, ones, unknown values, and twos. Read the first unknown value. Move a zero to the left region, leave a one in the middle, or move a two to the right region. Each step reduces the unknown region without sorting the whole array again.",
+    "Think of mid as the boundary between examined and unknown values. Zeros occupy [0,low), ones occupy [low,mid), unknown values occupy [mid,high], and twos occupy (high,n). The midpoint position itself is still unknown. A zero can be exchanged into its final left region because the displaced value is already known.",
+    "A two swapped from high brings an unexamined value to mid, so advancing mid immediately would skip a decision. The whole algorithm is organized around preserving these four regions.",
     "Before every iteration the outer regions and the ones region satisfy their required values. A zero swap preserves the ones region, a one extends it, and a two swap extends the twos region. Each action shrinks the unknown region by one. When it is empty, the entire array is sorted. Every iteration removes one element from the unknown interval.",
-    "The trainer rejects common sorted(nums), nums.sort(), list.sort(nums), copied-list sorting, and straightforward alias forms in sortColors. The conservative source check recognizes local or global shadowing and avoids names with multiple bindings, so user counting helpers named sorted, unrelated helpers named sort, and rebound aliases remain usable. This explicit teaching-rule check is not a general proof of one-pass or constant-space behavior; the four-region invariant establishes those properties for the reference."
+    "The trainer rejects common sorted(nums), nums.sort(), list.sort(nums), copied-list sorting, and straightforward alias forms in sortColors. The conservative source check recognizes local or global shadowing and avoids names with multiple bindings, so user counting helpers named sorted, unrelated helpers named sort, and rebound aliases remain usable.",
+    "This explicit teaching-rule check is not a general proof of one-pass or constant-space behavior; the four-region invariant establishes those properties for the reference."
   ],
   "walkthrough": {
     "input": {
@@ -44,6 +46,99 @@
     {
       "code": "while mid <= high:",
       "note": "Stop precisely when the unknown interval disappears, including processing its final single position."
+    }
+  ],
+  "keyDecision": "After moving a two to the right, check the value swapped into its old position before advancing mid.",
+  "figures": [
+    {
+      "title": "The swapped-in value still needs checking",
+      "caption": "At the first iteration, low = mid = 0 and high = 5. Highlighted cells are the values involved in the swap.",
+      "afterStep": 1,
+      "panels": [
+        {
+          "title": "Before: mid points to a two",
+          "rows": [
+            {
+              "label": "Array",
+              "values": [
+                "2",
+                "0",
+                "2",
+                "1",
+                "1",
+                "0"
+              ],
+              "highlight": [
+                0,
+                5
+              ],
+              "labels": [
+                "0: mid",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5: high"
+              ]
+            }
+          ],
+          "note": "A two belongs at the right edge of the unknown region."
+        },
+        {
+          "title": "Action: swap and reduce high",
+          "rows": [
+            {
+              "label": "Array after swap",
+              "values": [
+                "0",
+                "0",
+                "2",
+                "1",
+                "1",
+                "2"
+              ],
+              "highlight": [
+                0,
+                5
+              ],
+              "labels": [
+                "0: mid",
+                "1",
+                "2",
+                "3",
+                "4: high",
+                "5: done"
+              ]
+            }
+          ],
+          "note": "Swap indices 0 and 5. Index 5 now belongs to the finished twos region."
+        },
+        {
+          "title": "After: keep mid at zero",
+          "rows": [
+            {
+              "label": "Next value to classify",
+              "values": [
+                "0"
+              ],
+              "highlight": [
+                0
+              ],
+              "labels": [
+                "index 0: still mid"
+              ]
+            },
+            {
+              "label": "Pointer update",
+              "values": [
+                "high: 5 → 4",
+                "mid: 0 → 0"
+              ]
+            }
+          ],
+          "note": "The incoming zero has not been classified yet. Advancing mid now would skip it."
+        }
+      ]
     }
   ]
 }

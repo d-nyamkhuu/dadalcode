@@ -10,7 +10,7 @@
     "1 <= len(s1), len(s2) <= 10^4",
     "Both strings contain lowercase English letters."
   ],
-  "intuition": "All permutations have the same length and frequency vector. Slide a window of exactly len(s1) through s2, adding the arriving letter and subtracting the departing letter. Compare 26 counters instead of constructing permutations.",
+  "intuition": "A permutation has the same character counts as the original string. Slide a window of exactly len(s1) characters across s2 and compare its counts with s1's counts. We do not need to generate any reordered strings to check whether a match exists.",
   "approach": [
     "Count the letters in s1.",
     "Update a 26-entry window count while scanning s2.",
@@ -26,7 +26,7 @@
   },
   "pitfalls": [
     "The window length is fixed, not variable.",
-    "Multiplicity matters; a set cannot distinguish aa from ab.",
+    "Occurrence count matters; a set cannot distinguish aa from ab.",
     "If s1 is longer than s2, the answer is false."
   ],
   "sources": [

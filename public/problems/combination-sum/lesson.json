@@ -11,7 +11,7 @@
     "2 <= candidates[i] <= 40; candidates are distinct.",
     "1 <= target <= 40"
   ],
-  "intuition": "Allow reuse by keeping the chosen index available in the recursive call. Prevent duplicate orderings by never returning to an earlier candidate. Sorted candidates let us stop once a value exceeds the remaining target.",
+  "intuition": "Build a combination by choosing numbers in increasing order. Subtract each choice from the amount still needed. You may choose the same number again, but do not return to smaller numbers. This finds each combination once instead of repeating it in different orders.",
   "approach": [
     "Sort candidates and keep a path and remaining target.",
     "From start onward, try each value no larger than the remainder.",
@@ -19,7 +19,7 @@
     "Save a copy when the remainder reaches zero."
   ],
   "correctness": "Every path is nondecreasing, so permutations of one combination cannot produce duplicates. Any valid multiset can be written in that order and follows a permitted path. Positive values reduce the remainder, and stopping at zero saves exactly combinations totaling target.",
-  "bruteForce": "Enumerate ordered sequences of candidates. This explores permutations of the same answer and requires deduplication afterward.",
+  "bruteForce": "List ordered sequences of candidates. This explores permutations of the same answer and requires deduplication afterward.",
   "complexity": {
     "time": "O(n log n + n^d * d), d = floor(target/min(candidates))",
     "space": "O(n+d) auxiliary, excluding output",

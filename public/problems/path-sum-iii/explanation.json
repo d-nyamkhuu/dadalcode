@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Unlike root-to-leaf path sums, a qualifying path may start and stop anywhere along a downward route. Starting a separate traversal at every node considers those possibilities but repeats many suffix searches. Prefix sums identify all valid starts for the current endpoint at once.",
+    "A valid path can begin below the root, but it must move downward. Along the current ancestor route, save counts of running sums. If the current total is T, an earlier total T - target identifies a path ending here. Remove a total when leaving its branch.",
     "If the current root-to-node prefix is total, a downward path ending here has the target sum when the prefix immediately before its start equals total-targetSum. Store frequencies of ancestor prefix sums, since the same prefix value may occur at several positions and each represents a different start. Seed zero once so a path beginning at the root is included.",
-    "The frequency table must describe only the current ancestor route. Add the current prefix on entry, explore its descendants, and remove it on exit. Otherwise a prefix from one sibling subtree could be incorrectly paired with an endpoint in another subtree. This reference expresses entry and exit as explicit stack events, preserving the same backtracking discipline without relying on Python recursion depth. Negative and zero values are handled by exact sum differences rather than monotone pruning."
+    "The frequency table must describe only the current ancestor route. Add the current prefix on entry, explore its descendants, and remove it on exit. Otherwise a prefix from one sibling subtree could be incorrectly paired with an endpoint in another subtree.",
+    "This reference expresses entry and exit as explicit stack events, preserving the same backtracking discipline without relying on Python recursion depth. Negative and zero values are handled by exact sum differences rather than monotone pruning."
   ],
   "walkthrough": {
     "input": {
@@ -23,10 +24,10 @@
     },
     "steps": [
       "The example target is 8. Enter root 10 with prefix total=10 and register that prefix.",
-      "On the left branch, entering 5 then 3 gives total=18. Looking for 18-8=10 finds the root prefix, counting path 5\u21923.",
-      "The branch 5\u21922\u21921 also ends at total=18 and finds the same ancestor prefix, counting its different downward path.",
-      "Exit events remove left-subtree prefixes before entering the root\u2019s right branch.",
-      "Entering -3 then 11 reaches total=18 again, counting -3\u219211. Return 3 for the three distinct paths."
+      "On the left branch, entering 5 then 3 gives total=18. Looking for 18-8=10 finds the root prefix, counting path 5→3.",
+      "The branch 5→2→1 also ends at total=18 and finds the same ancestor prefix, counting its different downward path.",
+      "Exit events remove left-subtree prefixes before entering the root’s right branch.",
+      "Entering -3 then 11 reaches total=18 again, counting -3→11. Return 3 for the three distinct paths."
     ],
     "result": 3
   },
@@ -41,7 +42,8 @@
     },
     {
       "code": "counts[total] -= 1",
-      "note": "Exit removes this node\u2019s prefix from the active ancestor route, preventing invalid paths that cross between sibling subtrees."
+      "note": "Exit removes this node’s prefix from the active ancestor route, preventing invalid paths that cross between sibling subtrees."
     }
-  ]
+  ],
+  "keyDecision": "The prefix-count map must contain only the current ancestor route. Remove the current total on exit."
 }

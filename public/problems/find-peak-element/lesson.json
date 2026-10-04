@@ -11,7 +11,7 @@
     "Adjacent elements are unequal",
     "Elements are signed 32-bit integers"
   ],
-  "intuition": "Compare the middle value with its right neighbor. If the slope rises, a peak must exist to the right: either the rise eventually ends or the final element is a peak. A falling slope similarly guarantees a peak on the left including the middle.",
+  "intuition": "Look at the slope between the middle value and the next value. If it rises, a peak exists on the right. If it falls, a peak exists at the middle or on the left. Keep that side. We need any peak, so finding the global maximum is unnecessary.",
   "approach": [
     "Keep an inclusive candidate interval [left,right].",
     "If nums[mid] < nums[mid+1], move left to mid+1. Otherwise move right to mid.",

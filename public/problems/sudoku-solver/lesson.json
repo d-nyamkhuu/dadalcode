@@ -1,7 +1,7 @@
 {
   "slug": "sudoku-solver",
   "headline": "Choose the most constrained empty cell first",
-  "statement": "Fill every empty cell in a 9\u00d79 Sudoku board so each row, column, and 3\u00d73 box contains digits 1 through 9 exactly once. Modify board in place. A dot marks an empty cell. Trainer inputs and outputs use nine row strings; the adapter converts input rows to character lists.",
+  "statement": "Fill every empty cell in a 9×9 Sudoku board so each row, column, and 3×3 box contains digits 1 through 9 exactly once. Modify board in place. A dot marks an empty cell. Trainer inputs and outputs use nine row strings; the adapter converts input rows to character lists.",
   "prerequisites": [
     "Backtracking",
     "Row and column constraints",
@@ -13,16 +13,16 @@
     "Cells contain digits 1 through 9 or a dot",
     "The initial board is valid and has exactly one solution"
   ],
-  "intuition": "A digit is allowed only if absent from the cell\u2019s row, column, and box. Trying the cell with the fewest legal digits exposes contradictions earlier and avoids broad useless branching. After a failed choice, restore every constraint set and the cell.",
+  "intuition": "Fill one empty cell with a digit allowed by its row, column, and box. Try solving the remaining cells. If the choice makes completion impossible, erase it and try another digit. Choose the cell with the fewest allowed digits first to reduce the number of choices.",
   "approach": [
     "Build occupied-digit sets for all rows, columns, and boxes, and collect empty coordinates.",
     "At each depth, select the remaining cell with the fewest candidates and move it into the current position.",
     "Try legal digits, update all sets, recurse, and undo on failure; completion means every cell is filled."
   ],
   "correctness": "Every assignment is checked against all three Sudoku constraints, so completed boards are valid. For the selected cell, every legal digit is explored unless a valid completion is found. Undoing restores the exact prior state, so no possible completion is lost. The uniqueness guarantee identifies the final board.",
-  "bruteForce": "Enumerate all 9^E assignments to E empty cells and validate only full boards; checking constraints early prunes most invalid branches.",
+  "bruteForce": "List all 9^E assignments to E empty cells and validate only full boards; checking constraints early prunes most invalid branches.",
   "complexity": {
-    "time": "O(E\u00b2 \u00d7 9^E) loose upper bound",
+    "time": "O(E² × 9^E) loose upper bound",
     "space": "O(E + 81)",
     "explanation": "Constraint checks are bounded by nine digits; MRV scans remaining cells at each recursion level. The fixed-size board and recursion depth E <= 81 bound storage."
   },

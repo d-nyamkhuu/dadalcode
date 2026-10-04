@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "The task asks for values with the greatest frequencies, not the greatest numeric values. Counting occurrences is unavoidable, but sorting all distinct values by count adds comparison work. Counts have a useful restriction: with n input elements, every frequency lies between 1 and n.",
+    "First count how often each value appears. Put values into buckets labeled by their counts. Read the buckets from the largest count downward and stop after collecting k values. Frequencies cannot exceed the input length, so there is no need to sort all values by frequency.",
     "Use those bounded counts directly as bucket indices. Each distinct value goes into exactly one bucket matching its frequency. Visiting buckets from n downward produces values in descending frequency without comparison sorting, satisfying the requirement to improve on O(n log n).",
     "Stop as soon as k values have been collected. Input guarantees that the selected set is unique, so there is no ambiguous tie crossing the selection boundary. Values within a selected equal-frequency bucket may appear in any order, and the output order itself is unrestricted.",
-    "The unique-answer guarantee means a tie cannot straddle the kth selection boundary: either the whole tied group belongs in the answer or it does not. The defensive stop inside a bucket still limits output to k. A size-k min-heap is an alternative when allocating n+1 buckets is undesirable: count n inputs, then process u distinct values in O(n+u log(k+1)) time and O(u+k) auxiliary space. It retains only k selection entries, while the frequency map still stores u values; bucket traversal keeps the reference linear."
+    "The unique-answer guarantee means a tie cannot straddle the kth selection boundary: either the whole tied group belongs in the answer or it does not. The defensive stop inside a bucket still limits output to k.",
+    "A size-k min-heap is an alternative when allocating n+1 buckets is undesirable: count n inputs, then process u distinct values in O(n+u log(k+1)) time and O(u+k) additional space. It retains only k selection entries, while the frequency map still stores u values; bucket traversal keeps the reference linear."
   ],
   "walkthrough": {
     "input": {
@@ -43,5 +44,6 @@
       "code": "if len(result) == k:",
       "note": "Stop inside the bucket loop as soon as the requested count is reached; appending whole buckets blindly could return too many values."
     }
-  ]
+  ],
+  "keyDecision": "Each distinct value goes into exactly one bucket: the bucket matching its frequency."
 }

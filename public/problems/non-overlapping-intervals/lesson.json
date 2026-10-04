@@ -10,14 +10,14 @@
     "1 <= number of intervals <= 100000",
     "-50000 <= start < end <= 50000"
   ],
-  "intuition": "Minimizing removals equals maximizing the number retained. Among intervals available next, the earliest finishing one leaves the largest available future timeline. Keeping a longer one cannot improve the remaining choices.",
+  "intuition": "Keep as many non-overlapping intervals as possible, then remove the rest. Choose the interval that ends earliest because it leaves the most room for future intervals. Repeat among intervals starting after the chosen end. Sorting by start alone would not guarantee this best choice.",
   "approach": [
     "Sort by end time.",
     "Keep each interval whose start is at least the last retained end.",
     "Count retained intervals and subtract from the total."
   ],
-  "correctness": "For an optimal compatible schedule, replace its first interval with the globally earliest-finishing interval. The replacement ends no later, so all later choices remain compatible. Repeating the argument on the remaining timeline proves greedy selects a maximum-cardinality compatible set. Removing the complement is minimal.",
-  "bruteForce": "Enumerate every subset, check pairwise overlap, and retain the largest compatible subset.",
+  "correctness": "For a best possible compatible schedule, replace its first interval with the globally earliest-finishing interval. The replacement ends no later, so all later choices remain compatible. Repeating the argument on the remaining timeline proves greedy selects a maximum-cardinality compatible set. Removing the complement is minimal.",
+  "bruteForce": "List every subset, check pairwise overlap, and retain the largest compatible subset.",
   "complexity": {
     "time": "O(n log n)",
     "space": "O(n)",

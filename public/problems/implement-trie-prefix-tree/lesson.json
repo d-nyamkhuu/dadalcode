@@ -12,7 +12,7 @@
     "1 <= word or prefix length <= 2000",
     "At most 30,000 method calls"
   ],
-  "intuition": "Each character is one edge in a shared prefix tree. A terminal marker distinguishes an inserted word from a path created only because a longer word was inserted.",
+  "intuition": "Store words as paths of letters, sharing the beginning of words with the same prefix. A search follows one letter at a time. Reaching a path proves that a prefix exists, but it does not prove that a whole word was inserted. Mark word endings separately.",
   "approach": [
     "Create character-keyed child dictionaries on insertion.",
     "Mark the final dictionary with a non-letter terminal key.",

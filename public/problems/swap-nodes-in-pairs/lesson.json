@@ -10,7 +10,7 @@
     "0 <= number of nodes <= 100",
     "0 <= node values <= 100"
   ],
-  "intuition": "A dummy node gives the first pair an ordinary predecessor. For predecessor P followed by A,B,C, rewrite P->B->A->C. After this change A is the predecessor of the next pair, so continue from there without special handling of the head.",
+  "intuition": "Work on two neighboring nodes at a time. Save the node after the pair, reconnect the pair in the opposite order, and join it back to the rest of the list. Change links between the original nodes; swapping their stored values would not meet the requirement.",
   "approach": [
     "Create a dummy whose next points to head.",
     "While the predecessor has two following nodes, name them first and second.",

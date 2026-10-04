@@ -11,7 +11,7 @@
     "1 <= combined length <= 2000",
     "Values are between -10^6 and 10^6; each input is sorted."
   ],
-  "intuition": "The median separates a lower half from an upper half. Choose how many elements of the smaller array belong to the lower half; the needed count from the other array is then forced. Sortedness means only the four values beside this boundary need checking.",
+  "intuition": "Imagine a line separating the lower half of all values from the upper half. We do not need to merge the arrays. Instead, choose where that line cuts each sorted array. Keep the correct number of values on the left, then check the values beside the two cuts.",
   "approach": [
     "Search the smaller array so every candidate partition is legal.",
     "Keep (m+n+1)//2 values on the left, placing the extra value there for odd totals.",
@@ -34,6 +34,10 @@
     {
       "label": "LeetCode problem",
       "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+    },
+    {
+      "label": "LeetCode Wiki · median explanation",
+      "url": "https://leetcode.doocs.org/en/lc/4/"
     }
   ],
   "visualization": {

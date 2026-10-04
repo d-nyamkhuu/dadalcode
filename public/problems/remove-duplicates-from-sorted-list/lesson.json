@@ -11,7 +11,7 @@
     "-100 <= node.val <= 100",
     "Values are in nondecreasing order"
   ],
-  "intuition": "Sorting places all copies of a value next to each other. Keep one representative node and bypass equal successors until the next value differs.",
+  "intuition": "Equal values are next to each other because the list is sorted. Keep the first node in each equal group. If its next node has the same value, skip that next node by changing one link. Advance only when the next value is different.",
   "approach": [
     "Start current at head.",
     "If current and its next node have equal values, link current directly to next.next.",

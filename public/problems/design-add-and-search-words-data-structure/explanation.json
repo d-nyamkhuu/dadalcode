@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A set supports exact word lookups, but a period query can represent many different words. Scanning every stored word is one solution, yet it repeatedly compares shared prefixes. A trie shares those prefixes, allowing one query to explore only character paths that actually exist.",
+    "Store inserted words as letter paths in a trie. A normal search character follows one matching edge. A '.' may follow any letter edge, so keep all possible matching nodes for that step. At the end, accept only a node marked as a complete inserted word.",
     "Maintain a frontier of trie nodes reachable after the query prefix processed so far. A literal letter follows its matching child from each node. A period follows every letter child, consuming exactly one character. Since the terminal marker is not a letter edge, exclude it from wildcard transitions.",
-    "After the entire query, at least one frontier node must have the terminal marker. An existing path alone is only a prefix and cannot satisfy a whole-word search. The frontier interpretation gives a precise correctness rule: after each step it contains every and only the stored prefixes matching the consumed query prefix. Missing literal edges disappear from the frontier, and an empty frontier allows early rejection. Added words share the same path-building behavior as an ordinary trie."
+    "After the entire query, at least one frontier node must have the terminal marker. An existing path alone is only a prefix and cannot satisfy a whole-word search. The frontier interpretation gives a precise correctness rule: after each step it contains every and only the stored prefixes matching the consumed query prefix.",
+    "Missing literal edges disappear from the frontier, and an empty frontier allows early rejection. Added words share the same path-building behavior as an ordinary trie."
   ],
   "walkthrough": {
     "input": {
@@ -73,5 +74,6 @@
       "code": "return any('#' in node for node in frontier)",
       "note": "After consuming the full query, require at least one complete word rather than merely a reachable prefix."
     }
-  ]
+  ],
+  "keyDecision": "A wildcard consumes exactly one letter. A matching prefix without an end marker is not a whole-word match."
 }

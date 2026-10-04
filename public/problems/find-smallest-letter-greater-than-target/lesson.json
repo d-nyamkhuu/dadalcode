@@ -11,7 +11,7 @@
     "letters is sorted and contains at least two distinct lowercase English letters",
     "target is a lowercase English letter"
   ],
-  "intuition": "All letters <= target lie before all valid answers. Binary search this boundary with a half-open interval. If the boundary is beyond the array, the problem\u2019s circular rule returns index zero.",
+  "intuition": "Find the first sorted letter strictly greater than the target. Binary search removes letters that are too small or equal. If no greater letter exists, wrap around to the first letter. Equality is not a match because the requested comparison is strict.",
   "approach": [
     "Search [left,right) for the first letter > target.",
     "Move left past mid when letters[mid] <= target; otherwise lower right to mid.",

@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "You could first count all nodes and then walk halfway from the head. A singly linked list does not offer indexed access, so that approach needs two traversals. The same halfway location can be discovered by comparing two pointer speeds during one traversal.",
+    "Move a slow pointer one link and a fast pointer two links on every turn. When the fast pointer reaches the end, the slow pointer is halfway through the list. The loop condition makes an even-length list return the second of its two middle nodes.",
     "Start both pointers at the head. For every round, slow advances one link while fast advances two. When fast can no longer take another two-link step, slow has advanced floor(length/2) links. This selects the only middle for odd lengths and the second middle for even lengths.",
     "The answer is an original node, not merely its value. Returning that node also exposes the unchanged suffix beginning there. No links or node contents need modification, and the algorithm keeps only the two traversal pointers regardless of the list length."
   ],
@@ -42,5 +42,6 @@
       "code": "return slow",
       "note": "Return the actual middle node by identity. Constructing a replacement chain with equal values would not satisfy the original-node contract."
     }
-  ]
+  ],
+  "keyDecision": "Continue while fast and fast.next both exist. Return the original node referenced by slow."
 }

@@ -11,7 +11,7 @@
     "1 <= len(nums) <= 200",
     "1 <= nums[i] <= 100"
   ],
-  "intuition": "Two equal sums each equal half the total. Ask whether that half can be formed by choosing each value at most once.",
+  "intuition": "If the total is odd, two equal sums are impossible. Otherwise, try to reach half the total with some of the numbers. Save which sums are possible as you process each number. The numbers left out will automatically have the other half if the target is reached.",
   "approach": [
     "Reject an odd total immediately.",
     "Initialize reachable[0]=True for the empty subset.",
@@ -19,11 +19,11 @@
     "Return reachable[target]."
   ],
   "correctness": "After each value, reachable[s] records exactly whether some subset of processed elements sums to s. The transition either excludes the value or adds it to a previously reachable s-value. Descending updates use the previous layer, preventing reuse. Reaching half leaves the complementary elements with the same sum.",
-  "bruteForce": "Enumerate all 2^n subsets and check their sums.",
+  "bruteForce": "List all 2^n subsets and check their sums.",
   "complexity": {
     "time": "O(n*T), T=sum(nums)/2",
     "space": "O(T)",
-    "explanation": "Time O(n*T), T=sum(nums)/2; auxiliary space O(T). Output storage is excluded unless stated."
+    "explanation": "Time O(n*T), T=sum(nums)/2; additional space O(T). Output storage is excluded unless stated."
   },
   "pitfalls": [
     "Update sums downward, or one value may be used multiple times.",

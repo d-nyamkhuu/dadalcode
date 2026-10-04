@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A set answers whole-word membership well, but finding whether any stored word begins with a prefix requires scanning words. A trie stores those prefixes directly. Each character selects a child dictionary, so words sharing the beginning of their spelling share the same initial path.",
-    "Inserting apple creates a path a\u2192p\u2192p\u2192l\u2192e. That also creates a reachable path for app, but app is not necessarily an inserted word. Mark complete word endpoints separately with a key that cannot be a lowercase letter. Inserting app later adds that marker at the already-existing third-character node without duplicating its prefix.",
-    "Both search and startsWith follow their query characters and reject immediately if an edge is absent. Whole-word search additionally requires an endpoint marker. Prefix search does not: reaching the node itself proves at least one inserted word has that prefix. This separation is the central trie invariant. Repeated insertion simply sets an existing marker again, and operation cost depends on query length rather than the number of stored words.",
+    "Store words as paths of letters, sharing the beginning of words with the same prefix. A search follows one letter at a time. Reaching a path proves that a prefix exists, but it does not prove that a whole word was inserted. Mark word endings separately.",
+    "Inserting apple creates a path a→p→p→l→e. That also creates a reachable path for app, but app is not necessarily an inserted word. Mark complete word endpoints separately with a key that cannot be a lowercase letter. Inserting app later adds that marker at the already-existing third-character node without duplicating its prefix.",
+    "Both search and startsWith follow their query characters and reject immediately if an edge is absent. Whole-word search additionally requires an endpoint marker. Prefix search does not: reaching the node itself proves at least one inserted word has that prefix. This separation is the central trie invariant.",
+    "Repeated insertion simply sets an existing marker again, and operation cost depends on query length rather than the number of stored words.",
     "All three methods advance iteratively through characters. A permitted word of length 2000 therefore needs no 2000-deep recursive call stack; insertion and queries keep only the current node plus the shared trie structure."
   ],
   "walkthrough": {
@@ -69,5 +70,6 @@
       "code": "return '#' in node",
       "note": "Whole-word search must check endpoint status after consuming every query character."
     }
-  ]
+  ],
+  "keyDecision": "Whole-word search requires an end marker. Prefix search requires only a complete path."
 }

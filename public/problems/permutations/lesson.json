@@ -12,17 +12,17 @@
     "-10 <= nums[i] <= 10",
     "All values are distinct"
   ],
-  "intuition": "A partial ordering can be extended with any value not already used. Make one choice, explore all completions, then undo that choice so the next branch starts from the same prefix.",
+  "intuition": "A permutation puts all the numbers in an order. Build that order one position at a time by choosing any number not already used. After exploring a choice, remove it so another choice can use that position. Save a copy when the order contains every number.",
   "approach": [
     "Maintain path and used while recursively constructing positions.",
     "Choose each unused value and recurse.",
     "When path has n values, save a copy; afterward undo each choice."
   ],
-  "correctness": "Each recursion depth assigns exactly one position, and used prevents repeated values. Every permutation has a unique sequence of choices, so it is reached once. The backtracking restoration ensures no branch inherits another branch\u2019s choices.",
+  "correctness": "Each recursion depth assigns exactly one position, and used prevents repeated values. Every permutation has a unique sequence of choices, so it is reached once. The backtracking restoration ensures no branch inherits another branch’s choices.",
   "bruteForce": "Generate n^n length-n sequences and discard those with repeated values; this examines far more invalid candidates.",
   "complexity": {
-    "time": "O(n \u00b7 n!)",
-    "space": "O(n) auxiliary, O(n \u00b7 n!) output",
+    "time": "O(n · n!)",
+    "space": "O(n) auxiliary, O(n · n!) output",
     "explanation": "There are n! answers, each copied in O(n); recursion and current path have depth n."
   },
   "pitfalls": [

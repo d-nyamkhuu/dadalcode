@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "A depth-first traversal can collect values by depth, but it then needs extra bookkeeping to preserve the horizontal order at every level. Breadth-first search already processes the exact grouping required by this problem. The zigzag direction can be applied to the completed group rather than changing how the tree is traversed.",
+    "First collect each tree level from left to right using a queue. Reverse the collected values on every other level. Keep the queue traversal itself in the same order, which makes the alternating output easier to manage.",
     "Keep the queue in ordinary left-to-right BFS order. At the start of each round, its current size is the number of nodes on this level. Consume only that many entries while appending their children for the next level. This prevents children from being mixed into their parents’ result.",
     "Reverse the collected values on alternate levels. Leaving queue order unchanged is important: reversing traversal direction and still appending children left-first can scramble the following level. Separating traversal from display makes the invariant simple and handles sparse trees without special directional child rules."
   ],
@@ -51,5 +51,6 @@
       "code": "level.reverse()",
       "note": "Only the output values are reversed. Queue ordering continues to obey the BFS invariant for the following level."
     }
-  ]
+  ],
+  "keyDecision": "Reverse the output values on alternate levels, not the order in which children enter the queue."
 }

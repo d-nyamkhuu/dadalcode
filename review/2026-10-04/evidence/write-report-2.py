@@ -1,7 +1,7 @@
 import json,pathlib
-root=pathlib.Path('/home/data/Projects/blind-75/public/problems')
-slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-2.json'))
-counts=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/probe-2-results.json'))['oracle_counts']
+root=pathlib.Path('./public/problems')
+slugs=json.load(open('./review/2026-10-04/evidence/group-2.json'))
+counts=json.load(open('./review/2026-10-04/evidence/probe-2-results.json'))['oracle_counts']
 reviews={
 'count-unique-characters-of-all-substrings-of-a-given-string':(
 'Precisely distinguishes frequency-one letters, substring occurrences, uppercase alphabet, and 32-bit result promise.',
@@ -219,7 +219,7 @@ for slug in slugs:
  formulation,explanation,solution,tests,improvements,validation=reviews[slug]
  findings=[]
  if slug=='factor-combinations':
-  findings=[{'severity':'P2','title':'Require nondecreasing factor lists before normalizing outer order','file':str(root/slug/'adapter.py'),'line_start':6,'line_end':6,'detail':'The package statement requires each combination in nondecreasing order, but the checker sorts each returned combination before comparison. A learner returning factors in descending or arbitrary order receives a passing result despite violating that representation contract. Outer answer order is unrestricted; inner order is not.','evidence':'For n=12, check([[6,2],[3,2,2],[4,3]], [[2,2,3],[2,6],[3,4]], {"n":12}) returns True. Independently reproduced in /home/data/Projects/blind-75/review/2026-10-04/evidence/probe-2.py. lesson.json:4 explicitly requires nondecreasing order.','recommendation':'Validate len(p)>=2 and p==sorted(p) for every returned combination before comparing sorted outer tuples without reordering their elements; add a checker regression that rejects the demonstrated descending outputs.'}]
+  findings=[{'severity':'P2','title':'Require nondecreasing factor lists before normalizing outer order','file':str(root/slug/'adapter.py'),'line_start':6,'line_end':6,'detail':'The package statement requires each combination in nondecreasing order, but the checker sorts each returned combination before comparison. A learner returning factors in descending or arbitrary order receives a passing result despite violating that representation contract. Outer answer order is unrestricted; inner order is not.','evidence':'For n=12, check([[6,2],[3,2,2],[4,3]], [[2,2,3],[2,6],[3,4]], {"n":12}) returns True. Independently reproduced in ./review/2026-10-04/evidence/probe-2.py. lesson.json:4 explicitly requires nondecreasing order.','recommendation':'Validate len(p)>=2 and p==sorted(p) for every returned combination before comparing sorted outer tuples without reordering their elements; add a checker regression that rejects the demonstrated descending outputs.'}]
  report.append({'slug':slug,'verdict':'issue' if findings else 'no-confirmed-defect','formulation_review':formulation,'explanation_review':explanation,'solution_review':solution,'tests_review':tests,'findings':findings,'improvements':improvements,'validation':[f'{counts[slug]} independent oracle comparisons passed. {validation}','All six package files manually reviewed, including public starter/solution signatures, custom checker semantics, constraints, authored examples, complexity, and source/visualization metadata. Existing fixture execution already passed the root audit; no project files were changed.']})
-pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/audit-2.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
-print(json.dumps({'packages':len(report),'with_confirmed_findings':sum(bool(x['findings']) for x in report),'findings':sum(len(x['findings']) for x in report),'comparisons':sum(counts.values()),'report':'/home/data/Projects/blind-75/review/2026-10-04/evidence/audit-2.json'}))
+pathlib.Path('./review/2026-10-04/evidence/audit-2.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
+print(json.dumps({'packages':len(report),'with_confirmed_findings':sum(bool(x['findings']) for x in report),'findings':sum(len(x['findings']) for x in report),'comparisons':sum(counts.values()),'report':'./review/2026-10-04/evidence/audit-2.json'}))

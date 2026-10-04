@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Move the tail to the front k times, finding the tail on each pass: O(nk). Modulo and one cut avoid repeated traversals. Huge rotation counts repeat the same arrangements, so simulating every step ignores the periodic structure.",
-    "The last k nodes become a prefix while their relative order stays unchanged. After reducing k modulo length, only one boundary moves: the edge between the original prefix and suffix. Closing the old tail-to-head link temporarily removes the special end of the list. The new tail is then found by position, and cutting after it restores a linear list. This method rewires existing nodes rather than copying their values into a separate container.",
+    "A rotation moves the last k nodes to the front. Rotating by the full list length changes nothing, so first reduce k by that length. Temporarily connect the tail to the head, then cut the circle just before the nodes that should become the new front.",
+    "The last k nodes become a prefix while their relative order stays unchanged. After reducing k modulo length, only one boundary moves: the edge between the original prefix and suffix. Closing the old tail-to-head link temporarily removes the special end of the list. The new tail is then found by position, and cutting after it restores a linear list.",
+    "This method rewires existing nodes rather than copying their values into a separate container.",
     "The new tail is the last node of the original prefix of length n-k. Its successor is the first node of the original suffix. Closing the old tail-to-head edge concatenates suffix and prefix; cutting after the new tail preserves every node once in the required order. Two scans locate the old and new tails; existing nodes are reused."
   ],
   "walkthrough": {
@@ -43,5 +44,6 @@
       "code": "new_tail.next = None",
       "note": "Breaking this precise edge both produces the correct boundary and prevents returning a cyclic list."
     }
-  ]
+  ],
+  "keyDecision": "The new tail is at position length - k - 1 after reducing k modulo the length."
 }

@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Repeatedly remove adjacent matching pairs until none remain. This can require O(n\u00b2) rescanning; a stack performs each match once. Counts alone lose nesting order: the string ([)] has matching totals but its pairs cross and are invalid.",
-    "The newest unmatched opening bracket is the only one a closing bracket may match. A stack preserves precisely that nesting order. On an opener, push its type; on a closer, first ensure an opener exists, then require the corresponding type at the top. Popping removes the now-complete innermost pair. End-of-input acceptance also requires an empty stack, because unopened closers are not the only possible error: a leftover opener is equally invalid. The small match table separates bracket type lookup from the stack\u2019s ordering responsibility.",
+    "An opening bracket waits for a matching closing bracket. Keep unmatched openings on a stack. A closing bracket must match the most recent opening, because brackets close from the inside outward. After the full string, there must be no openings left waiting.",
+    "The newest unmatched opening bracket is the only one a closing bracket may match. A stack preserves precisely that nesting order. On an opener, push its type; on a closer, first ensure an opener exists, then require the corresponding type at the top. Popping removes the now-complete innermost pair.",
+    "End-of-input acceptance also requires an empty stack, because unopened closers are not the only possible error: a leftover opener is equally invalid. The small match table separates bracket type lookup from the stack’s ordering responsibility.",
     "The stack contains exactly the unmatched opening brackets of the processed prefix, in their nesting order. A closer must match its top to preserve valid nesting. Rejection detects an impossible match; successful exhaustion with an empty stack proves all brackets were matched correctly. Each bracket is pushed or matched once; all openings may accumulate."
   ],
   "walkthrough": {
@@ -30,5 +31,6 @@
       "code": "return not stack",
       "note": "Even if every encountered closer matched, remaining openers mean the complete string is unfinished."
     }
-  ]
+  ],
+  "keyDecision": "Reject a closing bracket if the stack is empty or its top has the wrong type."
 }

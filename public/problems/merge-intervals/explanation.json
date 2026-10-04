@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Two overlapping intervals cover one uninterrupted range, but repeatedly merging arbitrary pairs requires rescanning after each change. A merge can expose new overlaps, making the bookkeeping awkward. Ordering intervals first gives each new interval a predictable relationship to the union already built.",
+    "Sort intervals by their starting point. Then compare each interval with the last range you have saved. If they overlap, extend that saved range. Otherwise, begin a new range. Sorting means the next interval cannot overlap an earlier saved range without also reaching the last one.",
     "Sort by start coordinate. The next interval cannot overlap an earlier completed component without also reaching the most recent component, so only the last merged interval needs comparison. A start within that last interval extends the same component; a start beyond its end creates a new component.",
     "These are closed intervals, so equality at the boundary is an overlap: [1,4] and [4,5] share point 4. Use the maximum end when merging, because a nested interval may finish earlier than the current component. The output remains a sorted, disjoint cover after each processed interval.",
     "For nested intervals [1,10] followed by [2,3], assigning end=3 would erase covered points 4 through 10. Taking max(10,3)=10 preserves the full component. Duplicate intervals and a single-point interval inside it likewise leave its end unchanged."
@@ -62,5 +62,6 @@
       "code": "merged[-1][1] = max(merged[-1][1], end)",
       "note": "Extending by maximum preserves the entire union. Assigning end directly would shrink a component when the new interval is nested."
     }
-  ]
+  ],
+  "keyDecision": "Merge when the next start is no greater than the current end. Touching endpoints count as overlap here."
 }

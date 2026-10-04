@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "Trying every ordered sequence can find a sum, but it repeats answers: [2,2,3], [2,3,2], and [3,2,2] describe the same combination. A better search constructs each multiset in nondecreasing order. Then each valid combination has exactly one representation in the recursion tree.",
+    "Build a combination by choosing numbers in increasing order. Subtract each choice from the amount still needed. You may choose the same number again, but do not return to smaller numbers. This finds each combination once instead of repeating it in different orders.",
     "The recursive state records a start index, a path, and the remaining target. Only candidates at or after start may be chosen next. Reusing the chosen index permits another copy of that value; moving to an earlier index is forbidden, which removes reordered duplicates.",
     "Sorting also exposes a useful stopping rule. When a candidate exceeds the remaining target, all later candidates do too. Positive values guarantee that every choice decreases the remainder. A zero remainder is a completed answer, and a copied path preserves it while exploration continues."
   ],
@@ -45,5 +45,6 @@
       "code": "result.append(path[:])",
       "note": "The path is reused and shortened during backtracking. Saving a copy prevents later pops from erasing an already discovered combination."
     }
-  ]
+  ],
+  "keyDecision": "Recurse from the same candidate index to allow reuse. Save the combination when the remainder is zero."
 }

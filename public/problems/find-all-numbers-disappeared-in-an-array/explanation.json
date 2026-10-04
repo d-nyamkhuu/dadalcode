@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "Because values are restricted to 1 through n, every possible value has a corresponding index in the input itself. A set could record appearances, but that needs separate linear memory. The array can act as its own presence table by changing signs without destroying magnitudes.",
+    "Use each array position to mark whether its corresponding value appears. When you see value v, make position v - 1 negative. Repeated values leave the marker negative. After the scan, a positive position means its corresponding number was never seen.",
     "When value v appears, make the value at index v-1 negative. A previously marked input position may later be read as part of the scan, so recover its original magnitude with abs before deriving its home index. Repeated appearances must leave the marker negative; toggling the sign would wrongly erase evidence of an even number of copies.",
-    "After all values have marked their homes, scan the positions again. A positive entry means its corresponding number never appeared; append index+1 to the result. The magnitude stored at that home is irrelevant to this second pass: its sign alone is the presence flag. The method relies on strictly positive original values and the bounded value range, which guarantee both unambiguous signs and valid home indices."
+    "After all values have marked their homes, scan the positions again. A positive entry means its corresponding number never appeared; append index+1 to the result. The magnitude stored at that home is irrelevant to this second pass: its sign alone is the presence flag.",
+    "The method relies on strictly positive original values and the bounded value range, which guarantee both unambiguous signs and valid home indices."
   ],
   "walkthrough": {
     "input": {
@@ -33,7 +34,7 @@
   "codeNotes": [
     {
       "code": "value = abs(nums[index])",
-      "note": "Earlier marking may have changed this position\u2019s sign, but its original magnitude still identifies the encountered value."
+      "note": "Earlier marking may have changed this position’s sign, but its original magnitude still identifies the encountered value."
     },
     {
       "code": "nums[home] = -abs(nums[home])",
@@ -43,5 +44,6 @@
       "code": "result.append(index + 1)",
       "note": "Convert an unmarked zero-based home back to its corresponding one-based value."
     }
-  ]
+  ],
+  "keyDecision": "Always read the original magnitude with abs. Mark with -abs so repeated visits do not undo the marker."
 }

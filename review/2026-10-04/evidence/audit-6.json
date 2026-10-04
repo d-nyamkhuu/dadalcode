@@ -82,7 +82,7 @@
       {
         "severity": "P2",
         "title": "Valid linked lists above 10000 nodes cannot be serialized",
-        "file": "/home/data/Projects/blind-75/src/runtime/harness.py",
+        "file": "./src/runtime/harness.py",
         "line_start": 55,
         "line_end": 55,
         "detail": "sort-list/lesson.json advertises up to 50000 nodes, but sort-list/adapter.py:2 converts the correct returned head with list_values, which raises as soon as output length exceeds 10000. This makes valid inputs fail independent of solution correctness.",

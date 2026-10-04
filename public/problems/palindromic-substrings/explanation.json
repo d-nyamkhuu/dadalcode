@@ -1,7 +1,8 @@
 {
   "intuition": [
-    "Enumerate all O(n²) substrings and test each in O(n), for O(n³) time. Expansion reuses the inner palindrome property. Checking every candidate from scratch repeatedly verifies the same inner character pairs, even though palindromes grow symmetrically.",
-    "Every substring palindrome has one center: a character for odd length or a gap for even length. Starting there, matching endpoints certify a larger palindrome around the already-valid interior. Each successful expansion adds one distinct positional substring. If endpoints disagree, expanding farther cannot repair the mismatch, so that center is finished. Repeated text such as the three separate occurrences of \"a\" in \"aaa\" counts multiple times because the question distinguishes positions, not unique string values.",
+    "A palindrome grows outward from a middle character or a gap between two characters. Try every such center. Each matching expansion gives one palindromic substring at that position, so count it before expanding again. Equal text in different positions counts separately.",
+    "Every substring palindrome has one center: a character for odd length or a gap for even length. Starting there, matching endpoints certify a larger palindrome around the already-valid interior. Each successful expansion adds one distinct positional substring. If endpoints disagree, expanding farther cannot repair the mismatch, so that center is finished.",
+    "Repeated text such as the three separate occurrences of \"a\" in \"aaa\" counts multiple times because the question distinguishes positions, not unique string values.",
     "Every palindromic substring has a unique center and radius. For that center, all its inner pairs match, so expansion reaches and counts it. Conversely, each successful expansion creates matching endpoints around a palindrome, so every counted substring is valid. Unique center/radius pairs prevent double counting positions. Repeated-character strings permit quadratic expansions; only pointers and a count are stored."
   ],
   "walkthrough": {
@@ -32,5 +33,6 @@
       "code": "left -= 1",
       "note": "Expanding left and right together keeps the same center and reuses the palindrome already certified inside."
     }
-  ]
+  ],
+  "keyDecision": "Try both odd-length and even-length centers. Count every successful expansion."
 }

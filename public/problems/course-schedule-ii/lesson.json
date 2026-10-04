@@ -13,11 +13,11 @@
     "Prerequisite pairs are distinct and use valid course numbers",
     "A course is not its own prerequisite"
   ],
-  "intuition": "An indegree counts unfinished prerequisite edges. Courses with zero indegree are ready. Taking one course removes its outgoing prerequisite obligations, potentially making more courses ready. A cycle leaves some obligations impossible to release.",
+  "intuition": "Build the schedule by repeatedly taking a course with no unfinished prerequisites. After taking it, lower the requirement counts of courses that depend on it. This creates a valid order directly. If the order cannot include every course, a cycle makes a full schedule impossible.",
   "approach": [
-    "Build edges prerequisite -> course and count each course\u2019s incoming edges.",
+    "Build edges prerequisite -> course and count each course’s incoming edges.",
     "Queue every course with zero indegree, including isolated courses.",
-    "Repeatedly emit a ready course and decrement its dependents\u2019 indegrees.",
+    "Repeatedly emit a ready course and decrement its dependents’ indegrees.",
     "If fewer than numCourses were emitted, return []; otherwise return the order."
   ],
   "correctness": "Every emitted course has no remaining incoming edge, so all its prerequisites were emitted earlier and the prefix is valid. Each removed edge can release its dependent only after all its prerequisites finish. In an acyclic graph some remaining vertex always has indegree zero, so all vertices are emitted. If the queue empties early, the remaining graph contains a cycle and no complete valid order exists.",

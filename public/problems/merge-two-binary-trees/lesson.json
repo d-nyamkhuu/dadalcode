@@ -10,7 +10,7 @@
     "0 <= total node count <= 2,000",
     "-10,000 <= node values <= 10,000"
   ],
-  "intuition": "Only positions occupied in both trees need addition and further comparison. A subtree present on one side alone can be reused as a complete finished subtree.",
+  "intuition": "Visit the two trees at corresponding positions. If both nodes exist, add their values into the first tree. If only one exists, keep that whole branch. Continue comparing overlapping child pairs. This handles missing children without treating them as actual zero-valued nodes.",
   "approach": [
     "Return the other root when either input root is absent.",
     "Traverse pairs of overlapping nodes using a stack, adding the second value into the first.",

@@ -14,16 +14,16 @@
     "At most two periods in each search",
     "At most 10,000 calls"
   ],
-  "intuition": "A literal query character has at most one possible child per trie node. A period can choose any character child. Keep a frontier of every trie node reachable after reading the same number of query characters.",
+  "intuition": "Store inserted words as letter paths in a trie. A normal search character follows one matching edge. A '.' may follow any letter edge, so keep all possible matching nodes for that step. At the end, accept only a node marked as a complete inserted word.",
   "approach": [
     "Insert words as character paths and mark their final nodes.",
     "Start a search frontier at the root; advance by one literal child or all letter children for a period.",
     "After the full query, succeed if any reachable node carries the terminal marker."
   ],
-  "correctness": "After i query characters, the frontier is exactly all nodes reached by a prefix matching those characters. Literal and wildcard transitions enumerate precisely the permitted next letters. Checking endpoint markers after all characters therefore matches whole words, never merely prefixes.",
+  "correctness": "After i query characters, the frontier is exactly all nodes reached by a prefix matching those characters. Literal and wildcard transitions list precisely the permitted next letters. Checking endpoint markers after all characters therefore matches whole words, never merely prefixes.",
   "bruteForce": "Store all words and compare every word character-by-character to each query, costing O(WL) per search.",
   "complexity": {
-    "time": "O(L) insertion; O(L \u00d7 26^d) search",
+    "time": "O(L) insertion; O(L × 26^d) search",
     "space": "O(total stored prefix characters + 26^d) search frontier",
     "explanation": "d is the number of wildcard periods, at most two; the trie shares common prefixes."
   },

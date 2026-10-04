@@ -11,7 +11,7 @@
     "1 <= original nums[i] <= len(nums).",
     "Each value occurs at most twice."
   ],
-  "intuition": "Value v owns slot v-1. Negating that slot records that v has appeared. If the slot is already negative, this is the second occurrence. Read absolute values because earlier visits may have changed signs of unread entries.",
+  "intuition": "Values lie between 1 and n, so value v can use position v - 1 as a marker. Make that position negative the first time v appears. If it is already negative, v has appeared before. Read absolute values because markers may change the signs of values still to inspect.",
   "approach": [
     "For each position, recover its original value with abs.",
     "Look at the value-owned marker slot v-1.",

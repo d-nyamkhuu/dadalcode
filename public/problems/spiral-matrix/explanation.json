@@ -1,6 +1,6 @@
 {
   "intuition": [
-    "An explicit simulation can turn clockwise whenever its next cell is outside the matrix or already visited. That works but needs a visited grid. A spiral has more structure: after completing an outer border, the unvisited cells form another rectangle. Four inclusive boundaries can describe that rectangle without remembering individual visited cells.",
+    "The next cells always lie around the outside of the remaining rectangle. Read its top row, right column, bottom row, and left column. Move each boundary inward after reading it. Repeat with the smaller rectangle until no cells remain.",
     "Walk its top edge left to right, right edge downward, bottom edge right to left, and left edge upward. Shrink each boundary immediately after consuming its edge. The order of these updates matters because corner cells should belong to exactly one edge traversal.",
     "A last remaining row or column is the main subtlety. After the top and right traversals, that row or column may already be exhausted. Recheck whether rows remain before traversing bottom, and whether columns remain before traversing left. This keeps thin matrices and the center of an odd-sized square from being emitted twice. Every successful pass removes the current perimeter."
   ],
@@ -25,7 +25,7 @@
       ]
     },
     "steps": [
-      "For the 3\u00d73 matrix, initial boundaries are top=0, bottom=2, left=0, right=2.",
+      "For the 3×3 matrix, initial boundaries are top=0, bottom=2, left=0, right=2.",
       "Read top row 1,2,3 and move top to 1.",
       "Read right column 6,9 and move right to 1.",
       "Read bottom row backward as 8,7 and move bottom to 1.",
@@ -57,5 +57,6 @@
       "code": "if left <= right:",
       "note": "The corresponding guard prevents repeating a column already consumed from the right."
     }
-  ]
+  ],
+  "keyDecision": "Before reading a bottom row or left column, check that it still exists."
 }

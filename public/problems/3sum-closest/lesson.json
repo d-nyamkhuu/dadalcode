@@ -12,14 +12,14 @@
     "-1000 <= nums[i] <= 1000",
     "-10000 <= target <= 10000"
   ],
-  "intuition": "Fix the smallest position in a sorted triple. The remaining pair can be searched from both ends: increasing the left value raises the sum, while decreasing the right value lowers it.",
+  "intuition": "Sort the numbers and choose one as the first member of the triple. Search for the other two from opposite ends. Moving the left pointer increases the total; moving the right pointer decreases it. Keep the sum whose distance from the target is smallest.",
   "approach": [
     "Sort nums and initialize best using an actual triple.",
     "For each first position, place left immediately after it and right at the end.",
     "Update best; move left if the sum is too small, right if it is too large, or return an exact match."
   ],
   "correctness": "For a fixed first value, when the sum is below target, pairing the same left with any smaller right cannot improve it, so left can advance. The symmetric argument allows right to retreat above target. Every discarded pair is no better than an already considered candidate.",
-  "bruteForce": "Enumerate all triples and compare their distances, costing O(n³).",
+  "bruteForce": "List all triples and compare their distances, costing O(n³).",
   "complexity": {
     "time": "O(n²)",
     "space": "O(n)",

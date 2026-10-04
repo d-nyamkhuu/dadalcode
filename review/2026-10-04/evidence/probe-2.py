@@ -1,6 +1,6 @@
 import json,pathlib,itertools,collections,random,re,importlib.util
-ROOT=pathlib.Path('/home/data/Projects/blind-75/public/problems')
-slugs=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-2.json')); ns={}; stats=collections.Counter(); rng=random.Random(42)
+ROOT=pathlib.Path('./public/problems')
+slugs=json.load(open('./review/2026-10-04/evidence/group-2.json')); ns={}; stats=collections.Counter(); rng=random.Random(42)
 class Interval:
  def __init__(self,start,end):self.start,self.end=start,end
 for slug in slugs:
@@ -183,4 +183,4 @@ adapter={};exec((ROOT/'factor-combinations'/'adapter.py').read_text(),adapter)
 probe={'actual':[[6,2],[3,2,2],[4,3]],'expected':[[2,2,3],[2,6],[3,4]],'case':{'n':12}}
 assert adapter['check'](**probe)
 print(json.dumps({'oracle_counts':dict(stats),'oracle_total':sum(stats.values()),'factor_checker_unsorted_accepted':True},indent=2))
-pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/probe-2-results.json').write_text(json.dumps({'oracle_counts':dict(stats),'oracle_total':sum(stats.values()),'factor_checker_unsorted_accepted':True},indent=2))
+pathlib.Path('./review/2026-10-04/evidence/probe-2-results.json').write_text(json.dumps({'oracle_counts':dict(stats),'oracle_total':sum(stats.values()),'factor_checker_unsorted_accepted':True},indent=2))

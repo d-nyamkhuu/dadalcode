@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "A single interval sum can be computed by scanning its elements. With many queries, however, the same values are added repeatedly. Because the array never changes, we can do that repeated work once before any query is asked.",
+    "Save running totals once, before answering queries. Let prefix[i] be the sum of the first i values. A range sum is the total through its right end minus the total before its left end. This makes every later query a single subtraction.",
     "prefix[k] stores the sum of the first k values, including prefix[0]=0 for the empty prefix. A query from left through right consists of the prefix through right with everything before left removed. Its answer is therefore prefix[right+1]-prefix[left]. The extra initial zero makes a query starting at index zero use the same expression as every other query.",
-    "This indexing convention separates element positions from prefix boundaries. The element at index right belongs in the query, so its enclosing prefix ends at boundary right+1. Negative values and zero do not require any special handling because subtraction cancels the unwanted prefix exactly. Constructor work is linear and each query is constant time, trading one auxiliary array for faster repeated access. An update operation would invalidate these stored prefixes, but updates are explicitly outside this class\u2019s interface."
+    "This indexing convention separates element positions from prefix boundaries. The element at index right belongs in the query, so its enclosing prefix ends at boundary right+1. Negative values and zero do not require any special handling because subtraction cancels the unwanted prefix exactly.",
+    "Constructor work is linear and each query is constant time, trading one additional array for faster repeated access. An update operation would invalidate these stored prefixes, but updates are explicitly outside this class’s interface."
   ],
   "walkthrough": {
     "input": {
@@ -55,5 +56,6 @@
       "code": "return prefix[right + 1] - prefix[left]",
       "note": "The inclusive right endpoint requires right+1; subtracting boundary left removes only the elements strictly before the requested interval."
     }
-  ]
+  ],
+  "keyDecision": "For an inclusive range [left, right], use prefix[right + 1] - prefix[left]."
 }

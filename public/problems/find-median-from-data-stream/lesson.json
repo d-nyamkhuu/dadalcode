@@ -12,11 +12,11 @@
     "At most 50,000 calls",
     "findMedian is called only after an insertion"
   ],
-  "intuition": "Keep smaller values in a max heap and larger values in a min heap. The lower half is either the same size as the upper half or one element larger. Their roots expose the middle value or pair immediately.",
+  "intuition": "Split the numbers into a smaller half and a larger half. Keep the largest smaller-half value and the smallest larger-half value easy to read with two heaps. Balance their sizes after each insertion. Those boundary values are exactly the middle value or middle pair.",
   "approach": [
     "Push a new value into the lower heap and move its maximum to the upper heap.",
     "If upper becomes larger, move its minimum back to lower.",
-    "For equal sizes average the two roots; otherwise return lower\u2019s maximum."
+    "For equal sizes average the two roots; otherwise return lower’s maximum."
   ],
   "correctness": "Moving the largest lower value into upper preserves the order that all lower values are no greater than all upper values. Rebalancing preserves this order and the required size difference. Therefore the exposed roots have exactly the median ranks.",
   "bruteForce": "Append to an array and sort on each query, costing O(n log n) per median query.",

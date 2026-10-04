@@ -35,13 +35,27 @@
   font-weight: 580;
   color: #ecf0e8;
 }
-.editorial-lesson p code,
-.editorial-lesson li code {
+.editorial-lesson .lesson-inline-code {
+  font-family: var(--font-mono);
   font-size: 0.9em;
-  color: #c8d9ae;
-  background: #222a21;
-  padding: 1px 3px;
-  border-radius: 3px;
+  color: #d2edb7;
+  background: #253020;
+  border: 1px solid #4a5d3b;
+  padding: 2px 5px;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
+}
+.editorial-lesson p strong,
+.editorial-lesson li strong,
+.editorial-lesson dd strong {
+  color: #edf3e7;
+  font-weight: 650;
+}
+.editorial-lesson em {
+  color: #d5dde3;
 }
 .concept-illustration {
   margin: 22px 0;
@@ -188,4 +202,284 @@
 }
 .editorial-section {
   scroll-margin-top: 75px;
+}
+
+.editorial-lesson p,
+.editorial-lesson li,
+.editorial-lesson .worked-steps p,
+.editorial-lesson .code-note p {
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+  color: #c4cdd2;
+  overflow-wrap: anywhere;
+}
+.editorial-lesson .complexity-note,
+.editorial-lesson .example p {
+  font-size: 13px !important;
+}
+.worked-step-content {
+  min-width: 0;
+}
+.key-decision {
+  margin: 22px 0;
+  padding: 16px 18px;
+  border: 1px solid #526343;
+  border-left: 3px solid #c1f17a;
+  border-radius: 6px;
+  background: #1b231b;
+}
+.key-decision h4 {
+  margin: 0 0 7px;
+  font-size: 13px;
+  color: #c1f17a;
+}
+.editorial-lesson .key-decision p {
+  margin: 0;
+}
+.lesson-vocabulary {
+  margin: 20px 0;
+  padding: 14px 0;
+  border-bottom: 1px solid #343d44;
+}
+.lesson-vocabulary summary {
+  cursor: pointer;
+  font-size: 14px;
+  color: #d6e0e7;
+}
+.lesson-vocabulary summary > span {
+  display: block;
+  font-size: 12px;
+  color: #9cabb5;
+  margin: 5px 0 0 16px;
+}
+.lesson-vocabulary dl {
+  margin: 16px 0 0;
+}
+.lesson-vocabulary dl > div {
+  padding: 10px 0;
+  border-top: 1px solid #29343b;
+}
+.lesson-vocabulary dt {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d2e6b9;
+}
+.lesson-vocabulary dd {
+  margin: 5px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #bac7d0;
+}
+.lesson-figure {
+  scroll-margin-top: 85px;
+  margin: 20px 0 8px;
+  padding: 15px;
+  border: 1px solid #3d4a53;
+  border-radius: 8px;
+  background: #141b20;
+  min-width: 0;
+}
+.figure-kicker {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #b3cf98;
+}
+.lesson-figure h4 {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 5px 0 8px;
+  color: #ecf0e8;
+}
+.editorial-lesson .lesson-figure figcaption p {
+  font-size: 13px !important;
+  margin-bottom: 15px !important;
+}
+.editorial-lesson .figure-panels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.editorial-lesson .figure-panel {
+  padding: 13px;
+  margin: 0;
+  border: 1px solid #36444e;
+  border-radius: 6px;
+  background: #192229;
+}
+.figure-panel h5 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  margin: 0 0 14px;
+  color: #e1e9ef;
+}
+.figure-panel h5 > span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #637e49;
+  background: #27331f;
+  color: #d1f79d;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.figure-row {
+  margin: 12px 0;
+  min-width: 0;
+}
+.figure-row-label {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #a7bdcb;
+  margin-bottom: 7px;
+}
+.figure-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: stretch;
+}
+.figure-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  max-width: 100%;
+}
+.figure-connector {
+  font-size: 15px;
+  color: #97b4c8;
+  flex-shrink: 0;
+}
+.figure-cell {
+  display: grid;
+  align-content: center;
+  min-width: 32px;
+  min-height: 36px;
+  padding: 7px 9px;
+  border: 1px solid #536673;
+  border-radius: 4px;
+  background: #202e38;
+  text-align: center;
+  max-width: 100%;
+}
+.figure-cell small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #abc3d4;
+  margin-bottom: 3px;
+}
+.editorial-lesson li .figure-cell code {
+  padding: 0;
+  background: none;
+  color: #e2edf5;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.figure-cell-active {
+  border: 2px solid #b3e67d;
+  padding: 6px 8px;
+  background: #293b23;
+}
+.figure-cell-active small {
+  color: #d2ecb4;
+}
+.editorial-lesson li .figure-cell-active code {
+  color: #e1f8c7;
+}
+.figure-grid {
+  display: grid;
+  gap: 5px;
+}
+.figure-grid .figure-item {
+  display: block;
+}
+.figure-grid .figure-cell {
+  width: 100%;
+  min-width: 0;
+}
+.editorial-lesson .figure-panel > p {
+  font-size: 13px !important;
+  margin: 12px 0 0 !important;
+}
+@media (max-width: 600px) {
+  .lesson-figure {
+    padding: 10px;
+  }
+  .editorial-lesson .figure-panel {
+    padding: 10px;
+  }
+  .figure-cell {
+    padding: 6px;
+    min-width: 27px;
+  }
+  .figure-cell-active {
+    padding: 5px;
+  }
+}
+
+/* Keep lessons readable on small screens without shrinking two side-by-side panes. */
+@media (max-width: 800px) {
+  body:has(.workspace) {
+    min-width: 0;
+  }
+  body:has(.workspace) .app-header {
+    padding: 0 16px;
+    gap: 16px;
+  }
+  body:has(.workspace) .brand {
+    font-size: 16px;
+    gap: 8px;
+  }
+  body:has(.workspace) .brand-mark {
+    width: 24px;
+  }
+  body:has(.workspace) .app-header > nav {
+    margin-left: auto;
+    gap: 16px;
+  }
+  body:has(.workspace) .runtime-label {
+    display: none;
+  }
+  body:has(.workspace) .workspace {
+    display: block;
+  }
+  .workspace > .sidebar {
+    display: none;
+  }
+  .workspace .workspace-main {
+    height: auto;
+  }
+  .workspace-main > .problem-header {
+    padding: 22px 16px 0;
+  }
+  .workspace .workspace-tabs {
+    padding-left: 16px;
+  }
+  .workspace .workspace-main > .split-view {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 16px;
+    gap: 24px;
+    overflow: visible;
+    align-items: start;
+  }
+  .workspace .split-view > .lesson-text,
+  .workspace .split-view > .workspace-panel {
+    overflow: visible;
+    padding-right: 0;
+  }
+  .split-view > .pane-divider {
+    display: none;
+  }
+  .editorial-lesson .lesson-chapters {
+    top: 0;
+  }
 }

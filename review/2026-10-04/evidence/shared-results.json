@@ -58,14 +58,14 @@
     "probe": "valid sort-list size",
     "n": 10001,
     "passed": false,
-    "error": "Traceback (most recent call last):\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 201, in run_case\n    try: raw=adapter_ns['run'](ns,copy.deepcopy(fixture['input']))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<adapter>\", line 2, in run\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 55, in list_values\n    if len(values) > 10000: raise ValueError('Linked-list output is too large')\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Linked-list output is too large\n",
+    "error": "Traceback (most recent call last):\n  File \"./src/runtime/harness.py\", line 201, in run_case\n    try: raw=adapter_ns['run'](ns,copy.deepcopy(fixture['input']))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<adapter>\", line 2, in run\n  File \"./src/runtime/harness.py\", line 55, in list_values\n    if len(values) > 10000: raise ValueError('Linked-list output is too large')\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Linked-list output is too large\n",
     "duration_ms": 23.04
   },
   {
     "probe": "valid sort-list size",
     "n": 50000,
     "passed": false,
-    "error": "Traceback (most recent call last):\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 201, in run_case\n    try: raw=adapter_ns['run'](ns,copy.deepcopy(fixture['input']))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<adapter>\", line 2, in run\n  File \"/home/data/Projects/blind-75/src/runtime/harness.py\", line 55, in list_values\n    if len(values) > 10000: raise ValueError('Linked-list output is too large')\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Linked-list output is too large\n",
+    "error": "Traceback (most recent call last):\n  File \"./src/runtime/harness.py\", line 201, in run_case\n    try: raw=adapter_ns['run'](ns,copy.deepcopy(fixture['input']))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<adapter>\", line 2, in run\n  File \"./src/runtime/harness.py\", line 55, in list_values\n    if len(values) > 10000: raise ValueError('Linked-list output is too large')\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Linked-list output is too large\n",
     "duration_ms": 108.93
   }
 ]

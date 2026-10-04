@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "Running a separate board search for every word wastes work when words share prefixes. A trie lets one board path test all dictionary prefixes simultaneously. Every traversed character edge narrows the set of words that could still be completed from the path.",
+    "Many words share their first letters. Store those shared beginnings in a trie, then walk the board while following trie paths. If a board path does not match any stored beginning, stop that search immediately. This avoids searching the entire board separately for every word.",
     "The board traversal follows the same adjacency and no-reuse rules as Word Search. Mark the current cell temporarily, search four neighbors, and restore it afterward. A missing trie edge rejects the path immediately, often far earlier than reaching a full word length. A terminal marker stores the complete word so it can be reported without rebuilding the path text.",
-    "Finding a terminal is not a reason to stop: a longer dictionary word may continue from the same prefix. Remove only that terminal marker after reporting it, preventing another board path from reporting the same word again. Once a trie node has no remaining terminals or children, remove its incoming edge as well. This pruning is safe because every word under that edge has already been found.",
-    "In the worst case, a first step has at most four neighbor choices and later steps have at most three because the previous cell is already used. With maximum dictionary word length L and total dictionary characters D, this gives O(D + rows*columns*4*3^(L-1)) time as a loose bound. An optional preprocessing filter can remove words longer than the board or requiring unavailable letter multiplicities before building the trie. It is safe because no board path can satisfy such words; the reference keeps trie construction direct."
+    "Finding a terminal is not a reason to stop: a longer dictionary word may continue from the same prefix. Remove only that terminal marker after reporting it, preventing another board path from reporting the same word again. Once a trie node has no remaining terminals or children, remove its incoming edge as well.",
+    "This pruning is safe because every word under that edge has already been found.",
+    "In the worst case, a first step has at most four neighbor choices and later steps have at most three because the previous cell is already used. With maximum dictionary word length L and total dictionary characters D, this gives O(D + rows*columns*4*3^(L-1)) time as a loose bound.",
+    "An optional preprocessing filter can remove words longer than the board or requiring unavailable letter occurrence counts before building the trie. It is safe because no board path can satisfy such words; the reference keeps trie construction direct."
   ],
   "walkthrough": {
     "input": {
@@ -65,5 +67,6 @@
       "code": "if not node:",
       "note": "An exhausted trie node represents no unfound words, so deleting its parent edge safely skips future repeated searches."
     }
-  ]
+  ],
+  "keyDecision": "Use a cell at most once per path, and remove a found word's end marker to avoid duplicate results."
 }

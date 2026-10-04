@@ -10,13 +10,13 @@
     "1 <= k <= len(nums) <= 100,000",
     "-10,000 <= nums[i] <= 10,000"
   ],
-  "intuition": "The heap stores the k largest values seen. Its root is the weakest member and can be evicted when a larger value arrives. At the end, this weakest top-k value is the requested rank.",
+  "intuition": "Keep only the largest k values seen so far in a min-heap. Its smallest value is the current kth largest. A new value matters only if it is larger than that heap minimum. This avoids sorting values that cannot enter the final top k.",
   "approach": [
     "Fill a heap with up to k values.",
     "For each subsequent value, replace the root if the value is larger.",
     "Return the final root."
   ],
-  "correctness": "Inductively the heap is the largest k processed values with multiplicity. A smaller incoming value cannot improve this group; a larger one replaces its minimum. The minimum of the final top-k group has exactly rank k.",
+  "correctness": "Inductively the heap is the largest k processed values with occurrence count. A smaller incoming value cannot improve this group; a larger one replaces its minimum. The minimum of the final top-k group has exactly rank k.",
   "bruteForce": "Sort all values and index the descending result, in O(n log n) time.",
   "complexity": {
     "time": "O(n log(k + 1))",

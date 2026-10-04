@@ -12,7 +12,7 @@
     "1 <= n <= list length",
     "0 <= node value <= 100"
   ],
-  "intuition": "Deleting a node requires its predecessor. Start both pointers at a dummy before the head and move fast n+1 positions ahead. When fast reaches the end, slow is just before the desired node, including when the head is removed.",
+  "intuition": "We need the node just before the one to remove. Use two pointers with a fixed gap between them. Move the front pointer first, then move both together. When the front pointer passes the end, the back pointer is in the right place to change one link.",
   "approach": [
     "Create a dummy whose next is head.",
     "Advance fast n+1 links from the dummy.",

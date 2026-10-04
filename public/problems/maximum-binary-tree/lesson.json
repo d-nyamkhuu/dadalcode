@@ -12,7 +12,7 @@
     "0 <= nums[i] <= 1000",
     "All values are distinct"
   ],
-  "intuition": "Reading left to right, a new larger value becomes the parent of smaller pending roots. The last popped root becomes its left child. If a larger ancestor remains on the stack, the new node becomes that ancestor’s right child.",
+  "intuition": "Keep a stack of nodes with decreasing values. A larger new value belongs above smaller recent nodes, so remove those nodes and place their combined tree on its left. If a larger node remains on the stack, the new node becomes its right child.",
   "approach": [
     "Create one node for each value.",
     "Pop smaller stack nodes, assigning the final popped subtree as the new node’s left child.",
@@ -23,7 +23,7 @@
   "complexity": {
     "time": "O(n)",
     "space": "O(n)",
-    "explanation": "Each node is pushed and popped at most once. The decreasing stack uses O(n) auxiliary references in the worst case; constructing the returned tree allocates O(n) output nodes separately."
+    "explanation": "Each node is pushed and popped at most once. The decreasing stack uses O(n) additional references in the worst case; constructing the returned tree allocates O(n) output nodes separately."
   },
   "pitfalls": [
     "Use strict comparison because all values are distinct.",

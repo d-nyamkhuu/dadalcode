@@ -1,8 +1,9 @@
 {
   "intuition": [
-    "It is tempting to follow a chain of right children, but that is not the right-side view. A left subtree can extend deeper than every node to its right and become visible at those depths. The correct question is which existing node lies farthest right at each depth of the whole tree.",
+    "Collect nodes one level at a time, from left to right. The last node in each level is the one visible from the right. It may belong to a left subtree when the right subtree ends earlier, so following only right-child links would miss some visible nodes.",
     "A breadth-first queue produces each depth in left-to-right order. Process only the queue length captured at the start of a level. While doing so, append left children before right children. This preserves the same left-to-right relationship for the next level, including when some child positions are missing.",
-    "The last processed node in each level is therefore the visible one. Record it and continue until no depth remains. Queue order handles visibility without assigning explicit horizontal coordinates. The result has one value per nonempty level, not one value per right turn. The reference skips an absent root up front and uses a deque so removing each front node does not shift the entire queue."
+    "The last processed node in each level is therefore the visible one. Record it and continue until no depth remains. Queue order handles visibility without assigning explicit horizontal coordinates. The result has one value per nonempty level, not one value per right turn.",
+    "The reference skips an absent root up front and uses a deque so removing each front node does not shift the entire queue."
   ],
   "walkthrough": {
     "input": {
@@ -43,7 +44,8 @@
     },
     {
       "code": "queue.append(node.left)",
-      "note": "Left children enter first so queue order preserves the level\u2019s spatial order."
+      "note": "Left children enter first so queue order preserves the level’s spatial order."
     }
-  ]
+  ],
+  "keyDecision": "Record the last node of each level after adding children in left-before-right order."
 }

@@ -10,16 +10,16 @@
     "1 <= len(s) <= 1000",
     "s contains English letters and digits"
   ],
-  "intuition": "A palindrome has a center: one character for odd lengths or a gap for even lengths. Starting at every possible center and moving outward discovers the largest palindrome at that center without retesting its interior.",
+  "intuition": "A palindrome reads the same forward and backward. Start at its middle and compare the characters on either side. Keep moving outward while they match. Try every possible middle, including a gap between two characters, and keep the longest match.",
   "approach": [
     "For each index, try both (i,i) and (i,i+1) as centers.",
     "Move the two boundaries outward while their characters match.",
     "After expansion stops, compare the valid inner interval to the best so far."
   ],
   "correctness": "Every palindrome has one of the tested centers. Expansion at that center includes all matching symmetric pairs until the first mismatch or boundary, so its longest palindrome is found. Taking the greatest length over all centers therefore finds a global longest substring.",
-  "bruteForce": "Enumerate all O(n\u00b2) substrings and scan each to test symmetry, costing O(n\u00b3).",
+  "bruteForce": "List all O(n²) substrings and scan each to test symmetry, costing O(n³).",
   "complexity": {
-    "time": "O(n\u00b2)",
+    "time": "O(n²)",
     "space": "O(1) auxiliary",
     "explanation": "There are 2n centers and each expands at most n positions. The returned slice itself uses O(n) output space."
   },

@@ -13,7 +13,7 @@
     "Distinct endpoints lie in 0..n-1",
     "No self-loops or repeated undirected edges"
   ],
-  "intuition": "An undirected tree on n vertices has n-1 edges. That count alone is insufficient: a disconnected graph can hide a cycle. After the edge-count check, visit from vertex zero and ensure every vertex is reachable.",
+  "intuition": "An undirected tree must connect every vertex and have exactly n - 1 edges. Check the edge count, then visit the graph from vertex 0. If all vertices are reached, those two facts together prove it is a tree; a disconnected graph cannot pass.",
   "approach": [
     "Reject unless the number of edges is n-1.",
     "Build an adjacency list in both directions.",

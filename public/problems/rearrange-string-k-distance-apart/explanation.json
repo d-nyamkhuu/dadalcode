@@ -1,9 +1,13 @@
 {
   "intuition": [
-    "The difficulty is not merely avoiding equal adjacent letters: equal occurrences may need several intervening positions. Trying complete permutations is expensive, and a simple frequency order alone cannot express which letters are temporarily forbidden.",
+    "Choose a character that is allowed now, favoring the one with the most copies left. After using it, keep it out of the available choices until k positions have passed. A heap chooses among available characters, while a queue remembers when waiting characters become available again.",
     "Use a max-priority heap for characters that are currently legal and a FIFO queue for characters cooling down. After using a character at position p, it becomes eligible again at p+k. The ready indices increase with output positions, so eligible cooldown entries can be released from the queue’s front. Negative counts implement a max heap with Python’s min-heap operations.",
-    "Among available characters, select the one with the most remaining copies. Those frequent characters need the greatest number of future separated slots, so postponing them risks running out of space. Decrease the chosen count and send remaining copies into cooldown. If the heap is empty before the output is complete, the next position has no legal character and the arrangement is impossible. For k zero or one, no rearrangement is necessary because any ordering already meets the distance rule.",
-    "All characters share the same cooldown k: there is no letter-specific duration that would favor a less frequent letter. A currently legal letter with r copies needs r-1 later gaps of length at least k, so the largest remaining count is the most urgent requirement. The heap makes that priority dynamic; a used letter is removed until its legal release time, so urgency never overrides spacing. Ready times are increasing because output positions increase, which is why a FIFO queue suffices. There is also an independent capacity test: if the maximum frequency is f and m letters attain it, the f-1 repeated layers need at least (f-1)·k slots before the final layer of m letters. Thus (f-1)·k+m must fit within n. For equal cooldowns this bound is also sufficient: other letters can fill or extend the gaps between repeated layers. It gives an independent feasibility check rather than trusting the heap output or a fixture string."
+    "Among available characters, select the one with the most remaining copies. Those frequent characters need the greatest number of future separated slots, so postponing them risks running out of space. Decrease the chosen count and send remaining copies into cooldown.",
+    "If the heap is empty before the output is complete, the next position has no legal character and the arrangement is impossible. For k zero or one, no rearrangement is necessary because any ordering already meets the distance rule.",
+    "All characters share the same cooldown k: there is no letter-specific duration that would favor a less frequent letter. A currently legal letter with r copies needs r-1 later gaps of length at least k, so the largest remaining count is the most urgent requirement.",
+    "The heap makes that priority dynamic; a used letter is removed until its legal release time, so urgency never overrides spacing. Ready times are increasing because output positions increase, which is why a FIFO queue suffices.",
+    "There is also an independent capacity test: if the maximum frequency is f and m letters attain it, the f-1 repeated layers need at least (f-1)·k slots before the final layer of m letters. Thus (f-1)·k+m must fit within n. For equal cooldowns this bound is also sufficient: other letters can fill or extend the gaps between repeated layers.",
+    "It gives an independent feasibility check rather than trusting the heap output or a fixture string."
   ],
   "walkthrough": {
     "input": {
@@ -26,11 +30,12 @@
     },
     {
       "code": "count, letter = heappop(heap)",
-      "note": "The heap prioritizes the greatest remaining multiplicity among currently legal choices, using negative counts."
+      "note": "The heap prioritizes the greatest remaining occurrence count among currently legal choices, using negative counts."
     },
     {
       "code": "cooldown.append((position + k, count + 1, letter))",
       "note": "A used character with copies left is hidden until exactly k positions after its latest occurrence."
     }
-  ]
+  ],
+  "keyDecision": "Release a character when position >= its ready index. If none is available before completion, return an empty string."
 }

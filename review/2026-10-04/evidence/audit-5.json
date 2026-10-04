@@ -86,7 +86,7 @@
       {
         "severity": "P3",
         "title": "Correctness warning misstates the effect of reversing duplicate pruning",
-        "file": "/home/data/Projects/blind-75/public/problems/permutations-ii/lesson.json",
+        "file": "./public/problems/permutations-ii/lesson.json",
         "line_start": 28,
         "line_end": 28,
         "detail": "The pitfall says checking a used rather than unused predecessor loses valid permutations. With the rest of this DFS unchanged, the reversed predicate still produces each distinct full permutation once; it explores many prefixes that cannot complete. Therefore the claimed correctness failure is inaccurate teaching guidance.",
@@ -518,7 +518,7 @@
       {
         "severity": "P2",
         "title": "One immediate round trip accepts a Codec whose string does not encode the tree",
-        "file": "/home/data/Projects/blind-75/public/problems/serialize-and-deserialize-binary-tree/adapter.py",
+        "file": "./public/problems/serialize-and-deserialize-binary-tree/adapter.py",
         "line_start": 3,
         "line_end": 6,
         "detail": "A fresh Codec instance does not prevent a class-level cached original tree. The current adapter serializes one tree then immediately deserializes it, so a candidate returning a constant string and reading Codec.cached passes every fixture. Such a candidate cannot round-trip multiple saved strings and violates the stated format-independent reconstruction contract. The reference Codec is correct; this is a confirmed grading gap.",

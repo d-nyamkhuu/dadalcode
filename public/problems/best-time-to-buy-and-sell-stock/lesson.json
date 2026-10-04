@@ -10,7 +10,7 @@
     "1 <= len(prices) <= 100000.",
     "0 <= prices[i] <= 10000."
   ],
-  "intuition": "For a fixed selling day, the best buy is the minimum price seen before it. Update the best profit using that minimum, then include today's price in the minimum for future selling days.",
+  "intuition": "Treat each day as a possible selling day. Its best earlier purchase is simply the lowest price seen before it. Compare today's price with that saved minimum, then update the best profit. This replaces checking every earlier buying day separately.",
   "approach": [
     "Initialize the cheapest price from the first day and profit to zero.",
     "For each day, compute its profit against the previous cheapest price.",
@@ -18,7 +18,7 @@
     "Return zero or the best positive profit."
   ],
   "correctness": "Before evaluating a selling day, cheapest is the minimum price on earlier days. Its difference from today is the best transaction ending today. Taking the maximum across all selling days and zero yields the best legal choice, including doing nothing.",
-  "bruteForce": "Try every earlier buy/later sell pair in O(n\u00b2). A running minimum summarizes all earlier buys.",
+  "bruteForce": "Try every earlier buy/later sell pair in O(n²). A running minimum summarizes all earlier buys.",
   "complexity": {
     "time": "O(n)",
     "space": "O(1)",

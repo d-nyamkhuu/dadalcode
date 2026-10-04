@@ -12,7 +12,7 @@
     "All node values are unique",
     "p and q are distinct nodes that exist in the tree"
   ],
-  "intuition": "Once each discovered node knows its parent, its ancestors form a chain back to the root. Mark p’s chain, then walk upward from q. The first marked node is the deepest shared ancestor.",
+  "intuition": "First remember each node's parent. Mark the ancestors of the first target, including the target itself. Then walk upward from the second target. The first marked node you reach is their lowest shared ancestor, because you encounter nearer ancestors before higher ones.",
   "approach": [
     "Discover parent links with an explicit DFS until both nodes are reached.",
     "Add p and every parent above it to an ancestor set.",

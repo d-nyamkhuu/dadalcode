@@ -11,14 +11,14 @@
     "Node values are unique integers 1 through n.",
     "The graph is connected, with no self-loops or repeated edges."
   ],
-  "intuition": "Cycles mean recursively following neighbors without a memo map never ends. Map every original node to exactly one clone as soon as it is discovered. The map both records visits and ensures all incoming edges refer to the same copied node.",
+  "intuition": "Make one new node for each original node, and remember that mapping. Before exploring a neighbor, create its copy if needed. Connect copies to copies according to the original edges. Recording a copy before exploring its neighbors prevents cycles from creating duplicate copies forever.",
   "approach": [
     "Return None for empty input.",
     "Create the entry clone and queue its original.",
     "For every original edge, create and enqueue an unseen neighbor clone.",
-    "Append the mapped neighbor clone to the current clone\u2019s neighbors."
+    "Append the mapped neighbor clone to the current clone’s neighbors."
   ],
-  "correctness": "Each discovered original has one distinct clone before any edge can revisit it. Processing an original appends exactly one cloned connection per original neighbor, preserving the adjacency structure and multiplicity. Connectedness ensures all nodes are discovered; only new clone objects are linked, establishing a deep copy.",
+  "correctness": "Each discovered original has one distinct clone before any edge can revisit it. Processing an original appends exactly one cloned connection per original neighbor, preserving the adjacency structure and occurrence count. Connectedness ensures all nodes are discovered; only new clone objects are linked, establishing a deep copy.",
   "bruteForce": "Recursively clone every neighbor with no memoization. Cycles cause infinite recursion, and repeated paths incorrectly create multiple copies of one node.",
   "complexity": {
     "time": "O(V+E)",

@@ -11,15 +11,15 @@
     "1 <= subRoot node count <= 1000",
     "-10000 <= node values <= 10000"
   ],
-  "intuition": "A matching root value alone is insufficient. For every potential starting node, compare paired descendants including absent children. Null mismatches expose shape differences that preorder values alone would miss.",
+  "intuition": "Try each node of the larger tree as the start of the candidate subtree. If its value matches the smaller tree's root, compare the complete shapes and values below them. A matching root value alone is not enough; an extra child also makes the trees different.",
   "approach": [
     "Scan root nodes using a stack.",
-    "When the candidate value matches subRoot\u2019s root value, compare the two complete trees.",
+    "When the candidate value matches subRoot’s root value, compare the two complete trees.",
     "The equality helper processes pairs, rejecting one-null or unequal-value pairs.",
     "Accept the first full equality; reject after exhausting candidates."
   ],
   "correctness": "Every subtree of root is rooted at some visited node. The pair comparison accepts exactly when corresponding nodes have equal values and matching child presence, hence exactly identical trees. Considering every candidate makes the outer search complete.",
-  "bruteForce": "Serialize the tree starting at every node with explicit null markers and compare to subRoot\u2019s serialization; this also repeats subtree work and allocations.",
+  "bruteForce": "Serialize the tree starting at every node with explicit null markers and compare to subRoot’s serialization; this also repeats subtree work and allocations.",
   "complexity": {
     "time": "O(nm)",
     "space": "O(h_root + h_sub)",

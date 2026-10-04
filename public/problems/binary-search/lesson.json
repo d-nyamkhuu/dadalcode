@@ -11,7 +11,7 @@
     "nums contains distinct sorted integers.",
     "Values and target lie between -10^4 and 10^4."
   ],
-  "intuition": "Checking the middle divides sorted candidates into two halves. If the middle value is too small, every value before it is too small too; if too large, everything after it is too large. Exclude the middle after a failed comparison.",
+  "intuition": "Compare the target with the middle of the sorted array. If the target is larger, it cannot be in the left half. If smaller, it cannot be in the right half. Keep the possible half and repeat until you find the target or no positions remain.",
   "approach": [
     "Initialize left=0 and right=len(nums)-1.",
     "While left<=right, compare nums[mid] to target.",
@@ -35,6 +35,10 @@
     {
       "label": "LeetCode problem",
       "url": "https://leetcode.com/problems/binary-search/"
+    },
+    {
+      "label": "CP-Algorithms · search boundaries",
+      "url": "https://cp-algorithms.com/num_methods/binary_search.html"
     }
   ],
   "visualization": {

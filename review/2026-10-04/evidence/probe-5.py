@@ -1,6 +1,6 @@
 import json, pathlib, copy, random, itertools, collections, functools
-ROOT=pathlib.Path('/home/data/Projects/blind-75/public/problems')
-SLUGS=json.load(open('/home/data/Projects/blind-75/review/2026-10-04/evidence/group-5.json'))
+ROOT=pathlib.Path('./public/problems')
+SLUGS=json.load(open('./review/2026-10-04/evidence/group-5.json'))
 class ListNode:
  def __init__(self,val=0,next=None):self.val,self.next=val,next
 class TreeNode:
@@ -228,4 +228,4 @@ for n in range(1,8):
   assert sorted(map(tuple,actual))==expected
   reversed_condition_cases+=1
 print(json.dumps({'counts':COUNTS,'errors':ERRORS,'codec_cache_mutant_fixtures_passed':codec_cache_pass,'reversed_duplicate_condition_valid_cases':reversed_condition_cases},indent=2))
-pathlib.Path('/home/data/Projects/blind-75/review/2026-10-04/evidence/probe-5-results.json').write_text(json.dumps({'counts':COUNTS,'errors':ERRORS,'codec_cache_mutant_fixtures_passed':codec_cache_pass,'reversed_duplicate_condition_valid_cases':reversed_condition_cases},indent=2))
+pathlib.Path('./review/2026-10-04/evidence/probe-5-results.json').write_text(json.dumps({'counts':COUNTS,'errors':ERRORS,'codec_cache_mutant_fixtures_passed':codec_cache_pass,'reversed_duplicate_condition_valid_cases':reversed_condition_cases},indent=2))

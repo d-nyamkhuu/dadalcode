@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "All dictionary words have the same width, so candidate substrings can be understood as sequences of whole-word tokens. A brute-force search recounts every candidate from scratch. Sliding a token window reuses most of those counts, but character-by-character sliding would break the token boundaries.",
-    "There are width possible alignments, one for each starting offset modulo word length. Within one alignment, keep word multiplicities and a count of tokens currently held. An unknown word invalidates every window crossing it, so clear the state. A known word that exceeds its quota requires removing tokens from the left until that quota is respected again.",
-    "At this point every retained count is at most its required count. If the total number of retained tokens equals the number of required words, all quotas must be exact. This establishes a match without comparing complete dictionaries. Scanning every alignment also finds starts that are not multiples of the word width, and retaining the window permits overlapping matches.",
+    "All the words have the same length, so read the string in whole-word chunks. Keep a moving group of chunks and count each word. Remove chunks from the left if a word appears too often. Try each possible starting alignment so no valid starting position is missed.",
+    "There are width possible alignments, one for each starting offset modulo word length. Within one alignment, keep word occurrence counts and a count of tokens currently held. An unknown word invalidates every window crossing it, so clear the state. A known word that exceeds its required count requires removing tokens from the left until that required count is respected again.",
+    "At this point every retained count is at most its required count. If the total number of retained tokens equals the number of required words, all required counts must be exact. This establishes a match without comparing complete dictionaries. Scanning every alignment also finds starts that are not multiples of the word width, and retaining the window permits overlapping matches.",
     "If the entire concatenation is longer than s, no starting index can fit it. The reference returns immediately before allocating frequency maps or scanning alignments in that case."
   ],
   "walkthrough": {
@@ -14,10 +14,10 @@
       ]
     },
     "steps": [
-      "For s=\"barfoothefoobarman\" and words=[\"foo\",\"bar\"], width=3 and both quotas are one.",
+      "For s=\"barfoothefoobarman\" and words=[\"foo\",\"bar\"], width=3 and both required counts are one.",
       "At offset 0, read \"bar\", then \"foo\". The valid window has two tokens, so record left=0.",
       "The next token \"the\" is unknown. Clear counts and set left to the index after it, 9.",
-      "Read \"foo\" at index 9 and \"bar\" at 12; the two quotas are satisfied again, so record 9.",
+      "Read \"foo\" at index 9 and \"bar\" at 12; the two required counts are satisfied again, so record 9.",
       "The final \"man\" resets the window. Other alignments contribute no matches, leaving [0,9]."
     ],
     "result": [
@@ -32,11 +32,12 @@
     },
     {
       "code": "while window[word] > need[word]:",
-      "note": "One duplicate may require removing several earlier tokens. Shrink until the current word count respects its required multiplicity."
+      "note": "One duplicate may require removing several earlier tokens. Shrink until the current word count respects its required occurrence count."
     },
     {
       "code": "if used == count:",
-      "note": "Given the quota invariant, equality of total token counts is enough to prove every required word is present exactly often enough."
+      "note": "Given the required count invariant, equality of total token counts is enough to prove every required word is present exactly often enough."
     }
-  ]
+  ],
+  "keyDecision": "A match has exactly the required number of chunks and exactly the required count of every word."
 }

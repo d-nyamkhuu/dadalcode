@@ -1,8 +1,8 @@
 {
   "intuition": [
-    "Generating every permutation of s1 is factorial work, even though we only need to detect one matching substring. All permutations have the same character multiplicities and the same length. Compare that signature with each equal-width window of s2 instead of constructing candidate permutations.",
+    "A permutation has the same character counts as the original string. Slide a window of exactly len(s1) characters across s2 and compare its counts with s1's counts. We do not need to generate any reordered strings to check whether a match exists.",
     "Because the alphabet contains only 26 lowercase letters, a fixed count vector describes each signature. As the right boundary moves, increment the arriving letter. Once the window is full, decrement the letter that falls off the left, keeping exactly len(s1) positions represented.",
-    "A matching pair of vectors proves a permutation appears because every letter has the required multiplicity. Comparing 26 entries takes constant time per window. Sets would be insufficient: they cannot distinguish words such as aab and abb, whose distinct letters agree but counts differ."
+    "A matching pair of vectors proves a permutation appears because every letter has the required occurrence count. Comparing 26 entries takes constant time per window. Sets would be insufficient: they cannot distinguish words such as aab and abb, whose distinct letters agree but counts differ."
   ],
   "walkthrough": {
     "input": {
@@ -29,7 +29,8 @@
     },
     {
       "code": "if right >= width - 1 and window == target:",
-      "note": "The length guard prevents incomplete prefixes from being tested as permutations. Equal full-width counts then provide an exact multiplicity match."
+      "note": "The length guard prevents incomplete prefixes from being tested as permutations. Equal full-width counts then provide an exact occurrence count match."
     }
-  ]
+  ],
+  "keyDecision": "Compare counts only for a full-length window. The order of characters inside it does not matter."
 }

@@ -1,9 +1,10 @@
 {
   "intuition": [
-    "A Sudoku fill is not nine independent row problems: each proposed digit must satisfy its row, column, and box simultaneously. Trying every digit everywhere and validating only complete boards wastes effort on contradictions that were visible immediately. Store occupied digits in three groups of sets so each placement can be checked before recursion.",
+    "Fill one empty cell with a digit allowed by its row, column, and box. Try solving the remaining cells. If the choice makes completion impossible, erase it and try another digit. Choose the cell with the fewest allowed digits first to reduce the number of choices.",
     "The reference also chooses the empty cell with the fewest remaining candidates. A forced one-candidate cell is more informative than an unconstrained cell with many choices. If a cell has no candidates, this branch cannot lead to a solution. Selecting the most constrained cell changes search order, not the set of valid boards.",
     "For each allowed digit, write the board and update all three sets before recursively filling another cell. If the branch fails, undo all four changes. Forgetting even one removal contaminates sibling choices. Completion means every originally empty position has received a legal digit; the valid, uniquely solvable input guarantee lets the first complete board serve as the answer.",
-    "A locally legal digit can still reveal a contradiction. In one failed branch of the sparse-puzzle fixture, zero-based cells (6,0) and (6,5) both have only candidate 2. The reference selects (6,0) first and writes 2; the other cell in that row then has no candidates, so recursion rejects the branch. It restores the dot at (6,0) and removes 2 from its row, column, and box sets, then unwinds earlier choices until another alternative can be tried. The MRV scan stops at a singleton for efficiency, so a zero-candidate cell later in the scan may be discovered at the following level. This changes discovery timing, not completeness."
+    "A locally legal digit can still reveal a contradiction. In one failed branch of the sparse-puzzle fixture, zero-based cells (6,0) and (6,5) both have only candidate 2. The reference selects (6,0) first and writes 2; the other cell in that row then has no candidates, so recursion rejects the branch.",
+    "It restores the dot at (6,0) and removes 2 from its row, column, and box sets, then unwinds earlier choices until another alternative can be tried. The MRV scan stops at a singleton for efficiency, so a zero-candidate cell later in the scan may be discovered at the following level. This changes discovery timing, not completeness."
   ],
   "walkthrough": {
     "input": {
@@ -52,5 +53,6 @@
       "code": "board[row][col] = '.'",
       "note": "Failed branches restore the cell; matching set removals restore exactly the prior search state."
     }
-  ]
+  ],
+  "keyDecision": "A digit is allowed only if it is absent from the cell's row, column, and 3 × 3 box."
 }

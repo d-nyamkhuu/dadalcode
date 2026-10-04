@@ -8,9 +8,9 @@
   ],
   "constraints": [
     "1 <= m, n <= 100",
-    "The answer is guaranteed at most 2 \u00d7 10^9"
+    "The answer is guaranteed at most 2 × 10^9"
   ],
-  "intuition": "Every route to a cell ends with a move from above or from the left. These disjoint possibilities add. One row of counts is enough because the old value is the count from above and the just-updated neighbor is the count from the left.",
+  "intuition": "A cell can be reached from the cell above it or from the cell on its left. Add those two route counts to get the count for this cell. Save the counts as you move through the grid, so different routes do not make you solve the same smaller question repeatedly.",
   "approach": [
     "Swap the dimensions if needed so n is min(original m, original n); transposing exchanges right/down moves without changing route counts.",
     "Initialize the first row of dp to ones: each cell has one horizontal route.",

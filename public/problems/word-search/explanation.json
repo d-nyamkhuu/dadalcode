@@ -1,9 +1,11 @@
 {
   "intuition": [
-    "A word match is a connected path through cells, not a collection of letter counts. A board may contain enough copies of every letter and still have no legal ordering. Conversely, repeated letters in the word require distinct cells, because a path cannot reuse a square.",
-    "The recursive state consists of a coordinate and the next word index. A mismatch or out-of-bounds coordinate immediately rejects that branch. On a match, temporarily mark the square unavailable and search the four neighbors for the next character. This marker represents only the current path\u2019s occupancy.",
-    "Restoration is as important as marking. A failed path must not prevent a different starting cell or a different branch from using the same board cell. Restore before returning even when a complete word was found, so the caller receives its original board. The terminal index condition means all earlier characters have already matched; it does not require stepping onto an additional square.",
-    "Before searching, reject a word longer than the board or needing more copies of any letter than are available. These are necessary conditions, not proof of adjacency: passing them still requires the full path search. An optional refinement can search the reversed word when its final letter is rarer than its first; reversing a legal path preserves adjacency and no-reuse, reducing the number of candidate starts. The reference retains forward traversal for a consistent walkthrough."
+    "Try to spell the word by walking through neighboring board cells. Each move must match the next letter, and a cell cannot be reused within the same path. Mark a cell while exploring from it, then restore it when that path ends so another path can use it.",
+    "The recursive state consists of a coordinate and the next word index. A mismatch or out-of-bounds coordinate immediately rejects that branch. On a match, temporarily mark the square unavailable and search the four neighbors for the next character. This marker represents only the current path’s occupancy.",
+    "Restoration is as important as marking. A failed path must not prevent a different starting cell or a different branch from using the same board cell. Restore before returning even when a complete word was found, so the caller receives its original board.",
+    "The terminal index condition means all earlier characters have already matched; it does not require stepping onto an additional square.",
+    "Before searching, reject a word longer than the board or needing more copies of any letter than are available. These are necessary conditions, not proof of adjacency: passing them still requires the full path search.",
+    "An optional refinement can search the reversed word when its final letter is rarer than its first; reversing a legal path preserves adjacency and no-reuse, reducing the number of candidate starts. The reference retains forward traversal for a consistent walkthrough."
   ],
   "walkthrough": {
     "input": {
@@ -34,7 +36,7 @@
       "Match B at (0,1), then C at (0,2), marking each visited square so this path cannot return to it.",
       "The next C is directly below at (1,2). From there, E at (2,2) extends the matched prefix.",
       "D at (2,1) completes the six letters. The next recursive index equals the word length, establishing success.",
-      "Unwind the recursion and restore every marked letter. Return true for the valid A\u2192B\u2192C\u2192C\u2192E\u2192D path."
+      "Unwind the recursion and restore every marked letter. Return true for the valid A→B→C→C→E→D path."
     ],
     "result": true
   },
@@ -50,6 +52,106 @@
     {
       "code": "board[row][col] = letter",
       "note": "Restoration runs after both successful and failed searches, so sibling paths and future calls see the original board."
+    }
+  ],
+  "keyDecision": "The next cell must share a side, match the next letter, and be unused in this path.",
+  "figures": [
+    {
+      "title": "Match letters along a legal path",
+      "caption": "Labels 1 through 6 give the visit order for ABCCED on the example board. Each step shares a side with the previous cell.",
+      "afterStep": 3,
+      "panels": [
+        {
+          "title": "Before: the example board",
+          "rows": [
+            {
+              "label": "Board",
+              "values": [
+                "A",
+                "B",
+                "C",
+                "E",
+                "S",
+                "F",
+                "C",
+                "S",
+                "A",
+                "D",
+                "E",
+                "E"
+              ],
+              "highlight": [
+                0,
+                1,
+                2,
+                6,
+                10,
+                9
+              ],
+              "labels": [
+                "1",
+                "2",
+                "3",
+                "",
+                "",
+                "",
+                "4",
+                "",
+                "",
+                "6",
+                "5",
+                ""
+              ],
+              "columns": 4
+            }
+          ],
+          "note": "The word uses both C cells and then turns left to D."
+        },
+        {
+          "title": "Check: a path, not just letter counts",
+          "rows": [
+            {
+              "label": "Visit order",
+              "values": [
+                "(0,0)",
+                "(0,1)",
+                "(0,2)",
+                "(1,2)",
+                "(2,2)",
+                "(2,1)"
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "The coordinates below connect by up/down/left/right moves, with no reused cell."
+        },
+        {
+          "title": "After: restore the board",
+          "rows": [
+            {
+              "label": "Matched letters",
+              "values": [
+                "A",
+                "B",
+                "C",
+                "C",
+                "E",
+                "D"
+              ],
+              "highlight": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "connector": "→"
+            }
+          ],
+          "note": "Once the word is found, restore every temporary mark as calls return. The reference leaves the board unchanged."
+        }
+      ]
     }
   ]
 }

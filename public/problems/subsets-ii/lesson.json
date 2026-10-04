@@ -10,14 +10,14 @@
     "1 <= len(nums) <= 10",
     "-10 <= nums[i] <= 10"
   ],
-  "intuition": "Sorting places equal values together. At one recursion depth, choosing the second equal value would duplicate the branch from the first. At a deeper depth it is allowed, so subsets containing multiple copies remain possible.",
+  "intuition": "Sort the numbers so equal values are together. Build subsets by choosing later positions. At one step, choosing either of two equal values would start the same family of subsets, so try only the first. A later step may still choose another copy to include duplicates in a subset.",
   "approach": [
     "Sort nums. Save the current path at every call, including the root.",
     "Try each index from start onward.",
     "Skip a repeated value only when i>start and it equals nums[i-1].",
     "Recurse from i+1 and undo the append."
   ],
-  "correctness": "Paths use strictly increasing indices, so their multiplicities are legal. The sibling skip chooses only the first occurrence for each next value. Every desired multiset follows a canonical path that takes consecutive equal occurrences at successive depths, giving exactly one path per subset.",
+  "correctness": "Paths use strictly increasing indices, so their occurrence counts are legal. The sibling skip chooses only the first occurrence for each next value. Every desired multiset follows a canonical path that takes consecutive equal occurrences at successive depths, giving exactly one path per subset.",
   "bruteForce": "Generate every index subset in O(n*2^n) time and remove duplicates afterward.",
   "complexity": {
     "time": "O(n * 2^n)",
