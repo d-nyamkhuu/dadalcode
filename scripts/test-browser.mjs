@@ -2,6 +2,9 @@ import { spawn } from "node:child_process";
 import { setTimeout } from "node:timers/promises";
 const benchmark = process.argv.includes("--benchmark");
 const production = process.argv.includes("--production");
+const parallel = process.argv.includes("--parallel");
+if (benchmark && parallel)
+  throw new Error("Benchmarks must run alone; omit --parallel.");
 const port = benchmark ? 5290 : production ? 4175 : 5190;
 const path = production ? process.env.DEPLOY_BASE_PATH || "/dadalcode/" : "/";
 const origin = `http://127.0.0.1:${port}`;
@@ -16,10 +19,12 @@ const args = [
   "--strictPort",
 ];
 const server = spawn(process.execPath, args, { stdio: "inherit" });
+const children = new Set();
 let stopping = false;
 function stop() {
   if (!stopping) {
     stopping = true;
+    for (const child of children) child.kill();
     server.kill();
   }
 }
@@ -33,6 +38,8 @@ process.on("SIGTERM", () => {
 });
 const run = (file) =>
   new Promise((resolve, reject) => {
+    const started = performance.now();
+    console.log(`Starting browser suite: ${file}`);
     const child = spawn(process.execPath, [`tests/${file}.mjs`], {
       stdio: "inherit",
       env: {
@@ -41,10 +48,15 @@ const run = (file) =>
         TRAINER_BASE_URL: origin,
       },
     });
+    children.add(child);
     child.on("error", reject);
-    child.on("exit", (code) =>
-      code === 0 ? resolve() : reject(new Error(`${file} failed (${code})`)),
-    );
+    child.on("close", (code) => {
+      children.delete(child);
+      console.log(
+        `Browser suite ${file}: ${code === 0 ? "passed" : "failed"} in ${((performance.now() - started) / 1000).toFixed(1)}s`,
+      );
+      code === 0 ? resolve() : reject(new Error(`${file} failed (${code})`));
+    });
   });
 try {
   let ready = false;
@@ -72,7 +84,26 @@ try {
           "visualization-viewer",
           "runtime-browser",
         ];
-  for (const suite of suites) await run(suite);
+  // Start the longest suite first so it overlaps the shorter suites. Each suite
+  // launches its own browser/context; only the read-only Vite server is shared.
+  if (parallel && !production) {
+    suites.splice(suites.indexOf("visualization-viewer"), 1);
+    suites.unshift("visualization-viewer");
+  }
+  const failures = [];
+  async function work() {
+    while (suites.length && !stopping) {
+      const suite = suites.shift();
+      try {
+        await run(suite);
+      } catch (error) {
+        failures.push(error);
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: parallel ? 2 : 1 }, work));
+  if (failures.length)
+    throw new AggregateError(failures, "Browser suites failed.");
 } finally {
   stop();
 }
