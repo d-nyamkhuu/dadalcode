@@ -92,27 +92,3 @@ The curriculum was authored and reviewed through an agent-assisted workflow, wit
 The lesson workspace targets desktop. Visualizations fit a bounded frame with Fit/zoom controls and an Enlarge button that keeps playback and the current instruction in view. State details are available in a drawer; Edit input expands the JSON editor. The viewer is checked at 1536×1024, 1280×800, and 1280×600, plus a narrow expanded window. Desktop is the supported layout; cloud sync and analytics are not used.
 
 Figures use separate presentations for indexed arrays/strings, linked-list value/next cells, trees, tries, graphs, coordinate matrices, DP rows/tables, maps, unordered sets, stacks, queues, heaps, intervals, and bits. `FigureRenderer` dispatches captured values; `visualization.renderers` can select a presentation per variable. Problem-specific choices live in `src/data/visualizationBindings.ts`, alongside pointer bindings. For example, Two Sum uses `{ nums: "array", seen: "map" }`, while Meeting Rooms II uses `{ intervals: "intervals", active_ends: "heap" }`. Automatic shape detection remains available for other variables. Lime marks current positions, amber marks edits, and blue marks frontier/context; tooltips and labels explain these states without relying on color alone.
-
-## GitHub Pages
-
-Deployment path: `/dadalcode/`. After GitHub Pages is enabled with **GitHub Actions**
-as its source, merging a PR into `main` publishes the site automatically once all
-three release checks pass. PR runs only validate the change. See
-[RELEASING.md](RELEASING.md) for the one-time setup and current plan requirement.
-
-The production build targets `/dadalcode/`. Lessons, illustrations, the Python worker, and the Pyodide runtime all resolve under that path. Hash routes support direct links and reloads on static hosting.
-
-```sh
-npm test
-npm run build:pages
-npm run preview:pages       # leave running in another terminal
-npm run test:pages          # production-build browser checks
-```
-
-`APP_URL` can point the Pages test at another preview port or the published site. For example, `APP_URL=http://127.0.0.1:4175/dadalcode/ npm run test:pages`.
-
-See [RELEASING.md](RELEASING.md) for configurable publishing, required checks, and verification from an exact source commit. Publishing requires an explicit destination; forks never default to a personal repository.
-
-## Illustration sources
-
-The built-in ImageGen tool generated the rainwater, house-robber, and islands illustrations in `public/illustrations/`. The images are served as compressed WebP files (about 216 KB combined); original PNGs and generation prompts remain in Git history. Illustrations load only in relevant lessons. Precise algorithm states and numeric diagrams remain CSS/SVG views of Python execution.
