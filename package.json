@@ -22,6 +22,7 @@
     "lint": "eslint src scripts tests vite.config.ts eslint.config.mjs --max-warnings 0",
     "format": "prettier --write src scripts tests/*.mjs *.mjs *.json *.md .github",
     "format:check": "prettier --check src scripts tests/*.mjs *.mjs *.json *.md .github",
+    "test:examples": "node tests/examples.mjs",
     "test:learning": "node tests/learning.mjs",
     "test:e2e": "node scripts/test-browser.mjs",
     "test:production": "node scripts/test-browser.mjs --production",

@@ -1,5 +1,5 @@
 class Codec:
-    def serialize(self, root):
+    def serialize(self, root: TreeNode | None) -> str:
         tokens, stack = [], [root]
         while stack:
             node = stack.pop()
@@ -12,7 +12,7 @@ class Codec:
             stack.append(node.left)
         return ','.join(tokens)
 
-    def deserialize(self, data):
+    def deserialize(self, data: str) -> TreeNode | None:
         root = None
         slots = [(None, 'root')]
         tokens = data.split(',')

@@ -1,5 +1,5 @@
 class Solution:
-    def deleteDuplicates(self, head):
+    def deleteDuplicates(self, head: ListNode | None) -> ListNode | None:
         current = head
         while current is not None and current.next is not None:
             # Sorted duplicate values are adjacent; bypass one copy.

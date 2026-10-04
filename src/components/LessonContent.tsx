@@ -1,6 +1,7 @@
 import type { ProblemDefinition } from "../types";
 import ConceptIllustration from "./ConceptIllustration";
 import LessonFigure from "./LessonFigure";
+import { ExampleInput, ExampleOutput } from "./ExampleValue";
 import { lessonVocabulary } from "../data/lessonVocabulary";
 import Text, { LessonTextProvider } from "./LessonText";
 import "./lesson-enhancements.css";
@@ -27,18 +28,26 @@ export function Example({ problem }: { problem: ProblemDefinition }) {
   const example = problem.tests[0];
   return (
     <div className="example">
-      <h3>Example</h3>
-      <div>
-        <b>Input:</b>
-        <code>{JSON.stringify(example.input)}</code>
+      <div className="example-heading">
+        <h3>Example</h3>
+        <p>
+          <Text>{example.name}</Text>
+        </p>
       </div>
-      <div>
-        <b>Output:</b>
-        <code>{JSON.stringify(example.expected)}</code>
+      <div className="example-body">
+        <div className="example-panel">
+          <h4>Input</h4>
+          <ExampleInput problem={problem} value={example.input} />
+        </div>
+        <div className="example-panel example-result">
+          <h4>Output</h4>
+          <ExampleOutput
+            problem={problem}
+            value={example.expected}
+            input={example.input}
+          />
+        </div>
       </div>
-      <p>
-        <Text>{example.name}</Text>
-      </p>
     </div>
   );
 }
@@ -184,7 +193,10 @@ export default function LessonContent({
                 <h3>Example walkthrough</h3>
                 <div className="worked-input">
                   <span>Input</span>
-                  <code>{JSON.stringify(editorial.walkthrough.input)}</code>
+                  <ExampleInput
+                    problem={problem}
+                    value={editorial.walkthrough.input}
+                  />
                 </div>
                 <ol className="worked-steps">
                   {editorial.walkthrough.steps.map((step, i) => (
@@ -205,7 +217,11 @@ export default function LessonContent({
                 </ol>
                 <div className="worked-output">
                   <span>Result</span>
-                  <code>{JSON.stringify(editorial.walkthrough.result)}</code>
+                  <ExampleOutput
+                    problem={problem}
+                    value={editorial.walkthrough.result}
+                    input={editorial.walkthrough.input}
+                  />
                 </div>
                 <a
                   className="walkthrough-link"

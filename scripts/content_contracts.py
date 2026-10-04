@@ -43,6 +43,12 @@ def json_value(value):
 def public_signatures(source):
     def signature(node):
         args = node.args
+        parameters = [*args.posonlyargs, *args.args, *args.kwonlyargs]
+        parameters += [arg for arg in (args.vararg, args.kwarg) if arg is not None]
+        for arg in parameters:
+            if arg.arg not in {'self', 'cls'}:
+                assert arg.annotation is not None, f'{node.name}.{arg.arg} needs a type annotation'
+        assert node.returns is not None, f'{node.name} needs a return type annotation'
         return (
             tuple(a.arg for a in args.posonlyargs),
             tuple(a.arg for a in args.args),
@@ -51,6 +57,8 @@ def public_signatures(source):
             args.kwarg.arg if args.kwarg else None,
             tuple(ast.dump(default) for default in args.defaults),
             tuple(ast.dump(default) if default is not None else None for default in args.kw_defaults),
+            tuple(ast.dump(arg.annotation) if arg.annotation is not None else None for arg in parameters),
+            ast.dump(node.returns),
         )
     result = {}
     for node in ast.parse(source).body:

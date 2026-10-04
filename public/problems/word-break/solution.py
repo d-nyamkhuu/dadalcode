@@ -1,5 +1,5 @@
 class Solution:
-    def wordBreak(self, s: str, wordDict) -> bool:
+    def wordBreak(self, s: str, wordDict: list[str]) -> bool:
         words = set(wordDict)
         longest = max(map(len, words))
         dp = [False] * (len(s) + 1)

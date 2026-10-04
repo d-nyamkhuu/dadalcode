@@ -1,6 +1,6 @@
 from collections import defaultdict
 class FreqStack:
-    def __init__(self):
+    def __init__(self) -> None:
         self.frequency = defaultdict(int)
         self.groups = defaultdict(list)
         self.maximum = 0

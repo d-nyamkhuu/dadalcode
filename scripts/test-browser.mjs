@@ -68,6 +68,7 @@ try {
           "browser",
           "study-plans",
           "learning",
+          "examples",
           "visualizations",
           "visualization-viewer",
           "runtime-browser",

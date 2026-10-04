@@ -1,5 +1,5 @@
 class Solution:
-    def minSubArrayLen(self, target, nums):
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
         left, total = 0, 0
         best = len(nums) + 1
         for right, value in enumerate(nums):

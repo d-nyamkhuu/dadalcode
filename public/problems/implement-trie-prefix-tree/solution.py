@@ -1,5 +1,5 @@
 class Trie:
-    def __init__(self):
+    def __init__(self) -> None:
         self.root = {}
 
     def insert(self, word: str) -> None:

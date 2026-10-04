@@ -1,4 +1,3 @@
-from __future__ import annotations
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         best_start, best_length = 0, 1

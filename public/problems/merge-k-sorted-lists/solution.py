@@ -1,7 +1,7 @@
 from heapq import heapify, heappush, heappop
 
 class Solution:
-    def mergeKLists(self, lists):
+    def mergeKLists(self, lists: list[ListNode | None]) -> ListNode | None:
         # Even empty members must be inspected; one tuple per nonempty head suffices.
         heap = [(node.val, list_index, node)
                 for list_index, node in enumerate(lists) if node is not None]

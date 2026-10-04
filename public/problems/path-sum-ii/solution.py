@@ -1,5 +1,5 @@
 class Solution:
-    def pathSum(self, root, targetSum: int) -> list[list[int]]:
+    def pathSum(self, root: TreeNode | None, targetSum: int) -> list[list[int]]:
         result = []
         stack = [(root, [], 0)] if root else []
         while stack:

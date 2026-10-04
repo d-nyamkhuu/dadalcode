@@ -1,7 +1,7 @@
 from collections import deque
 
 class Solution:
-    def findMinHeightTrees(self, n: int, edges):
+    def findMinHeightTrees(self, n: int, edges: list[list[int]]) -> list[int]:
         if n == 1:
             return [0]
         adjacency = [[] for _ in range(n)]

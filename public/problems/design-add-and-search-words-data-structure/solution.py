@@ -1,5 +1,5 @@
 class WordDictionary:
-    def __init__(self):
+    def __init__(self) -> None:
         self.root = {}
 
     def addWord(self, word: str) -> None:

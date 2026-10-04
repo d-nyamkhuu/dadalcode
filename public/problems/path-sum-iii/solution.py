@@ -1,6 +1,6 @@
 from collections import defaultdict
 class Solution:
-    def pathSum(self, root, targetSum: int) -> int:
+    def pathSum(self, root: TreeNode | None, targetSum: int) -> int:
         counts = defaultdict(int)
         counts[0] = 1
         stack = [(root, 0, False)] if root else []

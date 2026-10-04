@@ -1,5 +1,5 @@
 class MedianFinder:
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the median data structure."""
         pass
 

@@ -1,4 +1,3 @@
-from __future__ import annotations
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
         dummy = ListNode(0, head)

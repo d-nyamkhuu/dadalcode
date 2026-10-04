@@ -1,5 +1,6 @@
 class Solution:
-    def spiralOrder(self, matrix):
+    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
+        """Return the integers of the rectangular matrix in clockwise spiral order."""
         top, bottom = 0, len(matrix) - 1
         left, right = 0, len(matrix[0]) - 1
         result = []

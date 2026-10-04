@@ -1,6 +1,6 @@
 from collections import deque
 class Solution:
-    def cloneGraph(self, node):
+    def cloneGraph(self, node: Node | None) -> Node | None:
         if node is None:
             return None
         copies = {node: Node(node.val)}

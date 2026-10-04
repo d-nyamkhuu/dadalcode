@@ -1,7 +1,7 @@
 from collections import deque
 
 class Solution:
-    def rightSideView(self, root):
+    def rightSideView(self, root: TreeNode | None) -> list[int]:
         if root is None:
             return []
         queue = deque([root])
