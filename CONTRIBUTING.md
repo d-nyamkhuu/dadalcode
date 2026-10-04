@@ -33,6 +33,23 @@ npm run test:production
 
 The browser commands start and stop their own servers. Do not start another
 server on ports 5190 or 4175. Screenshots go to the system temporary directory.
+Append `-- --parallel` to `test:e2e` or `test:production` to run two independent
+suites at a time, as CI does. The longest browser suite starts first; every suite
+still runs, and any failure fails the check. Omit the flag for sequential runs on
+smaller machines. Runtime benchmarks always run alone.
+
+Normal browser checks cover every diagram family and known dense-state regression,
+with the complete shared-control sequence at the shortest desktop height. They
+reuse traces across viewport checks and sample autoplay on sequence and node
+diagrams. To also repeat every control, autoplay, and dense-state combination:
+
+```sh
+BROWSER_COVERAGE=full npm run test:e2e -- --parallel
+```
+
+`npm run verify:release` always uses full coverage. Both modes still validate all
+179 problem suites in browser Python and all lesson guides.
+
 CI runs these checks on every pull request. Keep generated `dist/`, runtime files,
 and distribution notices out of commits.
 

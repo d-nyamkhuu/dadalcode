@@ -20,7 +20,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -46,7 +45,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -72,7 +70,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -98,7 +95,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -124,7 +120,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -150,7 +145,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -176,7 +170,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": [
         "R01"
@@ -204,7 +197,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": [
         "R05"
@@ -232,7 +224,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -258,7 +249,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -286,7 +276,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -312,7 +301,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -338,7 +326,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -367,7 +354,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -395,7 +381,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -421,7 +406,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -447,7 +431,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -473,7 +456,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -501,7 +483,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": [
         "R06"
@@ -531,7 +512,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -557,7 +537,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 4,
       "findingsResolved": [
         "R08"
@@ -585,7 +564,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -611,7 +589,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -639,7 +616,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -665,7 +641,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": [
         "R10"
@@ -693,7 +668,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -719,7 +693,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -747,7 +720,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -773,7 +745,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -799,7 +770,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -825,7 +795,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -853,7 +822,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -879,7 +847,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -905,7 +872,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -931,7 +897,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -957,7 +922,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": [
         "R07"
@@ -985,7 +949,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1011,7 +974,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1037,7 +999,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1063,7 +1024,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1089,7 +1049,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1115,7 +1074,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1141,7 +1099,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1167,7 +1124,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1193,7 +1149,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 4,
       "findingsResolved": []
     }
@@ -1219,7 +1174,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1245,7 +1199,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1271,7 +1224,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1297,7 +1249,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1323,7 +1274,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1349,7 +1299,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1375,7 +1324,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1401,7 +1349,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1427,7 +1374,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1453,7 +1399,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1479,7 +1424,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1505,7 +1449,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1531,7 +1474,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1557,7 +1499,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1583,7 +1524,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1609,7 +1549,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1635,7 +1574,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1661,7 +1599,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1687,7 +1624,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1713,7 +1649,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1739,7 +1674,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1765,7 +1699,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": [
         "R04"
@@ -1793,7 +1726,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1819,7 +1751,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1845,7 +1776,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1871,7 +1801,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -1897,7 +1826,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1923,7 +1851,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1949,7 +1876,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -1975,7 +1901,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2001,7 +1926,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2027,7 +1951,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2055,7 +1978,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2081,7 +2003,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2107,7 +2028,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2133,7 +2053,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": [
         "R02"
@@ -2161,7 +2080,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2189,7 +2107,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2215,7 +2132,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2241,7 +2157,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2267,7 +2182,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2293,7 +2207,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2319,7 +2232,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2345,7 +2257,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2371,7 +2282,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2397,7 +2307,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2423,7 +2332,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2449,7 +2357,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2475,7 +2382,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2501,7 +2407,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2527,7 +2432,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2553,7 +2457,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2579,7 +2482,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2605,7 +2507,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2631,7 +2532,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2657,7 +2557,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2683,7 +2582,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2709,7 +2607,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2735,7 +2632,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2761,7 +2657,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2787,7 +2682,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2813,7 +2707,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 4,
       "findingsResolved": [
         "R09"
@@ -2841,7 +2734,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2867,7 +2759,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2893,7 +2784,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2921,7 +2811,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2947,7 +2836,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -2973,7 +2861,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -2999,7 +2886,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3025,7 +2911,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3051,7 +2936,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3077,7 +2961,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3103,7 +2986,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3131,7 +3013,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3157,7 +3038,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3183,7 +3063,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3209,7 +3088,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3235,7 +3113,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3261,7 +3138,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3287,7 +3163,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3313,7 +3188,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3339,7 +3213,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3365,7 +3238,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3391,7 +3263,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3417,7 +3288,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3443,7 +3313,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3469,7 +3338,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3495,7 +3363,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3523,7 +3390,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3549,7 +3415,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3575,7 +3440,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3603,7 +3467,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3629,7 +3492,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3655,7 +3517,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 4,
       "findingsResolved": []
     }
@@ -3681,7 +3542,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3707,7 +3567,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3733,7 +3592,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3759,7 +3617,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3787,7 +3644,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3813,7 +3669,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3839,7 +3694,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3865,7 +3719,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3891,7 +3744,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -3917,7 +3769,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3943,7 +3794,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3969,7 +3819,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -3995,7 +3844,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4021,7 +3869,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 4,
       "findingsResolved": []
     }
@@ -4047,7 +3894,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4073,7 +3919,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": [
         "R03"
@@ -4101,7 +3946,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4127,7 +3971,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4153,7 +3996,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4179,7 +4021,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4205,7 +4046,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4231,7 +4071,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4257,7 +4096,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4283,7 +4121,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4309,7 +4146,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4335,7 +4171,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4361,7 +4196,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4387,7 +4221,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4413,7 +4246,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4439,7 +4271,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4465,7 +4296,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4491,7 +4321,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4517,7 +4346,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4543,7 +4371,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4569,7 +4396,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4595,7 +4421,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4623,7 +4448,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4649,7 +4473,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }
@@ -4675,7 +4498,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 2,
       "findingsResolved": []
     }
@@ -4701,7 +4523,6 @@
     },
     "followupReview": {
       "date": "2026-10-04",
-      "report": "review/2026-10-04/resolution.json",
       "suggestionsAddressed": 3,
       "findingsResolved": []
     }

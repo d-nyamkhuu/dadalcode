@@ -63,8 +63,7 @@ Browser tests default to `http://127.0.0.1:5173`. UI tests accept `APP_URL` and 
 - `public/illustrations/`: ImageGen concept illustrations for trapped water, non-adjacent houses, and connected islands. Their captions describe the idea rather than the current editable trace input.
 - `src/runtime/`: shared CPython/Pyodide harness, worker, timeout/cancellation controller.
 - `src/components/`: lesson, editor, results, and trace renderers.
-- `src/data/`: pinned original catalog, corrected metadata, work queue, loading, persistence.
-- `design/`: ImageGen page references and the compact/expanded visualization concept, exact prompts, and comparison notes.
+- `src/data/`: pinned original catalog, corrected metadata, study plans, loading, persistence.
 - `tests/review-ledger.json`: independent curriculum and editorial review, repaired findings, and hashes of all six files in each reviewed problem package.
 - `tests/test_curriculum_group_*.py`: generated boundary cases, seeded independent oracles, and invalid-candidate regressions. Large cases stay out of the teaching walkthroughs.
 - `scripts/content_contracts.py`: shared authoring contracts for metadata, JSON fixtures, public signatures, adapter hooks, and review fingerprints.
@@ -79,8 +78,6 @@ The curriculum was authored and reviewed through an agent-assisted workflow, wit
 The lesson workspace targets desktop. Visualizations fit a bounded frame with Fit/zoom controls and an Enlarge button that keeps playback and the current instruction in view. State details are available in a drawer; Edit input expands the JSON editor. The viewer is checked at 1536×1024, 1280×800, and 1280×600, plus a narrow expanded window. Desktop is the supported layout; cloud sync and analytics are not used.
 
 Figures use separate presentations for indexed arrays/strings, linked-list value/next cells, trees, tries, graphs, coordinate matrices, DP rows/tables, maps, unordered sets, stacks, queues, heaps, intervals, and bits. `FigureRenderer` dispatches captured values; `visualization.renderers` can select a presentation per variable. Problem-specific choices live in `src/data/visualizationBindings.ts`, alongside pointer bindings. For example, Two Sum uses `{ nums: "array", seen: "map" }`, while Meeting Rooms II uses `{ intervals: "intervals", active_ends: "heap" }`. Automatic shape detection remains available for other variables. Lime marks current positions, amber marks edits, and blue marks frontier/context; tooltips and labels explain these states without relying on color alone.
-
-The built-in ImageGen figure-family reference is saved in [design/figure-families.png](design/figure-families.png), with its exact prompt in [design/figure-families-prompt.json](design/figure-families-prompt.json). This reference informed the component geometry and palette; live figures render captured Python state in HTML/SVG.
 
 ## GitHub Pages
 
@@ -104,4 +101,4 @@ See [RELEASING.md](RELEASING.md) for configurable publishing, required checks, a
 
 ## Illustration sources
 
-The built-in ImageGen tool generated `public/illustrations/rainwater.png`, `public/illustrations/house-robber.png`, and `public/illustrations/islands.png`. Exact prompts are saved in [design/illustrations/prompts.json](design/illustrations/prompts.json). The images are served as compressed WebP files (about 216 KB combined); original PNGs remain in Git history. Illustrations load only in relevant lessons. Precise algorithm states and numeric diagrams remain CSS/SVG views of Python execution.
+The built-in ImageGen tool generated the rainwater, house-robber, and islands illustrations in `public/illustrations/`. The images are served as compressed WebP files (about 216 KB combined); original PNGs and generation prompts remain in Git history. Illustrations load only in relevant lessons. Precise algorithm states and numeric diagrams remain CSS/SVG views of Python execution.

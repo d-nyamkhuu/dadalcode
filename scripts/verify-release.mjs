@@ -32,7 +32,7 @@ try {
     const result = spawnSync("npm", args, {
       cwd: directory,
       stdio: "inherit",
-      env: process.env,
+      env: { ...process.env, BROWSER_COVERAGE: "full" },
     });
     if (result.error) throw result.error;
     if (result.status !== 0)

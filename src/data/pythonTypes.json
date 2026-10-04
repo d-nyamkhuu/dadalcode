@@ -1,0 +1,194 @@
+{
+  "types": {
+    "ListNode": {
+      "code": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next",
+      "description": "`val` stores the node value. `next` refers to the next node, or `None` at the end of an acyclic list. `ListNode(0, head)` creates a node with value `0` whose `next` points to `head`."
+    },
+    "TreeNode": {
+      "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right",
+      "description": "`val` stores the node value. `left` and `right` refer to child nodes, or `None` for missing children. `TreeNode(5)` creates a leaf with value `5`."
+    },
+    "Node": {
+      "code": "class Node:\n    def __init__(self, val=0, neighbors=None):\n        self.val = val\n        self.neighbors = [] if neighbors is None else neighbors",
+      "description": "`val` stores the node value. `neighbors` is a list of neighboring `Node` objects. `Node(1)` creates a node with value `1` and its own empty neighbor list."
+    }
+  },
+  "problems": {
+    "add-two-numbers": {
+      "type": "ListNode",
+      "input": "The trainer converts the example arrays `l1` and `l2` into linked lists. Your method receives their first nodes. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "remove-nth-node-from-end-of-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "merge-two-sorted-lists": {
+      "type": "ListNode",
+      "input": "The trainer converts `list1` and `list2` from arrays into linked lists. Your method receives their first nodes, with `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "merge-k-sorted-lists": {
+      "type": "ListNode",
+      "input": "The trainer converts each array inside `lists` into a linked list. Your method receives a Python list of head nodes, with `None` for each empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "swap-nodes-in-pairs": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "reverse-nodes-in-k-group": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "rotate-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "remove-duplicates-from-sorted-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "reverse-linked-list-ii": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "validate-binary-search-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "same-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example arrays `p` and `q` into separate trees. Your method receives their root nodes, with `None` for an empty tree. Arrays use level order, reading left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "binary-tree-level-order-traversal": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "binary-tree-zigzag-level-order-traversal": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "maximum-depth-of-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "construct-binary-tree-from-preorder-and-inorder-traversal": {
+      "type": "TreeNode",
+      "input": "Your method receives ordinary Python lists `preorder` and `inorder`. Use `TreeNode` to construct the tree and return its root, or `None` for an empty tree. The trainer displays the returned tree as a level-order array with `null` for missing children."
+    },
+    "binary-tree-level-order-traversal-ii": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "minimum-depth-of-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "path-sum": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "path-sum-ii": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "binary-tree-maximum-path-sum": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "linked-list-cycle": {
+      "type": "ListNode",
+      "input": "The trainer builds linked nodes from `head` and connects the tail to the zero-based index `pos`, or leaves it unconnected when `pos` is `-1`. Your method receives only the head node (or `None` for an empty list); `pos` is not a method argument. Return a boolean indicating whether a cycle exists."
+    },
+    "linked-list-cycle-ii": {
+      "type": "ListNode",
+      "input": "The trainer builds linked nodes from `head` and connects the tail to the zero-based index `pos`, or leaves it unconnected when `pos` is `-1`. Your method receives only the head node (or `None` for an empty list); `pos` is not a method argument. Return the original cycle-entry node or `None`. The trainer displays its zero-based index, or `-1` for no cycle."
+    },
+    "reorder-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Rewire the nodes in place and return `None`; the trainer displays the values in the modified list."
+    },
+    "sort-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "binary-tree-right-side-view": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "remove-linked-list-elements": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "reverse-linked-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "invert-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child. Return the original root after swapping child links; the trainer displays the resulting tree as a level-order array."
+    },
+    "kth-smallest-element-in-a-bst": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "palindrome-linked-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a boolean indicating whether the node values form a palindrome."
+    },
+    "lowest-common-ancestor-of-a-binary-search-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child. The example’s `p` and `q` values are resolved to existing nodes in that tree before calling your method. Return the existing ancestor node; the trainer displays its value."
+    },
+    "lowest-common-ancestor-of-a-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child. The example’s `p` and `q` values are resolved to existing nodes in that tree before calling your method. Return the existing ancestor node; the trainer displays its value."
+    },
+    "binary-tree-paths": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "serialize-and-deserialize-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` level-order array into a tree and passes its root node to `serialize` (`None` for an empty tree). `null` in the array marks a missing child. Return a string from `serialize`. `deserialize` receives that string and must return a reconstructed root node. The trainer displays the reconstructed tree as a level-order array."
+    },
+    "odd-even-linked-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the example’s `head` array into linked nodes before calling your method. Your `head` argument is the first `ListNode`, or `None` for an empty list. Return a node reference; the trainer displays the values reachable from that node as an array."
+    },
+    "path-sum-iii": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "subtree-of-another-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example arrays `root` and `subRoot` into separate trees. Your method receives their root nodes. Arrays use level order, reading left and right children of each present node in turn; `null` marks a missing child. An empty tree is represented by `None` in Python."
+    },
+    "merge-two-binary-trees": {
+      "type": "TreeNode",
+      "input": "The trainer converts `root1` and `root2` from level-order arrays into tree roots, with `None` for an empty tree. In the arrays, read left and right children of each present node in turn; `null` marks a missing child. Return the merged root node; the trainer displays it as a level-order array."
+    },
+    "average-of-levels-in-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "maximum-binary-tree": {
+      "type": "TreeNode",
+      "input": "Your method receives `nums` as an ordinary Python list. Use `TreeNode` to construct the tree and return its root. The trainer displays the returned tree as a level-order array with `null` for missing children."
+    },
+    "maximum-width-of-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child."
+    },
+    "all-nodes-distance-k-in-binary-tree": {
+      "type": "TreeNode",
+      "input": "The trainer converts the example’s `root` array into a tree before calling your method. Your `root` argument is a `TreeNode`, or `None` for an empty tree. Arrays use level order: read the left and right children of each present node in turn; `null` marks a missing child. The example’s `target` value is resolved to the existing node with that value. Your method receives that node object and the integer `k`."
+    },
+    "middle-of-the-linked-list": {
+      "type": "ListNode",
+      "input": "The trainer converts the nonempty `head` array into linked nodes. Your method receives the first node. Return the original middle node; the trainer displays the values from that node through the end of the list."
+    },
+    "clone-graph": {
+      "type": "Node",
+      "input": "The trainer converts `adjacency` into graph nodes labeled `1` through `n`. Each array entry lists the neighboring node labels. Your method receives node `1`, or `None` for an empty graph. Return the copied entry node; the trainer displays the copied graph as an adjacency list."
+    }
+  }
+}
