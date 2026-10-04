@@ -374,25 +374,31 @@ function Workspace({
                 ))}
               </div>
             </div>
-            <div className="draft-status" aria-live="polite">
-              <span>{savedDraft.status}</span>
-              <button onClick={() => downloadFile(`${slug}-draft.py`, draft)}>
-                Download draft
-              </button>
-              {savedDraft.conflict ? (
-                <>
-                  <button onClick={() => savedDraft.resolve(false)}>
-                    Discard mine and load saved draft
-                  </button>
-                  <button onClick={() => savedDraft.resolve(true)}>
-                    Replace saved draft with mine
-                  </button>
-                </>
-              ) : savedDraft.status !== "Saved locally" &&
-                savedDraft.status !== "Saving…" ? (
-                <button onClick={savedDraft.retry}>Retry save</button>
-              ) : null}
-            </div>
+            {(tab === "practice" ||
+              savedDraft.conflict ||
+              !["Saved locally", "Saving…", "Opening saved draft…"].includes(
+                savedDraft.status,
+              )) && (
+              <div className="draft-status" aria-live="polite">
+                <span>{savedDraft.status}</span>
+                <button onClick={() => downloadFile(`${slug}-draft.py`, draft)}>
+                  Download draft
+                </button>
+                {savedDraft.conflict ? (
+                  <>
+                    <button onClick={() => savedDraft.resolve(false)}>
+                      Discard mine and load saved draft
+                    </button>
+                    <button onClick={() => savedDraft.resolve(true)}>
+                      Replace saved draft with mine
+                    </button>
+                  </>
+                ) : savedDraft.status !== "Saved locally" &&
+                  savedDraft.status !== "Saving…" ? (
+                  <button onClick={savedDraft.retry}>Retry save</button>
+                ) : null}
+              </div>
+            )}
             <nav className="workspace-tabs" aria-label="Learning views">
               {(["learn", "practice", "solution"] as Tab[]).map((t) => (
                 <a
