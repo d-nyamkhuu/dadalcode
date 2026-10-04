@@ -50,8 +50,14 @@ BROWSER_COVERAGE=full npm run test:e2e -- --parallel
 `npm run verify:release` always uses full coverage. Both modes still validate all
 179 problem suites in browser Python and all lesson guides.
 
-CI runs these checks on every pull request. Keep generated `dist/`, runtime files,
-and distribution notices out of commits.
+CI runs the full checks for app code, lessons, tests, dependencies, build/CI
+configuration, and bundled license notices. Changes limited to the root README,
+contribution/release/security guides, problem contract, issue/PR templates, or
+Markdown/images under `docs/` run formatting only. Browser and production checks
+report as skipped, and no deployment runs. Unknown paths or unavailable Git
+history trigger full checks; manual workflow runs always do too.
+
+Keep generated `dist/`, runtime files, and distribution notices out of commits.
 
 Describe the user-visible problem, change, and verification. Include a desktop
 screenshot for visible UI changes. Keep refactoring and lesson corrections
