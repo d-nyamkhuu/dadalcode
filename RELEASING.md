@@ -14,8 +14,9 @@
 4. Create the release/tag only after the exact commit passes. Describe desktop
    support and the mixed licensing in the release notes.
 
-Making a repository public, pushing a release, and publishing a website are
-separate actions. These scripts do not change repository visibility.
+Merging into `main` triggers website deployment after all checks pass. Creating a
+release/tag and changing repository visibility remain separate actions; the
+workflow does not change visibility.
 
 ## Required checks and private reports
 
@@ -43,10 +44,24 @@ DEPLOY_BASE_PATH=/dadalcode/ npm run build:pages
 DEPLOY_BASE_PATH=/dadalcode/ npm run test:production
 ```
 
-The Actions workflow produces a verified Pages artifact on `main`; it does not
-publish automatically. This keeps forks and source releases from deploying to
-an unintended website. Download the artifact or use the explicit publisher for
-an existing branch-based Pages repository:
+The **Release checks and deploy** workflow runs on PRs and pushes to `main`.
+After a PR is merged, the resulting push runs **Quality**, **Browser tests**, and
+**Production build**. If all three pass, **Deploy website** publishes that run's
+verified artifact to this repository's GitHub Pages site. Direct pushes to `main`
+also deploy; PRs and manual runs on other branches never deploy. A manual run on
+`main` can retry deployment. An in-progress main-branch deployment is not canceled
+by a newer push.
+
+One-time setup: in **Settings → Pages → Build and deployment**, select **GitHub
+Actions** as the source. The expected site URL for this repository is
+`https://d-nyamkhuu.github.io/dadalcode/`. GitHub currently rejects Pages activation
+for this private repository under its plan. Make the repository public or use a
+plan that supports private-repository Pages, then enable that setting before
+merging. No personal access token or deployment secret is required; the deploy
+job uses the repository token and GitHub's identity token.
+
+For an alternative destination in an existing branch-based Pages repository,
+the explicit publisher remains available:
 
 ```sh
 PAGES_REPOSITORY=owner/site-repository \

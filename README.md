@@ -78,7 +78,10 @@ The built-in ImageGen figure-family reference is saved in [design/figure-familie
 
 ## GitHub Pages
 
-Deployment path: `/dadalcode/`. Publish the built site to your configured GitHub Pages destination before sharing its URL.
+Deployment path: `/dadalcode/`. After GitHub Pages is enabled with **GitHub Actions**
+as its source, merging a PR into `main` publishes the site automatically once all
+three release checks pass. PR runs only validate the change. See
+[RELEASING.md](RELEASING.md) for the one-time setup and current plan requirement.
 
 The production build targets `/dadalcode/`. Lessons, illustrations, the Python worker, and the Pyodide runtime all resolve under that path. Hash routes support direct links and reloads on static hosting.
 
