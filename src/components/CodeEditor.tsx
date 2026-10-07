@@ -5,6 +5,7 @@ import { python } from "@codemirror/lang-python";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
+import { indentUnit } from "@codemirror/language";
 type Props = {
   value: string;
   onChange?: (value: string) => void;
@@ -35,6 +36,7 @@ export default function CodeEditor({
         EditorState.readOnly.of(readOnly),
         EditorView.editable.of(!readOnly),
         EditorState.tabSize.of(4),
+        indentUnit.of("    "),
         EditorView.contentAttributes.of({ "aria-label": label }),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) change.current?.(update.state.doc.toString());
