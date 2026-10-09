@@ -68,5 +68,86 @@
       "note": "An exhausted trie node represents no unfound words, so deleting its parent edge safely skips future repeated searches."
     }
   ],
-  "keyDecision": "Use a cell at most once per path, and remove a found word's end marker to avoid duplicate results."
+  "keyDecision": "Use a cell at most once per path, and remove a found word's end marker to avoid duplicate results.",
+  "concept": {
+    "question": "How can one shared prefix tree guide many board-word searches?",
+    "intuition": [
+      "Searching the board separately for each word repeats common prefix walks. A board route that is no prefix of any requested word cannot lead to an answer.",
+      "Build a shared letter-prefix tree for the requested words. Walk adjacent board squares while following that tree. Stop when no matching prefix edge exists. A complete-word marker reports a match, and removing only that marker prevents duplicate reports while preserving longer continuations."
+    ],
+    "observation": "A route must follow a requested-word prefix and cannot reuse a board square within that route.",
+    "approach": [
+      "Build the shared prefix tree with complete-word markers.",
+      "Follow matching side-adjacent board letters and reserve squares temporarily.",
+      "Report each reached word once and restore the board when returning."
+    ],
+    "correctness": "Every explored route uses distinct side-adjacent squares and matches a requested prefix. Reaching a terminal therefore spells a requested word. Any valid requested-word route follows existing prefix edges, so it is explored unless that word was already reported. Restoring squares preserves other routes; removing only found terminal markers preserves shared longer prefixes.",
+    "complexity": {
+      "time": "O(D + rows*columns*4*3^(L-1))",
+      "space": "O(D + L)",
+      "explanation": "Building the prefix tree costs its total word characters. Board search can still branch exponentially in maximum word length, but impossible prefixes stop early. Storage holds the prefix tree and the current route."
+    },
+    "pitfalls": [
+      "A route must follow a requested-word prefix and cannot reuse a board square within that route.",
+      "Remove the terminal marker, not its entire prefix path."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/word-search-ii/concept.webp",
+        "alt": "Build a shared letter-prefix tree for the requested words. Walk adjacent board squares while following that tree. Stop when no matching prefix edge exists. A complete-word marker reports a match, and removing only that marker prevents duplicate reports while preserving longer continuations.",
+        "caption": "Build a shared letter-prefix tree for the requested words. Walk adjacent board squares while following that tree. Stop when no matching prefix edge exists. A complete-word marker reports a match, and removing only that marker prevents duplicate reports while preserving longer continuations.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Word Search II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Word Search II, not a generic data structure illustration. The key idea is: Many words share their first letters. Store those shared beginnings in a trie, then walk the board while following trie paths. If a board path does not match any stored beginning, stop that search immediately. This avoids searching the entire board separately for every word. The reason a decision is safe is: Use a cell at most once per path, and remove a found word's end marker to avoid duplicate results. The actual example this lesson teaches is {\"board\": [[\"o\", \"a\", \"a\", \"n\"], [\"e\", \"t\", \"a\", \"e\"], [\"i\", \"h\", \"k\", \"r\"], [\"i\", \"f\", \"l\", \"v\"]], \"words\": [\"oath\", \"pea\", \"eat\", \"rain\"]} with answer [\"eat\", \"oath\"]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can one shared prefix tree guide many board-word searches?",
+        "decision": "A route must follow a requested-word prefix and cannot reuse a board square within that route."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Searching the board separately for each word repeats common prefix walks. A board route that is no prefix of any requested word cannot lead to an answer.",
+        "decision": "Build a shared letter-prefix tree for the requested words. Walk adjacent board squares while following that tree. Stop when no matching prefix edge exists. A complete-word marker reports a match, and removing only that marker prevents duplicate reports while preserving longer continuations."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Build a shared letter-prefix tree for the requested words. Walk adjacent board squares while following that tree. Stop when no matching prefix edge exists. A complete-word marker reports a match, and removing only that marker prevents duplicate reports while preserving longer continuations.",
+        "decision": "A route must follow a requested-word prefix and cannot reuse a board square within that route."
+      },
+      {
+        "id": "the-oath-route-follows-a-prefix",
+        "title": "The oath route follows a prefix",
+        "narration": "From o at (0,0), follow a at (0,1), t at (1,1), and h at (2,1). The endpoint spells oath.",
+        "decision": "Every intermediate prefix exists in the requested-word tree."
+      },
+      {
+        "id": "a-separate-route-spells-eat",
+        "title": "A separate route spells eat",
+        "narration": "From e at (1,3), follow a at (1,2), then t at (1,1). The endpoint spells eat.",
+        "decision": "Earlier path reservations were restored before this route."
+      },
+      {
+        "id": "only-two-requested-words-fit",
+        "title": "Only two requested words fit",
+        "narration": "No valid board routes spell pea or rain. Return eat and oath, each once.",
+        "decision": "Removing a found terminal marker prevents duplicate reports without deleting other words."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every explored route uses distinct side-adjacent squares and matches a requested prefix. Reaching a terminal therefore spells a requested word. Any valid requested-word route follows existing prefix edges, so it is explored unless that word was already reported. Restoring squares preserves other routes; removing only found terminal markers preserves shared longer prefixes.",
+        "decision": "A route must follow a requested-word prefix and cannot reuse a board square within that route."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A short word may be a prefix of another requested word. Finding it must not end the longer-word search.",
+        "decision": "Remove the terminal marker, not its entire prefix path."
+      }
+    ]
+  }
 }

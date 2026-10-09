@@ -57,5 +57,87 @@
       "note": "Append the chosen node and move the tail so the next append extends the result."
     }
   ],
-  "keyDecision": "Each nonempty list contributes only its next available node to the heap."
+  "keyDecision": "Each nonempty list contributes only its next available node to the heap.",
+  "concept": {
+    "question": "Why does the next smallest node hide among just the exposed list heads?",
+    "intuition": [
+      "Sorting all nodes again wastes the sorted order of each source. Comparing every source head after every output node also repeats work when many lists are present.",
+      "Each list exposes its smallest remaining node. Keep these exposed candidates in a small priority tournament, called a heap. Its winner is the next output node. Replace that winner with its successor from the same source."
+    ],
+    "observation": "Only the next unused node of each nonempty list belongs in the tournament.",
+    "approach": [
+      "Expose one head per nonempty list.",
+      "Take the smallest head, attach it, and expose its successor.",
+      "Repeat until every source is exhausted."
+    ],
+    "correctness": "A tournament winner is no larger than any exposed head, and hence no larger than any hidden node. Attaching it preserves sorted order. Replacing it only with its own successor keeps one candidate per source. Repeating these two facts uses every node exactly once and yields the complete sorted chain.",
+    "complexity": {
+      "time": "O(k + N log(k + 1))",
+      "space": "O(k + 1)",
+      "explanation": "Scan the source heads once. Each output node then needs a logarithmic-size tournament update based on the number of lists. The candidate tournament stores at most one node per list."
+    },
+    "pitfalls": [
+      "Keep equal-valued nodes from different sources.",
+      "Expose the successor before changing output links.",
+      "Do not store every hidden node in the tournament."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/merge-k-sorted-lists/concept.webp",
+        "alt": "Several ordered chains expose one candidate each to a small minimum tournament.",
+        "caption": "Several ordered chains expose one candidate each to a small minimum tournament.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Merge k Sorted Lists algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Merge k Sorted Lists, not a generic data structure illustration. The key idea is: Only the first remaining node of each sorted list can be the next smallest node. Put those candidates in a heap, which lets us quickly take the smallest. After taking a node, add its successor from the same list. This avoids sorting all the nodes again. The reason a decision is safe is: Each nonempty list contributes only its next available node to the heap. The actual example this lesson teaches is {\"lists\": [[1, 4, 5], [1, 3, 4], [2, 6]]} with answer [1, 1, 2, 3, 4, 4, 5, 6]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does the next smallest node hide among just the exposed list heads?",
+        "decision": "Only the next unused node of each nonempty list belongs in the tournament."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting all nodes again wastes the sorted order of each source. Comparing every source head after every output node also repeats work when many lists are present.",
+        "decision": "Each list exposes its smallest remaining node. Keep these exposed candidates in a small priority tournament, called a heap. Its winner is the next output node. Replace that winner with its successor from the same source."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Each list exposes its smallest remaining node. Keep these exposed candidates in a small priority tournament, called a heap. Its winner is the next output node. Replace that winner with its successor from the same source.",
+        "decision": "Only the next unused node of each nonempty list belongs in the tournament."
+      },
+      {
+        "id": "expose-three-candidates",
+        "title": "Expose three candidates",
+        "narration": "Lists [1,4,5], [1,3,4], and [2,6] expose 1, 1, and 2.",
+        "decision": "Every hidden node is at least its own source head."
+      },
+      {
+        "id": "replace-only-the-winning-source",
+        "title": "Replace only the winning source",
+        "narration": "After taking A’s 1, expose A’s 4. B’s 1 wins next and exposes 3.",
+        "decision": "Unselected sources keep their same heads."
+      },
+      {
+        "id": "the-tournament-finishes-the-chain",
+        "title": "The tournament finishes the chain",
+        "narration": "Take 2, then 3, then both 4s, 5, and 6. The result is [1,1,2,3,4,4,5,6].",
+        "decision": "Every removal exposes exactly the next node from its original list."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A tournament winner is no larger than any exposed head, and hence no larger than any hidden node. Attaching it preserves sorted order. Replacing it only with its own successor keeps one candidate per source. Repeating these two facts uses every node exactly once and yields the complete sorted chain.",
+        "decision": "Only the next unused node of each nonempty list belongs in the tournament."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: empty lists expose no candidates. An entirely empty collection has an empty result.",
+        "decision": "Ignore empty sources rather than creating fake nodes."
+      }
+    ]
+  }
 }

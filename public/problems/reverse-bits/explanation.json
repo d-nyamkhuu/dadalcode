@@ -32,5 +32,86 @@
       "note": "Shift makes one empty low position, and OR appends the extracted bit to the growing reversed sequence."
     }
   ],
-  "keyDecision": "Run exactly 32 iterations. Stopping when the input becomes zero would lose leading zero positions."
+  "keyDecision": "Run exactly 32 iterations. Stopping when the input becomes zero would lose leading zero positions.",
+  "concept": {
+    "question": "Why must zero bits still take their turns in a fixed-width reversal?",
+    "intuition": [
+      "Reversing only until the remaining numeric value becomes zero drops original leading zeros, which must become trailing zeros. The problem reverses exactly 32 positions.",
+      "Read one bit from the low end, shift the developing output left to make room, and append that bit. Repeat for all 32 input positions. The earliest extracted low bit is pushed toward the final high end by every later append."
+    ],
+    "observation": "Process the full fixed width, including every zero position.",
+    "approach": [
+      "Begin with an empty numeric output.",
+      "Extract the current low bit and append it to the growing output.",
+      "Advance through exactly 32 positions, then return the unsigned result."
+    ],
+    "correctness": "After each append, the output records the consumed low-end input bits in their extraction order. A later append shifts all earlier extracted bits one place toward the high end. After exactly 32 appends, each original position has moved to its mirror position across the fixed word, yielding the complete reversal.",
+    "complexity": {
+      "time": "O(32), hence O(1)",
+      "space": "O(1)",
+      "explanation": "Exactly 32 constant-size iterations use a few fixed-width words. Both time and auxiliary storage are constant under the stated width."
+    },
+    "pitfalls": [
+      "Process the full fixed width, including every zero position.",
+      "Do not stop when the remaining input value first becomes zero."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/reverse-bits/concept.webp",
+        "alt": "Eight bright or hollow bit tokens illustrate the low-end extraction order, including a hollow zero token.",
+        "caption": "This shortened sketch illustrates the direction of bit transfer. The problem applies the same operation to all 32 positions, including zeros.",
+        "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. Represent a fixed-width binary word ABSTRACTLY as eight unnumbered colored tokens in a row, alternating bright filled and dim hollow tokens. Arrows extract one token at a time from the RIGHT end and append to a developing row below. Emphasize that the dim hollow zero tokens also get their turns: show one hollow token moving with a bright token. Do not label an input or output numeric value, and do not depict this as the exact lesson's 32-bit example. No digits, letters, or equations."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must zero bits still take their turns in a fixed-width reversal?",
+        "decision": "Process the full fixed width, including every zero position."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Reversing only until the remaining numeric value becomes zero drops original leading zeros, which must become trailing zeros. The problem reverses exactly 32 positions.",
+        "decision": "Read one bit from the low end, shift the developing output left to make room, and append that bit. Repeat for all 32 input positions. The earliest extracted low bit is pushed toward the final high end by every later append."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Read one bit from the low end, shift the developing output left to make room, and append that bit. Repeat for all 32 input positions. The earliest extracted low bit is pushed toward the final high end by every later append.",
+        "decision": "Process the full fixed width, including every zero position."
+      },
+      {
+        "id": "the-first-two-extracted-bits-are-zero",
+        "title": "The first two extracted bits are zero",
+        "narration": "Input 43261596 is 00000010100101000001111010011100 in 32 bits. Its two low bits are zero, so the first two appends keep numeric output zero.",
+        "decision": "Numeric zero still represents consumed positions."
+      },
+      {
+        "id": "the-next-two-bits-become-one-then-three",
+        "title": "The next two bits become one then three",
+        "narration": "The third and fourth extracted bits are ones. Appending them gives output values one, then three, representing the consumed sequence 0011.",
+        "decision": "Earlier bits shift left when another bit is appended."
+      },
+      {
+        "id": "complete-all-32-positions",
+        "title": "Complete all 32 positions",
+        "narration": "The final reversed word is 00111001011110000010100101000000, value 964176192. Return that value.",
+        "decision": "Original leading zeros become final trailing zeros."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each append, the output records the consumed low-end input bits in their extraction order. A later append shifts all earlier extracted bits one place toward the high end. After exactly 32 appends, each original position has moved to its mirror position across the fixed word, yielding the complete reversal.",
+        "decision": "Process the full fixed width, including every zero position."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A lone lowest bit becomes the highest bit after all 32 steps.",
+        "decision": "Do not stop when the remaining input value first becomes zero."
+      }
+    ]
+  }
 }

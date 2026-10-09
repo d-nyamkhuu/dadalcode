@@ -42,5 +42,86 @@
       "note": "Undo this node’s append so the next sibling inherits exactly the parent path, without leftover values."
     }
   ],
-  "keyDecision": "Save paths only at leaves. Undo the appended value after exploring the node."
+  "keyDecision": "Save paths only at leaves. Undo the appended value after exploring the node.",
+  "concept": {
+    "question": "How can a branch carry its route without leaking into its sibling?",
+    "intuition": [
+      "Saving a path at every node would include incomplete root-to-node routes. Keeping a shared history without undoing also mixes one branch’s values into another.",
+      "Append each visited node to the current route. At a leaf, save its joined value sequence. On returning, remove the current value so another branch begins with exactly the shared ancestors."
+    ],
+    "observation": "Save routes only at leaves, and undo the current node when returning.",
+    "approach": [
+      "Append the current node to the route.",
+      "Save its complete route if it is a leaf, otherwise visit children.",
+      "Remove the current node before returning to the parent."
+    ],
+    "correctness": "The active route contains exactly the current node’s root ancestors because values are appended on entry and removed on return. Saving at leaves therefore emits complete root-to-leaf routes. Traversing both children reaches every leaf, and undoing prevents sibling-route contamination.",
+    "complexity": {
+      "time": "O(n + L)",
+      "space": "O(h) auxiliary plus O(L) output",
+      "explanation": "Each node is entered and left once. Writing path strings adds work proportional to their total output length. The active route uses height-sized memory."
+    },
+    "pitfalls": [
+      "Save routes only at leaves, and undo the current node when returning.",
+      "Do not require at least one child edge to save a path."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/binary-tree-paths/concept.webp",
+        "alt": "Append each visited node to the current route. At a leaf, save its joined value sequence. On returning, remove the current value so another branch begins with exactly the shared ancestors.",
+        "caption": "Append each visited node to the current route. At a leaf, save its joined value sequence. On returning, remove the current value so another branch begins with exactly the shared ancestors.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Binary Tree Paths algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Binary Tree Paths, not a generic data structure illustration. The key idea is: Carry the values along the current route from the root. At a leaf, join those values into a path string and save it. Remove the current value when returning to the parent so that another branch starts with the right ancestor path. The reason a decision is safe is: Save paths only at leaves. Undo the appended value after exploring the node. The actual example this lesson teaches is {\"root\": [1, 2, 3, null, 5]} with answer [\"1->2->5\", \"1->3\"]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a branch carry its route without leaking into its sibling?",
+        "decision": "Save routes only at leaves, and undo the current node when returning."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Saving a path at every node would include incomplete root-to-node routes. Keeping a shared history without undoing also mixes one branch’s values into another.",
+        "decision": "Append each visited node to the current route. At a leaf, save its joined value sequence. On returning, remove the current value so another branch begins with exactly the shared ancestors."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Append each visited node to the current route. At a leaf, save its joined value sequence. On returning, remove the current value so another branch begins with exactly the shared ancestors.",
+        "decision": "Save routes only at leaves, and undo the current node when returning."
+      },
+      {
+        "id": "build-the-left-route",
+        "title": "Build the left route",
+        "narration": "For root 1 with children 2 and 3, and node 2’s right child 5, the left route becomes 1,2,5.",
+        "decision": "Each new value extends only its active ancestor route."
+      },
+      {
+        "id": "save-a-finished-leaf-route",
+        "title": "Save a finished leaf route",
+        "narration": "Leaf 5 completes the path string 1→2→5.",
+        "decision": "A leaf has no further required continuation."
+      },
+      {
+        "id": "undo-before-the-sibling",
+        "title": "Undo before the sibling",
+        "narration": "Remove 5 and 2, then visit right leaf 3 from prefix 1. Save 1→3.",
+        "decision": "Sibling histories share ancestors but not completed child nodes."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The active route contains exactly the current node’s root ancestors because values are appended on entry and removed on return. Saving at leaves therefore emits complete root-to-leaf routes. Traversing both children reaches every leaf, and undoing prevents sibling-route contamination.",
+        "decision": "Save routes only at leaves, and undo the current node when returning."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A lone root is also a leaf and forms a one-value path.",
+        "decision": "Do not require at least one child edge to save a path."
+      }
+    ]
+  }
 }

@@ -39,5 +39,86 @@
       "note": "Strict improvement preserves the first alphabetical winner among equal-length buildable words, making the tie rule follow from processing order."
     }
   ],
-  "keyDecision": "Accept word only if word[:-1] is already buildable. Replace the answer only for a longer word."
+  "keyDecision": "Accept word only if word[:-1] is already buildable. Replace the answer only for a longer word.",
+  "concept": {
+    "question": "How can a certified shorter prefix prove a longer word is buildable?",
+    "intuition": [
+      "Choosing the longest dictionary word ignores whether every one-letter-at-a-time prefix exists. Check buildability in increasing word length instead.",
+      "Begin with the empty prefix certified. A word is buildable if removing its last letter leaves an already certified word. Sort equal lengths alphabetically and keep the first candidate at every new maximum length."
+    ],
+    "observation": "A long word qualifies only through a complete certified prefix chain.",
+    "approach": [
+      "Order words by length, then alphabetically.",
+      "Certify a word only when its immediate shorter prefix is certified.",
+      "Update the result only when a certified word is strictly longer."
+    ],
+    "correctness": "Inductively, a certified word’s immediate prefix is already buildable and adding its last letter proves the full word buildable. Conversely, every buildable word has a buildable immediate prefix, processed earlier by length. Alphabetical processing and strict-length updates choose the smallest word among maximum-length qualified words.",
+    "complexity": {
+      "time": "O(W log W * L + W * L) worst case",
+      "space": "O(W + L) auxiliary",
+      "explanation": "Sorting words uses comparison work that may inspect their characters; certification also reads each immediate prefix. Stored sorted entries and certified words are references to input words, with a temporary prefix copy bounded by maximum word length."
+    },
+    "pitfalls": [
+      "A long word qualifies only through a complete certified prefix chain.",
+      "Do not require only the immediate prefix’s presence without also certifying its own chain."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/longest-word-in-dictionary/concept.webp",
+        "alt": "Begin with the empty prefix certified. A word is buildable if removing its last letter leaves an already certified word. Sort equal lengths alphabetically and keep the first candidate at every new maximum length.",
+        "caption": "Begin with the empty prefix certified. A word is buildable if removing its last letter leaves an already certified word. Sort equal lengths alphabetically and keep the first candidate at every new maximum length.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Longest Word in Dictionary algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Longest Word in Dictionary, not a generic data structure illustration. The key idea is: Build longer words only from words that are already buildable. Process shorter words first. A word qualifies when removing its final letter leaves a qualifying word; this proves all its earlier prefixes exist too. Process equal lengths in character order to resolve ties. The reason a decision is safe is: Accept word only if word[:-1] is already buildable. Replace the answer only for a longer word. The actual example this lesson teaches is {\"words\": [\"a\", \"banana\", \"app\", \"appl\", \"ap\", \"apply\", \"apple\"]} with answer \"apple\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a certified shorter prefix prove a longer word is buildable?",
+        "decision": "A long word qualifies only through a complete certified prefix chain."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Choosing the longest dictionary word ignores whether every one-letter-at-a-time prefix exists. Check buildability in increasing word length instead.",
+        "decision": "Begin with the empty prefix certified. A word is buildable if removing its last letter leaves an already certified word. Sort equal lengths alphabetically and keep the first candidate at every new maximum length."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Begin with the empty prefix certified. A word is buildable if removing its last letter leaves an already certified word. Sort equal lengths alphabetically and keep the first candidate at every new maximum length.",
+        "decision": "A long word qualifies only through a complete certified prefix chain."
+      },
+      {
+        "id": "grow-the-apple-prefix-chain",
+        "title": "Grow the apple prefix chain",
+        "narration": "For the authored dictionary, a certifies ap, ap certifies app, and app certifies appl.",
+        "decision": "Each step adds exactly one final letter."
+      },
+      {
+        "id": "resolve-the-longest-tie",
+        "title": "Resolve the longest tie",
+        "narration": "Both apple and apply extend appl to length five. Alphabetical order reaches apple first, so keep it on the length tie.",
+        "decision": "Equal-length later words must not overwrite the smaller tie winner."
+      },
+      {
+        "id": "reject-the-tempting-longer-word",
+        "title": "Reject the tempting longer word",
+        "narration": "banana is longer, but banan is not certified, so its prefix chain is missing. Return apple.",
+        "decision": "Length alone cannot bypass a missing construction step."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Inductively, a certified word’s immediate prefix is already buildable and adding its last letter proves the full word buildable. Conversely, every buildable word has a buildable immediate prefix, processed earlier by length. Alphabetical processing and strict-length updates choose the smallest word among maximum-length qualified words.",
+        "decision": "A long word qualifies only through a complete certified prefix chain."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-letter word qualifies through the empty prefix.",
+        "decision": "Do not require only the immediate prefix’s presence without also certifying its own chain."
+      }
+    ]
+  }
 }

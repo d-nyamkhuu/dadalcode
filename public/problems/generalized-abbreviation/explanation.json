@@ -42,5 +42,86 @@
       "note": "The terminal case must flush a trailing run because there may be no kept letter after it to perform that operation."
     }
   ],
-  "keyDecision": "Flush the pending omitted count before writing a kept letter and when the word ends."
+  "keyDecision": "Flush the pending omitted count before writing a kept letter and when the word ends.",
+  "concept": {
+    "question": "How can an omitted run be remembered without writing one marker per letter?",
+    "intuition": [
+      "Choosing whether to keep each letter produces all possibilities, but writing a separate 1 for every omitted letter would create ambiguous or noncanonical adjacent counts.",
+      "Walk along the word with a count of consecutive omitted letters. Omitting extends that run; keeping a letter first writes the pending count, then the letter. At the end, write any remaining run once."
+    ],
+    "observation": "An omission count represents one consecutive run, and is flushed before the next kept letter.",
+    "approach": [
+      "Branch at each letter: omit it or keep it.",
+      "Accumulate consecutive omissions into one count.",
+      "Flush that count before a kept letter or at the word’s end."
+    ],
+    "correctness": "Every subset of kept positions determines one branch path and one abbreviation. Consecutive omitted positions are represented by their exact run length, while kept letters separate runs. This gives every valid abbreviation and prevents two branch paths from producing the same canonical pattern.",
+    "complexity": {
+      "time": "O(n * 2^n)",
+      "space": "O(n^2) auxiliary with copied prefixes, excluding output",
+      "explanation": "There are two choices at each of the word’s positions, so output is exponential. Writing each abbreviation takes up to the word length; the recursive choice path is linear in depth, with additional copying work for constructed prefixes."
+    },
+    "pitfalls": [
+      "An omission count represents one consecutive run, and is flushed before the next kept letter.",
+      "Flush a final omitted run even when no letter follows."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/generalized-abbreviation/concept.webp",
+        "alt": "Neighboring omission capsules merge into one longer run between retained letter tiles.",
+        "caption": "Consecutive omitted letters belong to one count. Keeping a letter closes that run and starts a new choice.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A row of letter-like but nonlinguistic decorative glyph tiles. Two adjacent omitted tiles collapse into ONE elongated glowing capsule indicating an omitted run. A retained tile separates that capsule from a second smaller omitted-run capsule. Show keep-or-omit branches with adjacent omissions merging. No real letters or counts."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can an omitted run be remembered without writing one marker per letter?",
+        "decision": "An omission count represents one consecutive run, and is flushed before the next kept letter."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Choosing whether to keep each letter produces all possibilities, but writing a separate 1 for every omitted letter would create ambiguous or noncanonical adjacent counts.",
+        "decision": "Walk along the word with a count of consecutive omitted letters. Omitting extends that run; keeping a letter first writes the pending count, then the letter. At the end, write any remaining run once."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Walk along the word with a count of consecutive omitted letters. Omitting extends that run; keeping a letter first writes the pending count, then the letter. At the end, write any remaining run once.",
+        "decision": "An omission count represents one consecutive run, and is flushed before the next kept letter."
+      },
+      {
+        "id": "three-binary-decisions",
+        "title": "Three binary decisions",
+        "narration": "For abc, each of a,b,c may be kept or omitted. There are eight choices of which positions remain.",
+        "decision": "Letters retain their original order."
+      },
+      {
+        "id": "all-omitted-or-keep-the-final-letter",
+        "title": "All omitted, or keep the final letter",
+        "narration": "Omitting all three writes 3. Omitting a and b then keeping c flushes 2 before c, producing 2c.",
+        "decision": "Two adjacent omissions form one run of length two."
+      },
+      {
+        "id": "finish-every-branch",
+        "title": "Finish every branch",
+        "narration": "The complete results are 3,2c,1b1,1bc,a2,a1c,ab1,abc. In 1b1, the kept b separates two distinct omitted runs.",
+        "decision": "Every kept-position choice has one canonical abbreviation."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every subset of kept positions determines one branch path and one abbreviation. Consecutive omitted positions are represented by their exact run length, while kept letters separate runs. This gives every valid abbreviation and prevents two branch paths from producing the same canonical pattern.",
+        "decision": "An omission count represents one consecutive run, and is flushed before the next kept letter."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "For a one-letter word, the results are 1 and the original letter.",
+        "decision": "Flush a final omitted run even when no letter follows."
+      }
+    ]
+  }
 }

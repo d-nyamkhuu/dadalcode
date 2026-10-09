@@ -62,5 +62,87 @@
       "note": "The next entry carries exactly the current node’s completed path and sum, allowing its child to extend rather than recompute them."
     }
   ],
-  "keyDecision": "Save matching paths only at leaves, and preserve a separate path for each pending branch."
+  "keyDecision": "Save matching paths only at leaves, and preserve a separate path for each pending branch.",
+  "concept": {
+    "question": "How can every matching root-to-leaf route keep its own history?",
+    "intuition": [
+      "A yes-or-no search can stop at the first match, but this task needs all matching routes. Sharing one changing path without copying saved answers can corrupt earlier results.",
+      "Carry both a path’s values and its total down each branch. At a leaf, save the path if its total matches. Give child branches independent histories so exploration never edits an already saved route."
+    ],
+    "observation": "Save only matching complete root-to-leaf paths, with independent result copies.",
+    "approach": [
+      "Extend the current path and total at each node.",
+      "At a matching leaf, save its complete path.",
+      "Explore all remaining branches with independent path state."
+    ],
+    "correctness": "Each visited path contains exactly its branch’s root-to-current values, and its sum is their total. Every leaf is visited, so every matching complete route is saved. Independent path storage prevents one branch from changing another branch’s history or an earlier saved answer.",
+    "complexity": {
+      "time": "O(n*h + L)",
+      "space": "O(h²) auxiliary plus O(L) output",
+      "explanation": "The reference copies path histories, so visiting nodes can cost tree height per node. Saved path lengths also contribute output work and memory. Active copied histories can use quadratic memory in tree height."
+    },
+    "pitfalls": [
+      "Do not stop after the first match.",
+      "Save only leaf-ending routes.",
+      "Independent copies protect saved answers."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/path-sum-ii/concept.webp",
+        "alt": "Carry both a path’s values and its total down each branch. At a leaf, save the path if its total matches. Give child branches independent histories so exploration never edits an already saved route.",
+        "caption": "Carry both a path’s values and its total down each branch. At a leaf, save the path if its total matches. Give child branches independent histories so exploration never edits an already saved route.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Path Sum II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Path Sum II, not a generic data structure illustration. The key idea is: Save both the values and the running total of each root-to-node path. When you reach a leaf, keep the path if its total matches the target. Give separate path state to different branches so that exploring one branch cannot change the values saved for another. The reason a decision is safe is: Save matching paths only at leaves, and preserve a separate path for each pending branch. The actual example this lesson teaches is {\"root\": [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1], \"targetSum\": 22} with answer [[5, 4, 11, 2], [5, 8, 4, 5]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can every matching root-to-leaf route keep its own history?",
+        "decision": "Save only matching complete root-to-leaf paths, with independent result copies."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A yes-or-no search can stop at the first match, but this task needs all matching routes. Sharing one changing path without copying saved answers can corrupt earlier results.",
+        "decision": "Carry both a path’s values and its total down each branch. At a leaf, save the path if its total matches. Give child branches independent histories so exploration never edits an already saved route."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Carry both a path’s values and its total down each branch. At a leaf, save the path if its total matches. Give child branches independent histories so exploration never edits an already saved route.",
+        "decision": "Save only matching complete root-to-leaf paths, with independent result copies."
+      },
+      {
+        "id": "one-shared-prefix-branches",
+        "title": "One shared prefix branches",
+        "narration": "The left route begins 5,4,11, with total 20. Its leaf choices are 7 and 2.",
+        "decision": "Each child needs the same prefix but its own continuation."
+      },
+      {
+        "id": "the-first-complete-matching-route",
+        "title": "The first complete matching route",
+        "narration": "Leaf 7 totals 27 and fails. Leaf 2 totals 22; save [5,4,11,2].",
+        "decision": "A saved path must not change during later exploration."
+      },
+      {
+        "id": "the-right-route-supplies-another-match",
+        "title": "The right route supplies another match",
+        "narration": "Through 5,8,4, the leaf 5 totals 22. Save [5,8,4,5]. The other leaves fail.",
+        "decision": "Continue searching after a match because all matching paths are requested."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each visited path contains exactly its branch’s root-to-current values, and its sum is their total. Every leaf is visited, so every matching complete route is saved. Independent path storage prevents one branch from changing another branch’s history or an earlier saved answer.",
+        "decision": "Save only matching complete root-to-leaf paths, with independent result copies."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: a matching sum at an internal node is not a completed path.",
+        "decision": "Both children must be absent before saving."
+      }
+    ]
+  }
 }

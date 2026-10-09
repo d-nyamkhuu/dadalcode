@@ -131,5 +131,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why can a newer larger value erase an older smaller maximum candidate?",
+    "intuition": [
+      "Scanning every window repeats maximum comparisons. Not every current value deserves to remain a future candidate.",
+      "Keep candidate positions in a queue with decreasing values. A newer value at least as large as an older candidate dominates it: it is better now and will expire later. Remove expired front positions, and read the maximum from the remaining front."
+    ],
+    "observation": "An older candidate no larger than a newer one can be removed permanently.",
+    "approach": [
+      "Remove candidates that have left the current window.",
+      "Remove weaker candidates from the back before adding the new position.",
+      "Read the front candidate once the window is complete."
+    ],
+    "correctness": "Every removed weaker candidate has a newer replacement at least as large, so it cannot become maximum before that replacement expires. Expired candidates cannot influence the current window. The decreasing queue therefore retains a valid dominating representative for every discarded active value, and its front is the window maximum.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(k) auxiliary plus output",
+      "explanation": "Each position enters once and leaves at most once from either end. Work is linear; candidate memory is bounded by the window width, plus output."
+    },
+    "pitfalls": [
+      "An older candidate no larger than a newer one can be removed permanently.",
+      "Store positions so expiration can be tested."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/sliding-window-maximum/concept.webp",
+        "alt": "Candidate bars descend in height as weaker older bars fade behind a moving window.",
+        "caption": "A newer value at least as large replaces an older candidate. It can supply a maximum for longer because it leaves the window later.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A sliding frame moves across a line of UNNUMBERED columns of different heights. A taller newly entering column causes smaller earlier candidate columns to fade out of a separate candidate queue beneath it. The queue is drawn in strictly DECREASING height order, tallest on the left. A separate faded expired leftmost candidate drops away at a boundary. No digits, letters, or equations."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can a newer larger value erase an older smaller maximum candidate?",
+        "decision": "An older candidate no larger than a newer one can be removed permanently."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Scanning every window repeats maximum comparisons. Not every current value deserves to remain a future candidate.",
+        "decision": "Keep candidate positions in a queue with decreasing values. A newer value at least as large as an older candidate dominates it: it is better now and will expire later. Remove expired front positions, and read the maximum from the remaining front."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep candidate positions in a queue with decreasing values. A newer value at least as large as an older candidate dominates it: it is better now and will expire later. Remove expired front positions, and read the maximum from the remaining front.",
+        "decision": "An older candidate no larger than a newer one can be removed permanently."
+      },
+      {
+        "id": "three-dominates-one",
+        "title": "Three dominates one",
+        "narration": "For width 3, values 1 then 3 arrive. The newer 3 removes 1 from candidacy. With -1, the first maximum is 3.",
+        "decision": "The newer larger value also remains available longer."
+      },
+      {
+        "id": "five-replaces-the-weaker-candidates",
+        "title": "Five replaces the weaker candidates",
+        "narration": "The next maximum is still 3. When 5 arrives, the old 3 expires and the smaller remaining candidates are removed.",
+        "decision": "Candidate removal does not alter the actual input window."
+      },
+      {
+        "id": "later-windows-expose-later-maxima",
+        "title": "Later windows expose later maxima",
+        "narration": "The remaining windows have maxima 5,6,7. Return [3,3,5,5,6,7].",
+        "decision": "Each front is the greatest unexpired undominated value."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every removed weaker candidate has a newer replacement at least as large, so it cannot become maximum before that replacement expires. Expired candidates cannot influence the current window. The decreasing queue therefore retains a valid dominating representative for every discarded active value, and its front is the window maximum.",
+        "decision": "An older candidate no larger than a newer one can be removed permanently."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Equal values at different positions can replace older equal candidates; keep the newer one because it expires later.",
+        "decision": "Store positions so expiration can be tested."
+      }
+    ]
+  }
 }

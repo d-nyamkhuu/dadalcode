@@ -138,5 +138,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How does removing finished prerequisites reveal the next ready courses?",
+    "intuition": [
+      "Following prerequisites recursively can revisit the same requirements. The key question for each course is how many prerequisites are still unfinished.",
+      "Begin with courses that have no remaining requirements. Finishing one removes a requirement from each dependent course. A course becomes ready only when all its requirements have been removed. A directed cycle keeps its members waiting forever."
+    ],
+    "observation": "A dependent course becomes ready only when its remaining prerequisite count reaches zero.",
+    "approach": [
+      "Count unfinished prerequisites for each course.",
+      "Take ready courses and remove their outgoing requirement obligations.",
+      "Return the completed order if requested, or whether all courses finish; a stalled incomplete process means a cycle."
+    ],
+    "correctness": "Each ready course has no unfinished prerequisites, so taking it respects all its constraints. Removing its requirements preserves the exact unfinished counts. If the process stalls with courses remaining, following an unfinished prerequisite backward in the finite remaining graph eventually repeats a node, exposing a cycle. Thus completion is equivalent to an acyclic feasible schedule.",
+    "complexity": {
+      "time": "O(V + E)",
+      "space": "O(V + E)",
+      "explanation": "Every course enters the ready queue once and every prerequisite edge is removed once. Work and graph storage are linear in courses plus requirements."
+    },
+    "pitfalls": [
+      "A dependent course becomes ready only when its remaining prerequisite count reaches zero.",
+      "Cycle members cannot release one another without an initial ready course."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/course-schedule/concept.webp",
+        "alt": "Begin with courses that have no remaining requirements. Finishing one removes a requirement from each dependent course. A course becomes ready only when all its requirements have been removed. A directed cycle keeps its members waiting forever.",
+        "caption": "Begin with courses that have no remaining requirements. Finishing one removes a requirement from each dependent course. A course becomes ready only when all its requirements have been removed. A directed cycle keeps its members waiting forever.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Course Schedule algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Course Schedule, not a generic data structure illustration. The key idea is: A course is ready when none of its prerequisites remain unfinished. Put all ready courses in a queue. Taking one removes a requirement from its dependent courses, which may make them ready. If some courses never become ready, they are blocked by a cycle of requirements. The reason a decision is safe is: Enqueue a course only when its count of unfinished prerequisites becomes zero. The actual example this lesson teaches is {\"numCourses\": 4, \"prerequisites\": [[1, 0], [2, 0], [3, 1], [3, 2]]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does removing finished prerequisites reveal the next ready courses?",
+        "decision": "A dependent course becomes ready only when its remaining prerequisite count reaches zero."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Following prerequisites recursively can revisit the same requirements. The key question for each course is how many prerequisites are still unfinished.",
+        "decision": "Begin with courses that have no remaining requirements. Finishing one removes a requirement from each dependent course. A course becomes ready only when all its requirements have been removed. A directed cycle keeps its members waiting forever."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Begin with courses that have no remaining requirements. Finishing one removes a requirement from each dependent course. A course becomes ready only when all its requirements have been removed. A directed cycle keeps its members waiting forever.",
+        "decision": "A dependent course becomes ready only when its remaining prerequisite count reaches zero."
+      },
+      {
+        "id": "only-course-zero-is-initially-ready",
+        "title": "Only course zero is initially ready",
+        "narration": "Requirements are 0 before 1 and 2, then both 1 and 2 before 3. Initially only 0 has no unfinished prerequisites.",
+        "decision": "Readiness means all requirements are finished, not merely one."
+      },
+      {
+        "id": "one-prerequisite-is-still-not-enough",
+        "title": "One prerequisite is still not enough",
+        "narration": "Finishing 0 releases 1 and 2. Finishing 1 leaves course 3 still waiting for 2.",
+        "decision": "Do not release a course after only one of several prerequisites."
+      },
+      {
+        "id": "the-final-requirement-releases-three",
+        "title": "The final requirement releases three",
+        "narration": "Finishing 2 releases 3. All courses finish in order [0,1,2,3]. The answer is yes.",
+        "decision": "Every emitted course has all prerequisites earlier in the order."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each ready course has no unfinished prerequisites, so taking it respects all its constraints. Removing its requirements preserves the exact unfinished counts. If the process stalls with courses remaining, following an unfinished prerequisite backward in the finite remaining graph eventually repeats a node, exposing a cycle. Thus completion is equivalent to an acyclic feasible schedule.",
+        "decision": "A dependent course becomes ready only when its remaining prerequisite count reaches zero."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A pair of courses requiring each other never becomes ready. No complete order exists.",
+        "decision": "Cycle members cannot release one another without an initial ready course."
+      }
+    ]
+  }
 }

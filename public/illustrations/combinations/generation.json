@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A branching selection tree grows from a small collection of four visually distinct colored marbles. Each branch selects a later marble, retaining left-to-right order. Illuminate one completed two-marble selection and dim a reversed duplicate path. Depict the choice principle, not a complete enumeration of leaves.",
+  "width": 1774,
+  "height": 887
+}

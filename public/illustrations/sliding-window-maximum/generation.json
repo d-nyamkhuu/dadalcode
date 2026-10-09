@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A sliding frame moves across a line of UNNUMBERED columns of different heights. A taller newly entering column causes smaller earlier candidate columns to fade out of a separate candidate queue beneath it. The queue is drawn in strictly DECREASING height order, tallest on the left. A separate faded expired leftmost candidate drops away at a boundary. No digits, letters, or equations.",
+  "width": 1774,
+  "height": 887
+}

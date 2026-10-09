@@ -40,5 +40,86 @@
       "note": "The denominator is shared by every candidate; delaying division retains exact integer sums while comparing windows."
     }
   ],
-  "keyDecision": "Each update subtracts nums[right - k] and adds nums[right], keeping exactly k values."
+  "keyDecision": "Each update subtracts nums[right - k] and adds nums[right], keeping exactly k values.",
+  "concept": {
+    "question": "Why can the largest fixed-length sum identify the largest average?",
+    "intuition": [
+      "Adding every length-four section from scratch repeats most of the same additions. Neighboring equal-length sections differ by exactly one leaving value and one entering value.",
+      "Keep a section’s exact sum. Slide by subtracting the leaving value and adding the entering value, recording the greatest sum. Because every section has the same positive length, dividing that greatest sum by the common length gives the greatest average."
+    ],
+    "observation": "Initialize from an actual full-length section, even when all values are negative.",
+    "approach": [
+      "Sum the first section of the requested length.",
+      "Update its sum by one leaving and one entering value per slide.",
+      "Divide the largest measured sum by the fixed length."
+    ],
+    "correctness": "The initial sum is exact. Each slide removes precisely the departing value and adds precisely the new value, so every subsequent sum remains exact. The first section and all slides enumerate every valid fixed-length section. With a common positive denominator, their sums and averages have identical order.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Summing the first section and updating each slide takes linear total time. Only current and best sums and boundaries are retained, giving constant extra storage."
+    },
+    "pitfalls": [
+      "Initialize from an actual full-length section, even when all values are negative.",
+      "The requested length is exact, not a maximum length."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-average-subarray-i/concept.webp",
+        "alt": "Keep a section’s exact sum. Slide by subtracting the leaving value and adding the entering value, recording the greatest sum. Because every section has the same positive length, dividing that greatest sum by the common length gives the greatest average.",
+        "caption": "Keep a section’s exact sum. Slide by subtracting the leaving value and adding the entering value, recording the greatest sum. Because every section has the same positive length, dividing that greatest sum by the common length gives the greatest average.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Maximum Average Subarray I algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Maximum Average Subarray I, not a generic data structure illustration. The key idea is: All candidate sections have the same length k, so the largest sum also has the largest average. Compute the first sum, then slide one position at a time by removing the leaving value and adding the entering value. Keep the largest sum and divide by k at the end. The reason a decision is safe is: Each update subtracts nums[right - k] and adds nums[right], keeping exactly k values. The actual example this lesson teaches is {\"nums\": [1, 12, -5, -6, 50, 3], \"k\": 4} with answer 12.75. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can the largest fixed-length sum identify the largest average?",
+        "decision": "Initialize from an actual full-length section, even when all values are negative."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Adding every length-four section from scratch repeats most of the same additions. Neighboring equal-length sections differ by exactly one leaving value and one entering value.",
+        "decision": "Keep a section’s exact sum. Slide by subtracting the leaving value and adding the entering value, recording the greatest sum. Because every section has the same positive length, dividing that greatest sum by the common length gives the greatest average."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep a section’s exact sum. Slide by subtracting the leaving value and adding the entering value, recording the greatest sum. Because every section has the same positive length, dividing that greatest sum by the common length gives the greatest average.",
+        "decision": "Initialize from an actual full-length section, even when all values are negative."
+      },
+      {
+        "id": "measure-the-first-four-numbers",
+        "title": "Measure the first four numbers",
+        "narration": "For [1,12,−5,−6,50,3] and length four, the first section sums to 1+12−5−6=2.",
+        "decision": "The first candidate supplies a legitimate initial best."
+      },
+      {
+        "id": "a-single-exchange-creates-the-next-sum",
+        "title": "A single exchange creates the next sum",
+        "narration": "Remove one and add fifty: 2−1+50=51. The section is now [12,−5,−6,50].",
+        "decision": "All three shared values retain their contribution."
+      },
+      {
+        "id": "the-final-section-is-smaller",
+        "title": "The final section is smaller",
+        "narration": "Remove twelve and add three, giving 51−12+3=42. The best sum remains 51, so return 51/4=12.75.",
+        "decision": "Every permitted length-four section has been measured."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The initial sum is exact. Each slide removes precisely the departing value and adds precisely the new value, so every subsequent sum remains exact. The first section and all slides enumerate every valid fixed-length section. With a common positive denominator, their sums and averages have identical order.",
+        "decision": "Initialize from an actual full-length section, even when all values are negative."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "For all-negative numbers, zero is not a valid initial best.",
+        "decision": "The requested length is exact, not a maximum length."
+      }
+    ]
+  }
 }

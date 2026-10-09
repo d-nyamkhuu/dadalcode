@@ -70,5 +70,86 @@
       "note": "When the corner is too small, every remaining value leftward in that row is too small."
     }
   ],
-  "keyDecision": "One comparison removes an entire remaining row or column. Stop when you leave the matrix."
+  "keyDecision": "One comparison removes an entire remaining row or column. Stop when you leave the matrix.",
+  "concept": {
+    "question": "Which corner lets a comparison eliminate a row or a column?",
+    "intuition": [
+      "Rows and columns are sorted independently, but row boundaries need not make one globally sorted ribbon. Treating the entire grid as a flattened sorted sequence would be invalid.",
+      "Start at the top-right candidate corner. A value too large excludes its whole column below; a value too small excludes its whole row to the left. Move left or down accordingly, shrinking the candidate rectangle."
+    ],
+    "observation": "Use row and column ordering separately; a corner comparison eliminates one complete candidate edge.",
+    "approach": [
+      "Begin at the top-right cell.",
+      "Move left when its value exceeds the target, or down when it is below the target.",
+      "Stop on equality or after leaving the candidate rectangle."
+    ],
+    "correctness": "At the top-right of the remaining rectangle, all values below are no smaller and all values left are no larger. A too-large comparison excludes that column; a too-small comparison excludes that row. Each move removes only impossible candidates, so equality finds the target and leaving the rectangle proves absence.",
+    "complexity": {
+      "time": "O(m + n)",
+      "space": "O(1)",
+      "explanation": "Each move discards a row or column, so at most their combined counts are traversed. Only the current corner position is stored."
+    },
+    "pitfalls": [
+      "Use row and column ordering separately; a corner comparison eliminates one complete candidate edge.",
+      "This matrix contract differs from globally ordered rows."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/search-a-2d-matrix-ii/concept.webp",
+        "alt": "Start at the top-right candidate corner. A value too large excludes its whole column below; a value too small excludes its whole row to the left. Move left or down accordingly, shrinking the candidate rectangle.",
+        "caption": "Start at the top-right candidate corner. A value too large excludes its whole column below; a value too small excludes its whole row to the left. Move left or down accordingly, shrinking the candidate rectangle.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Search a 2D Matrix II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Search a 2D Matrix II, not a generic data structure illustration. The key idea is: Start in the top-right corner. If that value is too large, every value below it in the same column is also too large, so move left. If it is too small, every value to its left in that row is too small, so move down. The reason a decision is safe is: One comparison removes an entire remaining row or column. Stop when you leave the matrix. The actual example this lesson teaches is {\"matrix\": [[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], \"target\": 5} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which corner lets a comparison eliminate a row or a column?",
+        "decision": "Use row and column ordering separately; a corner comparison eliminates one complete candidate edge."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Rows and columns are sorted independently, but row boundaries need not make one globally sorted ribbon. Treating the entire grid as a flattened sorted sequence would be invalid.",
+        "decision": "Start at the top-right candidate corner. A value too large excludes its whole column below; a value too small excludes its whole row to the left. Move left or down accordingly, shrinking the candidate rectangle."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Start at the top-right candidate corner. A value too large excludes its whole column below; a value too small excludes its whole row to the left. Move left or down accordingly, shrinking the candidate rectangle.",
+        "decision": "Use row and column ordering separately; a corner comparison eliminates one complete candidate edge."
+      },
+      {
+        "id": "large-corner-values-remove-columns",
+        "title": "Large corner values remove columns",
+        "narration": "Target 5 is below top-right 15, then 11, then 7. Remove those three columns from consideration.",
+        "decision": "Every value below each oversized corner is at least as large."
+      },
+      {
+        "id": "a-small-corner-removes-a-row",
+        "title": "A small corner removes a row",
+        "narration": "The new corner is 4, below target 5. Move down.",
+        "decision": "Every remaining value left of 4 in that row is also too small."
+      },
+      {
+        "id": "the-next-corner-matches",
+        "title": "The next corner matches",
+        "narration": "At row 1, column 1, the value is 5. Return yes.",
+        "decision": "The target was preserved by every excluded row or column."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At the top-right of the remaining rectangle, all values below are no smaller and all values left are no larger. A too-large comparison excludes that column; a too-small comparison excludes that row. Each move removes only impossible candidates, so equality finds the target and leaving the rectangle proves absence.",
+        "decision": "Use row and column ordering separately; a corner comparison eliminates one complete candidate edge."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A target absent from the matrix eventually moves the search beyond a row or column boundary.",
+        "decision": "This matrix contract differs from globally ordered rows."
+      }
+    ]
+  }
 }

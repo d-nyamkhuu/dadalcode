@@ -61,5 +61,86 @@
       "note": "A commit ends the old query. Resetting the trie cursor is necessary even when its previous prefix had no matches."
     }
   ],
-  "keyDecision": "Rank by larger usage count first, then smaller character order for ties. '#' records the sentence and returns no suggestions."
+  "keyDecision": "Rank by larger usage count first, then smaller character order for ties. '#' records the sentence and returns no suggestions.",
+  "concept": {
+    "question": "How can each typed prefix already know its three best completions?",
+    "intuition": [
+      "Scanning every stored sentence after each keystroke repeats the same prefix comparisons. Prefix paths can store a small ranked shortlist as history counts change.",
+      "Store sentences along a letter-path tree. At each prefix node, cache the three sentences with highest historical count, breaking ties alphabetically. A typed character advances one path; finishing a sentence increases its history count and refreshes shortlists along that sentence’s prefixes."
+    ],
+    "observation": "Rank by descending history count, then ascending sentence text.",
+    "approach": [
+      "Build prefix paths and their best-three shortlists from history.",
+      "Advance the active prefix for each ordinary typed character.",
+      "On the finishing marker, record the completed sentence, update its prefixes, and reset typing."
+    ],
+    "correctness": "Every sentence passes through exactly the nodes representing its prefixes. Maintaining each node’s best three according to the ranking rule gives exactly the best matches for that prefix. Character-by-character traversal reaches the correct node or establishes no match. A completed sentence updates every affected prefix, keeping future cached answers correct.",
+    "complexity": {
+      "time": "O(L) trie updates and O(1) node transitions, plus string comparison/copy costs",
+      "space": "O(total distinct prefix characters + total sentence text)",
+      "explanation": "Typing follows one path edge and returns a bounded shortlist. Recording a completed sentence walks its length and updates bounded rankings. Stored prefix paths and sentence text determine memory use."
+    },
+    "pitfalls": [
+      "Rank by descending history count, then ascending sentence text.",
+      "Frequency ties must use alphabetical order, including spaces."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/design-search-autocomplete-system/concept.webp",
+        "alt": "Store sentences along a letter-path tree. At each prefix node, cache the three sentences with highest historical count, breaking ties alphabetically. A typed character advances one path; finishing a sentence increases its history count and refreshes shortlists along that sentence’s prefixes.",
+        "caption": "Store sentences along a letter-path tree. At each prefix node, cache the three sentences with highest historical count, breaking ties alphabetically. A typed character advances one path; finishing a sentence increases its history count and refreshes shortlists along that sentence’s prefixes.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Design Search Autocomplete System algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Design Search Autocomplete System, not a generic data structure illustration. The key idea is: Typed letters define a prefix. A trie follows that prefix without scanning every sentence. At each prefix node, save the three best matching sentences. When '#' finishes a sentence, increase its count and refresh the affected saved suggestions. Start a new prefix after that marker. The reason a decision is safe is: Rank by larger usage count first, then smaller character order for ties. '#' records the sentence and returns no suggestions. The actual example this lesson teaches is {\"sentences\": [\"i love you\", \"island\", \"ironman\", \"i love leetcode\"], \"times\": [5, 3, 2, 2], \"chars\": [\"i\", \" \", \"a\", \"#\"]} with answer [[\"i love you\", \"island\", \"i love leetcode\"], [\"i love you\", \"i love leetcode\"], [], []]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can each typed prefix already know its three best completions?",
+        "decision": "Rank by descending history count, then ascending sentence text."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Scanning every stored sentence after each keystroke repeats the same prefix comparisons. Prefix paths can store a small ranked shortlist as history counts change.",
+        "decision": "Store sentences along a letter-path tree. At each prefix node, cache the three sentences with highest historical count, breaking ties alphabetically. A typed character advances one path; finishing a sentence increases its history count and refreshes shortlists along that sentence’s prefixes."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Store sentences along a letter-path tree. At each prefix node, cache the three sentences with highest historical count, breaking ties alphabetically. A typed character advances one path; finishing a sentence increases its history count and refreshes shortlists along that sentence’s prefixes.",
+        "decision": "Rank by descending history count, then ascending sentence text."
+      },
+      {
+        "id": "the-first-i-has-three-suggestions",
+        "title": "The first i has three suggestions",
+        "narration": "The fixture histories are i love you:5, island:3, ironman:2, i love leetcode:2. Typing i yields i love you, island, i love leetcode.",
+        "decision": "The space after i sorts before r in the frequency-two tie."
+      },
+      {
+        "id": "a-space-narrows-the-prefix",
+        "title": "A space narrows the prefix",
+        "narration": "After typing a space, only i love you and i love leetcode match the prefix i followed by a space.",
+        "decision": "A prefix path rules out sentences at the first differing character."
+      },
+      {
+        "id": "a-new-sentence-is-learned",
+        "title": "A new sentence is learned",
+        "narration": "Typing a gives prefix i a with no existing match. The finishing marker records i a with count one and resets the active prefix.",
+        "decision": "A missing completion is still eligible to become new history."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every sentence passes through exactly the nodes representing its prefixes. Maintaining each node’s best three according to the ranking rule gives exactly the best matches for that prefix. Character-by-character traversal reaches the correct node or establishes no match. A completed sentence updates every affected prefix, keeping future cached answers correct.",
+        "decision": "Rank by descending history count, then ascending sentence text."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "The finishing marker records history but is not part of the sentence text.",
+        "decision": "Frequency ties must use alphabetical order, including spaces."
+      }
+    ]
+  }
 }

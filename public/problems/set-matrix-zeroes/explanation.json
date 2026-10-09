@@ -150,5 +150,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why must we remember original zeros before making new ones?",
+    "intuition": [
+      "Clearing a row immediately after finding a zero creates more zeros. Treating those new zeros as original evidence could clear unrelated rows and columns.",
+      "Separate discovery from clearing. Use the first row and first column as marker strips for interior zeros, and separately remember whether those marker strips originally contained zeros. Once all evidence is recorded, apply it in a second pass."
+    ],
+    "observation": "Only original zeros create row and column obligations; marker changes must not become new evidence.",
+    "approach": [
+      "Remember whether the original first row and first column contain zeros.",
+      "Mark affected rows and columns using their boundary cells.",
+      "Clear interior cells from the markers, then apply the remembered boundary obligations."
+    ],
+    "correctness": "During discovery, each interior original zero marks exactly its row and column. Separate flags preserve the original status of the marker strips. Applying these records clears a cell exactly when its row or column originally contained a zero. New zeros never add obligations, so unrelated cells remain unchanged.",
+    "complexity": {
+      "time": "O(rows × columns)",
+      "space": "O(1)",
+      "explanation": "Two passes visit the matrix cells a constant number of times, giving work proportional to its area. The existing boundary cells and two flags provide constant auxiliary memory."
+    },
+    "pitfalls": [
+      "Record original first-row and first-column status.",
+      "Do not let newly created zeros trigger more clearing.",
+      "Keep discovery and application separate."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/set-matrix-zeroes/concept.webp",
+        "alt": "Original zero evidence is recorded on boundary marker strips before affected rows and columns are cleared.",
+        "caption": "Original zero evidence is recorded on boundary marker strips before affected rows and columns are cleared.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Set Matrix Zeroes algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Set Matrix Zeroes, not a generic data structure illustration. The key idea is: Do not clear rows as soon as you find a zero. A zero created by your own update could wrongly trigger more clearing. First remember which rows and columns originally contained a zero. Use the first row and column as markers, then apply those markers in a separate pass. The reason a decision is safe is: Save whether the original first row and first column contain zeros before using them as markers. The actual example this lesson teaches is {\"matrix\": [[1, 1, 1], [1, 0, 1], [1, 1, 1]]} with answer [[1, 0, 1], [0, 0, 0], [1, 0, 1]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must we remember original zeros before making new ones?",
+        "decision": "Only original zeros create row and column obligations; marker changes must not become new evidence."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Clearing a row immediately after finding a zero creates more zeros. Treating those new zeros as original evidence could clear unrelated rows and columns.",
+        "decision": "Separate discovery from clearing. Use the first row and first column as marker strips for interior zeros, and separately remember whether those marker strips originally contained zeros. Once all evidence is recorded, apply it in a second pass."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Separate discovery from clearing. Use the first row and first column as marker strips for interior zeros, and separately remember whether those marker strips originally contained zeros. Once all evidence is recorded, apply it in a second pass.",
+        "decision": "Only original zeros create row and column obligations; marker changes must not become new evidence."
+      },
+      {
+        "id": "the-original-center-is-evidence",
+        "title": "The original center is evidence",
+        "narration": "The three-by-three matrix has one zero at its center. Only its row and column must be cleared.",
+        "decision": "Both original header strips contain no zero."
+      },
+      {
+        "id": "store-two-boundary-markers",
+        "title": "Store two boundary markers",
+        "narration": "Mark the middle row in its first cell and the middle column in its top cell. Interior cells are not cleared yet.",
+        "decision": "The markers record obligations without spreading them."
+      },
+      {
+        "id": "apply-the-original-obligations",
+        "title": "Apply the original obligations",
+        "narration": "Clear the center row and column. The result is [[1,0,1],[0,0,0],[1,0,1]].",
+        "decision": "No other row or column is triggered by the zeros created during clearing."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "During discovery, each interior original zero marks exactly its row and column. Separate flags preserve the original status of the marker strips. Applying these records clears a cell exactly when its row or column originally contained a zero. New zeros never add obligations, so unrelated cells remain unchanged.",
+        "decision": "Only original zeros create row and column obligations; marker changes must not become new evidence."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a zero originally in the first row requires that whole row to be cleared even though it later serves as a marker strip.",
+        "decision": "Save original header status before writing markers."
+      }
+    ]
+  }
 }

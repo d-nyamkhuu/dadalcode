@@ -36,5 +36,86 @@
       "note": "Negative counts move toward zero as copies are consumed; hold the new letter for the next turn."
     }
   ],
-  "keyDecision": "If any count exceeds (length + 1) // 2, there are too few other characters to separate its copies."
+  "keyDecision": "If any count exceeds (length + 1) // 2, there are too few other characters to separate its copies.",
+  "concept": {
+    "question": "How can the previous letter wait outside the available choices?",
+    "intuition": [
+      "Choosing the most common remaining letter repeatedly can create equal neighbors. Conversely, postponing a high-frequency letter too long can leave an impossible final run.",
+      "Choose the most frequent currently eligible letter, and hold its remaining copies aside for one step. After placing a different letter, release the preceding held supply. A preliminary count check rejects a letter that cannot be separated by all the others."
+    ],
+    "observation": "The letter just used cannot be the next available choice.",
+    "approach": [
+      "Count letters and reject a maximum count exceeding half the rounded-up text length.",
+      "Select the largest eligible remaining supply.",
+      "Hold that letter outside the choices until a different letter is placed."
+    ],
+    "correctness": "Holding the previous letter guarantees adjacency safety. Choosing the largest eligible remaining demand uses difficult-to-separate copies early; swapping such a choice into a feasible arrangement does not reduce the separator supply for smaller demands. The maximum-count bound is necessary because every repeated copy after the first needs another letter between it and its predecessor, and this greedy construction realizes a valid arrangement when that bound holds.",
+    "complexity": {
+      "time": "O(n log a)",
+      "space": "O(a + n)",
+      "explanation": "Each output character performs logarithmic priority work over distinct letters. Counts and priority entries scale with the alphabet, and the constructed output with text length."
+    },
+    "pitfalls": [
+      "The letter just used cannot be the next available choice.",
+      "Do not append the held letter directly when no different letter is available."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/reorganize-string/concept.webp",
+        "alt": "Choose the most frequent currently eligible letter, and hold its remaining copies aside for one step. After placing a different letter, release the preceding held supply. A preliminary count check rejects a letter that cannot be separated by all the others.",
+        "caption": "Choose the most frequent currently eligible letter, and hold its remaining copies aside for one step. After placing a different letter, release the preceding held supply. A preliminary count check rejects a letter that cannot be separated by all the others.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Reorganize String algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Reorganize String, not a generic data structure illustration. The key idea is: Choose the available character with the most copies left, but hold the just-used character out of the choices for the next position. After choosing a different character, make the previous one available again. A heap helps choose the most frequent available character each time. The reason a decision is safe is: If any count exceeds (length + 1) // 2, there are too few other characters to separate its copies. The actual example this lesson teaches is {\"s\": \"aab\"} with answer \"aba\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can the previous letter wait outside the available choices?",
+        "decision": "The letter just used cannot be the next available choice."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Choosing the most common remaining letter repeatedly can create equal neighbors. Conversely, postponing a high-frequency letter too long can leave an impossible final run.",
+        "decision": "Choose the most frequent currently eligible letter, and hold its remaining copies aside for one step. After placing a different letter, release the preceding held supply. A preliminary count check rejects a letter that cannot be separated by all the others."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Choose the most frequent currently eligible letter, and hold its remaining copies aside for one step. After placing a different letter, release the preceding held supply. A preliminary count check rejects a letter that cannot be separated by all the others.",
+        "decision": "The letter just used cannot be the next available choice."
+      },
+      {
+        "id": "the-count-bound-permits-aab",
+        "title": "The count bound permits aab",
+        "narration": "For aab, a occurs twice and b once. The larger count two fits the three-position capacity for alternating slots.",
+        "decision": "Two copies of a can be separated by the one b."
+      },
+      {
+        "id": "hold-the-remaining-a-aside",
+        "title": "Hold the remaining a aside",
+        "narration": "Place a first and hold its last copy outside the choices. Only b is eligible next, so place b and release a.",
+        "decision": "A held letter cannot repeat immediately."
+      },
+      {
+        "id": "use-the-released-final-copy",
+        "title": "Use the released final copy",
+        "narration": "Place the remaining a. The result aba preserves all copies and has no equal adjacent letters.",
+        "decision": "Every released supply waits through a different intervening letter."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Holding the previous letter guarantees adjacency safety. Choosing the largest eligible remaining demand uses difficult-to-separate copies early; swapping such a choice into a feasible arrangement does not reduce the separator supply for smaller demands. The maximum-count bound is necessary because every repeated copy after the first needs another letter between it and its predecessor, and this greedy construction realizes a valid arrangement when that bound holds.",
+        "decision": "The letter just used cannot be the next available choice."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "For aaab, three a copies cannot be separated by one b, so no valid output exists.",
+        "decision": "Do not append the held letter directly when no different letter is available."
+      }
+    ]
+  }
 }

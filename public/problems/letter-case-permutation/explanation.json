@@ -37,5 +37,86 @@
       "note": "Undo exactly the character chosen by this branch so its sibling starts with the same prefix rather than accumulated choices."
     }
   ],
-  "keyDecision": "Only letters branch into two choices. Digits have one unchanged choice."
+  "keyDecision": "Only letters branch into two choices. Digits have one unchanged choice.",
+  "concept": {
+    "question": "Why do digits continue one path while letters split it in two?",
+    "intuition": [
+      "Enumerating all character replacements would change digits and introduce invalid strings. Only alphabetic positions have two permitted choices; digits remain fixed.",
+      "Build an output prefix character by character. At a letter, branch into lowercase and uppercase. At a digit, append it unchanged on the same path. Each complete path chooses one case for every letter."
+    ],
+    "observation": "Only letters branch; every character retains its original position.",
+    "approach": [
+      "Advance through the input positions in order.",
+      "Choose both cases for each letter and one unchanged choice for a digit.",
+      "Record each completed text and undo choices to explore the other paths."
+    ],
+    "correctness": "Every branch changes only the current letter to one of its two allowed cases or preserves the current digit. A complete path is therefore valid. Every legal case assignment chooses exactly one branch at each letter, so the search includes all possibilities without duplication.",
+    "complexity": {
+      "time": "O(n × 2^L)",
+      "space": "O(n) auxiliary plus output",
+      "explanation": "There are two-to-the-letter-count outputs, each requiring the full text length to write. The working prefix and recursion depth are linear in text length, besides the exponential output."
+    },
+    "pitfalls": [
+      "Only letters branch; every character retains its original position.",
+      "Count branching letters, not total text length, when counting results."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/letter-case-permutation/concept.webp",
+        "alt": "Build an output prefix character by character. At a letter, branch into lowercase and uppercase. At a digit, append it unchanged on the same path. Each complete path chooses one case for every letter.",
+        "caption": "Build an output prefix character by character. At a letter, branch into lowercase and uppercase. At a digit, append it unchanged on the same path. Each complete path chooses one case for every letter.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Letter Case Permutation algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Letter Case Permutation, not a generic data structure illustration. The key idea is: Read the string one position at a time. For a letter, try its lowercase and uppercase forms. For a digit, keep it unchanged. Continue each choice through the remaining positions, then save the completed string. Each sequence of letter-case choices gives one result. The reason a decision is safe is: Only letters branch into two choices. Digits have one unchanged choice. The actual example this lesson teaches is {\"s\": \"a1b2\"} with answer [\"a1b2\", \"a1B2\", \"A1b2\", \"A1B2\"]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do digits continue one path while letters split it in two?",
+        "decision": "Only letters branch; every character retains its original position."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Enumerating all character replacements would change digits and introduce invalid strings. Only alphabetic positions have two permitted choices; digits remain fixed.",
+        "decision": "Build an output prefix character by character. At a letter, branch into lowercase and uppercase. At a digit, append it unchanged on the same path. Each complete path chooses one case for every letter."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Build an output prefix character by character. At a letter, branch into lowercase and uppercase. At a digit, append it unchanged on the same path. Each complete path chooses one case for every letter.",
+        "decision": "Only letters branch; every character retains its original position."
+      },
+      {
+        "id": "the-first-a-offers-two-branches",
+        "title": "The first a offers two branches",
+        "narration": "For a1b2, first choose a or A. Digit one then continues each branch unchanged.",
+        "decision": "No branch deletes or moves a character."
+      },
+      {
+        "id": "the-second-letter-doubles-each-branch",
+        "title": "The second letter doubles each branch",
+        "narration": "From a1, letter b yields a1b or a1B. From A1 it yields A1b or A1B.",
+        "decision": "Each letter choice is independent of earlier case choices."
+      },
+      {
+        "id": "append-the-final-unchanged-digit",
+        "title": "Append the final unchanged digit",
+        "narration": "Digit two completes a1b2,a1B2,A1b2,A1B2. Return these four strings.",
+        "decision": "Two letters create four case assignments."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every branch changes only the current letter to one of its two allowed cases or preserves the current digit. A complete path is therefore valid. Every legal case assignment chooses exactly one branch at each letter, so the search includes all possibilities without duplication.",
+        "decision": "Only letters branch; every character retains its original position."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A digits-only input has exactly one result: itself.",
+        "decision": "Count branching letters, not total text length, when counting results."
+      }
+    ]
+  }
 }

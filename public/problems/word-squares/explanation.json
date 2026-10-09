@@ -51,5 +51,86 @@
       "note": "A missing prefix has no compatible candidate and ends the branch immediately. Existing words remain reusable, so no used-word set is applied."
     }
   ],
-  "keyDecision": "At row k, the required prefix is square[0][k], square[1][k], through square[k - 1][k]."
+  "keyDecision": "At row k, the required prefix is square[0][k], square[1][k], through square[k - 1][k].",
+  "concept": {
+    "question": "How can the next row be forced by the columns already chosen?",
+    "intuition": [
+      "Trying arbitrary word sequences ignores the square condition until too late. Once earlier rows exist, their letters in the next column already determine the beginning of the next row.",
+      "Index words by prefixes. At row depth d, read column d of every chosen row to form the required prefix. Branch only among words with that prefix, and undo the choice after exploring it."
+    ],
+    "observation": "The next row must begin with the letters already present in its matching column.",
+    "approach": [
+      "Index each word under all its prefixes.",
+      "Build the next required prefix from the chosen rows’ column letters.",
+      "Explore matching next words until a complete square is formed."
+    ],
+    "correctness": "When a new row is chosen, its required prefix checks every symmetric pair against earlier rows. Later rows will check the remaining pairs. A completed square therefore satisfies every row-column equality. Conversely, every valid square’s next word has exactly the required prefix, so the branching search cannot exclude it.",
+    "complexity": {
+      "time": "O(W * L^2 + L * W^L) worst case",
+      "space": "O(W * L^2 + L) auxiliary, excluding output",
+      "explanation": "Prefix indexing reduces the candidates at each depth, but the search can still branch exponentially in word length. Index storage includes copied prefixes; the working square has only one word per row, in addition to returned squares."
+    },
+    "pitfalls": [
+      "The next row must begin with the letters already present in its matching column.",
+      "Do not require the next word to share a prefix with the preceding word."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/word-squares/concept.webp",
+        "alt": "Index words by prefixes. At row depth d, read column d of every chosen row to form the required prefix. Branch only among words with that prefix, and undo the choice after exploring it.",
+        "caption": "Index words by prefixes. At row depth d, read column d of every chosen row to form the required prefix. Branch only among words with that prefix, and undo the choice after exploring it.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Word Squares algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Word Squares, not a generic data structure illustration. The key idea is: In a word square, row r and column r must spell the same word. When choosing the next row, its first letters are already fixed by the earlier rows. Use a prefix index to find only words that start with those letters, then try each possible continuation. The reason a decision is safe is: At row k, the required prefix is square[0][k], square[1][k], through square[k - 1][k]. The actual example this lesson teaches is {\"words\": [\"area\", \"lead\", \"wall\", \"lady\", \"ball\"]} with answer [[\"ball\", \"area\", \"lead\", \"lady\"], [\"wall\", \"area\", \"lead\", \"lady\"]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can the next row be forced by the columns already chosen?",
+        "decision": "The next row must begin with the letters already present in its matching column."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying arbitrary word sequences ignores the square condition until too late. Once earlier rows exist, their letters in the next column already determine the beginning of the next row.",
+        "decision": "Index words by prefixes. At row depth d, read column d of every chosen row to form the required prefix. Branch only among words with that prefix, and undo the choice after exploring it."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Index words by prefixes. At row depth d, read column d of every chosen row to form the required prefix. Branch only among words with that prefix, and undo the choice after exploring it.",
+        "decision": "The next row must begin with the letters already present in its matching column."
+      },
+      {
+        "id": "choose-a-possible-first-row",
+        "title": "Choose a possible first row",
+        "narration": "For area,lead,wall,lady,ball, start with ball. The next row must start with a because column one of ball is a.",
+        "decision": "The first row has no earlier column constraints."
+      },
+      {
+        "id": "column-constraints-grow",
+        "title": "Column constraints grow",
+        "narration": "Choose area. The third row must start with le: ball contributes l and area contributes e. Choose lead.",
+        "decision": "Every added row must match all previously fixed symmetric positions."
+      },
+      {
+        "id": "finish-a-valid-square",
+        "title": "Finish a valid square",
+        "narration": "The last required prefix is lad, selecting lady. This yields ball/area/lead/lady. Starting with wall yields the other valid square wall/area/lead/lady.",
+        "decision": "Every row equals its corresponding column."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "When a new row is chosen, its required prefix checks every symmetric pair against earlier rows. Later rows will check the remaining pairs. A completed square therefore satisfies every row-column equality. Conversely, every valid square’s next word has exactly the required prefix, so the branching search cannot exclude it.",
+        "decision": "The next row must begin with the letters already present in its matching column."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Words may be reused if allowed; square validity is about letter relationships.",
+        "decision": "Do not require the next word to share a prefix with the preceding word."
+      }
+    ]
+  }
 }

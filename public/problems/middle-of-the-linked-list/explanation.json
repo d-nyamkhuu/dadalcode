@@ -43,5 +43,86 @@
       "note": "Return the actual middle node by identity. Constructing a replacement chain with equal values would not satisfy the original-node contract."
     }
   ],
-  "keyDecision": "Continue while fast and fast.next both exist. Return the original node referenced by slow."
+  "keyDecision": "Continue while fast and fast.next both exist. Return the original node referenced by slow.",
+  "concept": {
+    "question": "Why does one traveler reach the middle when another runs off the end?",
+    "intuition": [
+      "Counting the full list and restarting works, but two travelers can determine the midpoint in one pass. One advances one link per round, the other two.",
+      "Begin both at the head. Advance the slower traveler once whenever the faster can advance twice. When the fast traveler reaches the end or last node, the slow traveler is at the middle; for even length it lands on the required second middle."
+    ],
+    "observation": "Advance while the fast traveler and its next node both exist.",
+    "approach": [
+      "Place both travelers at the first node.",
+      "Move slow by one and fast by two links each round.",
+      "Return the original node where slow stops."
+    ],
+    "correctness": "After each round, slow has advanced one link for every two fast links. For length 2m, fast exits after m rounds and slow occupies position m, the second middle. For length 2m+1, fast reaches the last node after m rounds and slow occupies position m, the sole middle.",
+    "complexity": {
+      "time": "O(length)",
+      "space": "O(1)",
+      "explanation": "Both travelers only advance, giving linear time. Two references use constant extra storage."
+    },
+    "pitfalls": [
+      "Advance while the fast traveler and its next node both exist.",
+      "Return the original middle node, rather than a copied list of its values."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/middle-of-the-linked-list/concept.webp",
+        "alt": "Begin both at the head. Advance the slower traveler once whenever the faster can advance twice. When the fast traveler reaches the end or last node, the slow traveler is at the middle; for even length it lands on the required second middle.",
+        "caption": "Begin both at the head. Advance the slower traveler once whenever the faster can advance twice. When the fast traveler reaches the end or last node, the slow traveler is at the middle; for even length it lands on the required second middle.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Middle of the Linked List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Middle of the Linked List, not a generic data structure illustration. The key idea is: Move a slow pointer one link and a fast pointer two links on every turn. When the fast pointer reaches the end, the slow pointer is halfway through the list. The loop condition makes an even-length list return the second of its two middle nodes. The reason a decision is safe is: Continue while fast and fast.next both exist. Return the original node referenced by slow. The actual example this lesson teaches is {\"head\": [1, 2, 3, 4, 5, 6]} with answer [4, 5, 6]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does one traveler reach the middle when another runs off the end?",
+        "decision": "Advance while the fast traveler and its next node both exist."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Counting the full list and restarting works, but two travelers can determine the midpoint in one pass. One advances one link per round, the other two.",
+        "decision": "Begin both at the head. Advance the slower traveler once whenever the faster can advance twice. When the fast traveler reaches the end or last node, the slow traveler is at the middle; for even length it lands on the required second middle."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Begin both at the head. Advance the slower traveler once whenever the faster can advance twice. When the fast traveler reaches the end or last node, the slow traveler is at the middle; for even length it lands on the required second middle.",
+        "decision": "Advance while the fast traveler and its next node both exist."
+      },
+      {
+        "id": "two-speeds-begin-at-one",
+        "title": "Two speeds begin at one",
+        "narration": "For 1→2→3→4→5→6, after one round slow is at two and fast at three.",
+        "decision": "Both routes follow existing next links."
+      },
+      {
+        "id": "the-speed-ratio-persists",
+        "title": "The speed ratio persists",
+        "narration": "After two rounds slow is at three and fast at five.",
+        "decision": "Slow has traversed half as many links as fast."
+      },
+      {
+        "id": "fast-exits-and-slow-reaches-four",
+        "title": "Fast exits and slow reaches four",
+        "narration": "The third round puts slow at four while fast passes six and reaches the end. Return original node four, whose suffix is [4,5,6].",
+        "decision": "Six nodes have middle positions two and three; the required second is position three."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each round, slow has advanced one link for every two fast links. For length 2m, fast exits after m rounds and slow occupies position m, the second middle. For length 2m+1, fast reaches the last node after m rounds and slow occupies position m, the sole middle.",
+        "decision": "Advance while the fast traveler and its next node both exist."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-node list returns that same node.",
+        "decision": "Return the original middle node, rather than a copied list of its values."
+      }
+    ]
+  }
 }

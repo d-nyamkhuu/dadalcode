@@ -113,5 +113,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How far can a strip of letters grow before a repeat forces it to shrink?",
+    "intuition": [
+      "Checking every possible continuous section repeats the same character comparisons. A section that was valid a moment ago only needs one new question when we add the next letter: does this new letter already appear inside it?",
+      "Imagine a movable frame over the string. Extend its far edge one character at a time. When the new character repeats one inside the frame, move the near edge just past that earlier occurrence. Remember the widest valid frame ever seen."
+    ],
+    "observation": "The start only moves forward. An earlier copy outside the frame does not invalidate the current frame.",
+    "approach": [
+      "Extend the framed section by one character.",
+      "If that character already appears inside, move the start just past its previous occurrence.",
+      "Remember the greatest valid length after each extension."
+    ],
+    "correctness": "For each ending position, moving just beyond the latest conflicting character gives the earliest possible valid start. Any earlier start would include a duplicate. Thus the frame is the longest valid section ending there. Taking the maximum over all endings gives the overall longest substring.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(min(n, alphabet size))",
+      "explanation": "Scan each character once and remember its latest position. The start never moves backward. Time grows with the string length; memory grows with the number of distinct characters encountered."
+    },
+    "pitfalls": [
+      "A substring must be continuous; skipping characters changes the problem.",
+      "Do not move the start backward.",
+      "Spaces and punctuation count as characters."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/longest-substring-without-repeating-characters/concept.webp",
+        "alt": "A movable frame keeps a continuous strip of unique letters and shifts past the conflicting copy.",
+        "caption": "A movable frame keeps a continuous strip of unique letters and shifts past the conflicting copy.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Longest Substring Without Repeating Characters algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Longest Substring Without Repeating Characters, not a generic data structure illustration. The key idea is: Keep one continuous part of the string with no repeated letters. Extend it by reading the next character. If that character already occurs inside the current part, move the start just past its earlier copy. Remember the longest valid part you have seen. The reason a decision is safe is: Move the start **forward only** when the earlier copy is **inside the current window**. The actual example this lesson teaches is {\"s\": \"abcabcbb\"} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How far can a strip of letters grow before a repeat forces it to shrink?",
+        "decision": "The start only moves forward. An earlier copy outside the frame does not invalidate the current frame."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Checking every possible continuous section repeats the same character comparisons. A section that was valid a moment ago only needs one new question when we add the next letter: does this new letter already appear inside it?",
+        "decision": "Imagine a movable frame over the string. Extend its far edge one character at a time. When the new character repeats one inside the frame, move the near edge just past that earlier occurrence. Remember the widest valid frame ever seen."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Imagine a movable frame over the string. Extend its far edge one character at a time. When the new character repeats one inside the frame, move the near edge just past that earlier occurrence. Remember the widest valid frame ever seen.",
+        "decision": "The start only moves forward. An earlier copy outside the frame does not invalidate the current frame."
+      },
+      {
+        "id": "grow-a-distinct-section",
+        "title": "Grow a distinct section",
+        "narration": "Reading a, then b, then c grows the valid section abc to length 3.",
+        "decision": "Each new character differs from the characters already inside."
+      },
+      {
+        "id": "the-next-a-repeats",
+        "title": "The next a repeats",
+        "narration": "The next a repeats the first a. Move the start past the earlier a, leaving bca, still length 3.",
+        "decision": "Keeping the earlier a would violate the no-repeats condition."
+      },
+      {
+        "id": "later-repeats-cannot-improve-it",
+        "title": "Later repeats cannot improve it",
+        "narration": "The next b and c shift the frame. The last two b letters shorten it further. The longest valid length remains 3.",
+        "decision": "Remember the historical maximum, not just the final frame length."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For each ending position, moving just beyond the latest conflicting character gives the earliest possible valid start. Any earlier start would include a duplicate. Thus the frame is the longest valid section ending there. Taking the maximum over all endings gives the overall longest substring.",
+        "decision": "The start only moves forward. An earlier copy outside the frame does not invalidate the current frame."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: in abba, the final a occurred before the current frame. It must not move the start backward.",
+        "decision": "Only repetitions inside the current frame cause a move."
+      }
+    ]
+  }
 }

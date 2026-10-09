@@ -75,5 +75,86 @@
       "note": "After consuming the full query, require at least one complete word rather than merely a reachable prefix."
     }
   ],
-  "keyDecision": "A wildcard consumes exactly one letter. A matching prefix without an end marker is not a whole-word match."
+  "keyDecision": "A wildcard consumes exactly one letter. A matching prefix without an end marker is not a whole-word match.",
+  "concept": {
+    "question": "How can a wildcard keep several possible word paths alive?",
+    "intuition": [
+      "A plain word lookup cannot represent a period that matches any one letter. Enumerating all alphabet replacements can waste work on prefixes no stored word has.",
+      "Store complete words in a letter-path tree. A literal advances each possible path along its matching edge; a period follows all available letter edges. After the query ends, accept only a path marked as a complete word."
+    ],
+    "observation": "A period consumes exactly one letter, and a matching prefix alone is not a complete-word match.",
+    "approach": [
+      "Insert words into shared letter paths and mark their endpoints.",
+      "Keep all path nodes matching the query prefix so far.",
+      "Advance literals or wildcard branches, then require a complete endpoint."
+    ],
+    "correctness": "After each consumed query character, the frontier contains exactly the stored prefixes matching that query prefix: literal transitions preserve only the specified letter, and wildcard transitions include every one-letter continuation. Induction establishes exact prefix matching. Requiring an endpoint after the last character then gives exactly whole-word matches.",
+    "complexity": {
+      "time": "O(L) insertion; O(L × 26^d) search",
+      "space": "O(total stored prefix characters + 26^d) search frontier",
+      "explanation": "Insertion follows the word length. A query may branch by every wildcard, with the alphabet and wildcard count bounding the frontier. Stored shared prefixes and the active search frontier determine storage."
+    },
+    "pitfalls": [
+      "A period consumes exactly one letter, and a matching prefix alone is not a complete-word match.",
+      "Do not traverse a word-end marker as a wildcard letter."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/design-add-and-search-words-data-structure/concept.webp",
+        "alt": "Store complete words in a letter-path tree. A literal advances each possible path along its matching edge; a period follows all available letter edges. After the query ends, accept only a path marked as a complete word.",
+        "caption": "Store complete words in a letter-path tree. A literal advances each possible path along its matching edge; a period follows all available letter edges. After the query ends, accept only a path marked as a complete word.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Design Add and Search Words Data Structure algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Design Add and Search Words Data Structure, not a generic data structure illustration. The key idea is: Store inserted words as letter paths in a trie. A normal search character follows one matching edge. A '.' may follow any letter edge, so keep all possible matching nodes for that step. At the end, accept only a node marked as a complete inserted word. The reason a decision is safe is: A wildcard consumes exactly one letter. A matching prefix without an end marker is not a whole-word match. The actual example this lesson teaches is {\"operations\": [\"WordDictionary\", \"addWord\", \"addWord\", \"addWord\", \"search\", \"search\", \"search\", \"search\"], \"args\": [[], [\"bad\"], [\"dad\"], [\"mad\"], [\"pad\"], [\"bad\"], [\".ad\"], [\"b..\"]]} with answer [null, null, null, null, false, true, true, true]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a wildcard keep several possible word paths alive?",
+        "decision": "A period consumes exactly one letter, and a matching prefix alone is not a complete-word match."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A plain word lookup cannot represent a period that matches any one letter. Enumerating all alphabet replacements can waste work on prefixes no stored word has.",
+        "decision": "Store complete words in a letter-path tree. A literal advances each possible path along its matching edge; a period follows all available letter edges. After the query ends, accept only a path marked as a complete word."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Store complete words in a letter-path tree. A literal advances each possible path along its matching edge; a period follows all available letter edges. After the query ends, accept only a path marked as a complete word.",
+        "decision": "A period consumes exactly one letter, and a matching prefix alone is not a complete-word match."
+      },
+      {
+        "id": "inserted-words-begin-three-branches",
+        "title": "Inserted words begin three branches",
+        "narration": "The fixture inserts bad,dad,mad. Their first letters form b,d,m branches; no p branch exists, so pad fails.",
+        "decision": "Shared spelling after different prefixes still occupies distinct paths."
+      },
+      {
+        "id": "a-literal-query-follows-one-route",
+        "title": "A literal query follows one route",
+        "narration": "The query bad follows b,a,d to a complete endpoint and succeeds.",
+        "decision": "An existing path must end at a marked word."
+      },
+      {
+        "id": "wildcards-retain-all-fitting-routes",
+        "title": "Wildcards retain all fitting routes",
+        "narration": "For .ad, the first period permits b,d,m, and all three continue through a,d. For b.., the two periods consume a then d along bad. Both succeed.",
+        "decision": "Wildcard transitions follow letter edges only, excluding endpoint markers."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each consumed query character, the frontier contains exactly the stored prefixes matching that query prefix: literal transitions preserve only the specified letter, and wildcard transitions include every one-letter continuation. Induction establishes exact prefix matching. Requiring an endpoint after the last character then gives exactly whole-word matches.",
+        "decision": "A period consumes exactly one letter, and a matching prefix alone is not a complete-word match."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A wildcard matches one letter, not any-length text, and an unmarked prefix must fail.",
+        "decision": "Do not traverse a word-end marker as a wildcard letter."
+      }
+    ]
+  }
 }

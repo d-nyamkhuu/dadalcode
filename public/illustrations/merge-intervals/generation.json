@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. Two horizontal overlapping colored intervals on one common unnumbered axis. The cyan interval begins to the LEFT, the green interval begins inside it and extends farther RIGHT. Below, their merged glowing interval starts EXACTLY at the cyan leftmost endpoint and ends EXACTLY at the green rightmost endpoint. Include a separate nonoverlapping interval to the right unchanged. No words or numbers.",
+  "width": 1774,
+  "height": 887
+}

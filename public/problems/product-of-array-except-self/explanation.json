@@ -120,5 +120,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Can left and right products exclude a value without division?",
+    "intuition": [
+      "Dividing a full product by each value fails at zero and may violate the operation restriction. Recomputing every omitted-value product repeats multiplication.",
+      "For each position, all other values divide into a left group and a right group. Store the left product in the output during a forward pass. During a backward pass, multiply it by the current right product before adding the current value to that product."
+    ],
+    "observation": "Store the product before including the current value on each pass.",
+    "approach": [
+      "Write the product of earlier values at each position.",
+      "Walk backward, multiplying by the product of later values.",
+      "Advance the right product after updating the current output."
+    ],
+    "correctness": "At each position, the forward saved product contains exactly earlier values, and the backward running product contains exactly later values. Their product contains every other input value once and the current value zero times. Multiplication therefore gives each required output without division, even when zeros occur.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1) excluding result",
+      "explanation": "Two passes perform linear multiplication work. Beyond the required output, only two running products use constant auxiliary memory."
+    },
+    "pitfalls": [
+      "Store the product before including the current value on each pass.",
+      "Zero requires no division-specific repair."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/product-of-array-except-self/concept.webp",
+        "alt": "For each position, all other values divide into a left group and a right group. Store the left product in the output during a forward pass. During a backward pass, multiply it by the current right product before adding the current value to that product.",
+        "caption": "For each position, all other values divide into a left group and a right group. Store the left product in the output during a forward pass. During a backward pass, multiply it by the current right product before adding the current value to that product.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Product of Array Except Self algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Product of Array Except Self, not a generic data structure illustration. The key idea is: For each position, multiply everything before it by everything after it. First make a forward pass to save the product on the left. Then make a backward pass to multiply in the product on the right. Excluding the current value happens naturally, without division or special handling for zero. The reason a decision is safe is: Store the running product before multiplying in the current number on each pass. The actual example this lesson teaches is {\"nums\": [1, 2, 3, 4]} with answer [24, 12, 8, 6]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can left and right products exclude a value without division?",
+        "decision": "Store the product before including the current value on each pass."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Dividing a full product by each value fails at zero and may violate the operation restriction. Recomputing every omitted-value product repeats multiplication.",
+        "decision": "For each position, all other values divide into a left group and a right group. Store the left product in the output during a forward pass. During a backward pass, multiply it by the current right product before adding the current value to that product."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For each position, all other values divide into a left group and a right group. Store the left product in the output during a forward pass. During a backward pass, multiply it by the current right product before adding the current value to that product.",
+        "decision": "Store the product before including the current value on each pass."
+      },
+      {
+        "id": "store-products-strictly-before-each-position",
+        "title": "Store products strictly before each position",
+        "narration": "For [1,2,3,4], the left products are [1,1,2,6].",
+        "decision": "The empty product before the first position is one."
+      },
+      {
+        "id": "multiply-in-the-right-side",
+        "title": "Multiply in the right side",
+        "narration": "Walking backward, the last result stays 6. The preceding result becomes 2 × 4 = 8.",
+        "decision": "The current value is excluded from both sides."
+      },
+      {
+        "id": "complete-every-omitted-product",
+        "title": "Complete every omitted product",
+        "narration": "The remaining results become 12 and 24. Return [24,12,8,6].",
+        "decision": "Left and right groups together contain exactly the other positions."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At each position, the forward saved product contains exactly earlier values, and the backward running product contains exactly later values. Their product contains every other input value once and the current value zero times. Multiplication therefore gives each required output without division, even when zeros occur.",
+        "decision": "Store the product before including the current value on each pass."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "With two zeros, every excluded-position product still contains at least one zero, so every result is zero.",
+        "decision": "Zero requires no division-specific repair."
+      }
+    ]
+  }
 }

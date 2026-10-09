@@ -39,5 +39,86 @@
       "note": "All suffixes of the repaired window are valid and share this unique right endpoint."
     }
   ],
-  "keyDecision": "The comparison is strictly product < k. For k <= 1, no nonempty window can qualify."
+  "keyDecision": "The comparison is strictly product < k. For k <= 1, no nonempty window can qualify.",
+  "concept": {
+    "question": "Why does a valid positive-product section certify all its ending suffixes?",
+    "intuition": [
+      "Multiplying every possible section is quadratic. With all factors at least one, removing factors cannot increase a section’s product.",
+      "Expand a section to the right, then remove left factors until its product is strictly below the threshold. Every suffix ending at this right endpoint is also valid, so the section’s length counts all new valid sections at once."
+    ],
+    "observation": "The product comparison is strict; equality requires shrinking.",
+    "approach": [
+      "Return zero immediately for a threshold at most one.",
+      "Multiply in each entering factor and divide out leaving factors until valid.",
+      "Add the valid section length for this endpoint."
+    ],
+    "correctness": "For each endpoint, shrinking discards exactly the earliest boundaries with invalid products. All remaining suffixes are valid because factors are at least one; all earlier starts are invalid. Thus section length is exactly the number of valid sections ending there. Distinct right endpoints partition all candidate sections, so summing counts gives the total once.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each factor enters once and leaves at most once. Time is linear and only a product, boundaries, and count are retained."
+    },
+    "pitfalls": [
+      "The product comparison is strict; equality requires shrinking.",
+      "The positive-factor assumption is essential."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/subarray-product-less-than-k/concept.webp",
+        "alt": "Nested suffix sections stay beneath a bright threshold beam after the left edge moves inward.",
+        "caption": "Once a positive-number section has a product below the threshold, every suffix ending at its right edge also qualifies.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A continuous highlighted section of unnumbered positive factor tiles under a glowing threshold beam. As an entering tile makes the multiplicative height exceed the beam, a left tile leaves and the product height drops BELOW the beam. Show three nested ending suffix frames inside the final valid section. No comparison symbols, numbers, words, or equations."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does a valid positive-product section certify all its ending suffixes?",
+        "decision": "The product comparison is strict; equality requires shrinking."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Multiplying every possible section is quadratic. With all factors at least one, removing factors cannot increase a section’s product.",
+        "decision": "Expand a section to the right, then remove left factors until its product is strictly below the threshold. Every suffix ending at this right endpoint is also valid, so the section’s length counts all new valid sections at once."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Expand a section to the right, then remove left factors until its product is strictly below the threshold. Every suffix ending at this right endpoint is also valid, so the section’s length counts all new valid sections at once.",
+        "decision": "The product comparison is strict; equality requires shrinking."
+      },
+      {
+        "id": "the-first-two-endpoints-contribute-three",
+        "title": "The first two endpoints contribute three",
+        "narration": "For [10,5,2,6] and threshold 100, endpoint ten contributes one section. Endpoint five contributes [5] and [10,5], making three total.",
+        "decision": "Each counted section belongs to its unique right endpoint."
+      },
+      {
+        "id": "equality-is-not-enough",
+        "title": "Equality is not enough",
+        "narration": "Adding two gives product 100, so remove ten. Remaining section [5,2] has product ten and contributes [2] and [5,2]. Total becomes five.",
+        "decision": "Removing a positive factor restores a smaller or equal product."
+      },
+      {
+        "id": "the-last-endpoint-contributes-three",
+        "title": "The last endpoint contributes three",
+        "narration": "Add six, giving section [5,2,6] with product sixty. Its three suffixes contribute three more. Return eight.",
+        "decision": "Every suffix of a valid section remains below the threshold."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For each endpoint, shrinking discards exactly the earliest boundaries with invalid products. All remaining suffixes are valid because factors are at least one; all earlier starts are invalid. Thus section length is exactly the number of valid sections ending there. Distinct right endpoints partition all candidate sections, so summing counts gives the total once.",
+        "decision": "The product comparison is strict; equality requires shrinking."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "With threshold one or smaller, no nonempty product of permitted values qualifies.",
+        "decision": "The positive-factor assumption is essential."
+      }
+    ]
+  }
 }

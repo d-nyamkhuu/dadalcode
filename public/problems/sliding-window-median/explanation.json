@@ -116,5 +116,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Which two central values determine a moving section’s median?",
+    "intuition": [
+      "Sorting every section independently discards useful ordering from the preceding section. Keep the smaller and larger halves separately as one value leaves and another arrives.",
+      "Maintain a lower half with its greatest value exposed and an upper half with its smallest exposed. Keep active half sizes equal, or lower larger by one. Expired values may be marked for later removal until they reach a visible boundary."
+    ],
+    "observation": "Balance active sizes, and remove expired boundary values before reading the median.",
+    "approach": [
+      "Add entering values to the appropriate ordered half.",
+      "Mark outgoing occurrences expired and rebalance active half sizes.",
+      "Read one middle boundary or average the two boundaries."
+    ],
+    "correctness": "The lower half contains values no greater than the upper half, and their active sizes differ by at most one. Therefore the lower maximum is the odd-width middle, or it and the upper minimum are the even-width central pair. Insertion, expiration, cleaning, and rebalancing preserve these ordering and size conditions for each window.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n) auxiliary plus output",
+      "explanation": "Each occurrence is inserted, moved, and eventually removed a bounded number of times with logarithmic heap work. Delayed deletions can retain entries across the whole scan, so this implementation’s worst-case storage and heap scale are linear in total input length, not only section width."
+    },
+    "pitfalls": [
+      "Balance active sizes, and remove expired boundary values before reading the median.",
+      "Delayed deletion may retain hidden expired entries; distinguish stored entries from active sizes."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/sliding-window-median/concept.webp",
+        "alt": "Maintain a lower half with its greatest value exposed and an upper half with its smallest exposed. Keep active half sizes equal, or lower larger by one. Expired values may be marked for later removal until they reach a visible boundary.",
+        "caption": "Maintain a lower half with its greatest value exposed and an upper half with its smallest exposed. Keep active half sizes equal, or lower larger by one. Expired values may be marked for later removal until they reach a visible boundary.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Sliding Window Median algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Sliding Window Median, not a generic data structure illustration. The key idea is: Keep the current window's smaller and larger halves in two heaps. Balance their active sizes to expose the middle values. Removing a buried heap value is difficult, so mark it as expired and discard it when it reaches the top. Active counts must change immediately. The reason a decision is safe is: Prune expired roots before reading a median or moving a value between heaps. The actual example this lesson teaches is {\"nums\": [1, 4, 2, 3], \"k\": 2} with answer [2.5, 3, 2.5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which two central values determine a moving section’s median?",
+        "decision": "Balance active sizes, and remove expired boundary values before reading the median."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting every section independently discards useful ordering from the preceding section. Keep the smaller and larger halves separately as one value leaves and another arrives.",
+        "decision": "Maintain a lower half with its greatest value exposed and an upper half with its smallest exposed. Keep active half sizes equal, or lower larger by one. Expired values may be marked for later removal until they reach a visible boundary."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Maintain a lower half with its greatest value exposed and an upper half with its smallest exposed. Keep active half sizes equal, or lower larger by one. Expired values may be marked for later removal until they reach a visible boundary.",
+        "decision": "Balance active sizes, and remove expired boundary values before reading the median."
+      },
+      {
+        "id": "two-values-have-two-central-boundaries",
+        "title": "Two values have two central boundaries",
+        "narration": "For [1,4,2,3] with width two, the first section [1,4] has lower boundary one and upper boundary four. Median is (1+4)/2=2.5.",
+        "decision": "With even width, average both middle values."
+      },
+      {
+        "id": "replace-the-outgoing-occurrence",
+        "title": "Replace the outgoing occurrence",
+        "narration": "One leaves and two enters, leaving section [4,2]. Ordered halves expose two and four; median is three.",
+        "decision": "The removed occurrence no longer contributes to active sizes even if its heap entry is waiting to be cleaned."
+      },
+      {
+        "id": "slide-to-the-final-section",
+        "title": "Slide to the final section",
+        "narration": "Four leaves and three enters. Section [2,3] has median 2.5. Return [2.5,3,2.5].",
+        "decision": "Median boundaries must refer to active occurrences."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The lower half contains values no greater than the upper half, and their active sizes differ by at most one. Therefore the lower maximum is the odd-width middle, or it and the upper minimum are the even-width central pair. Insertion, expiration, cleaning, and rebalancing preserve these ordering and size conditions for each window.",
+        "decision": "Balance active sizes, and remove expired boundary values before reading the median."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An outgoing duplicate removes one occurrence, not all equal values.",
+        "decision": "Delayed deletion may retain hidden expired entries; distinguish stored entries from active sizes."
+      }
+    ]
+  }
 }

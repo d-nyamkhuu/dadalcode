@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. Two parallel trails track the strongest positive and strongest negative possible ending products, represented by cyan glowing and amber shadowed geometric tokens. At one negative gate the two trails exchange roles. A green beacon marks a positive optimum from an earlier segment. Show the need to retain both signs, with no arithmetic, numbers, or letter labels.",
+  "width": 1774,
+  "height": 887
+}

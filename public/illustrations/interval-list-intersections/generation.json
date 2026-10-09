@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. Two partially overlapping horizontal intervals on separate rows of the SAME unnumbered axis. The top cyan interval begins earlier and ends INSIDE the lower green interval. Below them show ONLY their exact overlap, a gold segment beginning at the GREEN start and ending at the CYAN end, with vertical dashed guides aligning these endpoints. A separate small inset shows two intervals meeting at one endpoint, with a single gold POINT as their closed-interval intersection. No numbers, letters, or words.",
+  "width": 1774,
+  "height": 887
+}

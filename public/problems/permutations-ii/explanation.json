@@ -51,5 +51,87 @@
       "note": "Restoring the flag after popping the path returns the search to its parent state, making the occurrence available to other valid branches."
     }
   ],
-  "keyDecision": "Skip an equal value when its earlier copy is still unused in the current path."
+  "keyDecision": "Skip an equal value when its earlier copy is still unused in the current path.",
+  "concept": {
+    "question": "How can equal numbers share a canonical order of choice?",
+    "intuition": [
+      "Two equal values have different input positions but can produce the same final value ordering. A normal unused-position search would therefore repeat some permutations.",
+      "Sort the occurrences and require equal values to be chosen in their original sorted order within a path. A later copy may be used after an earlier copy is used. If the earlier copy is still free, choosing the later copy first would only duplicate that branch."
+    ],
+    "observation": "Among equal unused occurrences, choose the earliest one first.",
+    "approach": [
+      "Sort occurrences and track which positions are used.",
+      "At each seat, choose an unused occurrence whose equal predecessor is already used.",
+      "Save each full ordering and undo choices to continue searching."
+    ],
+    "correctness": "Every distinct value ordering can assign its equal occurrences in their sorted occurrence order. That assignment is permitted by the rule, so no value ordering is missed. Any alternative assignment that picks a later free equal copy first is interchangeable with the canonical one and is rejected. Thus each distinct ordering is emitted once.",
+    "complexity": {
+      "time": "O(n * n!) worst case",
+      "space": "O(n) auxiliary, excluding output",
+      "explanation": "The worst case still has factorially many outputs, but duplicate branches are skipped. Sorting and linear-size search state add overhead; the complete distinct output determines most storage."
+    },
+    "pitfalls": [
+      "Do not discard duplicate occurrences entirely.",
+      "Check whether the preceding equal occurrence is still unused.",
+      "Undo the used-position record when returning from a branch."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/permutations-ii/concept.webp",
+        "alt": "Equal occurrences take turns in a canonical order, eliminating repeated value permutations.",
+        "caption": "Equal occurrences take turns in a canonical order, eliminating repeated value permutations.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Permutations II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Permutations II, not a generic data structure illustration. The key idea is: Equal input values can produce the same ordering through different positions. Sort the input and build an ordering from unused positions. For equal values, use the earlier occurrence first. This keeps one way to build each distinct ordering while still allowing all copies to appear. The reason a decision is safe is: Skip an equal value when its earlier copy is still unused in the current path. The actual example this lesson teaches is {\"nums\": [1, 1, 2]} with answer [[1, 1, 2], [1, 2, 1], [2, 1, 1]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can equal numbers share a canonical order of choice?",
+        "decision": "Among equal unused occurrences, choose the earliest one first."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Two equal values have different input positions but can produce the same final value ordering. A normal unused-position search would therefore repeat some permutations.",
+        "decision": "Sort the occurrences and require equal values to be chosen in their original sorted order within a path. A later copy may be used after an earlier copy is used. If the earlier copy is still free, choosing the later copy first would only duplicate that branch."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort the occurrences and require equal values to be chosen in their original sorted order within a path. A later copy may be used after an earlier copy is used. If the earlier copy is still free, choosing the later copy first would only duplicate that branch.",
+        "decision": "Among equal unused occurrences, choose the earliest one first."
+      },
+      {
+        "id": "two-equal-copies-can-both-appear",
+        "title": "Two equal copies can both appear",
+        "narration": "For [1,1,2], choose the first 1, then the second 1, then 2. Save [1,1,2].",
+        "decision": "The second 1 is legal once the first is already in the path."
+      },
+      {
+        "id": "move-the-two-between-the-ones",
+        "title": "Move the two between the ones",
+        "narration": "From a first chosen 1, choose 2 next and the remaining 1 last. Save [1,2,1].",
+        "decision": "Availability, not value uniqueness, determines whether the remaining 1 can be used."
+      },
+      {
+        "id": "skip-an-interchangeable-root",
+        "title": "Skip an interchangeable root",
+        "narration": "At the first seat, skip the second 1 while the first 1 is free. Choose 2 first instead, yielding [2,1,1].",
+        "decision": "Equal copies exchange identities without creating a new value ordering."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every distinct value ordering can assign its equal occurrences in their sorted occurrence order. That assignment is permitted by the rule, so no value ordering is missed. Any alternative assignment that picks a later free equal copy first is interchangeable with the canonical one and is rejected. Thus each distinct ordering is emitted once.",
+        "decision": "Among equal unused occurrences, choose the earliest one first."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: [1,1,1] has only the ordering [1,1,1], even though the input positions could be permuted.",
+        "decision": "The answer distinguishes values, not identities of equal occurrences."
+      }
+    ]
+  }
 }

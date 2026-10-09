@@ -5,6 +5,7 @@ import importlib.util
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 import typing
 from pathlib import Path
 from curriculum_support import harness
@@ -106,7 +107,8 @@ class ContentContracts(unittest.TestCase):
                                 if arg.arg not in {'self', 'cls'}:
                                     self.assertIn(arg.arg, hints)
 
-    def test_review_is_invalidated_by_each_package_file(self):
+    @patch.object(contracts, 'concept_fingerprint', return_value={})
+    def test_review_is_invalidated_by_each_package_file(self, _visual_fingerprint):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory)
             for name in contracts.PACKAGE_FILES:
@@ -114,6 +116,7 @@ class ContentContracts(unittest.TestCase):
             hashes = contracts.package_hashes(path)
             review = {
                 'reviewed': True, 'resolved': True, 'packageHashes': hashes,
+                'conceptReview': {'reviewed': True, 'status': 'approved', 'visualHashes': {}},
                 'editorialReview': {'reviewed': True, 'status': 'approved',
                                     'explanationHash': hashes['explanation.json']},
             }

@@ -46,5 +46,87 @@
       "note": "Removing the choice and its three occupancy marks is what makes later sibling branches independent."
     }
   ],
-  "keyDecision": "A placement is safe only when its column and both diagonal identifiers are unused."
+  "keyDecision": "A placement is safe only when its column and both diagonal identifiers are unused.",
+  "concept": {
+    "question": "How can a queen placement prune every board that already contains an attack?",
+    "intuition": [
+      "Trying every arrangement before checking attacks explores many doomed boards. Once two queens share a column or diagonal, later placements cannot repair their conflict.",
+      "Place one queen in each row. Remember occupied columns and the two kinds of diagonal. Explore only squares that avoid all three. When later rows have no safe square, remove the last queen and try another route."
+    ],
+    "observation": "A new queen must share neither a column nor either diagonal with an earlier queen.",
+    "approach": [
+      "Choose a safe column in the next row.",
+      "Record its column and diagonals, then continue to the following row.",
+      "Save a full board, or undo a placement when exploring another branch."
+    ],
+    "correctness": "At each depth, all placed queens are mutually nonattacking. Adding a square outside occupied columns and diagonals preserves that fact. Every valid complete board supplies a legal next square in every row, so its route is explored. Undoing placements restores earlier availability. Complete routes are exactly valid boards.",
+    "complexity": {
+      "time": "O(n! * n²) including board output",
+      "space": "O(n) excluding output",
+      "explanation": "The search may explore factorially many row choices before pruning. Current placements and occupied-line records use linear auxiliary memory, while returning every board requires its full output storage."
+    },
+    "pitfalls": [
+      "Check both diagonal directions.",
+      "Remove all occupancy records when undoing.",
+      "Return complete boards, not merely queen coordinates."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/n-queens/concept.webp",
+        "alt": "A queen’s attack lines rule out columns and diagonals, leaving only safe row-by-row choices.",
+        "caption": "A queen’s attack lines rule out columns and diagonals, leaving only safe row-by-row choices.",
+        "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. Show a SINGLE queen on an unnumbered chessboard, with glowing lines radiating along its horizontal row, vertical column, and the two diagonals. All intersecting squares along these lines are amber excluded positions. Other squares stay dark. DO NOT show a green candidate square or any completed placement. A small abstract branching tree and undo arrow beside the board suggest testing choices and backtracking. No words, letters, or numerals."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a queen placement prune every board that already contains an attack?",
+        "decision": "A new queen must share neither a column nor either diagonal with an earlier queen."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every arrangement before checking attacks explores many doomed boards. Once two queens share a column or diagonal, later placements cannot repair their conflict.",
+        "decision": "Place one queen in each row. Remember occupied columns and the two kinds of diagonal. Explore only squares that avoid all three. When later rows have no safe square, remove the last queen and try another route."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Place one queen in each row. Remember occupied columns and the two kinds of diagonal. Explore only squares that avoid all three. When later rows have no safe square, remove the last queen and try another route.",
+        "decision": "A new queen must share neither a column nor either diagonal with an earlier queen."
+      },
+      {
+        "id": "a-corner-route-fails",
+        "title": "A corner route fails",
+        "narration": "On a four-by-four board, beginning at the top-left corner cannot lead to a complete safe placement. Return to the first row.",
+        "decision": "A dead end invalidates that branch, not the entire problem."
+      },
+      {
+        "id": "a-complete-safe-route",
+        "title": "A complete safe route",
+        "narration": "Choose columns 1,3,0,2 in successive rows. No two queens share a column or diagonal.",
+        "decision": "One queen per row already rules out horizontal attacks."
+      },
+      {
+        "id": "the-mirror-is-the-second-route",
+        "title": "The mirror is the second route",
+        "narration": "Columns 2,0,3,1 give the other complete board. Exhausting the legal branches yields exactly two solutions.",
+        "decision": "All safe choices are explored after earlier choices are undone."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At each depth, all placed queens are mutually nonattacking. Adding a square outside occupied columns and diagonals preserves that fact. Every valid complete board supplies a legal next square in every row, so its route is explored. Undoing placements restores earlier availability. Complete routes are exactly valid boards.",
+        "decision": "A new queen must share neither a column nor either diagonal with an earlier queen."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a one-by-one board has one valid queen placement. Boards of sizes two and three have no complete safe arrangement.",
+        "decision": "An empty set of completed boards can be the correct answer."
+      }
+    ]
+  }
 }

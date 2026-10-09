@@ -38,5 +38,86 @@
       "note": "Advancing the next start prohibits repeated digits and guarantees a canonical increasing representation for each selected set."
     }
   ],
-  "keyDecision": "Both conditions must hold: the path has k digits and its remaining sum is zero."
+  "keyDecision": "Both conditions must hold: the path has k digits and its remaining sum is zero.",
+  "concept": {
+    "question": "How can both a digit budget and a seat budget define the answer?",
+    "intuition": [
+      "A correct sum with too few digits is not an answer, and the right number of digits with the wrong sum also fails. Reordered selections would duplicate the same combination.",
+      "Choose distinct digits from 1 through 9 in increasing order. Track both remaining sum and remaining seats. Save a path only when both reach their required completion together."
+    ],
+    "observation": "Use each digit once, in increasing order, and require both exact count and exact total.",
+    "approach": [
+      "Choose a larger unused digit that fits the remaining total.",
+      "Continue until the required number of digits is chosen.",
+      "Save only a complete selection with zero remaining sum."
+    ],
+    "correctness": "Every saved path consists of distinct allowed digits because choices increase, and it meets both target conditions. Any valid combination has a unique increasing order, whose choices are all permitted by the search. Exploring these paths and rejecting only incomplete budgets therefore finds each valid combination once.",
+    "complexity": {
+      "time": "O(k * C(9,k))",
+      "space": "O(k) auxiliary, excluding output",
+      "explanation": "At most the fixed digit range is searched. Work depends on its possible requested-size combinations and writing each; current-path memory follows the selected digit count."
+    },
+    "pitfalls": [
+      "Use each digit once, in increasing order, and require both exact count and exact total.",
+      "Do not reuse a digit to fill a missing seat."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/combination-sum-iii/concept.webp",
+        "alt": "Choose distinct digits from 1 through 9 in increasing order. Track both remaining sum and remaining seats. Save a path only when both reach their required completion together.",
+        "caption": "Choose distinct digits from 1 through 9 in increasing order. Track both remaining sum and remaining seats. Save a path only when both reach their required completion together.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Combination Sum III algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Combination Sum III, not a generic data structure illustration. The key idea is: Choose exactly k different digits from 1 through 9. Always choose larger digits next, so a selection is not repeated in another order. Track the sum still needed and stop when a choice would exceed it. Save only a full selection with the exact target sum. The reason a decision is safe is: Both conditions must hold: the path has k digits and its remaining sum is zero. The actual example this lesson teaches is {\"k\": 3, \"n\": 7} with answer [[1, 2, 4]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can both a digit budget and a seat budget define the answer?",
+        "decision": "Use each digit once, in increasing order, and require both exact count and exact total."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A correct sum with too few digits is not an answer, and the right number of digits with the wrong sum also fails. Reordered selections would duplicate the same combination.",
+        "decision": "Choose distinct digits from 1 through 9 in increasing order. Track both remaining sum and remaining seats. Save a path only when both reach their required completion together."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Choose distinct digits from 1 through 9 in increasing order. Track both remaining sum and remaining seats. Save a path only when both reach their required completion together.",
+        "decision": "Use each digit once, in increasing order, and require both exact count and exact total."
+      },
+      {
+        "id": "spend-two-seats",
+        "title": "Spend two seats",
+        "narration": "For three digits totaling 7, choose 1 and 2. One seat remains and its required value is 4.",
+        "decision": "The next digit must exceed 2."
+      },
+      {
+        "id": "a-count-only-completion-fails",
+        "title": "A count-only completion fails",
+        "narration": "Trying 3 gives [1,2,3], three digits but total 6. Reject it.",
+        "decision": "The requested count does not replace the exact-sum check."
+      },
+      {
+        "id": "four-completes-both-requirements",
+        "title": "Four completes both requirements",
+        "narration": "Choose 4 instead, giving [1,2,4], total 7. No other increasing triple qualifies.",
+        "decision": "Increasing choices avoid reordered copies."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every saved path consists of distinct allowed digits because choices increase, and it meets both target conditions. Any valid combination has a unique increasing order, whose choices are all permitted by the search. Exploring these paths and rejecting only incomplete budgets therefore finds each valid combination once.",
+        "decision": "Use each digit once, in increasing order, and require both exact count and exact total."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A sum too small for the remaining distinct larger digits makes that branch impossible.",
+        "decision": "Do not reuse a digit to fill a missing seat."
+      }
+    ]
+  }
 }

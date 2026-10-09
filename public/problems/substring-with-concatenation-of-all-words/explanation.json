@@ -39,5 +39,87 @@
       "note": "Given the required count invariant, equality of total token counts is enough to prove every required word is present exactly often enough."
     }
   ],
-  "keyDecision": "A match has exactly the required number of chunks and exactly the required count of every word."
+  "keyDecision": "A match has exactly the required number of chunks and exactly the required count of every word.",
+  "concept": {
+    "question": "Can equal word lengths turn a letter scan into a moving bag of words?",
+    "intuition": [
+      "Trying every start and recounting all its words repeats work. Equal word lengths give fixed-size chunks, but a valid start might be aligned at any letter position within one chunk width.",
+      "For each possible alignment, move a frame in whole-word chunks. Maintain how many copies of each required word it contains. Unknown chunks empty the frame; too many copies of a known word move the start forward until its count is allowed."
+    ],
+    "observation": "The frame must contain exactly the required number of copies of every word, not merely the right distinct words.",
+    "approach": [
+      "Try each alignment within one word width.",
+      "Extend by a whole chunk, resetting on unknown words and shrinking excessive counts.",
+      "Record a start when the frame contains the full required word collection."
+    ],
+    "correctness": "Within one alignment, the frame contains only allowed chunks with counts no greater than required. Once its chunk count equals the required total, these bounded counts must all match exactly. Excess-count shrinking preserves all later valid starts, and reset discards only frames containing an impossible chunk. The alignment passes together examine all starts.",
+    "complexity": {
+      "time": "O(n*w + m*w)",
+      "space": "O(m*w)",
+      "explanation": "Each alignment advances forward in chunks. Including chunk slicing and counting, work is proportional to the text length times the word width. Remember counts for distinct words and the current framed collection."
+    },
+    "pitfalls": [
+      "Check every alignment within a word width.",
+      "Respect duplicate required words.",
+      "Shrink when a word is overrepresented, rather than discarding all potentially useful chunks."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/substring-with-concatenation-of-all-words/concept.webp",
+        "alt": "A moving word-sized frame matches a required bag of words across each possible alignment.",
+        "caption": "A moving word-sized frame matches a required bag of words across each possible alignment.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Substring with Concatenation of All Words algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Substring with Concatenation of All Words, not a generic data structure illustration. The key idea is: All the words have the same length, so read the string in whole-word chunks. Keep a moving group of chunks and count each word. Remove chunks from the left if a word appears too often. Try each possible starting alignment so no valid starting position is missed. The reason a decision is safe is: A match has exactly the required number of chunks and exactly the required count of every word. The actual example this lesson teaches is {\"s\": \"barfoothefoobarman\", \"words\": [\"foo\", \"bar\"]} with answer [0, 9]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can equal word lengths turn a letter scan into a moving bag of words?",
+        "decision": "The frame must contain exactly the required number of copies of every word, not merely the right distinct words."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every start and recounting all its words repeats work. Equal word lengths give fixed-size chunks, but a valid start might be aligned at any letter position within one chunk width.",
+        "decision": "For each possible alignment, move a frame in whole-word chunks. Maintain how many copies of each required word it contains. Unknown chunks empty the frame; too many copies of a known word move the start forward until its count is allowed."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For each possible alignment, move a frame in whole-word chunks. Maintain how many copies of each required word it contains. Unknown chunks empty the frame; too many copies of a known word move the start forward until its count is allowed.",
+        "decision": "The frame must contain exactly the required number of copies of every word, not merely the right distinct words."
+      },
+      {
+        "id": "a-complete-word-bag",
+        "title": "A complete word bag",
+        "narration": "The required words are foo and bar. The first chunks are bar then foo, so position 0 is a match.",
+        "decision": "Word order may vary, but both counts must be exactly one."
+      },
+      {
+        "id": "an-unknown-chunk-breaks-the-frame",
+        "title": "An unknown chunk breaks the frame",
+        "narration": "The chunk the is not a required word. Start again after it at position 9.",
+        "decision": "No valid concatenation can contain an unknown chunk."
+      },
+      {
+        "id": "a-second-complete-bag",
+        "title": "A second complete bag",
+        "narration": "The chunks foo and bar at positions 9 and 12 match again. Other alignments produce no matches; return [0,9].",
+        "decision": "Trying all alignments covers every possible character start."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Within one alignment, the frame contains only allowed chunks with counts no greater than required. Once its chunk count equals the required total, these bounded counts must all match exactly. Excess-count shrinking preserves all later valid starts, and reset discards only frames containing an impossible chunk. The alignment passes together examine all starts.",
+        "decision": "The frame must contain exactly the required number of copies of every word, not merely the right distinct words."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: required words [foo,foo] need two copies of foo, not just membership in a set.",
+        "decision": "Multiplicity is part of the word bag."
+      }
+    ]
+  }
 }

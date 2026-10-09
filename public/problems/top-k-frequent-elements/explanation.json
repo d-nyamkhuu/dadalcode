@@ -45,5 +45,86 @@
       "note": "Stop inside the bucket loop as soon as the requested count is reached; appending whole buckets blindly could return too many values."
     }
   ],
-  "keyDecision": "Each distinct value goes into exactly one bucket: the bucket matching its frequency."
+  "keyDecision": "Each distinct value goes into exactly one bucket: the bucket matching its frequency.",
+  "concept": {
+    "question": "Why can occurrence counts serve as addresses for frequency buckets?",
+    "intuition": [
+      "Sorting every value by its frequency spends logarithmic work even though frequencies are bounded between one and the number of input occurrences.",
+      "Count each distinct value, then place it in the bucket named by its count. Visit buckets from largest count downward until enough values have been collected. Numeric value order has no role in frequency ranking."
+    ],
+    "observation": "Select by frequency, stopping after the requested number of distinct values.",
+    "approach": [
+      "Count every occurrence of each value.",
+      "Place distinct values in buckets indexed by their occurrence count.",
+      "Read buckets from high frequency to low until the requested count is reached."
+    ],
+    "correctness": "Counting places every distinct value into exactly its frequency bucket. Descending bucket order therefore visits values in nonincreasing frequency order. Taking the first requested number yields the most frequent distinct values; within a tied bucket any accepted tie order is valid.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Counting and bucket construction take linear work; scanning the bounded frequency levels is also linear. Counts, buckets, and selected results use linear total storage."
+    },
+    "pitfalls": [
+      "Select by frequency, stopping after the requested number of distinct values.",
+      "Do not return repeated copies of a frequent value."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/top-k-frequent-elements/concept.webp",
+        "alt": "Count each distinct value, then place it in the bucket named by its count. Visit buckets from largest count downward until enough values have been collected. Numeric value order has no role in frequency ranking.",
+        "caption": "Count each distinct value, then place it in the bucket named by its count. Visit buckets from largest count downward until enough values have been collected. Numeric value order has no role in frequency ranking.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Top K Frequent Elements algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Top K Frequent Elements, not a generic data structure illustration. The key idea is: First count how often each value appears. Put values into buckets labeled by their counts. Read the buckets from the largest count downward and stop after collecting k values. Frequencies cannot exceed the input length, so there is no need to sort all values by frequency. The reason a decision is safe is: Each distinct value goes into exactly one bucket: the bucket matching its frequency. The actual example this lesson teaches is {\"nums\": [1, 1, 1, 2, 2, 3], \"k\": 2} with answer [1, 2]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can occurrence counts serve as addresses for frequency buckets?",
+        "decision": "Select by frequency, stopping after the requested number of distinct values."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting every value by its frequency spends logarithmic work even though frequencies are bounded between one and the number of input occurrences.",
+        "decision": "Count each distinct value, then place it in the bucket named by its count. Visit buckets from largest count downward until enough values have been collected. Numeric value order has no role in frequency ranking."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Count each distinct value, then place it in the bucket named by its count. Visit buckets from largest count downward until enough values have been collected. Numeric value order has no role in frequency ranking.",
+        "decision": "Select by frequency, stopping after the requested number of distinct values."
+      },
+      {
+        "id": "count-the-values",
+        "title": "Count the values",
+        "narration": "For [1,1,1,2,2,3], one occurs three times, two occurs twice, and three occurs once. The requested result size is two.",
+        "decision": "Counts combine all occurrences but results contain distinct values."
+      },
+      {
+        "id": "buckets-are-frequency-levels",
+        "title": "Buckets are frequency levels",
+        "narration": "Frequency bucket three contains 1, bucket two contains 2, and bucket one contains 3.",
+        "decision": "A count cannot exceed the total number of input occurrences."
+      },
+      {
+        "id": "take-the-two-highest-levels",
+        "title": "Take the two highest levels",
+        "narration": "Read 1 from frequency three, then 2 from frequency two. Return [1,2].",
+        "decision": "Lower buckets cannot beat any value already taken from a higher bucket."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Counting places every distinct value into exactly its frequency bucket. Descending bucket order therefore visits values in nonincreasing frequency order. Taking the first requested number yields the most frequent distinct values; within a tied bucket any accepted tie order is valid.",
+        "decision": "Select by frequency, stopping after the requested number of distinct values."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If every distinct value is requested, all frequency levels may be needed.",
+        "decision": "Do not return repeated copies of a frequent value."
+      }
+    ]
+  }
 }

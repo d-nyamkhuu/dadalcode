@@ -103,5 +103,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why is a smaller ending value a better representative of the same subsequence length?",
+    "intuition": [
+      "Listing all subsequences grows exponentially. Keeping just one arbitrary subsequence can also discard a more extendable alternative of the same length.",
+      "For each achievable length, remember the smallest ending value among increasing subsequences of that length. A smaller ending is easier for a future value to exceed. Find the first ending no smaller than the new value and replace it; append if the new value exceeds every ending."
+    ],
+    "observation": "Replace the first ending at least as large as the new value; equality must not increase a strictly increasing length.",
+    "approach": [
+      "Keep the smallest ending for each attainable length.",
+      "Locate the first ending no smaller than the new value.",
+      "Replace it or append a new attainable length; return the number of saved lengths."
+    ],
+    "correctness": "A new value can extend any shorter subsequence whose smallest ending is below it. Replacing the first ending no smaller than that value gives the smallest possible ending for the corresponding length without changing longer feasible lengths. Appending occurs exactly when one longer increasing subsequence becomes achievable. The summary length is therefore the maximum increasing length.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "Locate each replacement with a logarithmic search through the ordered ending summary. Total work is linear-times-logarithmic, and summary memory can grow linearly."
+    },
+    "pitfalls": [
+      "Replace the first ending at least as large as the new value; equality must not increase a strictly increasing length.",
+      "Use the first no-smaller ending, rather than the first strictly larger ending."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/longest-increasing-subsequence/concept.webp",
+        "alt": "For each achievable length, remember the smallest ending value among increasing subsequences of that length. A smaller ending is easier for a future value to exceed. Find the first ending no smaller than the new value and replace it; append if the new value exceeds every ending.",
+        "caption": "For each achievable length, remember the smallest ending value among increasing subsequences of that length. A smaller ending is easier for a future value to exceed. Find the first ending no smaller than the new value and replace it; append if the new value exceeds every ending.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Longest Increasing Subsequence algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Longest Increasing Subsequence, not a generic data structure illustration. The key idea is: For each possible length, remember the smallest ending value of an increasing subsequence seen so far. A smaller ending is easier to extend with future values. Use binary search to replace the first saved ending that is at least the current number, or append a new ending. The reason a decision is safe is: The tails table stores best ending values. Its contents need not be one actual subsequence. The actual example this lesson teaches is {\"nums\": [10, 9, 2, 5, 3, 7, 101, 18]} with answer 4. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why is a smaller ending value a better representative of the same subsequence length?",
+        "decision": "Replace the first ending at least as large as the new value; equality must not increase a strictly increasing length."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Listing all subsequences grows exponentially. Keeping just one arbitrary subsequence can also discard a more extendable alternative of the same length.",
+        "decision": "For each achievable length, remember the smallest ending value among increasing subsequences of that length. A smaller ending is easier for a future value to exceed. Find the first ending no smaller than the new value and replace it; append if the new value exceeds every ending."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For each achievable length, remember the smallest ending value among increasing subsequences of that length. A smaller ending is easier for a future value to exceed. Find the first ending no smaller than the new value and replace it; append if the new value exceeds every ending.",
+        "decision": "Replace the first ending at least as large as the new value; equality must not increase a strictly increasing length."
+      },
+      {
+        "id": "improve-the-length-one-ending",
+        "title": "Improve the length-one ending",
+        "narration": "Reading 10,9,2 leaves the smallest possible one-value ending 2.",
+        "decision": "A smaller ending keeps the same length but improves future opportunities."
+      },
+      {
+        "id": "improve-a-longer-ending",
+        "title": "Improve a longer ending",
+        "narration": "Value 5 extends to [2,5]. Value 3 replaces the length-two ending, leaving [2,3].",
+        "decision": "This summary records best endings, not necessarily one fixed source subsequence."
+      },
+      {
+        "id": "extend-then-improve-the-last-ending",
+        "title": "Extend, then improve the last ending",
+        "narration": "Values 7 and 101 create four attainable lengths. Value 18 replaces 101, leaving [2,3,7,18]. Return length 4.",
+        "decision": "Replacing an ending does not reduce its achievable length."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A new value can extend any shorter subsequence whose smallest ending is below it. Replacing the first ending no smaller than that value gives the smallest possible ending for the corresponding length without changing longer feasible lengths. Appending occurs exactly when one longer increasing subsequence becomes achievable. The summary length is therefore the maximum increasing length.",
+        "decision": "Replace the first ending at least as large as the new value; equality must not increase a strictly increasing length."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Equal values cannot extend a strictly increasing subsequence. A row [2,2,2] has length one.",
+        "decision": "Use the first no-smaller ending, rather than the first strictly larger ending."
+      }
+    ]
+  }
 }

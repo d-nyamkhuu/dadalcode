@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. Represent a fixed-width binary word ABSTRACTLY as eight unnumbered colored tokens in a row, alternating bright filled and dim hollow tokens. Arrows extract one token at a time from the RIGHT end and append to a developing row below. Emphasize that the dim hollow zero tokens also get their turns: show one hollow token moving with a bright token. Do not label an input or output numeric value, and do not depict this as the exact lesson's 32-bit example. No digits, letters, or equations.",
+  "width": 1774,
+  "height": 887
+}

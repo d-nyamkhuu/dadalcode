@@ -32,5 +32,86 @@
       "note": "The final occurrence of each letter has no later equal character, so the string boundary supplies its last possible right limit."
     }
   ],
-  "keyDecision": "For occurrence p between equal occurrences before and after, its contribution is (p - before) × (after - p)."
+  "keyDecision": "For occurrence p between equal occurrences before and after, its contribution is (p - before) × (after - p).",
+  "concept": {
+    "question": "How many sections contain one occurrence but exclude its equal-letter neighbors?",
+    "intuition": [
+      "Listing every section and counting its unique letters repeats enormous work. Instead, let each occurrence contribute to precisely the sections in which it is the only copy of its letter.",
+      "For an occurrence, its previous equal letter limits the left boundary and its next equal letter limits the right boundary. The number of valid sections is the number of left choices times the number of right choices. Finalize an occurrence when its next equal letter is discovered."
+    ],
+    "observation": "An occurrence is unique only between its neighboring equal-letter positions.",
+    "approach": [
+      "Track the two latest positions of each letter.",
+      "When another copy appears, finalize the preceding copy’s boundary-choice product.",
+      "Use the text’s end boundary to finalize each last occurrence."
+    ],
+    "correctness": "A section makes an occurrence unique exactly when it includes that position, starts after the previous equal letter, and ends before the next equal letter. Left and right boundaries are independent, so their choice counts multiply. Every unique letter in every section belongs to exactly one such occurrence, making the contribution sum exact.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(σ), σ <= 26",
+      "explanation": "Each character finalizes a previous occurrence once, followed by one finalization per distinct letter. Time is linear and remembered positions scale with the fixed uppercase alphabet."
+    },
+    "pitfalls": [
+      "An occurrence is unique only between its neighboring equal-letter positions.",
+      "Include the outside boundaries before the first and after the last position."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/count-unique-characters-of-all-substrings-of-a-given-string/concept.webp",
+        "alt": "For an occurrence, its previous equal letter limits the left boundary and its next equal letter limits the right boundary. The number of valid sections is the number of left choices times the number of right choices. Finalize an occurrence when its next equal letter is discovered.",
+        "caption": "For an occurrence, its previous equal letter limits the left boundary and its next equal letter limits the right boundary. The number of valid sections is the number of left choices times the number of right choices. Finalize an occurrence when its next equal letter is discovered.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Count Unique Characters of All Substrings of a Given String algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Count Unique Characters of All Substrings of a Given String, not a generic data structure illustration. The key idea is: Count how many substrings make each character occurrence unique. The substring must include that occurrence but exclude the nearest equal occurrence on either side. Multiply the number of allowed starts by the number of allowed ends. Add these contributions instead of recounting letters in every substring. The reason a decision is safe is: For occurrence p between equal occurrences before and after, its contribution is (p - before) × (after - p). The actual example this lesson teaches is {\"s\": \"ABA\"} with answer 8. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How many sections contain one occurrence but exclude its equal-letter neighbors?",
+        "decision": "An occurrence is unique only between its neighboring equal-letter positions."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Listing every section and counting its unique letters repeats enormous work. Instead, let each occurrence contribute to precisely the sections in which it is the only copy of its letter.",
+        "decision": "For an occurrence, its previous equal letter limits the left boundary and its next equal letter limits the right boundary. The number of valid sections is the number of left choices times the number of right choices. Finalize an occurrence when its next equal letter is discovered."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For an occurrence, its previous equal letter limits the left boundary and its next equal letter limits the right boundary. The number of valid sections is the number of left choices times the number of right choices. Finalize an occurrence when its next equal letter is discovered.",
+        "decision": "An occurrence is unique only between its neighboring equal-letter positions."
+      },
+      {
+        "id": "the-first-a-has-two-valid-sections",
+        "title": "The first A has two valid sections",
+        "narration": "For ABA, the A at position zero has previous boundary −1 and next A at two. It has one left choice and two right choices, contributing two.",
+        "decision": "A section reaching the later A would make this letter nonunique."
+      },
+      {
+        "id": "the-final-a-also-contributes-two",
+        "title": "The final A also contributes two",
+        "narration": "The A at position two has previous A at zero and end boundary three. It has two left choices and one right choice: two contributions.",
+        "decision": "Outside-text boundaries act as missing equal-letter neighbors."
+      },
+      {
+        "id": "b-contributes-four",
+        "title": "B contributes four",
+        "narration": "B at position one has boundaries −1 and three. Two left choices times two right choices gives four. Return 2+2+4=8.",
+        "decision": "Contributions count unique letters within sections, not just the number of sections."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A section makes an occurrence unique exactly when it includes that position, starts after the previous equal letter, and ends before the next equal letter. Left and right boundaries are independent, so their choice counts multiply. Every unique letter in every section belongs to exactly one such occurrence, making the contribution sum exact.",
+        "decision": "An occurrence is unique only between its neighboring equal-letter positions."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Repeated letters can each contribute, but only to sections excluding their neighbors.",
+        "decision": "Include the outside boundaries before the first and after the last position."
+      }
+    ]
+  }
 }

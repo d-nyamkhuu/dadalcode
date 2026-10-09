@@ -32,9 +32,10 @@ import {
   type StudyPlan as Plan,
 } from "./data/studyPlans";
 import LessonContent from "./components/LessonContent";
-import Walkthrough from "./components/Walkthrough";
+import ConceptPlayer from "./components/concepts/ConceptPlayer";
 import Practice from "./components/Practice";
 const CodeEditor = lazy(() => import("./components/CodeEditor"));
+const Walkthrough = lazy(() => import("./components/Walkthrough"));
 type Tab = "learn" | "practice" | "solution";
 function route() {
   const [path, query] = location.hash.replace(/^#\/?/, "").split("?");
@@ -195,9 +196,13 @@ function Sidebar({
 function Solution({
   problem,
   onPractice,
+  view,
+  onViewChange: setView,
 }: {
   problem: ProblemDefinition;
   onPractice: () => void;
+  view: "code" | "execution";
+  onViewChange: (view: "code" | "execution") => void;
 }) {
   const [copied, setCopied] = useState(false),
     [copyError, setCopyError] = useState("");
@@ -214,30 +219,55 @@ function Solution({
   }
   return (
     <div className="solution-workbench">
-      <div className="panel solution-panel">
-        <div className="panel-heading">
-          <h2>Reference solution</h2>
-          <button onClick={copy}>
-            {copied ? <Check size={15} /> : <Copy size={15} />}{" "}
-            {copied ? "Copied" : "Copy code"}
-          </button>
-        </div>
-        {copyError && <p className="notice">{copyError}</p>}
-        <Suspense fallback={<div className="loading">Loading solution…</div>}>
-          <CodeEditor
-            value={problem.solution}
-            readOnly
-            label="Python reference solution"
-          />
+      <nav className="solution-view-tabs" aria-label="Solution views">
+        <button aria-pressed={view === "code"} onClick={() => setView("code")}>
+          Reference code
+        </button>
+        <button
+          aria-pressed={view === "execution"}
+          onClick={() => setView("execution")}
+        >
+          Execution walkthrough
+        </button>
+      </nav>
+      {view === "execution" ? (
+        <Suspense
+          fallback={
+            <div className="loading">Loading execution walkthrough…</div>
+          }
+        >
+          <Walkthrough problem={problem} />
         </Suspense>
-      </div>
-      <button className="primary try-button" onClick={onPractice}>
-        <Play size={17} />
-        Try it yourself
-      </button>
-      <p className="try-caption">
-        Open the practice view to run and test your solution.
-      </p>
+      ) : (
+        <>
+          <div className="panel solution-panel">
+            <div className="panel-heading">
+              <h2>Reference solution</h2>
+              <button onClick={copy}>
+                {copied ? <Check size={15} /> : <Copy size={15} />}{" "}
+                {copied ? "Copied" : "Copy code"}
+              </button>
+            </div>
+            {copyError && <p className="notice">{copyError}</p>}
+            <Suspense
+              fallback={<div className="loading">Loading solution…</div>}
+            >
+              <CodeEditor
+                value={problem.solution}
+                readOnly
+                label="Python reference solution"
+              />
+            </Suspense>
+          </div>
+          <button className="primary try-button" onClick={onPractice}>
+            <Play size={17} />
+            Try it yourself
+          </button>
+          <p className="try-caption">
+            Open the practice view to run and test your solution.
+          </p>
+        </>
+      )}
     </div>
   );
 }
@@ -259,6 +289,12 @@ function Workspace({
     [attempt, setAttempt] = useState(0),
     [collapsed, setCollapsed] = useState(false),
     [ratio, setRatio] = useState(41);
+  const [solutionView, setSolutionView] = useState<"code" | "execution">(
+    "code",
+  );
+  useEffect(() => {
+    if (tab !== "solution") setSolutionView("code");
+  }, [tab]);
   const savedDraft = useDraft(problem, onProgress);
   const { draft, update: updateDraft, result } = savedDraft;
   const split = useRef<HTMLDivElement>(null),
@@ -422,6 +458,8 @@ function Workspace({
                 key={`${slug}-${tab}`}
                 problem={problem}
                 mode={tab}
+                solutionHref={problemHref("solution")}
+                onExecution={() => setSolutionView("execution")}
               />
               <div
                 className="pane-divider"
@@ -458,7 +496,7 @@ function Workspace({
               <div className="workspace-panel" key={`${slug}-${tab}-workspace`}>
                 <ErrorBoundary key={`${slug}-${tab}`} hasDraft>
                   {tab === "learn" ? (
-                    <Walkthrough problem={problem} />
+                    <ConceptPlayer key={problem.slug} problem={problem} />
                   ) : tab === "practice" ? (
                     <Practice
                       problem={problem}
@@ -469,6 +507,8 @@ function Workspace({
                   ) : (
                     <Solution
                       problem={problem}
+                      view={solutionView}
+                      onViewChange={setSolutionView}
                       onPractice={() => {
                         location.hash = problemHref("practice");
                       }}

@@ -179,5 +179,88 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How do we turn a chain around without losing its far end?",
+    "intuition": [
+      "A linked list is a chain of nodes, each carrying an arrow to the next node. Reversing it means turning those arrows around; the node values and identities stay the same. The difficulty is that turning an arrow backward removes our route to the rest of the chain.",
+      "Imagine a bookmark placed at the next untouched node before we turn an arrow. Now we can safely join the current node to the front of the reversed chain and follow the bookmark onward. At every moment there are two parts: a completed reversed chain and an untouched chain. One node moves from the second part to the first at each step."
+    ],
+    "observation": "Bookmark the next untouched node before turning the current arrow backward.",
+    "approach": [
+      "Start with an empty reversed chain and the entire original chain still to visit.",
+      "Remember where the current node points before changing its arrow.",
+      "Point the current node to the front of the reversed chain. It becomes the new front.",
+      "Continue from the bookmarked node. When nothing remains, return the front of the reversed chain."
+    ],
+    "correctness": "Initially every node belongs to the untouched chain. Each move takes exactly its first node and places that same node in front of the reversed chain. The bookmark keeps the remaining nodes reachable, while the reversed part remains correctly linked. No node is copied, lost, or used twice. Once the untouched chain is empty, every original node belongs to the completed reversed chain, whose front is the new starting node.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each node makes one transfer, so work grows directly with the list length. Only a few bookmarks are needed regardless of how long the chain is. No new output nodes are created."
+    },
+    "pitfalls": [
+      "Save the forward route before reversing a link. Saving it afterward is too late.",
+      "Return the new front, which was originally the last node.",
+      "Reverse node links rather than simply reversing the stored values."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/reverse-linked-list/concept.webp",
+        "alt": "The same nodes form two chains during reversal: a completed 2-to-1 chain and an untouched 3-to-4-to-5 chain. A bookmark preserves the route into the untouched part.",
+        "caption": "The same nodes form two chains during reversal: a completed 2-to-1 chain and an untouched 3-to-4-to-5 chain. A bookmark preserves the route into the untouched part.",
+        "prompt": "Use case: scientific-educational. A polished wide dark-background conceptual illustration for reversing a singly linked list. Mathematical visual lecture aesthetics: charcoal-black, cyan, lime, warm ivory, spacious and restrained. Depict five persistent node beads labeled 1 2 3 4 5. Teach the midpoint of reversal using two separate chains: a short illuminated completed chain '2 → 1 → end' on the left, and an untouched cyan chain '3 → 4 → 5 → end' on the right. A small glowing bookmark marks node 3 as the saved continuation. Every arrow denotes a next link, all chains terminate, no connection joins node2 to node3. Optional exact visible text 'Reversed', 'Still to visit', 'Keep the route to 3'. Clear arrowheads, legible node numbers. Concept: save the route forward before reversing a link. Do not imply values swap or new nodes appear. No Python, variables, code, UI, logos or watermark."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "a-chain-of-five-nodes",
+        "title": "A chain of five nodes",
+        "narration": "Our list is 1 → 2 → 3 → 4 → 5. The goal is to follow the same nodes in the opposite order.",
+        "decision": "Arrows describe next links. Node identities and values stay fixed."
+      },
+      {
+        "id": "why-replacing-values-misses-the-point",
+        "title": "Why replacing values misses the point",
+        "narration": "Copying values in reverse would leave the chain links unchanged. We need to reverse the actual arrows.",
+        "decision": "The task is a structural transformation, not merely a different printed sequence."
+      },
+      {
+        "id": "keep-a-route-forward",
+        "title": "Keep a route forward",
+        "narration": "Before turning a link, bookmark the next untouched node. This preserves access to the rest of the chain.",
+        "decision": "The forward arrow is about to disappear, so the bookmark must come first."
+      },
+      {
+        "id": "move-the-first-node",
+        "title": "Move the first node",
+        "narration": "Bookmark node 2. Node 1 now points to the end of the empty reversed part, becoming the final tail.",
+        "decision": "The original chain remains reachable from the saved route to node 2."
+      },
+      {
+        "id": "grow-the-reversed-chain",
+        "title": "Grow the reversed chain",
+        "narration": "Bookmark node 3, then turn node 2 toward node 1. The completed chain is 2 → 1; the untouched part begins at 3.",
+        "decision": "Previously reversed links stay intact as one more node is added at the front."
+      },
+      {
+        "id": "the-last-transfer-completes-it",
+        "title": "The last transfer completes it",
+        "narration": "Repeat for 3, 4, and 5. The resulting chain is 5 → 4 → 3 → 2 → 1. Nothing remains untouched.",
+        "decision": "The last original node is now the front of the complete reversed chain."
+      },
+      {
+        "id": "why-every-node-survives",
+        "title": "Why every node survives",
+        "narration": "Each transfer preserves the reversed chain and the bookmarked untouched chain. Together they still contain all original nodes.",
+        "decision": "Moving one node at a time eventually empties the untouched part without losing any nodes."
+      },
+      {
+        "id": "when-there-is-no-chain",
+        "title": "When there is no chain",
+        "narration": "Boundary example: an empty list has no nodes to move. Its reversed list is also empty.",
+        "decision": "The same rule works without a special first-node transfer."
+      }
+    ]
+  }
 }

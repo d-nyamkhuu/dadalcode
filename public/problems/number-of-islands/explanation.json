@@ -150,5 +150,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How does painting a whole connected patch count it only once?",
+    "intuition": [
+      "Counting individual land squares overcounts islands. Even starting a separate traversal at every land square would recount patches that were already discovered.",
+      "When the scan finds unvisited land, count one new island and flood through all side-connected land from it. Mark the whole patch before scanning onward. Later squares in that patch are already accounted for."
+    ],
+    "observation": "Only shared sides connect land; diagonal contact does not join islands.",
+    "approach": [
+      "Scan for an unvisited land square.",
+      "Count one island and mark all side-connected land in its flood.",
+      "Continue until every land square belongs to a counted flood."
+    ],
+    "correctness": "A flood reaches exactly the land connected to its starting square by side-sharing paths. Marking that component prevents any of its cells from starting another count. Every component contains a first unvisited cell in the scan, which starts one flood. Thus components and counted islands correspond one to one.",
+    "complexity": {
+      "time": "O(rows * cols)",
+      "space": "O(rows * cols) worst case",
+      "explanation": "Each cell is scanned and each land square is flooded at most once, so work grows with grid area. The flood frontier can hold a grid-sized number of cells."
+    },
+    "pitfalls": [
+      "Only shared sides connect land; diagonal contact does not join islands.",
+      "Use four-direction adjacency, not diagonal adjacency."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/number-of-islands/concept.webp",
+        "alt": "When the scan finds unvisited land, count one new island and flood through all side-connected land from it. Mark the whole patch before scanning onward. Later squares in that patch are already accounted for.",
+        "caption": "When the scan finds unvisited land, count one new island and flood through all side-connected land from it. Mark the whole patch before scanning onward. Later squares in that patch are already accounted for.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Number of Islands algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Number of Islands, not a generic data structure illustration. The key idea is: Find a land cell that has not yet been counted, then visit all land connected to it. That whole group is one island. Mark cells as you visit them so the next scan does not count the group again. Only cells sharing a side connect; diagonal contact is not enough. The reason a decision is safe is: Count an island once at its first unvisited land cell. Mark neighbors before adding them to the queue. The actual example this lesson teaches is {\"grid\": [[\"1\", \"1\", \"0\", \"0\", \"0\"], [\"1\", \"1\", \"0\", \"0\", \"0\"], [\"0\", \"0\", \"1\", \"0\", \"0\"], [\"0\", \"0\", \"0\", \"1\", \"1\"]]} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does painting a whole connected patch count it only once?",
+        "decision": "Only shared sides connect land; diagonal contact does not join islands."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Counting individual land squares overcounts islands. Even starting a separate traversal at every land square would recount patches that were already discovered.",
+        "decision": "When the scan finds unvisited land, count one new island and flood through all side-connected land from it. Mark the whole patch before scanning onward. Later squares in that patch are already accounted for."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "When the scan finds unvisited land, count one new island and flood through all side-connected land from it. Mark the whole patch before scanning onward. Later squares in that patch are already accounted for.",
+        "decision": "Only shared sides connect land; diagonal contact does not join islands."
+      },
+      {
+        "id": "one-four-square-patch",
+        "title": "One four-square patch",
+        "narration": "The top-left four land squares connect by sides. One flood marks all four and counts one island.",
+        "decision": "A connected component contributes one count, not one per cell."
+      },
+      {
+        "id": "a-lone-middle-square",
+        "title": "A lone middle square",
+        "narration": "Land at (2,2) has no side-connected land neighbor. It starts island two.",
+        "decision": "Diagonal contact with the bottom patch is insufficient."
+      },
+      {
+        "id": "the-bottom-pair-is-one-patch",
+        "title": "The bottom pair is one patch",
+        "narration": "Squares (3,3) and (3,4) share a side. They form island three, giving answer 3.",
+        "decision": "Flooding both prevents a fourth count at the neighboring square."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A flood reaches exactly the land connected to its starting square by side-sharing paths. Marking that component prevents any of its cells from starting another count. Every component contains a first unvisited cell in the scan, which starts one flood. Thus components and counted islands correspond one to one.",
+        "decision": "Only shared sides connect land; diagonal contact does not join islands."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Two land squares touching only at a corner form two islands.",
+        "decision": "Use four-direction adjacency, not diagonal adjacency."
+      }
+    ]
+  }
 }

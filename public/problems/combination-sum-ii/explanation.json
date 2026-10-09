@@ -60,5 +60,87 @@
       "note": "Backtracking mutates path after a result is found. A copy freezes the completed combination instead of letting later removals erase it."
     }
   ],
-  "keyDecision": "After choosing index i, continue at i + 1. Skip equal alternatives within the same call."
+  "keyDecision": "After choosing index i, continue at i + 1. Skip equal alternatives within the same call.",
+  "concept": {
+    "question": "How can equal candidates be used without producing duplicate combinations?",
+    "intuition": [
+      "Equal-valued input positions can produce the same combination along different branches. Removing duplicate values entirely would also be wrong, because separate occurrences may both be needed.",
+      "Sort the occurrences. After choosing one, continue only beyond its position so that occurrence cannot be reused. At the same choice level, skip repeated values; deeper in the path, a later equal occurrence remains available."
+    ],
+    "observation": "Use each occurrence at most once; skip equal sibling choices, not equal values deeper in a combination.",
+    "approach": [
+      "Sort occurrences and begin with the target budget.",
+      "Choose an occurrence and continue at later positions only.",
+      "Skip equal alternative choices at one level and save each zero-budget collection."
+    ],
+    "correctness": "Advancing past a chosen position enforces one use per occurrence. Sorting lets equal choices at the same level be recognized as interchangeable routes to the same value combination. Retaining the first such route covers every possible continuation, while equal values remain legal at deeper levels. Every saved path exactly spends the budget.",
+    "complexity": {
+      "time": "O(2^n × n) worst case",
+      "space": "O(n) auxiliary plus output",
+      "explanation": "There can be exponentially many subsets to consider. Sorting costs extra preliminary work; the path and search depth are linear in input size, plus memory for all returned combinations."
+    },
+    "pitfalls": [
+      "Continue after the chosen occurrence.",
+      "Skip equal values only at the same choice level.",
+      "Keep separate equal occurrences when a combination needs them."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/combination-sum-ii/concept.webp",
+        "alt": "Equal occurrences have distinct seats, while identical sibling choices are collapsed into one search route.",
+        "caption": "Equal occurrences have distinct seats, while identical sibling choices are collapsed into one search route.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Combination Sum II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Combination Sum II, not a generic data structure illustration. The key idea is: Sort the candidates, then build each combination from left to right through their positions. Move past a position after choosing it because each occurrence can be used only once. Equal numbers need special care: allow another copy deeper in a combination, but skip duplicate choices at the same step. The reason a decision is safe is: After choosing index i, continue at i + 1. Skip equal alternatives within the same call. The actual example this lesson teaches is {\"candidates\": [10, 1, 2, 7, 6, 1, 5], \"target\": 8} with answer [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can equal candidates be used without producing duplicate combinations?",
+        "decision": "Use each occurrence at most once; skip equal sibling choices, not equal values deeper in a combination."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Equal-valued input positions can produce the same combination along different branches. Removing duplicate values entirely would also be wrong, because separate occurrences may both be needed.",
+        "decision": "Sort the occurrences. After choosing one, continue only beyond its position so that occurrence cannot be reused. At the same choice level, skip repeated values; deeper in the path, a later equal occurrence remains available."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort the occurrences. After choosing one, continue only beyond its position so that occurrence cannot be reused. At the same choice level, skip repeated values; deeper in the path, a later equal occurrence remains available.",
+        "decision": "Use each occurrence at most once; skip equal sibling choices, not equal values deeper in a combination."
+      },
+      {
+        "id": "two-copies-can-both-contribute",
+        "title": "Two copies can both contribute",
+        "narration": "Sorted candidates are [1,1,2,5,6,7,10]. Choose the two separate 1s, then 6, giving [1,1,6].",
+        "decision": "Equal values from different positions can be used together."
+      },
+      {
+        "id": "return-to-earlier-forks",
+        "title": "Return to earlier forks",
+        "narration": "From a single chosen 1, the alternatives [1,2,5] and [1,7] also fill 8.",
+        "decision": "Each alternative continues after the chosen occurrence."
+      },
+      {
+        "id": "skip-a-repeated-root-choice",
+        "title": "Skip a repeated root choice",
+        "narration": "At the beginning, skip choosing the second 1 as an alternative first value. Choosing 2 then 6 gives [2,6].",
+        "decision": "The second root 1 would repeat combinations already explored with the first root 1."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Advancing past a chosen position enforces one use per occurrence. Sorting lets equal choices at the same level be recognized as interchangeable routes to the same value combination. Retaining the first such route covers every possible continuation, while equal values remain legal at deeper levels. Every saved path exactly spends the budget.",
+        "decision": "Use each occurrence at most once; skip equal sibling choices, not equal values deeper in a combination."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: two input 1s can form [1,1], but a single input 1 cannot be reused.",
+        "decision": "Position availability and duplicate suppression are different rules."
+      }
+    ]
+  }
 }

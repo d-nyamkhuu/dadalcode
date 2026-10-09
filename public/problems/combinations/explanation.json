@@ -57,5 +57,86 @@
       "note": "Moving beyond the chosen value enforces distinctness and ascending construction, eliminating alternative orderings of the same selected set."
     }
   ],
-  "keyDecision": "A choice must leave enough larger numbers to complete all k positions."
+  "keyDecision": "A choice must leave enough larger numbers to complete all k positions.",
+  "concept": {
+    "question": "How do increasing choices give each fixed-size selection one path?",
+    "intuition": [
+      "Choosing the same set in different orders creates duplicates. A branch can also fail simply because it has too few remaining values to fill the requested number of seats.",
+      "Choose numbers in strictly increasing order. After a choice, only larger numbers remain available. Before branching, check that enough values remain for all unfilled seats."
+    ],
+    "observation": "Choose later numbers only, and prune when too few remain.",
+    "approach": [
+      "Choose a larger next value.",
+      "Prune when too few later values remain.",
+      "Save paths of the required size."
+    ],
+    "correctness": "Every selection of distinct values has exactly one increasing order. The search follows that order and no reordered alternative. A branch with too few later values cannot complete the required size, so pruning it loses no answer. Saving only full paths yields exactly the requested combinations.",
+    "complexity": {
+      "time": "O(k * C(n,k))",
+      "space": "O(k) auxiliary, excluding output",
+      "explanation": "Writing each result takes time proportional to the requested selection size. Search-path memory is linear in that size; output contains all binomially many selections."
+    },
+    "pitfalls": [
+      "Choose later numbers only, and prune when too few remain.",
+      "A full selection is different from every possible ordering."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/combinations/concept.webp",
+        "alt": "A branching choice tree advances toward later values, with shorter branches where too few choices remain.",
+        "caption": "Choosing in increasing order gives each selection one route through the tree. A branch can stop early when it cannot fill the remaining places.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A branching selection tree grows from a small collection of four visually distinct colored marbles. Each branch selects a later marble, retaining left-to-right order. Illuminate one completed two-marble selection and dim a reversed duplicate path. Depict the choice principle, not a complete enumeration of leaves."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do increasing choices give each fixed-size selection one path?",
+        "decision": "Choose later numbers only, and prune when too few remain."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Choosing the same set in different orders creates duplicates. A branch can also fail simply because it has too few remaining values to fill the requested number of seats.",
+        "decision": "Choose numbers in strictly increasing order. After a choice, only larger numbers remain available. Before branching, check that enough values remain for all unfilled seats."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Choose numbers in strictly increasing order. After a choice, only larger numbers remain available. Before branching, check that enough values remain for all unfilled seats.",
+        "decision": "Choose later numbers only, and prune when too few remain."
+      },
+      {
+        "id": "begin-with-one",
+        "title": "Begin with one",
+        "narration": "From 1 through 4, choosing 1 first leaves 2,3,4 for the second seat.",
+        "decision": "Increasing order removes reordered copies."
+      },
+      {
+        "id": "try-the-next-first-values",
+        "title": "Try the next first values",
+        "narration": "A first 2 gives [2,3] and [2,4]. A first 3 gives [3,4].",
+        "decision": "The next seat must use a larger number."
+      },
+      {
+        "id": "skip-a-start-that-cannot-finish",
+        "title": "Skip a start that cannot finish",
+        "narration": "Starting with 4 leaves no larger number for the second seat. The six completed pairs are the answer.",
+        "decision": "Pruning removes a branch that cannot contain a full selection."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every selection of distinct values has exactly one increasing order. The search follows that order and no reordered alternative. A branch with too few later values cannot complete the required size, so pruning it loses no answer. Saving only full paths yields exactly the requested combinations.",
+        "decision": "Choose later numbers only, and prune when too few remain."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "When all available values are required, there is exactly one combination: the entire increasing range.",
+        "decision": "A full selection is different from every possible ordering."
+      }
+    ]
+  }
 }

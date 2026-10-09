@@ -45,5 +45,86 @@
       "note": "The remaining case is a split or equality with a target. It identifies the ancestor itself, and preserves the required original-node identity."
     }
   ],
-  "keyDecision": "Stop when the target values lie on different sides or one equals the current node's value."
+  "keyDecision": "Stop when the target values lie on different sides or one equals the current node's value.",
+  "concept": {
+    "question": "Where do the ordered search routes to two nodes first split?",
+    "intuition": [
+      "Searching the whole tree ignores its value ordering. If both targets lie on the same side of a node, their lowest shared ancestor must also be on that side.",
+      "Follow both target values together. Move left when both are smaller and right when both are larger. Stop at their first split, or when the current node is itself a target. That is the lowest shared ancestor."
+    ],
+    "observation": "Continue only while both targets lie strictly on the same ordered side.",
+    "approach": [
+      "Compare both target values with the current node.",
+      "Move into their shared side when both agree.",
+      "Return the first split or target node."
+    ],
+    "correctness": "At a node where both targets lie on one side, all other positions can be excluded by search-tree ordering, and their lowest common ancestor remains in that shared subtree. At the first split, both targets descend from the current node but no child contains both. If the current node is a target, it is itself the lowest ancestor containing both. Hence the stop is exact.",
+    "complexity": {
+      "time": "O(h)",
+      "space": "O(1)",
+      "explanation": "Follow one root-to-node path, so work is proportional to tree height. No ancestor collection is required; extra memory is constant."
+    },
+    "pitfalls": [
+      "Continue only while both targets lie strictly on the same ordered side.",
+      "A node counts as its own ancestor."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/lowest-common-ancestor-of-a-binary-search-tree/concept.webp",
+        "alt": "Follow both target values together. Move left when both are smaller and right when both are larger. Stop at their first split, or when the current node is itself a target. That is the lowest shared ancestor.",
+        "caption": "Follow both target values together. Move left when both are smaller and right when both are larger. Stop at their first split, or when the current node is itself a target. That is the lowest shared ancestor.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Lowest Common Ancestor of a Binary Search Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Lowest Common Ancestor of a Binary Search Tree, not a generic data structure illustration. The key idea is: Use the tree's ordering to follow the two target nodes together. If both values are smaller than the current node, go left. If both are larger, go right. Their first split, or a node equal to a target, identifies the lowest node containing both targets. The reason a decision is safe is: Stop when the target values lie on different sides or one equals the current node's value. The actual example this lesson teaches is {\"root\": [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5], \"p\": 3, \"q\": 5} with answer 4. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Where do the ordered search routes to two nodes first split?",
+        "decision": "Continue only while both targets lie strictly on the same ordered side."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Searching the whole tree ignores its value ordering. If both targets lie on the same side of a node, their lowest shared ancestor must also be on that side.",
+        "decision": "Follow both target values together. Move left when both are smaller and right when both are larger. Stop at their first split, or when the current node is itself a target. That is the lowest shared ancestor."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Follow both target values together. Move left when both are smaller and right when both are larger. Stop at their first split, or when the current node is itself a target. That is the lowest shared ancestor.",
+        "decision": "Continue only while both targets lie strictly on the same ordered side."
+      },
+      {
+        "id": "both-targets-lie-below-six",
+        "title": "Both targets lie below six",
+        "narration": "Targets 3 and 5 are both smaller than root 6, so move left.",
+        "decision": "A larger-side subtree cannot contain either target."
+      },
+      {
+        "id": "both-targets-lie-above-two",
+        "title": "Both targets lie above two",
+        "narration": "At node 2, both target values are greater, so move right to 4.",
+        "decision": "Their shared search direction remains below the true lowest ancestor."
+      },
+      {
+        "id": "four-separates-their-routes",
+        "title": "Four separates their routes",
+        "narration": "At 4, target 3 goes left and target 5 goes right. Return original node 4.",
+        "decision": "Neither child subtree can contain both targets."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At a node where both targets lie on one side, all other positions can be excluded by search-tree ordering, and their lowest common ancestor remains in that shared subtree. At the first split, both targets descend from the current node but no child contains both. If the current node is a target, it is itself the lowest ancestor containing both. Hence the stop is exact.",
+        "decision": "Continue only while both targets lie strictly on the same ordered side."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A target can itself be the shared ancestor of the other target.",
+        "decision": "A node counts as its own ancestor."
+      }
+    ]
+  }
 }

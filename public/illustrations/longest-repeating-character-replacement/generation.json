@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A bounded sliding frame contains four colored tiles, THREE cyan and ONE amber. A single transformation arrow changes only the amber tile to cyan, yielding four cyan tiles. Beside it a faded larger frame contains three cyan and two amber tiles, indicating that it would need more changes. No text, numbers, or equations.",
+  "width": 1774,
+  "height": 887
+}

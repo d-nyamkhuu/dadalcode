@@ -50,5 +50,86 @@
       "note": "Move the new shot to the latest position allowed by the first-ending balloon, maximizing its chance of hitting later balloons."
     }
   ],
-  "keyDecision": "Reuse the arrow when start <= arrow_position. A balloon includes both endpoints."
+  "keyDecision": "Reuse the arrow when start <= arrow_position. A balloon includes both endpoints.",
+  "concept": {
+    "question": "Why should an arrow be placed at the earliest ending balloon?",
+    "intuition": [
+      "Shooting at a convenient middle point can miss later balloons that share the first balloon’s right edge. Sort by right edge and make each necessary arrow cover as far right as that earliest deadline allows.",
+      "Shoot at the right endpoint of the earliest-ending uncovered balloon. Every balloon containing that point is covered; start a new arrow only when the next balloon begins strictly beyond it."
+    ],
+    "observation": "Balloon intervals include endpoints, so a start equal to the arrow position is covered.",
+    "approach": [
+      "Sort balloons by right endpoint.",
+      "Shoot at the first uncovered balloon’s right edge.",
+      "Reuse that arrow for every later balloon containing its position."
+    ],
+    "correctness": "Any complete solution must shoot an arrow inside the earliest-ending uncovered balloon. Moving that arrow right to this balloon’s endpoint cannot lose any later balloon it covered: later endpoints are no smaller, and their starts were already at or before the old position. Thus one optimal solution uses the greedy arrow. Repeat on the uncovered balloons.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "Sorting takes linearithmic time and a linear-size sorted collection. A single scan uses only the most recent arrow position and a count."
+    },
+    "pitfalls": [
+      "Balloon intervals include endpoints, so a start equal to the arrow position is covered.",
+      "Use strict separation for uncovered balloons."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/minimum-number-of-arrows-to-burst-balloons/concept.webp",
+        "alt": "Shoot at the right endpoint of the earliest-ending uncovered balloon. Every balloon containing that point is covered; start a new arrow only when the next balloon begins strictly beyond it.",
+        "caption": "Shoot at the right endpoint of the earliest-ending uncovered balloon. Every balloon containing that point is covered; start a new arrow only when the next balloon begins strictly beyond it.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Minimum Number of Arrows to Burst Balloons algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Minimum Number of Arrows to Burst Balloons, not a generic data structure illustration. The key idea is: Sort balloons by their ending coordinate. Shoot at the end of the first uncovered balloon, and use that arrow for every balloon containing that point. The earliest ending gives a position that hits this balloon while leaving as many future balloons covered as possible. The reason a decision is safe is: Reuse the arrow when start <= arrow_position. A balloon includes both endpoints. The actual example this lesson teaches is {\"points\": [[10, 16], [2, 8], [1, 6], [7, 12]]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why should an arrow be placed at the earliest ending balloon?",
+        "decision": "Balloon intervals include endpoints, so a start equal to the arrow position is covered."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Shooting at a convenient middle point can miss later balloons that share the first balloon’s right edge. Sort by right edge and make each necessary arrow cover as far right as that earliest deadline allows.",
+        "decision": "Shoot at the right endpoint of the earliest-ending uncovered balloon. Every balloon containing that point is covered; start a new arrow only when the next balloon begins strictly beyond it."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Shoot at the right endpoint of the earliest-ending uncovered balloon. Every balloon containing that point is covered; start a new arrow only when the next balloon begins strictly beyond it.",
+        "decision": "Balloon intervals include endpoints, so a start equal to the arrow position is covered."
+      },
+      {
+        "id": "find-the-earliest-deadline",
+        "title": "Find the earliest deadline",
+        "narration": "For [10,16],[2,8],[1,6],[7,12], the earliest end is six. Any arrow covering [1,6] must be at or before six.",
+        "decision": "Choosing six reaches as far right as possible while still covering this required balloon."
+      },
+      {
+        "id": "one-arrow-covers-two-balloons",
+        "title": "One arrow covers two balloons",
+        "narration": "Shoot at six. Both [1,6] and [2,8] contain six, but [7,12] starts beyond it.",
+        "decision": "All later balloons end no earlier than six, so checking their starts determines coverage."
+      },
+      {
+        "id": "a-second-arrow-completes-coverage",
+        "title": "A second arrow completes coverage",
+        "narration": "Shoot at twelve for [7,12]. It also covers [10,16]. Return two arrows.",
+        "decision": "The next uncovered balloon forces another arrow."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Any complete solution must shoot an arrow inside the earliest-ending uncovered balloon. Moving that arrow right to this balloon’s endpoint cannot lose any later balloon it covered: later endpoints are no smaller, and their starts were already at or before the old position. Thus one optimal solution uses the greedy arrow. Repeat on the uncovered balloons.",
+        "decision": "Balloon intervals include endpoints, so a start equal to the arrow position is covered."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Balloons [1,2] and [2,3] share endpoint two and need only one arrow.",
+        "decision": "Use strict separation for uncovered balloons."
+      }
+    ]
+  }
 }

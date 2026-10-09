@@ -46,5 +46,87 @@
       "note": "The dummy simplifies appending, but skipping it prevents an unwanted leading output digit."
     }
   ],
-  "keyDecision": "Continue while a list still has a digit or the carry is nonzero."
+  "keyDecision": "Continue while a list still has a digit or the carry is nonzero.",
+  "concept": {
+    "question": "How does paper addition work when the ones digit comes first?",
+    "intuition": [
+      "A list can represent a number too large for a fixed-size integer. Converting it into one whole number hides the digit-by-digit structure. The lists already put the ones digit first, exactly where paper addition begins.",
+      "Treat the lists as aligned addition columns. Each column receives two digits and the carry from the preceding column. Keep its ones digit and send its tens digit to the next column. A finished short list contributes zero to the remaining columns."
+    ],
+    "observation": "Finish only when both numbers have no digits left and there is no carry waiting.",
+    "approach": [
+      "Add the next two digits and the incoming carry.",
+      "Write the ones digit of that total and carry any remaining ten onward.",
+      "Continue until the digits and the final carry are exhausted."
+    ],
+    "correctness": "After each column, the written digits equal the low-order digits of the true sum, and the carry accounts for the remaining ten. The next column preserves this equality. Once no digits or carry remain, the written chain represents the entire sum.",
+    "complexity": {
+      "time": "O(max(m, n))",
+      "space": "O(max(m, n)) output; O(1) auxiliary",
+      "explanation": "Visit each input digit once and write at most one extra digit for a final carry. The result needs memory proportional to its digits; beyond those output nodes, only the current columns and carry are remembered."
+    },
+    "pitfalls": [
+      "A shorter number supplies zero in later columns.",
+      "The final carry may need another digit.",
+      "The output chain begins with the ones digit."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/add-two-numbers/concept.webp",
+        "alt": "Aligned digit chains send a carry from one addition column to the next, rather than converting whole numbers.",
+        "caption": "Aligned digit chains send a carry from one addition column to the next, rather than converting whole numbers.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Add Two Numbers algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Add Two Numbers, not a generic data structure illustration. The key idea is: Add these numbers as you would add on paper, one digit at a time. The lists already start with the ones digit. Add the two current digits and any carry from the previous column. Keep the last digit of the total and carry the rest to the next column. The reason a decision is safe is: Continue while a list still has a digit or the carry is nonzero. The actual example this lesson teaches is {\"l1\": [2, 4, 3], \"l2\": [5, 6, 4]} with answer [7, 0, 8]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does paper addition work when the ones digit comes first?",
+        "decision": "Finish only when both numbers have no digits left and there is no carry waiting."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A list can represent a number too large for a fixed-size integer. Converting it into one whole number hides the digit-by-digit structure. The lists already put the ones digit first, exactly where paper addition begins.",
+        "decision": "Treat the lists as aligned addition columns. Each column receives two digits and the carry from the preceding column. Keep its ones digit and send its tens digit to the next column. A finished short list contributes zero to the remaining columns."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Treat the lists as aligned addition columns. Each column receives two digits and the carry from the preceding column. Keep its ones digit and send its tens digit to the next column. A finished short list contributes zero to the remaining columns.",
+        "decision": "Finish only when both numbers have no digits left and there is no carry waiting."
+      },
+      {
+        "id": "the-ones-column",
+        "title": "The ones column",
+        "narration": "The first digits are 2 and 5. Their total is 7, so write 7 with no carry.",
+        "decision": "The first list entries represent ones, not hundreds."
+      },
+      {
+        "id": "carry-into-the-next-column",
+        "title": "Carry into the next column",
+        "narration": "The next digits are 4 and 6. Their total is 10. Write 0 and carry 1 to the next column.",
+        "decision": "Ten in one column becomes one in the following column."
+      },
+      {
+        "id": "include-the-carried-ten",
+        "title": "Include the carried ten",
+        "narration": "The final digits 3 and 4 join the carried 1 to make 8. The result is 7 → 0 → 8, representing 807.",
+        "decision": "No digits or carry remain, so all addition columns are complete."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each column, the written digits equal the low-order digits of the true sum, and the carry accounts for the remaining ten. The next column preserves this equality. Once no digits or carry remain, the written chain represents the entire sum.",
+        "decision": "Finish only when both numbers have no digits left and there is no carry waiting."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: 9 plus 1 writes 0 and leaves a carry of 1, requiring a second result node.",
+        "decision": "Do not stop merely because the original lists end."
+      }
+    ]
+  }
 }

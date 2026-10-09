@@ -4,3 +4,5 @@ public/
 src/data/*.json
 tests/review-ledger.json
 package-lock.json
+# Generated geometry is JSON inside TypeScript; preserve the validator format.
+src/components/concepts/diagrams/

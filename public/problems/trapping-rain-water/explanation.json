@@ -129,5 +129,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why does the lower known boundary settle water on its side?",
+    "intuition": [
+      "A column can hold water only when higher boundaries exist on both sides. Checking both boundaries from scratch for every column repeats scans of the same skyline.",
+      "Walk inward from both ends while remembering the tallest boundary seen on each side. Resolve the side with the lower remembered boundary: the other side already supplies a wall at least that high. The difference between that boundary and the current column is its settled water depth."
+    ],
+    "observation": "Resolve the side with the lower known boundary; both boundaries are necessary to contain water.",
+    "approach": [
+      "Track the tallest boundary encountered from each end.",
+      "On the side with the lower known boundary, add the depth above its current column.",
+      "Move inward and continue until every column’s contribution is settled."
+    ],
+    "correctness": "When one remembered boundary is lower, the opposite remembered boundary is already high enough to contain water at that level. The current column on the lower side can therefore be settled without knowing deeper interior walls. Moving inward accounts for that column exactly once. Repeated safe settlement sums precisely the contained water above every column.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each move settles one column, so work is linear in the skyline length. Two positions, two remembered boundaries, and the running water total use constant extra memory."
+    },
+    "pitfalls": [
+      "Use the lower of the two containing boundaries.",
+      "Count only water depth above a column.",
+      "Do not confuse trapped water with the largest single container."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/trapping-rain-water/concept.webp",
+        "alt": "A skyline holds water in bounded pockets; the lower known boundary determines which side can be settled next.",
+        "caption": "A skyline holds water in bounded pockets; the lower known boundary determines which side can be settled next.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Trapping Rain Water algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Trapping Rain Water, not a generic data structure illustration. The key idea is: Water above a column needs a wall on both sides. The shorter of those two walls limits its depth. Move inward from both ends while remembering the tallest wall seen on each side. When one remembered wall is lower, the water depth on that side is already known. The reason a decision is safe is: Process the side with the smaller remembered maximum. Its water depth is that maximum minus the column height. The actual example this lesson teaches is {\"height\": [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]} with answer 6. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does the lower known boundary settle water on its side?",
+        "decision": "Resolve the side with the lower known boundary; both boundaries are necessary to contain water."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A column can hold water only when higher boundaries exist on both sides. Checking both boundaries from scratch for every column repeats scans of the same skyline.",
+        "decision": "Walk inward from both ends while remembering the tallest boundary seen on each side. Resolve the side with the lower remembered boundary: the other side already supplies a wall at least that high. The difference between that boundary and the current column is its settled water depth."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Walk inward from both ends while remembering the tallest boundary seen on each side. Resolve the side with the lower remembered boundary: the other side already supplies a wall at least that high. The difference between that boundary and the current column is its settled water depth.",
+        "decision": "Resolve the side with the lower known boundary; both boundaries are necessary to contain water."
+      },
+      {
+        "id": "a-low-pocket-gains-one-unit",
+        "title": "A low pocket gains one unit",
+        "narration": "The zero-height column at position 2 sits beneath a known left wall of height 1. A sufficient right boundary allows one unit there.",
+        "decision": "The lower boundary fixes this side’s waterline."
+      },
+      {
+        "id": "the-middle-pockets-fill",
+        "title": "The middle pockets fill",
+        "narration": "Positions 4,5,6 hold 1,2,1 units beneath a waterline of height 2.",
+        "decision": "Subtract each column height from its settled waterline."
+      },
+      {
+        "id": "add-all-settled-depths",
+        "title": "Add all settled depths",
+        "narration": "Position 9 contributes one more unit. Together, positions 2,4,5,6,9 hold 1+1+2+1+1 = 6.",
+        "decision": "Count water above each column once."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "When one remembered boundary is lower, the opposite remembered boundary is already high enough to contain water at that level. The current column on the lower side can therefore be settled without knowing deeper interior walls. Moving inward accounts for that column exactly once. Repeated safe settlement sums precisely the contained water above every column.",
+        "decision": "Resolve the side with the lower known boundary; both boundaries are necessary to contain water."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a monotonically increasing skyline has no dip with containing walls on both sides, so it holds no water.",
+        "decision": "A single high wall cannot contain a pocket alone."
+      }
+    ]
+  }
 }

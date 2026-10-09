@@ -71,5 +71,86 @@
       "note": "Whole-word search must check endpoint status after consuming every query character."
     }
   ],
-  "keyDecision": "Whole-word search requires an end marker. Prefix search requires only a complete path."
+  "keyDecision": "Whole-word search requires an end marker. Prefix search requires only a complete path.",
+  "concept": {
+    "question": "Why is following a letter path different from finding a whole stored word?",
+    "intuition": [
+      "Independent word storage repeats shared beginnings. But combining beginnings also creates a subtle distinction: a path can exist without its prefix having been inserted as a complete word.",
+      "Store letters as edges from a shared root. Words sharing a prefix reuse those edges. Mark complete-word endpoints separately. Prefix queries need only an existing path; whole-word queries also need its endpoint marker."
+    ],
+    "observation": "An existing path proves a prefix; only an end marker proves a whole inserted word.",
+    "approach": [
+      "Insert each letter along a shared path and mark its endpoint.",
+      "For a prefix query, require the full path.",
+      "For a word query, require the path and its end marker."
+    ],
+    "correctness": "Every inserted word follows its exact sequence of letter edges and marks its final node. A query follows those same edges, so a missing edge rules out that prefix. At the final node, the marker records precisely whether that full word was inserted. Shared prefix edges preserve all longer words without implying extra shorter words.",
+    "complexity": {
+      "time": "O(L) per method",
+      "space": "O(total distinct prefix characters)",
+      "explanation": "Each operation follows at most one edge per letter, giving linear work in query or word length. Stored nodes grow with distinct prefix characters across all inserted words."
+    },
+    "pitfalls": [
+      "An existing path proves a prefix; only an end marker proves a whole inserted word.",
+      "The same path can answer both queries yes when it has an endpoint marker."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/implement-trie-prefix-tree/concept.webp",
+        "alt": "Store letters as edges from a shared root. Words sharing a prefix reuse those edges. Mark complete-word endpoints separately. Prefix queries need only an existing path; whole-word queries also need its endpoint marker.",
+        "caption": "Store letters as edges from a shared root. Words sharing a prefix reuse those edges. Mark complete-word endpoints separately. Prefix queries need only an existing path; whole-word queries also need its endpoint marker.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Implement Trie (Prefix Tree) algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Implement Trie (Prefix Tree), not a generic data structure illustration. The key idea is: Store words as paths of letters, sharing the beginning of words with the same prefix. A search follows one letter at a time. Reaching a path proves that a prefix exists, but it does not prove that a whole word was inserted. Mark word endings separately. The reason a decision is safe is: Whole-word search requires an end marker. Prefix search requires only a complete path. The actual example this lesson teaches is {\"operations\": [\"Trie\", \"insert\", \"search\", \"search\", \"startsWith\", \"insert\", \"search\"], \"args\": [[], [\"apple\"], [\"apple\"], [\"app\"], [\"app\"], [\"app\"], [\"app\"]]} with answer [null, null, true, false, true, null, true]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why is following a letter path different from finding a whole stored word?",
+        "decision": "An existing path proves a prefix; only an end marker proves a whole inserted word."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Independent word storage repeats shared beginnings. But combining beginnings also creates a subtle distinction: a path can exist without its prefix having been inserted as a complete word.",
+        "decision": "Store letters as edges from a shared root. Words sharing a prefix reuse those edges. Mark complete-word endpoints separately. Prefix queries need only an existing path; whole-word queries also need its endpoint marker."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Store letters as edges from a shared root. Words sharing a prefix reuse those edges. Mark complete-word endpoints separately. Prefix queries need only an existing path; whole-word queries also need its endpoint marker.",
+        "decision": "An existing path proves a prefix; only an end marker proves a whole inserted word."
+      },
+      {
+        "id": "insert-the-long-word",
+        "title": "Insert the long word",
+        "narration": "Insert apple. The path a→p→p→l→e exists, with a word marker after e.",
+        "decision": "Shared paths do not automatically mark every prefix as a word."
+      },
+      {
+        "id": "a-shorter-path-has-two-answers",
+        "title": "A shorter path has two answers",
+        "narration": "The app path exists, so its prefix query is yes. Its whole-word query is no because it has no end marker.",
+        "decision": "Prefix existence and whole-word insertion differ."
+      },
+      {
+        "id": "mark-the-shorter-endpoint",
+        "title": "Mark the shorter endpoint",
+        "narration": "Insert app using its existing path and add its endpoint marker. A whole-word query for app now returns yes.",
+        "decision": "Insertion can add a word without adding new letter edges."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every inserted word follows its exact sequence of letter edges and marks its final node. A query follows those same edges, so a missing edge rules out that prefix. At the final node, the marker records precisely whether that full word was inserted. Shared prefix edges preserve all longer words without implying extra shorter words.",
+        "decision": "An existing path proves a prefix; only an end marker proves a whole inserted word."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A stored word is also a valid prefix of itself.",
+        "decision": "The same path can answer both queries yes when it has an endpoint marker."
+      }
+    ]
+  }
 }

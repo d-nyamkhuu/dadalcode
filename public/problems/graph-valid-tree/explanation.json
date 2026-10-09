@@ -52,5 +52,86 @@
       "note": "Mark on discovery so each vertex enters the stack once, even with several incoming visits."
     }
   ],
-  "keyDecision": "Require both n - 1 edges and n reachable vertices."
+  "keyDecision": "Require both n - 1 edges and n reachable vertices.",
+  "concept": {
+    "question": "Why do connectivity and one-fewer edges certify an undirected tree?",
+    "intuition": [
+      "Checking only reachability can accept a connected graph with cycles. Checking only the edge count can accept a disconnected graph whose cycle uses extra edges elsewhere.",
+      "An undirected tree with all vertices has exactly one fewer edge than vertices. Check that count, then traverse from one vertex and verify all are reachable. These two conditions together force the connected structure to have no cycle."
+    ],
+    "observation": "Require both full connectivity and exactly one fewer edge than vertices.",
+    "approach": [
+      "Reject an edge count different from one fewer than the vertex count.",
+      "Traverse undirected neighbors from a starting vertex.",
+      "Accept only if all vertices were reached."
+    ],
+    "correctness": "A connected undirected graph needs at least one fewer edge than vertices to connect them all. If it had a cycle, one cycle edge could be removed while preserving connectivity, contradicting that minimum count. Therefore full connectivity with exactly that count implies an acyclic connected graph, precisely a tree.",
+    "complexity": {
+      "time": "O(n + e)",
+      "space": "O(n + e)",
+      "explanation": "Traversal examines vertices and undirected adjacency entries once. Work and storage are linear in vertices plus edges."
+    },
+    "pitfalls": [
+      "Require both full connectivity and exactly one fewer edge than vertices.",
+      "Do not reject the one-vertex zero-edge case."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/graph-valid-tree/concept.webp",
+        "alt": "An undirected tree with all vertices has exactly one fewer edge than vertices. Check that count, then traverse from one vertex and verify all are reachable. These two conditions together force the connected structure to have no cycle.",
+        "caption": "An undirected tree with all vertices has exactly one fewer edge than vertices. Check that count, then traverse from one vertex and verify all are reachable. These two conditions together force the connected structure to have no cycle.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Graph Valid Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Graph Valid Tree, not a generic data structure illustration. The key idea is: An undirected tree must connect every vertex and have exactly n - 1 edges. Check the edge count, then visit the graph from vertex 0. If all vertices are reached, those two facts together prove it is a tree; a disconnected graph cannot pass. The reason a decision is safe is: Require both n - 1 edges and n reachable vertices. The actual example this lesson teaches is {\"n\": 5, \"edges\": [[0, 1], [0, 2], [0, 3], [1, 4]]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do connectivity and one-fewer edges certify an undirected tree?",
+        "decision": "Require both full connectivity and exactly one fewer edge than vertices."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Checking only reachability can accept a connected graph with cycles. Checking only the edge count can accept a disconnected graph whose cycle uses extra edges elsewhere.",
+        "decision": "An undirected tree with all vertices has exactly one fewer edge than vertices. Check that count, then traverse from one vertex and verify all are reachable. These two conditions together force the connected structure to have no cycle."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "An undirected tree with all vertices has exactly one fewer edge than vertices. Check that count, then traverse from one vertex and verify all are reachable. These two conditions together force the connected structure to have no cycle.",
+        "decision": "Require both full connectivity and exactly one fewer edge than vertices."
+      },
+      {
+        "id": "the-edge-count-fits",
+        "title": "The edge count fits",
+        "narration": "Five vertices have four edges: 0–1, 0–2, 0–3, 1–4.",
+        "decision": "Four is exactly one fewer than five."
+      },
+      {
+        "id": "reach-the-first-neighbors",
+        "title": "Reach the first neighbors",
+        "narration": "Starting at 0 discovers 1,2,3, then 1 leads to 4.",
+        "decision": "Mark at discovery to avoid returning along undirected back edges."
+      },
+      {
+        "id": "both-conditions-pass",
+        "title": "Both conditions pass",
+        "narration": "All five vertices are reachable and there are four edges. Return yes.",
+        "decision": "Neither condition would suffice on its own."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A connected undirected graph needs at least one fewer edge than vertices to connect them all. If it had a cycle, one cycle edge could be removed while preserving connectivity, contradicting that minimum count. Therefore full connectivity with exactly that count implies an acyclic connected graph, precisely a tree.",
+        "decision": "Require both full connectivity and exactly one fewer edge than vertices."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An isolated single vertex with no edges is a tree.",
+        "decision": "Do not reject the one-vertex zero-edge case."
+      }
+    ]
+  }
 }

@@ -49,5 +49,86 @@
       "note": "BFS associates the shortest distance with each discovery. At the requested layer, the node is an answer and its farther neighbors are unnecessary."
     }
   ],
-  "keyDecision": "Collect nodes at distance k and do not expand them farther."
+  "keyDecision": "Collect nodes at distance k and do not expand them farther.",
+  "concept": {
+    "question": "How does a target-centered wave travel through parents as well as children?",
+    "intuition": [
+      "A search confined to the target’s descendants misses nearby nodes reached through its parent. Treat each tree link as traversable in both directions.",
+      "First record each node’s parent. Start a breadth-first wave at the target, using left child, right child, and parent as neighbors. Mark visited nodes to avoid immediately returning along the same link, and stop expanding at the requested distance."
+    ],
+    "observation": "Distance counts edges from the target, regardless of the original root direction.",
+    "approach": [
+      "Build parent links while locating the target.",
+      "Explore outward in distance layers through all three possible neighbors.",
+      "Return the layer at the requested distance without expanding it."
+    ],
+    "correctness": "Parent links convert the tree into its undirected neighbor relation. Breadth-first exploration discovers a node through the fewest edges from the target, and each next wave is exactly one edge farther. Visited marking prevents duplicates. Thus the requested wave contains every and only the nodes at that distance.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Parent construction visits every node once, and the distance search visits each reached node once. Time and auxiliary maps, queues, and seen records are linear in tree size."
+    },
+    "pitfalls": [
+      "Distance counts edges from the target, regardless of the original root direction.",
+      "Do not identify nodes solely by a duplicated value in a general tree."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/all-nodes-distance-k-in-binary-tree/concept.webp",
+        "alt": "First record each node’s parent. Start a breadth-first wave at the target, using left child, right child, and parent as neighbors. Mark visited nodes to avoid immediately returning along the same link, and stop expanding at the requested distance.",
+        "caption": "First record each node’s parent. Start a breadth-first wave at the target, using left child, right child, and parent as neighbors. Mark visited nodes to avoid immediately returning along the same link, and stop expanding at the requested distance.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's All Nodes Distance K in Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about All Nodes Distance K in Binary Tree, not a generic data structure illustration. The key idea is: From the target, a move may go to a child or to a parent. First remember parent links, then use a queue to expand outward from the target one edge at a time. Mark visited nodes so moving back along an edge does not repeat them. The reason a decision is safe is: Collect nodes at distance k and do not expand them farther. The actual example this lesson teaches is {\"root\": [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], \"target\": 5, \"k\": 2} with answer [7, 4, 1]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does a target-centered wave travel through parents as well as children?",
+        "decision": "Distance counts edges from the target, regardless of the original root direction."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A search confined to the target’s descendants misses nearby nodes reached through its parent. Treat each tree link as traversable in both directions.",
+        "decision": "First record each node’s parent. Start a breadth-first wave at the target, using left child, right child, and parent as neighbors. Mark visited nodes to avoid immediately returning along the same link, and stop expanding at the requested distance."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "First record each node’s parent. Start a breadth-first wave at the target, using left child, right child, and parent as neighbors. Mark visited nodes to avoid immediately returning along the same link, and stop expanding at the requested distance.",
+        "decision": "Distance counts edges from the target, regardless of the original root direction."
+      },
+      {
+        "id": "start-from-five-not-the-root",
+        "title": "Start from five, not the root",
+        "narration": "For the fixture rooted at three, target five has neighbors six, two, and parent three. They form distance layer one.",
+        "decision": "Parent links are needed to reach nodes outside the target’s subtree."
+      },
+      {
+        "id": "the-second-wave-reaches-three-nodes",
+        "title": "The second wave reaches three nodes",
+        "narration": "Node two adds seven and four; parent three adds one. Already visited five is skipped.",
+        "decision": "Seen identities prevent backtracking from counting a node twice."
+      },
+      {
+        "id": "return-the-requested-frontier",
+        "title": "Return the requested frontier",
+        "narration": "The distance-two layer is [7,4,1]. Return those values in any accepted order and stop expanding farther.",
+        "decision": "Nodes zero and eight would be at distance three, so they are outside this request."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Parent links convert the tree into its undirected neighbor relation. Breadth-first exploration discovers a node through the fewest edges from the target, and each next wave is exactly one edge farther. Visited marking prevents duplicates. Thus the requested wave contains every and only the nodes at that distance.",
+        "decision": "Distance counts edges from the target, regardless of the original root direction."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "At distance zero, the target itself is the only answer.",
+        "decision": "Do not identify nodes solely by a duplicated value in a general tree."
+      }
+    ]
+  }
 }

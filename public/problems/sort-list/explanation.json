@@ -43,5 +43,87 @@
       "note": "Each completed pass merges width-sized runs, making twice that width the next guaranteed sorted unit."
     }
   ],
-  "keyDecision": "Cut the two runs before merging them. Double the run length after each full pass."
+  "keyDecision": "Cut the two runs before merging them. Double the run length after each full pass.",
+  "concept": {
+    "question": "Can sorted one-node runs grow into a sorted whole chain?",
+    "intuition": [
+      "Copying all values into an array and sorting would use linear extra memory. Recursive merging may also require call-stack memory. Bottom-up merging works directly with links.",
+      "One-node sections are already sorted. Merge neighboring sections of length one, then two, then four, doubling the known sorted run size after each full pass. Reconnect each merged run into the original chain."
+    ],
+    "observation": "At each pass, merge only neighboring sorted runs of the current size.",
+    "approach": [
+      "Count nodes and begin with run size one.",
+      "Cut neighboring runs, merge their exposed minima, and reconnect them.",
+      "Double the run size until one sorted run spans the chain."
+    ],
+    "correctness": "Initially each size-one run is sorted. Merging two sorted neighboring runs by their exposed minima produces a sorted combined run containing exactly their nodes. A full pass therefore doubles the sorted run size. Once that size spans the node count, the entire chain is one sorted run, preserving every original node.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(1) auxiliary",
+      "explanation": "Every pass processes all nodes and the run size doubles, giving logarithmically many passes and overall linear-times-logarithmic work. Bottom-up link merging uses constant auxiliary memory."
+    },
+    "pitfalls": [
+      "Detach run boundaries before merging.",
+      "Reconnect the output tail after every pair.",
+      "Do not claim constant memory for a copied array."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/sort-list/concept.webp",
+        "alt": "One-node sections are already sorted. Merge neighboring sections of length one, then two, then four, doubling the known sorted run size after each full pass. Reconnect each merged run into the original chain.",
+        "caption": "One-node sections are already sorted. Merge neighboring sections of length one, then two, then four, doubling the known sorted run size after each full pass. Reconnect each merged run into the original chain.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Sort List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Sort List, not a generic data structure illustration. The key idea is: Merge neighboring sorted sections of the list. Begin with sections of one node, which are already sorted. After merging, sections of two nodes are sorted; the next pass makes sections of four, then eight, and so on. This sorts by changing links rather than copying values into an array. The reason a decision is safe is: Cut the two runs before merging them. Double the run length after each full pass. The actual example this lesson teaches is {\"head\": [4, 2, 1, 3]} with answer [1, 2, 3, 4]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can sorted one-node runs grow into a sorted whole chain?",
+        "decision": "At each pass, merge only neighboring sorted runs of the current size."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Copying all values into an array and sorting would use linear extra memory. Recursive merging may also require call-stack memory. Bottom-up merging works directly with links.",
+        "decision": "One-node sections are already sorted. Merge neighboring sections of length one, then two, then four, doubling the known sorted run size after each full pass. Reconnect each merged run into the original chain."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "One-node sections are already sorted. Merge neighboring sections of length one, then two, then four, doubling the known sorted run size after each full pass. Reconnect each merged run into the original chain.",
+        "decision": "At each pass, merge only neighboring sorted runs of the current size."
+      },
+      {
+        "id": "merge-singleton-neighbors",
+        "title": "Merge singleton neighbors",
+        "narration": "For [4,2,1,3], merge [4] with [2] to form [2,4], and [1] with [3] to form [1,3].",
+        "decision": "Every single node is a sorted run."
+      },
+      {
+        "id": "merge-the-doubled-runs",
+        "title": "Merge the doubled runs",
+        "narration": "Compare the fronts of [2,4] and [1,3], taking 1,2,3,4 in order.",
+        "decision": "Both input runs are already sorted."
+      },
+      {
+        "id": "one-run-covers-the-chain",
+        "title": "One run covers the chain",
+        "narration": "The run size is now four, the full node count. Return the new head of [1,2,3,4].",
+        "decision": "No later pass can improve an already fully sorted run."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Initially each size-one run is sorted. Merging two sorted neighboring runs by their exposed minima produces a sorted combined run containing exactly their nodes. A full pass therefore doubles the sorted run size. Once that size spans the node count, the entire chain is one sorted run, preserving every original node.",
+        "decision": "At each pass, merge only neighboring sorted runs of the current size."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "The last run may be shorter than the current size. Merge it with what remains or attach it unchanged if no partner exists.",
+        "decision": "Incomplete runs still participate without creating nodes."
+      }
+    ]
+  }
 }

@@ -31,5 +31,87 @@
       "note": "The array indexes stairs rather than moves or route lengths. The requested count is the state for exactly the destination stair."
     }
   ],
-  "keyDecision": "Set the count for stair 0 to 1: there is one empty route before taking any steps."
+  "keyDecision": "Set the count for stair 0 to 1: there is one empty route before taking any steps.",
+  "concept": {
+    "question": "Why do the last one-step and two-step moves partition every route?",
+    "intuition": [
+      "Listing every sequence of one-step and two-step moves grows quickly and repeats the route-count question for the same stair. The final move gives a simpler decomposition.",
+      "Every route to a stair arrives from one stair below with a one-step move, or from two stairs below with a two-step move. These groups cannot overlap because their last moves differ. Add their already known counts."
+    ],
+    "observation": "The count for a stair is the sum of the counts for its two possible predecessor stairs.",
+    "approach": [
+      "Begin with one route to stay at the ground and one route to reach the first stair.",
+      "Add the two preceding route counts at each next stair.",
+      "Return the count for the requested stair."
+    ],
+    "correctness": "Removing the last move from any route to a stair leads to exactly one of its two predecessors. Conversely, adding the corresponding last move to each predecessor route creates a unique route to the stair. The two predecessor groups are disjoint and cover all routes. Starting from correct base counts, repeated addition gives the exact answer.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Compute one count per stair, giving linear work. This reference retains the full table of stair counts, so its auxiliary memory is also linear in the requested stair count."
+    },
+    "pitfalls": [
+      "Count move order: [1,2] and [2,1] are different routes.",
+      "Use the ground’s one empty route as the base.",
+      "This reference stores the whole count table."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/climbing-stairs/concept.webp",
+        "alt": "Two disjoint groups of last-step arrivals join at each stair to form its route count.",
+        "caption": "Two disjoint groups of last-step arrivals join at each stair to form its route count.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Climbing Stairs algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Climbing Stairs, not a generic data structure illustration. The key idea is: The last move to a stair is either one step or two steps. So every route to stair i comes from stair i - 1 or stair i - 2. Add those two counts and save the result. This counts all routes without listing every sequence of moves. The reason a decision is safe is: Set the count for stair 0 to 1: there is one empty route before taking any steps. The actual example this lesson teaches is {\"n\": 5} with answer 8. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do the last one-step and two-step moves partition every route?",
+        "decision": "The count for a stair is the sum of the counts for its two possible predecessor stairs."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Listing every sequence of one-step and two-step moves grows quickly and repeats the route-count question for the same stair. The final move gives a simpler decomposition.",
+        "decision": "Every route to a stair arrives from one stair below with a one-step move, or from two stairs below with a two-step move. These groups cannot overlap because their last moves differ. Add their already known counts."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Every route to a stair arrives from one stair below with a one-step move, or from two stairs below with a two-step move. These groups cannot overlap because their last moves differ. Add their already known counts.",
+        "decision": "The count for a stair is the sum of the counts for its two possible predecessor stairs."
+      },
+      {
+        "id": "two-ways-reach-stair-two",
+        "title": "Two ways reach stair two",
+        "narration": "Stair two can be reached by [1,1] or [2], so its route count is 2.",
+        "decision": "The two last-move groups are different."
+      },
+      {
+        "id": "add-predecessor-groups",
+        "title": "Add predecessor groups",
+        "narration": "Stair three has 2+1=3 routes; stair four has 3+2=5 routes.",
+        "decision": "An extra last move extends each smaller route exactly once."
+      },
+      {
+        "id": "stair-five-receives-eight-routes",
+        "title": "Stair five receives eight routes",
+        "narration": "Its one-step arrivals contribute 5 and two-step arrivals contribute 3. The total is 8.",
+        "decision": "No route belongs to both last-move groups."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Removing the last move from any route to a stair leads to exactly one of its two predecessors. Conversely, adding the corresponding last move to each predecessor route creates a unique route to the stair. The two predecessor groups are disjoint and cover all routes. Starting from correct base counts, repeated addition gives the exact answer.",
+        "decision": "The count for a stair is the sum of the counts for its two possible predecessor stairs."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: one stair has one route, a single one-step move. The ground has one empty route used as a counting base.",
+        "decision": "The ground’s one route is essential when counting a direct two-step move."
+      }
+    ]
+  }
 }

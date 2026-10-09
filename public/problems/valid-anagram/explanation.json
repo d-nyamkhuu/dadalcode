@@ -35,5 +35,86 @@
       "note": "A deficit means the second string requests a copy the first string does not contain."
     }
   ],
-  "keyDecision": "Equal total length is necessary, but every individual character count must also match."
+  "keyDecision": "Equal total length is necessary, but every individual character count must also match.",
+  "concept": {
+    "question": "How can consuming a letter inventory prove two texts are rearrangements?",
+    "intuition": [
+      "Equal sets of letters are insufficient because occurrence counts matter. An anagram must use every copy of each letter exactly once.",
+      "Require equal lengths, count the first text’s letters, then consume one count per letter in the second text. Any demand beyond available supply rejects the match; equal length ensures no unused supply remains if no deficit occurs."
+    ],
+    "observation": "Compare multiplicities, not letter membership or original order.",
+    "approach": [
+      "Reject unequal lengths.",
+      "Count letter occurrences in the first text.",
+      "Consume the second text’s letters, rejecting a negative remaining count."
+    ],
+    "correctness": "Counting records exactly the first text’s multiset of letters. Every consumed second-text letter removes one required copy; a negative count proves a missing copy. If lengths agree and no count becomes negative, the same total number of copies was consumed, so all counts end at zero and the multisets are equal.",
+    "complexity": {
+      "time": "O(m + n)",
+      "space": "O(26)",
+      "explanation": "Each character is counted or consumed once. Time is linear in combined lengths and the lowercase alphabet’s 26 counts use constant storage."
+    },
+    "pitfalls": [
+      "Compare multiplicities, not letter membership or original order.",
+      "Keep separate counts for repeated copies."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/valid-anagram/concept.webp",
+        "alt": "Require equal lengths, count the first text’s letters, then consume one count per letter in the second text. Any demand beyond available supply rejects the match; equal length ensures no unused supply remains if no deficit occurs.",
+        "caption": "Require equal lengths, count the first text’s letters, then consume one count per letter in the second text. Any demand beyond available supply rejects the match; equal length ensures no unused supply remains if no deficit occurs.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Valid Anagram algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Valid Anagram, not a generic data structure illustration. The key idea is: Two strings are anagrams when each character appears equally often in both. Count the characters in the first string, then consume one count for every character in the second. A missing count rejects the match. Equal lengths ensure no unused copies remain after a successful scan. The reason a decision is safe is: Equal total length is necessary, but every individual character count must also match. The actual example this lesson teaches is {\"s\": \"anagram\", \"t\": \"nagaram\"} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can consuming a letter inventory prove two texts are rearrangements?",
+        "decision": "Compare multiplicities, not letter membership or original order."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Equal sets of letters are insufficient because occurrence counts matter. An anagram must use every copy of each letter exactly once.",
+        "decision": "Require equal lengths, count the first text’s letters, then consume one count per letter in the second text. Any demand beyond available supply rejects the match; equal length ensures no unused supply remains if no deficit occurs."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Require equal lengths, count the first text’s letters, then consume one count per letter in the second text. Any demand beyond available supply rejects the match; equal length ensures no unused supply remains if no deficit occurs.",
+        "decision": "Compare multiplicities, not letter membership or original order."
+      },
+      {
+        "id": "count-anagram",
+        "title": "Count anagram",
+        "narration": "For anagram and nagaram, both lengths are seven. The first inventory is a:3,n:1,g:1,r:1,m:1.",
+        "decision": "Each separate copy contributes to its letter count."
+      },
+      {
+        "id": "consume-the-second-text",
+        "title": "Consume the second text",
+        "narration": "Reading n,a,g from nagaram consumes one of each, leaving a:2,r:1,m:1.",
+        "decision": "The order of consumption may differ from the first text."
+      },
+      {
+        "id": "every-supply-is-used-exactly",
+        "title": "Every supply is used exactly",
+        "narration": "The remaining a,r,a,m consumes all supply with no deficit. Return yes.",
+        "decision": "Equal total length plus no deficit excludes leftover copies."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Counting records exactly the first text’s multiset of letters. Every consumed second-text letter removes one required copy; a negative count proves a missing copy. If lengths agree and no count becomes negative, the same total number of copies was consumed, so all counts end at zero and the multisets are equal.",
+        "decision": "Compare multiplicities, not letter membership or original order."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "aab and abb share the same letters but are not anagrams.",
+        "decision": "Keep separate counts for repeated copies."
+      }
+    ]
+  }
 }

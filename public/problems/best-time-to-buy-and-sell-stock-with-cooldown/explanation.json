@@ -39,5 +39,86 @@
       "note": "Replace the states together only after all choices have been evaluated against yesterday’s values."
     }
   ],
-  "keyDecision": "Use the previous day's states for every update. The day after selling cannot be a buying day."
+  "keyDecision": "Use the previous day's states for every update. The day after selling cannot be a buying day.",
+  "concept": {
+    "question": "How can yesterday’s sale prevent today’s tempting purchase?",
+    "intuition": [
+      "Greedily collecting every price increase can buy again immediately after a sale, breaking the one-day cooldown. Future choices depend on whether a share is held and whether yesterday ended in a sale.",
+      "Keep three best daily outcomes: holding a share, selling today, and resting without a share. A new purchase may use only yesterday’s resting outcome. A sale uses yesterday’s holding outcome; resting can follow rest or a completed cooldown."
+    ],
+    "observation": "Compare transitions from the preceding day before replacing any daily outcomes.",
+    "approach": [
+      "Start with zero money while resting and no possible holding or sale outcome.",
+      "Evaluate holding, selling, and resting for each price from the preceding day’s outcomes.",
+      "Finish with the better outcome that holds no share."
+    ],
+    "correctness": "Every valid daily history ends in exactly one of holding, selling today, or resting without a share. Its preceding state must be one of the allowed transitions. Choosing the best predecessor for each state therefore captures every legal history while excluding a purchase immediately following a sale.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "A constant number of daily outcomes is updated once per price, giving linear time and constant extra storage."
+    },
+    "pitfalls": [
+      "Compare transitions from the preceding day before replacing any daily outcomes.",
+      "Do not treat a held share’s accounting total as completed profit."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/best-time-to-buy-and-sell-stock-with-cooldown/concept.webp",
+        "alt": "Keep three best daily outcomes: holding a share, selling today, and resting without a share. A new purchase may use only yesterday’s resting outcome. A sale uses yesterday’s holding outcome; resting can follow rest or a completed cooldown.",
+        "caption": "Keep three best daily outcomes: holding a share, selling today, and resting without a share. A new purchase may use only yesterday’s resting outcome. A sale uses yesterday’s holding outcome; resting can follow rest or a completed cooldown.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Best Time to Buy and Sell Stock with Cooldown algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Best Time to Buy and Sell Stock with Cooldown, not a generic data structure illustration. The key idea is: At the end of a day, you either hold a share, have just sold it, or are resting without one. Save the best profit for each situation. Compute tomorrow's situations from today's saved values. Buying is allowed from rest, but not immediately after a sale. The reason a decision is safe is: Use the previous day's states for every update. The day after selling cannot be a buying day. The actual example this lesson teaches is {\"prices\": [1, 2, 3, 0, 2]} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can yesterday’s sale prevent today’s tempting purchase?",
+        "decision": "Compare transitions from the preceding day before replacing any daily outcomes."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Greedily collecting every price increase can buy again immediately after a sale, breaking the one-day cooldown. Future choices depend on whether a share is held and whether yesterday ended in a sale.",
+        "decision": "Keep three best daily outcomes: holding a share, selling today, and resting without a share. A new purchase may use only yesterday’s resting outcome. A sale uses yesterday’s holding outcome; resting can follow rest or a completed cooldown."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep three best daily outcomes: holding a share, selling today, and resting without a share. A new purchase may use only yesterday’s resting outcome. A sale uses yesterday’s holding outcome; resting can follow rest or a completed cooldown.",
+        "decision": "Compare transitions from the preceding day before replacing any daily outcomes."
+      },
+      {
+        "id": "buy-at-one-then-consider-selling-at-two",
+        "title": "Buy at one, then consider selling at two",
+        "narration": "For prices [1,2,3,0,2], after the first price the best holding total is −1 and rest is 0. After price 2, holding is −1, selling is 1, and rest is 0.",
+        "decision": "Holding totals include the cost of the currently held share."
+      },
+      {
+        "id": "a-higher-sale-creates-a-cooldown",
+        "title": "A higher sale creates a cooldown",
+        "narration": "After price 3 the outcomes are holding −1, sold 2, and rest 1. At price 0, buying uses the earlier rest 1, giving holding 1; it cannot use yesterday’s sold 2.",
+        "decision": "The profit-two sale requires a rest day before another purchase."
+      },
+      {
+        "id": "the-legal-two-sale-route-wins",
+        "title": "The legal two-sale route wins",
+        "narration": "At the last price 2, selling yesterday’s held share gives 1+2=3. Resting keeps 2. Return 3: buy 1, sell 2, rest, buy 0, sell 2.",
+        "decision": "Final profit must come from an outcome with no share left unsold."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every valid daily history ends in exactly one of holding, selling today, or resting without a share. Its preceding state must be one of the allowed transitions. Choosing the best predecessor for each state therefore captures every legal history while excluding a purchase immediately following a sale.",
+        "decision": "Compare transitions from the preceding day before replacing any daily outcomes."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "With one day there is no profitable completed trade. Resting keeps profit zero.",
+        "decision": "Do not treat a held share’s accounting total as completed profit."
+      }
+    ]
+  }
 }

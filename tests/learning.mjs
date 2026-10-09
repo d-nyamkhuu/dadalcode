@@ -95,19 +95,10 @@ try {
     }
   }
   await open("two-sum", "learn");
-  await page.locator(".lesson-vocabulary summary").focus();
-  await page.keyboard.press("Enter");
-  assert(
-    await page
-      .locator(".lesson-vocabulary dt")
-      .filter({ hasText: "Complement" })
-      .isVisible(),
-  );
-  await page.locator(".lesson-vocabulary summary").click();
   await page.getByRole("button", { name: "Example", exact: true }).click();
   assert(
     await page
-      .getByRole("heading", { name: "Example walkthrough", exact: true })
+      .getByRole("heading", { name: "Explore this example", exact: true })
       .isVisible(),
   );
   await page
@@ -136,6 +127,11 @@ try {
       .getByRole("navigation", { name: "Learning views" })
       .getByRole("link", { name: mode, exact: true })
       .click();
+    if (mode === "Learn") {
+      await page.locator(".concept-diagram").waitFor();
+      assert.equal(await suppliedTypes.count(), 0);
+      continue;
+    }
     await suppliedTypes.waitFor();
     assert.match(await suppliedTypes.innerText(), /ListNode\(0, head\)/);
     assert.match(

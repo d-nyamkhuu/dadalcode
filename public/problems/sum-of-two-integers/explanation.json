@@ -112,5 +112,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How can carry-free bits and shifted carries recombine into the same sum?",
+    "intuition": [
+      "Binary addition has two effects at each position: the output bit without incoming carry, and a carry when both inputs contain one. Separate them and repeat until no carry remains.",
+      "Differing bits produce the carry-free word. Positions with two ones generate a carry into the next higher position. Recombine those two words the same way until the carry word is zero, using a fixed 32-bit width for signed values."
+    ],
+    "observation": "Every round preserves the total modulo the fixed width while moving carries upward.",
+    "approach": [
+      "Represent both inputs as fixed-width binary words.",
+      "Form differing-bit output and shifted common-one carries.",
+      "Repeat until no carries remain, then interpret the signed result."
+    ],
+    "correctness": "At every bit, a single one contributes that bit’s value, while two ones contribute one carry at twice that value. Thus the carry-free word and shifted carry preserve the combined sum modulo the fixed word width. Carries move left each round and eventually disappear. Interpreting the final word with the specified signed representation yields the ordinary in-range integer sum.",
+    "complexity": {
+      "time": "O(32), effectively O(1)",
+      "space": "O(1)",
+      "explanation": "Carries can travel through at most 32 positions. This fixed bound makes time and storage constant."
+    },
+    "pitfalls": [
+      "Every round preserves the total modulo the fixed width while moving carries upward.",
+      "Do not infer signed value from the abbreviated four-bit display."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/sum-of-two-integers/concept.webp",
+        "alt": "Two bit rows separate into differing-bit contributions and a shifted carry row, which loops back for another combination.",
+        "caption": "Differing bits contribute without a carry. Two ones create a carry into the next column; repeat until no carry remains. Exact signed values appear in the visual story.",
+        "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. An ABSTRACT binary-adder intuition: two rows of glowing bit-like beads enter a fork. Positions with exactly one bright bead flow straight to a carry-free row; positions with TWO bright beads send a warm glowing carry arrow to the NEXT column to the left. A circular arrow feeds the two outputs through the same fork again; a final green beacon appears when no carries remain. No written bits, numbers, equations, or text."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can carry-free bits and shifted carries recombine into the same sum?",
+        "decision": "Every round preserves the total modulo the fixed width while moving carries upward."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Binary addition has two effects at each position: the output bit without incoming carry, and a carry when both inputs contain one. Separate them and repeat until no carry remains.",
+        "decision": "Differing bits produce the carry-free word. Positions with two ones generate a carry into the next higher position. Recombine those two words the same way until the carry word is zero, using a fixed 32-bit width for signed values."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Differing bits produce the carry-free word. Positions with two ones generate a carry into the next higher position. Recombine those two words the same way until the carry word is zero, using a fixed 32-bit width for signed values.",
+        "decision": "Every round preserves the total modulo the fixed width while moving carries upward."
+      },
+      {
+        "id": "three-and-five-produce-six-plus-a-carry",
+        "title": "Three and five produce six plus a carry",
+        "narration": "The fixture shows low four bits 0011 and 0101. Differing bits give 0110, value six; their shared low one generates carry 0010, value two.",
+        "decision": "Only the low four positions are shown; the actual word has 32 positions."
+      },
+      {
+        "id": "carry-propagation-continues",
+        "title": "Carry propagation continues",
+        "narration": "Combining six and two gives carry-free 0100 and carry 0100. Combining those gives 0000 and 1000.",
+        "decision": "A carry can create another carry one position farther left."
+      },
+      {
+        "id": "the-final-carry-joins-without-another-carry",
+        "title": "The final carry joins without another carry",
+        "narration": "Combining zero and eight gives 1000 with no carry. Return eight.",
+        "decision": "The sign position is clear in this positive example."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At every bit, a single one contributes that bit’s value, while two ones contribute one carry at twice that value. Thus the carry-free word and shifted carry preserve the combined sum modulo the fixed word width. Carries move left each round and eventually disappear. Interpreting the final word with the specified signed representation yields the ordinary in-range integer sum.",
+        "decision": "Every round preserves the total modulo the fixed width while moving carries upward."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Negative inputs require the fixed-width representation so sign extension cannot create an endless carry process.",
+        "decision": "Do not infer signed value from the abbreviated four-bit display."
+      }
+    ]
+  }
 }

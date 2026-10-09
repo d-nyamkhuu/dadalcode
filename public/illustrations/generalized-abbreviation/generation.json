@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A row of letter-like but nonlinguistic decorative glyph tiles. Two adjacent omitted tiles collapse into ONE elongated glowing capsule indicating an omitted run. A retained tile separates that capsule from a second smaller omitted-run capsule. Show keep-or-omit branches with adjacent omissions merging. No real letters or counts.",
+  "width": 1774,
+  "height": 887
+}

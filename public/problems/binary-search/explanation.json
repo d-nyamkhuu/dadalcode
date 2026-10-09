@@ -39,5 +39,86 @@
       "note": "The symmetric update removes a too-large middle and all later positions, preserving only indices that could contain the target."
     }
   ],
-  "keyDecision": "For this inclusive range, continue while left <= right. Discard mid after a failed comparison."
+  "keyDecision": "For this inclusive range, continue while left <= right. Discard mid after a failed comparison.",
+  "concept": {
+    "question": "Why can one comparison eliminate half a sorted array?",
+    "intuition": [
+      "A linear search checks values whose relative order already rules them out. In sorted input, comparing a middle value to the target certifies an entire side.",
+      "Keep the range where the target could still occur. A middle value below the target excludes itself and everything left; a value above excludes itself and everything right. Equality returns the original position."
+    ],
+    "observation": "The remaining range always contains the target if it exists.",
+    "approach": [
+      "Begin with the whole sorted array as candidates.",
+      "Compare the middle value and discard the impossible half.",
+      "Return its position on equality or absence when the range empties."
+    ],
+    "correctness": "Sortedness makes the discarded half incapable of containing the target after each unequal comparison. Thus the candidate-range invariant is preserved. Equality gives a valid position, while an empty range proves that no original position can contain the target.",
+    "complexity": {
+      "time": "O(log n)",
+      "space": "O(1)",
+      "explanation": "The candidate range at least halves after each unequal comparison. Time is logarithmic and the two boundaries use constant extra storage."
+    },
+    "pitfalls": [
+      "The remaining range always contains the target if it exists.",
+      "Exclude the compared unequal midpoint so the range strictly shrinks."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/binary-search/concept.webp",
+        "alt": "Keep the range where the target could still occur. A middle value below the target excludes itself and everything left; a value above excludes itself and everything right. Equality returns the original position.",
+        "caption": "Keep the range where the target could still occur. A middle value below the target excludes itself and everything left; a value above excludes itself and everything right. Equality returns the original position.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Binary Search algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Binary Search, not a generic data structure illustration. The key idea is: Compare the target with the middle of the sorted array. If the target is larger, it cannot be in the left half. If smaller, it cannot be in the right half. Keep the possible half and repeat until you find the target or no positions remain. The reason a decision is safe is: For this inclusive range, continue while left <= right. Discard mid after a failed comparison. The actual example this lesson teaches is {\"nums\": [-1, 0, 3, 5, 9, 12], \"target\": 9} with answer 4. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can one comparison eliminate half a sorted array?",
+        "decision": "The remaining range always contains the target if it exists."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A linear search checks values whose relative order already rules them out. In sorted input, comparing a middle value to the target certifies an entire side.",
+        "decision": "Keep the range where the target could still occur. A middle value below the target excludes itself and everything left; a value above excludes itself and everything right. Equality returns the original position."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep the range where the target could still occur. A middle value below the target excludes itself and everything left; a value above excludes itself and everything right. Equality returns the original position.",
+        "decision": "The remaining range always contains the target if it exists."
+      },
+      {
+        "id": "the-middle-three-is-too-small",
+        "title": "The middle three is too small",
+        "narration": "For [−1,0,3,5,9,12] and target nine, the first midpoint is position two with value three.",
+        "decision": "Every value at or left of three is also below nine."
+      },
+      {
+        "id": "the-next-middle-matches",
+        "title": "The next middle matches",
+        "narration": "Within positions three through five, midpoint four contains nine.",
+        "decision": "The position refers to the original array, not the shortened display."
+      },
+      {
+        "id": "return-a-position-rather-than-a-value",
+        "title": "Return a position rather than a value",
+        "narration": "Return four. Reading original position four gives target nine.",
+        "decision": "The requested answer identifies where the target occurs."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Sortedness makes the discarded half incapable of containing the target after each unequal comparison. Thus the candidate-range invariant is preserved. Equality gives a valid position, while an empty range proves that no original position can contain the target.",
+        "decision": "The remaining range always contains the target if it exists."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A missing target eventually leaves no candidates.",
+        "decision": "Exclude the compared unequal midpoint so the range strictly shrinks."
+      }
+    ]
+  }
 }

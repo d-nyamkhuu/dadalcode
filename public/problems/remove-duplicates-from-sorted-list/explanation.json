@@ -42,5 +42,86 @@
       "note": "The guard handles empty lists and guarantees both compared nodes exist."
     }
   ],
-  "keyDecision": "After removing a duplicate, keep current in place to check for another equal successor."
+  "keyDecision": "After removing a duplicate, keep current in place to check for another equal successor.",
+  "concept": {
+    "question": "Why can each equal-value run keep just its first node?",
+    "intuition": [
+      "A general duplicate search would need to remember all values. Sorted order makes equal values neighboring nodes, so the next node is the only duplicate candidate that matters.",
+      "Keep the current node as the representative of its equal run. If the next value matches, bypass that next node and inspect the new successor. Advance the representative only after its successor has a different value."
+    ],
+    "observation": "After bypassing a duplicate, stay at the representative to check for further duplicates.",
+    "approach": [
+      "Compare the representative with its successor.",
+      "Bypass equal successors without advancing.",
+      "Advance only to a different value."
+    ],
+    "correctness": "Each representative is the first surviving node of one sorted equal run. Repeated bypasses remove precisely its equal successors. Advancing at a different value starts the next run. Thus every original value retains exactly one node and the surviving chain stays sorted.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each node is inspected or bypassed once. A single current-node bookmark uses constant memory, and total work is linear."
+    },
+    "pitfalls": [
+      "After bypassing a duplicate, stay at the representative to check for further duplicates.",
+      "Advancing after the first removal would leave a duplicate."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/remove-duplicates-from-sorted-list/concept.webp",
+        "alt": "Keep the current node as the representative of its equal run. If the next value matches, bypass that next node and inspect the new successor. Advance the representative only after its successor has a different value.",
+        "caption": "Keep the current node as the representative of its equal run. If the next value matches, bypass that next node and inspect the new successor. Advance the representative only after its successor has a different value.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Remove Duplicates from Sorted List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Remove Duplicates from Sorted List, not a generic data structure illustration. The key idea is: Equal values are next to each other because the list is sorted. Keep the first node in each equal group. If its next node has the same value, skip that next node by changing one link. Advance only when the next value is different. The reason a decision is safe is: After removing a duplicate, keep current in place to check for another equal successor. The actual example this lesson teaches is {\"head\": [1, 1, 2, 3, 3]} with answer [1, 2, 3]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can each equal-value run keep just its first node?",
+        "decision": "After bypassing a duplicate, stay at the representative to check for further duplicates."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A general duplicate search would need to remember all values. Sorted order makes equal values neighboring nodes, so the next node is the only duplicate candidate that matters.",
+        "decision": "Keep the current node as the representative of its equal run. If the next value matches, bypass that next node and inspect the new successor. Advance the representative only after its successor has a different value."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep the current node as the representative of its equal run. If the next value matches, bypass that next node and inspect the new successor. Advance the representative only after its successor has a different value.",
+        "decision": "After bypassing a duplicate, stay at the representative to check for further duplicates."
+      },
+      {
+        "id": "the-first-equal-run",
+        "title": "The first equal run",
+        "narration": "The chain [1,1,2,3,3] begins with two 1s. Bypass the second 1.",
+        "decision": "Sorted order places equal values in one adjacent run."
+      },
+      {
+        "id": "advance-across-different-values",
+        "title": "Advance across different values",
+        "narration": "The next value 2 differs from 1, so move forward; then the first 3 begins a new run.",
+        "decision": "A different next value cannot be a duplicate of the representative."
+      },
+      {
+        "id": "keep-one-three",
+        "title": "Keep one three",
+        "narration": "Bypass the second 3, giving [1,2,3].",
+        "decision": "The original head stays attached to the representatives."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each representative is the first surviving node of one sorted equal run. Repeated bypasses remove precisely its equal successors. Advancing at a different value starts the next run. Thus every original value retains exactly one node and the surviving chain stays sorted.",
+        "decision": "After bypassing a duplicate, stay at the representative to check for further duplicates."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: [1,1,1] needs two bypasses from the same representative.",
+        "decision": "Advancing after the first removal would leave a duplicate."
+      }
+    ]
+  }
 }

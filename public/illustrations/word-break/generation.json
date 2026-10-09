@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Mathematical intuition illustration, widescreen 2:1, elegant geometric glowing cyan/lime shapes on black, restrained warm accents, no UI/code/watermark. An ordered row of five UNLETTERED glyph tiles can be covered by matching vocabulary puzzle blocks. Show two possible first blocks: one short cyan prefix then a matching green remainder, and one longer amber prefix leading to a dead end. A glowing marker at the successful ending boundary shows whole-text coverage. Use abstract glyphs, no real words, letters, numbers, or equations. Emphasize reachable prefix boundaries.",
+  "width": 1774,
+  "height": 887
+}

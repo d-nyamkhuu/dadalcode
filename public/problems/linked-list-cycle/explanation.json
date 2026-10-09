@@ -37,5 +37,87 @@
       "note": "Object identity tests whether the pointers occupy the same actual node. Equal values in separate acyclic nodes must not trigger success."
     }
   ],
-  "keyDecision": "After moving, check whether slow and fast refer to the same node."
+  "keyDecision": "After moving, check whether slow and fast refer to the same node.",
+  "concept": {
+    "question": "Can a faster walker catch a slower walker only when the chain loops?",
+    "intuition": [
+      "Remembering every visited node detects revisits but needs growing memory. Two walking speeds exploit the structure of a loop without storing the entire history.",
+      "Move one bookmark one link per round and another two links. If the faster one reaches an end, no loop exists. Inside a loop, their relative separation changes by one node per round, so they eventually coincide."
+    ],
+    "observation": "Compare the same node identity, not merely equal stored values.",
+    "approach": [
+      "Move one bookmark by one link and the other by two.",
+      "Return no if the faster bookmark reaches an end.",
+      "Return yes when both bookmarks refer to the same node after moving."
+    ],
+    "correctness": "Without a cycle, advancing along next links eventually ends, so the fast walker cannot keep going or meet the slow walker after moving. In a cycle, both eventually enter it. The fast walker advances one extra link relative to the slow walker each round; modulo the cycle length, it visits every possible separation and reaches zero. Their meeting therefore detects exactly a cycle.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "The walkers traverse a linear number of links before ending or meeting. Two bookmarks use constant extra memory."
+    },
+    "pitfalls": [
+      "Compare node identities.",
+      "Check the fast walker can take both links.",
+      "Do not treat their shared initial position as a detected cycle."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/linked-list-cycle/concept.webp",
+        "alt": "Move one bookmark one link per round and another two links. If the faster one reaches an end, no loop exists. Inside a loop, their relative separation changes by one node per round, so they eventually coincide.",
+        "caption": "Move one bookmark one link per round and another two links. If the faster one reaches an end, no loop exists. Inside a loop, their relative separation changes by one node per round, so they eventually coincide.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Linked List Cycle algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Linked List Cycle, not a generic data structure illustration. The key idea is: Move one pointer one link at a time and another pointer two links at a time. If the list ends, there is no cycle. If it loops, the faster pointer eventually catches the slower one. Compare the actual nodes, because equal stored values do not mean the pointers have met. The reason a decision is safe is: After moving, check whether slow and fast refer to the same node. The actual example this lesson teaches is {\"head\": [3, 2, 0, -4], \"pos\": 1} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can a faster walker catch a slower walker only when the chain loops?",
+        "decision": "Compare the same node identity, not merely equal stored values."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Remembering every visited node detects revisits but needs growing memory. Two walking speeds exploit the structure of a loop without storing the entire history.",
+        "decision": "Move one bookmark one link per round and another two links. If the faster one reaches an end, no loop exists. Inside a loop, their relative separation changes by one node per round, so they eventually coincide."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Move one bookmark one link per round and another two links. If the faster one reaches an end, no loop exists. Inside a loop, their relative separation changes by one node per round, so they eventually coincide.",
+        "decision": "Compare the same node identity, not merely equal stored values."
+      },
+      {
+        "id": "enter-the-looping-chain",
+        "title": "Enter the looping chain",
+        "narration": "The chain begins 3 → 2 → 0 → -4, then links back from -4 to 2. After one round the slow walker is at 2 and fast at 0.",
+        "decision": "The back-link forms a cycle among 2,0,-4."
+      },
+      {
+        "id": "the-separation-changes",
+        "title": "The separation changes",
+        "narration": "After round two, slow is at 0 and fast at 2.",
+        "decision": "The faster walker gains one link relative to the slower walker inside the loop."
+      },
+      {
+        "id": "they-meet-at-the-same-node",
+        "title": "They meet at the same node",
+        "narration": "After round three, both are at the original -4 node. The answer is yes.",
+        "decision": "An identity match establishes a revisited structural position."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Without a cycle, advancing along next links eventually ends, so the fast walker cannot keep going or meet the slow walker after moving. In a cycle, both eventually enter it. The fast walker advances one extra link relative to the slow walker each round; modulo the cycle length, it visits every possible separation and reaches zero. Their meeting therefore detects exactly a cycle.",
+        "decision": "Compare the same node identity, not merely equal stored values."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate equal values at different nodes do not prove a cycle.",
+        "decision": "Node identity matters more than the printed value."
+      }
+    ]
+  }
 }

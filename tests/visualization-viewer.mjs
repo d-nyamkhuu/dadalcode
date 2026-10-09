@@ -19,7 +19,10 @@ page.on("console", (message) => {
 });
 await mkdir(screenshotDirectory, { recursive: true });
 async function open(slug) {
-  await page.goto(`${root}/#/problems/${slug}/learn`);
+  await page.goto(`${root}/#/problems/${slug}/solution`);
+  await page
+    .getByRole("button", { name: "Execution walkthrough", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Play", exact: true })
     .waitFor({ timeout: 60000 });
@@ -314,13 +317,15 @@ try {
     await page.setViewportSize({ width: 1280, height });
     for (const [slug, example] of complex) {
       // Every dense regression runs at 600px. Keep the additional 800px checks
-      // where height changes the assertion: readable tries and a grid sample.
+      // where height changes the assertion: readable tries, a grid sample, and
+      // the long-title tree lesson that previously left no diagram space.
       if (
         !fullCoverage &&
         height === 800 &&
         ![
           "prefix-and-suffix-search",
           "design-search-autocomplete-system",
+          "construct-binary-tree-from-preorder-and-inorder-traversal",
         ].includes(slug) &&
         !(slug === "sudoku-solver" && example === 0)
       )

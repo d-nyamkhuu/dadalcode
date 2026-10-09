@@ -38,5 +38,87 @@
       "note": "The promised occurrence counts ensure exactly one unpaired value survives the complete XOR reduction."
     }
   ],
-  "keyDecision": "This method relies on exactly one unpaired value and every other value appearing exactly twice."
+  "keyDecision": "This method relies on exactly one unpaired value and every other value appearing exactly twice.",
+  "concept": {
+    "question": "How can equal pairs cancel without remembering where they appeared?",
+    "intuition": [
+      "A frequency table would find the lone value but stores counts for many numbers. The exact promise that every other value appears twice allows a cancellation identity.",
+      "XOR compares bits, producing one where the input bits differ. Two identical bit patterns XOR to zero, and zero changes nothing when XORed with another pattern. Order does not matter, so all paired values cancel and leave the lone value."
+    ],
+    "observation": "XOR all values; identical pairs cancel, while the unpaired value remains.",
+    "approach": [
+      "Begin with the zero bit pattern.",
+      "XOR each input value into the running pattern.",
+      "Return the remaining pattern after all pairs cancel."
+    ],
+    "correctness": "XOR is associative and commutative, so the combined pattern can be regrouped into identical pairs without changing its value. Each pair reduces to zero, and combining zeros leaves the lone input value unchanged. The result is therefore exactly the unique single occurrence under the problem’s frequency promise.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "One XOR per value gives linear work. The running bit pattern uses constant extra memory under the stated integer domain."
+    },
+    "pitfalls": [
+      "Use XOR, not addition or logical comparison.",
+      "The twice-except-once frequency promise is essential.",
+      "Input order does not affect cancellation."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/single-number/concept.webp",
+        "alt": "XOR compares bits, producing one where the input bits differ. Two identical bit patterns XOR to zero, and zero changes nothing when XORed with another pattern. Order does not matter, so all paired values cancel and leave the lone value.",
+        "caption": "XOR compares bits, producing one where the input bits differ. Two identical bit patterns XOR to zero, and zero changes nothing when XORed with another pattern. Order does not matter, so all paired values cancel and leave the lone value.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Single Number algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Single Number, not a generic data structure illustration. The key idea is: The XOR operation cancels two equal numbers: x XOR x is zero. Apply XOR to every input value. All the pairs cancel, leaving only the number that appears once. The order does not matter, so no sorting or count table is needed. The reason a decision is safe is: This method relies on exactly one unpaired value and every other value appearing exactly twice. The actual example this lesson teaches is {\"nums\": [2, 2, 1]} with answer 1. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can equal pairs cancel without remembering where they appeared?",
+        "decision": "XOR all values; identical pairs cancel, while the unpaired value remains."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A frequency table would find the lone value but stores counts for many numbers. The exact promise that every other value appears twice allows a cancellation identity.",
+        "decision": "XOR compares bits, producing one where the input bits differ. Two identical bit patterns XOR to zero, and zero changes nothing when XORed with another pattern. Order does not matter, so all paired values cancel and leave the lone value."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "XOR compares bits, producing one where the input bits differ. Two identical bit patterns XOR to zero, and zero changes nothing when XORed with another pattern. Order does not matter, so all paired values cancel and leave the lone value.",
+        "decision": "XOR all values; identical pairs cancel, while the unpaired value remains."
+      },
+      {
+        "id": "a-first-copy-contributes-its-bits",
+        "title": "A first copy contributes its bits",
+        "narration": "For [2,2,1], XORing zero with the first 2 leaves 2.",
+        "decision": "Zero is the identity for XOR."
+      },
+      {
+        "id": "its-partner-cancels-it",
+        "title": "Its partner cancels it",
+        "narration": "XOR the second 2 with the current 2. Identical bits cancel, leaving zero.",
+        "decision": "Every paired bit pattern cancels itself."
+      },
+      {
+        "id": "only-the-lone-value-remains",
+        "title": "Only the lone value remains",
+        "narration": "XOR the remaining 1 with zero, leaving 1. Return 1.",
+        "decision": "The guaranteed lone value has no partner to cancel it."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "XOR is associative and commutative, so the combined pattern can be regrouped into identical pairs without changing its value. Each pair reduces to zero, and combining zeros leaves the lone input value unchanged. The result is therefore exactly the unique single occurrence under the problem’s frequency promise.",
+        "decision": "XOR all values; identical pairs cancel, while the unpaired value remains."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a single-element input returns that element, including a negative value.",
+        "decision": "Cancellation is about bit patterns, not numeric addition."
+      }
+    ]
+  }
 }

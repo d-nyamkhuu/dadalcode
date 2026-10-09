@@ -37,5 +37,87 @@
       "note": "After placement, membership is encoded positionally. The first mismatched slot identifies the smallest absent positive, not merely any missing number."
     }
   ],
-  "keyDecision": "Swap only a value in 1..n whose destination does not already contain that value."
+  "keyDecision": "Swap only a value in 1..n whose destination does not already contain that value.",
+  "concept": {
+    "question": "Could each small positive number mark its own parking space?",
+    "intuition": [
+      "Sorting or keeping a separate membership collection would solve the problem but uses additional work or memory. With four input positions, a missing positive must be among 1 through 5; huge and negative values cannot be the smallest missing one.",
+      "Give each relevant value a home: 1 belongs in the first position, 2 in the second, and so on. Move a value into its home by exchanging it with what is there. Then the first home lacking its proper resident reveals the missing positive."
+    ],
+    "observation": "Move only values within the available home range, and stop if their home already contains the same value.",
+    "approach": [
+      "Place each value from one through the input length in its matching position.",
+      "Ignore negatives, zero, oversized values, and already placed duplicates.",
+      "Scan for the first missing resident; if every home is full, return one beyond the last home."
+    ],
+    "correctness": "The answer is at most one more than the number of input positions: if all smaller positives are present, that next number is missing. Each successful exchange fills a value’s designated home and never needs to dislodge a correctly placed different value. After placement, a positive is present exactly when its home contains it, so the first failed home test gives the smallest missing positive.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Although one position may trigger several exchanges, every successful exchange places another relevant value. There are only linearly many placements and one final scan. The original row supplies the memory, so auxiliary memory is constant."
+    },
+    "pitfalls": [
+      "Ignore zero and out-of-range values.",
+      "Stop on a duplicate already in its home.",
+      "Return one beyond the length if all homes are filled."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/first-missing-positive/concept.webp",
+        "alt": "Positive numbers move into numbered parking spaces; the first unfilled matching space identifies the answer.",
+        "caption": "Positive numbers move into numbered parking spaces; the first unfilled matching space identifies the answer.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's First Missing Positive algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about First Missing Positive, not a generic data structure illustration. The key idea is: For n input positions, the smallest missing positive number must be between 1 and n + 1. Use the array itself to remember which of these numbers exist. Place value 1 at index 0, value 2 at index 1, and so on. Then look for the first position with the wrong value. The reason a decision is safe is: Swap only a value in 1..n whose destination does not already contain that value. The actual example this lesson teaches is {\"nums\": [3, 4, -1, 1]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Could each small positive number mark its own parking space?",
+        "decision": "Move only values within the available home range, and stop if their home already contains the same value."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting or keeping a separate membership collection would solve the problem but uses additional work or memory. With four input positions, a missing positive must be among 1 through 5; huge and negative values cannot be the smallest missing one.",
+        "decision": "Give each relevant value a home: 1 belongs in the first position, 2 in the second, and so on. Move a value into its home by exchanging it with what is there. Then the first home lacking its proper resident reveals the missing positive."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Give each relevant value a home: 1 belongs in the first position, 2 in the second, and so on. Move a value into its home by exchanging it with what is there. Then the first home lacking its proper resident reveals the missing positive.",
+        "decision": "Move only values within the available home range, and stop if their home already contains the same value."
+      },
+      {
+        "id": "move-three-home",
+        "title": "Move three home",
+        "narration": "In [3,4,-1,1], value 3 belongs in the third position. Exchanging it with -1 gives [-1,4,3,1].",
+        "decision": "Values outside the home range need no placement."
+      },
+      {
+        "id": "continue-the-displaced-value-chain",
+        "title": "Continue the displaced-value chain",
+        "narration": "Move 4 into the fourth position, then move the displaced 1 into the first. The row becomes [1,-1,3,4].",
+        "decision": "Each successful exchange fills a correct home."
+      },
+      {
+        "id": "the-first-unfilled-home-is-two",
+        "title": "The first unfilled home is two",
+        "narration": "The first home contains 1. The second contains -1 instead of 2, so 2 is the smallest missing positive.",
+        "decision": "Every earlier home is already correctly filled."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The answer is at most one more than the number of input positions: if all smaller positives are present, that next number is missing. Each successful exchange fills a value’s designated home and never needs to dislodge a correctly placed different value. After placement, a positive is present exactly when its home contains it, so the first failed home test gives the smallest missing positive.",
+        "decision": "Move only values within the available home range, and stop if their home already contains the same value."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: [1,1] must stop when the second 1 sees its home already filled. The missing answer is 2.",
+        "decision": "Duplicate values must not cause an endless exchange."
+      }
+    ]
+  }
 }

@@ -45,5 +45,86 @@
       "note": "The query stops after its prefix rather than needing the complete word; the reached node already summarizes all longer matching words."
     }
   ],
-  "keyDecision": "The separator keeps the suffix and prefix parts distinct. Store increasing word indices so the latest one wins."
+  "keyDecision": "The separator keeps the suffix and prefix parts distinct. Store increasing word indices so the latest one wins.",
+  "concept": {
+    "question": "How can one letter path enforce both a word’s ending and beginning?",
+    "intuition": [
+      "Filtering all words for each prefix-and-suffix query repeats the same comparisons. Build an index whose paths encode both conditions together.",
+      "For each word, store every suffix followed by a special separator and then the full word. A query follows its suffix, the separator, and its prefix. Save the greatest matching word index along each path."
+    ],
+    "observation": "The separator fixes the complete suffix boundary; the following letters need only match the beginning of the word.",
+    "approach": [
+      "Insert suffix–separator–word paths for every indexed word.",
+      "Record the latest word index at every visited prefix node.",
+      "Follow suffix–separator–prefix for a query, or fail at a missing letter."
+    ],
+    "correctness": "A stored combined path reaches a query endpoint exactly when its suffix portion equals the requested full suffix and its full-word portion begins with the requested prefix. Thus traversal matches both conditions simultaneously. Increasing-index insertion leaves the largest matching index at every endpoint, giving the required tie result.",
+    "complexity": {
+      "time": "O(N*L²) construction; O(P+S) per query",
+      "space": "O(N*L²)",
+      "explanation": "A word of maximum length supplies linearly many suffix paths, each linear in length, making construction and index storage quadratic in that length per word. A query walks only its suffix and prefix lengths."
+    },
+    "pitfalls": [
+      "The separator fixes the complete suffix boundary; the following letters need only match the beginning of the word.",
+      "The separator must not be a permitted word letter."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/prefix-and-suffix-search/concept.webp",
+        "alt": "For each word, store every suffix followed by a special separator and then the full word. A query follows its suffix, the separator, and its prefix. Save the greatest matching word index along each path.",
+        "caption": "For each word, store every suffix followed by a special separator and then the full word. A query follows its suffix, the separator, and its prefix. Save the greatest matching word index along each path.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Prefix and Suffix Search algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Prefix and Suffix Search, not a generic data structure illustration. The key idea is: A word must match both a beginning and an ending. Store paths combining each possible suffix, a separator, and the full word. A query follows suffix + separator + prefix. Save the latest word index along each path so matching queries return the largest index. The reason a decision is safe is: The separator keeps the suffix and prefix parts distinct. Store increasing word indices so the latest one wins. The actual example this lesson teaches is {\"words\": [\"apple\"], \"queries\": [[\"a\", \"e\"]]} with answer [0]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can one letter path enforce both a word’s ending and beginning?",
+        "decision": "The separator fixes the complete suffix boundary; the following letters need only match the beginning of the word."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Filtering all words for each prefix-and-suffix query repeats the same comparisons. Build an index whose paths encode both conditions together.",
+        "decision": "For each word, store every suffix followed by a special separator and then the full word. A query follows its suffix, the separator, and its prefix. Save the greatest matching word index along each path."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For each word, store every suffix followed by a special separator and then the full word. A query follows its suffix, the separator, and its prefix. Save the greatest matching word index along each path.",
+        "decision": "The separator fixes the complete suffix boundary; the following letters need only match the beginning of the word."
+      },
+      {
+        "id": "apple-supplies-a-combined-path",
+        "title": "Apple supplies a combined path",
+        "narration": "The fixture contains apple at index zero. Its suffix e supplies the path e | apple, where | is a separator outside the letter alphabet.",
+        "decision": "The conceptual separator stands for a nonletter marker."
+      },
+      {
+        "id": "a-query-follows-only-the-needed-prefix",
+        "title": "A query follows only the needed prefix",
+        "narration": "For prefix a and suffix e, traverse e | a. That path is the beginning of the stored e | apple path.",
+        "decision": "The suffix must end at the separator; the word prefix may stop early."
+      },
+      {
+        "id": "return-the-latest-matching-index",
+        "title": "Return the latest matching index",
+        "narration": "The final query node records zero, so the query returns zero. An absent suffix or prefix would return −1.",
+        "decision": "Inserting later matching words overwrites earlier indices."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A stored combined path reaches a query endpoint exactly when its suffix portion equals the requested full suffix and its full-word portion begins with the requested prefix. Thus traversal matches both conditions simultaneously. Increasing-index insertion leaves the largest matching index at every endpoint, giving the required tie result.",
+        "decision": "The separator fixes the complete suffix boundary; the following letters need only match the beginning of the word."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Prefix and suffix may overlap in the original word; storing both portions still permits that.",
+        "decision": "The separator must not be a permitted word letter."
+      }
+    ]
+  }
 }

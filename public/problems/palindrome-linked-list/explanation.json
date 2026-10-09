@@ -38,5 +38,86 @@
       "note": "Restore original links before returning, even when comparison stopped on a mismatch."
     }
   ],
-  "keyDecision": "Compare every mirrored pair, then restore the second half even if a mismatch was found."
+  "keyDecision": "Compare every mirrored pair, then restore the second half even if a mismatch was found.",
+  "concept": {
+    "question": "Can reversing only the back half make mirrored nodes walkable together?",
+    "intuition": [
+      "A singly linked list cannot compare its front and back by walking backward. Copying all values would solve that, but needs growing memory.",
+      "Find the middle and reverse the second half. Its forward order now matches the original list’s backward order. Compare the two half chains node by node, skipping an odd middle node. Reverse the changed half again before returning."
+    ],
+    "observation": "Compare mirrored values, then restore the reversed half even if a mismatch is found.",
+    "approach": [
+      "Find the middle and start of the comparison half.",
+      "Reverse that half and compare it with the front half.",
+      "Restore its original links before returning the comparison result."
+    ],
+    "correctness": "Reversing the second half puts its original last node opposite the first, its next-to-last opposite the second, and so on. Comparing every such pair establishes exactly the palindrome condition. An odd middle is its own mirror. Restoring the half returns all original links independently of the result.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Middle finding, half reversal, comparison, and restoration are each linear passes. A few bookmarks give constant auxiliary memory."
+    },
+    "pitfalls": [
+      "Compare mirrored values, then restore the reversed half even if a mismatch is found.",
+      "Restoration is also required after an early mismatch."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/palindrome-linked-list/concept.webp",
+        "alt": "Find the middle and reverse the second half. Its forward order now matches the original list’s backward order. Compare the two half chains node by node, skipping an odd middle node. Reverse the changed half again before returning.",
+        "caption": "Find the middle and reverse the second half. Its forward order now matches the original list’s backward order. Compare the two half chains node by node, skipping an odd middle node. Reverse the changed half again before returning.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Palindrome Linked List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Palindrome Linked List, not a generic data structure illustration. The key idea is: Compare the front half with the back half in reverse order. Find the middle, reverse the second half, and walk the two halves together. For an odd-length list, the middle value needs no comparison. Reverse the changed half again before returning to restore the input. The reason a decision is safe is: Compare every mirrored pair, then restore the second half even if a mismatch was found. The actual example this lesson teaches is {\"head\": [1, 2, 2, 1]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can reversing only the back half make mirrored nodes walkable together?",
+        "decision": "Compare mirrored values, then restore the reversed half even if a mismatch is found."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A singly linked list cannot compare its front and back by walking backward. Copying all values would solve that, but needs growing memory.",
+        "decision": "Find the middle and reverse the second half. Its forward order now matches the original list’s backward order. Compare the two half chains node by node, skipping an odd middle node. Reverse the changed half again before returning."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Find the middle and reverse the second half. Its forward order now matches the original list’s backward order. Compare the two half chains node by node, skipping an odd middle node. Reverse the changed half again before returning.",
+        "decision": "Compare mirrored values, then restore the reversed half even if a mismatch is found."
+      },
+      {
+        "id": "separate-mirrored-halves",
+        "title": "Separate mirrored halves",
+        "narration": "For [1,2,2,1], the halves are [1,2] and [2,1].",
+        "decision": "An odd central value would not need a partner."
+      },
+      {
+        "id": "make-the-back-walk-forward-in-reverse",
+        "title": "Make the back walk forward in reverse",
+        "narration": "Reverse the back half to [1,2]. Both comparison chains now read 1 then 2.",
+        "decision": "Equal step positions correspond to mirrored original positions."
+      },
+      {
+        "id": "restore-after-comparing",
+        "title": "Restore after comparing",
+        "narration": "Both pairs match. Restore the original [1,2,2,1] chain and return yes.",
+        "decision": "The answer must not leave the original list damaged."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Reversing the second half puts its original last node opposite the first, its next-to-last opposite the second, and so on. Comparing every such pair establishes exactly the palindrome condition. An odd middle is its own mirror. Restoring the half returns all original links independently of the result.",
+        "decision": "Compare mirrored values, then restore the reversed half even if a mismatch is found."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-node chain is a palindrome and requires no comparison pairs.",
+        "decision": "Restoration is also required after an early mismatch."
+      }
+    ]
+  }
 }

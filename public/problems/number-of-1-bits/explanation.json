@@ -33,5 +33,86 @@
       "note": "Each transformation removes exactly one bit, so one increment maintains equality between the counter and the number of removed original bits."
     }
   ],
-  "keyDecision": "Increase the count once per cleared bit. Zero starts with no set bits."
+  "keyDecision": "Increase the count once per cleared bit. Zero starts with no set bits.",
+  "concept": {
+    "question": "Why does removing the lowest one count bits directly?",
+    "intuition": [
+      "Reading every binary position works, but a number with few one bits can be processed one one at a time. Subtracting one reveals a useful boundary change at the lowest set bit.",
+      "Subtracting one turns the lowest one into zero and lower trailing zeros into ones. Keeping only positions that were one in both the original and that predecessor removes exactly the original lowest one. Repeat and count removals."
+    ],
+    "observation": "Each step must clear exactly one original one bit.",
+    "approach": [
+      "Find the predecessor of the current positive word.",
+      "Keep positions that are one in both words.",
+      "Count one removal and repeat until no one bits remain."
+    ],
+    "correctness": "The predecessor changes precisely the lowest one and all lower zeros. Intersecting one positions with the original clears that lowest one, retains every higher one, and excludes all newly created lower ones. Each iteration reduces the number of original ones by exactly one, so the number of iterations is the desired count.",
+    "complexity": {
+      "time": "O(number of set bits)",
+      "space": "O(1)",
+      "explanation": "Work is proportional to the number of one bits, bounded by the fixed word width. Current word and count use constant storage."
+    },
+    "pitfalls": [
+      "Each step must clear exactly one original one bit.",
+      "Count ones, not the number of written binary digits."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/number-of-1-bits/concept.webp",
+        "alt": "Subtracting one turns the lowest one into zero and lower trailing zeros into ones. Keeping only positions that were one in both the original and that predecessor removes exactly the original lowest one. Repeat and count removals.",
+        "caption": "Subtracting one turns the lowest one into zero and lower trailing zeros into ones. Keeping only positions that were one in both the original and that predecessor removes exactly the original lowest one. Repeat and count removals.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Number of 1 Bits algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Number of 1 Bits, not a generic data structure illustration. The key idea is: Clear one set bit at a time. The operation n & (n - 1) removes the rightmost 1 from a positive binary number while leaving the other 1s intact. Count how many times this can be done before the number becomes zero. The reason a decision is safe is: Increase the count once per cleared bit. Zero starts with no set bits. The actual example this lesson teaches is {\"n\": 11} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does removing the lowest one count bits directly?",
+        "decision": "Each step must clear exactly one original one bit."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Reading every binary position works, but a number with few one bits can be processed one one at a time. Subtracting one reveals a useful boundary change at the lowest set bit.",
+        "decision": "Subtracting one turns the lowest one into zero and lower trailing zeros into ones. Keeping only positions that were one in both the original and that predecessor removes exactly the original lowest one. Repeat and count removals."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Subtracting one turns the lowest one into zero and lower trailing zeros into ones. Keeping only positions that were one in both the original and that predecessor removes exactly the original lowest one. Repeat and count removals.",
+        "decision": "Each step must clear exactly one original one bit."
+      },
+      {
+        "id": "clear-the-rightmost-one",
+        "title": "Clear the rightmost one",
+        "narration": "For eleven, binary 1011 shares one positions with predecessor 1010 to produce 1010. One one has been removed.",
+        "decision": "New lower ones in a predecessor cannot survive where the original had zero."
+      },
+      {
+        "id": "clear-the-next-lowest-one",
+        "title": "Clear the next lowest one",
+        "narration": "Now 1010 and predecessor 1001 share only 1000. The removal count is two.",
+        "decision": "All higher original one bits remain untouched."
+      },
+      {
+        "id": "the-last-one-vanishes",
+        "title": "The last one vanishes",
+        "narration": "1000 and predecessor 0111 share no one position, giving 0000. Three removals mean eleven had three one bits.",
+        "decision": "Zero ends the process."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The predecessor changes precisely the lowest one and all lower zeros. Intersecting one positions with the original clears that lowest one, retains every higher one, and excludes all newly created lower ones. Each iteration reduces the number of original ones by exactly one, so the number of iterations is the desired count.",
+        "decision": "Each step must clear exactly one original one bit."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A power of two needs exactly one removal, regardless of its bit position.",
+        "decision": "Count ones, not the number of written binary digits."
+      }
+    ]
+  }
 }

@@ -80,5 +80,86 @@
       "note": "The maximum drops only when its group becomes empty; lower-frequency histories already contain the next valid choices."
     }
   ],
-  "keyDecision": "Pop from the highest frequency group, then lower max_frequency only when that group becomes empty."
+  "keyDecision": "Pop from the highest frequency group, then lower max_frequency only when that group becomes empty.",
+  "concept": {
+    "question": "How can frequency levels remember the most recent tied occurrence?",
+    "intuition": [
+      "A normal stack knows recency but not which value is most frequent. Recounting all pushes at every removal is unnecessary if each frequency increase records its own recency.",
+      "Count each value’s active occurrences. When a push raises its frequency to a level, append it to that level’s stack. Pop from the highest nonempty level; its most recent entry resolves frequency ties. Lower-level records remain ready for later removals."
+    ],
+    "observation": "Priority is maximum active frequency, then most recent unmatched push.",
+    "approach": [
+      "Track each value’s active frequency and a recency stack for every level.",
+      "Push the value into the stack of its new frequency.",
+      "Pop the latest entry at the maximum level and lower that level when empty."
+    ],
+    "correctness": "A value reaching frequency f records the unmatched push that made its fth active occurrence. Higher levels take priority, so that event remains until the value returns to frequency f. Among all maximum-frequency values, the newest such event is their newest unmatched push. Popping its level stack therefore implements both the frequency and recency rules.",
+    "complexity": {
+      "time": "O(1) amortized per operation",
+      "space": "O(active occurrences)",
+      "explanation": "Frequency updates and level-stack pushes and pops are constant amortized work. One record per active push gives storage proportional to active occurrences."
+    },
+    "pitfalls": [
+      "Priority is maximum active frequency, then most recent unmatched push.",
+      "Do not erase lower-level history when a frequency increases."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-frequency-stack/concept.webp",
+        "alt": "Count each value’s active occurrences. When a push raises its frequency to a level, append it to that level’s stack. Pop from the highest nonempty level; its most recent entry resolves frequency ties. Lower-level records remain ready for later removals.",
+        "caption": "Count each value’s active occurrences. When a push raises its frequency to a level, append it to that level’s stack. Pop from the highest nonempty level; its most recent entry resolves frequency ties. Lower-level records remain ready for later removals.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Maximum Frequency Stack algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Maximum Frequency Stack, not a generic data structure illustration. The key idea is: Group push events by the frequency a value reaches. Keep a stack for each frequency level. The highest nonempty level contains the most frequent values, and its last entry is the most recent one among ties. Popping that entry restores the earlier frequency history. The reason a decision is safe is: Pop from the highest frequency group, then lower max_frequency only when that group becomes empty. The actual example this lesson teaches is {\"operations\": [[\"push\", 5], [\"push\", 7], [\"push\", 5], [\"push\", 7], [\"push\", 4], [\"push\", 5], [\"pop\"], [\"pop\"], [\"pop\"], [\"pop\"]]} with answer [null, null, null, null, null, null, 5, 7, 5, 4]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can frequency levels remember the most recent tied occurrence?",
+        "decision": "Priority is maximum active frequency, then most recent unmatched push."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A normal stack knows recency but not which value is most frequent. Recounting all pushes at every removal is unnecessary if each frequency increase records its own recency.",
+        "decision": "Count each value’s active occurrences. When a push raises its frequency to a level, append it to that level’s stack. Pop from the highest nonempty level; its most recent entry resolves frequency ties. Lower-level records remain ready for later removals."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Count each value’s active occurrences. When a push raises its frequency to a level, append it to that level’s stack. Pop from the highest nonempty level; its most recent entry resolves frequency ties. Lower-level records remain ready for later removals.",
+        "decision": "Priority is maximum active frequency, then most recent unmatched push."
+      },
+      {
+        "id": "repeated-pushes-build-levels",
+        "title": "Repeated pushes build levels",
+        "narration": "For pushes 5,7,5,7,4,5, frequency level one records [5,7,4], level two [5,7], and level three [5].",
+        "decision": "A new frequency event is recorded without deleting the older level event."
+      },
+      {
+        "id": "the-highest-frequency-wins-first",
+        "title": "The highest frequency wins first",
+        "narration": "Pop five from level three. Its frequency falls to two and level three empties. Then pop seven from level two, because seven’s level-two event is more recent than five’s.",
+        "decision": "Recency decides only among values tied at the maximum level."
+      },
+      {
+        "id": "lower-histories-resolve-the-next-ties",
+        "title": "Lower histories resolve the next ties",
+        "narration": "Pop five from level two, then four from the top of level one. The four pop results are [5,7,5,4].",
+        "decision": "Earlier lower-level events regain relevance as higher copies are removed."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A value reaching frequency f records the unmatched push that made its fth active occurrence. Higher levels take priority, so that event remains until the value returns to frequency f. Among all maximum-frequency values, the newest such event is their newest unmatched push. Popping its level stack therefore implements both the frequency and recency rules.",
+        "decision": "Priority is maximum active frequency, then most recent unmatched push."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Equal-frequency values are resolved by recency, not numeric value.",
+        "decision": "Do not erase lower-level history when a frequency increases."
+      }
+    ]
+  }
 }

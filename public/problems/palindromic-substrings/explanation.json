@@ -34,5 +34,86 @@
       "note": "Expanding left and right together keeps the same center and reuses the palindrome already certified inside."
     }
   ],
-  "keyDecision": "Try both odd-length and even-length centers. Count every successful expansion."
+  "keyDecision": "Try both odd-length and even-length centers. Count every successful expansion.",
+  "concept": {
+    "question": "How does expanding from centers count every positional palindrome exactly once?",
+    "intuition": [
+      "Testing every section by reading it backward repeatedly checks the same interior characters. Every palindrome instead has a unique middle character or middle gap.",
+      "Start at each character and each gap between characters. Expand outward while the two new endpoints match. Each successful expansion is one positional palindrome, even when its text equals a palindrome elsewhere."
+    ],
+    "observation": "Count positions, not distinct spellings, and include both character and gap centers.",
+    "approach": [
+      "Choose every odd-length and even-length center.",
+      "Count each matching expansion before growing outward again.",
+      "Stop that center on a mismatch or text boundary."
+    ],
+    "correctness": "Every palindrome has exactly one center and radius. Its mirrored pairs all match, so that center’s expansion reaches and counts it. Conversely, each successful expansion wraps matching endpoints around a valid interior and is palindromic. Unique center-radius pairs ensure no positional substring is counted twice.",
+    "complexity": {
+      "time": "O(n²)",
+      "space": "O(1)",
+      "explanation": "There are linearly many centers, each allowing a linear number of expansions in the worst case. Time is quadratic in text length and extra storage is constant."
+    },
+    "pitfalls": [
+      "Count positions, not distinct spellings, and include both character and gap centers.",
+      "Ignoring gap centers misses every even-length palindrome."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/palindromic-substrings/concept.webp",
+        "alt": "Start at each character and each gap between characters. Expand outward while the two new endpoints match. Each successful expansion is one positional palindrome, even when its text equals a palindrome elsewhere.",
+        "caption": "Start at each character and each gap between characters. Expand outward while the two new endpoints match. Each successful expansion is one positional palindrome, even when its text equals a palindrome elsewhere.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Palindromic Substrings algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Palindromic Substrings, not a generic data structure illustration. The key idea is: A palindrome grows outward from a middle character or a gap between two characters. Try every such center. Each matching expansion gives one palindromic substring at that position, so count it before expanding again. Equal text in different positions counts separately. The reason a decision is safe is: Try both odd-length and even-length centers. Count every successful expansion. The actual example this lesson teaches is {\"s\": \"abba\"} with answer 6. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does expanding from centers count every positional palindrome exactly once?",
+        "decision": "Count positions, not distinct spellings, and include both character and gap centers."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Testing every section by reading it backward repeatedly checks the same interior characters. Every palindrome instead has a unique middle character or middle gap.",
+        "decision": "Start at each character and each gap between characters. Expand outward while the two new endpoints match. Each successful expansion is one positional palindrome, even when its text equals a palindrome elsewhere."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Start at each character and each gap between characters. Expand outward while the two new endpoints match. Each successful expansion is one positional palindrome, even when its text equals a palindrome elsewhere.",
+        "decision": "Count positions, not distinct spellings, and include both character and gap centers."
+      },
+      {
+        "id": "characters-give-four-singletons",
+        "title": "Characters give four singletons",
+        "narration": "For abba, each of its four positions is a one-character palindrome. The two b positions count separately.",
+        "decision": "Equal text at different positions is a different substring."
+      },
+      {
+        "id": "the-middle-gap-grows-twice",
+        "title": "The middle gap grows twice",
+        "narration": "The gap between the b characters gives bb. Its next outer pair a,a also matches, giving abba.",
+        "decision": "Matching endpoints surround an already palindromic interior."
+      },
+      {
+        "id": "the-other-centers-add-no-longer-sections",
+        "title": "The other centers add no longer sections",
+        "narration": "The a/b and b/a gaps fail immediately, and the character centers cannot grow matching pairs here. Return six: four singletons, bb, and abba.",
+        "decision": "A mismatching pair cannot be repaired by expanding farther."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every palindrome has exactly one center and radius. Its mirrored pairs all match, so that center’s expansion reaches and counts it. Conversely, each successful expansion wraps matching endpoints around a valid interior and is palindromic. Unique center-radius pairs ensure no positional substring is counted twice.",
+        "decision": "Count positions, not distinct spellings, and include both character and gap centers."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Repeated-character text has many palindromes, including several with equal spelling.",
+        "decision": "Ignoring gap centers misses every even-length palindrome."
+      }
+    ]
+  }
 }

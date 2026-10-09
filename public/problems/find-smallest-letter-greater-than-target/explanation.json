@@ -39,5 +39,86 @@
       "note": "Modulo translates the beyond-end boundary to index zero, implementing the specified circular behavior in constant time."
     }
   ],
-  "keyDecision": "Move past letters <= target. Wrap the final index to zero when it reaches the array length."
+  "keyDecision": "Move past letters <= target. Wrap the final index to zero when it reaches the array length.",
+  "concept": {
+    "question": "How do we find the first strictly greater letter and wrap when it is absent?",
+    "intuition": [
+      "A linear scan is unnecessary in sorted letters. The condition “greater than target” changes only once from false to true, and equality belongs to the false side.",
+      "Binary search the boundary before the first greater letter. A middle letter at or below the target discards itself and all earlier letters; a greater letter remains a possible first answer. If the boundary is past the end, wrap to the first letter."
+    ],
+    "observation": "Equality is invalid, and passing the end triggers circular wraparound.",
+    "approach": [
+      "Search the first position whose letter is strictly greater.",
+      "Discard all middle letters at or below the target.",
+      "Use the first letter when no greater position exists."
+    ],
+    "correctness": "Sortedness makes all letters at or below the target precede all greater letters. Each comparison preserves the first greater boundary while halving its possible range. Meeting bounds locates that boundary exactly. If it equals the list length, every letter failed, and the specified wrap rule selects the first.",
+    "complexity": {
+      "time": "O(log n)",
+      "space": "O(1)",
+      "explanation": "Each comparison halves the boundary search, giving logarithmic time and constant auxiliary storage."
+    },
+    "pitfalls": [
+      "Equality is invalid, and passing the end triggers circular wraparound.",
+      "Do not treat the final equal letter as a match."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-smallest-letter-greater-than-target/concept.webp",
+        "alt": "Binary search the boundary before the first greater letter. A middle letter at or below the target discards itself and all earlier letters; a greater letter remains a possible first answer. If the boundary is past the end, wrap to the first letter.",
+        "caption": "Binary search the boundary before the first greater letter. A middle letter at or below the target discards itself and all earlier letters; a greater letter remains a possible first answer. If the boundary is past the end, wrap to the first letter.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find Smallest Letter Greater Than Target algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find Smallest Letter Greater Than Target, not a generic data structure illustration. The key idea is: Find the first sorted letter strictly greater than the target. Binary search removes letters that are too small or equal. If no greater letter exists, wrap around to the first letter. Equality is not a match because the requested comparison is strict. The reason a decision is safe is: Move past letters <= target. Wrap the final index to zero when it reaches the array length. The actual example this lesson teaches is {\"letters\": [\"c\", \"f\", \"j\"], \"target\": \"c\"} with answer \"f\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do we find the first strictly greater letter and wrap when it is absent?",
+        "decision": "Equality is invalid, and passing the end triggers circular wraparound."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A linear scan is unnecessary in sorted letters. The condition “greater than target” changes only once from false to true, and equality belongs to the false side.",
+        "decision": "Binary search the boundary before the first greater letter. A middle letter at or below the target discards itself and all earlier letters; a greater letter remains a possible first answer. If the boundary is past the end, wrap to the first letter."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Binary search the boundary before the first greater letter. A middle letter at or below the target discards itself and all earlier letters; a greater letter remains a possible first answer. If the boundary is past the end, wrap to the first letter.",
+        "decision": "Equality is invalid, and passing the end triggers circular wraparound."
+      },
+      {
+        "id": "keep-f-as-a-possible-answer",
+        "title": "Keep f as a possible answer",
+        "narration": "For letters c,f,j and target c, middle f is greater. Keep its position as the right boundary of the search.",
+        "decision": "A greater midpoint may be the first qualifying letter."
+      },
+      {
+        "id": "equality-removes-c",
+        "title": "Equality removes c",
+        "narration": "The next middle letter c equals the target, so discard it. The boundaries meet at position one.",
+        "decision": "Returning the target itself would violate strictness."
+      },
+      {
+        "id": "no-wrap-is-needed-here",
+        "title": "No wrap is needed here",
+        "narration": "Position one contains f. Return f; it is the smallest letter strictly greater than c.",
+        "decision": "The circular rule applies only when the greater boundary passes every entry."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Sortedness makes all letters at or below the target precede all greater letters. Each comparison preserves the first greater boundary while halving its possible range. Meeting bounds locates that boundary exactly. If it equals the list length, every letter failed, and the specified wrap rule selects the first.",
+        "decision": "Equality is invalid, and passing the end triggers circular wraparound."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "For letters a,z and target z, equality at the final entry is discarded and the answer wraps to a.",
+        "decision": "Do not treat the final equal letter as a match."
+      }
+    ]
+  }
 }

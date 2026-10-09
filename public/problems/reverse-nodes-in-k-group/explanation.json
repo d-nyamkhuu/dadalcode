@@ -45,5 +45,87 @@
       "note": "After reversal, the old head is the tail and therefore the predecessor needed to begin the following group."
     }
   ],
-  "keyDecision": "Find the kth node before changing any link in that group."
+  "keyDecision": "Find the kth node before changing any link in that group.",
+  "concept": {
+    "question": "Why must we count a whole group before reversing its links?",
+    "intuition": [
+      "Reversing nodes immediately upon arrival could also reverse a final group that is too short. The requirement treats that incomplete tail differently, so we need to know whether the group is complete first.",
+      "View the list as consecutive modules of the requested size. First check that an entire module exists. Reverse its internal links, reconnect it between its predecessor and continuation, then repeat. An incomplete module stays untouched."
+    ],
+    "observation": "Reverse only a complete group; inspect its size before changing any links.",
+    "approach": [
+      "Check that the next group has the requested number of nodes.",
+      "Reverse that group’s links and reconnect its two boundaries.",
+      "Continue after the completed group; stop when fewer nodes remain."
+    ],
+    "correctness": "The completed prefix consists of exactly the full groups already reversed. Reversing the next complete module and restoring its two boundary links preserves every node and extends that prefix correctly. If the remaining suffix is too short, leaving it unchanged satisfies the special tail rule. These parts together cover the entire list.",
+    "complexity": {
+      "time": "O(length)",
+      "space": "O(1)",
+      "explanation": "Each node is inspected and relinked only a constant number of times. The total work is linear, with only a few bookmarks beyond the existing nodes."
+    },
+    "pitfalls": [
+      "Check group completeness before mutation.",
+      "Reconnect both incoming and outgoing group boundaries.",
+      "Leave the final short group in its original order."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/reverse-nodes-in-k-group/concept.webp",
+        "alt": "Full node modules reverse their arrows, while the incomplete tail remains untouched.",
+        "caption": "Full node modules reverse their arrows, while the incomplete tail remains untouched.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Reverse Nodes in k-Group algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Reverse Nodes in k-Group, not a generic data structure illustration. The key idea is: First check whether the next group contains exactly k nodes. If it does, reverse its links and reconnect both ends to the surrounding list. If fewer than k nodes remain, stop. Checking the size first prevents accidentally reversing a final incomplete group. The reason a decision is safe is: Find the kth node before changing any link in that group. The actual example this lesson teaches is {\"head\": [1, 2, 3, 4, 5], \"k\": 2} with answer [2, 1, 4, 3, 5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must we count a whole group before reversing its links?",
+        "decision": "Reverse only a complete group; inspect its size before changing any links."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Reversing nodes immediately upon arrival could also reverse a final group that is too short. The requirement treats that incomplete tail differently, so we need to know whether the group is complete first.",
+        "decision": "View the list as consecutive modules of the requested size. First check that an entire module exists. Reverse its internal links, reconnect it between its predecessor and continuation, then repeat. An incomplete module stays untouched."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "View the list as consecutive modules of the requested size. First check that an entire module exists. Reverse its internal links, reconnect it between its predecessor and continuation, then repeat. An incomplete module stays untouched.",
+        "decision": "Reverse only a complete group; inspect its size before changing any links."
+      },
+      {
+        "id": "check-two-nodes-exist",
+        "title": "Check two nodes exist",
+        "narration": "For [1,2,3,4,5] with groups of two, nodes 1 and 2 form a complete first group.",
+        "decision": "The completeness check permits a safe local reversal."
+      },
+      {
+        "id": "reverse-and-reconnect",
+        "title": "Reverse and reconnect",
+        "narration": "The first group becomes 2 → 1 and remains attached to node 3. The chain is 2 → 1 → 3 → 4 → 5.",
+        "decision": "The old group front becomes its new tail."
+      },
+      {
+        "id": "preserve-the-incomplete-tail",
+        "title": "Preserve the incomplete tail",
+        "narration": "Reverse the next complete group 3,4. Node 5 is alone and stays unchanged, giving [2,1,4,3,5].",
+        "decision": "A short remainder fails the check before any of its links change."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The completed prefix consists of exactly the full groups already reversed. Reversing the next complete module and restoring its two boundary links preserves every node and extends that prefix correctly. If the remaining suffix is too short, leaving it unchanged satisfies the special tail rule. These parts together cover the entire list.",
+        "decision": "Reverse only a complete group; inspect its size before changing any links."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a group size of one leaves every node in its original position.",
+        "decision": "Every single-node group is already reversed."
+      }
+    ]
+  }
 }

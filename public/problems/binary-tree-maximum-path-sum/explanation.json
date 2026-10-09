@@ -120,5 +120,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why can a completed path use two branches, while an upward extension can use only one?",
+    "intuition": [
+      "A best path need not pass through the root. Also, sending two child branches upward would create a fork, which is not a single path.",
+      "At each node, compare a completed path passing through it with both useful child branches. But offer its parent only the node plus one best child branch. A negative child contribution can be omitted; the completed answer must still contain a node."
+    ],
+    "observation": "A path offered upward has one child branch at most; a completed path may join both branches through its center.",
+    "approach": [
+      "Compute child contributions after their subtrees are processed.",
+      "Compare the node plus both positive child contributions with the best complete path.",
+      "Offer the parent the node plus at most one useful child contribution."
+    ],
+    "correctness": "Every path has a highest node where its two downward sides, if any, meet. Considering the best useful contribution from each child at that node covers the best path with that center. Upward offers remain single paths by using at most one child. Comparing completed candidates at every node therefore finds the global maximum without creating forks.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Process each node once after its children. This reference stores computed contributions and an explicit traversal state, so its auxiliary memory is linear in node count."
+    },
+    "pitfalls": [
+      "Do not send two child branches upward.",
+      "A best path need not contain the root.",
+      "Initialize the completed answer to handle all-negative trees."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/binary-tree-maximum-path-sum/concept.webp",
+        "alt": "At each node, compare a completed path passing through it with both useful child branches. But offer its parent only the node plus one best child branch. A negative child contribution can be omitted; the completed answer must still contain a node.",
+        "caption": "At each node, compare a completed path passing through it with both useful child branches. But offer its parent only the node plus one best child branch. A negative child contribution can be omitted; the completed answer must still contain a node.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Binary Tree Maximum Path Sum algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Binary Tree Maximum Path Sum, not a generic data structure illustration. The key idea is: A path may pass through a node and use both of its child branches. But a path extended to the node's parent can use only one child branch. Calculate both quantities separately: the best complete path through this node, and the best single branch to pass upward. The reason a decision is safe is: Use both positive child gains for the complete path, but return only the larger child gain to the parent. The actual example this lesson teaches is {\"root\": [-10, 9, 20, null, null, 15, 7]} with answer 42. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can a completed path use two branches, while an upward extension can use only one?",
+        "decision": "A path offered upward has one child branch at most; a completed path may join both branches through its center."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A best path need not pass through the root. Also, sending two child branches upward would create a fork, which is not a single path.",
+        "decision": "At each node, compare a completed path passing through it with both useful child branches. But offer its parent only the node plus one best child branch. A negative child contribution can be omitted; the completed answer must still contain a node."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "At each node, compare a completed path passing through it with both useful child branches. But offer its parent only the node plus one best child branch. A negative child contribution can be omitted; the completed answer must still contain a node.",
+        "decision": "A path offered upward has one child branch at most; a completed path may join both branches through its center."
+      },
+      {
+        "id": "leaves-offer-their-own-gains",
+        "title": "Leaves offer their own gains",
+        "narration": "Leaves 9,15,7 each offer their value to their parent.",
+        "decision": "A negative extension can be omitted when choosing a useful child contribution."
+      },
+      {
+        "id": "twenty-joins-two-branches",
+        "title": "Twenty joins two branches",
+        "narration": "At 20, the completed path 15 → 20 → 7 totals 42. Its upward offer uses only 15 and totals 35.",
+        "decision": "Joining both branches is valid here, but cannot also extend through the parent."
+      },
+      {
+        "id": "the-root-cannot-improve-it",
+        "title": "The root cannot improve it",
+        "narration": "The through-root candidate is -10 + 9 + 35 = 34. Keep the earlier complete answer 42.",
+        "decision": "The best path can be entirely inside a subtree."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every path has a highest node where its two downward sides, if any, meet. Considering the best useful contribution from each child at that node covers the best path with that center. Upward offers remain single paths by using at most one child. Comparing completed candidates at every node therefore finds the global maximum without creating forks.",
+        "decision": "A path offered upward has one child branch at most; a completed path may join both branches through its center."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: in an all-negative tree, the best path is its least negative node, not an empty path of zero.",
+        "decision": "The answer must contain at least one node."
+      }
+    ]
+  }
 }

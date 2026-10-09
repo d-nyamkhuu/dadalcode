@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A tree made of TWO central nodes joined by an edge. One central node has THREE leaf neighbors and the other has ONE leaf neighbor. Show the four leaves fading together while the two central nodes remain bright, connected, and balanced. A second inset shows only the surviving central edge. No node numbers or text.",
+  "width": 1774,
+  "height": 887
+}

@@ -54,5 +54,87 @@
       "note": "Only after the overlap block is complete are its final bounds emitted, preventing several partially merged output intervals."
     }
   ],
-  "keyDecision": "Merge while the next interval starts at or before the current merged end."
+  "keyDecision": "Merge while the next interval starts at or before the current merged end.",
+  "concept": {
+    "question": "Can one new range be woven into an already ordered set of disjoint ranges?",
+    "intuition": [
+      "Sorting everything again ignores the existing sorted, nonoverlapping structure. Only the ranges that touch the new interval can change.",
+      "Walk through three regions: ranges completely before the new interval, ranges overlapping it, and ranges after it. Preserve the first region, grow the new interval across the middle region, then preserve the last region."
+    ],
+    "observation": "Test overlap against the expanding merged interval, because its growing end can reach another range.",
+    "approach": [
+      "Keep ranges ending strictly before the new interval starts.",
+      "Merge ranges starting no later than its current end.",
+      "Append the merged interval and all remaining later ranges."
+    ],
+    "correctness": "The original ranges are ordered and disjoint. Those strictly before the insertion cannot overlap it and remain valid. Repeatedly expanding across overlaps preserves their exact union with the new range. Once the next start exceeds the expanded end, all later ranges are also beyond it. Joining these three regions yields ordered disjoint coverage.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1) excluding result",
+      "explanation": "Each original interval is inspected once, giving linear work. The output contains at most one more range than the input; only the growing interval boundaries use auxiliary constant memory."
+    },
+    "pitfalls": [
+      "Use the growing end during overlap checks.",
+      "Keep the intervals already before and after in order.",
+      "Do not lose a contained new interval."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/insert-interval/concept.webp",
+        "alt": "One expanding interval absorbs its overlapping neighbors while ordered ranges on either side remain unchanged.",
+        "caption": "One expanding interval absorbs its overlapping neighbors while ordered ranges on either side remain unchanged.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Insert Interval algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Insert Interval, not a generic data structure illustration. The key idea is: The existing intervals are already sorted and do not overlap. Keep the intervals before the new one, combine the intervals that overlap it, then keep the intervals after it. Expand the new interval as you merge, because its growing end may reach another interval. The reason a decision is safe is: Merge while the next interval starts at or before the current merged end. The actual example this lesson teaches is {\"intervals\": [[1, 3], [6, 9]], \"newInterval\": [2, 5]} with answer [[1, 5], [6, 9]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can one new range be woven into an already ordered set of disjoint ranges?",
+        "decision": "Test overlap against the expanding merged interval, because its growing end can reach another range."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting everything again ignores the existing sorted, nonoverlapping structure. Only the ranges that touch the new interval can change.",
+        "decision": "Walk through three regions: ranges completely before the new interval, ranges overlapping it, and ranges after it. Preserve the first region, grow the new interval across the middle region, then preserve the last region."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Walk through three regions: ranges completely before the new interval, ranges overlapping it, and ranges after it. Preserve the first region, grow the new interval across the middle region, then preserve the last region.",
+        "decision": "Test overlap against the expanding merged interval, because its growing end can reach another range."
+      },
+      {
+        "id": "the-new-interval-reaches-the-first-range",
+        "title": "The new interval reaches the first range",
+        "narration": "Existing ranges [1,3] and [6,9] receive [2,5]. The first range overlaps the new one.",
+        "decision": "Its end 3 is not strictly before the new start 2."
+      },
+      {
+        "id": "expand-the-new-coverage",
+        "title": "Expand the new coverage",
+        "narration": "Combining [1,3] with [2,5] gives [1,5].",
+        "decision": "Keep the earliest start and latest end of the joined coverage."
+      },
+      {
+        "id": "the-next-range-is-beyond-the-gap",
+        "title": "The next range is beyond the gap",
+        "narration": "Start 6 is greater than the merged end 5. Preserve [6,9]. The result is [[1,5],[6,9]].",
+        "decision": "Sorted later starts cannot overlap a component once a gap begins."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The original ranges are ordered and disjoint. Those strictly before the insertion cannot overlap it and remain valid. Repeatedly expanding across overlaps preserves their exact union with the new range. Once the next start exceeds the expanded end, all later ranges are also beyond it. Joining these three regions yields ordered disjoint coverage.",
+        "decision": "Test overlap against the expanding merged interval, because its growing end can reach another range."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: inserting [1,10] over several internal ranges can merge all of them.",
+        "decision": "The overlap test uses the current growing end."
+      }
+    ]
+  }
 }

@@ -146,5 +146,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How can a covering frame become as narrow as possible?",
+    "intuition": [
+      "Recounting every substring repeats character work. A valid covering section may also contain unnecessary letters or extra copies that can be removed from its beginning.",
+      "Grow a frame until it includes every required character copy. Then shrink its beginning while the coverage remains complete. Record the narrowest complete frame before releasing a required copy forces growth again."
+    ],
+    "observation": "Coverage counts every required copy; shrink only while none is missing.",
+    "approach": [
+      "Grow until all required copies are covered.",
+      "Shrink while coverage stays valid, recording shorter answers.",
+      "Grow again after a required copy is released."
+    ],
+    "correctness": "For each ending position, shrinking while coverage holds finds its shortest valid starting position. Any further shrink loses a required copy. Growth preserves all later possibilities, and every valid ending is considered. Remembering the smallest length among these locally shortest frames yields the global minimum.",
+    "complexity": {
+      "time": "O(m + n)",
+      "space": "O(alphabet size)",
+      "explanation": "The frame edges move forward only. Each character enters and leaves at most once, giving linear work in both strings’ lengths and memory for character counts."
+    },
+    "pitfalls": [
+      "Coverage counts every required copy; shrink only while none is missing.",
+      "Use occurrence counts rather than a membership set."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/minimum-window-substring/concept.webp",
+        "alt": "Grow a frame until it includes every required character copy. Then shrink its beginning while the coverage remains complete. Record the narrowest complete frame before releasing a required copy forces growth again.",
+        "caption": "Grow a frame until it includes every required character copy. Then shrink its beginning while the coverage remains complete. Record the narrowest complete frame before releasing a required copy forces growth again.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Minimum Window Substring algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Minimum Window Substring, not a generic data structure illustration. The key idea is: Keep a continuous part of s and count how many required characters are still missing. Extend the right end until every required copy is present. Then move the left end forward while the part remains valid. Save the shortest valid part found during this process. The reason a decision is safe is: Shrink only when missing is zero. Repeated characters in t need repeated copies in the window. The actual example this lesson teaches is {\"s\": \"ADOBECODEBANC\", \"t\": \"ABC\"} with answer \"BANC\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a covering frame become as narrow as possible?",
+        "decision": "Coverage counts every required copy; shrink only while none is missing."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Recounting every substring repeats character work. A valid covering section may also contain unnecessary letters or extra copies that can be removed from its beginning.",
+        "decision": "Grow a frame until it includes every required character copy. Then shrink its beginning while the coverage remains complete. Record the narrowest complete frame before releasing a required copy forces growth again."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Grow a frame until it includes every required character copy. Then shrink its beginning while the coverage remains complete. Record the narrowest complete frame before releasing a required copy forces growth again.",
+        "decision": "Coverage counts every required copy; shrink only while none is missing."
+      },
+      {
+        "id": "first-complete-coverage",
+        "title": "First complete coverage",
+        "narration": "In ADOBECODEBANC, the first section covering A, B, and C is ADOBEC, length 6.",
+        "decision": "Distinct-letter presence is sufficient here only because each required count is one."
+      },
+      {
+        "id": "release-surplus-copies",
+        "title": "Release surplus copies",
+        "narration": "After another A arrives, shrink through unnecessary letters and surplus B. Releasing C eventually makes the frame incomplete again.",
+        "decision": "An extra copy can be removed without losing a required copy."
+      },
+      {
+        "id": "the-last-c-opens-a-shorter-answer",
+        "title": "The last C opens a shorter answer",
+        "narration": "The final C restores coverage. Removing O, D, and E leaves BANC, length 4, the shortest covering section.",
+        "decision": "Record a valid frame before removing its first indispensable character."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For each ending position, shrinking while coverage holds finds its shortest valid starting position. Any further shrink loses a required copy. Growth preserves all later possibilities, and every valid ending is considered. Remembering the smallest length among these locally shortest frames yields the global minimum.",
+        "decision": "Coverage counts every required copy; shrink only while none is missing."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: a requirement AAB needs two A copies, not just the letters A and B.",
+        "decision": "Use occurrence counts rather than a membership set."
+      }
+    ]
+  }
 }

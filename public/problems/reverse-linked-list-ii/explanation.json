@@ -45,5 +45,86 @@
       "note": "The extracted node is inserted before the previous segment front; together with before.next=moving this extends the reversal by one node."
     }
   ],
-  "keyDecision": "Perform right - left moves. The original first node stays as the section's tail."
+  "keyDecision": "Perform right - left moves. The original first node stays as the section's tail.",
+  "concept": {
+    "question": "Can we reverse one chain section by repeatedly moving its next node to the front?",
+    "intuition": [
+      "Reversing the whole list would disturb nodes outside the requested section. A local reversal must preserve the connections both before and after that section.",
+      "Keep the node before the section fixed. The original first section node becomes its eventual tail. Repeatedly remove the node just after that tail and insert it at the section front. Each move extends the reversed section by one."
+    ],
+    "observation": "Only section nodes move; keep its predecessor fixed and preserve the continuing suffix.",
+    "approach": [
+      "Find the node before the section.",
+      "Move the next unprocessed section node to the section front.",
+      "Repeat until the specified section is reversed."
+    ],
+    "correctness": "After each move, the nodes already transferred form the reversed beginning of the section, ending at its original first node. Removing its next node and placing that node at the front extends this reversed prefix while preserving the outside links. Exactly one fewer move than section length transfers all remaining section nodes into reverse order.",
+    "complexity": {
+      "time": "O(right), O(n) worst case",
+      "space": "O(1)",
+      "explanation": "Finding the section and transferring its nodes takes linear worst-case work in the list length. A few node bookmarks use constant extra memory."
+    },
+    "pitfalls": [
+      "Only section nodes move; keep its predecessor fixed and preserve the continuing suffix.",
+      "A section of length one is already reversed."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/reverse-linked-list-ii/concept.webp",
+        "alt": "Keep the node before the section fixed. The original first section node becomes its eventual tail. Repeatedly remove the node just after that tail and insert it at the section front. Each move extends the reversed section by one.",
+        "caption": "Keep the node before the section fixed. The original first section node becomes its eventual tail. Repeatedly remove the node just after that tail and insert it at the section front. Each move extends the reversed section by one.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Reverse Linked List II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Reverse Linked List II, not a generic data structure illustration. The key idea is: Keep the node just before the section fixed. Repeatedly take the node after the section's original first node and move it to the section's front. Each move reverses one more node while keeping the parts before and after the section connected. The reason a decision is safe is: Perform right - left moves. The original first node stays as the section's tail. The actual example this lesson teaches is {\"head\": [1, 2, 3, 4, 5], \"left\": 2, \"right\": 4} with answer [1, 4, 3, 2, 5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can we reverse one chain section by repeatedly moving its next node to the front?",
+        "decision": "Only section nodes move; keep its predecessor fixed and preserve the continuing suffix."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Reversing the whole list would disturb nodes outside the requested section. A local reversal must preserve the connections both before and after that section.",
+        "decision": "Keep the node before the section fixed. The original first section node becomes its eventual tail. Repeatedly remove the node just after that tail and insert it at the section front. Each move extends the reversed section by one."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep the node before the section fixed. The original first section node becomes its eventual tail. Repeatedly remove the node just after that tail and insert it at the section front. Each move extends the reversed section by one.",
+        "decision": "Only section nodes move; keep its predecessor fixed and preserve the continuing suffix."
+      },
+      {
+        "id": "mark-the-section-boundaries",
+        "title": "Mark the section boundaries",
+        "narration": "In [1,2,3,4,5], reverse positions 2 through 4. Node 1 precedes the section, whose original first node is 2.",
+        "decision": "Positions here are one-based."
+      },
+      {
+        "id": "move-three-to-the-section-front",
+        "title": "Move three to the section front",
+        "narration": "Remove 3 from after 2 and insert it after 1. The chain becomes [1,3,2,4,5].",
+        "decision": "Node 2 stays the section tail as reversed nodes accumulate before it."
+      },
+      {
+        "id": "move-four-to-the-section-front",
+        "title": "Move four to the section front",
+        "narration": "Move 4 in the same way. The final chain is [1,4,3,2,5].",
+        "decision": "Two front insertions reverse a three-node section."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each move, the nodes already transferred form the reversed beginning of the section, ending at its original first node. Removing its next node and placing that node at the front extends this reversed prefix while preserving the outside links. Exactly one fewer move than section length transfers all remaining section nodes into reverse order.",
+        "decision": "Only section nodes move; keep its predecessor fixed and preserve the continuing suffix."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a one-node section needs no transfers and leaves the chain unchanged.",
+        "decision": "A section of length one is already reversed."
+      }
+    ]
+  }
 }

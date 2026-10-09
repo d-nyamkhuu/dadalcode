@@ -32,5 +32,86 @@
       "note": "The length guard prevents incomplete prefixes from being tested as permutations. Equal full-width counts then provide an exact occurrence count match."
     }
   ],
-  "keyDecision": "Compare counts only for a full-length window. The order of characters inside it does not matter."
+  "keyDecision": "Compare counts only for a full-length window. The order of characters inside it does not matter.",
+  "concept": {
+    "question": "How can a fixed-size letter inventory recognize a rearrangement?",
+    "intuition": [
+      "Generating every permutation of the query is unnecessary. Any rearrangement has exactly the same occurrence count for every letter and exactly the same length.",
+      "Slide a section of query length across the text while maintaining its letter counts. Compare its inventory with the query’s inventory. A matching inventory means that section is a permutation."
+    ],
+    "observation": "Both letter multiplicities and section length must match.",
+    "approach": [
+      "Count the query’s letters.",
+      "Maintain text sections of exactly the query length.",
+      "Update leaving and entering counts and test for inventory equality."
+    ],
+    "correctness": "Two equal-length strings are permutations exactly when every letter count agrees. The sliding updates remove precisely the leaving character and add precisely the entering one, keeping each section’s inventory exact. Every possible start of a query-length section is checked, so a match is found if and only if one exists.",
+    "complexity": {
+      "time": "O(n+n)",
+      "space": "O(1)",
+      "explanation": "Counting and scanning are linear in the two text lengths. Inventory comparison uses the fixed 26-letter alphabet, so extra storage is constant."
+    },
+    "pitfalls": [
+      "Both letter multiplicities and section length must match.",
+      "A set of letters loses multiplicities: aab differs from abb."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/permutation-in-string/concept.webp",
+        "alt": "Slide a section of query length across the text while maintaining its letter counts. Compare its inventory with the query’s inventory. A matching inventory means that section is a permutation.",
+        "caption": "Slide a section of query length across the text while maintaining its letter counts. Compare its inventory with the query’s inventory. A matching inventory means that section is a permutation.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Permutation in String algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Permutation in String, not a generic data structure illustration. The key idea is: A permutation has the same character counts as the original string. Slide a window of exactly len(s1) characters across s2 and compare its counts with s1's counts. We do not need to generate any reordered strings to check whether a match exists. The reason a decision is safe is: Compare counts only for a full-length window. The order of characters inside it does not matter. The actual example this lesson teaches is {\"s1\": \"ab\", \"s2\": \"eidbaooo\"} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a fixed-size letter inventory recognize a rearrangement?",
+        "decision": "Both letter multiplicities and section length must match."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Generating every permutation of the query is unnecessary. Any rearrangement has exactly the same occurrence count for every letter and exactly the same length.",
+        "decision": "Slide a section of query length across the text while maintaining its letter counts. Compare its inventory with the query’s inventory. A matching inventory means that section is a permutation."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Slide a section of query length across the text while maintaining its letter counts. Compare its inventory with the query’s inventory. A matching inventory means that section is a permutation.",
+        "decision": "Both letter multiplicities and section length must match."
+      },
+      {
+        "id": "the-query-requires-one-a-and-one-b",
+        "title": "The query requires one a and one b",
+        "narration": "For query ab and text eidbaooo, inspect sections of length two. The first ei inventory does not match.",
+        "decision": "The whole longer text’s inventory is irrelevant."
+      },
+      {
+        "id": "slide-through-nonmatching-sections",
+        "title": "Slide through nonmatching sections",
+        "narration": "The next sections id and db still fail: each lacks a required letter.",
+        "decision": "Only one letter leaves and one enters per shift."
+      },
+      {
+        "id": "the-ba-section-matches",
+        "title": "The ba section matches",
+        "narration": "Section ba has one a and one b. It is a rearrangement of ab, so return yes immediately.",
+        "decision": "Letter order within the fixed-size section may differ."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Two equal-length strings are permutations exactly when every letter count agrees. The sliding updates remove precisely the leaving character and add precisely the entering one, keeping each section’s inventory exact. Every possible start of a query-length section is checked, so a match is found if and only if one exists.",
+        "decision": "Both letter multiplicities and section length must match."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If the query is longer than the text, no section can match.",
+        "decision": "A set of letters loses multiplicities: aab differs from abb."
+      }
+    ]
+  }
 }

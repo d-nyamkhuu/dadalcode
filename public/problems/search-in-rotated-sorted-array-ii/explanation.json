@@ -39,5 +39,86 @@
       "note": "In the ambiguous duplicate case, move only one position rather than discarding a potentially useful half."
     }
   ],
-  "keyDecision": "Check the middle for a match before trimming equal endpoints."
+  "keyDecision": "Check the middle for a match before trimming equal endpoints.",
+  "concept": {
+    "question": "What if duplicates hide which half of a rotated row is sorted?",
+    "intuition": [
+      "The distinct-value search relies on recognizing a sorted side. Equal endpoints and midpoint can hide the rotation break, so confidently discarding half may lose the target.",
+      "First test the middle for equality with the target. If both endpoints equal that nonmatching middle, remove those endpoints: they are known not to be the target. Once the ambiguity clears, use the ordered half’s endpoint range."
+    ],
+    "observation": "Trim ambiguous equal endpoints only after confirming they are not the target.",
+    "approach": [
+      "Test the midpoint.",
+      "Trim equal nonmatching endpoints when the sorted side is hidden.",
+      "Otherwise keep the half whose ordered range can contain the target."
+    ],
+    "correctness": "Endpoint trimming removes only values already known unequal to the target. A visible sorted side can be safely included or excluded by its value range. Both operations preserve the target if it exists. The range eventually finds the target or becomes empty.",
+    "complexity": {
+      "time": "O(log n) when each step halves the interval; O(n) worst case",
+      "space": "O(1)",
+      "explanation": "Clear sorted halves permit logarithmic searching, but repeated equal endpoints can require linear work in the worst case. A few boundary positions use constant memory."
+    },
+    "pitfalls": [
+      "Trim ambiguous equal endpoints only after confirming they are not the target.",
+      "Duplicates can make the worst-case work linear."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/search-in-rotated-sorted-array-ii/concept.webp",
+        "alt": "First test the middle for equality with the target. If both endpoints equal that nonmatching middle, remove those endpoints: they are known not to be the target. Once the ambiguity clears, use the ordered half’s endpoint range.",
+        "caption": "First test the middle for equality with the target. If both endpoints equal that nonmatching middle, remove those endpoints: they are known not to be the target. Once the ambiguity clears, use the ordered half’s endpoint range.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Search in Rotated Sorted Array II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Search in Rotated Sorted Array II, not a generic data structure illustration. The key idea is: As in the version without duplicates, look for a sorted half around the middle. Equal values can hide which half is sorted. If both endpoints equal the middle and the middle is not the target, remove those endpoints. Then try the sorted-half check again. The reason a decision is safe is: Check the middle for a match before trimming equal endpoints. The actual example this lesson teaches is {\"nums\": [1, 0, 1, 1, 1], \"target\": 0} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What if duplicates hide which half of a rotated row is sorted?",
+        "decision": "Trim ambiguous equal endpoints only after confirming they are not the target."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "The distinct-value search relies on recognizing a sorted side. Equal endpoints and midpoint can hide the rotation break, so confidently discarding half may lose the target.",
+        "decision": "First test the middle for equality with the target. If both endpoints equal that nonmatching middle, remove those endpoints: they are known not to be the target. Once the ambiguity clears, use the ordered half’s endpoint range."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "First test the middle for equality with the target. If both endpoints equal that nonmatching middle, remove those endpoints: they are known not to be the target. Once the ambiguity clears, use the ordered half’s endpoint range.",
+        "decision": "Trim ambiguous equal endpoints only after confirming they are not the target."
+      },
+      {
+        "id": "equal-endpoints-hide-the-break",
+        "title": "Equal endpoints hide the break",
+        "narration": "In [1,0,1,1,1], the endpoints and middle are all 1, but target 0 may still be hidden on either side.",
+        "decision": "Equal values alone do not reveal the sorted half."
+      },
+      {
+        "id": "remove-known-nonmatches",
+        "title": "Remove known nonmatches",
+        "narration": "Discard the two endpoint 1s. The remaining candidates are [0,1,1].",
+        "decision": "The removed endpoints are definitely not the requested zero."
+      },
+      {
+        "id": "an-ordered-side-reveals-the-match",
+        "title": "An ordered side reveals the match",
+        "narration": "Now [0,1] is a visible sorted half containing 0. Narrow to the matching 0 and return yes.",
+        "decision": "The ordinary sorted-range test becomes safe once ambiguity is removed."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Endpoint trimming removes only values already known unequal to the target. A visible sorted side can be safely included or excluded by its value range. Both operations preserve the target if it exists. The range eventually finds the target or becomes empty.",
+        "decision": "Trim ambiguous equal endpoints only after confirming they are not the target."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: many equal non-target values may require discarding only endpoints repeatedly.",
+        "decision": "Duplicates can make the worst-case work linear."
+      }
+    ]
+  }
 }

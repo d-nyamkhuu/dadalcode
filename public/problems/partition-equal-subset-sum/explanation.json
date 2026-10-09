@@ -101,5 +101,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How does reaching half the total settle the whole partition?",
+    "intuition": [
+      "Enumerating both subsets duplicates the same decision: once one subset is chosen, the other consists of everything left. Equal totals require one subset to reach half the overall total.",
+      "If the total is even, track reachable subset sums through its half. Each value can extend sums reachable before that value was used. Update from larger sums downward so one occurrence cannot extend itself repeatedly."
+    ],
+    "observation": "Each input occurrence may be used at most once; new sums must extend older reachability.",
+    "approach": [
+      "Reject an odd overall total.",
+      "Begin with only sum zero reachable.",
+      "For each value, mark newly reachable sums downward and check the half-total target."
+    ],
+    "correctness": "Before each value, the marked totals are exactly the sums of subsets of earlier occurrences. Keeping old marks represents exclusion; extending them by this value represents inclusion. Downward traversal keeps every predecessor from the earlier stage, so no occurrence is reused. Reaching half the total is equivalent to an equal partition.",
+    "complexity": {
+      "time": "O(n*T), T=sum(nums)/2",
+      "space": "O(T)",
+      "explanation": "For every value, scan totals up to half the sum. Time is proportional to item count times that target; storage is one target-sized reachability table."
+    },
+    "pitfalls": [
+      "Each input occurrence may be used at most once; new sums must extend older reachability.",
+      "Do not update upward, which would allow unlimited copies."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/partition-equal-subset-sum/concept.webp",
+        "alt": "Unnumbered blocks balance on two sides of a scale, with a half-total target guiding possible selections.",
+        "caption": "Equal groups must each reach half of the total. The exact values and reachable totals are shown in the visual story.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. An abstract balancing scale with two equally weighted bowls. On one bowl a single large glowing block; on the other several smaller blocks whose combined VOLUME exactly equals the large block. Show one group selected from a tray and the unselected complement going to the other bowl. No values, number labels, arithmetic, or words."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does reaching half the total settle the whole partition?",
+        "decision": "Each input occurrence may be used at most once; new sums must extend older reachability."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Enumerating both subsets duplicates the same decision: once one subset is chosen, the other consists of everything left. Equal totals require one subset to reach half the overall total.",
+        "decision": "If the total is even, track reachable subset sums through its half. Each value can extend sums reachable before that value was used. Update from larger sums downward so one occurrence cannot extend itself repeatedly."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "If the total is even, track reachable subset sums through its half. Each value can extend sums reachable before that value was used. Update from larger sums downward so one occurrence cannot extend itself repeatedly.",
+        "decision": "Each input occurrence may be used at most once; new sums must extend older reachability."
+      },
+      {
+        "id": "aim-at-half-the-total",
+        "title": "Aim at half the total",
+        "narration": "For [1,5,11,5], total 22 gives target 11. Zero is initially reachable using no values.",
+        "decision": "A subset reaching 11 leaves another subset totaling exactly 11."
+      },
+      {
+        "id": "build-distinct-reachable-sums",
+        "title": "Build distinct reachable sums",
+        "narration": "After 1, reachable sums are 0 and 1. After the first 5, sums 5 and 6 are added.",
+        "decision": "Downward updates prevent using this same 5 twice."
+      },
+      {
+        "id": "eleven-reaches-the-target",
+        "title": "Eleven reaches the target",
+        "narration": "The value 11 extends zero directly to the target. The complementary values 1,5,5 also total 11. Return yes.",
+        "decision": "Once the target is reachable, the remaining values need no further decisions."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Before each value, the marked totals are exactly the sums of subsets of earlier occurrences. Keeping old marks represents exclusion; extending them by this value represents inclusion. Downward traversal keeps every predecessor from the earlier stage, so no occurrence is reused. Reaching half the total is equivalent to an equal partition.",
+        "decision": "Each input occurrence may be used at most once; new sums must extend older reachability."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An odd total cannot split into two equal integer sums.",
+        "decision": "Do not update upward, which would allow unlimited copies."
+      }
+    ]
+  }
 }

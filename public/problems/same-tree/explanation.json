@@ -42,5 +42,86 @@
       "note": "Pair the same child position across trees, rather than comparing unrelated traversal neighbors."
     }
   ],
-  "keyDecision": "Both node presence and node value must match at every corresponding position."
+  "keyDecision": "Both node presence and node value must match at every corresponding position.",
+  "concept": {
+    "question": "What must match besides the values when comparing two trees?",
+    "intuition": [
+      "Two trees may contain the same values but connect them differently. Comparing traversed values without missing-child positions loses their shape.",
+      "Compare paired positions from the two roots. Two missing positions match; one missing position and one real node do not. Real nodes must have equal values, then their corresponding left and right positions must also match."
+    ],
+    "observation": "Compare both shape and values at corresponding positions.",
+    "approach": [
+      "Compare the two current positions.",
+      "Reject unequal values or one-sided absence.",
+      "Continue with both corresponding child pairs."
+    ],
+    "correctness": "The search compares the roots and then exactly corresponding descendant positions. Any unequal value or asymmetric absence rejects equality. If all paired positions agree, the trees have identical structure and values. Every tree position is eventually paired, so no structural difference can be overlooked.",
+    "complexity": {
+      "time": "O(n + m)",
+      "space": "O(h)",
+      "explanation": "Each paired node position is visited at most once. Work is linear in the trees’ combined size; the depth-first pending pairs use memory proportional to their height."
+    },
+    "pitfalls": [
+      "Compare both shape and values at corresponding positions.",
+      "Equal multisets of values do not establish equal shape."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/same-tree/concept.webp",
+        "alt": "Compare paired positions from the two roots. Two missing positions match; one missing position and one real node do not. Real nodes must have equal values, then their corresponding left and right positions must also match.",
+        "caption": "Compare paired positions from the two roots. Two missing positions match; one missing position and one real node do not. Real nodes must have equal values, then their corresponding left and right positions must also match.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Same Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Same Tree, not a generic data structure illustration. The key idea is: Compare the trees at matching positions. If both positions are empty, they match. If only one is empty, the shapes differ. Otherwise compare the values and continue with both left children and both right children. Values alone are not enough to prove the trees are equal. The reason a decision is safe is: Both node presence and node value must match at every corresponding position. The actual example this lesson teaches is {\"p\": [1, 2, 3], \"q\": [1, 2, 3]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What must match besides the values when comparing two trees?",
+        "decision": "Compare both shape and values at corresponding positions."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Two trees may contain the same values but connect them differently. Comparing traversed values without missing-child positions loses their shape.",
+        "decision": "Compare paired positions from the two roots. Two missing positions match; one missing position and one real node do not. Real nodes must have equal values, then their corresponding left and right positions must also match."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Compare paired positions from the two roots. Two missing positions match; one missing position and one real node do not. Real nodes must have equal values, then their corresponding left and right positions must also match.",
+        "decision": "Compare both shape and values at corresponding positions."
+      },
+      {
+        "id": "the-roots-agree",
+        "title": "The roots agree",
+        "narration": "Both example trees have root value 1.",
+        "decision": "Equal roots do not yet prove matching descendants."
+      },
+      {
+        "id": "compare-the-matching-child-positions",
+        "title": "Compare the matching child positions",
+        "narration": "The paired right children both contain 3, and their child positions are empty in both trees.",
+        "decision": "Two empty positions represent the same absence."
+      },
+      {
+        "id": "all-remaining-positions-agree",
+        "title": "All remaining positions agree",
+        "narration": "The paired left children both contain 2 and have matching empty children. Both trees are equal.",
+        "decision": "No unmatched positions remain."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The search compares the roots and then exactly corresponding descendant positions. Any unequal value or asymmetric absence rejects equality. If all paired positions agree, the trees have identical structure and values. Every tree position is eventually paired, so no structural difference can be overlooked.",
+        "decision": "Compare both shape and values at corresponding positions."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: a root with a left child differs from the same root with a right child.",
+        "decision": "Equal multisets of values do not establish equal shape."
+      }
+    ]
+  }
 }

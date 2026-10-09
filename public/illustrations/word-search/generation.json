@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Mathematical intuition illustration, widescreen 2:1, elegant geometric glowing cyan/lime shapes on black, restrained warm accents, no UI/code/watermark. A precise three-by-four square grid of UNLETTERED colored beads. Highlight one continuous orthogonal path through six DISTINCT cells: (row0,col0) to (0,1) to (0,2) to (1,2) to (2,2) to (2,1). Curved arrows connect only these orthogonally adjacent cells. A small faded return-to-an-already-used-cell arrow is crossed out beside it. No diagonal path, no letters, no words, no numbers. Show one shared path search and undo intuition.",
+  "width": 1774,
+  "height": 887
+}

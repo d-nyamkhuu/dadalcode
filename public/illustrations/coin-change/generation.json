@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: scientific-educational. A polished wide dark-background conceptual illustration for the Coin Change algorithm for beginners. Mathematical visual lecture aesthetics: charcoal-black, cyan, lime, warm ivory, spacious and restrained. Depict two alternative coin compositions reaching exactly the same amount six: top path a coin marked 4 followed by two coins each marked 1, bottom path two coins each marked 3. The top path has three coins; the bottom path has two coins and is illuminated lime. Coins may repeat. Thin arcs suggest routes meeting at one goal. Show only exact labels '4 + 1 + 1 = 6', '3 + 3 = 6', '3 coins', '2 coins'. Concept: the biggest coin can lead to more coins; compare the total number, not denomination size. No code, programming variables, UI controls, pseudo-code, extra denominations, logos, watermark, or untrue arithmetic. Wide illustration, not a screenshot.",
+  "width": 1672,
+  "height": 941
+}

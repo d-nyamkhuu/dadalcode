@@ -60,5 +60,86 @@
       "note": "A neighbor becomes part of the next outside layer exactly when only one live connection remains."
     }
   ],
-  "keyDecision": "Remove a whole leaf layer before counting the next layer. Stop with at most two vertices."
+  "keyDecision": "Remove a whole leaf layer before counting the next layer. Stop with at most two vertices.",
+  "concept": {
+    "question": "Why do the centers of a tree survive peeling its outer leaves?",
+    "intuition": [
+      "Trying every root and measuring its farthest distance repeats long traversals. A tree’s longest paths are bounded by outer leaves, so choosing a root closer to their middle reduces the worst distance.",
+      "Remove all current leaves together, then repeat on the smaller tree. Peeling trims both ends of every longest path equally. The final one or two nodes are its centers and give the smallest possible rooted height."
+    ],
+    "observation": "Peel an entire leaf layer simultaneously; stop when at most two nodes remain.",
+    "approach": [
+      "Count every node’s remaining neighbors.",
+      "Remove a complete layer of degree-one leaves and update neighboring degrees.",
+      "Return the final one or two centers."
+    ],
+    "correctness": "A farthest vertex from a tree root is a leaf. Removing all leaves shortens the competing longest routes from both ends without changing which surviving vertices minimize maximum distance. Repeating this symmetric reduction leaves the middle vertex or middle pair of a diameter, the only possible minimum-height roots.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Each node enters a leaf layer once and each edge is removed once. Neighbor lists, degrees, and layer queues use linear time and storage."
+    },
+    "pitfalls": [
+      "Peel an entire leaf layer simultaneously; stop when at most two nodes remain.",
+      "The input must be a connected acyclic tree."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/minimum-height-trees/concept.webp",
+        "alt": "Outer leaf branches fade while two connected center nodes remain brightly lit.",
+        "caption": "Peel all leaves together. Equal trimming from the ends leaves the one or two centers of the tree.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A tree made of TWO central nodes joined by an edge. One central node has THREE leaf neighbors and the other has ONE leaf neighbor. Show the four leaves fading together while the two central nodes remain bright, connected, and balanced. A second inset shows only the surviving central edge. No node numbers or text."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do the centers of a tree survive peeling its outer leaves?",
+        "decision": "Peel an entire leaf layer simultaneously; stop when at most two nodes remain."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every root and measuring its farthest distance repeats long traversals. A tree’s longest paths are bounded by outer leaves, so choosing a root closer to their middle reduces the worst distance.",
+        "decision": "Remove all current leaves together, then repeat on the smaller tree. Peeling trims both ends of every longest path equally. The final one or two nodes are its centers and give the smallest possible rooted height."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Remove all current leaves together, then repeat on the smaller tree. Peeling trims both ends of every longest path equally. The final one or two nodes are its centers and give the smallest possible rooted height.",
+        "decision": "Peel an entire leaf layer simultaneously; stop when at most two nodes remain."
+      },
+      {
+        "id": "identify-the-outer-layer",
+        "title": "Identify the outer layer",
+        "narration": "In the six-node fixture, edges join 3 to 0,1,2,4 and 4 to 5. Nodes 0,1,2,5 are leaves.",
+        "decision": "Only a node with one remaining neighbor is in the current outer layer."
+      },
+      {
+        "id": "peel-both-ends-together",
+        "title": "Peel both ends together",
+        "narration": "Removing leaves 0,1,2,5 leaves just the edge joining 3 and 4.",
+        "decision": "A newly exposed leaf belongs to the next layer, not the layer being removed."
+      },
+      {
+        "id": "two-centers-remain",
+        "title": "Two centers remain",
+        "narration": "Rooting at 3 or 4 gives height two; either root reaches the opposite outer end in two edges. Return [3,4].",
+        "decision": "With two surviving nodes, neither has a smaller maximum distance than the other."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A farthest vertex from a tree root is a leaf. Removing all leaves shortens the competing longest routes from both ends without changing which surviving vertices minimize maximum distance. Repeating this symmetric reduction leaves the middle vertex or middle pair of a diameter, the only possible minimum-height roots.",
+        "decision": "Peel an entire leaf layer simultaneously; stop when at most two nodes remain."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-node tree has no leaves of degree one but its sole node is already the center.",
+        "decision": "The input must be a connected acyclic tree."
+      }
+    ]
+  }
 }

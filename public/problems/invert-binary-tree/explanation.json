@@ -48,5 +48,86 @@
       "note": "The transformation preserves the root object and all node values; only descendant child links have been exchanged."
     }
   ],
-  "keyDecision": "Swap each node's children exactly once, including nodes with only one child."
+  "keyDecision": "Swap each node's children exactly once, including nodes with only one child.",
+  "concept": {
+    "question": "What happens when every left turn becomes a right turn?",
+    "intuition": [
+      "Mirroring just the root exchanges two big subtrees but does not mirror the structures inside them. Every node’s local left-right choice must be reversed.",
+      "Visit each original node and exchange its two child links. Apply the same operation inside both descendants. Values remain attached to their original nodes; only directions change."
+    ],
+    "observation": "Swap child links at every node, not merely at the root.",
+    "approach": [
+      "Visit a node and exchange its left and right child links.",
+      "Continue through both children.",
+      "Return the same root of the now-mirrored tree."
+    ],
+    "correctness": "Each original root-to-node path is a sequence of left and right directions. Swapping links at every ancestor replaces each direction with its opposite, placing that same node at its mirror position. Visiting every node performs the complete reflection without changing values or creating nodes.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(h)",
+      "explanation": "Visit each node once. Depth-first pending visits use memory proportional to tree height in the worst case."
+    },
+    "pitfalls": [
+      "Swap child links at every node, not merely at the root.",
+      "Missing children exchange just like real child links."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/invert-binary-tree/concept.webp",
+        "alt": "Visit each original node and exchange its two child links. Apply the same operation inside both descendants. Values remain attached to their original nodes; only directions change.",
+        "caption": "Visit each original node and exchange its two child links. Apply the same operation inside both descendants. Values remain attached to their original nodes; only directions change.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Invert Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Invert Binary Tree, not a generic data structure illustration. The key idea is: Visit every node and swap its left and right child links. Apply the same swap to all descendants. Each left turn in the original tree becomes a right turn in the result, and each right turn becomes a left turn. The values themselves stay the same. The reason a decision is safe is: Swap each node's children exactly once, including nodes with only one child. The actual example this lesson teaches is {\"root\": [4, 2, 7, 1, 3, 6, 9]} with answer [4, 7, 2, 9, 6, 3, 1]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What happens when every left turn becomes a right turn?",
+        "decision": "Swap child links at every node, not merely at the root."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Mirroring just the root exchanges two big subtrees but does not mirror the structures inside them. Every node’s local left-right choice must be reversed.",
+        "decision": "Visit each original node and exchange its two child links. Apply the same operation inside both descendants. Values remain attached to their original nodes; only directions change."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Visit each original node and exchange its two child links. Apply the same operation inside both descendants. Values remain attached to their original nodes; only directions change.",
+        "decision": "Swap child links at every node, not merely at the root."
+      },
+      {
+        "id": "exchange-the-root-branches",
+        "title": "Exchange the root branches",
+        "narration": "For root 4, exchange children 2 and 7. The new left subtree begins at 7 and the right at 2.",
+        "decision": "The descendant structures still need their own local reflection."
+      },
+      {
+        "id": "exchange-internal-child-directions",
+        "title": "Exchange internal child directions",
+        "narration": "At 7, exchange 6 and 9. At 2, exchange 1 and 3.",
+        "decision": "Every original edge changes left versus right direction."
+      },
+      {
+        "id": "leaves-complete-the-mirror",
+        "title": "Leaves complete the mirror",
+        "narration": "Leaf swaps add no nodes. The mirrored level order is [4,7,2,9,6,3,1].",
+        "decision": "All original values and identities remain present."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each original root-to-node path is a sequence of left and right directions. Swapping links at every ancestor replaces each direction with its opposite, placing that same node at its mirror position. Visiting every node performs the complete reflection without changing values or creating nodes.",
+        "decision": "Swap child links at every node, not merely at the root."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An empty tree remains empty; a leaf remains the same leaf.",
+        "decision": "Missing children exchange just like real child links."
+      }
+    ]
+  }
 }

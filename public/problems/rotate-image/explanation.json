@@ -145,5 +145,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Can a quarter-turn be built from two reflections?",
+    "intuition": [
+      "Copying every cell to a new matrix would make rotation easy but violates the in-place requirement. A rotation has a useful geometric decomposition that only exchanges existing cells.",
+      "First reflect the matrix across its main diagonal, exchanging row and column roles. Then reverse each row. Together, these reflections move every original cell to exactly its clockwise quarter-turn destination."
+    ],
+    "observation": "Exchange each off-diagonal pair once, then reverse each row.",
+    "approach": [
+      "Reflect across the top-left to bottom-right diagonal.",
+      "Reverse the order of cells within every row.",
+      "Keep the same matrix while its values move to their rotated positions."
+    ],
+    "correctness": "Diagonal reflection moves a cell’s row coordinate to its column coordinate and vice versa. Reversing a reflected row then mirrors the new column coordinate across the row width. This is exactly the clockwise rotation rule for every cell. Both operations exchange values inside the original square matrix, preserving all cells and the matrix identity.",
+    "complexity": {
+      "time": "O(n²)",
+      "space": "O(1)",
+      "explanation": "Visit a constant number of times for each cell, giving work proportional to the square’s cell count. Only temporary exchange values are needed, so auxiliary memory is constant."
+    },
+    "pitfalls": [
+      "Reflect each off-diagonal pair only once.",
+      "Reverse rows after reflecting, to rotate clockwise.",
+      "Modify the original matrix rather than returning a separate copy."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/rotate-image/concept.webp",
+        "alt": "A square grid reflects across its diagonal, then mirrors its rows to become a clockwise quarter-turn.",
+        "caption": "A square grid reflects across its diagonal, then mirrors its rows to become a clockwise quarter-turn.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Rotate Image algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Rotate Image, not a generic data structure illustration. The key idea is: A clockwise rotation can be done in two simple steps. First swap rows and columns by reflecting cells across the main diagonal. Then reverse each row. For example, the old top-left cell ends at the top-right. Both steps change the existing matrix without allocating another matrix. The reason a decision is safe is: Swap each diagonal pair once, then reverse every row. The actual example this lesson teaches is {\"matrix\": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]} with answer [[7, 4, 1], [8, 5, 2], [9, 6, 3]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can a quarter-turn be built from two reflections?",
+        "decision": "Exchange each off-diagonal pair once, then reverse each row."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Copying every cell to a new matrix would make rotation easy but violates the in-place requirement. A rotation has a useful geometric decomposition that only exchanges existing cells.",
+        "decision": "First reflect the matrix across its main diagonal, exchanging row and column roles. Then reverse each row. Together, these reflections move every original cell to exactly its clockwise quarter-turn destination."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "First reflect the matrix across its main diagonal, exchanging row and column roles. Then reverse each row. Together, these reflections move every original cell to exactly its clockwise quarter-turn destination.",
+        "decision": "Exchange each off-diagonal pair once, then reverse each row."
+      },
+      {
+        "id": "reflect-across-the-diagonal",
+        "title": "Reflect across the diagonal",
+        "narration": "Starting from rows 123, 456, 789, exchange the off-diagonal pairs 2↔4, 3↔7, and 6↔8.",
+        "decision": "Each symmetric pair is exchanged once."
+      },
+      {
+        "id": "rows-become-columns",
+        "title": "Rows become columns",
+        "narration": "The reflected rows are [1,4,7], [2,5,8], and [3,6,9]. The diagonal values stay in place.",
+        "decision": "Reflection exchanges row and column coordinates."
+      },
+      {
+        "id": "reverse-each-reflected-row",
+        "title": "Reverse each reflected row",
+        "narration": "Reversing these rows gives [7,4,1], [8,5,2], and [9,6,3]: the clockwise rotation.",
+        "decision": "A second reflection completes the quarter-turn."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Diagonal reflection moves a cell’s row coordinate to its column coordinate and vice versa. Reversing a reflected row then mirrors the new column coordinate across the row width. This is exactly the clockwise rotation rule for every cell. Both operations exchange values inside the original square matrix, preserving all cells and the matrix identity.",
+        "decision": "Exchange each off-diagonal pair once, then reverse each row."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a one-cell square remains unchanged under both reflections.",
+        "decision": "A rotation changes positions, but the center cell of a one-cell square has nowhere else to go."
+      }
+    ]
+  }
 }

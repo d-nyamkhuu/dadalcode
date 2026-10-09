@@ -125,5 +125,88 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why can taking the biggest coin cost more coins?",
+    "intuition": [
+      "Suppose our coins are worth one, three, and four, and we need six. Taking four first feels sensible, but then we need two more coins worth one: three coins in total. Two coins worth three do better. A good first step is not necessarily part of the best complete answer.",
+      "Instead, imagine every amount as a destination on a map. Adding a coin is one move. To find the shortest route to six, ask which coin could be the final move. That move must come from a smaller amount. Once we know the best route to every smaller amount, we can compare all final moves without rebuilding those routes."
+    ],
+    "observation": "Try every possible last coin, and keep only the smallest coin count for each amount. An unreachable amount cannot supply a route.",
+    "approach": [
+      "Begin with the fact that amount zero needs no coins.",
+      "Solve amounts from small to large. For each amount, try removing one allowed final coin.",
+      "Add one coin to the best known answer for the remaining amount, and keep the cheapest valid choice.",
+      "If no choice reaches the requested amount, report that it is impossible."
+    ],
+    "correctness": "Every nonempty collection of coins has a final coin. Remove that coin and a smaller amount remains. If that smaller part could be made with fewer coins, replacing it would also improve the whole collection. Therefore an optimal answer can always use an optimal answer for its remaining amount. Comparing every possible final coin includes the final coin of an optimal collection, so the cheapest candidate is exact.",
+    "complexity": {
+      "time": "O(amount × number of coins)",
+      "space": "O(amount)",
+      "explanation": "For every amount from zero to the target, compare every denomination. Work grows with the target amount multiplied by the number of denominations. Remember one best count per amount. This measures the amount itself, not merely the number of digits used to write it."
+    },
+    "pitfalls": [
+      "Largest-coin-first fails for arbitrary denominations, as 4 + 1 + 1 versus 3 + 3 shows.",
+      "Amount zero needs zero coins.",
+      "Impossible smaller amounts must stay separate from valid coin counts."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/coin-change/concept.webp",
+        "alt": "Two routes reach six: four plus one plus one uses three coins, while three plus three uses two.",
+        "caption": "Two routes reach six: four plus one plus one uses three coins, while three plus three uses two.",
+        "prompt": "Use case: scientific-educational. A polished wide dark-background conceptual illustration for the Coin Change algorithm for beginners. Mathematical visual lecture aesthetics: charcoal-black, cyan, lime, warm ivory, spacious and restrained. Depict two alternative coin compositions reaching exactly the same amount six: top path a coin marked 4 followed by two coins each marked 1, bottom path two coins each marked 3. The top path has three coins; the bottom path has two coins and is illuminated lime. Coins may repeat. Thin arcs suggest routes meeting at one goal. Show only exact labels '4 + 1 + 1 = 6', '3 + 3 = 6', '3 coins', '2 coins'. Concept: the biggest coin can lead to more coins; compare the total number, not denomination size. No code, programming variables, UI controls, pseudo-code, extra denominations, logos, watermark, or untrue arithmetic. Wide illustration, not a screenshot."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-destination-is-six",
+        "title": "The destination is six",
+        "narration": "Our denominations are 1, 3, and 4. Each may be used repeatedly. We want the number of coins to be as small as possible.",
+        "decision": "Compare counts of coins, not the value of the largest coin."
+      },
+      {
+        "id": "the-tempting-shortcut-fails",
+        "title": "The tempting shortcut fails",
+        "narration": "Taking 4 first leaves 2, which takes two 1s. That is three coins. Taking 3 and 3 uses only two.",
+        "decision": "A local choice based on coin size does not guarantee the smallest total count."
+      },
+      {
+        "id": "look-at-the-final-move",
+        "title": "Look at the final move",
+        "narration": "A last coin worth 3 must follow a route to amount 3. One more coin extends that route to amount 6.",
+        "decision": "A positive coin always refers to a smaller amount, whose best answer can already be known."
+      },
+      {
+        "id": "build-the-smaller-answers",
+        "title": "Build the smaller answers",
+        "narration": "Amounts 0 through 5 have best counts 0, 1, 2, 1, 1, and 2. These answers are reused rather than solved again.",
+        "decision": "Different ways to reach the same amount need only compete for its cheapest count."
+      },
+      {
+        "id": "compare-all-routes-to-six",
+        "title": "Compare all routes to six",
+        "narration": "A final 1 follows amount 5: three coins total. A final 3 follows amount 3: two coins. A final 4 follows amount 2: three coins.",
+        "decision": "Choose the least count among every valid final move."
+      },
+      {
+        "id": "the-winning-route",
+        "title": "The winning route",
+        "narration": "The minimum is two coins, both worth 3. Their values add to 6.",
+        "decision": "The answer counts coins; it is not the amount or a list of chosen denominations."
+      },
+      {
+        "id": "why-the-comparison-is-complete",
+        "title": "Why the comparison is complete",
+        "narration": "Every way of making 6 ends in a 1, a 3, or a 4. All three possibilities were compared.",
+        "decision": "The best smaller answer plus that final coin is at least as good as any more expensive smaller route."
+      },
+      {
+        "id": "zero-is-the-starting-destination",
+        "title": "Zero is the starting destination",
+        "narration": "Boundary example: amount zero is already reached before taking any coin. Its answer is zero, even when no positive target is reachable.",
+        "decision": "A real zero-coin answer provides the base from which all valid routes grow."
+      }
+    ]
+  }
 }

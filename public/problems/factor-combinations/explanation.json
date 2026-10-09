@@ -46,5 +46,86 @@
       "note": "The next factor may equal the current one, allowing repeated factors, but may not be smaller, preventing permutation duplicates."
     }
   ],
-  "keyDecision": "Try divisors only through the square root of the remainder, and allow a chosen factor to appear again."
+  "keyDecision": "Try divisors only through the square root of the remainder, and allow a chosen factor to appear again.",
+  "concept": {
+    "question": "How do increasing factors avoid reordered copies of the same product?",
+    "intuition": [
+      "Trying factors in arbitrary order repeats collections such as 2×6 and 6×2. A number also may be broken into more than two factors.",
+      "Try a divisor no smaller than the previous factor. Pair it with the remaining quotient for one answer, then explore splitting that quotient further. Only divisors through its square root need to be tried; the larger counterpart is already the quotient."
+    ],
+    "observation": "Use factors greater than one in nondecreasing order, and split the remaining quotient further when possible.",
+    "approach": [
+      "Try increasing divisors of the remaining product.",
+      "Save the chosen prefix plus a divisor and its quotient.",
+      "Continue splitting the quotient with no smaller future factors."
+    ],
+    "correctness": "Every nontrivial factor collection can be sorted into nondecreasing order. Its next smallest factor divides the remaining product and is no greater than the square root when at least two factors remain. The search tries that factor and can continue along the collection. Saving quotients covers final pairs, while increasing-order constraints prevent reordered duplicates.",
+    "complexity": {
+      "time": "Output-sensitive search; divisor scans cost O(sqrt(r)) per remaining product r",
+      "space": "O(log n) recursion excluding output",
+      "explanation": "Work depends on explored factor prefixes, with divisor scans up to each remaining product’s square root. Search depth is logarithmic because every factor is at least two, plus output memory."
+    },
+    "pitfalls": [
+      "Use factors greater than one in nondecreasing order, and split the remaining quotient further when possible.",
+      "Do not emit the trivial single-factor collection."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/factor-combinations/concept.webp",
+        "alt": "Try a divisor no smaller than the previous factor. Pair it with the remaining quotient for one answer, then explore splitting that quotient further. Only divisors through its square root need to be tried; the larger counterpart is already the quotient.",
+        "caption": "Try a divisor no smaller than the previous factor. Pair it with the remaining quotient for one answer, then explore splitting that quotient further. Only divisors through its square root need to be tried; the larger counterpart is already the quotient.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Factor Combinations algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Factor Combinations, not a generic data structure illustration. The key idea is: Build a factorization in increasing order. Try a divisor of the amount still left, pair it with the remaining quotient, and then try splitting that quotient further. Starting later choices at the current divisor avoids repeating the same factors in different orders. The reason a decision is safe is: Try divisors only through the square root of the remainder, and allow a chosen factor to appear again. The actual example this lesson teaches is {\"n\": 12} with answer [[2, 2, 3], [2, 6], [3, 4]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do increasing factors avoid reordered copies of the same product?",
+        "decision": "Use factors greater than one in nondecreasing order, and split the remaining quotient further when possible."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying factors in arbitrary order repeats collections such as 2×6 and 6×2. A number also may be broken into more than two factors.",
+        "decision": "Try a divisor no smaller than the previous factor. Pair it with the remaining quotient for one answer, then explore splitting that quotient further. Only divisors through its square root need to be tried; the larger counterpart is already the quotient."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Try a divisor no smaller than the previous factor. Pair it with the remaining quotient for one answer, then explore splitting that quotient further. Only divisors through its square root need to be tried; the larger counterpart is already the quotient.",
+        "decision": "Use factors greater than one in nondecreasing order, and split the remaining quotient further when possible."
+      },
+      {
+        "id": "the-first-division-produces-a-pair",
+        "title": "The first division produces a pair",
+        "narration": "For 12, divisor 2 yields quotient 6, giving [2,6].",
+        "decision": "Each saved pair still multiplies to the remaining product."
+      },
+      {
+        "id": "split-the-quotient-further",
+        "title": "Split the quotient further",
+        "narration": "With prefix 2, remaining 6 splits into 2 and 3, giving [2,2,3].",
+        "decision": "A factor may repeat while order stays nondecreasing."
+      },
+      {
+        "id": "try-the-next-root-divisor",
+        "title": "Try the next root divisor",
+        "narration": "Root divisor 3 gives [3,4]. No other increasing factor combinations remain.",
+        "decision": "Reordered 4,3 and 6,2 are intentionally excluded."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every nontrivial factor collection can be sorted into nondecreasing order. Its next smallest factor divides the remaining product and is no greater than the square root when at least two factors remain. The search tries that factor and can continue along the collection. Saving quotients covers final pairs, while increasing-order constraints prevent reordered duplicates.",
+        "decision": "Use factors greater than one in nondecreasing order, and split the remaining quotient further when possible."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A prime number has no factor collection using only factors greater than one and smaller than itself.",
+        "decision": "Do not emit the trivial single-factor collection."
+      }
+    ]
+  }
 }

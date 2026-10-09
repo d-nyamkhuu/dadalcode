@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. An ABSTRACT binary-adder intuition: two rows of glowing bit-like beads enter a fork. Positions with exactly one bright bead flow straight to a carry-free row; positions with TWO bright beads send a warm glowing carry arrow to the NEXT column to the left. A circular arrow feeds the two outputs through the same fork again; a final green beacon appears when no carries remain. No written bits, numbers, equations, or text.",
+  "width": 1774,
+  "height": 887
+}

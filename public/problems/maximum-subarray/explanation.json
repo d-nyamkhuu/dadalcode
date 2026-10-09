@@ -114,5 +114,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "When is it better to drop the past and start a new continuous section?",
+    "intuition": [
+      "Checking every continuous section recomputes many overlapping sums. A negative accumulated prefix has a simple effect: it makes any section extended from it worse.",
+      "At each number, compare extending the previous section with starting fresh at this number. Keep the better total ending here, and separately remember the best total anywhere. This separates the local continuation from the historical answer."
+    ],
+    "observation": "A negative preceding total cannot improve a section beginning at the current number.",
+    "approach": [
+      "Start from the first value so negative-only inputs remain valid.",
+      "At each next value, choose between extending the current section and starting a new one.",
+      "Remember the greatest total reached at any ending position."
+    ],
+    "correctness": "Any best section ending at a new number either contains only that number or extends a section ending immediately before it. Extending the best previous ending section is at least as good as extending any weaker one. Comparing these two possibilities therefore gives the exact best ending total. The maximum over all endings is the answer.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Read each value once while remembering only the current ending total and the historical largest total. Work is linear, and extra memory is constant."
+    },
+    "pitfalls": [
+      "A section must be nonempty.",
+      "Return the historical best, not the final ending total.",
+      "Do not skip interior values; the section must be continuous."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-subarray/concept.webp",
+        "alt": "A running section drops harmful negative history and grows through the best positive middle stretch.",
+        "caption": "A running section drops harmful negative history and grows through the best positive middle stretch.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Maximum Subarray algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Maximum Subarray, not a generic data structure illustration. The key idea is: At each number, choose between starting a new continuous section and extending the previous section. If the previous total is negative, it would make the new section worse. Keep the best total ending at the current number, and separately remember the best total seen anywhere. The reason a decision is safe is: Compare the current number alone with the previous ending sum plus the current number. The actual example this lesson teaches is {\"nums\": [-2, 1, -3, 4, -1, 2, 1, -5, 4]} with answer 6. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "When is it better to drop the past and start a new continuous section?",
+        "decision": "A negative preceding total cannot improve a section beginning at the current number."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Checking every continuous section recomputes many overlapping sums. A negative accumulated prefix has a simple effect: it makes any section extended from it worse.",
+        "decision": "At each number, compare extending the previous section with starting fresh at this number. Keep the better total ending here, and separately remember the best total anywhere. This separates the local continuation from the historical answer."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "At each number, compare extending the previous section with starting fresh at this number. Keep the better total ending here, and separately remember the best total anywhere. This separates the local continuation from the historical answer.",
+        "decision": "A negative preceding total cannot improve a section beginning at the current number."
+      },
+      {
+        "id": "a-negative-start-can-be-discarded",
+        "title": "A negative start can be discarded",
+        "narration": "Beginning with -2, adding 1 gives -1. Starting at 1 instead gives 1, so restart.",
+        "decision": "Dropping a negative prefix improves the total without breaking continuity."
+      },
+      {
+        "id": "start-the-useful-middle-section",
+        "title": "Start the useful middle section",
+        "narration": "Before value 4, the current ending total is -2. Restart at 4, then extend through -1, 2, and 1 to total 6.",
+        "decision": "A positive running total benefits the next extension."
+      },
+      {
+        "id": "remember-the-historical-best",
+        "title": "Remember the historical best",
+        "narration": "The later -5 and 4 do not exceed 6. Return 6 even though the final ending total differs.",
+        "decision": "The global best is separate from the current ending section."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Any best section ending at a new number either contains only that number or extends a section ending immediately before it. Extending the best previous ending section is at least as good as extending any weaker one. Comparing these two possibilities therefore gives the exact best ending total. The maximum over all endings is the answer.",
+        "decision": "A negative preceding total cannot improve a section beginning at the current number."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: [-3,-1,-2] has answer -1. Choosing an empty section with total zero would be invalid.",
+        "decision": "The section must contain at least one value."
+      }
+    ]
+  }
 }

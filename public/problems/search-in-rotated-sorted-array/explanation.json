@@ -128,5 +128,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How does a broken sorted row still let us discard half the search?",
+    "intuition": [
+      "A rotation breaks the global sorted order, so ordinary midpoint comparisons alone are insufficient. Scanning works, but wastes a useful fact: around a midpoint, at least one side is still sorted.",
+      "Find the side that is sorted. Its two endpoint values tell whether the target could lie inside. Keep that side only if its range contains the target; otherwise keep the other side. Distinct values make the sorted-side decision unambiguous."
+    ],
+    "observation": "Use the sorted side’s value range to decide which half can contain the target.",
+    "approach": [
+      "Inspect the middle value and return its position if it matches.",
+      "Identify a sorted half using the endpoint values.",
+      "Keep the half whose range can contain the target, and repeat."
+    ],
+    "correctness": "Rotation divides a distinct sorted row into at most two ordered runs. At each midpoint, one side lies within a single run. If its ordered endpoint range excludes the target, the entire side is impossible; if it includes the target, distinct sorted order excludes the opposite side. Each safe half-discard preserves the target when present.",
+    "complexity": {
+      "time": "O(log n)",
+      "space": "O(1)",
+      "explanation": "Every decision removes roughly half the remaining candidates. Work grows logarithmically with row length, and only a few positions and boundary values are remembered."
+    },
+    "pitfalls": [
+      "Use inclusive and exclusive range boundaries consistently.",
+      "Return an original position, not the target value.",
+      "This method assumes distinct values."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/search-in-rotated-sorted-array/concept.webp",
+        "alt": "One side of a rotated sorted row stays ordered, allowing a target range to eliminate a whole half.",
+        "caption": "One side of a rotated sorted row stays ordered, allowing a target range to eliminate a whole half.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Search in Rotated Sorted Array algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Search in Rotated Sorted Array, not a generic data structure illustration. The key idea is: The array was sorted before it was rotated. Around any middle position, at least one side is still sorted. Identify that side and check whether its value range includes the target. This tells us which half to keep without scanning every number. The reason a decision is safe is: Check which half is sorted before deciding whether the target belongs in it. The actual example this lesson teaches is {\"nums\": [4, 5, 6, 7, 0, 1, 2], \"target\": 0} with answer 4. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does a broken sorted row still let us discard half the search?",
+        "decision": "Use the sorted side’s value range to decide which half can contain the target."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A rotation breaks the global sorted order, so ordinary midpoint comparisons alone are insufficient. Scanning works, but wastes a useful fact: around a midpoint, at least one side is still sorted.",
+        "decision": "Find the side that is sorted. Its two endpoint values tell whether the target could lie inside. Keep that side only if its range contains the target; otherwise keep the other side. Distinct values make the sorted-side decision unambiguous."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Find the side that is sorted. Its two endpoint values tell whether the target could lie inside. Keep that side only if its range contains the target; otherwise keep the other side. Distinct values make the sorted-side decision unambiguous.",
+        "decision": "Use the sorted side’s value range to decide which half can contain the target."
+      },
+      {
+        "id": "recognize-the-sorted-side",
+        "title": "Recognize the sorted side",
+        "narration": "In [4,5,6,7,0,1,2], the middle is 7. The left side [4,5,6,7] is sorted.",
+        "decision": "At least one side of the rotated range remains ordered."
+      },
+      {
+        "id": "discard-a-range-that-excludes-zero",
+        "title": "Discard a range that excludes zero",
+        "narration": "Target 0 is outside the sorted range from 4 through 7. Keep [0,1,2].",
+        "decision": "The sorted half’s endpoints rule out every value within it."
+      },
+      {
+        "id": "narrow-to-the-matching-position",
+        "title": "Narrow to the matching position",
+        "narration": "The next middle is 1. Its sorted left side [0,1] contains 0. The remaining value 0 is at original position 4.",
+        "decision": "Retain original positions even as the candidate range shrinks."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Rotation divides a distinct sorted row into at most two ordered runs. At each midpoint, one side lies within a single run. If its ordered endpoint range excludes the target, the entire side is impossible; if it includes the target, distinct sorted order excludes the opposite side. Each safe half-discard preserves the target when present.",
+        "decision": "Use the sorted side’s value range to decide which half can contain the target."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: an unrotated row is already sorted on both sides and follows the same range test.",
+        "decision": "A missing target is reported after the candidate range becomes empty."
+      }
+    ]
+  }
 }

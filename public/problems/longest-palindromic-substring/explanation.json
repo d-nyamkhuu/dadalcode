@@ -32,5 +32,87 @@
       "note": "Store coordinates during the search and allocate the answer only once. The exclusive slicing endpoint is starting index plus length."
     }
   ],
-  "keyDecision": "Stop expanding when the characters differ or either position is outside the string."
+  "keyDecision": "Stop expanding when the characters differ or either position is outside the string.",
+  "concept": {
+    "question": "What happens when we grow a mirror outward from every possible center?",
+    "intuition": [
+      "Trying every substring and checking it in both directions repeats many matching comparisons. A palindrome already has a stronger structure: each new outer pair must match around its center.",
+      "A palindrome is like a mirror placed in the middle of a word. Expand outward in matched pairs. The mirror can sit on one character or in a gap between two characters. Try both kinds of center and keep the widest successful expansion."
+    ],
+    "observation": "Stop an expansion at the first unequal pair or at the edge of the string.",
+    "approach": [
+      "Choose a character center and a gap center.",
+      "Compare outward pairs until they differ or reach an edge.",
+      "Keep the longest matching continuous section across all centers."
+    ],
+    "correctness": "Every palindrome has either a character center or a gap center. Expanding from that center reproduces all of its matching pairs and may continue to a larger palindrome. Since every possible center is tested, the longest palindrome is among the expansions. Stopping at a mismatch cannot discard a longer palindrome with that same center.",
+    "complexity": {
+      "time": "O(n²)",
+      "space": "O(1) auxiliary",
+      "explanation": "There are roughly twice as many centers as characters. Each may expand across much of the string, giving quadratic work in the worst case. A few positions describe the expansion; the returned substring itself occupies output memory."
+    },
+    "pitfalls": [
+      "Try both odd and even centers.",
+      "Exclude the first mismatched outer pair.",
+      "Several equally long answers may be valid."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/longest-palindromic-substring/concept.webp",
+        "alt": "A mirror in the gap between two b letters expands into bb, then stops when the outer letters disagree.",
+        "caption": "A mirror in the gap between two b letters expands into bb, then stops when the outer letters disagree.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Longest Palindromic Substring algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Longest Palindromic Substring, not a generic data structure illustration. The key idea is: A palindrome reads the same forward and backward. Start at its middle and compare the characters on either side. Keep moving outward while they match. Try every possible middle, including a gap between two characters, and keep the longest match. The reason a decision is safe is: Stop expanding when the characters differ or either position is outside the string. The actual example this lesson teaches is {\"s\": \"cbbd\"} with answer \"bb\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What happens when we grow a mirror outward from every possible center?",
+        "decision": "Stop an expansion at the first unequal pair or at the edge of the string."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every substring and checking it in both directions repeats many matching comparisons. A palindrome already has a stronger structure: each new outer pair must match around its center.",
+        "decision": "A palindrome is like a mirror placed in the middle of a word. Expand outward in matched pairs. The mirror can sit on one character or in a gap between two characters. Try both kinds of center and keep the widest successful expansion."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "A palindrome is like a mirror placed in the middle of a word. Expand outward in matched pairs. The mirror can sit on one character or in a gap between two characters. Try both kinds of center and keep the widest successful expansion.",
+        "decision": "Stop an expansion at the first unequal pair or at the edge of the string."
+      },
+      {
+        "id": "a-one-letter-mirror",
+        "title": "A one-letter mirror",
+        "narration": "In cbbd, any single letter is a palindrome. Start with c as a length-one answer.",
+        "decision": "A center need not have a matching outer pair to produce a valid one-letter palindrome."
+      },
+      {
+        "id": "a-mirror-in-the-gap",
+        "title": "A mirror in the gap",
+        "narration": "The gap between the two b letters gives a matching pair bb, length 2.",
+        "decision": "Even-length palindromes use a gap rather than a single central character."
+      },
+      {
+        "id": "the-next-outer-pair-breaks",
+        "title": "The next outer pair breaks",
+        "narration": "Outside bb are c and d. They differ, so stop. Other centers cannot improve on bb.",
+        "decision": "The mismatched outer pair is excluded from the answer."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every palindrome has either a character center or a gap center. Expanding from that center reproduces all of its matching pairs and may continue to a larger palindrome. Since every possible center is tested, the longest palindrome is among the expansions. Stopping at a mismatch cannot discard a longer palindrome with that same center.",
+        "decision": "Stop an expansion at the first unequal pair or at the edge of the string."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: aa is an even palindrome of length two. Trying only character centers would miss it.",
+        "decision": "Test gap centers as well as character centers."
+      }
+    ]
+  }
 }

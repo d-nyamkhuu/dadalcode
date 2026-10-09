@@ -39,5 +39,87 @@
       "note": "Doing nothing is legal; this baseline prevents a decreasing market from returning a negative answer."
     }
   ],
-  "keyDecision": "Calculate today's profit before updating the lowest earlier price. Keep zero if no sale makes a profit."
+  "keyDecision": "Calculate today's profit before updating the lowest earlier price. Keep zero if no sale makes a profit.",
+  "concept": {
+    "question": "What is the only earlier buying price a selling day needs to remember?",
+    "intuition": [
+      "Checking every earlier purchase for every selling day repeats comparisons. For a fixed sale, a higher earlier buying price can never beat a lower earlier one.",
+      "Treat each day as a possible sale. Remember the cheapest price seen before it and compare today’s sale with that price. Separately remember the best profit already seen; doing no trade keeps profit zero."
+    ],
+    "observation": "A purchase must precede its sale; the best earlier purchase is the cheapest earlier price.",
+    "approach": [
+      "Remember the first price as the earliest buying opportunity.",
+      "For each later day, compare selling today against the earlier minimum.",
+      "Update the best profit and the cheapest price for future days."
+    ],
+    "correctness": "For any selling day, subtracting the lowest earlier price gives the greatest legal profit on that day. The scan maintains that exact earlier minimum, so it considers the best trade ending on each day. Taking the maximum across those daily candidates and zero yields the best single legal trade or no trade.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Read every price once. The cheapest earlier price and largest profit use constant extra memory, giving linear time."
+    },
+    "pitfalls": [
+      "Do not buy after selling.",
+      "Use one transaction only.",
+      "Return zero when every legal trade loses money."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/best-time-to-buy-and-sell-stock/concept.webp",
+        "alt": "Treat each day as a possible sale. Remember the cheapest price seen before it and compare today’s sale with that price. Separately remember the best profit already seen; doing no trade keeps profit zero.",
+        "caption": "Treat each day as a possible sale. Remember the cheapest price seen before it and compare today’s sale with that price. Separately remember the best profit already seen; doing no trade keeps profit zero.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Best Time to Buy and Sell Stock algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Best Time to Buy and Sell Stock, not a generic data structure illustration. The key idea is: Treat each day as a possible selling day. Its best earlier purchase is simply the lowest price seen before it. Compare today's price with that saved minimum, then update the best profit. This replaces checking every earlier buying day separately. The reason a decision is safe is: Calculate today's profit before updating the lowest earlier price. Keep zero if no sale makes a profit. The actual example this lesson teaches is {\"prices\": [7, 1, 5, 3, 6, 4]} with answer 5. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What is the only earlier buying price a selling day needs to remember?",
+        "decision": "A purchase must precede its sale; the best earlier purchase is the cheapest earlier price."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Checking every earlier purchase for every selling day repeats comparisons. For a fixed sale, a higher earlier buying price can never beat a lower earlier one.",
+        "decision": "Treat each day as a possible sale. Remember the cheapest price seen before it and compare today’s sale with that price. Separately remember the best profit already seen; doing no trade keeps profit zero."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Treat each day as a possible sale. Remember the cheapest price seen before it and compare today’s sale with that price. Separately remember the best profit already seen; doing no trade keeps profit zero.",
+        "decision": "A purchase must precede its sale; the best earlier purchase is the cheapest earlier price."
+      },
+      {
+        "id": "a-cheaper-purchase-appears",
+        "title": "A cheaper purchase appears",
+        "narration": "Prices begin 7 then 1. Selling at 1 is unprofitable, but 1 becomes the best purchase for future days.",
+        "decision": "A new cheap price helps only later selling days."
+      },
+      {
+        "id": "selling-at-five-earns-four",
+        "title": "Selling at five earns four",
+        "narration": "Price 5 after buying at 1 gives profit 4. The next price 3 gives only 2.",
+        "decision": "Only the cheapest earlier purchase matters for this sale."
+      },
+      {
+        "id": "a-later-sale-improves-it",
+        "title": "A later sale improves it",
+        "narration": "Selling at 6 after buying at 1 earns 5. The final price 4 gives only 3, so return 5.",
+        "decision": "Remember the historical best rather than the last day’s profit."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For any selling day, subtracting the lowest earlier price gives the greatest legal profit on that day. The scan maintains that exact earlier minimum, so it considers the best trade ending on each day. Taking the maximum across those daily candidates and zero yields the best single legal trade or no trade.",
+        "decision": "A purchase must precede its sale; the best earlier purchase is the cheapest earlier price."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: steadily falling prices have no profitable purchase-before-sale pair, so the answer is zero.",
+        "decision": "No trade is permitted and better than a loss."
+      }
+    ]
+  }
 }

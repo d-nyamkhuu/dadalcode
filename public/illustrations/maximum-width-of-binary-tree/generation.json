@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. One exact small binary-tree silhouette: a root, two children, and a final level of FOUR equally spaced slots containing a node, a node, an EMPTY ghost slot, and a node. A luminous horizontal measuring bracket spans ALL FOUR slots. Highlight that the three real nodes occupy four positions. No numerals or text. Do not add any extra slots.",
+  "width": 1774,
+  "height": 887
+}

@@ -28,7 +28,8 @@
     "test:production": "node scripts/test-browser.mjs --production",
     "protect:main": "node scripts/protect-main.mjs",
     "verify:release": "node scripts/verify-release.mjs",
-    "bench:runtime": "node scripts/test-browser.mjs --benchmark"
+    "bench:runtime": "node scripts/test-browser.mjs --benchmark",
+    "test:concepts": "node tests/concepts.mjs"
   },
   "dependencies": {
     "@codemirror/lang-python": "^6.2.1",
