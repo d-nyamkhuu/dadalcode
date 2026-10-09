@@ -43,5 +43,86 @@
       "note": "After visiting a node, its right subtree precedes the larger ancestors still waiting on the stack."
     }
   ],
-  "keyDecision": "A node is visited only after its entire left subtree and before its right subtree."
+  "keyDecision": "A node is visited only after its entire left subtree and before its right subtree.",
+  "concept": {
+    "question": "Why does left-node-right visitation reveal rank directly?",
+    "intuition": [
+      "Collecting and sorting all tree values ignores the binary search tree’s ordering. We only need to visit enough values to reach the requested rank.",
+      "A left subtree contains smaller values, then comes the node, then its larger right subtree. Follow the leftmost unfinished path, visit its next node, and move into that node’s right subtree. This produces ascending values directly."
+    ],
+    "observation": "Count actual node visits in inorder, stopping at the requested rank.",
+    "approach": [
+      "Save the leftmost unfinished ancestor chain.",
+      "Visit its next node and count it in ascending order.",
+      "Continue into the right subtree, stopping at the requested visit."
+    ],
+    "correctness": "The search-tree ordering puts every left-subtree value before its node and every right-subtree value after it. Inorder visitation therefore lists all values in ascending order. The explicit ancestor stack preserves that visit order, so the requested numbered visit equals the requested smallest rank.",
+    "complexity": {
+      "time": "O(h + k), O(n) worst case",
+      "space": "O(h)",
+      "explanation": "Descend at most tree height initially, then perform the needed visits; worst-case work is linear in node count. The ancestor stack uses height-sized memory."
+    },
+    "pitfalls": [
+      "Count actual node visits in inorder, stopping at the requested rank.",
+      "Do not use root depth as value rank."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/kth-smallest-element-in-a-bst/concept.webp",
+        "alt": "A left subtree contains smaller values, then comes the node, then its larger right subtree. Follow the leftmost unfinished path, visit its next node, and move into that node’s right subtree. This produces ascending values directly.",
+        "caption": "A left subtree contains smaller values, then comes the node, then its larger right subtree. Follow the leftmost unfinished path, visit its next node, and move into that node’s right subtree. This produces ascending values directly.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Kth Smallest Element in a BST algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Kth Smallest Element in a BST, not a generic data structure illustration. The key idea is: A binary search tree lists its values in sorted order when visited left subtree, node, then right subtree. Use a stack to perform that visit without recursion. Count each removed node once and stop at the kth value, rather than sorting a separate collection. The reason a decision is safe is: A node is visited only after its entire left subtree and before its right subtree. The actual example this lesson teaches is {\"root\": [4, 2, 6, 1, 3, 5, 7], \"k\": 4} with answer 4. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does left-node-right visitation reveal rank directly?",
+        "decision": "Count actual node visits in inorder, stopping at the requested rank."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Collecting and sorting all tree values ignores the binary search tree’s ordering. We only need to visit enough values to reach the requested rank.",
+        "decision": "A left subtree contains smaller values, then comes the node, then its larger right subtree. Follow the leftmost unfinished path, visit its next node, and move into that node’s right subtree. This produces ascending values directly."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "A left subtree contains smaller values, then comes the node, then its larger right subtree. Follow the leftmost unfinished path, visit its next node, and move into that node’s right subtree. This produces ascending values directly.",
+        "decision": "Count actual node visits in inorder, stopping at the requested rank."
+      },
+      {
+        "id": "the-left-spine-reaches-the-first-value",
+        "title": "The left spine reaches the first value",
+        "narration": "For rank four, descend through 4,2,1. Visit 1 first.",
+        "decision": "No unvisited value is smaller than the leftmost pending node."
+      },
+      {
+        "id": "return-to-two-then-its-right-child",
+        "title": "Return to two, then its right child",
+        "narration": "Visit 2, then 3 in node 2’s right subtree. The first three values are 1,2,3.",
+        "decision": "A right subtree follows its parent but precedes larger pending ancestors."
+      },
+      {
+        "id": "the-fourth-visit-is-four",
+        "title": "The fourth visit is four",
+        "narration": "Return to pending ancestor 4. It is the fourth smallest, so stop before visiting the larger right subtree.",
+        "decision": "Rank is determined by visit count, not depth."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The search-tree ordering puts every left-subtree value before its node and every right-subtree value after it. Inorder visitation therefore lists all values in ascending order. The explicit ancestor stack preserves that visit order, so the requested numbered visit equals the requested smallest rank.",
+        "decision": "Count actual node visits in inorder, stopping at the requested rank."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "The smallest value is the first inorder visit, possibly far below the root.",
+        "decision": "Do not use root depth as value rank."
+      }
+    ]
+  }
 }

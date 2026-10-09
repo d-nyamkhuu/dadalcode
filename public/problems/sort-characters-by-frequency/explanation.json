@@ -31,5 +31,86 @@
       "note": "Emitting an entire block ensures all copies stay adjacent and the final output contains precisely the original number of occurrences."
     }
   ],
-  "keyDecision": "Sort groups by their counts, not by the characters' alphabetical order."
+  "keyDecision": "Sort groups by their counts, not by the characters' alphabetical order.",
+  "concept": {
+    "question": "How can repeated letters become whole blocks ordered by demand?",
+    "intuition": [
+      "Sorting every character separately repeats comparisons among identical copies. Count once per distinct character, rank those counts, then write each character’s whole block.",
+      "Organize distinct characters by descending count. A character appearing twice belongs before characters appearing once; characters tied in count may use an accepted tie order."
+    ],
+    "observation": "Frequency determines block order, and every original copy must remain.",
+    "approach": [
+      "Count each distinct character.",
+      "Order distinct characters by descending frequency.",
+      "Write each character repeated by its count."
+    ],
+    "correctness": "Each count records the exact multiplicity of one character. Writing one block of that size preserves the input multiset. Ordering these blocks by nonincreasing count satisfies the requested frequency order; ties may be resolved independently without violating it.",
+    "complexity": {
+      "time": "O(n + u log u)",
+      "space": "O(n+u), including output",
+      "explanation": "Counting and writing are linear in text length. Sorting only distinct characters adds a distinct-count logarithmic term; counts and output require distinct-count plus text-length storage."
+    },
+    "pitfalls": [
+      "Frequency determines block order, and every original copy must remain.",
+      "Do not order primarily by alphabetical character order."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/sort-characters-by-frequency/concept.webp",
+        "alt": "Organize distinct characters by descending count. A character appearing twice belongs before characters appearing once; characters tied in count may use an accepted tie order.",
+        "caption": "Organize distinct characters by descending count. A character appearing twice belongs before characters appearing once; characters tied in count may use an accepted tie order.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Sort Characters By Frequency algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Sort Characters By Frequency, not a generic data structure illustration. The key idea is: Count each character, then order the distinct characters by decreasing count. Write each character as one block containing all its copies. This gives the requested frequency order without losing any copies. Characters with equal counts may appear in either order. The reason a decision is safe is: Sort groups by their counts, not by the characters' alphabetical order. The actual example this lesson teaches is {\"s\": \"tree\"} with answer \"eert\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can repeated letters become whole blocks ordered by demand?",
+        "decision": "Frequency determines block order, and every original copy must remain."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting every character separately repeats comparisons among identical copies. Count once per distinct character, rank those counts, then write each character’s whole block.",
+        "decision": "Organize distinct characters by descending count. A character appearing twice belongs before characters appearing once; characters tied in count may use an accepted tie order."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Organize distinct characters by descending count. A character appearing twice belongs before characters appearing once; characters tied in count may use an accepted tie order.",
+        "decision": "Frequency determines block order, and every original copy must remain."
+      },
+      {
+        "id": "count-tree",
+        "title": "Count tree",
+        "narration": "In tree, e appears twice while t and r appear once.",
+        "decision": "Character order in the input does not determine block rank."
+      },
+      {
+        "id": "rank-the-blocks",
+        "title": "Rank the blocks",
+        "narration": "The e block is first. The reference uses alphabetical order for the r/t tie, choosing r before t.",
+        "decision": "Ties do not change the frequency requirement."
+      },
+      {
+        "id": "join-every-block",
+        "title": "Join every block",
+        "narration": "Joining ee, r, t gives eert. It contains exactly the original copies in descending frequency.",
+        "decision": "A different accepted order among tied singleton blocks is also valid."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each count records the exact multiplicity of one character. Writing one block of that size preserves the input multiset. Ordering these blocks by nonincreasing count satisfies the requested frequency order; ties may be resolved independently without violating it.",
+        "decision": "Frequency determines block order, and every original copy must remain."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A text containing one distinct character is already one complete block.",
+        "decision": "Do not order primarily by alphabetical character order."
+      }
+    ]
+  }
 }

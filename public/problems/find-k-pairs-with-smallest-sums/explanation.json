@@ -57,5 +57,86 @@
       "note": "Only the popped row advances; adding arbitrary neighboring rows again would duplicate pair positions."
     }
   ],
-  "keyDecision": "After taking pair (i, j), add (i, j + 1) if that column exists."
+  "keyDecision": "After taking pair (i, j), add (i, j + 1) if that column exists.",
+  "concept": {
+    "question": "Why is each first-array value the head of an ordered row of pairs?",
+    "intuition": [
+      "Forming all pairs wastes work when only a few smallest sums are requested. With sorted arrays, pairing one fixed first value with successive second values creates an ascending row of sums.",
+      "Keep only the next unseen pair from each relevant row. Select the smallest row head, output it, and advance that row by one. The row heads collectively represent the smallest pair not yet returned."
+    ],
+    "observation": "After removing a row head, expose only the next pair in that same row.",
+    "approach": [
+      "Start a row at the first second-array value for the first few first-array values.",
+      "Compare the exposed row heads by pair sum.",
+      "Output the smallest head and advance its row until enough pairs are returned."
+    ],
+    "correctness": "Each row is sorted, so its head is its smallest unreturned pair. The minimum among all exposed heads is consequently the global smallest unreturned pair. Advancing only that row restores the invariant. Rows beyond the first requested-count first values cannot be needed earlier, since that many initial row heads already have sums no larger than their first head.",
+    "complexity": {
+      "time": "O(k log(min(m, k) + 1))",
+      "space": "O(min(m, k)) auxiliary plus O(k) output",
+      "explanation": "The frontier contains at most the smaller of first-array length and requested count. Each returned pair uses a logarithmic frontier update; extra frontier storage matches that bound, in addition to the output."
+    },
+    "pitfalls": [
+      "After removing a row head, expose only the next pair in that same row.",
+      "Equal values at separate positions still represent separate pairs."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-k-pairs-with-smallest-sums/concept.webp",
+        "alt": "Keep only the next unseen pair from each relevant row. Select the smallest row head, output it, and advance that row by one. The row heads collectively represent the smallest pair not yet returned.",
+        "caption": "Keep only the next unseen pair from each relevant row. Select the smallest row head, output it, and advance that row by one. The row heads collectively represent the smallest pair not yet returned.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find K Pairs with Smallest Sums algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find K Pairs with Smallest Sums, not a generic data structure illustration. The key idea is: For one value from the first sorted array, pairing it with the second array gives a sorted row of sums. Treat these rows as sorted lists. Keep each row's next pair in a heap, take the smallest pair, then advance only that row. The reason a decision is safe is: After taking pair (i, j), add (i, j + 1) if that column exists. The actual example this lesson teaches is {\"nums1\": [1, 7, 11], \"nums2\": [2, 4, 6], \"k\": 3} with answer [[1, 2], [1, 4], [1, 6]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why is each first-array value the head of an ordered row of pairs?",
+        "decision": "After removing a row head, expose only the next pair in that same row."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Forming all pairs wastes work when only a few smallest sums are requested. With sorted arrays, pairing one fixed first value with successive second values creates an ascending row of sums.",
+        "decision": "Keep only the next unseen pair from each relevant row. Select the smallest row head, output it, and advance that row by one. The row heads collectively represent the smallest pair not yet returned."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep only the next unseen pair from each relevant row. Select the smallest row head, output it, and advance that row by one. The row heads collectively represent the smallest pair not yet returned.",
+        "decision": "After removing a row head, expose only the next pair in that same row."
+      },
+      {
+        "id": "expose-the-first-pair-of-each-row",
+        "title": "Expose the first pair of each row",
+        "narration": "For [1,7,11] and [2,4,6], the initial pairs are (1,2), (7,2), (11,2), with sums 3,9,13. Three results are requested.",
+        "decision": "Later pairs in a row cannot precede its current head."
+      },
+      {
+        "id": "advance-the-winning-row",
+        "title": "Advance the winning row",
+        "narration": "Output (1,2), then expose (1,4), whose sum 5 is still below the other heads 9 and 13. Output it next.",
+        "decision": "Every row’s earlier pair has already been removed."
+      },
+      {
+        "id": "the-same-row-wins-once-more",
+        "title": "The same row wins once more",
+        "narration": "Expose (1,6), sum 7, and select it ahead of 9 and 13. Return [(1,2),(1,4),(1,6)].",
+        "decision": "A row may supply several consecutive winners; there is no round-robin rule."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each row is sorted, so its head is its smallest unreturned pair. The minimum among all exposed heads is consequently the global smallest unreturned pair. Advancing only that row restores the invariant. Rows beyond the first requested-count first values cannot be needed earlier, since that many initial row heads already have sums no larger than their first head.",
+        "decision": "After removing a row head, expose only the next pair in that same row."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If fewer pairs exist than requested, finish when no row heads remain.",
+        "decision": "Equal values at separate positions still represent separate pairs."
+      }
+    ]
+  }
 }

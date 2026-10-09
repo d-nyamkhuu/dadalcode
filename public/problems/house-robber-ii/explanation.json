@@ -38,5 +38,86 @@
       "note": "The two cases collectively cover every legal circular choice, including choices that omit both endpoints."
     }
   ],
-  "keyDecision": "Handle one house separately. For longer streets, compare the two endpoint-excluded ranges."
+  "keyDecision": "Handle one house separately. For longer streets, compare the two endpoint-excluded ranges.",
+  "concept": {
+    "question": "How can a circular street become two ordinary streets?",
+    "intuition": [
+      "The line-street rule overlooks that the first and last houses are neighbors in a circle. A line answer selecting both endpoints can therefore be invalid.",
+      "Every valid circular selection excludes at least one endpoint. Solve one ordinary street excluding the last house and another excluding the first. Their better total covers every legal circular possibility."
+    ],
+    "observation": "Consider both endpoint exclusions; a valid circle selection cannot take both endpoints.",
+    "approach": [
+      "Handle a single house directly.",
+      "Solve the line excluding the last house and the line excluding the first.",
+      "Return the larger legal total."
+    ],
+    "correctness": "The circular edge forbids selecting the first and last houses together. Any legal selection therefore lies in the case excluding the first or the case excluding the last, and each case is an ordinary line problem. Conversely, each case’s legal line selection is circularly valid. Their maximum equals the circular optimum.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Two linear passes use constant-size rolling totals. Total work remains linear and auxiliary memory constant."
+    },
+    "pitfalls": [
+      "Consider both endpoint exclusions; a valid circle selection cannot take both endpoints.",
+      "Handle the one-house input before the two-line reduction."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/house-robber-ii/concept.webp",
+        "alt": "Every valid circular selection excludes at least one endpoint. Solve one ordinary street excluding the last house and another excluding the first. Their better total covers every legal circular possibility.",
+        "caption": "Every valid circular selection excludes at least one endpoint. Solve one ordinary street excluding the last house and another excluding the first. Their better total covers every legal circular possibility.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's House Robber II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about House Robber II, not a generic data structure illustration. The key idea is: In a circle, the first and last houses are neighbors. Any valid selection must leave out at least one of them. Solve two ordinary streets: one without the last house and one without the first. The larger result covers every valid circular selection. The reason a decision is safe is: Handle one house separately. For longer streets, compare the two endpoint-excluded ranges. The actual example this lesson teaches is {\"nums\": [1, 1, 10, 1, 10]} with answer 20. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a circular street become two ordinary streets?",
+        "decision": "Consider both endpoint exclusions; a valid circle selection cannot take both endpoints."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "The line-street rule overlooks that the first and last houses are neighbors in a circle. A line answer selecting both endpoints can therefore be invalid.",
+        "decision": "Every valid circular selection excludes at least one endpoint. Solve one ordinary street excluding the last house and another excluding the first. Their better total covers every legal circular possibility."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Every valid circular selection excludes at least one endpoint. Solve one ordinary street excluding the last house and another excluding the first. Their better total covers every legal circular possibility.",
+        "decision": "Consider both endpoint exclusions; a valid circle selection cannot take both endpoints."
+      },
+      {
+        "id": "exclude-the-last-house",
+        "title": "Exclude the last house",
+        "narration": "For [1,1,10,1,10], the first line is [1,1,10,1]. Its best total is 11.",
+        "decision": "Without the last endpoint, the remaining street is a line."
+      },
+      {
+        "id": "exclude-the-first-house",
+        "title": "Exclude the first house",
+        "narration": "The second line is [1,10,1,10]. Its best total is 20 from its two 10-valued houses.",
+        "decision": "These original houses are not circular neighbors."
+      },
+      {
+        "id": "compare-the-complete-cases",
+        "title": "Compare the complete cases",
+        "narration": "Return the larger of 11 and 20: 20.",
+        "decision": "Every valid circular selection belongs to at least one endpoint-exclusion case."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The circular edge forbids selecting the first and last houses together. Any legal selection therefore lies in the case excluding the first or the case excluding the last, and each case is an ordinary line problem. Conversely, each case’s legal line selection is circularly valid. Their maximum equals the circular optimum.",
+        "decision": "Consider both endpoint exclusions; a valid circle selection cannot take both endpoints."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A single-house circle may take its lone house. Excluding both endpoints as separate empty lines would lose it.",
+        "decision": "Handle the one-house input before the two-line reduction."
+      }
+    ]
+  }
 }

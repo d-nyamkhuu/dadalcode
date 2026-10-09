@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. Show a SINGLE queen on an unnumbered chessboard, with glowing lines radiating along its horizontal row, vertical column, and the two diagonals. All intersecting squares along these lines are amber excluded positions. Other squares stay dark. DO NOT show a green candidate square or any completed placement. A small abstract branching tree and undo arrow beside the board suggest testing choices and backtracking. No words, letters, or numerals.",
+  "width": 1774,
+  "height": 887
+}

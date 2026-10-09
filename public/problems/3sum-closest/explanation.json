@@ -39,5 +39,87 @@
       "note": "Distinct ordered positions prevent reusing the fixed element or a pair position."
     }
   ],
-  "keyDecision": "Compare the absolute distance to the target before moving either pointer."
+  "keyDecision": "Compare the absolute distance to the target before moving either pointer.",
+  "concept": {
+    "question": "How can we steer a triple toward a target even when no exact match exists?",
+    "intuition": [
+      "Checking every triple gives a closest answer but performs many unguided comparisons. Once numbers are sorted, we can move a pair in a direction that predictably raises or lowers the triple total.",
+      "Fix one member and place the other two at opposite ends of the remaining sorted values. Measure the distance from the target before moving. A sum too small asks for a larger low member; a sum too large asks for a smaller high member. Keep the closest real total throughout."
+    ],
+    "observation": "Record each candidate distance before moving the pair; an exact match can finish immediately.",
+    "approach": [
+      "Sort the values and initialize the closest total using a real triple.",
+      "For each fixed member, compare a low/high pair with the target.",
+      "Remember improvements and move the pair in the direction of the target."
+    ],
+    "correctness": "For a fixed member, when the sum is too small, keeping the smaller pair member and decreasing the larger one cannot bring it closer from below. The symmetric statement holds for a too-large sum. Measuring before each move preserves the best discarded candidate. Trying every fixed member therefore finds a globally closest triple.",
+    "complexity": {
+      "time": "O(n²)",
+      "space": "O(n)",
+      "explanation": "Each fixed choice scans the suffix once, giving quadratic work. Sorting a copy uses linear memory. Only a few totals and positions are needed during each scan."
+    },
+    "pitfalls": [
+      "Initialize from a real triple, not an arbitrary zero.",
+      "Use three different positions.",
+      "Return the sum, not its distance from the target."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/3sum-closest/concept.webp",
+        "alt": "A triple total moves toward a target on a number line, with its closest distance remembered.",
+        "caption": "A triple total moves toward a target on a number line, with its closest distance remembered.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's 3Sum Closest algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about 3Sum Closest, not a generic data structure illustration. The key idea is: Sort the numbers and choose one as the first member of the triple. Search for the other two from opposite ends. Moving the left pointer increases the total; moving the right pointer decreases it. Keep the sum whose distance from the target is smallest. The reason a decision is safe is: Compare the absolute distance to the target before moving either pointer. The actual example this lesson teaches is {\"nums\": [-1, 2, 1, -4], \"target\": 1} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can we steer a triple toward a target even when no exact match exists?",
+        "decision": "Record each candidate distance before moving the pair; an exact match can finish immediately."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Checking every triple gives a closest answer but performs many unguided comparisons. Once numbers are sorted, we can move a pair in a direction that predictably raises or lowers the triple total.",
+        "decision": "Fix one member and place the other two at opposite ends of the remaining sorted values. Measure the distance from the target before moving. A sum too small asks for a larger low member; a sum too large asks for a smaller high member. Keep the closest real total throughout."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Fix one member and place the other two at opposite ends of the remaining sorted values. Measure the distance from the target before moving. A sum too small asks for a larger low member; a sum too large asks for a smaller high member. Keep the closest real total throughout.",
+        "decision": "Record each candidate distance before moving the pair; an exact match can finish immediately."
+      },
+      {
+        "id": "order-creates-direction",
+        "title": "Order creates direction",
+        "narration": "Sort the values to [-4,-1,1,2]. The target is 1. The first candidate triple -4,-1,2 totals -3.",
+        "decision": "The target distance is measured from the total, not from an individual value."
+      },
+      {
+        "id": "raise-a-total-that-is-too-small",
+        "title": "Raise a total that is too small",
+        "narration": "With -4 still fixed, replace the smaller pair member -1 with 1. The total becomes -1, two away from the target.",
+        "decision": "Moving the larger member downward cannot improve a too-small total."
+      },
+      {
+        "id": "a-new-fixed-member-gets-closer",
+        "title": "A new fixed member gets closer",
+        "narration": "Fix -1 and pair it with 1 and 2. Their total is 2, just one away from 1. No candidate is closer.",
+        "decision": "The answer is the closest sum, 2, rather than its distance, 1."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For a fixed member, when the sum is too small, keeping the smaller pair member and decreasing the larger one cannot bring it closer from below. The symmetric statement holds for a too-large sum. Measuring before each move preserves the best discarded candidate. Trying every fixed member therefore finds a globally closest triple.",
+        "decision": "Record each candidate distance before moving the pair; an exact match can finish immediately."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: three values totaling the target have distance zero. No other total can improve it.",
+        "decision": "An exact match may return immediately."
+      }
+    ]
+  }
 }

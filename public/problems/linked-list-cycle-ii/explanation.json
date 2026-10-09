@@ -38,5 +38,87 @@
       "note": "Equal-speed motion after resetting one pointer uses the meeting-distance relation to find the entrance, rather than returning the initial meeting."
     }
   ],
-  "keyDecision": "If the fast pointer reaches the end, return no entrance. Otherwise use the second, equal-speed phase."
+  "keyDecision": "If the fast pointer reaches the end, return no entrance. Otherwise use the second, equal-speed phase.",
+  "concept": {
+    "question": "Why is the first meeting inside a loop different from its entrance?",
+    "intuition": [
+      "A slow-fast meeting proves a cycle but may happen anywhere inside it. Returning that meeting directly can identify the wrong node.",
+      "After detecting a meeting, place one bookmark back at the start. Move it and the meeting bookmark one link per round. The loop-distance relationship makes their next meeting occur at the entrance."
+    ],
+    "observation": "The detection meeting is not the answer; equal-speed walkers locate the entrance afterward.",
+    "approach": [
+      "Detect a meeting with one-link and two-link walkers.",
+      "Restart one bookmark at the original head.",
+      "Move both one link until their node identities match."
+    ],
+    "correctness": "At detection, the fast walker has traveled twice the slow distance, so the extra traveled distance is a whole number of loop lengths. This makes the distance from the meeting to the entrance, modulo the loop length, equal to the head-to-entrance distance. Equal-speed walkers from those two starting points therefore first meet at the entrance.",
+    "complexity": {
+      "time": "O(length)",
+      "space": "O(1)",
+      "explanation": "Detection and entrance location each require only linear link traversal. A few node bookmarks use constant extra memory."
+    },
+    "pitfalls": [
+      "Do not return the initial detection meeting.",
+      "Keep node identity in both phases.",
+      "Acyclic lists have no entrance."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/linked-list-cycle-ii/concept.webp",
+        "alt": "After detecting a meeting, place one bookmark back at the start. Move it and the meeting bookmark one link per round. The loop-distance relationship makes their next meeting occur at the entrance.",
+        "caption": "After detecting a meeting, place one bookmark back at the start. Move it and the meeting bookmark one link per round. The loop-distance relationship makes their next meeting occur at the entrance.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Linked List Cycle II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Linked List Cycle II, not a generic data structure illustration. The key idea is: First use a slow and a fast pointer to find a meeting inside a cycle. The meeting is not necessarily the entrance. Start a new pointer at the head, then move it and the meeting pointer one link at a time. Their next meeting is the entrance. The reason a decision is safe is: If the fast pointer reaches the end, return no entrance. Otherwise use the second, equal-speed phase. The actual example this lesson teaches is {\"head\": [3, 2, 0, -4], \"pos\": 1} with answer 1. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why is the first meeting inside a loop different from its entrance?",
+        "decision": "The detection meeting is not the answer; equal-speed walkers locate the entrance afterward."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A slow-fast meeting proves a cycle but may happen anywhere inside it. Returning that meeting directly can identify the wrong node.",
+        "decision": "After detecting a meeting, place one bookmark back at the start. Move it and the meeting bookmark one link per round. The loop-distance relationship makes their next meeting occur at the entrance."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "After detecting a meeting, place one bookmark back at the start. Move it and the meeting bookmark one link per round. The loop-distance relationship makes their next meeting occur at the entrance.",
+        "decision": "The detection meeting is not the answer; equal-speed walkers locate the entrance afterward."
+      },
+      {
+        "id": "detection-meets-at-minus-four",
+        "title": "Detection meets at minus four",
+        "narration": "In 3 → 2 → 0 → -4 → 2, slow and fast first meet at -4 after three rounds.",
+        "decision": "The entrance is 2, so the detection meeting is not yet the answer."
+      },
+      {
+        "id": "restart-a-bookmark-at-the-head",
+        "title": "Restart a bookmark at the head",
+        "narration": "Place one bookmark at 3 and leave the other at -4. Both now move one link per round.",
+        "decision": "The cycle-distance relation aligns their remaining distances to the entrance."
+      },
+      {
+        "id": "they-meet-at-the-entrance",
+        "title": "They meet at the entrance",
+        "narration": "One move sends both to the original node 2. Return that node; the fixture reports its original position 1.",
+        "decision": "The answer is an existing node, not a new node with equal value."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At detection, the fast walker has traveled twice the slow distance, so the extra traveled distance is a whole number of loop lengths. This makes the distance from the meeting to the entrance, modulo the loop length, equal to the head-to-entrance distance. Equal-speed walkers from those two starting points therefore first meet at the entrance.",
+        "decision": "The detection meeting is not the answer; equal-speed walkers locate the entrance afterward."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If detection reaches the end, there is no cycle entrance.",
+        "decision": "Return no node rather than a value-based guess."
+      }
+    ]
+  }
 }

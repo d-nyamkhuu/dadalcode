@@ -54,5 +54,87 @@
       "note": "Failed branches restore the cell; matching set removals restore exactly the prior search state."
     }
   ],
-  "keyDecision": "A digit is allowed only if it is absent from the cell's row, column, and 3 × 3 box."
+  "keyDecision": "A digit is allowed only if it is absent from the cell's row, column, and 3 × 3 box.",
+  "concept": {
+    "question": "Can choosing the most constrained empty square make Sudoku search smaller?",
+    "intuition": [
+      "Filling empty squares in arbitrary order may branch into many guesses before noticing a conflict. A square with fewer legal digits supplies stronger information about what can work.",
+      "For each empty square, consider digits absent from its row, column, and three-by-three box. Choose the square with the fewest choices. Try a legal digit, continue, and erase it if no full board can follow. Fixed clues never change."
+    ],
+    "observation": "A placed digit must be absent from all three containing groups; undo unsuccessful placements completely.",
+    "approach": [
+      "Record digits already used in each row, column, and box.",
+      "Select an empty square with the fewest legal options and try each option.",
+      "Continue until the board is complete, undoing a trial when completion fails."
+    ],
+    "correctness": "Every trial preserves the row, column, and box rules. Any full valid completion must choose one of the current square’s legal options, so trying all of them cannot miss that completion. Undoing a failed choice restores the earlier board before the next trial. A finished board is therefore valid and retains the fixed clues.",
+    "complexity": {
+      "time": "O(E² × 9^E) loose upper bound",
+      "space": "O(E + 81)",
+      "explanation": "Search can branch exponentially in the number of empty cells. Choosing the most constrained square reduces practical branching without changing that worst case. The fixed board, used-digit groups, and recursion bookmarks hold the current search state."
+    },
+    "pitfalls": [
+      "Never change an original clue.",
+      "Undo the board placement and all three used-digit records.",
+      "Choose only digits valid in the row, column, and box."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/sudoku-solver/concept.webp",
+        "alt": "Sudoku row, column, and box constraints focus light on an empty square with the fewest legal choices.",
+        "caption": "Sudoku row, column, and box constraints focus light on an empty square with the fewest legal choices.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A conceptual three-panel illustration of Sudoku constraints WITHOUT any digits or solved board. Show an unfilled precise 9-by-9 square grid partitioned into nine 3-by-3 regions; one cyan horizontal row, one green vertical column, and one warm-outlined 3-by-3 region meet at a bright trial cell. A small cluster of abstract candidate tokens beside it narrows to one, then a faded backtracking arrow indicates undoing a choice. No letters or numerals anywhere."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can choosing the most constrained empty square make Sudoku search smaller?",
+        "decision": "A placed digit must be absent from all three containing groups; undo unsuccessful placements completely."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Filling empty squares in arbitrary order may branch into many guesses before noticing a conflict. A square with fewer legal digits supplies stronger information about what can work.",
+        "decision": "For each empty square, consider digits absent from its row, column, and three-by-three box. Choose the square with the fewest choices. Try a legal digit, continue, and erase it if no full board can follow. Fixed clues never change."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For each empty square, consider digits absent from its row, column, and three-by-three box. Choose the square with the fewest choices. Try a legal digit, continue, and erase it if no full board can follow. Fixed clues never change.",
+        "decision": "A placed digit must be absent from all three containing groups; undo unsuccessful placements completely."
+      },
+      {
+        "id": "the-first-forced-digit",
+        "title": "The first forced digit",
+        "narration": "The example has one diagonal hole in each row. The top-left row lacks only 5, which also fits its column and box.",
+        "decision": "A legal choice must satisfy all three groups."
+      },
+      {
+        "id": "fill-the-next-forced-square",
+        "title": "Fill the next forced square",
+        "narration": "After placing 5, the hole in the second row is forced to 7. Continue with the remaining constrained holes.",
+        "decision": "Updating all three used-digit groups keeps later choices consistent."
+      },
+      {
+        "id": "all-nine-groups-agree",
+        "title": "Every row, column, and box agrees",
+        "narration": "The remaining diagonal placements are 8,7,5,4,2,3,9. The complete board preserves every original clue.",
+        "decision": "All empty cells are filled without a repeated digit in any row, column, or box."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every trial preserves the row, column, and box rules. Any full valid completion must choose one of the current square’s legal options, so trying all of them cannot miss that completion. Undoing a failed choice restores the earlier board before the next trial. A finished board is therefore valid and retains the fixed clues.",
+        "decision": "A placed digit must be absent from all three containing groups; undo unsuccessful placements completely."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A square with no legal digit proves the current partial board cannot be completed. Erase the last trial and try a different branch.",
+        "decision": "An empty option set ends only the current branch."
+      }
+    ]
+  }
 }

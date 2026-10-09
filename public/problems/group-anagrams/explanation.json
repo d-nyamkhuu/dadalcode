@@ -52,5 +52,86 @@
       "note": "Append the original occurrence rather than a reconstructed or deduplicated string, preserving spelling and repeated entries in the input multiset."
     }
   ],
-  "keyDecision": "Reset the 26-letter count vector for every word. Preserve repeated input words as separate occurrences."
+  "keyDecision": "Reset the 26-letter count vector for every word. Preserve repeated input words as separate occurrences.",
+  "concept": {
+    "question": "Why does a letter-count fingerprint identify an entire anagram class?",
+    "intuition": [
+      "Comparing every pair of words is wasteful. Each word’s exact letter inventory is a fingerprint shared by all and only its rearrangements.",
+      "Count all 26 lowercase letters for each word and use that inventory to select a group. Append the original word occurrence to that group, retaining duplicates and ignoring within-word letter order."
+    ],
+    "observation": "Equal inventories imply the same group; every input occurrence remains in the output.",
+    "approach": [
+      "Compute a fixed-alphabet occurrence inventory for each word.",
+      "Find or create the group with that inventory.",
+      "Append the word and return all completed groups."
+    ],
+    "correctness": "Two lowercase words are anagrams exactly when every letter’s occurrence count agrees. Grouping by that inventory therefore puts anagrams together and keeps nonanagrams apart. Appending once per original occurrence preserves the input’s full multiplicity, producing precisely its anagram equivalence classes.",
+    "complexity": {
+      "time": "O(total characters + 26*W)",
+      "space": "O(26*G + W) references, including output",
+      "explanation": "Read every character and prepare one fixed 26-count inventory per word. Group keys use one inventory per distinct group; output holds one reference per input word rather than copying its characters."
+    },
+    "pitfalls": [
+      "Equal inventories imply the same group; every input occurrence remains in the output.",
+      "Do not use only the set of letters as a fingerprint."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/group-anagrams/concept.webp",
+        "alt": "Count all 26 lowercase letters for each word and use that inventory to select a group. Append the original word occurrence to that group, retaining duplicates and ignoring within-word letter order.",
+        "caption": "Count all 26 lowercase letters for each word and use that inventory to select a group. Append the original word occurrence to that group, retaining duplicates and ignoring within-word letter order.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Group Anagrams algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Group Anagrams, not a generic data structure illustration. The key idea is: Words belong together when they contain the same letters with the same counts. Make a fresh letter-count signature for each word and use it as a dictionary key. Append the original word to that key's group. Equal signatures group anagrams without comparing each pair of words. The reason a decision is safe is: Reset the 26-letter count vector for every word. Preserve repeated input words as separate occurrences. The actual example this lesson teaches is {\"strs\": [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]} with answer [[\"eat\", \"tea\", \"ate\"], [\"tan\", \"nat\"], [\"bat\"]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does a letter-count fingerprint identify an entire anagram class?",
+        "decision": "Equal inventories imply the same group; every input occurrence remains in the output."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing every pair of words is wasteful. Each word’s exact letter inventory is a fingerprint shared by all and only its rearrangements.",
+        "decision": "Count all 26 lowercase letters for each word and use that inventory to select a group. Append the original word occurrence to that group, retaining duplicates and ignoring within-word letter order."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Count all 26 lowercase letters for each word and use that inventory to select a group. Append the original word occurrence to that group, retaining duplicates and ignoring within-word letter order.",
+        "decision": "Equal inventories imply the same group; every input occurrence remains in the output."
+      },
+      {
+        "id": "eat-and-tea-share-an-inventory",
+        "title": "Eat and tea share an inventory",
+        "narration": "For eat,tea,tan,ate,nat,bat, both eat and tea have one a, one e, and one t. They join one group.",
+        "decision": "A fingerprint uses counts rather than character positions."
+      },
+      {
+        "id": "tan-begins-a-different-class",
+        "title": "Tan begins a different class",
+        "narration": "Tan has a,n,t instead, so it begins a new group. Ate joins eat/tea; nat joins tan.",
+        "decision": "One changed letter count makes a different fingerprint."
+      },
+      {
+        "id": "bat-forms-the-final-group",
+        "title": "Bat forms the final group",
+        "narration": "Bat has a,b,t and starts the third class. Return [eat,tea,ate], [tan,nat], and [bat] in any accepted group order.",
+        "decision": "All six original occurrences are retained."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Two lowercase words are anagrams exactly when every letter’s occurrence count agrees. Grouping by that inventory therefore puts anagrams together and keeps nonanagrams apart. Appending once per original occurrence preserves the input’s full multiplicity, producing precisely its anagram equivalence classes.",
+        "decision": "Equal inventories imply the same group; every input occurrence remains in the output."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Empty words share the all-zero inventory, and repeated identical words remain repeated output entries.",
+        "decision": "Do not use only the set of letters as a fingerprint."
+      }
+    ]
+  }
 }

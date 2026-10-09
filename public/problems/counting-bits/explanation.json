@@ -42,5 +42,86 @@
       "note": "The shifted prefix contributes all earlier bits, and the bitwise AND contributes exactly the one removed least-significant bit."
     }
   ],
-  "keyDecision": "counts[i] = counts[i >> 1] + (i & 1). Begin with counts[0] = 0."
+  "keyDecision": "counts[i] = counts[i >> 1] + (i & 1). Begin with counts[0] = 0.",
+  "concept": {
+    "question": "How can a number reuse the bit count of a smaller number?",
+    "intuition": [
+      "Independently counting all bits of every number repeats overlapping binary prefixes. Removing the final binary digit produces a smaller number whose answer has already been computed.",
+      "The number of ones equals the count after dropping the final binary digit, plus one if that removed digit was a one. Build the answers in increasing numeric order, beginning with zero."
+    ],
+    "observation": "Reuse the halved number’s answer, then add the final binary digit.",
+    "approach": [
+      "Give zero a count of zero.",
+      "For each positive number, drop its last binary digit.",
+      "Add that digit to the already known count for the remaining prefix."
+    ],
+    "correctness": "Zero supplies the base case. Every positive representation splits into a smaller prefix and one last bit. The already-correct prefix count plus that bit is exactly its total one count. Increasing numeric order guarantees the reused answer exists before it is needed.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n) output; O(1) auxiliary",
+      "explanation": "One constant-size update per number produces a linear-size output. The output is the only growing table; auxiliary storage is constant."
+    },
+    "pitfalls": [
+      "Reuse the halved number’s answer, then add the final binary digit.",
+      "The result includes both endpoints, including zero."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/counting-bits/concept.webp",
+        "alt": "The number of ones equals the count after dropping the final binary digit, plus one if that removed digit was a one. Build the answers in increasing numeric order, beginning with zero.",
+        "caption": "The number of ones equals the count after dropping the final binary digit, plus one if that removed digit was a one. Build the answers in increasing numeric order, beginning with zero.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Counting Bits algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Counting Bits, not a generic data structure illustration. The key idea is: Removing a number's last binary digit leaves a smaller number. Its count of one bits is already in the table. Add one if the removed digit was 1, or zero if it was 0. This reuses earlier answers instead of inspecting every bit of every number separately. The reason a decision is safe is: counts[i] = counts[i >> 1] + (i & 1). Begin with counts[0] = 0. The actual example this lesson teaches is {\"n\": 8} with answer [0, 1, 1, 2, 1, 2, 2, 3, 1]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a number reuse the bit count of a smaller number?",
+        "decision": "Reuse the halved number’s answer, then add the final binary digit."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Independently counting all bits of every number repeats overlapping binary prefixes. Removing the final binary digit produces a smaller number whose answer has already been computed.",
+        "decision": "The number of ones equals the count after dropping the final binary digit, plus one if that removed digit was a one. Build the answers in increasing numeric order, beginning with zero."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "The number of ones equals the count after dropping the final binary digit, plus one if that removed digit was a one. Build the answers in increasing numeric order, beginning with zero.",
+        "decision": "Reuse the halved number’s answer, then add the final binary digit."
+      },
+      {
+        "id": "start-from-smaller-binary-prefixes",
+        "title": "Start from smaller binary prefixes",
+        "narration": "For the fixture ending at 8, counts for 0,1,2,3 are 0,1,1,2. Binary 11 reuses 1 and adds its last 1.",
+        "decision": "Dropping a digit always reaches a smaller nonnegative number."
+      },
+      {
+        "id": "reuse-three-for-six-and-seven",
+        "title": "Reuse three for six and seven",
+        "narration": "Binary 110 and 111 share prefix 11, whose count is two. Their final digits add zero and one, giving counts two and three.",
+        "decision": "Only the removed digit distinguishes these two answers."
+      },
+      {
+        "id": "a-new-leading-place-does-not-add-many-ones",
+        "title": "A new leading place does not add many ones",
+        "narration": "Eight is binary 1000: its prefix 100 has count one and its final digit is zero. The full result is [0,1,1,2,1,2,2,3,1].",
+        "decision": "A longer representation can still contain just one one."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Zero supplies the base case. Every positive representation splits into a smaller prefix and one last bit. The already-correct prefix count plus that bit is exactly its total one count. Increasing numeric order guarantees the reused answer exists before it is needed.",
+        "decision": "Reuse the halved number’s answer, then add the final binary digit."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "At an upper bound of zero, return just the count for zero.",
+        "decision": "The result includes both endpoints, including zero."
+      }
+    ]
+  }
 }

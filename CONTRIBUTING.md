@@ -48,7 +48,9 @@ BROWSER_COVERAGE=full npm run test:e2e -- --parallel
 ```
 
 `npm run verify:release` always uses full coverage. Both modes still validate all
-179 problem suites in browser Python and all lesson guides.
+179 problem suites in browser Python and all lesson guides. Concept checks visit
+every scene, decode every local illustration, and assert that Learn loads no
+Python worker or runtime assets.
 
 CI runs the full checks for app code, lessons, tests, dependencies, build/CI
 configuration, and bundled license notices. Changes limited to the root README,
@@ -66,7 +68,9 @@ focused. Do not submit API keys, personal backups, private examples, or credenti
 ## Lessons and review
 
 Follow [the problem contract](PROBLEM_CONTRACT.md). Each problem has six files:
-lesson, editorial, solution, starter, adapter, and tests. Write original prose and
+lesson, editorial (including the required conceptual lesson), solution, starter,
+adapter, and tests. [Concept authoring and review](docs/CONCEPT_LESSONS.md) describes
+the per-problem diagrams and local artwork. Write original prose and
 code, attribute sources, and retain the source catalog's CC BY-NC license.
 
 Run `npm run test:content` during editing. Add meaningful independent regression

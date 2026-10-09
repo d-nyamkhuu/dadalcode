@@ -19,7 +19,10 @@ page.on("console", (message) => {
 });
 await mkdir(screenshotDirectory, { recursive: true });
 async function open(slug) {
-  await page.goto(`${root}/#/problems/${slug}/learn`);
+  await page.goto(`${root}/#/problems/${slug}/solution`);
+  await page
+    .getByRole("button", { name: "Execution walkthrough", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Play", exact: true })
     .waitFor({ timeout: 60000 });

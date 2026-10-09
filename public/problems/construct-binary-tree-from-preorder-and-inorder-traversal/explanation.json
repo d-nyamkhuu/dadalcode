@@ -55,5 +55,86 @@
       "note": "Attach to the last popped ancestor, which can differ from the new stack top."
     }
   ],
-  "keyDecision": "When stack values match consecutive inorder values, pop them. The next node is the last popped node's right child."
+  "keyDecision": "When stack values match consecutive inorder values, pop them. The next node is the last popped node's right child.",
+  "concept": {
+    "question": "How do arrival order and left-to-right order reveal the same tree?",
+    "intuition": [
+      "Neither preorder nor inorder alone identifies all parent-child links. Together they tell us which node arrives next and when an ancestor’s left side has finished.",
+      "Read new nodes in preorder, which visits parents before descendants. Keep unfinished ancestors. Inorder visits left subtree, root, right subtree; when an ancestor matches the next inorder value, its left portion is complete and we can move toward its right portion."
+    ],
+    "observation": "Create nodes in preorder, and close completed ancestor positions in inorder.",
+    "approach": [
+      "Create the first preorder value as the root.",
+      "Attach left descendants while inorder has not closed the ancestor.",
+      "Close matching ancestors and attach the next right subtree."
+    ],
+    "correctness": "Preorder supplies each subtree root before any of its descendants. Inorder tells when the left descendants and that root have been fully visited. The stack preserves the unfinished ancestor chain, so closing matching ancestors identifies exactly where the next right subtree belongs. With distinct values, these traversal positions uniquely determine the reconstructed tree.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(h) auxiliary plus O(n) output",
+      "explanation": "Each value is created once and each unfinished ancestor is removed once, giving linear work. The ancestor stack follows tree height; new tree nodes are output memory."
+    },
+    "pitfalls": [
+      "Create nodes in preorder, and close completed ancestor positions in inorder.",
+      "The two traversal sequences describe the same distinct node values."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/construct-binary-tree-from-preorder-and-inorder-traversal/concept.webp",
+        "alt": "Read new nodes in preorder, which visits parents before descendants. Keep unfinished ancestors. Inorder visits left subtree, root, right subtree; when an ancestor matches the next inorder value, its left portion is complete and we can move toward its right portion.",
+        "caption": "Read new nodes in preorder, which visits parents before descendants. Keep unfinished ancestors. Inorder visits left subtree, root, right subtree; when an ancestor matches the next inorder value, its left portion is complete and we can move toward its right portion.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Construct Binary Tree from Preorder and Inorder Traversal algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Construct Binary Tree from Preorder and Inorder Traversal, not a generic data structure illustration. The key idea is: Preorder tells us which node to create next. Inorder tells us when a left part has finished and a right part should begin. Keep unfinished ancestors on a stack. Attach new nodes on the left until the stack matches the next inorder value, then remove the finished ancestors. The reason a decision is safe is: When stack values match consecutive inorder values, pop them. The next node is the last popped node's right child. The actual example this lesson teaches is {\"preorder\": [3, 9, 20, 15, 7], \"inorder\": [9, 3, 15, 20, 7]} with answer [3, 9, 20, null, null, 15, 7]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do arrival order and left-to-right order reveal the same tree?",
+        "decision": "Create nodes in preorder, and close completed ancestor positions in inorder."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Neither preorder nor inorder alone identifies all parent-child links. Together they tell us which node arrives next and when an ancestor’s left side has finished.",
+        "decision": "Read new nodes in preorder, which visits parents before descendants. Keep unfinished ancestors. Inorder visits left subtree, root, right subtree; when an ancestor matches the next inorder value, its left portion is complete and we can move toward its right portion."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Read new nodes in preorder, which visits parents before descendants. Keep unfinished ancestors. Inorder visits left subtree, root, right subtree; when an ancestor matches the next inorder value, its left portion is complete and we can move toward its right portion.",
+        "decision": "Create nodes in preorder, and close completed ancestor positions in inorder."
+      },
+      {
+        "id": "create-the-root-and-its-left-child",
+        "title": "Create the root and its left child",
+        "narration": "Preorder begins 3 then 9. Inorder first expects 9, so 9 attaches on the left of 3.",
+        "decision": "The next inorder position has not yet reached root 3."
+      },
+      {
+        "id": "inorder-closes-the-left-portion",
+        "title": "Inorder closes the left portion",
+        "narration": "Inorder reaches 9 then 3. The next preorder value 20 therefore attaches as 3’s right child.",
+        "decision": "Completed ancestor positions identify the parent of the next right subtree."
+      },
+      {
+        "id": "build-the-right-subtree",
+        "title": "Build the right subtree",
+        "narration": "Attach 15 to the left of 20. Inorder then closes 15 and 20, so attach 7 to the right of 20.",
+        "decision": "Every input value creates one node with its traversal-implied position."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Preorder supplies each subtree root before any of its descendants. Inorder tells when the left descendants and that root have been fully visited. The stack preserves the unfinished ancestor chain, so closing matching ancestors identifies exactly where the next right subtree belongs. With distinct values, these traversal positions uniquely determine the reconstructed tree.",
+        "decision": "Create nodes in preorder, and close completed ancestor positions in inorder."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: one traversal value creates a single root with no children.",
+        "decision": "The two traversal sequences describe the same distinct node values."
+      }
+    ]
+  }
 }

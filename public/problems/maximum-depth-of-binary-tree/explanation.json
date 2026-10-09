@@ -40,5 +40,86 @@
       "note": "Adding a child extends its root path by exactly one node; recording the depth alongside the node preserves that invariant."
     }
   ],
-  "keyDecision": "Depth counts nodes here. An empty tree has depth 0."
+  "keyDecision": "Depth counts nodes here. An empty tree has depth 0.",
+  "concept": {
+    "question": "How does counting nodes along each root path reveal the deepest leaf?",
+    "intuition": [
+      "Listing complete root-to-leaf paths stores more than the answer needs. A node’s depth can be carried during a visit without retaining its entire path.",
+      "Give the root depth one. Each child has one greater depth than its parent. Visit all nodes and remember the greatest depth encountered."
+    ],
+    "observation": "Depth counts nodes from the root, so an existing root starts at one.",
+    "approach": [
+      "Visit a node with its depth.",
+      "Update the greatest depth.",
+      "Visit children with one greater depth."
+    ],
+    "correctness": "A node’s assigned depth equals its parent’s correct depth plus one, starting from the root’s one. Thus every assigned depth is its actual root-path node count. Visiting all nodes includes a deepest leaf, and taking the greatest assigned depth yields the tree’s maximum depth.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(h)",
+      "explanation": "Visit each node once. An iterative depth-first frontier holds pending paths proportional to tree height in the worst case."
+    },
+    "pitfalls": [
+      "Depth counts nodes from the root, so an existing root starts at one.",
+      "Do not count only edges when the requested depth counts nodes."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-depth-of-binary-tree/concept.webp",
+        "alt": "Give the root depth one. Each child has one greater depth than its parent. Visit all nodes and remember the greatest depth encountered.",
+        "caption": "Give the root depth one. Each child has one greater depth than its parent. Visit all nodes and remember the greatest depth encountered.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Maximum Depth of Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Maximum Depth of Binary Tree, not a generic data structure illustration. The key idea is: Carry a depth beside each node you visit. The root has depth 1, and each child has its parent's depth plus 1. Save the largest depth seen. This measures the longest root-to-leaf path without needing to list every complete path. The reason a decision is safe is: Depth counts nodes here. An empty tree has depth 0. The actual example this lesson teaches is {\"root\": [3, 9, 20, null, null, 15, 7]} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does counting nodes along each root path reveal the deepest leaf?",
+        "decision": "Depth counts nodes from the root, so an existing root starts at one."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Listing complete root-to-leaf paths stores more than the answer needs. A node’s depth can be carried during a visit without retaining its entire path.",
+        "decision": "Give the root depth one. Each child has one greater depth than its parent. Visit all nodes and remember the greatest depth encountered."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Give the root depth one. Each child has one greater depth than its parent. Visit all nodes and remember the greatest depth encountered.",
+        "decision": "Depth counts nodes from the root, so an existing root starts at one."
+      },
+      {
+        "id": "count-the-root",
+        "title": "Count the root",
+        "narration": "Root three begins the path at depth one, because depth counts nodes from the root.",
+        "decision": "The empty tree and a one-node tree have different depths."
+      },
+      {
+        "id": "one-step-reaches-the-children",
+        "title": "One step reaches the children",
+        "narration": "Nodes nine and twenty are one link below the root, so both have depth two.",
+        "decision": "Every parent-to-child link adds one node to the root path."
+      },
+      {
+        "id": "the-deepest-nodes-are-three-down",
+        "title": "The deepest nodes are three down",
+        "narration": "Nodes 15 and 7 have depth 3. No node is deeper, so the maximum depth is 3.",
+        "decision": "Every node’s depth has been considered."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A node’s assigned depth equals its parent’s correct depth plus one, starting from the root’s one. Thus every assigned depth is its actual root-path node count. Visiting all nodes includes a deepest leaf, and taking the greatest assigned depth yields the tree’s maximum depth.",
+        "decision": "Depth counts nodes from the root, so an existing root starts at one."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An empty tree has depth zero. A single root has depth one.",
+        "decision": "Do not count only edges when the requested depth counts nodes."
+      }
+    ]
+  }
 }

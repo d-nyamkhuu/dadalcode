@@ -109,5 +109,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How can a bracket string stay valid while we are still building it?",
+    "intuition": [
+      "Generating all strings of opening and closing brackets wastes time on prefixes that are already impossible. A closing bracket cannot be repaired later if it appears before any available opening bracket.",
+      "Think of openings as pairs waiting to be closed. We may start a new pair while openings remain in our budget. We may close a pair only when one is currently waiting. Building under these rules keeps every prefix valid."
+    ],
+    "observation": "Never close more pairs than have been opened, and never open more than the requested number of pairs.",
+    "approach": [
+      "Begin with no pairs started or closed.",
+      "Explore a legal opening and a legal closing whenever each is available.",
+      "Save the string after all requested pairs have been opened and closed."
+    ],
+    "correctness": "The construction rules ensure no prefix has more closings than openings and no result uses more than the pair budget. At completion, the counts agree, so every saved string is valid. Any valid string obeys these same prefix conditions, which means the search can follow all of its choices and will include it.",
+    "complexity": {
+      "time": "O(n · Cₙ)",
+      "space": "O(n) auxiliary plus O(n · Cₙ) output",
+      "explanation": "Work grows with the number of valid bracket strings, multiplied by the length needed to write each one. The current path and recursion depth are linear in the number of pairs; the output contains all valid strings."
+    },
+    "pitfalls": [
+      "A completed string has twice as many characters as pairs.",
+      "A closing cannot appear without a waiting opening.",
+      "Undo a choice before exploring another branch."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/generate-parentheses/concept.webp",
+        "alt": "Opening and closing arcs form nested pairs; illegal closings are excluded while the string grows.",
+        "caption": "Opening and closing arcs form nested pairs; illegal closings are excluded while the string grows.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Generate Parentheses algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Generate Parentheses, not a generic data structure illustration. The key idea is: Build a valid bracket string one character at a time. An opening bracket starts a pair. A closing bracket must close a pair that is already open. Reject an invalid choice immediately instead of generating every possible string and checking it afterward. The reason a decision is safe is: Add '(' only if opened < n. Add ')' only if closed < opened. The actual example this lesson teaches is {\"n\": 3} with answer [\"((()))\", \"(()())\", \"(())()\", \"()(())\", \"()()()\"]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a bracket string stay valid while we are still building it?",
+        "decision": "Never close more pairs than have been opened, and never open more than the requested number of pairs."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Generating all strings of opening and closing brackets wastes time on prefixes that are already impossible. A closing bracket cannot be repaired later if it appears before any available opening bracket.",
+        "decision": "Think of openings as pairs waiting to be closed. We may start a new pair while openings remain in our budget. We may close a pair only when one is currently waiting. Building under these rules keeps every prefix valid."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Think of openings as pairs waiting to be closed. We may start a new pair while openings remain in our budget. We may close a pair only when one is currently waiting. Building under these rules keeps every prefix valid.",
+        "decision": "Never close more pairs than have been opened, and never open more than the requested number of pairs."
+      },
+      {
+        "id": "open-the-available-pairs",
+        "title": "Open the available pairs",
+        "narration": "For three pairs, begin with (((. All three pairs now wait for their closing brackets.",
+        "decision": "No further opening is allowed after the pair budget is used."
+      },
+      {
+        "id": "complete-one-nested-string",
+        "title": "Complete one nested string",
+        "narration": "Only closings remain legal, producing ((())). Return to earlier choices to explore another route.",
+        "decision": "A closing is legal because an unmatched opening is waiting."
+      },
+      {
+        "id": "follow-every-legal-alternative",
+        "title": "Follow every legal alternative",
+        "narration": "Other legal routes produce (()()), (())(), ()(()), and ()()(). There are five distinct answers.",
+        "decision": "Reject an invalid prefix immediately; explore every legal continuation."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The construction rules ensure no prefix has more closings than openings and no result uses more than the pair budget. At completion, the counts agree, so every saved string is valid. Any valid string obeys these same prefix conditions, which means the search can follow all of its choices and will include it.",
+        "decision": "Never close more pairs than have been opened, and never open more than the requested number of pairs."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: for one pair, only () is legal; a first closing bracket is forbidden.",
+        "decision": "A closing must have an unmatched opening to close."
+      }
+    ]
+  }
 }

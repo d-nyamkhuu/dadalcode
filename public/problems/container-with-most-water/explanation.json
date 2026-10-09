@@ -114,5 +114,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Which wall can we safely discard after measuring a container?",
+    "intuition": [
+      "Every pair of walls gives a possible container, so checking all pairs takes quadratic work. The widest pair is a useful starting point, but width alone is not enough: the shorter wall sets the water level.",
+      "Imagine a horizontal waterline between two walls. Its height is limited by the shorter wall. Moving the taller wall inward would reduce width without raising that limit. Instead, discard the shorter wall and look for a taller replacement."
+    ],
+    "observation": "Measure the area, then move a shorter wall inward. On equal heights, either wall can move.",
+    "approach": [
+      "Begin at the two outermost walls.",
+      "Multiply their distance by the shorter height and remember the largest area.",
+      "Move the shorter side inward and repeat until the walls meet."
+    ],
+    "correctness": "When a wall is shorter, every container using that wall and an interior opposite wall has less width and a water level no greater than its height. None can improve its measured area. Discarding that wall therefore loses no better answer. Repeating this safe elimination leaves the maximum among the measured pairs.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each move discards one wall, so there are fewer moves than walls. Only two positions and the largest area are remembered, giving linear work and constant extra memory."
+    },
+    "pitfalls": [
+      "Use the shorter height.",
+      "Width is the difference of wall positions.",
+      "Move a shorter wall only after recording its area."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/container-with-most-water/concept.webp",
+        "alt": "Two boundary walls enclose water, with the shorter boundary setting its level and the width determining area.",
+        "caption": "Two boundary walls enclose water, with the shorter boundary setting its level and the width determining area.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Container With Most Water algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Container With Most Water, not a generic data structure illustration. The key idea is: Two lines form the sides of a container. Its area is their distance multiplied by the shorter height. Start with the widest pair. After measuring it, move the shorter side inward: keeping that short side and reducing the width cannot give a larger area. The reason a decision is safe is: Move the pointer at the shorter line after recording the current area. The actual example this lesson teaches is {\"height\": [1, 8, 6, 2, 5, 4, 8, 3, 7]} with answer 49. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which wall can we safely discard after measuring a container?",
+        "decision": "Measure the area, then move a shorter wall inward. On equal heights, either wall can move."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Every pair of walls gives a possible container, so checking all pairs takes quadratic work. The widest pair is a useful starting point, but width alone is not enough: the shorter wall sets the water level.",
+        "decision": "Imagine a horizontal waterline between two walls. Its height is limited by the shorter wall. Moving the taller wall inward would reduce width without raising that limit. Instead, discard the shorter wall and look for a taller replacement."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Imagine a horizontal waterline between two walls. Its height is limited by the shorter wall. Moving the taller wall inward would reduce width without raising that limit. Instead, discard the shorter wall and look for a taller replacement.",
+        "decision": "Measure the area, then move a shorter wall inward. On equal heights, either wall can move."
+      },
+      {
+        "id": "the-widest-opening",
+        "title": "The widest opening",
+        "narration": "The outer heights are 1 and 7, eight positions apart. Their area is 8 × 1 = 8.",
+        "decision": "The lower wall, not the taller wall, determines the waterline."
+      },
+      {
+        "id": "a-taller-left-wall-improves-the-area",
+        "title": "A taller left wall improves the area",
+        "narration": "Move past height 1. Heights 8 and 7 are seven positions apart, giving area 49.",
+        "decision": "Any narrower pair still using the old height-1 wall cannot beat its already measured area."
+      },
+      {
+        "id": "continue-discarding-limited-walls",
+        "title": "Continue discarding limited walls",
+        "narration": "Move the height-7 boundary inward. The next area is 18, then 40. None of the remaining pairs beats 49.",
+        "decision": "Every discarded wall has already had its best possible width considered."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "When a wall is shorter, every container using that wall and an interior opposite wall has less width and a water level no greater than its height. None can improve its measured area. Discarding that wall therefore loses no better answer. Repeating this safe elimination leaves the maximum among the measured pairs.",
+        "decision": "Measure the area, then move a shorter wall inward. On equal heights, either wall can move."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: two equal-height walls allow either side to move after their area is recorded.",
+        "decision": "Ties do not require moving both sides at once."
+      }
+    ]
+  }
 }

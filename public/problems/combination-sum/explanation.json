@@ -46,5 +46,87 @@
       "note": "The path is reused and shortened during backtracking. Saving a copy prevents later pops from erasing an already discovered combination."
     }
   ],
-  "keyDecision": "Recurse from the same candidate index to allow reuse. Save the combination when the remainder is zero."
+  "keyDecision": "Recurse from the same candidate index to allow reuse. Save the combination when the remainder is zero.",
+  "concept": {
+    "question": "How do we count a combination once when its numbers can be reused?",
+    "intuition": [
+      "Trying choices in every order would repeat the same collection: 2,2,3 and 3,2,2 are the same combination. The search needs an ordering rule as well as a target budget.",
+      "Sort the candidates and build a nondecreasing path. A chosen number may be used again, but later choices never return to a smaller value. Subtract each choice from the remaining budget; zero completes a combination."
+    ],
+    "observation": "Allow reuse of the current value, but never return to a smaller choice along the same path.",
+    "approach": [
+      "Sort the candidate values.",
+      "Choose a value that fits the remaining budget and continue with that value or a later one.",
+      "Save a combination when the budget becomes zero, then undo choices to explore alternatives."
+    ],
+    "correctness": "Every path uses permitted candidates and reaches a zero remainder only when its sum equals the target. Every valid combination can be placed in nondecreasing order, and the search allows that ordered path, including repeated values. Restricting future choices to the same or larger values removes alternative orderings of the same collection.",
+    "complexity": {
+      "time": "O(n log n + n^d * d), d = floor(target/min(candidates))",
+      "space": "O(n+d) auxiliary, excluding output",
+      "explanation": "The search may explore exponentially many combinations, with depth bounded by the target divided by the smallest candidate. Current-path memory follows that depth; output memory depends on all saved combinations."
+    },
+    "pitfalls": [
+      "Permit reuse of a chosen value.",
+      "Do not emit different orders of the same collection.",
+      "Undo a choice before trying a sibling branch."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/combination-sum/concept.webp",
+        "alt": "A nondecreasing number path spends a target budget, allowing reuse while excluding reordered duplicates.",
+        "caption": "A nondecreasing number path spends a target budget, allowing reuse while excluding reordered duplicates.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Combination Sum algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Combination Sum, not a generic data structure illustration. The key idea is: Build a combination by choosing numbers in increasing order. Subtract each choice from the amount still needed. You may choose the same number again, but do not return to smaller numbers. This finds each combination once instead of repeating it in different orders. The reason a decision is safe is: Recurse from the same candidate index to allow reuse. Save the combination when the remainder is zero. The actual example this lesson teaches is {\"candidates\": [2, 3, 6, 7], \"target\": 7} with answer [[2, 2, 3], [7]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do we count a combination once when its numbers can be reused?",
+        "decision": "Allow reuse of the current value, but never return to a smaller choice along the same path."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying choices in every order would repeat the same collection: 2,2,3 and 3,2,2 are the same combination. The search needs an ordering rule as well as a target budget.",
+        "decision": "Sort the candidates and build a nondecreasing path. A chosen number may be used again, but later choices never return to a smaller value. Subtract each choice from the remaining budget; zero completes a combination."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort the candidates and build a nondecreasing path. A chosen number may be used again, but later choices never return to a smaller value. Subtract each choice from the remaining budget; zero completes a combination.",
+        "decision": "Allow reuse of the current value, but never return to a smaller choice along the same path."
+      },
+      {
+        "id": "reuse-a-candidate",
+        "title": "Reuse a candidate",
+        "narration": "For target 7, choose 2 twice. The current collection is [2,2] and the remaining amount is 3.",
+        "decision": "The same denomination may be chosen again."
+      },
+      {
+        "id": "reject-an-unfinished-branch",
+        "title": "Reject an unfinished branch",
+        "narration": "A third 2 would leave only 1, and no candidate can fill it. Undo that choice and try 3 instead.",
+        "decision": "Sorted positive candidates let us stop when the next value exceeds the budget."
+      },
+      {
+        "id": "a-direct-route-is-also-valid",
+        "title": "A direct route is also valid",
+        "narration": "Other branches cannot complete 7. Choosing 7 alone gives the second answer [7].",
+        "decision": "Nondecreasing choices prevent reordered copies of [2,2,3]."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every path uses permitted candidates and reaches a zero remainder only when its sum equals the target. Every valid combination can be placed in nondecreasing order, and the search allows that ordered path, including repeated values. Restricting future choices to the same or larger values removes alternative orderings of the same collection.",
+        "decision": "Allow reuse of the current value, but never return to a smaller choice along the same path."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a candidate larger than the remaining amount cannot fit, and all later sorted candidates are also too large.",
+        "decision": "Positive values make over-budget pruning safe."
+      }
+    ]
+  }
 }

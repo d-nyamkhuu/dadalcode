@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. An abstract balancing scale with two equally weighted bowls. On one bowl a single large glowing block; on the other several smaller blocks whose combined VOLUME exactly equals the large block. Show one group selected from a tray and the unselected complement going to the other bowl. No values, number labels, arithmetic, or words.",
+  "width": 1774,
+  "height": 887
+}

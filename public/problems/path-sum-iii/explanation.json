@@ -45,5 +45,86 @@
       "note": "Exit removes this node’s prefix from the active ancestor route, preventing invalid paths that cross between sibling subtrees."
     }
   ],
-  "keyDecision": "The prefix-count map must contain only the current ancestor route. Remove the current total on exit."
+  "keyDecision": "The prefix-count map must contain only the current ancestor route. Remove the current total on exit.",
+  "concept": {
+    "question": "How can an ancestor’s cumulative total reveal a path beginning below the root?",
+    "intuition": [
+      "Starting a fresh downward search from every node repeatedly sums shared routes. A root-to-current total already contains every possible downward path ending at the current node, once an earlier prefix is removed.",
+      "Along the current ancestor route, remember how often each earlier cumulative total occurs. A path totaling the target ends here whenever an earlier total equals the current total minus the target. Remove a node’s saved total when leaving its branch."
+    ],
+    "observation": "Count only earlier totals on the current ancestor route, including the empty prefix.",
+    "approach": [
+      "Begin with one empty-prefix total zero.",
+      "At each node, count matching earlier totals before recording the current total.",
+      "Explore children, then remove the current total on the way back."
+    ],
+    "correctness": "Any downward path ending at a node is uniquely defined by an earlier boundary on its ancestor route. Its sum is the current cumulative total minus the boundary total. Frequency counting records distinct boundaries even when totals coincide. Removing prefixes on branch exit keeps only valid ancestors, so every counted path is valid and every valid path is counted at its endpoint.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(h)",
+      "explanation": "Each node updates one cumulative total and a few frequency records. Work is linear; the active prefix map and traversal path are bounded by tree height."
+    },
+    "pitfalls": [
+      "Count only earlier totals on the current ancestor route, including the empty prefix.",
+      "Check for matching earlier totals before adding the current total, avoiding an empty path."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/path-sum-iii/concept.webp",
+        "alt": "A downward path inside a tree glows beside cumulative-total markers at its start and end.",
+        "caption": "A path may begin inside the tree. Subtract the earlier cumulative total from the later one to measure exactly that downward section.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A rooted branching tree. Illuminate ONE short downward path beginning at an INTERNAL node and ending at a descendant, with the ancestors above it dim. Beside it two cumulative glowing bars share the same dim initial segment; removing that shared prefix leaves the highlighted path segment. No values, equations, signs, letters, or numbers."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can an ancestor’s cumulative total reveal a path beginning below the root?",
+        "decision": "Count only earlier totals on the current ancestor route, including the empty prefix."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Starting a fresh downward search from every node repeatedly sums shared routes. A root-to-current total already contains every possible downward path ending at the current node, once an earlier prefix is removed.",
+        "decision": "Along the current ancestor route, remember how often each earlier cumulative total occurs. A path totaling the target ends here whenever an earlier total equals the current total minus the target. Remove a node’s saved total when leaving its branch."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Along the current ancestor route, remember how often each earlier cumulative total occurs. A path totaling the target ends here whenever an earlier total equals the current total minus the target. Remove a node’s saved total when leaving its branch.",
+        "decision": "Count only earlier totals on the current ancestor route, including the empty prefix."
+      },
+      {
+        "id": "a-target-path-need-not-include-the-root",
+        "title": "A target path need not include the root",
+        "narration": "In the fixture with root 10 and target eight, 5→3 totals eight. The root-to-3 total is 18, and the preceding root total is 10.",
+        "decision": "Subtracting the ancestor total 10 removes the portion before node 5."
+      },
+      {
+        "id": "another-route-has-the-same-difference",
+        "title": "Another route has the same difference",
+        "narration": "Path 5→2→1 also totals eight. Its root-to-end total is again 18; the matching earlier total 10 marks the same start boundary.",
+        "decision": "Different endpoints define different paths even when their totals match."
+      },
+      {
+        "id": "a-separate-branch-contributes-once",
+        "title": "A separate branch contributes once",
+        "narration": "Path −3→11 totals eight. It is found on its own ancestor route after left-branch prefix totals have been removed. Return three paths.",
+        "decision": "A saved prefix from a sibling branch would invent an invalid path."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Any downward path ending at a node is uniquely defined by an earlier boundary on its ancestor route. Its sum is the current cumulative total minus the boundary total. Frequency counting records distinct boundaries even when totals coincide. Removing prefixes on branch exit keeps only valid ancestors, so every counted path is valid and every valid path is counted at its endpoint.",
+        "decision": "Count only earlier totals on the current ancestor route, including the empty prefix."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Negative values prevent pruning solely because a partial total exceeds the target.",
+        "decision": "Check for matching earlier totals before adding the current total, avoiding an empty path."
+      }
+    ]
+  }
 }

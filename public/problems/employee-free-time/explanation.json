@@ -63,5 +63,86 @@
       "note": "A later nested interval must not erase coverage already established by a longer busy interval."
     }
   ],
-  "keyDecision": "Emit a gap only for start > busy_end. Touching busy intervals leave no positive-length free interval."
+  "keyDecision": "Emit a gap only for start > busy_end. Touching busy intervals leave no positive-length free interval.",
+  "concept": {
+    "question": "Why is shared free time the gap between merged busy intervals?",
+    "intuition": [
+      "Comparing every employee pair misses the collective condition: everyone is free only where no employee is busy. Combine all busy intervals into one union.",
+      "Sort every employee’s busy interval by start. Extend the current busy ending through overlaps. When a new start lies strictly beyond that ending, the gap between them is free for everyone."
+    ],
+    "observation": "Return finite positive-length gaps inside the combined schedule, excluding unbounded outside time.",
+    "approach": [
+      "Flatten all busy intervals and sort by start.",
+      "Extend the current busy union’s ending across overlaps and nesting.",
+      "Emit a gap only before a strictly later next busy start."
+    ],
+    "correctness": "Sorting starts ensures that no future interval can begin before the next unprocessed start. Extending the busy ending captures the union of all overlapping processed intervals. A strict gap before the next start contains no processed or future busy interval, so everyone is free there. Conversely, every finite common free region appears between consecutive union components.",
+    "complexity": {
+      "time": "O(N log N)",
+      "space": "O(N) auxiliary plus output",
+      "explanation": "Flattening and sorting all busy intervals takes linearithmic time and linear extra storage. The union scan is linear, in addition to returned free gaps."
+    },
+    "pitfalls": [
+      "Return finite positive-length gaps inside the combined schedule, excluding unbounded outside time.",
+      "A nested interval cannot move the busy ending backward."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/employee-free-time/concept.webp",
+        "alt": "Sort every employee’s busy interval by start. Extend the current busy ending through overlaps. When a new start lies strictly beyond that ending, the gap between them is free for everyone.",
+        "caption": "Sort every employee’s busy interval by start. Extend the current busy ending through overlaps. When a new start lies strictly beyond that ending, the gap between them is free for everyone.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Employee Free Time algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Employee Free Time, not a generic data structure illustration. The key idea is: A time is free for everyone only when nobody is working. Combine all employees' busy intervals into one sorted stream. Track the end of the combined busy range. A later start beyond that end reveals a gap when everyone is free. The reason a decision is safe is: Emit a gap only for start > busy_end. Touching busy intervals leave no positive-length free interval. The actual example this lesson teaches is {\"schedule\": [[[1, 2], [5, 6]], [[1, 3]], [[4, 10]]]} with answer [[3, 4]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why is shared free time the gap between merged busy intervals?",
+        "decision": "Return finite positive-length gaps inside the combined schedule, excluding unbounded outside time."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing every employee pair misses the collective condition: everyone is free only where no employee is busy. Combine all busy intervals into one union.",
+        "decision": "Sort every employee’s busy interval by start. Extend the current busy ending through overlaps. When a new start lies strictly beyond that ending, the gap between them is free for everyone."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort every employee’s busy interval by start. Extend the current busy ending through overlaps. When a new start lies strictly beyond that ending, the gap between them is free for everyone.",
+        "decision": "Return finite positive-length gaps inside the combined schedule, excluding unbounded outside time."
+      },
+      {
+        "id": "combine-the-employees-busy-ranges",
+        "title": "Combine the employees’ busy ranges",
+        "narration": "The fixture schedules flatten to [1,2],[1,3],[4,10],[5,6] after sorting.",
+        "decision": "Any employee’s busy time blocks common free time."
+      },
+      {
+        "id": "merge-the-first-busy-overlap",
+        "title": "Merge the first busy overlap",
+        "narration": "Intervals [1,2] and [1,3] form one busy stretch ending at three. The next start four leaves a gap [3,4].",
+        "decision": "Overlapping intervals extend the ending to the maximum, never shorten it."
+      },
+      {
+        "id": "nesting-adds-no-new-gap",
+        "title": "Nesting adds no new gap",
+        "narration": "The later interval [5,6] lies inside [4,10], so the busy ending remains ten. Return only [[3,4]].",
+        "decision": "Infinite regions before and after all schedules are outside the requested answer."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Sorting starts ensures that no future interval can begin before the next unprocessed start. Extending the busy ending captures the union of all overlapping processed intervals. A strict gap before the next start contains no processed or future busy interval, so everyone is free there. Conversely, every finite common free region appears between consecutive union components.",
+        "decision": "Return finite positive-length gaps inside the combined schedule, excluding unbounded outside time."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Touching busy intervals create a zero-length gap and must not be returned.",
+        "decision": "A nested interval cannot move the busy ending backward."
+      }
+    ]
+  }
 }

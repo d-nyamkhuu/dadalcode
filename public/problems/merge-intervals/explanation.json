@@ -63,5 +63,87 @@
       "note": "Extending by maximum preserves the entire union. Assigning end directly would shrink a component when the new interval is nested."
     }
   ],
-  "keyDecision": "Merge when the next start is no greater than the current end. Touching endpoints count as overlap here."
+  "keyDecision": "Merge when the next start is no greater than the current end. Touching endpoints count as overlap here.",
+  "concept": {
+    "question": "Why does sorting let the next range compare with just the latest merged range?",
+    "intuition": [
+      "Comparing every interval with every other repeats overlap checks. Sorting by starting position orders the overlap groups so we can finish them one at a time.",
+      "Imagine painting coverage on a shared number line. Extend the current painted range whenever the next interval begins before that range ends. If the next start lies beyond the end, a real gap begins a new independent range."
+    ],
+    "observation": "An interval overlaps the latest range when its start is no greater than that range’s end.",
+    "approach": [
+      "Sort intervals by their starting points.",
+      "Extend the current range through every overlap.",
+      "Start a separate range after a gap."
+    ],
+    "correctness": "Sorted starts mean all future intervals begin no earlier than the current one. When a gap appears after the current merged end, no later interval can reconnect to that finished component. Within a component, taking the larger end preserves exactly the union of overlapping ranges. The finished components therefore cover precisely the original intervals without gaps being added.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "Sorting dominates with work proportional to the interval count times its logarithm. The later scan is linear. Sorting and the returned merged ranges require linear storage."
+    },
+    "pitfalls": [
+      "Sort before scanning.",
+      "Extend to the larger end, not simply the next end.",
+      "Use the problem’s closed-endpoint overlap rule."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/merge-intervals/concept.webp",
+        "alt": "Overlapping spans on one number line join into connected coverage components separated by true gaps.",
+        "caption": "Overlapping spans on one number line join into connected coverage components separated by true gaps.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. Two horizontal overlapping colored intervals on one common unnumbered axis. The cyan interval begins to the LEFT, the green interval begins inside it and extends farther RIGHT. Below, their merged glowing interval starts EXACTLY at the cyan leftmost endpoint and ends EXACTLY at the green rightmost endpoint. Include a separate nonoverlapping interval to the right unchanged. No words or numbers."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does sorting let the next range compare with just the latest merged range?",
+        "decision": "An interval overlaps the latest range when its start is no greater than that range’s end."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing every interval with every other repeats overlap checks. Sorting by starting position orders the overlap groups so we can finish them one at a time.",
+        "decision": "Imagine painting coverage on a shared number line. Extend the current painted range whenever the next interval begins before that range ends. If the next start lies beyond the end, a real gap begins a new independent range."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Imagine painting coverage on a shared number line. Extend the current painted range whenever the next interval begins before that range ends. If the next start lies beyond the end, a real gap begins a new independent range.",
+        "decision": "An interval overlaps the latest range when its start is no greater than that range’s end."
+      },
+      {
+        "id": "begin-one-covered-component",
+        "title": "Begin one covered component",
+        "narration": "Sorted ranges are [1,3], [2,6], [8,10], [15,18]. Begin with [1,3].",
+        "decision": "The earliest start begins the earliest coverage component."
+      },
+      {
+        "id": "an-overlap-extends-the-component",
+        "title": "An overlap extends the component",
+        "narration": "The next start 2 is within [1,3]. Extend its end to 6, giving [1,6].",
+        "decision": "The larger end preserves all covered points."
+      },
+      {
+        "id": "gaps-create-separate-components",
+        "title": "Gaps create separate components",
+        "narration": "Starts 8 and 15 are beyond the prior ends. The result is [1,6], [8,10], [15,18].",
+        "decision": "A gap must not be painted by merging unrelated ranges."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Sorted starts mean all future intervals begin no earlier than the current one. When a gap appears after the current merged end, no later interval can reconnect to that finished component. Within a component, taking the larger end preserves exactly the union of overlapping ranges. The finished components therefore cover precisely the original intervals without gaps being added.",
+        "decision": "An interval overlaps the latest range when its start is no greater than that range’s end."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: closed intervals [1,2] and [2,3] touch at 2 and merge into [1,3].",
+        "decision": "Endpoint contact counts as overlap for these closed intervals."
+      }
+    ]
+  }
 }

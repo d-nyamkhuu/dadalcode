@@ -39,5 +39,86 @@
       "note": "A tied best length contributes disjoint sequences classified by their different previous index, so the counts add."
     }
   ],
-  "keyDecision": "Add counts only for equal best lengths. Replace the count when a strictly longer candidate is found."
+  "keyDecision": "Add counts only for equal best lengths. Replace the count when a strictly longer candidate is found.",
+  "concept": {
+    "question": "How can an endpoint remember both its best length and the number of ways to achieve it?",
+    "intuition": [
+      "A single longest-length answer loses how many distinct index selections achieve that length. Each endpoint needs a count alongside its best increasing length.",
+      "For every position, consider smaller earlier values as possible predecessors. A strictly better proposed length replaces the count; an equally good length adds another predecessor’s count. Sum counts at all endpoints attaining the global longest length."
+    ],
+    "observation": "Replace counts for longer proposals; add counts only for equally long proposals.",
+    "approach": [
+      "Start each endpoint with its singleton length one and count one.",
+      "Extend from every smaller earlier value, tracking best length and its count.",
+      "Add counts at all endpoints with maximum length."
+    ],
+    "correctness": "Every increasing subsequence ending at a position is either its singleton or extends a uniquely determined smaller earlier predecessor. Longer proposals supersede shorter ones; tied best proposals have disjoint predecessor identities and their counts add. Induction gives exact best lengths and counts at each endpoint, and the final endpoint sum counts each longest sequence once.",
+    "complexity": {
+      "time": "O(n²)",
+      "space": "O(n)",
+      "explanation": "Each endpoint compares against all earlier endpoints, giving quadratic time. Two linear-size tables store lengths and counts."
+    },
+    "pitfalls": [
+      "Replace counts for longer proposals; add counts only for equally long proposals.",
+      "Do not add counts from shorter proposals."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/number-of-longest-increasing-subsequence/concept.webp",
+        "alt": "For every position, consider smaller earlier values as possible predecessors. A strictly better proposed length replaces the count; an equally good length adds another predecessor’s count. Sum counts at all endpoints attaining the global longest length.",
+        "caption": "For every position, consider smaller earlier values as possible predecessors. A strictly better proposed length replaces the count; an equally good length adds another predecessor’s count. Sum counts at all endpoints attaining the global longest length.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Number of Longest Increasing Subsequence algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Number of Longest Increasing Subsequence, not a generic data structure illustration. The key idea is: For each position, save the longest increasing subsequence ending there and how many ways achieve that length. Extend from earlier smaller values. A better length replaces the saved count; an equal length adds more ways. Finally add counts for all endpoints with the overall best length. The reason a decision is safe is: Add counts only for equal best lengths. Replace the count when a strictly longer candidate is found. The actual example this lesson teaches is {\"nums\": [1, 3, 5, 4, 7]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can an endpoint remember both its best length and the number of ways to achieve it?",
+        "decision": "Replace counts for longer proposals; add counts only for equally long proposals."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A single longest-length answer loses how many distinct index selections achieve that length. Each endpoint needs a count alongside its best increasing length.",
+        "decision": "For every position, consider smaller earlier values as possible predecessors. A strictly better proposed length replaces the count; an equally good length adds another predecessor’s count. Sum counts at all endpoints attaining the global longest length."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For every position, consider smaller earlier values as possible predecessors. A strictly better proposed length replaces the count; an equally good length adds another predecessor’s count. Sum counts at all endpoints attaining the global longest length.",
+        "decision": "Replace counts for longer proposals; add counts only for equally long proposals."
+      },
+      {
+        "id": "build-two-length-three-endpoints",
+        "title": "Build two length-three endpoints",
+        "narration": "For [1,3,5,4,7], values 1 and 3 form an increasing start. Both 5 and 4 can extend it to length three.",
+        "decision": "Four cannot extend five because the sequence must increase strictly."
+      },
+      {
+        "id": "seven-receives-two-equally-good-proposals",
+        "title": "Seven receives two equally good proposals",
+        "narration": "Predecessor five proposes [1,3,5,7], length four, count one. Predecessor four proposes [1,3,4,7], also length four, so add its one way.",
+        "decision": "Different predecessor positions define disjoint index sequences."
+      },
+      {
+        "id": "count-the-global-optimum",
+        "title": "Count the global optimum",
+        "narration": "Only endpoint seven has maximum length four, with two ways. Return two.",
+        "decision": "The requested result is the number of longest subsequences, not their length."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every increasing subsequence ending at a position is either its singleton or extends a uniquely determined smaller earlier predecessor. Longer proposals supersede shorter ones; tied best proposals have disjoint predecessor identities and their counts add. Induction gives exact best lengths and counts at each endpoint, and the final endpoint sum counts each longest sequence once.",
+        "decision": "Replace counts for longer proposals; add counts only for equally long proposals."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Equal values do not extend each other, but separate equal-valued positions can define different subsequences.",
+        "decision": "Do not add counts from shorter proposals."
+      }
+    ]
+  }
 }

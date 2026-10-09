@@ -40,5 +40,86 @@
       "note": "Starting from q makes the first intersection deepest on q’s chain and therefore lower than every other common ancestor."
     }
   ],
-  "keyDecision": "Compare node identities. Different nodes may store equal values."
+  "keyDecision": "Compare node identities. Different nodes may store equal values.",
+  "concept": {
+    "question": "Can two upward routes reveal their nearest shared ancestor?",
+    "intuition": [
+      "A general binary tree has no value-ordering shortcut. The targets may appear anywhere, so we first need structural parent information.",
+      "Remember each discovered node’s parent. Mark the first target and its ancestors. Walk from the second target upward; its first marked node is the nearest shared ancestor. Compare original node identities."
+    ],
+    "observation": "The first marked node encountered while climbing from the second target is the lowest shared ancestor.",
+    "approach": [
+      "Discover parent links until both targets are known.",
+      "Mark the first target’s full upward ancestor route.",
+      "Climb from the second until reaching a marked original node."
+    ],
+    "correctness": "The marked set is exactly the first target’s ancestors, including itself. Climbing from the second visits its ancestors in increasing distance. The first membership match is therefore a common ancestor with no lower common ancestor between it and the second target. That proves it is the lowest shared one.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Parent discovery and the two climbs take linear worst-case work. Parent records and the ancestor set require linear memory."
+    },
+    "pitfalls": [
+      "The first marked node encountered while climbing from the second target is the lowest shared ancestor.",
+      "Do not require the answer to be a distinct third node."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/lowest-common-ancestor-of-a-binary-tree/concept.webp",
+        "alt": "Remember each discovered node’s parent. Mark the first target and its ancestors. Walk from the second target upward; its first marked node is the nearest shared ancestor. Compare original node identities.",
+        "caption": "Remember each discovered node’s parent. Mark the first target and its ancestors. Walk from the second target upward; its first marked node is the nearest shared ancestor. Compare original node identities.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Lowest Common Ancestor of a Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Lowest Common Ancestor of a Binary Tree, not a generic data structure illustration. The key idea is: First remember each node's parent. Mark the ancestors of the first target, including the target itself. Then walk upward from the second target. The first marked node you reach is their lowest shared ancestor, because you encounter nearer ancestors before higher ones. The reason a decision is safe is: Compare node identities. Different nodes may store equal values. The actual example this lesson teaches is {\"root\": [10, 5, 3, 8, 2], \"p\": 8, \"q\": 2} with answer 5. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can two upward routes reveal their nearest shared ancestor?",
+        "decision": "The first marked node encountered while climbing from the second target is the lowest shared ancestor."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A general binary tree has no value-ordering shortcut. The targets may appear anywhere, so we first need structural parent information.",
+        "decision": "Remember each discovered node’s parent. Mark the first target and its ancestors. Walk from the second target upward; its first marked node is the nearest shared ancestor. Compare original node identities."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Remember each discovered node’s parent. Mark the first target and its ancestors. Walk from the second target upward; its first marked node is the nearest shared ancestor. Compare original node identities.",
+        "decision": "The first marked node encountered while climbing from the second target is the lowest shared ancestor."
+      },
+      {
+        "id": "discover-the-target-parents",
+        "title": "Discover the target parents",
+        "narration": "For targets 8 and 2, both have parent 5, whose parent is 10.",
+        "decision": "General trees require structural discovery rather than value direction."
+      },
+      {
+        "id": "mark-the-first-upward-route",
+        "title": "Mark the first upward route",
+        "narration": "Starting at target eight, mark the ancestor route eight, five, ten, including the target itself.",
+        "decision": "The target itself belongs to its ancestor route."
+      },
+      {
+        "id": "the-other-route-meets-at-five",
+        "title": "The other route meets at five",
+        "narration": "Starting from 2, its first marked ancestor is 5. Return that original node.",
+        "decision": "Climbing visits nearer ancestors before higher ones."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The marked set is exactly the first target’s ancestors, including itself. Climbing from the second visits its ancestors in increasing distance. The first membership match is therefore a common ancestor with no lower common ancestor between it and the second target. That proves it is the lowest shared one.",
+        "decision": "The first marked node encountered while climbing from the second target is the lowest shared ancestor."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A target that is already an ancestor of the other may be returned immediately during the second climb.",
+        "decision": "Do not require the answer to be a distinct third node."
+      }
+    ]
+  }
 }

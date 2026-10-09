@@ -38,5 +38,87 @@
       "note": "An earlier subarray can remain best possible even when the current ending product worsens."
     }
   ],
-  "keyDecision": "Compute both new extremes from the old extremes before updating either saved value."
+  "keyDecision": "Compute both new extremes from the old extremes before updating either saved value.",
+  "concept": {
+    "question": "Why might the worst negative product become tomorrow’s best positive product?",
+    "intuition": [
+      "Remembering only the greatest product ending here loses useful negative history. Multiplying by another negative can reverse the order of best and worst candidates.",
+      "Keep both the greatest and least products ending at the current position. The next value may start fresh, extend the greatest, or extend the least. Compare all three and retain both new extremes, plus the historical greatest product."
+    ],
+    "observation": "Use both previous extremes when multiplying by the next value.",
+    "approach": [
+      "Initialize both ending extremes from the first value.",
+      "Compare starting fresh with extending each previous extreme.",
+      "Update both extremes and the historical maximum."
+    ],
+    "correctness": "Every section ending at a new value either starts there or extends a previous ending section. A positive multiplier preserves product order and a negative reverses it, so the prior greatest and least products cover both possibilities. Comparing those extensions and a restart gives exact new extremes. The greatest historical ending product is the overall answer.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Three candidate products per value give linear work. Two ending extremes and one historical answer use constant extra memory."
+    },
+    "pitfalls": [
+      "Remember the least product as well as the greatest.",
+      "Compute new extremes from the previous extremes.",
+      "Handle zero and all-negative inputs without an empty section."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-product-subarray/concept.webp",
+        "alt": "Two glowing product trails preserve positive and negative extremes as a negative factor changes their roles.",
+        "caption": "A negative factor can turn the least product into the greatest. Keep both extremes before extending to the next position.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. Two parallel trails track the strongest positive and strongest negative possible ending products, represented by cyan glowing and amber shadowed geometric tokens. At one negative gate the two trails exchange roles. A green beacon marks a positive optimum from an earlier segment. Show the need to retain both signs, with no arithmetic, numbers, or letter labels."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why might the worst negative product become tomorrow’s best positive product?",
+        "decision": "Use both previous extremes when multiplying by the next value."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Remembering only the greatest product ending here loses useful negative history. Multiplying by another negative can reverse the order of best and worst candidates.",
+        "decision": "Keep both the greatest and least products ending at the current position. The next value may start fresh, extend the greatest, or extend the least. Compare all three and retain both new extremes, plus the historical greatest product."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep both the greatest and least products ending at the current position. The next value may start fresh, extend the greatest, or extend the least. Compare all three and retain both new extremes, plus the historical greatest product.",
+        "decision": "Use both previous extremes when multiplying by the next value."
+      },
+      {
+        "id": "a-positive-extension-wins",
+        "title": "A positive extension wins",
+        "narration": "For [2,3,-2,4], after 3 the greatest ending product is 6 and the least is 3.",
+        "decision": "A section can restart at the current value."
+      },
+      {
+        "id": "a-negative-reverses-the-extremes",
+        "title": "A negative reverses the extremes",
+        "narration": "With -2, candidates are -2, -12, and -6. The greatest ending product is -2 and least -12.",
+        "decision": "Multiplication by a negative reverses product ordering."
+      },
+      {
+        "id": "the-earlier-maximum-survives",
+        "title": "The earlier maximum survives",
+        "narration": "With 4, candidates are 4,-8,-48. The ending greatest is 4, but the earlier [2,3] product 6 remains the answer.",
+        "decision": "Historical maximum and current ending maximum differ."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every section ending at a new value either starts there or extends a previous ending section. A positive multiplier preserves product order and a negative reverses it, so the prior greatest and least products cover both possibilities. Comparing those extensions and a restart gives exact new extremes. The greatest historical ending product is the overall answer.",
+        "decision": "Use both previous extremes when multiplying by the next value."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A zero ends any nonzero product crossing it, but later sections may restart.",
+        "decision": "Do not allow an earlier zero to prevent a future positive answer."
+      }
+    ]
+  }
 }

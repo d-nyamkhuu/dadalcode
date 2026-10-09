@@ -45,5 +45,86 @@
       "note": "An earlier busy moment may require more rooms than the final heap size. Retaining the maximum preserves that capacity requirement."
     }
   ],
-  "keyDecision": "Remove end times <= the new start time before counting active meetings."
+  "keyDecision": "Remove end times <= the new start time before counting active meetings.",
+  "concept": {
+    "question": "How does the busiest moment determine the number of rooms?",
+    "intuition": [
+      "A total meeting count ignores room reuse. What matters is how many meetings are active simultaneously.",
+      "Process starts chronologically and keep active meeting ends in a minimum-priority queue. Before a new meeting begins, release every meeting whose end has arrived. Add the new end and remember the greatest active count."
+    ],
+    "observation": "Release all ends at or before the next start; equal endpoints can reuse a room.",
+    "approach": [
+      "Sort meetings by start time.",
+      "Remove ended meetings from the active-end queue.",
+      "Add the new meeting and remember the peak active count."
+    ],
+    "correctness": "At each start, removing ended meetings leaves exactly those overlapping the new meeting. Their count plus the new one is the simultaneous demand. No schedule can use fewer than the peak demand. Reusing released rooms realizes that demand without extra rooms, so the maximum active count is sufficient and necessary.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "Sorting and priority-queue updates take linear-times-logarithmic work. The active ends can occupy linear memory."
+    },
+    "pitfalls": [
+      "Release all ends at or before the next start; equal endpoints can reuse a room.",
+      "Use an end-at-or-before-start release test."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/meeting-rooms-ii/concept.webp",
+        "alt": "Process starts chronologically and keep active meeting ends in a minimum-priority queue. Before a new meeting begins, release every meeting whose end has arrived. Add the new end and remember the greatest active count.",
+        "caption": "Process starts chronologically and keep active meeting ends in a minimum-priority queue. Before a new meeting begins, release every meeting whose end has arrived. Add the new end and remember the greatest active count.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Meeting Rooms II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Meeting Rooms II, not a generic data structure illustration. The key idea is: Process meetings by their start times. Keep the end times of meetings still in progress in a min-heap. Before adding a meeting, remove every meeting that has ended. The largest number of simultaneous meetings is the number of rooms required. The reason a decision is safe is: Remove end times <= the new start time before counting active meetings. The actual example this lesson teaches is {\"intervals\": [[0, 30], [5, 10], [15, 20]]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does the busiest moment determine the number of rooms?",
+        "decision": "Release all ends at or before the next start; equal endpoints can reuse a room."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A total meeting count ignores room reuse. What matters is how many meetings are active simultaneously.",
+        "decision": "Process starts chronologically and keep active meeting ends in a minimum-priority queue. Before a new meeting begins, release every meeting whose end has arrived. Add the new end and remember the greatest active count."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Process starts chronologically and keep active meeting ends in a minimum-priority queue. Before a new meeting begins, release every meeting whose end has arrived. Add the new end and remember the greatest active count.",
+        "decision": "Release all ends at or before the next start; equal endpoints can reuse a room."
+      },
+      {
+        "id": "the-long-meeting-uses-one-room",
+        "title": "The long meeting uses one room",
+        "narration": "At time 0, meeting [0,30] begins. One active end, 30, means one room.",
+        "decision": "A room is occupied until its end time."
+      },
+      {
+        "id": "a-second-meeting-overlaps",
+        "title": "A second meeting overlaps",
+        "narration": "At time 5, [5,10] begins while the long meeting remains active. Active ends 10 and 30 need two rooms.",
+        "decision": "Simultaneous meetings need separate rooms."
+      },
+      {
+        "id": "reuse-the-second-room",
+        "title": "Reuse the second room",
+        "narration": "At time 15, end 10 has passed. Release it, then add end 20. Peak active count stays 2.",
+        "decision": "The peak, not the final active count, is the required answer."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At each start, removing ended meetings leaves exactly those overlapping the new meeting. Their count plus the new one is the simultaneous demand. No schedule can use fewer than the peak demand. Reusing released rooms realizes that demand without extra rooms, so the maximum active count is sufficient and necessary.",
+        "decision": "Release all ends at or before the next start; equal endpoints can reuse a room."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A meeting ending exactly when another starts releases its room in time.",
+        "decision": "Use an end-at-or-before-start release test."
+      }
+    ]
+  }
 }

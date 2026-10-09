@@ -43,5 +43,86 @@
       "note": "Ordinary division retains fractional means. The fixed size is exactly the number of values added during this frontier’s processing."
     }
   ],
-  "keyDecision": "The level average is its value total divided by its node count, including negative values."
+  "keyDecision": "The level average is its value total divided by its node count, including negative values.",
+  "concept": {
+    "question": "Which nodes must share one denominator in a level average?",
+    "intuition": [
+      "A depth-first running average can accidentally mix depths. Breadth-first exploration provides all nodes at a depth as one complete group.",
+      "Freeze the size of the current level before adding its children. Sum exactly those nodes and divide by that frozen count. Children belong to the next level and must not enter the current denominator."
+    ],
+    "observation": "Process one complete depth level before averaging it.",
+    "approach": [
+      "Begin with the root as the first level.",
+      "Sum the frozen current level while gathering its children.",
+      "Divide by that level’s node count, then continue with the children."
+    ],
+    "correctness": "At the start of each round, the current queue segment contains exactly all nodes of one depth. Freezing its size lets the round consume precisely those nodes while gathering the next depth. Its sum divided by its node count is therefore that level’s exact average; repeating covers every depth once.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(w) auxiliary; O(h) output",
+      "explanation": "Each node is visited once. Time is linear, and the breadth-first queue scales with the maximum real level size, plus one output value per depth."
+    },
+    "pitfalls": [
+      "Process one complete depth level before averaging it.",
+      "Divide by real nodes at that level, not by its complete-tree capacity."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/average-of-levels-in-binary-tree/concept.webp",
+        "alt": "Freeze the size of the current level before adding its children. Sum exactly those nodes and divide by that frozen count. Children belong to the next level and must not enter the current denominator.",
+        "caption": "Freeze the size of the current level before adding its children. Sum exactly those nodes and divide by that frozen count. Children belong to the next level and must not enter the current denominator.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Average of Levels in Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Average of Levels in Binary Tree, not a generic data structure illustration. The key idea is: Visit the tree one level at a time using a queue. Save the number of nodes in the level before adding any children. Sum exactly those node values and divide by that saved count. Then repeat with the children, which now form the next level. The reason a decision is safe is: The level average is its value total divided by its node count, including negative values. The actual example this lesson teaches is {\"root\": [3, 9, 20, null, null, 15, 7]} with answer [3, 14.5, 11]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which nodes must share one denominator in a level average?",
+        "decision": "Process one complete depth level before averaging it."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A depth-first running average can accidentally mix depths. Breadth-first exploration provides all nodes at a depth as one complete group.",
+        "decision": "Freeze the size of the current level before adding its children. Sum exactly those nodes and divide by that frozen count. Children belong to the next level and must not enter the current denominator."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Freeze the size of the current level before adding its children. Sum exactly those nodes and divide by that frozen count. Children belong to the next level and must not enter the current denominator.",
+        "decision": "Process one complete depth level before averaging it."
+      },
+      {
+        "id": "average-the-root-level",
+        "title": "Average the root level",
+        "narration": "For [3,9,20,empty,empty,15,7], the first level contains only three, so its average is three.",
+        "decision": "One node has its own value as the average."
+      },
+      {
+        "id": "keep-the-next-level-separate",
+        "title": "Keep the next level separate",
+        "narration": "The second level contains nine and twenty. Their sum is 29 and their count is two, giving 14.5.",
+        "decision": "The children 15 and 7 are queued for later, not counted in this denominator."
+      },
+      {
+        "id": "average-the-final-level",
+        "title": "Average the final level",
+        "narration": "The third level contains 15 and 7, giving 22/2=11. Return [3,14.5,11].",
+        "decision": "Each depth contributes exactly one average."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At the start of each round, the current queue segment contains exactly all nodes of one depth. Freezing its size lets the round consume precisely those nodes while gathering the next depth. Its sum divided by its node count is therefore that level’s exact average; repeating covers every depth once.",
+        "decision": "Process one complete depth level before averaging it."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Uneven branches do not create placeholder nodes in an average.",
+        "decision": "Divide by real nodes at that level, not by its complete-tree capacity."
+      }
+    ]
+  }
 }

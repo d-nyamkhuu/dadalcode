@@ -44,5 +44,86 @@
       "note": "The binary search identifies a window rather than individual ranks. Its slice has the required size and inherits the input’s ascending order."
     }
   ],
-  "keyDecision": "Shift right only when x - arr[mid] > arr[mid + k] - x. On a tie, keep the smaller values."
+  "keyDecision": "Shift right only when x - arr[mid] > arr[mid + k] - x. On a tie, keep the smaller values.",
+  "concept": {
+    "question": "How can two neighboring blocks decide which side contains the closest values?",
+    "intuition": [
+      "Sorting every value by distance ignores the input’s order. In a sorted array, the closest requested values can form a continuous block; neighboring blocks differ only at their outer competing values.",
+      "Binary search the block’s starting position. Compare the value that would be dropped on the left with the value that would enter on the right, using their directed distances from the target. Keep the left block on ties, because smaller values win."
+    ],
+    "observation": "A distance tie keeps the smaller left boundary value.",
+    "approach": [
+      "Search all legal starts of a block of the requested size.",
+      "Compare the two competing endpoints of neighboring blocks.",
+      "Return the chosen block in its existing ascending order."
+    ],
+    "correctness": "In a sorted sequence, skipping an interior value while retaining farther outer values cannot improve closeness, so an optimal selection is a block. The preference between adjacent blocks changes monotonically as their endpoints move right. Binary search discards only starts whose boundary replacement proves them worse, retaining ties on the smaller-value side.",
+    "complexity": {
+      "time": "O(log(n-k+1)+k)",
+      "space": "O(k) output; O(1) auxiliary",
+      "explanation": "Binary search examines logarithmically many block starts; copying the requested block takes time and output space proportional to its size. Auxiliary search storage is constant."
+    },
+    "pitfalls": [
+      "A distance tie keeps the smaller left boundary value.",
+      "Use the directed endpoint comparison rather than an unrelated absolute-distance rule."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-k-closest-elements/concept.webp",
+        "alt": "Binary search the block’s starting position. Compare the value that would be dropped on the left with the value that would enter on the right, using their directed distances from the target. Keep the left block on ties, because smaller values win.",
+        "caption": "Binary search the block’s starting position. Compare the value that would be dropped on the left with the value that would enter on the right, using their directed distances from the target. Keep the left block on ties, because smaller values win.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find K Closest Elements algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find K Closest Elements, not a generic data structure illustration. The key idea is: In a sorted array, the best k values can be taken as one continuous block. Search for that block's start. Neighboring blocks differ only in the value dropped from the left and the value gained on the right. Compare those two boundary values to choose the search direction. The reason a decision is safe is: Shift right only when x - arr[mid] > arr[mid + k] - x. On a tie, keep the smaller values. The actual example this lesson teaches is {\"arr\": [1, 2, 3, 4, 5], \"k\": 4, \"x\": 3} with answer [1, 2, 3, 4]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can two neighboring blocks decide which side contains the closest values?",
+        "decision": "A distance tie keeps the smaller left boundary value."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting every value by distance ignores the input’s order. In a sorted array, the closest requested values can form a continuous block; neighboring blocks differ only at their outer competing values.",
+        "decision": "Binary search the block’s starting position. Compare the value that would be dropped on the left with the value that would enter on the right, using their directed distances from the target. Keep the left block on ties, because smaller values win."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Binary search the block’s starting position. Compare the value that would be dropped on the left with the value that would enter on the right, using their directed distances from the target. Keep the left block on ties, because smaller values win.",
+        "decision": "A distance tie keeps the smaller left boundary value."
+      },
+      {
+        "id": "only-two-blocks-compete",
+        "title": "Only two blocks compete",
+        "narration": "For [1,2,3,4,5], target three, and count four, possible blocks are [1,2,3,4] and [2,3,4,5].",
+        "decision": "All middle values are shared; only one and five determine this choice."
+      },
+      {
+        "id": "the-competing-distances-tie",
+        "title": "The competing distances tie",
+        "narration": "The left endpoint one is two below three; the entering endpoint five is two above three.",
+        "decision": "A tie must favor the smaller value."
+      },
+      {
+        "id": "retain-the-left-block",
+        "title": "Retain the left block",
+        "narration": "Keep one instead of five, selecting start zero. Return [1,2,3,4].",
+        "decision": "The result remains sorted without a separate sorting step."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "In a sorted sequence, skipping an interior value while retaining farther outer values cannot improve closeness, so an optimal selection is a block. The preference between adjacent blocks changes monotonically as their endpoints move right. Binary search discards only starts whose boundary replacement proves them worse, retaining ties on the smaller-value side.",
+        "decision": "A distance tie keeps the smaller left boundary value."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A target outside the array still chooses a boundary block.",
+        "decision": "Use the directed endpoint comparison rather than an unrelated absolute-distance rule."
+      }
+    ]
+  }
 }

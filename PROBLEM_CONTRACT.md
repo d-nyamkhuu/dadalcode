@@ -8,9 +8,37 @@ Each author owns only `public/problems/<slug>/` for assigned slugs. Do not edit 
 4. `tests.json`: array of `{ "name": string, "input": object, "expected": any }`. At least 5 meaningful cases per problem, including boundaries and typical failures (3 allowed only when input domain truly very small; explain). First 2 are public examples. Inputs must be JSON and valid for stated constraints. Prefer small inspectable examples. Expected outputs must be independently reasoned; never calculate them by running the candidate being tested.
 5. `adapter.py`: defines `run(ns, case)` where ns is the namespace containing the learner's solution, and case is the input object. Example: `return ns['Solution']().twoSum(case['nums'], case['target'])`. Optional `check(actual, expected, case)` returns bool for valid alternative outputs. Test adapters run independently of solution globals. Helpers available: `build_tree(level_order)`, `tree_values(root)`, `build_list(values)`, `list_values(head)`, `TreeNode`, `ListNode`, `Node` (graph), `Interval`, `encode(value)`, `fresh_solution_namespace()`, `validation_call(function, *args, **kwargs)`; standard Python imports are allowed. Do not import from project files. Use actual calls to learner code; never bypass candidate code. For mutation inspect modified args; for identity convert result to index or explicitly verify identity; design APIs run constructor + operations. Outputs are converted by encode to JSON before check. Default comparison is exact for integer expected values, including float candidate values, and type-strict for booleans. Floating expected values use 1e-7 relative / 1e-9 absolute tolerance. Genuine floating-answer problems must provide an explicit checker because browser JSON can turn a whole-number float into an integer. Reject booleans and nonfinite numbers in numeric checkers. For custom checks ensure multiplicity, shape, and invalid outputs are checked, not just partial properties; normalize only orders the statement leaves unrestricted. Optional `validate_source(code)` raises a clear error before execution for explicit problem source restrictions, such as forbidden arithmetic operators. Source checks must respect user-defined names and avoid rejecting valid alternative algorithms.
 
-6. `explanation.json`: `{ "intuition": string[], "walkthrough": { "input": object, "steps": string[], "result": any }, "codeNotes": [{ "code": string, "note": string }] }`. Write at least two developed intuition paragraphs that explain the brute-force bottleneck, useful observation, and method choice; at least four concrete example steps; and at least three exact source snippets with explanations of WHY they matter. Use one authored test's input and expected result. Match the actual reference algorithm and execution order, not a different solution to the same problem. Include at least 180 words of substantive original prose. The worked example and every snippet are validated; an independent reviewer checks the reasoning and intermediate arithmetic.
+6. `explanation.json`: requires a `concept` section described below, and preserves the code editorial `{ "intuition": string[], "walkthrough": { "input": object, "steps": string[], "result": any }, "codeNotes": [{ "code": string, "note": string }] }`. Write at least two developed intuition paragraphs that explain the brute-force bottleneck, useful observation, and method choice; at least four concrete example steps; and at least three exact source snippets with explanations of WHY they matter. Use one authored test's input and expected result. Match the actual reference algorithm and execution order, not a different solution to the same problem. Include at least 180 words of substantive original prose. The worked example and every snippet are validated; an independent reviewer checks the reasoning and intermediate arithmetic.
 
-### Readable learning explanations
+### Conceptual Learn lessons
+
+`Explanation.concept` in `src/types.ts` is required. Author a question, developed
+intuition paragraphs, the useful observation, at least three approach steps,
+correctness reasoning, time/space quantities with a plain-language explanation,
+pitfalls, local illustration references, and at least six complete scenes.
+Each scene has a stable semantic ID, title, narration, and an explanation of why
+the choice is safe. Avoid Python syntax, source variable names, captured locals,
+and line numbers. Explain the actual relationships and decisions for this problem.
+
+The main worked example uses the preserved editorial’s fixture-validated input
+and result. Clearly label separate counterexamples and boundaries. Depict useful
+before/action/after changes, then explain why all possible answers are covered.
+Shared drawing primitives are allowed; each slug has its own authored scene
+compositions, loaded on demand from `src/components/concepts/registry.ts`.
+Concepts must work offline without creating a Python worker.
+
+Every problem needs distinct artwork generated with the built-in ImageGen tool.
+Store `concept.webp` and `generation.json` under `public/illustrations/<slug>/`.
+Retain the actual generation prompt, caption, and visual alt text. Inspect every
+image for mathematical mistakes; regenerate misleading artwork. Use accessible
+HTML/SVG for exact quantities, arrows, links, and changing states.
+
+See [the authoring workflow](docs/CONCEPT_LESSONS.md). Keep the code editorial and
+exact annotations for Solution, which defaults to Reference code and also offers
+Execution walkthrough with editable custom inputs. Provided Python types belong
+in Practice and Solution.
+
+### Readable code editorials
 
 Start the intuition with a plain-language description of the method. Use short sentences, explain which information is saved, and name the condition that makes the next action safe. Add `keyDecision: string` to summarize that condition. Prefer familiar words such as "best result" and "required count"; keep technical terms when they are useful and include their definitions in `src/data/lessonVocabulary.ts`. Keep exact code snippets unchanged when editing prose.
 
@@ -34,4 +62,4 @@ Use official LeetCode URL for every problem and a verified public alternative fo
 
 `scripts/content_contracts.py` validates the shared metadata shape, finite JSON fixtures, unique names/inputs, matching starter/reference signatures, and adapter hooks. Authored fixtures cannot set `evaluateOnly`. Problem-specific constraints and alternative-answer rules remain explicit in each adapter; do not infer domain bounds from sample values. Regression tests should exercise independent oracles and malformed candidates, as well as the reference, and must not require dated review artifacts.
 
-After reviewing a changed package and passing its checks, run `python scripts/record_content_review.py --slug <slug>` to record all six file hashes in `tests/review-ledger.json`. Repeat `--slug` for multiple reviewed packages. This command records a completed review; it does not perform one. `npm test` verifies those fingerprints and fails if any reviewed package file changed. Use `npm run test:content` while editing before the new review is recorded.
+After reviewing a changed package and passing its checks, run `python scripts/record_content_review.py --slug <slug>` to record all six package hashes plus the concept renderer, artwork, and generation-record hashes in `tests/review-ledger.json`. Repeat `--slug` for multiple reviewed packages. This command records a completed review; it does not perform one. `npm test` verifies those fingerprints and fails if any reviewed package file changed. Use `npm run test:content` while editing before the new review is recorded.

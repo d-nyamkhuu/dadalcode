@@ -39,5 +39,86 @@
       "note": "Maintaining the sum incrementally avoids rescanning the window. Strict positivity ensures this removal moves the sum toward failure monotonically."
     }
   ],
-  "keyDecision": "While total >= target, record the length before removing the leftmost number."
+  "keyDecision": "While total >= target, record the length before removing the leftmost number.",
+  "concept": {
+    "question": "Why do positive numbers let a covering sum shrink safely from the left?",
+    "intuition": [
+      "Trying every continuous section repeatedly sums the same values. A running framed sum can be updated by adding or removing one endpoint.",
+      "Grow a frame until its sum reaches the target. Then remove leftmost values while it still qualifies, remembering shorter answers. Positivity ensures growth can only increase the sum and shrinking can only decrease it."
+    ],
+    "observation": "Shrink while the sum is at least the target; the positive-input condition makes the frame monotone.",
+    "approach": [
+      "Add numbers at the right until the target is reached.",
+      "Record valid lengths while removing left values.",
+      "Resume growth after the sum falls below the target."
+    ],
+    "correctness": "For each ending position, removing positive left values until the next removal would lose the target finds its shortest qualifying frame. Earlier discarded starts cannot produce a shorter frame ending later than the starts retained. Both edges move forward, and comparing all qualifying endings finds the global minimum.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each value enters and leaves the frame once, giving linear work. Two edges, a sum, and a minimum length use constant extra memory."
+    },
+    "pitfalls": [
+      "Shrink while the sum is at least the target; the positive-input condition makes the frame monotone.",
+      "Zero signals that no qualifying nonempty section exists."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/minimum-size-subarray-sum/concept.webp",
+        "alt": "Grow a frame until its sum reaches the target. Then remove leftmost values while it still qualifies, remembering shorter answers. Positivity ensures growth can only increase the sum and shrinking can only decrease it.",
+        "caption": "Grow a frame until its sum reaches the target. Then remove leftmost values while it still qualifies, remembering shorter answers. Positivity ensures growth can only increase the sum and shrinking can only decrease it.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Minimum Size Subarray Sum algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Minimum Size Subarray Sum, not a generic data structure illustration. The key idea is: Keep a continuous group of numbers and its sum. Add a number on the right until the sum reaches the target. Then remove numbers from the left while the sum still qualifies. Positive inputs make this safe: removing a number always reduces the sum. The reason a decision is safe is: While total >= target, record the length before removing the leftmost number. The actual example this lesson teaches is {\"target\": 7, \"nums\": [2, 3, 1, 2, 4, 3]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do positive numbers let a covering sum shrink safely from the left?",
+        "decision": "Shrink while the sum is at least the target; the positive-input condition makes the frame monotone."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every continuous section repeatedly sums the same values. A running framed sum can be updated by adding or removing one endpoint.",
+        "decision": "Grow a frame until its sum reaches the target. Then remove leftmost values while it still qualifies, remembering shorter answers. Positivity ensures growth can only increase the sum and shrinking can only decrease it."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Grow a frame until its sum reaches the target. Then remove leftmost values while it still qualifies, remembering shorter answers. Positivity ensures growth can only increase the sum and shrinking can only decrease it.",
+        "decision": "Shrink while the sum is at least the target; the positive-input condition makes the frame monotone."
+      },
+      {
+        "id": "first-qualifying-frame",
+        "title": "First qualifying frame",
+        "narration": "For target 7, [2,3,1,2] totals 8, length 4. Removing 2 drops the sum to 6.",
+        "decision": "Record the valid frame before removing an indispensable value."
+      },
+      {
+        "id": "a-shorter-frame-appears",
+        "title": "A shorter frame appears",
+        "narration": "Adding 4 gives sum 10. Removing 3 leaves [1,2,4], total 7 and length 3.",
+        "decision": "Surplus positive values can be released safely."
+      },
+      {
+        "id": "the-final-pair-is-shortest",
+        "title": "The final pair is shortest",
+        "narration": "Adding the final 3 permits shrinking to [4,3], total 7 and length 2. Return 2.",
+        "decision": "No single input value reaches 7."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For each ending position, removing positive left values until the next removal would lose the target finds its shortest qualifying frame. Earlier discarded starts cannot produce a shorter frame ending later than the starts retained. Both edges move forward, and comparing all qualifying endings finds the global minimum.",
+        "decision": "Shrink while the sum is at least the target; the positive-input condition makes the frame monotone."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If no frame ever reaches the target, return zero.",
+        "decision": "Zero signals that no qualifying nonempty section exists."
+      }
+    ]
+  }
 }

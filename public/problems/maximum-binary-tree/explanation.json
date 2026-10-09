@@ -51,5 +51,86 @@
       "note": "A surviving larger ancestor retains the new subtree on its right, maintaining input inorder order."
     }
   ],
-  "keyDecision": "The last smaller node popped becomes the new node's left child. The remaining top becomes its parent."
+  "keyDecision": "The last smaller node popped becomes the new node's left child. The remaining top becomes its parent.",
+  "concept": {
+    "question": "Why does a larger arriving value become the parent of smaller trailing roots?",
+    "intuition": [
+      "Recursively scanning for the maximum of every subsection can be quadratic. A decreasing stack of pending subtree roots captures the right edge of the tree built so far.",
+      "A new value absorbs smaller trailing roots into its left subtree. The last absorbed root already contains the others. If a larger pending ancestor remains, the new node becomes its right child; otherwise it is the new overall root."
+    ],
+    "observation": "Preserve input inorder order while ensuring each parent is larger than its descendants.",
+    "approach": [
+      "Keep pending roots in decreasing value order.",
+      "Pop smaller roots into the new node’s left subtree.",
+      "Attach the new node to the remaining larger ancestor’s right side."
+    ],
+    "correctness": "Before each arrival, pending roots decrease and describe the right boundary of a tree whose inorder sequence is the processed prefix. Absorbing smaller trailing roots keeps them before the new value and below it. Attaching under the remaining larger ancestor preserves both inorder order and maximum-parent ordering, the defining properties of the required unique tree.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Each node enters the pending stack once and leaves at most once, giving linear work. The pending stack is linear in the worst case, and the returned tree contains one node per input value."
+    },
+    "pitfalls": [
+      "Preserve input inorder order while ensuring each parent is larger than its descendants.",
+      "Attach the last popped subtree, which contains earlier popped roots."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-binary-tree/concept.webp",
+        "alt": "A new value absorbs smaller trailing roots into its left subtree. The last absorbed root already contains the others. If a larger pending ancestor remains, the new node becomes its right child; otherwise it is the new overall root.",
+        "caption": "A new value absorbs smaller trailing roots into its left subtree. The last absorbed root already contains the others. If a larger pending ancestor remains, the new node becomes its right child; otherwise it is the new overall root.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Maximum Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Maximum Binary Tree, not a generic data structure illustration. The key idea is: Keep a stack of nodes with decreasing values. A larger new value belongs above smaller recent nodes, so remove those nodes and place their combined tree on its left. If a larger node remains on the stack, the new node becomes its right child. The reason a decision is safe is: The last smaller node popped becomes the new node's left child. The remaining top becomes its parent. The actual example this lesson teaches is {\"nums\": [3, 2, 1, 6, 0, 5]} with answer [6, 3, 5, null, 2, 0, null, null, 1]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does a larger arriving value become the parent of smaller trailing roots?",
+        "decision": "Preserve input inorder order while ensuring each parent is larger than its descendants."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Recursively scanning for the maximum of every subsection can be quadratic. A decreasing stack of pending subtree roots captures the right edge of the tree built so far.",
+        "decision": "A new value absorbs smaller trailing roots into its left subtree. The last absorbed root already contains the others. If a larger pending ancestor remains, the new node becomes its right child; otherwise it is the new overall root."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "A new value absorbs smaller trailing roots into its left subtree. The last absorbed root already contains the others. If a larger pending ancestor remains, the new node becomes its right child; otherwise it is the new overall root.",
+        "decision": "Preserve input inorder order while ensuring each parent is larger than its descendants."
+      },
+      {
+        "id": "a-decreasing-start-makes-a-right-chain",
+        "title": "A decreasing start makes a right chain",
+        "narration": "For [3,2,1,6,0,5], the first three values produce 3→2→1 along right-child links.",
+        "decision": "Each smaller arrival belongs to the right of its earlier larger ancestor."
+      },
+      {
+        "id": "six-absorbs-the-earlier-chain",
+        "title": "Six absorbs the earlier chain",
+        "narration": "Six is larger than 1,2,3. Their combined subtree becomes its left child, and six becomes the overall root.",
+        "decision": "The final popped root three already links the smaller popped descendants."
+      },
+      {
+        "id": "five-absorbs-zero-on-the-right",
+        "title": "Five absorbs zero on the right",
+        "narration": "Zero first becomes six’s right child. Five then absorbs zero as its left child and becomes six’s right child. The result is [6,3,5,empty,2,0,empty,empty,1].",
+        "decision": "Six remains the larger ancestor, and input order 0 before 5 is preserved."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Before each arrival, pending roots decrease and describe the right boundary of a tree whose inorder sequence is the processed prefix. Absorbing smaller trailing roots keeps them before the new value and below it. Attaching under the remaining larger ancestor preserves both inorder order and maximum-parent ordering, the defining properties of the required unique tree.",
+        "decision": "Preserve input inorder order while ensuring each parent is larger than its descendants."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A fully decreasing input forms a right chain; a fully increasing input forms a left chain.",
+        "decision": "Attach the last popped subtree, which contains earlier popped roots."
+      }
+    ]
+  }
 }

@@ -58,5 +58,87 @@
       "note": "The corresponding guard prevents repeating a column already consumed from the right."
     }
   ],
-  "keyDecision": "Before reading a bottom row or left column, check that it still exists."
+  "keyDecision": "Before reading a bottom row or left column, check that it still exists.",
+  "concept": {
+    "question": "Can peeling one rectangular border reveal the next spiral layer?",
+    "intuition": [
+      "Moving in a spiral without remembering what remains risks revisiting corners or walking outside the grid. The unvisited cells always form a smaller rectangle after one complete outer layer.",
+      "Read the remaining rectangle’s top edge, right edge, bottom edge, and left edge in order. After each edge, move that boundary inward. Before reading an opposite edge, check that a row or column still remains."
+    ],
+    "observation": "Read each boundary once and check that the remaining rectangle is not empty before its opposite edge.",
+    "approach": [
+      "Read the top edge left to right, then the right edge downward.",
+      "If cells remain, read the bottom edge backward and the left edge upward.",
+      "Repeat with the shrunken rectangle until all boundaries cross."
+    ],
+    "correctness": "At the beginning of each layer, the unvisited cells form the bounded rectangle. Reading an edge visits all of its cells exactly once, and moving that edge inward leaves precisely the remaining rectangle. Opposite-edge checks avoid revisiting cells when only one row or column remains. Repeating this invariant visits all cells in spiral order.",
+    "complexity": {
+      "time": "O(mn)",
+      "space": "O(1) auxiliary, O(mn) output",
+      "explanation": "Every cell is visited once. Four boundaries use constant auxiliary memory, while the returned traversal contains one entry per cell."
+    },
+    "pitfalls": [
+      "Do not visit a corner twice.",
+      "Check for a remaining row before the bottom edge.",
+      "Check for a remaining column before the left edge."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/spiral-matrix/concept.webp",
+        "alt": "A rectangular grid peels its outer border in spiral order, exposing one smaller rectangle at a time.",
+        "caption": "A rectangular grid peels its outer border in spiral order, exposing one smaller rectangle at a time.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Spiral Matrix algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Spiral Matrix, not a generic data structure illustration. The key idea is: The next cells always lie around the outside of the remaining rectangle. Read its top row, right column, bottom row, and left column. Move each boundary inward after reading it. Repeat with the smaller rectangle until no cells remain. The reason a decision is safe is: Before reading a bottom row or left column, check that it still exists. The actual example this lesson teaches is {\"matrix\": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]} with answer [1, 2, 3, 6, 9, 8, 7, 4, 5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can peeling one rectangular border reveal the next spiral layer?",
+        "decision": "Read each boundary once and check that the remaining rectangle is not empty before its opposite edge."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Moving in a spiral without remembering what remains risks revisiting corners or walking outside the grid. The unvisited cells always form a smaller rectangle after one complete outer layer.",
+        "decision": "Read the remaining rectangle’s top edge, right edge, bottom edge, and left edge in order. After each edge, move that boundary inward. Before reading an opposite edge, check that a row or column still remains."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Read the remaining rectangle’s top edge, right edge, bottom edge, and left edge in order. After each edge, move that boundary inward. Before reading an opposite edge, check that a row or column still remains.",
+        "decision": "Read each boundary once and check that the remaining rectangle is not empty before its opposite edge."
+      },
+      {
+        "id": "top-and-right-edges",
+        "title": "Top and right edges",
+        "narration": "In the three-by-three example, read 1,2,3 across the top and 6,9 down the right.",
+        "decision": "A consumed edge no longer belongs to the remaining rectangle."
+      },
+      {
+        "id": "bottom-and-left-edges",
+        "title": "Bottom and left edges",
+        "narration": "Read 8,7 along the bottom, then 4 up the left. Only the center remains.",
+        "decision": "Shrinking boundaries prevent repeated corner cells."
+      },
+      {
+        "id": "the-center-finishes-the-spiral",
+        "title": "The center finishes the spiral",
+        "narration": "Read 5 once. The output is [1,2,3,6,9,8,7,4,5].",
+        "decision": "After the final layer, the remaining boundaries cross."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At the beginning of each layer, the unvisited cells form the bounded rectangle. Reading an edge visits all of its cells exactly once, and moving that edge inward leaves precisely the remaining rectangle. Opposite-edge checks avoid revisiting cells when only one row or column remains. Repeating this invariant visits all cells in spiral order.",
+        "decision": "Read each boundary once and check that the remaining rectangle is not empty before its opposite edge."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a single remaining row is read once. There is no bottom edge left to read afterward.",
+        "decision": "Check the boundaries before each opposite traversal."
+      }
+    ]
+  }
 }

@@ -48,5 +48,86 @@
       "note": "Return original coordinate pairs, not the internal distances or indices."
     }
   ],
-  "keyDecision": "Compare squared distances. Keep input occurrences separately even when coordinates or distances tie."
+  "keyDecision": "Compare squared distances. Keep input occurrences separately even when coordinates or distances tie.",
+  "concept": {
+    "question": "Why can the farthest retained point guard a small collection of nearest points?",
+    "intuition": [
+      "Sorting every point uses more work than needed when only a small count is requested. Keep just that many best candidates and expose the worst one among them.",
+      "Compare squared distances, avoiding square roots because squaring preserves nonnegative distance order. Retain up to the requested count in a priority structure with the farthest retained point exposed. Replace that point only when a closer candidate arrives."
+    ],
+    "observation": "The exposed boundary is the farthest retained candidate, not the nearest.",
+    "approach": [
+      "Compute each point’s squared distance from the origin.",
+      "Fill the retained collection to its requested size.",
+      "Replace its farthest point whenever a strictly closer point arrives."
+    ],
+    "correctness": "Before the collection fills, every seen point is retained. Once full, it contains the closest requested number among seen points: a new farther point cannot improve it, while a closer point must replace its farthest member. Induction preserves this best-candidate set through the entire scan.",
+    "complexity": {
+      "time": "O(n log(k + 1))",
+      "space": "O(k)",
+      "explanation": "Each point performs at most one logarithmic operation over the retained count. Time is input size times that logarithm, and retained entries and output use requested-count storage."
+    },
+    "pitfalls": [
+      "The exposed boundary is the farthest retained candidate, not the nearest.",
+      "Do not prioritize a point by one coordinate alone."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/k-closest-points-to-origin/concept.webp",
+        "alt": "Compare squared distances, avoiding square roots because squaring preserves nonnegative distance order. Retain up to the requested count in a priority structure with the farthest retained point exposed. Replace that point only when a closer candidate arrives.",
+        "caption": "Compare squared distances, avoiding square roots because squaring preserves nonnegative distance order. Retain up to the requested count in a priority structure with the farthest retained point exposed. Replace that point only when a closer candidate arrives.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's K Closest Points to Origin algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about K Closest Points to Origin, not a generic data structure illustration. The key idea is: A point's squared distance is x² + y²; taking a square root would not change which point is closer. Keep the closest k points seen so far, with the farthest saved point easy to remove. Replace it only when a closer new point arrives. The reason a decision is safe is: Compare squared distances. Keep input occurrences separately even when coordinates or distances tie. The actual example this lesson teaches is {\"points\": [[1, 3], [-2, 2]], \"k\": 1} with answer [[-2, 2]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can the farthest retained point guard a small collection of nearest points?",
+        "decision": "The exposed boundary is the farthest retained candidate, not the nearest."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting every point uses more work than needed when only a small count is requested. Keep just that many best candidates and expose the worst one among them.",
+        "decision": "Compare squared distances, avoiding square roots because squaring preserves nonnegative distance order. Retain up to the requested count in a priority structure with the farthest retained point exposed. Replace that point only when a closer candidate arrives."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Compare squared distances, avoiding square roots because squaring preserves nonnegative distance order. Retain up to the requested count in a priority structure with the farthest retained point exposed. Replace that point only when a closer candidate arrives.",
+        "decision": "The exposed boundary is the farthest retained candidate, not the nearest."
+      },
+      {
+        "id": "the-first-point-fills-the-only-slot",
+        "title": "The first point fills the only slot",
+        "narration": "For points (1,3) and (−2,2), request one point. The first has squared distance 1²+3²=10 and is initially retained.",
+        "decision": "A squared distance orders points exactly like ordinary distance."
+      },
+      {
+        "id": "the-second-point-is-closer",
+        "title": "The second point is closer",
+        "narration": "The second has squared distance (−2)²+2²=8. Eight is below the retained boundary ten, so replace the first point.",
+        "decision": "Once full, the collection rejects candidates no closer than its farthest member."
+      },
+      {
+        "id": "return-the-retained-original-point",
+        "title": "Return the retained original point",
+        "narration": "The one retained point is (−2,2), which is the fixture answer.",
+        "decision": "Returned coordinates come from the selected input point."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Before the collection fills, every seen point is retained. Once full, it contains the closest requested number among seen points: a new farther point cannot improve it, while a closer point must replace its farthest member. Induction preserves this best-candidate set through the entire scan.",
+        "decision": "The exposed boundary is the farthest retained candidate, not the nearest."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Distance ties may use any accepted selection. Negative coordinates are squared before comparison.",
+        "decision": "Do not prioritize a point by one coordinate alone."
+      }
+    ]
+  }
 }

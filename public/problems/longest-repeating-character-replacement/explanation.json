@@ -35,5 +35,86 @@
       "note": "Record only a repaired valid window, while preserving larger answers from earlier endpoints."
     }
   ],
-  "keyDecision": "Use the actual maximum count in this reference: window length - maximum frequency must be <= k."
+  "keyDecision": "Use the actual maximum count in this reference: window length - maximum frequency must be <= k.",
+  "concept": {
+    "question": "How many changes does a section need to become one repeated letter?",
+    "intuition": [
+      "Trying every section and every replacement repeats large counts. In any one section, the best letter to retain is the most frequent one; every other position must change.",
+      "Maintain a moving section and its letter counts. Its minimum changes equal section length minus its largest letter count. If this exceeds the budget, remove characters from the left until the section fits again."
+    ],
+    "observation": "A section qualifies exactly when its length minus its highest letter count is within the replacement budget.",
+    "approach": [
+      "Add the next character to the current section.",
+      "Shrink from the left while too many replacements are required.",
+      "Record the greatest qualifying length seen."
+    ],
+    "correctness": "The highest-frequency letter requires the fewest changes, so the validity formula is exact. Removing characters cannot increase the minimum required changes. For each right endpoint, shrinking only invalid left boundaries retains the longest valid section ending there; a discarded invalid boundary cannot become valid by extending farther. Taking the maximum over endpoints finds the global longest section.",
+    "complexity": {
+      "time": "O(26n), equivalent to O(n)",
+      "space": "O(26)",
+      "explanation": "Both section boundaries move only forward. Checking the largest count scans the fixed 26-letter alphabet, so total work is linear in text length and extra storage is constant."
+    },
+    "pitfalls": [
+      "A section qualifies exactly when its length minus its highest letter count is within the replacement budget.",
+      "This is a contiguous section, not a subsequence."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/longest-repeating-character-replacement/concept.webp",
+        "alt": "A window surrounds three cyan tiles and one amber tile, with the amber tile changing to cyan.",
+        "caption": "A section with three copies of one letter and one different letter needs only one replacement to become uniform.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A bounded sliding frame contains four colored tiles, THREE cyan and ONE amber. A single transformation arrow changes only the amber tile to cyan, yielding four cyan tiles. Beside it a faded larger frame contains three cyan and two amber tiles, indicating that it would need more changes. No text, numbers, or equations."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How many changes does a section need to become one repeated letter?",
+        "decision": "A section qualifies exactly when its length minus its highest letter count is within the replacement budget."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every section and every replacement repeats large counts. In any one section, the best letter to retain is the most frequent one; every other position must change.",
+        "decision": "Maintain a moving section and its letter counts. Its minimum changes equal section length minus its largest letter count. If this exceeds the budget, remove characters from the left until the section fits again."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Maintain a moving section and its letter counts. Its minimum changes equal section length minus its largest letter count. If this exceeds the budget, remove characters from the left until the section fits again.",
+        "decision": "A section qualifies exactly when its length minus its highest letter count is within the replacement budget."
+      },
+      {
+        "id": "four-positions-fit-one-replacement",
+        "title": "Four positions fit one replacement",
+        "narration": "For AABABBA and budget one, section AABA has three A characters and one B. Changing that B gives four equal letters.",
+        "decision": "Keeping the most frequent letter minimizes required changes."
+      },
+      {
+        "id": "the-next-b-exceeds-the-budget",
+        "title": "The next B exceeds the budget",
+        "narration": "Adding B gives AABAB: length five, largest count three, changes two. Remove the first A, then the next A, leaving BAB with one required change.",
+        "decision": "Each rejected larger section needs more changes than allowed."
+      },
+      {
+        "id": "later-sections-tie-the-best",
+        "title": "Later sections tie the best",
+        "narration": "The next B gives BABB: four positions with three B characters. The final A requires shrinking again. The largest valid length remains four.",
+        "decision": "Both AABA and BABB can become a repeated letter within one change."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The highest-frequency letter requires the fewest changes, so the validity formula is exact. Removing characters cannot increase the minimum required changes. For each right endpoint, shrinking only invalid left boundaries retains the longest valid section ending there; a discarded invalid boundary cannot become valid by extending farther. Taking the maximum over endpoints finds the global longest section.",
+        "decision": "A section qualifies exactly when its length minus its highest letter count is within the replacement budget."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "With zero replacements, only sections already containing one repeated letter qualify.",
+        "decision": "This is a contiguous section, not a subsequence."
+      }
+    ]
+  }
 }

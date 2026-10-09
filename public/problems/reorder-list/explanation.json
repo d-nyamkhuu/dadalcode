@@ -42,5 +42,87 @@
       "note": "Both untouched suffixes must be saved before rewriting either connection, or the remaining nodes could be lost."
     }
   ],
-  "keyDecision": "Detach the halves before reversing, and save both next links before weaving nodes together."
+  "keyDecision": "Detach the halves before reversing, and save both next links before weaving nodes together.",
+  "concept": {
+    "question": "How do two forward-moving chains simulate alternating front and back choices?",
+    "intuition": [
+      "A singly linked list cannot walk backward from its tail. Repeatedly finding the tail would require many rescans.",
+      "Split the list near the middle. Reverse the second half so its forward order now follows the original list backward. Then weave one node from the first half and one from the reversed half alternately."
+    ],
+    "observation": "Detach the halves before reversal and preserve each next link while weaving.",
+    "approach": [
+      "Find the middle and split into two chains.",
+      "Reverse the second chain.",
+      "Alternate nodes from the first and reversed second chains."
+    ],
+    "correctness": "The first half lists the original front nodes in order, and the reversed second half lists the original back nodes in reverse order. Alternating these sequences therefore produces exactly the required first-last-second-next-last pattern. Detaching and preserving continuations ensures every original node is used once and the final chain terminates.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Finding the middle, reversing, and weaving each take linear work. Only node bookmarks beyond the original chain are needed."
+    },
+    "pitfalls": [
+      "Detach the original halves before weaving, so old links cannot create a cycle.",
+      "Preserve both continuations before weaving links.",
+      "Change links rather than copying values."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/reorder-list/concept.webp",
+        "alt": "Split the list near the middle. Reverse the second half so its forward order now follows the original list backward. Then weave one node from the first half and one from the reversed half alternately.",
+        "caption": "Split the list near the middle. Reverse the second half so its forward order now follows the original list backward. Then weave one node from the first half and one from the reversed half alternately.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Reorder List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Reorder List, not a generic data structure illustration. The key idea is: We need nodes alternately from the front and back, but a singly linked list cannot walk backward. Split the list into two halves and reverse the second half. Then take one node from each half in turn. This changes links while keeping the original nodes. The reason a decision is safe is: Detach the halves before reversing, and save both next links before weaving nodes together. The actual example this lesson teaches is {\"head\": [1, 2, 3, 4]} with answer [1, 4, 2, 3]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do two forward-moving chains simulate alternating front and back choices?",
+        "decision": "Detach the halves before reversal and preserve each next link while weaving."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A singly linked list cannot walk backward from its tail. Repeatedly finding the tail would require many rescans.",
+        "decision": "Split the list near the middle. Reverse the second half so its forward order now follows the original list backward. Then weave one node from the first half and one from the reversed half alternately."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Split the list near the middle. Reverse the second half so its forward order now follows the original list backward. Then weave one node from the first half and one from the reversed half alternately.",
+        "decision": "Detach the halves before reversal and preserve each next link while weaving."
+      },
+      {
+        "id": "split-at-the-middle",
+        "title": "Split at the middle",
+        "narration": "The chain 1 → 2 → 3 → 4 splits into 1 → 2 and 3 → 4.",
+        "decision": "Detachment prevents stale links creating a cycle."
+      },
+      {
+        "id": "reverse-the-back-half",
+        "title": "Reverse the back half",
+        "narration": "The second half becomes 4 → 3, making backmost original nodes available first.",
+        "decision": "Reversal preserves original node identities."
+      },
+      {
+        "id": "weave-front-and-back",
+        "title": "Weave front and back",
+        "narration": "Take 1, then 4, then 2, then 3. The reordered chain is [1,4,2,3].",
+        "decision": "Each half advances only when its node is used."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The first half lists the original front nodes in order, and the reversed second half lists the original back nodes in reverse order. Alternating these sequences therefore produces exactly the required first-last-second-next-last pattern. Detaching and preserving continuations ensures every original node is used once and the final chain terminates.",
+        "decision": "Detach the halves before reversal and preserve each next link while weaving."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "For an odd length, the first half has the extra middle node, which remains last.",
+        "decision": "The middle node must not appear in both halves."
+      }
+    ]
+  }
 }

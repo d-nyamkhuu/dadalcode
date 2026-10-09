@@ -70,5 +70,87 @@
       "note": "Undo both state changes so the next sibling branch starts from exactly the same prefix."
     }
   ],
-  "keyDecision": "A position may use only an unused input number. Undo both the choice and its used marker afterward."
+  "keyDecision": "A position may use only an unused input number. Undo both the choice and its used marker afterward.",
+  "concept": {
+    "question": "What if every unused number could fill the next empty seat?",
+    "intuition": [
+      "A complete ordering cannot reuse a number or leave one out. Generating arbitrary sequences and rejecting duplicates at the end wastes routes that were impossible as soon as a repeated choice appeared.",
+      "Build an ordering one seat at a time. At each seat, any unused number can be chosen. After exploring its continuations, release that choice so another branch can occupy the same seat. A full seating arrangement is one permutation."
+    ],
+    "observation": "Each number occupies exactly one seat in a completed ordering.",
+    "approach": [
+      "Choose any unused number for the next position.",
+      "Explore its continuations, then release it before the next alternative.",
+      "Save an independent copy when all positions are filled."
+    ],
+    "correctness": "The unused-number rule ensures every completed route contains each input number exactly once. Every possible ordering gives a legal next choice at every seat, so its route is explored. Different routes first differ at some seat and therefore produce different permutations. Saving an independent result preserves it when later choices are undone.",
+    "complexity": {
+      "time": "O(n · n!)",
+      "space": "O(n) auxiliary, O(n · n!) output",
+      "explanation": "There are factorially many orderings, and writing each takes linear time in its length. Search bookmarks and the current path use linear auxiliary memory; storing the output dominates for large inputs."
+    },
+    "pitfalls": [
+      "Never reuse a number within one ordering.",
+      "Undo a branch before trying another.",
+      "Save copies rather than references to the changing path."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/permutations/concept.webp",
+        "alt": "A branching seating arrangement chooses each unused number once to produce every ordering.",
+        "caption": "A branching seating arrangement chooses each unused number once to produce every ordering.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Permutations algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Permutations, not a generic data structure illustration. The key idea is: A permutation puts all the numbers in an order. Build that order one position at a time by choosing any number not already used. After exploring a choice, remove it so another choice can use that position. Save a copy when the order contains every number. The reason a decision is safe is: A position may use only an unused input number. Undo both the choice and its used marker afterward. The actual example this lesson teaches is {\"nums\": [1, 2, 3]} with answer [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What if every unused number could fill the next empty seat?",
+        "decision": "Each number occupies exactly one seat in a completed ordering."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A complete ordering cannot reuse a number or leave one out. Generating arbitrary sequences and rejecting duplicates at the end wastes routes that were impossible as soon as a repeated choice appeared.",
+        "decision": "Build an ordering one seat at a time. At each seat, any unused number can be chosen. After exploring its continuations, release that choice so another branch can occupy the same seat. A full seating arrangement is one permutation."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Build an ordering one seat at a time. At each seat, any unused number can be chosen. After exploring its continuations, release that choice so another branch can occupy the same seat. A full seating arrangement is one permutation.",
+        "decision": "Each number occupies exactly one seat in a completed ordering."
+      },
+      {
+        "id": "fill-one-route",
+        "title": "Fill one route",
+        "narration": "Choose 1, then 2, then 3. This completes the ordering [1,2,3].",
+        "decision": "A chosen number cannot occupy another seat."
+      },
+      {
+        "id": "return-to-a-fork",
+        "title": "Return to a fork",
+        "narration": "Keep the first seat as 1, but choose 3 second and 2 last. This gives [1,3,2].",
+        "decision": "Undoing choices restores the unused pool."
+      },
+      {
+        "id": "every-first-seat-has-its-routes",
+        "title": "Every first seat has its routes",
+        "narration": "Starting with 2 gives [2,1,3] and [2,3,1]; starting with 3 gives [3,1,2] and [3,2,1].",
+        "decision": "Each complete ordering has a unique sequence of seat choices."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The unused-number rule ensures every completed route contains each input number exactly once. Every possible ordering gives a legal next choice at every seat, so its route is explored. Different routes first differ at some seat and therefore produce different permutations. Saving an independent result preserves it when later choices are undone.",
+        "decision": "Each number occupies exactly one seat in a completed ordering."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a single number has exactly one ordering, containing that number.",
+        "decision": "The full path is saved even when no branching occurs."
+      }
+    ]
+  }
 }

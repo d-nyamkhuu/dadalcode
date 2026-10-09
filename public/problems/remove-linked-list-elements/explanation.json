@@ -47,5 +47,86 @@
       "note": "Advance only after retaining the neighbor. The invariant then extends the clean prefix by exactly one node."
     }
   ],
-  "keyDecision": "After removing a node, do not advance the previous pointer: the new next node still needs checking."
+  "keyDecision": "After removing a node, do not advance the previous pointer: the new next node still needs checking.",
+  "concept": {
+    "question": "How can one predecessor bookmark remove even several adjacent unwanted nodes?",
+    "intuition": [
+      "Deleting the current node without its predecessor makes head deletion and consecutive deletions awkward. The incoming link is what must change.",
+      "Add a temporary starting node before the head. Inspect the node after the predecessor bookmark. If it is unwanted, bypass it while keeping the predecessor fixed; otherwise advance to that retained node."
+    ],
+    "observation": "After a removal, stay at the predecessor and inspect its new successor.",
+    "approach": [
+      "Place a temporary node before the head.",
+      "Bypass unwanted successors, keeping the predecessor fixed.",
+      "Advance only when retaining a successor, then return the first real node."
+    ],
+    "correctness": "The predecessor’s completed prefix contains exactly the retained original nodes in order. Bypassing an unwanted successor extends inspection without adding it; advancing over a wanted successor extends the retained prefix. Repeating these actions examines every node and leaves exactly the desired chain.",
+    "complexity": {
+      "time": "O(length)",
+      "space": "O(1)",
+      "explanation": "Every node is inspected once. One temporary node and a bookmark use constant extra memory; work is linear."
+    },
+    "pitfalls": [
+      "After a removal, stay at the predecessor and inspect its new successor.",
+      "Return the temporary start’s final successor."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/remove-linked-list-elements/concept.webp",
+        "alt": "Add a temporary starting node before the head. Inspect the node after the predecessor bookmark. If it is unwanted, bypass it while keeping the predecessor fixed; otherwise advance to that retained node.",
+        "caption": "Add a temporary starting node before the head. Inspect the node after the predecessor bookmark. If it is unwanted, bypass it while keeping the predecessor fixed; otherwise advance to that retained node.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Remove Linked List Elements algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Remove Linked List Elements, not a generic data structure illustration. The key idea is: Keep a pointer to the node before the next node you will inspect. If that next node has the unwanted value, skip it by changing the link. Otherwise, move forward. A dummy node before the head makes removing the first node work in the same way. The reason a decision is safe is: After removing a node, do not advance the previous pointer: the new next node still needs checking. The actual example this lesson teaches is {\"head\": [1, 2, 6, 3, 4, 5, 6], \"val\": 6} with answer [1, 2, 3, 4, 5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can one predecessor bookmark remove even several adjacent unwanted nodes?",
+        "decision": "After a removal, stay at the predecessor and inspect its new successor."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Deleting the current node without its predecessor makes head deletion and consecutive deletions awkward. The incoming link is what must change.",
+        "decision": "Add a temporary starting node before the head. Inspect the node after the predecessor bookmark. If it is unwanted, bypass it while keeping the predecessor fixed; otherwise advance to that retained node."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Add a temporary starting node before the head. Inspect the node after the predecessor bookmark. If it is unwanted, bypass it while keeping the predecessor fixed; otherwise advance to that retained node.",
+        "decision": "After a removal, stay at the predecessor and inspect its new successor."
+      },
+      {
+        "id": "retain-one-and-two",
+        "title": "Retain one and two",
+        "narration": "For [1,2,6,3,4,5,6], unwanted value 6, retain 1 then 2.",
+        "decision": "The bookmark follows the last retained node."
+      },
+      {
+        "id": "bypass-the-interior-six",
+        "title": "Bypass the interior six",
+        "narration": "Connect node 2 directly to node 3. The chain becomes [1,2,3,4,5,6].",
+        "decision": "The new successor still needs inspection."
+      },
+      {
+        "id": "bypass-the-final-six",
+        "title": "Bypass the final six",
+        "narration": "Retain 3,4,5, then connect 5 to the end. Return [1,2,3,4,5].",
+        "decision": "Every unwanted node loses its incoming chain link."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The predecessor’s completed prefix contains exactly the retained original nodes in order. Bypassing an unwanted successor extends inspection without adding it; advancing over a wanted successor extends the retained prefix. Repeating these actions examines every node and leaves exactly the desired chain.",
+        "decision": "After a removal, stay at the predecessor and inspect its new successor."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If the head itself is unwanted, change the temporary starting node’s successor. Several unwanted heads can be bypassed in succession.",
+        "decision": "Return the temporary start’s final successor."
+      }
+    ]
+  }
 }

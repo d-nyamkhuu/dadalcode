@@ -10,6 +10,11 @@ import json
 import math
 from pathlib import Path
 
+try:
+    from concept_contracts import concept_fingerprint
+except ModuleNotFoundError:
+    from scripts.concept_contracts import concept_fingerprint
+
 PACKAGE_FILES = ('lesson.json', 'explanation.json', 'solution.py', 'starter.py', 'tests.json', 'adapter.py')
 
 
@@ -175,3 +180,6 @@ def validate_review(path, entry):
     editorial = entry.get('editorialReview', {})
     assert editorial.get('reviewed') and editorial.get('status') == 'approved', 'Editorial review is incomplete'
     assert editorial.get('explanationHash') == current['explanation.json'], 'Editorial review hash is stale'
+    concept_review = entry.get('conceptReview', {})
+    assert concept_review.get('reviewed') and concept_review.get('status') == 'approved', 'Concept review is incomplete'
+    assert concept_review.get('visualHashes') == concept_fingerprint(path.name), 'Concept visuals changed since review'

@@ -6,6 +6,7 @@ import { ExampleInput, ExampleOutput } from "./ExampleValue";
 import { lessonVocabulary } from "../data/lessonVocabulary";
 import Text, { LessonTextProvider } from "./LessonText";
 import "./lesson-enhancements.css";
+import ConceptLesson from "./concepts/ConceptLesson";
 export function Complexity({ problem }: { problem: ProblemDefinition }) {
   return (
     <>
@@ -55,10 +56,16 @@ export function Example({ problem }: { problem: ProblemDefinition }) {
 export default function LessonContent({
   problem,
   mode,
+  solutionHref,
+  onExecution,
 }: {
   problem: ProblemDefinition;
   mode: "learn" | "practice" | "solution";
+  solutionHref: string;
+  onExecution: () => void;
 }) {
+  if (mode === "learn")
+    return <ConceptLesson problem={problem} solutionHref={solutionHref} />;
   const l = problem.lesson,
     editorial = problem.explanation;
   const words = mode === "practice" ? [] : lessonVocabulary(problem);
@@ -122,18 +129,6 @@ export default function LessonContent({
           </section>
         ) : (
           <>
-            {mode === "learn" && (
-              <details className="prerequisites">
-                <summary>Before you begin</summary>
-                <ul>
-                  {l.prerequisites.map((p) => (
-                    <li key={p}>
-                      <Text>{p}</Text>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            )}
             {words.length > 0 ? (
               <details className="lesson-vocabulary">
                 <summary>
@@ -229,12 +224,9 @@ export default function LessonContent({
                     input={editorial.walkthrough.input}
                   />
                 </div>
-                <a
-                  className="walkthrough-link"
-                  href={`#/problems/${problem.slug}/learn`}
-                >
-                  Try this example in the step player →
-                </a>
+                <button className="walkthrough-link" onClick={onExecution}>
+                  Explore this example in Execution walkthrough →
+                </button>
               </section>
             )}
             {editorial && (

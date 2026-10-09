@@ -50,5 +50,86 @@
       "note": "The greedy scan maximizes retained count; subtracting translates that result into the requested minimum number removed."
     }
   ],
-  "keyDecision": "Keep a next interval when start >= the last kept end. Touching endpoints are allowed here."
+  "keyDecision": "Keep a next interval when start >= the last kept end. Touching endpoints are allowed here.",
+  "concept": {
+    "question": "Why does the earliest finishing interval leave the most room for later ones?",
+    "intuition": [
+      "Deleting intervals based on length or starting time can keep a long blocker. It is simpler to maximize the number kept, then subtract that count from the total.",
+      "Sort by finishing time. Keep the next interval only when it starts at or after the last kept finish. An earlier finish leaves every later compatible choice available, so it is the safest next interval to keep."
+    ],
+    "observation": "Touching endpoints are compatible; select by earliest finish.",
+    "approach": [
+      "Sort intervals by their right endpoint.",
+      "Keep each interval whose start is no earlier than the last kept end.",
+      "Return total intervals minus kept intervals."
+    ],
+    "correctness": "Replace the first interval of any optimal compatible selection with the earliest-finishing available interval. This replacement ends no later and therefore cannot invalidate later selections. Repeating this exchange after every chosen finish proves the greedy selection keeps the maximum possible count, hence minimizes removals.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "Sorting dominates with linearithmic time. The scan is linear; the sorted interval collection uses linear additional storage in this implementation."
+    },
+    "pitfalls": [
+      "Touching endpoints are compatible; select by earliest finish.",
+      "Do not use the closed-balloon rule where touching endpoints count as overlap."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/non-overlapping-intervals/concept.webp",
+        "alt": "Sort by finishing time. Keep the next interval only when it starts at or after the last kept finish. An earlier finish leaves every later compatible choice available, so it is the safest next interval to keep.",
+        "caption": "Sort by finishing time. Keep the next interval only when it starts at or after the last kept finish. An earlier finish leaves every later compatible choice available, so it is the safest next interval to keep.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Non-overlapping Intervals algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Non-overlapping Intervals, not a generic data structure illustration. The key idea is: Keep as many non-overlapping intervals as possible, then remove the rest. Choose the interval that ends earliest because it leaves the most room for future intervals. Repeat among intervals starting after the chosen end. Sorting by start alone would not guarantee this best choice. The reason a decision is safe is: Keep a next interval when start >= the last kept end. Touching endpoints are allowed here. The actual example this lesson teaches is {\"intervals\": [[1, 2], [2, 3], [3, 4], [1, 3]]} with answer 1. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does the earliest finishing interval leave the most room for later ones?",
+        "decision": "Touching endpoints are compatible; select by earliest finish."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Deleting intervals based on length or starting time can keep a long blocker. It is simpler to maximize the number kept, then subtract that count from the total.",
+        "decision": "Sort by finishing time. Keep the next interval only when it starts at or after the last kept finish. An earlier finish leaves every later compatible choice available, so it is the safest next interval to keep."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort by finishing time. Keep the next interval only when it starts at or after the last kept finish. An earlier finish leaves every later compatible choice available, so it is the safest next interval to keep.",
+        "decision": "Touching endpoints are compatible; select by earliest finish."
+      },
+      {
+        "id": "arrange-the-finishing-times",
+        "title": "Arrange the finishing times",
+        "narration": "For [1,2],[2,3],[3,4],[1,3], the finishing order is [1,2], then the two ending at 3, then [3,4].",
+        "decision": "Tied finish order does not improve the space available afterward."
+      },
+      {
+        "id": "keep-two-reject-the-blocker",
+        "title": "Keep two, reject the blocker",
+        "narration": "Keep [1,2] and [2,3]. Their endpoints touch safely. Skip [1,3] because it begins before the kept end 3.",
+        "decision": "The rejected interval cannot add another compatible slot."
+      },
+      {
+        "id": "keep-the-final-interval",
+        "title": "Keep the final interval",
+        "narration": "Keep [3,4]. Three of four intervals remain, so remove one.",
+        "decision": "Subtracting maximum kept count gives minimum removals."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Replace the first interval of any optimal compatible selection with the earliest-finishing available interval. This replacement ends no later and therefore cannot invalidate later selections. Repeating this exchange after every chosen finish proves the greedy selection keeps the maximum possible count, hence minimizes removals.",
+        "decision": "Touching endpoints are compatible; select by earliest finish."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Intervals [1,2] and [2,3] may both remain.",
+        "decision": "Do not use the closed-balloon rule where touching endpoints count as overlap."
+      }
+    ]
+  }
 }

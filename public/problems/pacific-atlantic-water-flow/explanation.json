@@ -165,5 +165,92 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "What happens if we trace possible water routes backward from each ocean?",
+    "intuition": [
+      "Starting downhill searches independently from every cell revisits the same routes. It is easier to ask which cells can reach one ocean by reversing the direction of a valid flow.",
+      "Begin at each ocean’s bordering cells and explore inland only to equally high or higher neighbors. Those reversed routes identify every cell that can flow downhill to that ocean. Intersect the two reached sets."
+    ],
+    "observation": "A reversed step climbs or stays level; the corresponding forward water step descends or stays level.",
+    "approach": [
+      "Explore uphill from the top and left borders for the first ocean.",
+      "Explore uphill from the bottom and right borders for the second ocean.",
+      "Return cells reached from both ocean borders."
+    ],
+    "correctness": "Reversing every permitted downhill edge produces exactly the uphill-or-level edges used by the searches. A cell reached from an ocean border therefore has a valid forward route back to that ocean, and every such route can be followed backward. The intersection is exactly the cells with routes to both oceans.",
+    "complexity": {
+      "time": "O(RC)",
+      "space": "O(RC)",
+      "explanation": "Two explorations visit each cell and its at most four neighbors a constant number of times. Time and visited-set storage scale with the number of cells."
+    },
+    "pitfalls": [
+      "A reversed step climbs or stays level; the corresponding forward water step descends or stays level.",
+      "Equal heights permit flow in either direction."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/pacific-atlantic-water-flow/concept.webp",
+        "alt": "Begin at each ocean’s bordering cells and explore inland only to equally high or higher neighbors. Those reversed routes identify every cell that can flow downhill to that ocean. Intersect the two reached sets.",
+        "caption": "Begin at each ocean’s bordering cells and explore inland only to equally high or higher neighbors. Those reversed routes identify every cell that can flow downhill to that ocean. Intersect the two reached sets.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Pacific Atlantic Water Flow algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Pacific Atlantic Water Flow, not a generic data structure illustration. The key idea is: Searching downhill from every cell repeats work. Search in reverse instead: start at each ocean border and move to neighbors of equal or greater height. A reverse path proves water could flow back down to that ocean. Keep cells reached by both ocean searches. The reason a decision is safe is: In the reverse search, move only to a neighbor at least as high as the current cell. The actual example this lesson teaches is {\"heights\": [[1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]]} with answer [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What happens if we trace possible water routes backward from each ocean?",
+        "decision": "A reversed step climbs or stays level; the corresponding forward water step descends or stays level."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Starting downhill searches independently from every cell revisits the same routes. It is easier to ask which cells can reach one ocean by reversing the direction of a valid flow.",
+        "decision": "Begin at each ocean’s bordering cells and explore inland only to equally high or higher neighbors. Those reversed routes identify every cell that can flow downhill to that ocean. Intersect the two reached sets."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Begin at each ocean’s bordering cells and explore inland only to equally high or higher neighbors. Those reversed routes identify every cell that can flow downhill to that ocean. Intersect the two reached sets.",
+        "decision": "A reversed step climbs or stays level; the corresponding forward water step descends or stays level."
+      },
+      {
+        "id": "start-at-the-two-sets-of-shores",
+        "title": "Start at the two sets of shores",
+        "narration": "The five-by-five fixture borders the Pacific on top and left, and the Atlantic on bottom and right.",
+        "decision": "Every bordering cell can immediately reach its adjacent ocean."
+      },
+      {
+        "id": "reverse-a-legal-downhill-route",
+        "title": "Reverse a legal downhill route",
+        "narration": "Height 5 at (2,2) can flow through height 4 at (2,1), then 2 at (2,0) to the Pacific. Reversing this route walks uphill 2→4→5.",
+        "decision": "Do not follow a lower inland neighbor during reverse exploration."
+      },
+      {
+        "id": "trace-back-from-the-atlantic",
+        "title": "Trace back from the Atlantic",
+        "narration": "The bottom-border cell (4,2) has height one. A reversed Atlantic route climbs through height one at (3,2) to height five at (2,2). That central cell therefore reaches both oceans.",
+        "decision": "Each inland step is uphill or level, so reversing it yields a permitted downhill water route."
+      },
+      {
+        "id": "keep-only-the-intersection",
+        "title": "Keep only the intersection",
+        "narration": "Both searches reach (0,4),(1,3),(1,4),(2,2),(3,0),(3,1),(4,0). These seven cells are the answer.",
+        "decision": "A cell must belong to both reached sets, not merely one."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Reversing every permitted downhill edge produces exactly the uphill-or-level edges used by the searches. A cell reached from an ocean border therefore has a valid forward route back to that ocean, and every such route can be followed backward. The intersection is exactly the cells with routes to both oceans.",
+        "decision": "A reversed step climbs or stays level; the corresponding forward water step descends or stays level."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-cell map touches both oceans and is always included.",
+        "decision": "Equal heights permit flow in either direction."
+      }
+    ]
+  }
 }

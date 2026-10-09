@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A rooted branching tree. Illuminate ONE short downward path beginning at an INTERNAL node and ending at a descendant, with the ancestors above it dim. Beside it two cumulative glowing bars share the same dim initial segment; removing that shared prefix leaves the highlighted path segment. No values, equations, signs, letters, or numbers.",
+  "width": 1774,
+  "height": 887
+}

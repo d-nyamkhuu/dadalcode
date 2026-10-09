@@ -37,5 +37,86 @@
       "note": "The strict-majority guarantee is what makes verification unnecessary. Without it, a surviving candidate could still fail to exceed half the array."
     }
   ],
-  "keyDecision": "The guarantee of a strict majority is necessary here. Without it, verify the final candidate's count."
+  "keyDecision": "The guarantee of a strict majority is necessary here. Without it, verify the final candidate's count.",
+  "concept": {
+    "question": "Why can a strict majority survive cancellation of unlike pairs?",
+    "intuition": [
+      "A frequency table remembers every distinct value. The stronger promise that one value appears more than half the time lets opposing votes cancel without retaining all counts.",
+      "Maintain one candidate and a balance of unmatched copies. An equal value increases the balance; a different value cancels one copy. When the balance empties, the next value begins a new candidate group."
+    ],
+    "observation": "Change the candidate only at zero balance; the strict-majority guarantee is essential.",
+    "approach": [
+      "Start a candidate group when no unmatched votes remain.",
+      "Add a matching vote or cancel a differing vote.",
+      "Return the surviving candidate."
+    ],
+    "correctness": "Removing a pair of different values can remove at most one occurrence of a strict majority. Since its original count exceeds all other counts combined, it cannot be canceled completely. The balance process performs exactly such pair cancellation, leaving its final candidate equal to that majority.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "One vote update per value gives linear work. The candidate and balance use constant extra memory."
+    },
+    "pitfalls": [
+      "Change the candidate only at zero balance; the strict-majority guarantee is essential.",
+      "Cancellation alone does not prove a majority in arbitrary input."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/majority-element/concept.webp",
+        "alt": "Maintain one candidate and a balance of unmatched copies. An equal value increases the balance; a different value cancels one copy. When the balance empties, the next value begins a new candidate group.",
+        "caption": "Maintain one candidate and a balance of unmatched copies. An equal value increases the balance; a different value cancels one copy. When the balance empties, the next value begins a new candidate group.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Majority Element algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Majority Element, not a generic data structure illustration. The key idea is: Imagine canceling a pair of different values whenever possible. A value appearing more than half the time cannot be completely canceled. Keep one candidate and a balance of unmatched votes. Change the candidate only when the balance reaches zero. The reason a decision is safe is: The guarantee of a strict majority is necessary here. Without it, verify the final candidate's count. The actual example this lesson teaches is {\"nums\": [3, 2, 3]} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can a strict majority survive cancellation of unlike pairs?",
+        "decision": "Change the candidate only at zero balance; the strict-majority guarantee is essential."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A frequency table remembers every distinct value. The stronger promise that one value appears more than half the time lets opposing votes cancel without retaining all counts.",
+        "decision": "Maintain one candidate and a balance of unmatched copies. An equal value increases the balance; a different value cancels one copy. When the balance empties, the next value begins a new candidate group."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Maintain one candidate and a balance of unmatched copies. An equal value increases the balance; a different value cancels one copy. When the balance empties, the next value begins a new candidate group.",
+        "decision": "Change the candidate only at zero balance; the strict-majority guarantee is essential."
+      },
+      {
+        "id": "three-gains-a-vote",
+        "title": "Three gains a vote",
+        "narration": "For [3,2,3], the first 3 becomes candidate with balance one.",
+        "decision": "There is no earlier unmatched group."
+      },
+      {
+        "id": "two-cancels-that-vote",
+        "title": "Two cancels that vote",
+        "narration": "The differing 2 cancels the one vote for 3, leaving zero balance.",
+        "decision": "One unlike pair cannot eliminate a strict majority entirely."
+      },
+      {
+        "id": "three-survives-the-final-group",
+        "title": "Three survives the final group",
+        "narration": "The last 3 starts a new group and remains the candidate. It occurs twice among three values.",
+        "decision": "The guarantee turns the survivor into the required majority."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Removing a pair of different values can remove at most one occurrence of a strict majority. Since its original count exceeds all other counts combined, it cannot be canceled completely. The balance process performs exactly such pair cancellation, leaving its final candidate equal to that majority.",
+        "decision": "Change the candidate only at zero balance; the strict-majority guarantee is essential."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Without the majority guarantee, a surviving candidate would need a separate count verification.",
+        "decision": "Cancellation alone does not prove a majority in arbitrary input."
+      }
+    ]
+  }
 }

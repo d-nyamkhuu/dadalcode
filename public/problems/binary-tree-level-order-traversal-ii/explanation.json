@@ -53,5 +53,86 @@
       "note": "Reverse depth order without reversing values inside any level."
     }
   ],
-  "keyDecision": "Process exactly the queue's starting size for each level, then reverse the completed level list."
+  "keyDecision": "Process exactly the queue's starting size for each level, then reverse the completed level list.",
+  "concept": {
+    "question": "Can we reverse the level groups without reversing the nodes inside them?",
+    "intuition": [
+      "Starting from leaves directly makes global left-to-right level grouping awkward. Ordinary top-down grouping already gives the correct values within every level.",
+      "Collect levels from root downward with a queue. Then reverse the outer list of groups. Keep each group’s internal order unchanged."
+    ],
+    "observation": "Reverse levels as whole groups, not the values within each level.",
+    "approach": [
+      "Collect top-down levels with a queue.",
+      "Keep values inside each level left to right.",
+      "Reverse the completed group list."
+    ],
+    "correctness": "Breadth-first grouping produces every depth’s values in left-to-right order. Reversing only the sequence of complete groups changes depth order from increasing to decreasing while preserving each level’s values. That is exactly the requested bottom-up traversal.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(w + h) auxiliary plus O(n) output",
+      "explanation": "Each node is visited once, and reversing the groups costs no more than linear work. The queue follows maximum width; stored groups account for all output values."
+    },
+    "pitfalls": [
+      "Reverse levels as whole groups, not the values within each level.",
+      "No artificial empty level should be added."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/binary-tree-level-order-traversal-ii/concept.webp",
+        "alt": "Collect levels from root downward with a queue. Then reverse the outer list of groups. Keep each group’s internal order unchanged.",
+        "caption": "Collect levels from root downward with a queue. Then reverse the outer list of groups. Keep each group’s internal order unchanged.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Binary Tree Level Order Traversal II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Binary Tree Level Order Traversal II, not a generic data structure illustration. The key idea is: Collect the tree's levels from the root downward using a queue. Then reverse the list of levels. Reverse only the groups, keeping values within each group in left-to-right order. This gives the required bottom-up result with a simple, consistent traversal. The reason a decision is safe is: Process exactly the queue's starting size for each level, then reverse the completed level list. The actual example this lesson teaches is {\"root\": [3, 9, 20, null, null, 15, 7]} with answer [[15, 7], [9, 20], [3]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can we reverse the level groups without reversing the nodes inside them?",
+        "decision": "Reverse levels as whole groups, not the values within each level."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Starting from leaves directly makes global left-to-right level grouping awkward. Ordinary top-down grouping already gives the correct values within every level.",
+        "decision": "Collect levels from root downward with a queue. Then reverse the outer list of groups. Keep each group’s internal order unchanged."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Collect levels from root downward with a queue. Then reverse the outer list of groups. Keep each group’s internal order unchanged.",
+        "decision": "Reverse levels as whole groups, not the values within each level."
+      },
+      {
+        "id": "collect-the-root-group",
+        "title": "Collect the root group",
+        "narration": "The root three forms the first complete depth group, containing just [3].",
+        "decision": "Children are queued for the next depth."
+      },
+      {
+        "id": "collect-the-next-two-groups",
+        "title": "Collect the next two groups",
+        "narration": "The next groups are [9,20] and [15,7], each left to right.",
+        "decision": "Frozen queue sizes separate parent and child levels."
+      },
+      {
+        "id": "turn-the-stack-of-groups-upside-down",
+        "title": "Turn the stack of groups upside down",
+        "narration": "Reverse the groups to [[15,7],[9,20],[3]].",
+        "decision": "Bottom-up order does not change each level’s left-to-right order."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Breadth-first grouping produces every depth’s values in left-to-right order. Reversing only the sequence of complete groups changes depth order from increasing to decreasing while preserving each level’s values. That is exactly the requested bottom-up traversal.",
+        "decision": "Reverse levels as whole groups, not the values within each level."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An empty tree has an empty group list.",
+        "decision": "No artificial empty level should be added."
+      }
+    ]
+  }
 }

@@ -40,5 +40,86 @@
       "note": "The entrance index is a repeated destination value, so it is the duplicate itself rather than a duplicate position."
     }
   ],
-  "keyDecision": "Follow index → nums[index]. Find a meeting first, then restart one pointer at index 0 to locate the entrance."
+  "keyDecision": "Follow index → nums[index]. Find a meeting first, then restart one pointer at index 0 to locate the entrance.",
+  "concept": {
+    "question": "Why does reading values as next addresses turn a duplicate into a cycle entrance?",
+    "intuition": [
+      "A membership table needs extra memory, and altering values is forbidden. The bounded positive values let the row describe a next-address structure without changing it.",
+      "Treat each value as the address to visit next, starting at address zero. Since zero is never a stored target, the route enters a loop from outside it. The repeated value identifies the entrance with multiple incoming routes. Use slow-fast detection, then equal-speed entrance finding."
+    ],
+    "observation": "Follow addresses without changing values; return the cycle entrance value.",
+    "approach": [
+      "Follow one-link and two-link address walkers until they meet.",
+      "Restart one walker at address zero.",
+      "Move both one link until they meet again at the entrance."
+    ],
+    "correctness": "The bounded address map forces the route to repeat. Starting from zero enters its eventual cycle through a value receiving repeated incoming references; under the unique-duplicate promise that entrance is the repeated value. Slow-fast movement detects the cycle, and the cycle-distance relation makes equal-speed walkers from zero and the meeting align at its entrance.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Both address-walking phases traverse a linear number of links. A few address bookmarks use constant memory and leave the input unchanged."
+    },
+    "pitfalls": [
+      "Follow addresses without changing values; return the cycle entrance value.",
+      "Do not rely on the duplicated occurrence count being exactly two."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-the-duplicate-number/concept.webp",
+        "alt": "Treat each value as the address to visit next, starting at address zero. Since zero is never a stored target, the route enters a loop from outside it. The repeated value identifies the entrance with multiple incoming routes. Use slow-fast detection, then equal-speed entrance finding.",
+        "caption": "Treat each value as the address to visit next, starting at address zero. Since zero is never a stored target, the route enters a loop from outside it. The repeated value identifies the entrance with multiple incoming routes. Use slow-fast detection, then equal-speed entrance finding.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find the Duplicate Number algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find the Duplicate Number, not a generic data structure illustration. The key idea is: Read each number as the index to visit next. This turns the array into a chain that eventually loops, and the duplicate is the loop's entrance. Use the same two-phase pointer method as finding a cycle entrance in a linked list. No array values need to change. The reason a decision is safe is: Follow index → nums[index]. Find a meeting first, then restart one pointer at index 0 to locate the entrance. The actual example this lesson teaches is {\"nums\": [1, 3, 4, 2, 2]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does reading values as next addresses turn a duplicate into a cycle entrance?",
+        "decision": "Follow addresses without changing values; return the cycle entrance value."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A membership table needs extra memory, and altering values is forbidden. The bounded positive values let the row describe a next-address structure without changing it.",
+        "decision": "Treat each value as the address to visit next, starting at address zero. Since zero is never a stored target, the route enters a loop from outside it. The repeated value identifies the entrance with multiple incoming routes. Use slow-fast detection, then equal-speed entrance finding."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Treat each value as the address to visit next, starting at address zero. Since zero is never a stored target, the route enters a loop from outside it. The repeated value identifies the entrance with multiple incoming routes. Use slow-fast detection, then equal-speed entrance finding.",
+        "decision": "Follow addresses without changing values; return the cycle entrance value."
+      },
+      {
+        "id": "the-row-defines-a-route",
+        "title": "The row defines a route",
+        "narration": "Values [1,3,4,2,2] create addresses 0→1→3→2→4→2.",
+        "decision": "Two stored 2 values lead to the same address."
+      },
+      {
+        "id": "detect-a-meeting-inside-the-loop",
+        "title": "Detect a meeting inside the loop",
+        "narration": "Slow and fast address walkers meet at address 4 inside the cycle 2↔4.",
+        "decision": "The detection meeting is not necessarily the entrance."
+      },
+      {
+        "id": "locate-the-entrance",
+        "title": "Locate the entrance",
+        "narration": "Restart one walker at 0 and move both equally. They meet at address 2, the duplicate value.",
+        "decision": "The second phase distinguishes the entrance from the earlier meeting."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The bounded address map forces the route to repeat. Starting from zero enters its eventual cycle through a value receiving repeated incoming references; under the unique-duplicate promise that entrance is the repeated value. Slow-fast movement detects the cycle, and the cycle-distance relation makes equal-speed walkers from zero and the meeting align at its entrance.",
+        "decision": "Follow addresses without changing values; return the cycle entrance value."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "The duplicate may occur more than twice. Its address still has repeated incoming references.",
+        "decision": "Do not rely on the duplicated occurrence count being exactly two."
+      }
+    ]
+  }
 }

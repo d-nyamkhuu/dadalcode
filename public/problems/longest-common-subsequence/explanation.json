@@ -113,5 +113,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How do matching endpoints extend earlier agreement while mismatches preserve it?",
+    "intuition": [
+      "Trying all subsequences is exponential. Every pair of text prefixes has a smaller agreement question whose answer can be saved.",
+      "If the two final prefix letters agree, extend the shorter-prefix diagonal answer by one. Otherwise, skip either final letter and retain the better neighboring answer. Keep only the preceding and current rows because older rows are no longer needed."
+    ],
+    "observation": "Skipping a letter preserves earlier matches; a subsequence need not be contiguous.",
+    "approach": [
+      "Give empty-prefix pairs agreement length zero.",
+      "Compare each pair of final prefix letters using diagonal or neighboring saved answers.",
+      "Read the complete-prefix answer after the last row."
+    ],
+    "correctness": "For matching final letters, an optimal shared subsequence can use that pair and extend an optimal result of the shorter prefixes. For differing final letters, an optimal subsequence must omit at least one, so the better of the two shorter-prefix answers is exact. Induction over prefix pairs establishes every table entry and the complete-text result.",
+    "complexity": {
+      "time": "O(mn)",
+      "space": "O(n)",
+      "explanation": "Each pair of prefix lengths is computed once, giving the product of text lengths in time. Two rows use storage proportional to the second text length in the chosen orientation."
+    },
+    "pitfalls": [
+      "Skipping a letter preserves earlier matches; a subsequence need not be contiguous.",
+      "Keep the empty-prefix border at zero."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/longest-common-subsequence/concept.webp",
+        "alt": "If the two final prefix letters agree, extend the shorter-prefix diagonal answer by one. Otherwise, skip either final letter and retain the better neighboring answer. Keep only the preceding and current rows because older rows are no longer needed.",
+        "caption": "If the two final prefix letters agree, extend the shorter-prefix diagonal answer by one. Otherwise, skip either final letter and retain the better neighboring answer. Keep only the preceding and current rows because older rows are no longer needed.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Longest Common Subsequence algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Longest Common Subsequence, not a generic data structure illustration. The key idea is: Compare prefixes of the two strings. If their final characters match, add one to the answer for the two shorter prefixes. Otherwise, keep the better answer from dropping either final character. Save these smaller answers in rows so the same prefix pair is not solved repeatedly. The reason a decision is safe is: A match uses diagonal + 1. A mismatch uses max(above, left). Characters may be skipped but cannot be reordered. The actual example this lesson teaches is {\"text1\": \"abcde\", \"text2\": \"ace\"} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do matching endpoints extend earlier agreement while mismatches preserve it?",
+        "decision": "Skipping a letter preserves earlier matches; a subsequence need not be contiguous."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying all subsequences is exponential. Every pair of text prefixes has a smaller agreement question whose answer can be saved.",
+        "decision": "If the two final prefix letters agree, extend the shorter-prefix diagonal answer by one. Otherwise, skip either final letter and retain the better neighboring answer. Keep only the preceding and current rows because older rows are no longer needed."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "If the two final prefix letters agree, extend the shorter-prefix diagonal answer by one. Otherwise, skip either final letter and retain the better neighboring answer. Keep only the preceding and current rows because older rows are no longer needed.",
+        "decision": "Skipping a letter preserves earlier matches; a subsequence need not be contiguous."
+      },
+      {
+        "id": "matching-a-establishes-agreement-length-one",
+        "title": "Matching a establishes agreement length one",
+        "narration": "For abcde and ace, processing a gives prefix answers [0,1,1,1] against empty,a,ac,ace. Reading b keeps those answers.",
+        "decision": "Skipping b does not erase the matched a."
+      },
+      {
+        "id": "matching-c-extends-the-diagonal",
+        "title": "Matching c extends the diagonal",
+        "narration": "At first-text c and second-text c, append c to the earlier a agreement. The row becomes [0,1,2,2].",
+        "decision": "A matched final pair extends the two shorter prefixes, not the current row’s same column."
+      },
+      {
+        "id": "matching-e-completes-three-letters",
+        "title": "Matching e completes three letters",
+        "narration": "Reading d preserves the row; e extends the earlier two-letter agreement to three. The shared subsequence is ace. Return three.",
+        "decision": "The skipped b and d demonstrate subsequence gaps."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For matching final letters, an optimal shared subsequence can use that pair and extend an optimal result of the shorter prefixes. For differing final letters, an optimal subsequence must omit at least one, so the better of the two shorter-prefix answers is exact. Induction over prefix pairs establishes every table entry and the complete-text result.",
+        "decision": "Skipping a letter preserves earlier matches; a subsequence need not be contiguous."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A shared subsequence may skip letters, unlike a common substring.",
+        "decision": "Keep the empty-prefix border at zero."
+      }
+    ]
+  }
 }

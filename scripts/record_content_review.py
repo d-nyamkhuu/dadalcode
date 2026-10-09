@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from content_contracts import package_hashes
+from concept_contracts import concept_fingerprint
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
@@ -19,6 +20,7 @@ for slug in dict.fromkeys(args.slug):
     entry = by_slug[slug]
     hashes = package_hashes(ROOT / 'public/problems' / slug)
     entry.update(reviewed=True, resolved=True, packageHashes=hashes)
+    entry['conceptReview'] = {'reviewed': True, 'status': 'approved', 'visualHashes': concept_fingerprint(slug)}
     entry.setdefault('editorialReview', {}).update(
         reviewed=True, status='approved', explanationHash=hashes['explanation.json'])
 ledger_path.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + '\n')

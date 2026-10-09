@@ -105,5 +105,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why can three real nodes occupy a level of width four?",
+    "intuition": [
+      "Counting real nodes at a depth misses empty positions between the outside nodes. Creating every missing placeholder can instead explode for a sparse deep tree.",
+      "Assign real nodes their conceptual positions in a complete binary tree. At each depth, width is rightmost position minus leftmost position plus one. Translate all positions by the first position at that depth to keep numbers manageable without changing gaps."
+    ],
+    "observation": "Measure endpoint spacing, including interior gaps, while queueing only real nodes.",
+    "approach": [
+      "Traverse one depth at a time with conceptual node positions.",
+      "Translate the level’s positions by its first coordinate.",
+      "Measure its last translated position plus one and record the maximum."
+    ],
+    "correctness": "The child-position rule matches complete-tree slots, so positions encode every interior gap. Subtracting a common offset preserves their pairwise differences. Breadth-first order gives the first and last real positions at each depth, whose inclusive span is exactly the requested width.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(w)",
+      "explanation": "Each real node is visited once. Queue storage depends on the maximum number of real nodes per depth, not on the potentially much larger gap-inclusive width."
+    },
+    "pitfalls": [
+      "Measure endpoint spacing, including interior gaps, while queueing only real nodes.",
+      "Queue size measures real nodes and may be much smaller than conceptual width."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/maximum-width-of-binary-tree/concept.webp",
+        "alt": "Four equally spaced bottom-level tree positions include an empty third position between real nodes.",
+        "caption": "Width measures the distance between the outermost positions, including conceptual gaps. The exact four-slot example appears in the visual story.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. One exact small binary-tree silhouette: a root, two children, and a final level of FOUR equally spaced slots containing a node, a node, an EMPTY ghost slot, and a node. A luminous horizontal measuring bracket spans ALL FOUR slots. Highlight that the three real nodes occupy four positions. No numerals or text. Do not add any extra slots."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can three real nodes occupy a level of width four?",
+        "decision": "Measure endpoint spacing, including interior gaps, while queueing only real nodes."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Counting real nodes at a depth misses empty positions between the outside nodes. Creating every missing placeholder can instead explode for a sparse deep tree.",
+        "decision": "Assign real nodes their conceptual positions in a complete binary tree. At each depth, width is rightmost position minus leftmost position plus one. Translate all positions by the first position at that depth to keep numbers manageable without changing gaps."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Assign real nodes their conceptual positions in a complete binary tree. At each depth, width is rightmost position minus leftmost position plus one. Translate all positions by the first position at that depth to keep numbers manageable without changing gaps.",
+        "decision": "Measure endpoint spacing, including interior gaps, while queueing only real nodes."
+      },
+      {
+        "id": "the-first-two-levels-have-no-gaps",
+        "title": "The first two levels have no gaps",
+        "narration": "For [1,3,2,5,3,empty,9], root width is one and the next level has positions zero and one, width two.",
+        "decision": "Left and right child positions preserve complete-tree spacing."
+      },
+      {
+        "id": "the-last-level-has-an-interior-hole",
+        "title": "The last level has an interior hole",
+        "narration": "The third level occupies positions zero, one, and three. Position two is absent but lies between the endpoints.",
+        "decision": "The missing position contributes to width without becoming a queued node."
+      },
+      {
+        "id": "measure-the-whole-span",
+        "title": "Measure the whole span",
+        "narration": "Width is 3−0+1=4, larger than the earlier widths one and two. Return four.",
+        "decision": "A common translation changes no endpoint difference."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The child-position rule matches complete-tree slots, so positions encode every interior gap. Subtracting a common offset preserves their pairwise differences. Breadth-first order gives the first and last real positions at each depth, whose inclusive span is exactly the requested width.",
+        "decision": "Measure endpoint spacing, including interior gaps, while queueing only real nodes."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-sided chain has width one at every depth.",
+        "decision": "Queue size measures real nodes and may be much smaller than conceptual width."
+      }
+    ]
+  }
 }

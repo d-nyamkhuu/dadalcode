@@ -50,5 +50,86 @@
       "note": "The current end is inclusive, and nested increasing loops already provide the required output order."
     }
   ],
-  "keyDecision": "Save a pair at every word-ending marker, and stop this start as soon as a trie edge is missing."
+  "keyDecision": "Save a pair at every word-ending marker, and stop this start as soon as a trie edge is missing.",
+  "concept": {
+    "question": "How can a shared word-prefix tree recognize overlapping text matches?",
+    "intuition": [
+      "Searching separately for every dictionary word repeats comparisons along shared beginnings. A letter-path tree combines those beginnings and allows one forward walk from each text start.",
+      "From every start position, follow text letters through dictionary prefix paths. Record a pair each time a complete-word endpoint is reached, but continue because a longer word may also match. Stop only when the path is absent."
+    ],
+    "observation": "Matches may overlap and use inclusive end positions.",
+    "approach": [
+      "Build a letter-path tree with complete-word markers.",
+      "Start one forward path walk at each text position.",
+      "Record every endpoint encountered, continuing for longer matches."
+    ],
+    "correctness": "A path from a text start exists exactly while the scanned text is a prefix of some dictionary word. An endpoint marks exact equality with a whole word, so each recorded pair is valid. Every occurrence has a start scanned by the algorithm and a complete path to its end. Increasing starts and increasing ends within each walk supply the requested order.",
+    "complexity": {
+      "time": "O(total word characters + n*min(n,L))",
+      "space": "O(total word characters) excluding output",
+      "explanation": "Dictionary construction reads all word characters. Each text start walks at most the smaller of remaining text length and maximum word length. Prefix-tree storage scales with dictionary characters, excluding result pairs."
+    },
+    "pitfalls": [
+      "Matches may overlap and use inclusive end positions.",
+      "Do not stop at the first complete word if longer paths remain."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/index-pairs-of-a-string/concept.webp",
+        "alt": "From every start position, follow text letters through dictionary prefix paths. Record a pair each time a complete-word endpoint is reached, but continue because a longer word may also match. Stop only when the path is absent.",
+        "caption": "From every start position, follow text letters through dictionary prefix paths. Record a pair each time a complete-word endpoint is reached, but continue because a longer word may also match. Stop only when the path is absent.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Index Pairs of a String algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Index Pairs of a String, not a generic data structure illustration. The key idea is: Store the dictionary words as paths in a trie. From each starting position in the text, follow letters until a path is missing. Every word-ending marker reached gives one matching start/end pair. Trying starts and ends in increasing order also gives the required output order. The reason a decision is safe is: Save a pair at every word-ending marker, and stop this start as soon as a trie edge is missing. The actual example this lesson teaches is {\"text\": \"thestoryofleetcodeandme\", \"words\": [\"story\", \"fleet\", \"leetcode\"]} with answer [[3, 7], [9, 13], [10, 17]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a shared word-prefix tree recognize overlapping text matches?",
+        "decision": "Matches may overlap and use inclusive end positions."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Searching separately for every dictionary word repeats comparisons along shared beginnings. A letter-path tree combines those beginnings and allows one forward walk from each text start.",
+        "decision": "From every start position, follow text letters through dictionary prefix paths. Record a pair each time a complete-word endpoint is reached, but continue because a longer word may also match. Stop only when the path is absent."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "From every start position, follow text letters through dictionary prefix paths. Record a pair each time a complete-word endpoint is reached, but continue because a longer word may also match. Stop only when the path is absent.",
+        "decision": "Matches may overlap and use inclusive end positions."
+      },
+      {
+        "id": "a-start-at-three-finds-story",
+        "title": "A start at three finds story",
+        "narration": "In thestoryofleetcodeandme, dictionary story matches positions three through seven.",
+        "decision": "A complete-word marker identifies a match without ending the scan."
+      },
+      {
+        "id": "a-crossing-spelling-finds-fleet",
+        "title": "A crossing spelling finds fleet",
+        "narration": "Starting at nine gives fleet through thirteen, even though this match crosses into the visible leetcode portion.",
+        "decision": "Words in the text are not restricted to human-looking token boundaries."
+      },
+      {
+        "id": "the-overlapping-longer-match-remains-valid",
+        "title": "The overlapping longer match remains valid",
+        "narration": "Starting at ten finds leetcode through seventeen. Return [3,7],[9,13],[10,17], ordered by start then end.",
+        "decision": "Earlier matches do not consume text or forbid overlapping starts."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A path from a text start exists exactly while the scanned text is a prefix of some dictionary word. An endpoint marks exact equality with a whole word, so each recorded pair is valid. Every occurrence has a start scanned by the algorithm and a complete path to its end. Increasing starts and increasing ends within each walk supply the requested order.",
+        "decision": "Matches may overlap and use inclusive end positions."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A dictionary word can match inside or overlap another match.",
+        "decision": "Do not stop at the first complete word if longer paths remain."
+      }
+    ]
+  }
 }

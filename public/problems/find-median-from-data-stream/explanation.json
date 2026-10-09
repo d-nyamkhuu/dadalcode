@@ -147,5 +147,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Can two balanced piles expose the middle after every insertion?",
+    "intuition": [
+      "Sorting all received values after each insertion repeats ordering work. Only the two values at the boundary between smaller and larger halves are needed for the median.",
+      "Maintain a lower pile with quick access to its maximum and an upper pile with quick access to its minimum. Keep every lower value no greater than every upper value, and let the lower pile hold the single extra value when the total is odd."
+    ],
+    "observation": "Preserve ordered halves and equal sizes, or one extra value in the lower half.",
+    "approach": [
+      "Insert while maintaining the order between lower and upper halves.",
+      "Move boundary values to restore the allowed size balance.",
+      "Read the lower maximum, or average it with the upper minimum for an even total."
+    ],
+    "correctness": "The ordering condition puts all lower-half values before all upper-half values. The size condition positions the lower maximum at the sole middle for an odd total, or the lower maximum and upper minimum at the two middles for an even total. Boundary transfers preserve both conditions after each insertion.",
+    "complexity": {
+      "time": "O(log n) insertion, O(1) median",
+      "space": "O(n)",
+      "explanation": "Heap boundary updates take logarithmic work per insertion. A median query reads two exposed boundaries in constant time. Both heaps together store all received values."
+    },
+    "pitfalls": [
+      "Preserve ordered halves and equal sizes, or one extra value in the lower half.",
+      "Do not deduplicate a stream before finding its median."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-median-from-data-stream/concept.webp",
+        "alt": "Maintain a lower pile with quick access to its maximum and an upper pile with quick access to its minimum. Keep every lower value no greater than every upper value, and let the lower pile hold the single extra value when the total is odd.",
+        "caption": "Maintain a lower pile with quick access to its maximum and an upper pile with quick access to its minimum. Keep every lower value no greater than every upper value, and let the lower pile hold the single extra value when the total is odd.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find Median from Data Stream algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find Median from Data Stream, not a generic data structure illustration. The key idea is: Split the numbers into a smaller half and a larger half. Keep the largest smaller-half value and the smallest larger-half value easy to read with two heaps. Balance their sizes after each insertion. Those boundary values are exactly the middle value or middle pair. The reason a decision is safe is: Keep the lower half the same size as the upper half, or one value larger. The actual example this lesson teaches is {\"operations\": [\"MedianFinder\", \"addNum\", \"addNum\", \"findMedian\", \"addNum\", \"findMedian\"], \"args\": [[], [1], [2], [], [3], []]} with answer [null, null, null, 1.5, null, 2.0]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can two balanced piles expose the middle after every insertion?",
+        "decision": "Preserve ordered halves and equal sizes, or one extra value in the lower half."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting all received values after each insertion repeats ordering work. Only the two values at the boundary between smaller and larger halves are needed for the median.",
+        "decision": "Maintain a lower pile with quick access to its maximum and an upper pile with quick access to its minimum. Keep every lower value no greater than every upper value, and let the lower pile hold the single extra value when the total is odd."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Maintain a lower pile with quick access to its maximum and an upper pile with quick access to its minimum. Keep every lower value no greater than every upper value, and let the lower pile hold the single extra value when the total is odd.",
+        "decision": "Preserve ordered halves and equal sizes, or one extra value in the lower half."
+      },
+      {
+        "id": "one-value-belongs-below",
+        "title": "One value belongs below",
+        "narration": "Insert 1. The lower half is [1], upper empty.",
+        "decision": "The lower half owns an odd extra value."
+      },
+      {
+        "id": "two-values-expose-a-middle-pair",
+        "title": "Two values expose a middle pair",
+        "narration": "Insert 2. Halves are [1] and [2], giving median (1+2)/2 = 1.5.",
+        "decision": "These are logical ordered halves, not a claim about physical heap-array order."
+      },
+      {
+        "id": "rebalance-the-third-insertion",
+        "title": "Rebalance the third insertion",
+        "narration": "Insert 3. Move boundary 2 down so halves represent [1,2] and [3]. Median is 2.",
+        "decision": "The lower maximum is the odd middle value."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The ordering condition puts all lower-half values before all upper-half values. The size condition positions the lower maximum at the sole middle for an odd total, or the lower maximum and upper minimum at the two middles for an even total. Boundary transfers preserve both conditions after each insertion.",
+        "decision": "Preserve ordered halves and equal sizes, or one extra value in the lower half."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Repeated equal values remain separate occurrences, so they still affect the half sizes.",
+        "decision": "Do not deduplicate a stream before finding its median."
+      }
+    ]
+  }
 }

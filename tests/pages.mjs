@@ -109,6 +109,20 @@ try {
   await page
     .getByRole("heading", { name: "Two Sum", exact: true, level: 1 })
     .waitFor();
+  await page.locator(".concept-diagram").waitFor();
+  assert.equal(await page.locator(".trace-code, .walkthrough").count(), 0);
+  await page.getByRole("button", { name: "Next scene", exact: true }).click();
+  assert.match(
+    await page.locator(".concept-progress").innerText(),
+    /Scene 2 of/,
+  );
+  await page
+    .getByRole("navigation", { name: "Learning views" })
+    .getByRole("link", { name: "Solution", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Execution walkthrough", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Play", exact: true })
     .waitFor({ timeout: 60000 });
@@ -157,9 +171,7 @@ try {
   await page
     .getByRole("heading", { name: "House Robber", exact: true, level: 1 })
     .waitFor();
-  await page
-    .getByRole("button", { name: "Play", exact: true })
-    .waitFor({ timeout: 60000 });
+  await page.locator(".concept-diagram").waitFor();
   const illustration = page.locator(".concept-illustration img").first();
   await illustration.scrollIntoViewIfNeeded();
   await illustration.waitFor();
@@ -178,7 +190,7 @@ try {
   assert.equal(illustrationURL.origin, root.origin);
   assert.equal(
     illustrationURL.pathname,
-    `${basePath}illustrations/house-robber.webp`,
+    `${basePath}illustrations/house-robber/concept.webp`,
   );
   assertHealthy();
   await page.screenshot({

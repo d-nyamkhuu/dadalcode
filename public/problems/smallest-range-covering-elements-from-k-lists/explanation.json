@@ -56,5 +56,86 @@
       "note": "An exhausted list prevents any later selection from retaining coverage of all lists."
     }
   ],
-  "keyDecision": "Stop when a list runs out, because later choices would no longer cover every list."
+  "keyDecision": "Stop when a list runs out, because later choices would no longer cover every list.",
+  "concept": {
+    "question": "Why must we advance the list currently supplying the minimum?",
+    "intuition": [
+      "Trying every combination of representatives from all lists is enormous. With sorted lists, a current representative from each list gives a complete covering range, and only moving its minimum can raise the lower endpoint.",
+      "Keep one current value from every list, compare their minimum, and track their maximum. Record that range, then advance the list that supplied the minimum. Stop when that list has no next value, since further complete frontiers are impossible."
+    ],
+    "observation": "Every candidate frontier includes one representative from each list.",
+    "approach": [
+      "Start at each list’s first value.",
+      "Record the minimum-to-maximum frontier range.",
+      "Advance the minimum’s list and continue until one list is exhausted."
+    ],
+    "correctness": "For a fixed minimum representative, advancing any other list cannot improve the lower endpoint and cannot lower the maximum. Thus all potentially better ranges arise by advancing the minimum’s list. The process visits those necessary frontiers in order and records their best range. When a list exhausts at the minimum, no larger lower endpoint can still cover that list.",
+    "complexity": {
+      "time": "O(N log(k + 1))",
+      "space": "O(k)",
+      "explanation": "Each advance processes one list entry with a logarithmic operation over the number of lists. Work is total processed entries times that logarithm; the frontier stores one entry per list."
+    },
+    "pitfalls": [
+      "Every candidate frontier includes one representative from each list.",
+      "Stop on exhaustion of the minimum’s list, not when any nonminimum representative happens to be last."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/smallest-range-covering-elements-from-k-lists/concept.webp",
+        "alt": "Keep one current value from every list, compare their minimum, and track their maximum. Record that range, then advance the list that supplied the minimum. Stop when that list has no next value, since further complete frontiers are impossible.",
+        "caption": "Keep one current value from every list, compare their minimum, and track their maximum. Record that range, then advance the list that supplied the minimum. Stop when that list has no next value, since further complete frontiers are impossible.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Smallest Range Covering Elements from K Lists algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Smallest Range Covering Elements from K Lists, not a generic data structure illustration. The key idea is: Choose one current value from every sorted list. Their smallest and largest values define a range covering all lists. To make that range better, advance the list containing the smallest current value. A heap finds that minimum, while a saved maximum gives the other boundary. The reason a decision is safe is: Stop when a list runs out, because later choices would no longer cover every list. The actual example this lesson teaches is {\"nums\": [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]} with answer [20, 24]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must we advance the list currently supplying the minimum?",
+        "decision": "Every candidate frontier includes one representative from each list."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every combination of representatives from all lists is enormous. With sorted lists, a current representative from each list gives a complete covering range, and only moving its minimum can raise the lower endpoint.",
+        "decision": "Keep one current value from every list, compare their minimum, and track their maximum. Record that range, then advance the list that supplied the minimum. Stop when that list has no next value, since further complete frontiers are impossible."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep one current value from every list, compare their minimum, and track their maximum. Record that range, then advance the list that supplied the minimum. Stop when that list has no next value, since further complete frontiers are impossible.",
+        "decision": "Every candidate frontier includes one representative from each list."
+      },
+      {
+        "id": "a-complete-first-frontier",
+        "title": "A complete first frontier",
+        "narration": "For [4,10,15,24,26], [0,9,12,20], and [5,18,22,30], representatives 4,0,5 give range [0,5].",
+        "decision": "No list may be omitted from a covering range."
+      },
+      {
+        "id": "advance-only-the-lower-endpoint-s-list",
+        "title": "Advance only the lower endpoint’s list",
+        "narration": "The zero comes from the second list, so replace it with nine. Continue advancing whichever representative is smallest, recording each full frontier.",
+        "decision": "Moving a larger representative cannot raise the current minimum and may worsen the maximum."
+      },
+      {
+        "id": "the-best-frontier-appears-before-exhaustion",
+        "title": "The best frontier appears before exhaustion",
+        "narration": "Eventually representatives 24,20,22 give [20,24], width four. Advancing 20 exhausts its list, so stop and return [20,24].",
+        "decision": "No later complete frontier can discard that exhausted list’s final value."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For a fixed minimum representative, advancing any other list cannot improve the lower endpoint and cannot lower the maximum. Thus all potentially better ranges arise by advancing the minimum’s list. The process visits those necessary frontiers in order and records their best range. When a list exhausts at the minimum, no larger lower endpoint can still cover that list.",
+        "decision": "Every candidate frontier includes one representative from each list."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Equal-width ranges use the specified smaller-left-endpoint tie rule.",
+        "decision": "Stop on exhaustion of the minimum’s list, not when any nonminimum representative happens to be last."
+      }
+    ]
+  }
 }

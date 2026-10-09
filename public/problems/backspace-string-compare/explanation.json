@@ -33,5 +33,86 @@
       "note": "After helper scans, exhausted indices are -1; both exhausted means equality, while only one exhausted means a remaining mismatch."
     }
   ],
-  "keyDecision": "Count pending backspaces while moving backward. Compare only characters that are not erased."
+  "keyDecision": "Count pending backspaces while moving backward. Compare only characters that are not erased.",
+  "concept": {
+    "question": "How can reading backward skip deleted letters without rebuilding editor contents?",
+    "intuition": [
+      "Constructing both edited texts works but stores extra strings. Reading from the end lets each backspace announce how many earlier ordinary characters must be skipped.",
+      "Move backward with a pending-deletion count. A backspace adds one deletion; an ordinary character consumes one if pending, otherwise survives. Compare the next surviving character from each text and repeat."
+    ],
+    "observation": "Backspaces delete earlier characters, so reverse reading accumulates deletion demand.",
+    "approach": [
+      "Find each text’s next surviving character from the right.",
+      "Compare survivors, rejecting a mismatch or one-sided exhaustion.",
+      "Continue until both texts have no survivor left."
+    ],
+    "correctness": "Reverse scanning accounts for exactly the backspaces to the right of each character. Pending deletions consume precisely the ordinary characters those backspaces erase; the next uncovered character is therefore the next edited survivor from the end. Comparing every survivor and simultaneous exhaustion is equivalent to comparing the two edited texts.",
+    "complexity": {
+      "time": "O(m + n)",
+      "space": "O(1)",
+      "explanation": "Both scans move only backward and visit each character a constant number of times. Work is linear in combined text length and deletion counters use constant extra storage."
+    },
+    "pitfalls": [
+      "Backspaces delete earlier characters, so reverse reading accumulates deletion demand.",
+      "A backspace encountered while deletions are pending adds another deletion."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/backspace-string-compare/concept.webp",
+        "alt": "Move backward with a pending-deletion count. A backspace adds one deletion; an ordinary character consumes one if pending, otherwise survives. Compare the next surviving character from each text and repeat.",
+        "caption": "Move backward with a pending-deletion count. A backspace adds one deletion; an ordinary character consumes one if pending, otherwise survives. Compare the next surviving character from each text and repeat.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Backspace String Compare algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Backspace String Compare, not a generic data structure illustration. The key idea is: Read each string backward. A backspace tells you to skip one earlier character, and several backspaces may skip several characters. Compare the next surviving characters from the two strings. This avoids building the edited strings in extra storage. The reason a decision is safe is: Count pending backspaces while moving backward. Compare only characters that are not erased. The actual example this lesson teaches is {\"s\": \"ab#c\", \"t\": \"ad#c\"} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can reading backward skip deleted letters without rebuilding editor contents?",
+        "decision": "Backspaces delete earlier characters, so reverse reading accumulates deletion demand."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Constructing both edited texts works but stores extra strings. Reading from the end lets each backspace announce how many earlier ordinary characters must be skipped.",
+        "decision": "Move backward with a pending-deletion count. A backspace adds one deletion; an ordinary character consumes one if pending, otherwise survives. Compare the next surviving character from each text and repeat."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Move backward with a pending-deletion count. A backspace adds one deletion; an ordinary character consumes one if pending, otherwise survives. Compare the next surviving character from each text and repeat.",
+        "decision": "Backspaces delete earlier characters, so reverse reading accumulates deletion demand."
+      },
+      {
+        "id": "the-final-c-characters-survive",
+        "title": "The final c characters survive",
+        "narration": "For ab#c and ad#c, the final c on each side has no backspace to its right. They match.",
+        "decision": "Only later backspaces can delete an earlier character."
+      },
+      {
+        "id": "each-backspace-consumes-one-earlier-letter",
+        "title": "Each backspace consumes one earlier letter",
+        "narration": "The next symbol on each side is #. Set one pending deletion and skip b on the first side and d on the second.",
+        "decision": "Deleted letters never enter the comparison."
+      },
+      {
+        "id": "both-survivors-and-endings-agree",
+        "title": "Both survivors and endings agree",
+        "narration": "The a characters match, then both texts exhaust. Both edited texts are ac, so return yes.",
+        "decision": "One remaining survivor on either side would mean unequal texts."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Reverse scanning accounts for exactly the backspaces to the right of each character. Pending deletions consume precisely the ordinary characters those backspaces erase; the next uncovered character is therefore the next edited survivor from the end. Comparing every survivor and simultaneous exhaustion is equivalent to comparing the two edited texts.",
+        "decision": "Backspaces delete earlier characters, so reverse reading accumulates deletion demand."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Extra backspaces at the beginning delete nothing after all earlier text is gone.",
+        "decision": "A backspace encountered while deletions are pending adds another deletion."
+      }
+    ]
+  }
 }

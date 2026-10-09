@@ -50,5 +50,86 @@
       "note": "This compares rank information, not membership. Fewer than k qualifying entries proves the desired value lies above mid, even across value gaps."
     }
   ],
-  "keyDecision": "Find the smallest value whose count of entries <= value is at least k. Count duplicates separately."
+  "keyDecision": "Find the smallest value whose count of entries <= value is at least k. Count duplicates separately.",
+  "concept": {
+    "question": "How can counting entries below a trial value replace extracting them one by one?",
+    "intuition": [
+      "Flattening and sorting the matrix ignores its already sorted rows and columns. Instead, ask how many entries are no greater than a proposed answer value.",
+      "For a trial value, walk a staircase from the bottom-left corner. If an entry qualifies, every entry above it in that column qualifies; count them and move right. Otherwise move up. Binary search the smallest value whose count reaches the requested rank."
+    ],
+    "observation": "Search for the first value with at least the requested number of entries at or below it.",
+    "approach": [
+      "Bound the answer by the smallest and largest matrix entries.",
+      "Count entries at or below a trial using sorted rows and columns.",
+      "Narrow the value range until the first qualifying value remains."
+    ],
+    "correctness": "Column and row sortedness makes the staircase count exact: a qualifying bottom entry certifies all entries above, while an oversized entry excludes its row position and everything below there. The count is nondecreasing in the trial value. Binary search therefore finds the first threshold whose count reaches the rank, precisely the value occupying that sorted rank.",
+    "complexity": {
+      "time": "O(n * log(R+1)), R = max-min",
+      "space": "O(1)",
+      "explanation": "Each count visits at most one linear staircase through rows and columns. Binary search makes logarithmically many trials in the numeric value range. The counting walk uses constant extra storage."
+    },
+    "pitfalls": [
+      "Search for the first value with at least the requested number of entries at or below it.",
+      "Count duplicate entries separately."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/kth-smallest-element-in-a-sorted-matrix/concept.webp",
+        "alt": "For a trial value, walk a staircase from the bottom-left corner. If an entry qualifies, every entry above it in that column qualifies; count them and move right. Otherwise move up. Binary search the smallest value whose count reaches the requested rank.",
+        "caption": "For a trial value, walk a staircase from the bottom-left corner. If an entry qualifies, every entry above it in that column qualifies; count them and move right. Otherwise move up. Binary search the smallest value whose count reaches the requested rank.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Kth Smallest Element in a Sorted Matrix algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Kth Smallest Element in a Sorted Matrix, not a generic data structure illustration. The key idea is: Search possible answer values rather than matrix positions. For a trial value, count how many entries are no larger than it. If that count is below k, the answer must be larger. Otherwise, keep that value and smaller candidates. Sorted rows and columns make the count efficient. The reason a decision is safe is: Find the smallest value whose count of entries <= value is at least k. Count duplicates separately. The actual example this lesson teaches is {\"matrix\": [[1, 5, 9], [10, 11, 13], [12, 13, 15]], \"k\": 8} with answer 13. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can counting entries below a trial value replace extracting them one by one?",
+        "decision": "Search for the first value with at least the requested number of entries at or below it."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Flattening and sorting the matrix ignores its already sorted rows and columns. Instead, ask how many entries are no greater than a proposed answer value.",
+        "decision": "For a trial value, walk a staircase from the bottom-left corner. If an entry qualifies, every entry above it in that column qualifies; count them and move right. Otherwise move up. Binary search the smallest value whose count reaches the requested rank."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "For a trial value, walk a staircase from the bottom-left corner. If an entry qualifies, every entry above it in that column qualifies; count them and move right. Otherwise move up. Binary search the smallest value whose count reaches the requested rank.",
+        "decision": "Search for the first value with at least the requested number of entries at or below it."
+      },
+      {
+        "id": "the-eighth-entry-may-repeat",
+        "title": "The eighth entry may repeat",
+        "narration": "For [[1,5,9],[10,11,13],[12,13,15]], the requested rank is eight. Both copies of 13 count separately.",
+        "decision": "Rank counts occurrences, not distinct values."
+      },
+      {
+        "id": "test-the-middle-of-the-value-range",
+        "title": "Test the middle of the value range",
+        "narration": "Trial 8 has only two entries at or below it, so the answer is larger. Trial 12 has six, so it is larger than 12 as well.",
+        "decision": "If a trial counts too few, every smaller trial also counts too few."
+      },
+      {
+        "id": "find-the-first-qualifying-threshold",
+        "title": "Find the first qualifying threshold",
+        "narration": "Trial 14 counts eight and trial 13 also counts eight. Since 12 counts only six, the first threshold reaching rank eight is 13. Return 13.",
+        "decision": "A trial value need not itself occur in the matrix."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Column and row sortedness makes the staircase count exact: a qualifying bottom entry certifies all entries above, while an oversized entry excludes its row position and everything below there. The count is nondecreasing in the trial value. Binary search therefore finds the first threshold whose count reaches the rank, precisely the value occupying that sorted rank.",
+        "decision": "Search for the first value with at least the requested number of entries at or below it."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "In a one-cell matrix, the only legal rank returns that cell immediately.",
+        "decision": "Count duplicate entries separately."
+      }
+    ]
+  }
 }

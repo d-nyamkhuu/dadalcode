@@ -102,5 +102,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why must a node obey all ancestor bounds, rather than just its parent?",
+    "intuition": [
+      "A child may look correct beside its parent yet violate a more distant ancestor’s ordering rule. Checking only adjacent values misses that inherited restriction.",
+      "Carry an allowed open interval down the tree. A left child inherits a smaller upper limit, while a right child inherits a larger lower limit. A node must fall strictly between every inherited bound."
+    ],
+    "observation": "The allowed interval is strict and contains all ancestor restrictions.",
+    "approach": [
+      "Visit a node with its inherited lower and upper bounds.",
+      "Reject a value outside those strict bounds.",
+      "Pass narrowed bounds to the children."
+    ],
+    "correctness": "The root has unrestricted bounds. Each child receives the intersection of inherited ancestor bounds with its parent’s new restriction. If every node passes, every left-subtree value is smaller and every right-subtree value is larger than each ancestor it depends on. Conversely, any violated search-tree rule produces a failed inherited bound.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(h)",
+      "explanation": "Visit each node once. The iterative depth-first frontier uses memory proportional to tree height in the worst case."
+    },
+    "pitfalls": [
+      "The allowed interval is strict and contains all ancestor restrictions.",
+      "The value 4 also has to exceed ancestor 5."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/validate-binary-search-tree/concept.webp",
+        "alt": "Carry an allowed open interval down the tree. A left child inherits a smaller upper limit, while a right child inherits a larger lower limit. A node must fall strictly between every inherited bound.",
+        "caption": "Carry an allowed open interval down the tree. A left child inherits a smaller upper limit, while a right child inherits a larger lower limit. A node must fall strictly between every inherited bound.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Validate Binary Search Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Validate Binary Search Tree, not a generic data structure illustration. The key idea is: A node must obey every ancestor's rule, not only its parent's rule. Carry a lower and upper allowed value as you visit the tree. Moving left lowers the upper limit; moving right raises the lower limit. Reject any node outside its allowed range. The reason a decision is safe is: Require lower < value < upper. Equal values are not allowed in this binary search tree. The actual example this lesson teaches is {\"root\": [2, 1, 3]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must a node obey all ancestor bounds, rather than just its parent?",
+        "decision": "The allowed interval is strict and contains all ancestor restrictions."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A child may look correct beside its parent yet violate a more distant ancestor’s ordering rule. Checking only adjacent values misses that inherited restriction.",
+        "decision": "Carry an allowed open interval down the tree. A left child inherits a smaller upper limit, while a right child inherits a larger lower limit. A node must fall strictly between every inherited bound."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Carry an allowed open interval down the tree. A left child inherits a smaller upper limit, while a right child inherits a larger lower limit. A node must fall strictly between every inherited bound.",
+        "decision": "The allowed interval is strict and contains all ancestor restrictions."
+      },
+      {
+        "id": "the-root-sets-the-first-split",
+        "title": "The root sets the first split",
+        "narration": "Root 2 has no finite bounds and is valid. Its left side must be below 2 and right side above 2.",
+        "decision": "A subtree inherits its root’s ordering restriction."
+      },
+      {
+        "id": "the-left-child-obeys-its-upper-bound",
+        "title": "The left child obeys its upper bound",
+        "narration": "Value 1 is strictly below 2, so it passes.",
+        "decision": "Deeper left-side nodes would still inherit this upper bound."
+      },
+      {
+        "id": "the-right-child-obeys-its-lower-bound",
+        "title": "The right child obeys its lower bound",
+        "narration": "Value 3 is strictly above 2. Every node passes, so this tree is valid.",
+        "decision": "Each successful visit preserves the bounded subtree rule."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The root has unrestricted bounds. Each child receives the intersection of inherited ancestor bounds with its parent’s new restriction. If every node passes, every left-subtree value is smaller and every right-subtree value is larger than each ancestor it depends on. Conversely, any violated search-tree rule produces a failed inherited bound.",
+        "decision": "The allowed interval is strict and contains all ancestor restrictions."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: root 5 with right child 7 and that child’s left value 4 is invalid, even though 4 is below 7.",
+        "decision": "The value 4 also has to exceed ancestor 5."
+      }
+    ]
+  }
 }

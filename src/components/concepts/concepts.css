@@ -1,0 +1,230 @@
+.concept-player {
+  padding: 22px;
+}
+.concept-player:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: -2px;
+}
+.concept-player-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.concept-player-header h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.concept-progress {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.concept-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.concept-scene-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  min-width: 0;
+  flex: 1;
+}
+.concept-scene-selector select {
+  min-width: 0;
+  width: 100%;
+  padding: 9px;
+}
+.concept-stage {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #101618;
+  overflow: hidden;
+  animation: concept-arrive 240ms ease-out;
+}
+.concept-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 240px;
+}
+.concept-shape {
+  stroke: #53b1ef;
+  fill: #53b1ef;
+}
+.concept-shape rect,
+.concept-shape circle {
+  fill: #152932;
+  stroke-width: 1.5;
+}
+.concept-shape text {
+  stroke: none;
+  fill: #e8edf2;
+}
+text.concept-shape {
+  stroke: none;
+}
+.concept-active {
+  stroke: #c1f17a;
+  fill: #c1f17a;
+}
+.concept-active rect,
+.concept-active circle {
+  fill: #263423;
+}
+.concept-warning {
+  stroke: #f5bd74;
+  fill: #f5bd74;
+}
+.concept-warning rect,
+.concept-warning circle {
+  fill: #352a20;
+}
+.concept-muted {
+  stroke: #61727c;
+  fill: #a7b5c4;
+}
+.concept-muted rect,
+.concept-muted circle {
+  fill: #171d21;
+}
+.concept-detail {
+  fill: #a7b5c4 !important;
+}
+.concept-narration {
+  padding: 22px 0 10px;
+}
+.concept-narration h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.concept-narration p {
+  color: #c5cfd8;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.concept-decision {
+  border-left: 2px solid var(--lime);
+  padding: 10px 16px;
+  background: #19221c;
+}
+.concept-decision strong {
+  font-size: 13px;
+  color: var(--lime);
+}
+.concept-decision p {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+.concept-navigation {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 0 0 18px;
+}
+.concept-navigation progress {
+  flex: 1;
+  min-width: 30px;
+  height: 5px;
+  accent-color: var(--lime);
+}
+.concept-keyboard-hint {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+.concept-loading {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+.concept-lesson .concept-illustration img {
+  aspect-ratio: 2 / 1;
+  object-fit: contain;
+  background: #101618;
+}
+.concept-lesson .concept-illustration {
+  margin-top: 24px;
+}
+.concept-example-data {
+  margin: 10px 0 0;
+}
+.concept-example-data > div {
+  margin: 0 0 12px;
+}
+.concept-example-data dt {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+.concept-example-data dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.concept-example-answer {
+  margin: 10px 0 0;
+  overflow-wrap: anywhere;
+}
+.solution-view-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.solution-view-tabs button[aria-pressed="true"] {
+  color: var(--lime);
+  border-color: var(--lime);
+  background: var(--lime-dark);
+}
+@keyframes concept-arrive {
+  from {
+    opacity: 0.4;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .concept-stage {
+    animation: none;
+  }
+}
+@media (max-width: 1280px) {
+  .concept-player {
+    padding: 16px;
+  }
+  .concept-player-header {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .concept-toolbar {
+    gap: 8px;
+  }
+  .concept-scene-selector {
+    font-size: 0;
+    gap: 0;
+  }
+  .concept-narration h3 {
+    font-size: 20px;
+  }
+}
+@media (max-height: 700px) {
+  .solution-view-tabs {
+    margin-bottom: 4px;
+  }
+  .solution-view-tabs button {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+}

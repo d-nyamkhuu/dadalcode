@@ -52,5 +52,86 @@
       "note": "Only the output values are reversed. Queue ordering continues to obey the BFS invariant for the following level."
     }
   ],
-  "keyDecision": "Reverse the output values on alternate levels, not the order in which children enter the queue."
+  "keyDecision": "Reverse the output values on alternate levels, not the order in which children enter the queue.",
+  "concept": {
+    "question": "Can alternating output direction leave the traversal queue simple?",
+    "intuition": [
+      "Alternating how children enter the queue makes parent and child order harder to reason about. Only the displayed direction needs to alternate.",
+      "Collect each level left to right using ordinary queue order. Reverse its collected values on every other level, while continuing to enqueue children left to right. Output direction and traversal direction are separate concerns."
+    ],
+    "observation": "Reverse alternating result groups; keep child queue order consistently left to right.",
+    "approach": [
+      "Collect the current level left to right.",
+      "Reverse its values when this level’s direction is backward.",
+      "Toggle direction and continue with the next level."
+    ],
+    "correctness": "Ordinary breadth-first grouping gives each level’s true left-to-right values. Applying the required display direction to each group changes only that group’s ordering. Since queue traversal remains consistent, subsequent level groups are still correct, and alternating the display flag produces the zigzag result.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(w) auxiliary plus O(n) output",
+      "explanation": "Every node is visited once and every level is reversed at most once. Queue memory follows tree width; all displayed values occupy output memory."
+    },
+    "pitfalls": [
+      "Reverse alternating result groups; keep child queue order consistently left to right.",
+      "Direction changes happen per level, not per node."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/binary-tree-zigzag-level-order-traversal/concept.webp",
+        "alt": "Collect each level left to right using ordinary queue order. Reverse its collected values on every other level, while continuing to enqueue children left to right. Output direction and traversal direction are separate concerns.",
+        "caption": "Collect each level left to right using ordinary queue order. Reverse its collected values on every other level, while continuing to enqueue children left to right. Output direction and traversal direction are separate concerns.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Binary Tree Zigzag Level Order Traversal algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Binary Tree Zigzag Level Order Traversal, not a generic data structure illustration. The key idea is: First collect each tree level from left to right using a queue. Reverse the collected values on every other level. Keep the queue traversal itself in the same order, which makes the alternating output easier to manage. The reason a decision is safe is: Reverse the output values on alternate levels, not the order in which children enter the queue. The actual example this lesson teaches is {\"root\": [3, 9, 20, null, null, 15, 7]} with answer [[3], [20, 9], [15, 7]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can alternating output direction leave the traversal queue simple?",
+        "decision": "Reverse alternating result groups; keep child queue order consistently left to right."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Alternating how children enter the queue makes parent and child order harder to reason about. Only the displayed direction needs to alternate.",
+        "decision": "Collect each level left to right using ordinary queue order. Reverse its collected values on every other level, while continuing to enqueue children left to right. Output direction and traversal direction are separate concerns."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Collect each level left to right using ordinary queue order. Reverse its collected values on every other level, while continuing to enqueue children left to right. Output direction and traversal direction are separate concerns.",
+        "decision": "Reverse alternating result groups; keep child queue order consistently left to right."
+      },
+      {
+        "id": "the-first-level-goes-forward",
+        "title": "The first level goes forward",
+        "narration": "The root level is [3], displayed unchanged.",
+        "decision": "A one-node level has the same order in either direction."
+      },
+      {
+        "id": "the-second-output-reverses",
+        "title": "The second output reverses",
+        "narration": "Collect [9,20], then display [20,9]. Children still enter as 15 then 7.",
+        "decision": "Reversing the output must not reverse the next-level queue."
+      },
+      {
+        "id": "the-third-output-goes-forward",
+        "title": "The third output goes forward",
+        "narration": "Collect and display [15,7]. The result is [[3],[20,9],[15,7]].",
+        "decision": "Toggle the display direction once per completed level."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Ordinary breadth-first grouping gives each level’s true left-to-right values. Applying the required display direction to each group changes only that group’s ordering. Since queue traversal remains consistent, subsequent level groups are still correct, and alternating the display flag produces the zigzag result.",
+        "decision": "Reverse alternating result groups; keep child queue order consistently left to right."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An empty tree has no groups to reverse.",
+        "decision": "Direction changes happen per level, not per node."
+      }
+    ]
+  }
 }

@@ -41,5 +41,86 @@
       "note": "The used sum determines this remainder, so different histories reaching one mask can share the same state."
     }
   ],
-  "keyDecision": "A mask uses each position once. Reset the saved remainder to zero when the current group reaches its target."
+  "keyDecision": "A mask uses each position once. Reset the saved remainder to zero when the current group reaches its target.",
+  "concept": {
+    "question": "Why can the set of used positions determine the unfinished group’s total?",
+    "intuition": [
+      "Assigning values to labeled buckets repeatedly explores equivalent group arrangements. Every completed group has the same target sum, so the used-value total determines the current remainder modulo that target.",
+      "Represent a state by which input positions have been used and the unfinished group’s sum. Add an unused value only if it fits; completing the target resets the remainder to zero. Distinct positions stay distinct even when values are equal."
+    ],
+    "observation": "Positive values and equal target sums make the used-position state sufficient.",
+    "approach": [
+      "Check divisibility of the total by the group count and reject oversized values.",
+      "Begin with no positions used and an empty current group.",
+      "Explore fitting unused positions until every position is used in complete target groups."
+    ],
+    "correctness": "A reachable state consists of completed target groups and one unfinished group within capacity. Adding a fitting unused value preserves this structure; reaching the target begins a new empty group. Every valid partition can be built group by group through such states. Positivity prevents empty completed groups, and the full total fixes their count.",
+    "complexity": {
+      "time": "O(n · 2ⁿ)",
+      "space": "O(2ⁿ)",
+      "explanation": "There are at most two-to-the-item-count used-position states, each considering every unused position. Time is item count times that exponential bound, and the remainder table has exponential storage."
+    },
+    "pitfalls": [
+      "Positive values and equal target sums make the used-position state sufficient.",
+      "Treat equal-valued occurrences as distinct positions, each used once."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/partition-to-k-equal-sum-subsets/concept.webp",
+        "alt": "Represent a state by which input positions have been used and the unfinished group’s sum. Add an unused value only if it fits; completing the target resets the remainder to zero. Distinct positions stay distinct even when values are equal.",
+        "caption": "Represent a state by which input positions have been used and the unfinished group’s sum. Add an unused value only if it fits; completing the target resets the remainder to zero. Distinct positions stay distinct even when values are equal.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Partition to K Equal Sum Subsets algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Partition to K Equal Sum Subsets, not a generic data structure illustration. The key idea is: Each group must sum to total divided by k. Use a bit mask to record which input positions are already used, and save the sum in the current unfinished group. Add an unused number only if it fits. Reaching the group target starts a fresh group. The reason a decision is safe is: A mask uses each position once. Reset the saved remainder to zero when the current group reaches its target. The actual example this lesson teaches is {\"nums\": [1, 2, 3, 4], \"k\": 2} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can the set of used positions determine the unfinished group’s total?",
+        "decision": "Positive values and equal target sums make the used-position state sufficient."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Assigning values to labeled buckets repeatedly explores equivalent group arrangements. Every completed group has the same target sum, so the used-value total determines the current remainder modulo that target.",
+        "decision": "Represent a state by which input positions have been used and the unfinished group’s sum. Add an unused value only if it fits; completing the target resets the remainder to zero. Distinct positions stay distinct even when values are equal."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Represent a state by which input positions have been used and the unfinished group’s sum. Add an unused value only if it fits; completing the target resets the remainder to zero. Distinct positions stay distinct even when values are equal.",
+        "decision": "Positive values and equal target sums make the used-position state sufficient."
+      },
+      {
+        "id": "each-group-must-total-five",
+        "title": "Each group must total five",
+        "narration": "For [1,2,3,4] and two groups, total ten gives target five. Start with no used positions.",
+        "decision": "Every nonempty group must reach the same target."
+      },
+      {
+        "id": "one-successful-path-completes-the-first-group",
+        "title": "One successful path completes the first group",
+        "narration": "Use value one, then four. Used positions {0,3} total five, so the current group remainder returns to zero.",
+        "decision": "This is one path through possible states, not every exploration step."
+      },
+      {
+        "id": "complete-the-second-group",
+        "title": "Complete the second group",
+        "narration": "Add two then three. All four positions are now used and the remainder is zero. Groups [1,4] and [2,3] prove the answer yes.",
+        "decision": "The total guarantees exactly two target groups when all values are used."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A reachable state consists of completed target groups and one unfinished group within capacity. Adding a fitting unused value preserves this structure; reaching the target begins a new empty group. Every valid partition can be built group by group through such states. Positivity prevents empty completed groups, and the full total fixes their count.",
+        "decision": "Positive values and equal target sums make the used-position state sufficient."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A nondivisible total is impossible before any state exploration.",
+        "decision": "Treat equal-valued occurrences as distinct positions, each used once."
+      }
+    ]
+  }
 }

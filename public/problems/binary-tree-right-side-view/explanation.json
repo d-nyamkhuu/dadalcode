@@ -47,5 +47,86 @@
       "note": "Left children enter first so queue order preserves the level’s spatial order."
     }
   ],
-  "keyDecision": "Record the last node of each level after adding children in left-before-right order."
+  "keyDecision": "Record the last node of each level after adding children in left-before-right order.",
+  "concept": {
+    "question": "Why can a visible rightmost node belong to a left subtree?",
+    "intuition": [
+      "Following only right-child links fails when the right subtree ends before a deeper left subtree. Visibility depends on the rightmost existing node at each depth.",
+      "Collect a whole level in left-to-right queue order. Its last node is the one visible from the right. Repeat at every depth, even after right-side branches disappear."
+    ],
+    "observation": "Take the last existing node of each complete level, not merely the next right child.",
+    "approach": [
+      "Process one depth level at a time.",
+      "Keep child queue order left to right.",
+      "Record the last value of each level."
+    ],
+    "correctness": "Breadth-first grouping lists all existing nodes at each depth left to right. Looking from the right hides every earlier node behind the last existing one. Recording precisely that node per level therefore gives the complete right-side view, independent of which subtree it belongs to.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(w) auxiliary plus O(h) output",
+      "explanation": "Visit each node once. Queue memory follows tree width, and the output has one value per depth."
+    },
+    "pitfalls": [
+      "Take the last existing node of each complete level, not merely the next right child.",
+      "A missing right child does not end visibility."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/binary-tree-right-side-view/concept.webp",
+        "alt": "Collect a whole level in left-to-right queue order. Its last node is the one visible from the right. Repeat at every depth, even after right-side branches disappear.",
+        "caption": "Collect a whole level in left-to-right queue order. Its last node is the one visible from the right. Repeat at every depth, even after right-side branches disappear.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Binary Tree Right Side View algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Binary Tree Right Side View, not a generic data structure illustration. The key idea is: Collect nodes one level at a time, from left to right. The last node in each level is the one visible from the right. It may belong to a left subtree when the right subtree ends earlier, so following only right-child links would miss some visible nodes. The reason a decision is safe is: Record the last node of each level after adding children in left-before-right order. The actual example this lesson teaches is {\"root\": [1, 2, 3, 4, null, null, null, 5]} with answer [1, 3, 4, 5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can a visible rightmost node belong to a left subtree?",
+        "decision": "Take the last existing node of each complete level, not merely the next right child."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Following only right-child links fails when the right subtree ends before a deeper left subtree. Visibility depends on the rightmost existing node at each depth.",
+        "decision": "Collect a whole level in left-to-right queue order. Its last node is the one visible from the right. Repeat at every depth, even after right-side branches disappear."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Collect a whole level in left-to-right queue order. Its last node is the one visible from the right. Repeat at every depth, even after right-side branches disappear.",
+        "decision": "Take the last existing node of each complete level, not merely the next right child."
+      },
+      {
+        "id": "the-first-two-visible-nodes",
+        "title": "The first two visible nodes",
+        "narration": "Root 1 is visible first. The next level contains 2 then 3, so record 3.",
+        "decision": "The queue’s last node is spatially rightmost at that depth."
+      },
+      {
+        "id": "the-left-subtree-extends-deeper",
+        "title": "The left subtree extends deeper",
+        "narration": "The next level contains only 4 under node 2. It is visible despite being in the left subtree.",
+        "decision": "There is no deeper right node to obscure it."
+      },
+      {
+        "id": "the-final-visible-level",
+        "title": "The final visible level",
+        "narration": "Node 5 is alone at its depth. Return [1,3,4,5].",
+        "decision": "Every nonempty depth contributes one visible node."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Breadth-first grouping lists all existing nodes at each depth left to right. Looking from the right hides every earlier node behind the last existing one. Recording precisely that node per level therefore gives the complete right-side view, independent of which subtree it belongs to.",
+        "decision": "Take the last existing node of each complete level, not merely the next right child."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An empty tree has no visible nodes.",
+        "decision": "A missing right child does not end visibility."
+      }
+    ]
+  }
 }

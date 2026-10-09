@@ -107,5 +107,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How can sorted prefix totals count section sums without losing section order?",
+    "intuition": [
+      "Listing every continuous section takes quadratic work. A section sum is the difference between two prefix totals, but the earlier boundary must stay earlier in the original sequence.",
+      "Split prefix boundaries by their original positions. Recursively count pairs inside each half; for pairs crossing halves, the first boundary must be in the earlier half. Sorted totals then allow two moving boundaries to count differences inside the requested sum band."
+    ],
+    "observation": "Separate earlier and later boundary positions before sorting their totals.",
+    "approach": [
+      "Build cumulative totals with an initial zero.",
+      "Recursively count qualifying pairs within each positional half.",
+      "Count crossing pairs using a lower-inclusive and upper-inclusive band, then merge sorted totals."
+    ],
+    "correctness": "Each boundary pair either lies inside one half or crosses from the earlier half to the later half, so recursive counting partitions all candidates without overlap. For a fixed earlier total, qualifying later totals lie in one sorted interval determined by the inclusive sum bounds. Moving its two endpoints counts exactly those crossing pairs.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "At every split level, sorted-band counting and merging scan a linear number of totals. There are logarithmically many levels, giving linearithmic time and linear extra storage."
+    },
+    "pitfalls": [
+      "Separate earlier and later boundary positions before sorting their totals.",
+      "The upper endpoint of the requested sum band is inclusive."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/count-of-range-sum/concept.webp",
+        "alt": "Split prefix boundaries by their original positions. Recursively count pairs inside each half; for pairs crossing halves, the first boundary must be in the earlier half. Sorted totals then allow two moving boundaries to count differences inside the requested sum band.",
+        "caption": "Split prefix boundaries by their original positions. Recursively count pairs inside each half; for pairs crossing halves, the first boundary must be in the earlier half. Sorted totals then allow two moving boundaries to count differences inside the requested sum band.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Count of Range Sum algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Count of Range Sum, not a generic data structure illustration. The key idea is: A continuous range sum is the difference of two running totals. Split those totals by original position, count valid pairs within each half, then count pairs crossing the split. Sorted halves let two moving boundaries find all right-side totals in the allowed difference range. The reason a decision is safe is: Count cross pairs before merging. The left total must come from an earlier original position than the right total. The actual example this lesson teaches is {\"nums\": [-2, 5, -1], \"lower\": -2, \"upper\": 2} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can sorted prefix totals count section sums without losing section order?",
+        "decision": "Separate earlier and later boundary positions before sorting their totals."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Listing every continuous section takes quadratic work. A section sum is the difference between two prefix totals, but the earlier boundary must stay earlier in the original sequence.",
+        "decision": "Split prefix boundaries by their original positions. Recursively count pairs inside each half; for pairs crossing halves, the first boundary must be in the earlier half. Sorted totals then allow two moving boundaries to count differences inside the requested sum band."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Split prefix boundaries by their original positions. Recursively count pairs inside each half; for pairs crossing halves, the first boundary must be in the earlier half. Sorted totals then allow two moving boundaries to count differences inside the requested sum band.",
+        "decision": "Separate earlier and later boundary positions before sorting their totals."
+      },
+      {
+        "id": "convert-sections-to-boundary-differences",
+        "title": "Convert sections to boundary differences",
+        "narration": "For [-2,5,-1], prefix totals are [0,-2,3,2]. Count differences from an earlier boundary to a later boundary between −2 and 2 inclusive.",
+        "decision": "Positional order is essential: reversing a pair changes its section interpretation."
+      },
+      {
+        "id": "count-inside-the-halves",
+        "title": "Count inside the halves",
+        "narration": "Inside earlier half [0,−2], the difference −2 qualifies. Inside later half [3,2], the difference −1 qualifies. These are two sections.",
+        "decision": "Each recursive half counts its own earlier-to-later pairs before its totals are merged."
+      },
+      {
+        "id": "count-only-the-legal-crossing-band",
+        "title": "Count only the legal crossing band",
+        "narration": "Sorted earlier totals are [−2,0] and later totals are [2,3]. Only 2−0=2 qualifies; the other crossing differences are 4,5,3. Return 3.",
+        "decision": "As earlier totals rise, both limits of the qualifying later-total band move forward."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each boundary pair either lies inside one half or crosses from the earlier half to the later half, so recursive counting partitions all candidates without overlap. For a fixed earlier total, qualifying later totals lie in one sorted interval determined by the inclusive sum bounds. Moving its two endpoints counts exactly those crossing pairs.",
+        "decision": "Separate earlier and later boundary positions before sorting their totals."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Equal totals at different boundaries represent distinct sections and must remain separate entries.",
+        "decision": "The upper endpoint of the requested sum band is inclusive."
+      }
+    ]
+  }
 }

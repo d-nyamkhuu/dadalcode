@@ -37,5 +37,86 @@
       "note": "A falling edge allows mid itself to be the peak, so it must not be discarded."
     }
   ],
-  "keyDecision": "On a fall, set right = mid because mid itself may be the peak."
+  "keyDecision": "On a fall, set right = mid because mid itself may be the peak.",
+  "concept": {
+    "question": "Which side of a sloping middle edge must contain the summit?",
+    "intuition": [
+      "A full scan finds the maximum but ignores the promised rise-then-fall structure. One adjacent comparison reveals whether the middle lies before or at/after the summit.",
+      "Compare a middle entry with its next entry. An upward edge places the summit strictly to the right. A downward edge places it at the middle or to the left. Keep that possible summit range until one position remains."
+    ],
+    "observation": "An upward edge discards the middle; a downward edge keeps it as a possible summit.",
+    "approach": [
+      "Begin with the entire mountain range.",
+      "Compare the middle value with the next value.",
+      "Keep the side containing the summit until the boundaries meet."
+    ],
+    "correctness": "In a strict mountain, every edge before the peak rises and every edge after it falls. The adjacent comparison therefore determines which retained side includes the unique peak. Each update preserves that peak and shrinks the range, so the final position is exactly its index.",
+    "complexity": {
+      "time": "O(log n)",
+      "space": "O(1)",
+      "explanation": "The candidate interval halves on each comparison. Time is logarithmic and the boundaries use constant extra storage."
+    },
+    "pitfalls": [
+      "An upward edge discards the middle; a downward edge keeps it as a possible summit.",
+      "Keep a falling midpoint instead of discarding a possible summit."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/peak-index-in-a-mountain-array/concept.webp",
+        "alt": "Compare a middle entry with its next entry. An upward edge places the summit strictly to the right. A downward edge places it at the middle or to the left. Keep that possible summit range until one position remains.",
+        "caption": "Compare a middle entry with its next entry. An upward edge places the summit strictly to the right. A downward edge places it at the middle or to the left. Keep that possible summit range until one position remains.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Peak Index in a Mountain Array algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Peak Index in a Mountain Array, not a generic data structure illustration. The key idea is: A mountain rises before its peak and falls after it. Compare the middle value with the next value to learn which side you are on. A rising comparison keeps the right side; a falling comparison keeps the middle and left side. Repeat until one index remains. The reason a decision is safe is: On a fall, set right = mid because mid itself may be the peak. The actual example this lesson teaches is {\"arr\": [0, 1, 0]} with answer 1. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which side of a sloping middle edge must contain the summit?",
+        "decision": "An upward edge discards the middle; a downward edge keeps it as a possible summit."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A full scan finds the maximum but ignores the promised rise-then-fall structure. One adjacent comparison reveals whether the middle lies before or at/after the summit.",
+        "decision": "Compare a middle entry with its next entry. An upward edge places the summit strictly to the right. A downward edge places it at the middle or to the left. Keep that possible summit range until one position remains."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Compare a middle entry with its next entry. An upward edge places the summit strictly to the right. A downward edge places it at the middle or to the left. Keep that possible summit range until one position remains.",
+        "decision": "An upward edge discards the middle; a downward edge keeps it as a possible summit."
+      },
+      {
+        "id": "the-first-middle-edge-falls",
+        "title": "The first middle edge falls",
+        "narration": "For [0,1,0], midpoint one has value one and its next value is zero. The edge descends.",
+        "decision": "The summit cannot lie strictly beyond this descending edge."
+      },
+      {
+        "id": "the-next-middle-edge-rises",
+        "title": "The next middle edge rises",
+        "narration": "Now midpoint zero has value zero and the next value one is larger. The summit lies strictly to the right.",
+        "decision": "A rising middle position cannot itself be the summit."
+      },
+      {
+        "id": "the-bounds-identify-the-peak",
+        "title": "The bounds identify the peak",
+        "narration": "The remaining position is one, whose value is one. Return position one.",
+        "decision": "The result is the summit index rather than its height."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "In a strict mountain, every edge before the peak rises and every edge after it falls. The adjacent comparison therefore determines which retained side includes the unique peak. Each update preserves that peak and shrinks the range, so the final position is exactly its index.",
+        "decision": "An upward edge discards the middle; a downward edge keeps it as a possible summit."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "The mountain guarantee is essential; arbitrary arrays can have multiple local peaks.",
+        "decision": "Keep a falling midpoint instead of discarding a possible summit."
+      }
+    ]
+  }
 }

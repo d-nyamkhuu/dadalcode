@@ -63,6 +63,7 @@ export type ProblemDefinition = CatalogEntry & {
   explanation?: Explanation;
 };
 export type Explanation = {
+  concept: ConceptLesson;
   intuition: string[];
   keyDecision?: string;
   figures?: LessonFigure[];
@@ -73,6 +74,57 @@ export type Explanation = {
   };
   codeNotes: { code: string; note: string }[];
 };
+export type ConceptLesson = {
+  question: string;
+  intuition: string[];
+  observation: string;
+  approach: string[];
+  correctness: string;
+  complexity: { time: string; space: string; explanation: string };
+  pitfalls: string[];
+  illustrations: {
+    src: string;
+    alt: string;
+    caption: string;
+    prompt: string;
+  }[];
+  scenes: ConceptScene[];
+};
+export type ConceptScene = {
+  id: string;
+  title: string;
+  narration: string;
+  decision: string;
+};
+export type ConceptShape =
+  | {
+      type: "box" | "circle";
+      x: number;
+      y: number;
+      width?: number;
+      height?: number;
+      label: string;
+      detail?: string;
+      tone?: "active" | "context" | "muted" | "warning";
+    }
+  | {
+      type: "text";
+      x: number;
+      y: number;
+      label: string;
+      size?: number;
+      tone?: "active" | "context" | "muted" | "warning";
+      anchor?: "start" | "middle" | "end";
+    }
+  | {
+      type: "path";
+      d: string;
+      arrow?: boolean;
+      dashed?: boolean;
+      tone?: "active" | "context" | "muted" | "warning";
+    };
+export type ConceptDrawing = { description: string; shapes: ConceptShape[] };
+export type ConceptDrawings = Record<string, ConceptDrawing>;
 export type LessonFigure = {
   title: string;
   caption: string;

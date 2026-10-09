@@ -54,5 +54,86 @@
       "note": "When the output side is absent, attach the complete one-sided subtree because none of its descendants require addition."
     }
   ],
-  "keyDecision": "Add values only at overlapping nodes. Attach a one-sided branch as it is."
+  "keyDecision": "Add values only at overlapping nodes. Attach a one-sided branch as it is.",
+  "concept": {
+    "question": "How do paired positions merge when one branch is missing?",
+    "intuition": [
+      "Flattening both trees loses which positions correspond. Merge from paired roots: overlap means add values, while a missing branch means retain the entire available branch.",
+      "At each paired position, add the two existing node values. If only one tree has a node there, use that subtree as it is. Repeat only through positions where both branches exist."
+    ],
+    "observation": "Pair corresponding left branches and corresponding right branches.",
+    "approach": [
+      "Use the available subtree whenever the other side is absent.",
+      "Add values when both nodes exist.",
+      "Merge their matching child positions."
+    ],
+    "correctness": "At an overlapping position, summing the root values and recursively merging the paired children gives the required value at every overlapping descendant. If one side is absent, all available descendants contribute unchanged. This structural induction proves the merged tree satisfies the rule at every position.",
+    "complexity": {
+      "time": "O(p + 1)",
+      "space": "O(h + 1)",
+      "explanation": "Work follows overlapping node pairs and stops at one-sided branches, so it can be less than visiting both entire trees. The recursion stack is bounded by overlap depth; branch reuse avoids allocating a second complete tree."
+    },
+    "pitfalls": [
+      "Pair corresponding left branches and corresponding right branches.",
+      "Reusing a branch preserves its identity; callers must not assume a separate copy."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/merge-two-binary-trees/concept.webp",
+        "alt": "At each paired position, add the two existing node values. If only one tree has a node there, use that subtree as it is. Repeat only through positions where both branches exist.",
+        "caption": "At each paired position, add the two existing node values. If only one tree has a node there, use that subtree as it is. Repeat only through positions where both branches exist.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Merge Two Binary Trees algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Merge Two Binary Trees, not a generic data structure illustration. The key idea is: Visit the two trees at corresponding positions. If both nodes exist, add their values into the first tree. If only one exists, keep that whole branch. Continue comparing overlapping child pairs. This handles missing children without treating them as actual zero-valued nodes. The reason a decision is safe is: Add values only at overlapping nodes. Attach a one-sided branch as it is. The actual example this lesson teaches is {\"root1\": [1, 3, 2, 5], \"root2\": [2, 1, 3, null, 4, null, 7]} with answer [3, 4, 5, 5, 4, null, 7]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do paired positions merge when one branch is missing?",
+        "decision": "Pair corresponding left branches and corresponding right branches."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Flattening both trees loses which positions correspond. Merge from paired roots: overlap means add values, while a missing branch means retain the entire available branch.",
+        "decision": "At each paired position, add the two existing node values. If only one tree has a node there, use that subtree as it is. Repeat only through positions where both branches exist."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "At each paired position, add the two existing node values. If only one tree has a node there, use that subtree as it is. Repeat only through positions where both branches exist.",
+        "decision": "Pair corresponding left branches and corresponding right branches."
+      },
+      {
+        "id": "merge-the-roots-and-immediate-children",
+        "title": "Merge the roots and immediate children",
+        "narration": "For [1,3,2,5] and [2,1,3,empty,4,empty,7], root values add to three; left children add to four and right children to five.",
+        "decision": "Node position, not numeric value, determines pairing."
+      },
+      {
+        "id": "retain-the-one-sided-branches",
+        "title": "Retain the one-sided branches",
+        "narration": "The leftmost leaf five exists only in the first tree, while leaves four and seven exist only in the second. They remain at those positions.",
+        "decision": "A one-sided subtree needs no internal recomputation."
+      },
+      {
+        "id": "read-the-merged-tree",
+        "title": "Read the merged tree",
+        "narration": "The result is [3,4,5,5,4,empty,7] in level order. Existing branches are reused where only one side exists.",
+        "decision": "The operation may mutate and reuse original nodes rather than create an independent copy."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "At an overlapping position, summing the root values and recursively merging the paired children gives the required value at every overlapping descendant. If one side is absent, all available descendants contribute unchanged. This structural induction proves the merged tree satisfies the rule at every position.",
+        "decision": "Pair corresponding left branches and corresponding right branches."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If one whole tree is empty, the other tree is the result.",
+        "decision": "Reusing a branch preserves its identity; callers must not assume a separate copy."
+      }
+    ]
+  }
 }

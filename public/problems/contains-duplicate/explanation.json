@@ -37,5 +37,86 @@
       "note": "This line is reached only after every element was absent when examined, which proves that no duplicate pair exists."
     }
   ],
-  "keyDecision": "Check membership before adding the current value. Return false only after the whole scan."
+  "keyDecision": "Check membership before adding the current value. Return false only after the whole scan.",
+  "concept": {
+    "question": "Could remembering membership answer each new value’s only question?",
+    "intuition": [
+      "Comparing every pair of positions repeats equality checks. A new value only needs to know whether the same value has already appeared.",
+      "Keep a membership set of earlier values. If the next value belongs to it, the two occurrences prove a duplicate. Otherwise remember it and continue. Adjacent positions are not required."
+    ],
+    "observation": "Check earlier membership before adding the current occurrence.",
+    "approach": [
+      "Begin with an empty set of earlier values.",
+      "For each value, return yes if it is already present.",
+      "Otherwise add it; return no if the full scan finds no repeat."
+    ],
+    "correctness": "The set contains exactly the values processed earlier. Membership for the current value therefore holds exactly when an earlier equal occurrence exists. A successful test witnesses two distinct positions; if every test fails, all input occurrences are distinct.",
+    "complexity": {
+      "time": "O(n) expected",
+      "space": "O(n)",
+      "explanation": "Each value receives one expected-constant-time membership test and insertion. Work is expected linear, with up to linear set storage."
+    },
+    "pitfalls": [
+      "Check earlier membership before adding the current occurrence.",
+      "Sorting or adjacent-only checks are unnecessary."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/contains-duplicate/concept.webp",
+        "alt": "Keep a membership set of earlier values. If the next value belongs to it, the two occurrences prove a duplicate. Otherwise remember it and continue. Adjacent positions are not required.",
+        "caption": "Keep a membership set of earlier values. If the next value belongs to it, the two occurrences prove a duplicate. Otherwise remember it and continue. Adjacent positions are not required.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Contains Duplicate algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Contains Duplicate, not a generic data structure illustration. The key idea is: Save each value in a set as you read the array. If a value is already there, an earlier position contained the same value, so a duplicate exists. This replaces comparing each number with every other number. The reason a decision is safe is: Check membership before adding the current value. Return false only after the whole scan. The actual example this lesson teaches is {\"nums\": [1, 2, 3, 1]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Could remembering membership answer each new value’s only question?",
+        "decision": "Check earlier membership before adding the current occurrence."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing every pair of positions repeats equality checks. A new value only needs to know whether the same value has already appeared.",
+        "decision": "Keep a membership set of earlier values. If the next value belongs to it, the two occurrences prove a duplicate. Otherwise remember it and continue. Adjacent positions are not required."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep a membership set of earlier values. If the next value belongs to it, the two occurrences prove a duplicate. Otherwise remember it and continue. Adjacent positions are not required.",
+        "decision": "Check earlier membership before adding the current occurrence."
+      },
+      {
+        "id": "remember-distinct-values",
+        "title": "Remember distinct values",
+        "narration": "Reading 1,2,3 adds each to the earlier-value collection.",
+        "decision": "No value has repeated yet."
+      },
+      {
+        "id": "the-final-one-has-appeared",
+        "title": "The final one has appeared",
+        "narration": "The next value 1 already belongs to the set.",
+        "decision": "Its earlier occurrence is at a different position."
+      },
+      {
+        "id": "a-repeated-occurrence-proves-the-answer",
+        "title": "A repeated occurrence proves the answer",
+        "narration": "Return yes as soon as that second 1 is found.",
+        "decision": "Later values cannot undo a duplicate already witnessed."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The set contains exactly the values processed earlier. Membership for the current value therefore holds exactly when an earlier equal occurrence exists. A successful test witnesses two distinct positions; if every test fails, all input occurrences are distinct.",
+        "decision": "Check earlier membership before adding the current occurrence."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Repeated values need not be next to each other.",
+        "decision": "Sorting or adjacent-only checks are unnecessary."
+      }
+    ]
+  }
 }

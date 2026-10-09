@@ -32,5 +32,86 @@
       "note": "Even if every encountered closer matched, remaining openers mean the complete string is unfinished."
     }
   ],
-  "keyDecision": "Reject a closing bracket if the stack is empty or its top has the wrong type."
+  "keyDecision": "Reject a closing bracket if the stack is empty or its top has the wrong type.",
+  "concept": {
+    "question": "Why must a closing bracket match the most recent unmatched opening?",
+    "intuition": [
+      "Equal counts of opening and closing brackets do not ensure valid nesting or type. The innermost unfinished pair must close before any outer pair can close.",
+      "Keep unmatched openings in a last-in-first-out stack. An opening adds its type. A closing must find its matching type at the top, then removes it. Acceptance also requires no unmatched openings at the end."
+    ],
+    "observation": "Only the newest unmatched opener is eligible to close.",
+    "approach": [
+      "Push each opening bracket.",
+      "For a closing bracket, require a matching top opener and remove it.",
+      "Accept only if the stack is empty after the entire text."
+    ],
+    "correctness": "The stack always contains exactly the unmatched openings of the processed prefix in nesting order. A valid closer must complete the newest one, so matching and popping preserves that invariant. Any failed match cannot be repaired later. An empty stack at successful exhaustion proves all pairs closed in the proper order and type.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(n)",
+      "explanation": "Each bracket is processed once and each opener is pushed and removed at most once. Time is linear; all-open input gives linear stack storage."
+    },
+    "pitfalls": [
+      "Only the newest unmatched opener is eligible to close.",
+      "Do not search deeper in the stack for a matching opener."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/valid-parentheses/concept.webp",
+        "alt": "Keep unmatched openings in a last-in-first-out stack. An opening adds its type. A closing must find its matching type at the top, then removes it. Acceptance also requires no unmatched openings at the end.",
+        "caption": "Keep unmatched openings in a last-in-first-out stack. An opening adds its type. A closing must find its matching type at the top, then removes it. Acceptance also requires no unmatched openings at the end.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Valid Parentheses algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Valid Parentheses, not a generic data structure illustration. The key idea is: An opening bracket waits for a matching closing bracket. Keep unmatched openings on a stack. A closing bracket must match the most recent opening, because brackets close from the inside outward. After the full string, there must be no openings left waiting. The reason a decision is safe is: Reject a closing bracket if the stack is empty or its top has the wrong type. The actual example this lesson teaches is {\"s\": \"()\"} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must a closing bracket match the most recent unmatched opening?",
+        "decision": "Only the newest unmatched opener is eligible to close."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Equal counts of opening and closing brackets do not ensure valid nesting or type. The innermost unfinished pair must close before any outer pair can close.",
+        "decision": "Keep unmatched openings in a last-in-first-out stack. An opening adds its type. A closing must find its matching type at the top, then removes it. Acceptance also requires no unmatched openings at the end."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep unmatched openings in a last-in-first-out stack. An opening adds its type. A closing must find its matching type at the top, then removes it. Acceptance also requires no unmatched openings at the end.",
+        "decision": "Only the newest unmatched opener is eligible to close."
+      },
+      {
+        "id": "an-opener-waits",
+        "title": "An opener waits",
+        "narration": "For the fixture (), reading the first opening parenthesis puts it on the waiting stack.",
+        "decision": "There is no completed pair yet."
+      },
+      {
+        "id": "the-closer-matches-the-top",
+        "title": "The closer matches the top",
+        "narration": "The closing parenthesis requires an opening parenthesis, and the waiting top has that exact type. Remove it.",
+        "decision": "A missing or differently typed top would reject."
+      },
+      {
+        "id": "exhaustion-with-no-debt-succeeds",
+        "title": "Exhaustion with no debt succeeds",
+        "narration": "Both characters are consumed and no opener remains. Return yes.",
+        "decision": "End-of-text acceptance checks unmatched openings as well as invalid closings."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The stack always contains exactly the unmatched openings of the processed prefix in nesting order. A valid closer must complete the newest one, so matching and popping preserves that invariant. Any failed match cannot be repaired later. An empty stack at successful exhaustion proves all pairs closed in the proper order and type.",
+        "decision": "Only the newest unmatched opener is eligible to close."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "The separate input ([)] has balanced type counts but invalid crossing order.",
+        "decision": "Do not search deeper in the stack for a matching opener."
+      }
+    ]
+  }
 }

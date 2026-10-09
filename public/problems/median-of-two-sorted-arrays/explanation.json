@@ -138,5 +138,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Can we find the middle without merging the sorted rows?",
+    "intuition": [
+      "Merging both rows would reveal the middle, but it reads every value. The median only needs a boundary between the lower half and upper half. Sorted order lets us judge that boundary from just its neighboring values.",
+      "Place one cut in each row so the combined lower side holds half the values, rounded up. If both lower-side boundary values are no larger than the opposite upper-side boundary, every lower value belongs before every upper value. Search cut positions in the shorter row."
+    ],
+    "observation": "Keep the lower-half size fixed, and make both cross-boundary comparisons hold.",
+    "approach": [
+      "Try a cut in the shorter sorted row and infer the other cut from the required half size.",
+      "If one lower boundary is too large, move its cut left; otherwise move it right.",
+      "At a valid split, use the largest lower value for an odd total, or average the two middle boundaries for an even total."
+    ],
+    "correctness": "Values within each row are already ordered. Only the two cross-row boundaries can violate the split. When both are ordered and the side sizes are correct, every lower value precedes every upper value. These two facts identify the middle exactly. A failed comparison tells which direction the short-row cut must move.",
+    "complexity": {
+      "time": "O(log(min(m,n)+1))",
+      "space": "O(1)",
+      "explanation": "Each failed cut discards half the remaining cut positions in the shorter row. Only four boundary values and a few positions are remembered, so extra memory stays constant."
+    },
+    "pitfalls": [
+      "Search cuts in the shorter row.",
+      "An odd total uses one middle value; an even total averages two.",
+      "A cut at a row edge still has a valid interpretation."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/median-of-two-sorted-arrays/concept.webp",
+        "alt": "Two sorted rows are cut into ordered lower and upper halves, revealing their shared middle without a full merge.",
+        "caption": "Two sorted rows are cut into ordered lower and upper halves, revealing their shared middle without a full merge.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Median of Two Sorted Arrays algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Median of Two Sorted Arrays, not a generic data structure illustration. The key idea is: Imagine a line separating the lower half of all values from the upper half. We do not need to merge the arrays. Instead, choose where that line cuts each sorted array. Keep the correct number of values on the left, then check the values beside the two cuts. The reason a decision is safe is: The largest left value of each array must be no greater than the smallest right value of the other array. The actual example this lesson teaches is {\"nums1\": [1, 3], \"nums2\": [2]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can we find the middle without merging the sorted rows?",
+        "decision": "Keep the lower-half size fixed, and make both cross-boundary comparisons hold."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Merging both rows would reveal the middle, but it reads every value. The median only needs a boundary between the lower half and upper half. Sorted order lets us judge that boundary from just its neighboring values.",
+        "decision": "Place one cut in each row so the combined lower side holds half the values, rounded up. If both lower-side boundary values are no larger than the opposite upper-side boundary, every lower value belongs before every upper value. Search cut positions in the shorter row."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Place one cut in each row so the combined lower side holds half the values, rounded up. If both lower-side boundary values are no larger than the opposite upper-side boundary, every lower value belongs before every upper value. Search cut positions in the shorter row.",
+        "decision": "Keep the lower-half size fixed, and make both cross-boundary comparisons hold."
+      },
+      {
+        "id": "choose-how-many-belong-below",
+        "title": "Choose how many belong below",
+        "narration": "The rows are [2] and [1,3]. Three values require two values on the lower side.",
+        "decision": "Searching the shorter row keeps the number of candidate cuts small."
+      },
+      {
+        "id": "reject-a-crossed-boundary",
+        "title": "Reject a crossed boundary",
+        "narration": "Putting all of [1,3] below and [2] above leaves 3 below 2. Shift the short-row cut to include 2.",
+        "decision": "A lower half cannot contain a value larger than an upper-half value."
+      },
+      {
+        "id": "a-valid-partition-reveals-the-median",
+        "title": "A valid partition reveals the median",
+        "narration": "The lower values are 1 and 2; the upper value is 3. The largest lower value, 2, is the median.",
+        "decision": "For an odd total, the lower side has the single extra middle value."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Values within each row are already ordered. Only the two cross-row boundaries can violate the split. When both are ordered and the side sizes are correct, every lower value precedes every upper value. These two facts identify the middle exactly. A failed comparison tells which direction the short-row cut must move.",
+        "decision": "Keep the lower-half size fixed, and make both cross-boundary comparisons hold."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a cut may be before the first value or after the last. That side simply has no boundary value.",
+        "decision": "Treat a missing lower boundary as below every value and a missing upper boundary as above every value."
+      }
+    ]
+  }
 }

@@ -44,5 +44,87 @@
       "note": "Bypass exactly one node. Both neighboring links already identify the retained prefix and suffix, so no additional reconstruction is needed."
     }
   ],
-  "keyDecision": "Keep the pointers n + 1 links apart, starting from a dummy node before the head."
+  "keyDecision": "Keep the pointers n + 1 links apart, starting from a dummy node before the head.",
+  "concept": {
+    "question": "Can two bookmarks locate a node counted from the far end?",
+    "intuition": [
+      "A forward-only list gives no immediate position counted from its end. Counting the entire list first works, but a fixed gap between two bookmarks can reveal the desired predecessor in one coordinated walk.",
+      "Put a temporary starting node before the list. Move the front bookmark ahead by one more link than the requested end-distance. Then move both bookmarks together. When the front passes the end, the rear bookmark is just before the node to remove."
+    ],
+    "observation": "Keep a gap of one more link than the end-distance, measured from the temporary starting node.",
+    "approach": [
+      "Place both bookmarks at a temporary node before the head.",
+      "Move the front bookmark ahead by the required gap, then move both together.",
+      "When the front passes the end, reconnect the rear node directly to the node after the one removed."
+    ],
+    "correctness": "The bookmarks start with a fixed separation and move the same distance, so that separation never changes. When the front has passed the end, the rear is exactly the needed distance before it: immediately before the target node. Bypassing that node preserves every other link and deletes exactly the requested node.",
+    "complexity": {
+      "time": "O(length)",
+      "space": "O(1)",
+      "explanation": "Each bookmark walks at most the list length. A temporary node and a few bookmarks use constant extra memory; the work is linear."
+    },
+    "pitfalls": [
+      "The gap must locate the predecessor.",
+      "Return the possibly changed first real node.",
+      "Count from the end, not from the beginning."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/remove-nth-node-from-end-of-list/concept.webp",
+        "alt": "Two bookmarks keep a fixed gap along a chain, placing the rear one just before the node to remove.",
+        "caption": "Two bookmarks keep a fixed gap along a chain, placing the rear one just before the node to remove.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Remove Nth Node From End of List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Remove Nth Node From End of List, not a generic data structure illustration. The key idea is: We need the node just before the one to remove. Use two pointers with a fixed gap between them. Move the front pointer first, then move both together. When the front pointer passes the end, the back pointer is in the right place to change one link. The reason a decision is safe is: Keep the pointers n + 1 links apart, starting from a dummy node before the head. The actual example this lesson teaches is {\"head\": [1, 2, 3, 4, 5], \"n\": 2} with answer [1, 2, 3, 5]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can two bookmarks locate a node counted from the far end?",
+        "decision": "Keep a gap of one more link than the end-distance, measured from the temporary starting node."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A forward-only list gives no immediate position counted from its end. Counting the entire list first works, but a fixed gap between two bookmarks can reveal the desired predecessor in one coordinated walk.",
+        "decision": "Put a temporary starting node before the list. Move the front bookmark ahead by one more link than the requested end-distance. Then move both bookmarks together. When the front passes the end, the rear bookmark is just before the node to remove."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Put a temporary starting node before the list. Move the front bookmark ahead by one more link than the requested end-distance. Then move both bookmarks together. When the front passes the end, the rear bookmark is just before the node to remove.",
+        "decision": "Keep a gap of one more link than the end-distance, measured from the temporary starting node."
+      },
+      {
+        "id": "establish-the-gap",
+        "title": "Establish the gap",
+        "narration": "For 1 → 2 → 3 → 4 → 5, remove the second node from the end. Move the front bookmark three links from the temporary start to node 3.",
+        "decision": "An extra link locates the predecessor rather than the removal node."
+      },
+      {
+        "id": "walk-together-to-the-end",
+        "title": "Walk together to the end",
+        "narration": "Moving both bookmarks preserves their gap. When the front passes node 5, the rear reaches node 3.",
+        "decision": "The remaining distance behind the front stays fixed."
+      },
+      {
+        "id": "bypass-the-unwanted-node",
+        "title": "Bypass the unwanted node",
+        "narration": "Node 4 is second from the end. Point node 3 directly to node 5, giving 1 → 2 → 3 → 5.",
+        "decision": "Only the predecessor link changes; the other original nodes remain in order."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The bookmarks start with a fixed separation and move the same distance, so that separation never changes. When the front has passed the end, the rear is exactly the needed distance before it: immediately before the target node. Bypassing that node preserves every other link and deletes exactly the requested node.",
+        "decision": "Keep a gap of one more link than the end-distance, measured from the temporary starting node."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: removing the first node changes the temporary starting node’s link. The returned head is its new successor.",
+        "decision": "The extra starting node makes head deletion use the same reconnection rule."
+      }
+    ]
+  }
 }

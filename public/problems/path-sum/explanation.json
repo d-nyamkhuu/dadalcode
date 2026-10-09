@@ -47,5 +47,87 @@
       "note": "The child inherits the parent total plus its own value, avoiding repeated summation or shared mutable path totals."
     }
   ],
-  "keyDecision": "Accept only when the node is a leaf and the full running sum equals targetSum."
+  "keyDecision": "Accept only when the node is a leaf and the full running sum equals targetSum.",
+  "concept": {
+    "question": "When does a running tree total count as a complete root-to-leaf answer?",
+    "intuition": [
+      "A partial path can reach the target before reaching a leaf, which does not satisfy this task. Recomputing each full path’s total also repeats shared ancestors.",
+      "Carry the running sum down each branch. Add a child’s value to the inherited sum. Check equality only when both children are absent. Different branches keep their own totals."
+    ],
+    "observation": "A target total counts only at a genuine leaf; negative values prevent pruning simply because a partial total is large.",
+    "approach": [
+      "Visit the root with its value as the running total.",
+      "Extend each branch by adding its child value.",
+      "Accept a matching total at a leaf; otherwise continue or finish that branch."
+    ],
+    "correctness": "Each carried sum is exactly the values on its root-to-current path. Visiting every child explores every root-to-leaf path. Equality at a genuine leaf therefore proves a valid answer; if no leaf matches after exhaustive traversal, no requested path exists.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(h)",
+      "explanation": "Visit each node once. Depth-first pending branch totals require memory proportional to tree height; no full paths need to be copied."
+    },
+    "pitfalls": [
+      "Check the target only at leaves.",
+      "Do not discard a branch solely because its partial total exceeds the target.",
+      "Keep branch totals independent."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/path-sum/concept.webp",
+        "alt": "Carry the running sum down each branch. Add a child’s value to the inherited sum. Check equality only when both children are absent. Different branches keep their own totals.",
+        "caption": "Carry the running sum down each branch. Add a child’s value to the inherited sum. Check equality only when both children are absent. Different branches keep their own totals.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Path Sum algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Path Sum, not a generic data structure illustration. The key idea is: Carry the running sum as you move from the root toward a leaf. Add each child's value when visiting it. A matching sum counts only at a leaf, because the requested path must end there. Negative values mean a large partial sum is not a reason to stop early. The reason a decision is safe is: Accept only when the node is a leaf and the full running sum equals targetSum. The actual example this lesson teaches is {\"root\": [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1], \"targetSum\": 22} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "When does a running tree total count as a complete root-to-leaf answer?",
+        "decision": "A target total counts only at a genuine leaf; negative values prevent pruning simply because a partial total is large."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A partial path can reach the target before reaching a leaf, which does not satisfy this task. Recomputing each full path’s total also repeats shared ancestors.",
+        "decision": "Carry the running sum down each branch. Add a child’s value to the inherited sum. Check equality only when both children are absent. Different branches keep their own totals."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Carry the running sum down each branch. Add a child’s value to the inherited sum. Check equality only when both children are absent. Different branches keep their own totals.",
+        "decision": "A target total counts only at a genuine leaf; negative values prevent pruning simply because a partial total is large."
+      },
+      {
+        "id": "the-left-branch-accumulates",
+        "title": "The left branch accumulates",
+        "narration": "Root 5 followed by 4 and 11 gives running totals 5, 9, and 20.",
+        "decision": "The target 22 is tested only when a branch finishes at a leaf."
+      },
+      {
+        "id": "the-first-leaf-does-not-match",
+        "title": "The first leaf does not match",
+        "narration": "Leaf 7 on this branch gives total 27, so it is not an answer.",
+        "decision": "Rejecting one leaf does not reject its sibling path."
+      },
+      {
+        "id": "the-sibling-leaf-matches",
+        "title": "The sibling leaf matches",
+        "narration": "Leaf 2 gives 5 + 4 + 11 + 2 = 22. Return yes for that root-to-leaf path.",
+        "decision": "A matching leaf proves existence immediately."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each carried sum is exactly the values on its root-to-current path. Visiting every child explores every root-to-leaf path. Equality at a genuine leaf therefore proves a valid answer; if no leaf matches after exhaustive traversal, no requested path exists.",
+        "decision": "A target total counts only at a genuine leaf; negative values prevent pruning simply because a partial total is large."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: a root already equal to the target still is not an answer if it has a child and no matching leaf total.",
+        "decision": "A nonleaf does not end a root-to-leaf path."
+      }
+    ]
+  }
 }

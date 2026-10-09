@@ -37,6 +37,13 @@ try {
     .getByRole("link", { name: "Two Sum", exact: true })
     .click();
   await page
+    .getByRole("navigation", { name: "Learning views" })
+    .getByRole("link", { name: "Solution", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Execution walkthrough", exact: true })
+    .click();
+  await page
     .getByRole("button", { name: "Play", exact: true })
     .waitFor({ timeout: 60000 });
   assert.equal(
@@ -64,7 +71,9 @@ try {
     .getByRole("button", { name: "Every Python line", exact: true })
     .click();
   await page.getByLabel("Algorithm step").fill("8");
-  await page.screenshot({ path: `${screenshotDirectory}/learn.png` });
+  await page.screenshot({
+    path: `${screenshotDirectory}/solution-execution.png`,
+  });
   const separator = page.getByRole("separator");
   await separator.focus();
   await page.keyboard.press("ArrowRight");
@@ -120,7 +129,10 @@ try {
     "design-search-autocomplete-system",
     "n-queens",
   ]) {
-    await page.goto(`${root}/#/problems/${slug}/learn`);
+    await page.goto(`${root}/#/problems/${slug}/solution`);
+    await page
+      .getByRole("button", { name: "Execution walkthrough", exact: true })
+      .click();
     await page
       .getByRole("button", { name: "Play", exact: true })
       .waitFor({ timeout: 60000 });
@@ -131,7 +143,10 @@ try {
     );
   }
   await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto(`${root}/#/problems/two-sum/learn`);
+  await page.goto(`${root}/#/problems/two-sum/solution`);
+  await page
+    .getByRole("button", { name: "Execution walkthrough", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Play", exact: true })
     .waitFor({ timeout: 60000 });

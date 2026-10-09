@@ -153,5 +153,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Can a word be spelled along one path without revisiting a square?",
+    "intuition": [
+      "Letter counts alone cannot establish a word: its letters must be adjacent in order. A promising partial route may also become impossible, so cells must be released when exploring another route.",
+      "Start from a matching first letter. Walk through side-adjacent matching letters, temporarily reserving each visited square. If a continuation fails, release its squares and try another neighbor. A reservation belongs only to its current path."
+    ],
+    "observation": "A cell can be used once within a path; moves must share a side and match the next letter.",
+    "approach": [
+      "Try matching first-letter cells.",
+      "Reserve a matching square and explore side neighbors for the next letter.",
+      "Restore on return; succeed after all letters are matched."
+    ],
+    "correctness": "Each explored path matches a prefix of the requested word and uses distinct adjacent cells. Trying every legal matching neighbor includes the next move of any valid full path. Releasing cells after a branch restores the board for other starts and routes. Completing every letter therefore proves existence; exhausting the starts proves absence.",
+    "complexity": {
+      "time": "O(rows*columns*4^L)",
+      "space": "O(L + 52)",
+      "explanation": "Try each starting cell, then potentially several neighbors for each next letter. Worst-case work is exponential in word length times board area. The current reserved path needs memory proportional to its length."
+    },
+    "pitfalls": [
+      "A cell can be used once within a path; moves must share a side and match the next letter.",
+      "Matching counts cannot override the one-use rule."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/word-search/concept.webp",
+        "alt": "Six distinct dots form an orthogonal path through a three-by-four grid; a dashed attempt to revisit a dot is crossed out.",
+        "caption": "Neighboring squares may continue the word, but a square already reserved by this path cannot be used twice. Exact letters appear in the visual story.",
+        "prompt": "Mathematical intuition illustration, widescreen 2:1, elegant geometric glowing cyan/lime shapes on black, restrained warm accents, no UI/code/watermark. A precise three-by-four square grid of UNLETTERED colored beads. Highlight one continuous orthogonal path through six DISTINCT cells: (row0,col0) to (0,1) to (0,2) to (1,2) to (2,2) to (2,1). Curved arrows connect only these orthogonally adjacent cells. A small faded return-to-an-already-used-cell arrow is crossed out beside it. No diagonal path, no letters, no words, no numbers. Show one shared path search and undo intuition."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Can a word be spelled along one path without revisiting a square?",
+        "decision": "A cell can be used once within a path; moves must share a side and match the next letter."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Letter counts alone cannot establish a word: its letters must be adjacent in order. A promising partial route may also become impossible, so cells must be released when exploring another route.",
+        "decision": "Start from a matching first letter. Walk through side-adjacent matching letters, temporarily reserving each visited square. If a continuation fails, release its squares and try another neighbor. A reservation belongs only to its current path."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Start from a matching first letter. Walk through side-adjacent matching letters, temporarily reserving each visited square. If a continuation fails, release its squares and try another neighbor. A reservation belongs only to its current path.",
+        "decision": "A cell can be used once within a path; moves must share a side and match the next letter."
+      },
+      {
+        "id": "start-along-the-top-row",
+        "title": "Start along the top row",
+        "narration": "The word ABCCED begins A at (0,0), B at (0,1), C at (0,2).",
+        "decision": "These are neighboring cells matching the next letters."
+      },
+      {
+        "id": "turn-toward-the-second-c",
+        "title": "Turn toward the second C",
+        "narration": "Continue down to C at (1,2), then E at (2,2).",
+        "decision": "A previously used square is reserved for this path and cannot be reused."
+      },
+      {
+        "id": "d-completes-the-word",
+        "title": "D completes the word",
+        "narration": "Move left to D at (2,1). The full path A→B→C→C→E→D spells the word, so answer yes.",
+        "decision": "Restore reserved cells while unwinding, even after a successful search."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each explored path matches a prefix of the requested word and uses distinct adjacent cells. Trying every legal matching neighbor includes the next move of any valid full path. Releasing cells after a branch restores the board for other starts and routes. Completing every letter therefore proves existence; exhausting the starts proves absence.",
+        "decision": "A cell can be used once within a path; moves must share a side and match the next letter."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: one cell containing A cannot spell AA because it would need to be reused.",
+        "decision": "Matching counts cannot override the one-use rule."
+      }
+    ]
+  }
 }

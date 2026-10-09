@@ -38,5 +38,86 @@
       "note": "After the first differing letters, later positions no longer affect lexicographic order and must not create extra constraints."
     }
   ],
-  "keyDecision": "Reject a longer word before its exact prefix. Add only the first differing-letter rule for each adjacent pair."
+  "keyDecision": "Reject a longer word before its exact prefix. Add only the first differing-letter rule for each adjacent pair.",
+  "concept": {
+    "question": "What can the first differing letters of neighboring words tell us about an unknown alphabet?",
+    "intuition": [
+      "Later differing letters do not impose independent ordering rules: lexical comparison is decided at the first mismatch. A longer word before its exact shorter prefix is impossible under any alphabet.",
+      "Compare adjacent words and create a directed rule from each first mismatching letter to the other. Then repeatedly emit a letter with no unmet earlier-letter rules. Include all observed letters, even those with no rule."
+    ],
+    "observation": "Use only the first mismatch, reject reversed prefix order, and detect cycles in the letter rules.",
+    "approach": [
+      "Create vertices for every observed letter.",
+      "Extract the first-mismatch rule for each adjacent word pair.",
+      "Emit letters with no unmet rules; reject a cycle or impossible prefix order."
+    ],
+    "correctness": "An adjacent pair’s first mismatch gives exactly its necessary letter-order rule, while a reversed prefix pair is intrinsically invalid. Any ordering satisfying all those rules orders the entire adjacent-word chain correctly. Removing ready letters constructs such an ordering; if a cycle stalls it, no consistent alphabet can satisfy the contradictory rules.",
+    "complexity": {
+      "time": "O(C + V + E)",
+      "space": "O(V + E)",
+      "explanation": "Read word characters for comparisons and process each unique letter rule once. Work is linear in total characters plus letter vertices and rule edges; graph storage follows vertices and edges."
+    },
+    "pitfalls": [
+      "Use only the first mismatch, reject reversed prefix order, and detect cycles in the letter rules.",
+      "A prefix error is not repaired by adding letter arrows."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/alien-dictionary/concept.webp",
+        "alt": "Compare adjacent words and create a directed rule from each first mismatching letter to the other. Then repeatedly emit a letter with no unmet earlier-letter rules. Include all observed letters, even those with no rule.",
+        "caption": "Compare adjacent words and create a directed rule from each first mismatching letter to the other. Then repeatedly emit a letter with no unmet earlier-letter rules. Include all observed letters, even those with no rule.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Alien Dictionary algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Alien Dictionary, not a generic data structure illustration. The key idea is: Compare neighboring words to learn letter-order rules. Only the first differing letters tell us which letter comes first. Treat each rule as an arrow, then repeatedly choose a letter with no unmet earlier-letter rules. A cycle means the rules cannot form an alphabet. The reason a decision is safe is: Reject a longer word before its exact prefix. Add only the first differing-letter rule for each adjacent pair. The actual example this lesson teaches is {\"words\": [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]} with answer \"wertf\". Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What can the first differing letters of neighboring words tell us about an unknown alphabet?",
+        "decision": "Use only the first mismatch, reject reversed prefix order, and detect cycles in the letter rules."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Later differing letters do not impose independent ordering rules: lexical comparison is decided at the first mismatch. A longer word before its exact shorter prefix is impossible under any alphabet.",
+        "decision": "Compare adjacent words and create a directed rule from each first mismatching letter to the other. Then repeatedly emit a letter with no unmet earlier-letter rules. Include all observed letters, even those with no rule."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Compare adjacent words and create a directed rule from each first mismatching letter to the other. Then repeatedly emit a letter with no unmet earlier-letter rules. Include all observed letters, even those with no rule.",
+        "decision": "Use only the first mismatch, reject reversed prefix order, and detect cycles in the letter rules."
+      },
+      {
+        "id": "neighbor-comparisons-reveal-rules",
+        "title": "Neighbor comparisons reveal rules",
+        "narration": "For wrt,wrf,er,ett,rftt, the first mismatches give t before f, w before e, r before t, and e before r.",
+        "decision": "Only the first mismatch affects lexical order."
+      },
+      {
+        "id": "the-rules-form-one-chain",
+        "title": "The rules form one chain",
+        "narration": "Only w has no earlier requirement. Emitting w releases e, then r, then t, then f.",
+        "decision": "A letter becomes ready after all its incoming rules are satisfied."
+      },
+      {
+        "id": "the-alphabet-agrees-with-every-pair",
+        "title": "The alphabet agrees with every pair",
+        "narration": "Return wertf. All five observed letters are included and every extracted rule is satisfied.",
+        "decision": "Independent ready letters could allow multiple valid alphabets."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "An adjacent pair’s first mismatch gives exactly its necessary letter-order rule, while a reversed prefix pair is intrinsically invalid. Any ordering satisfying all those rules orders the entire adjacent-word chain correctly. Removing ready letters constructs such an ordering; if a cycle stalls it, no consistent alphabet can satisfy the contradictory rules.",
+        "decision": "Use only the first mismatch, reject reversed prefix order, and detect cycles in the letter rules."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Words abc then ab are impossible because the longer exact prefix comes first.",
+        "decision": "A prefix error is not repaired by adding letter arrows."
+      }
+    ]
+  }
 }

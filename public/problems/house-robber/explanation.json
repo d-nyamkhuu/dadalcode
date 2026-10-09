@@ -122,5 +122,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Which two earlier street totals are enough to decide about the next house?",
+    "intuition": [
+      "Taking the largest visible house greedily can block two houses whose combined amount is larger. Enumerating every legal selection revisits the same prefix-street question.",
+      "At each house, compare skipping it with taking it. Skipping keeps the previous prefix’s best total. Taking it adds its money to the best total ending before its immediate neighbor. Only those two earlier best totals are needed."
+    ],
+    "observation": "Taking a house excludes its immediate predecessor; skipping it retains the previous best total.",
+    "approach": [
+      "Remember the best totals for the two preceding street prefixes.",
+      "Compare skipping this house with taking it plus the older prefix best.",
+      "Advance both saved prefix totals together."
+    ],
+    "correctness": "Any legal selection of a prefix either skips its last house or takes it. In the first case its best total is the preceding prefix’s best. In the second, it must skip the preceding neighbor and can add the current amount to the best older prefix. These exhaustive possibilities justify the maximum at every house.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Compute two candidate totals per house. A few rolling prefix totals provide linear work and constant auxiliary memory."
+    },
+    "pitfalls": [
+      "Taking a house excludes its immediate predecessor; skipping it retains the previous best total.",
+      "Do not assume alternating houses always maximizes money."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/house-robber/concept.webp",
+        "alt": "At each house, compare skipping it with taking it. Skipping keeps the previous prefix’s best total. Taking it adds its money to the best total ending before its immediate neighbor. Only those two earlier best totals are needed.",
+        "caption": "At each house, compare skipping it with taking it. Skipping keeps the previous prefix’s best total. Taking it adds its money to the best total ending before its immediate neighbor. Only those two earlier best totals are needed.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's House Robber algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about House Robber, not a generic data structure illustration. The key idea is: At each house, compare two choices. Skip it and keep the best total through the previous house. Or take it and add its money to the best total from two houses back. Save these two earlier totals so you do not repeatedly solve the same smaller street. The reason a decision is safe is: Compare one_back with two_back + amount. Taking this house forbids taking its immediate neighbor. The actual example this lesson teaches is {\"nums\": [1, 2, 3, 1]} with answer 4. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which two earlier street totals are enough to decide about the next house?",
+        "decision": "Taking a house excludes its immediate predecessor; skipping it retains the previous best total."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Taking the largest visible house greedily can block two houses whose combined amount is larger. Enumerating every legal selection revisits the same prefix-street question.",
+        "decision": "At each house, compare skipping it with taking it. Skipping keeps the previous prefix’s best total. Taking it adds its money to the best total ending before its immediate neighbor. Only those two earlier best totals are needed."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "At each house, compare skipping it with taking it. Skipping keeps the previous prefix’s best total. Taking it adds its money to the best total ending before its immediate neighbor. Only those two earlier best totals are needed.",
+        "decision": "Taking a house excludes its immediate predecessor; skipping it retains the previous best total."
+      },
+      {
+        "id": "the-first-two-choices",
+        "title": "The first two choices",
+        "narration": "For amounts [1,2,3,1], the first-house best is 1 and the two-house best is 2.",
+        "decision": "Adjacent houses cannot both be selected."
+      },
+      {
+        "id": "taking-three-can-reuse-the-first-house",
+        "title": "Taking three can reuse the first house",
+        "narration": "At the third house, taking gives 1+3=4, better than skipping with total 2.",
+        "decision": "The older prefix ends before the adjacent second house."
+      },
+      {
+        "id": "skip-the-final-house",
+        "title": "Skip the final house",
+        "narration": "Taking the final 1 adds to the two-house best 2, giving 3. Skipping retains 4. Return 4.",
+        "decision": "Each decision compares complete valid prefix selections."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Any legal selection of a prefix either skips its last house or takes it. In the first case its best total is the preceding prefix’s best. In the second, it must skip the preceding neighbor and can add the current amount to the best older prefix. These exhaustive possibilities justify the maximum at every house.",
+        "decision": "Taking a house excludes its immediate predecessor; skipping it retains the previous best total."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A single house can be taken without a neighbor conflict. The initial empty prefixes contribute zero.",
+        "decision": "Do not assume alternating houses always maximizes money."
+      }
+    ]
+  }
 }

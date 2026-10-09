@@ -37,5 +37,87 @@
       "note": "Jump lengths are upper bounds, so crossing the final index also permits landing on it using a shorter jump."
     }
   ],
-  "keyDecision": "Visit index i only if i <= farthest. Update farthest with i + nums[i]."
+  "keyDecision": "Visit index i only if i <= farthest. Update farthest with i + nums[i].",
+  "concept": {
+    "question": "Do we need a route, or only the farthest place any route can reach?",
+    "intuition": [
+      "Trying every sequence of jumps revisits the same reachable positions. The question only asks whether the final position is reachable, so a full route history is unnecessary.",
+      "All positions up to the farthest reachable boundary form a reachable prefix. A jump from any position inside that prefix may extend its boundary. If the next position lies beyond it, no earlier jump can bridge the gap."
+    ],
+    "observation": "Only jumps from already reachable positions may extend the reachable boundary.",
+    "approach": [
+      "Start with only the first position reachable.",
+      "For each position inside the reachable prefix, extend the boundary using its jump allowance.",
+      "Succeed when the boundary reaches the final position; fail at an unbridgeable gap."
+    ],
+    "correctness": "Initially only the start is reachable. A position inside the known prefix can be reached, and its allowed shorter jumps make every new position up to its farthest landing reachable too. Thus updating the boundary preserves an exactly reachable prefix. If a position lies beyond that prefix, every earlier jump ends before it, so no route can cross the gap.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Scan each position at most once. The farthest boundary and current position require constant extra memory; work is linear."
+    },
+    "pitfalls": [
+      "Ignore jump allowances at unreachable positions.",
+      "A zero is harmless if an earlier jump can pass it.",
+      "A one-position row is already at the goal."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/jump-game/concept.webp",
+        "alt": "A reachable frontier expands across stepping stones until the goal is included or an unbridgeable gap appears.",
+        "caption": "A reachable frontier expands across stepping stones until the goal is included or an unbridgeable gap appears.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Jump Game algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Jump Game, not a generic data structure illustration. The key idea is: Track the farthest position you can reach. When you visit a reachable position, its jump length may extend that distance. You do not need to remember the route. If you reach a position beyond the farthest reachable point, no earlier jump can cross that gap. The reason a decision is safe is: Visit index i only if i <= farthest. Update farthest with i + nums[i]. The actual example this lesson teaches is {\"nums\": [2, 3, 1, 1, 4]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Do we need a route, or only the farthest place any route can reach?",
+        "decision": "Only jumps from already reachable positions may extend the reachable boundary."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying every sequence of jumps revisits the same reachable positions. The question only asks whether the final position is reachable, so a full route history is unnecessary.",
+        "decision": "All positions up to the farthest reachable boundary form a reachable prefix. A jump from any position inside that prefix may extend its boundary. If the next position lies beyond it, no earlier jump can bridge the gap."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "All positions up to the farthest reachable boundary form a reachable prefix. A jump from any position inside that prefix may extend its boundary. If the next position lies beyond it, no earlier jump can bridge the gap.",
+        "decision": "Only jumps from already reachable positions may extend the reachable boundary."
+      },
+      {
+        "id": "the-first-jump-opens-a-prefix",
+        "title": "The first jump opens a prefix",
+        "narration": "The first allowance is 2, so positions 1 and 2 become reachable from position 0.",
+        "decision": "A jump may be shorter than its maximum allowance."
+      },
+      {
+        "id": "a-reachable-position-extends-it",
+        "title": "A reachable position extends it",
+        "narration": "Position 1 is already reachable. Its allowance 3 extends the boundary to position 4.",
+        "decision": "An unreachable position could not supply a usable jump."
+      },
+      {
+        "id": "the-goal-lies-inside-the-prefix",
+        "title": "The goal lies inside the prefix",
+        "narration": "The final position is 4. A possible route is 0 → 1 → 4, so the answer is yes.",
+        "decision": "Once the boundary reaches the goal, later details do not matter."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Initially only the start is reachable. A position inside the known prefix can be reached, and its allowed shorter jumps make every new position up to its farthest landing reachable too. Thus updating the boundary preserves an exactly reachable prefix. If a position lies beyond that prefix, every earlier jump ends before it, so no route can cross the gap.",
+        "decision": "Only jumps from already reachable positions may extend the reachable boundary."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: [3,2,1,0,4] reaches position 3 but cannot pass its zero allowance. The final position is unreachable.",
+        "decision": "A large allowance after the gap is unusable."
+      }
+    ]
+  }
 }

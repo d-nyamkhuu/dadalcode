@@ -57,5 +57,86 @@
       "note": "The inclusive right endpoint requires right+1; subtracting boundary left removes only the elements strictly before the requested interval."
     }
   ],
-  "keyDecision": "For an inclusive range [left, right], use prefix[right + 1] - prefix[left]."
+  "keyDecision": "For an inclusive range [left, right], use prefix[right + 1] - prefix[left].",
+  "concept": {
+    "question": "How can two totals answer the sum of any requested section?",
+    "intuition": [
+      "Adding every requested section repeats work whenever queries overlap. Since the numbers never change, the sum before each boundary can be calculated once.",
+      "Place a cumulative total at every gap between numbers, including zero before the first number. A section’s sum is its ending boundary total minus its starting boundary total: everything before the section cancels."
+    ],
+    "observation": "Use totals at the two outside boundaries of the requested section.",
+    "approach": [
+      "Build cumulative totals from left to right.",
+      "Locate the boundary before the first requested position and after the last.",
+      "Subtract the earlier total from the later."
+    ],
+    "correctness": "Each saved boundary total equals the sum of all preceding values, by induction while building it. Subtracting the total preceding a section from the total through its last value removes precisely the values outside its left boundary and retains every requested value once.",
+    "complexity": {
+      "time": "O(n) construction; O(1) per query",
+      "space": "O(n)",
+      "explanation": "Building the boundary totals takes one pass and linear storage. Every later section query uses two lookups and one subtraction, regardless of its length."
+    },
+    "pitfalls": [
+      "Use totals at the two outside boundaries of the requested section.",
+      "This method relies on immutable input."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/range-sum-query-immutable/concept.webp",
+        "alt": "Place a cumulative total at every gap between numbers, including zero before the first number. A section’s sum is its ending boundary total minus its starting boundary total: everything before the section cancels.",
+        "caption": "Place a cumulative total at every gap between numbers, including zero before the first number. A section’s sum is its ending boundary total minus its starting boundary total: everything before the section cancels.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Range Sum Query - Immutable algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Range Sum Query - Immutable, not a generic data structure illustration. The key idea is: Save running totals once, before answering queries. Let prefix[i] be the sum of the first i values. A range sum is the total through its right end minus the total before its left end. This makes every later query a single subtraction. The reason a decision is safe is: For an inclusive range [left, right], use prefix[right + 1] - prefix[left]. The actual example this lesson teaches is {\"nums\": [-2, 0, 3, -5, 2, -1], \"queries\": [[0, 2], [2, 5], [0, 5]]} with answer [1, -1, -3]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can two totals answer the sum of any requested section?",
+        "decision": "Use totals at the two outside boundaries of the requested section."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Adding every requested section repeats work whenever queries overlap. Since the numbers never change, the sum before each boundary can be calculated once.",
+        "decision": "Place a cumulative total at every gap between numbers, including zero before the first number. A section’s sum is its ending boundary total minus its starting boundary total: everything before the section cancels."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Place a cumulative total at every gap between numbers, including zero before the first number. A section’s sum is its ending boundary total minus its starting boundary total: everything before the section cancels.",
+        "decision": "Use totals at the two outside boundaries of the requested section."
+      },
+      {
+        "id": "totals-live-at-boundaries",
+        "title": "Totals live at boundaries",
+        "narration": "For [-2,0,3,-5,2,-1], the seven boundary totals are 0,-2,-2,1,-4,-2,-3.",
+        "decision": "Include the empty prefix so sections starting at the beginning need no exception."
+      },
+      {
+        "id": "the-first-three-positions",
+        "title": "The first three positions",
+        "narration": "The section from position 0 through 2 ends at boundary total 1 and starts at total 0. Its sum is 1−0=1.",
+        "decision": "The two totals include the same earlier portion, which cancels."
+      },
+      {
+        "id": "two-more-queries",
+        "title": "Two more queries",
+        "narration": "Positions 2 through 5 give −3−(−2)=−1. The whole array gives −3−0=−3. Answers are [1,−1,−3].",
+        "decision": "A negative cumulative total is valid; subtraction still isolates the requested section."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Each saved boundary total equals the sum of all preceding values, by induction while building it. Subtracting the total preceding a section from the total through its last value removes precisely the values outside its left boundary and retains every requested value once.",
+        "decision": "Use totals at the two outside boundaries of the requested section."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A one-value query still uses two boundaries. Updates would invalidate the saved totals.",
+        "decision": "This method relies on immutable input."
+      }
+    ]
+  }
 }

@@ -44,5 +44,86 @@
       "note": "A strictly earlier start conflicts with the preceding end. Equality is allowed because an ending meeting no longer occupies that instant."
     }
   ],
-  "keyDecision": "Use start < previous_end for a conflict. A meeting may start exactly when another ends."
+  "keyDecision": "Use start < previous_end for a conflict. A meeting may start exactly when another ends.",
+  "concept": {
+    "question": "Why do touching meeting endpoints permit back-to-back attendance?",
+    "intuition": [
+      "Checking every pair of meetings repeats overlap work. Once starts are sorted, a schedule can be checked at its consecutive boundaries.",
+      "Sort meetings by start time. Compare each start with its predecessor’s end. Starting exactly when the predecessor ends is allowed: these time spans are half-open, so the shared endpoint is not occupied twice."
+    ],
+    "observation": "Overlap requires a start strictly before the previous end; equality is compatible.",
+    "approach": [
+      "Sort by meeting start.",
+      "Reject a meeting beginning before its predecessor ends.",
+      "Accept after all consecutive boundaries fit."
+    ],
+    "correctness": "If every sorted adjacent pair fits, each earlier meeting ends before the next begins, and chaining these boundaries separates all earlier and later meetings. Any overlap would force a failed boundary during that chain. Thus the consecutive comparisons establish exactly whether one person can attend the full schedule.",
+    "complexity": {
+      "time": "O(n log n)",
+      "space": "O(n)",
+      "explanation": "Sorting takes linear-times-logarithmic work, followed by a linear boundary scan. The sorted copy uses linear memory."
+    },
+    "pitfalls": [
+      "Overlap requires a start strictly before the previous end; equality is compatible.",
+      "Do not apply closed-interval touching overlap to meeting occupancy."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/meeting-rooms/concept.webp",
+        "alt": "Sort meetings by start time. Compare each start with its predecessor’s end. Starting exactly when the predecessor ends is allowed: these time spans are half-open, so the shared endpoint is not occupied twice.",
+        "caption": "Sort meetings by start time. Compare each start with its predecessor’s end. Starting exactly when the predecessor ends is allowed: these time spans are half-open, so the shared endpoint is not occupied twice.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Meeting Rooms algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Meeting Rooms, not a generic data structure illustration. The key idea is: Sort the meetings by starting time. Then compare each meeting with the one before it. If the next meeting starts before the previous one ends, one person cannot attend both. If every neighboring pair fits, the whole schedule fits. The reason a decision is safe is: Use start < previous_end for a conflict. A meeting may start exactly when another ends. The actual example this lesson teaches is {\"intervals\": [[6, 8], [0, 2], [2, 6]]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do touching meeting endpoints permit back-to-back attendance?",
+        "decision": "Overlap requires a start strictly before the previous end; equality is compatible."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Checking every pair of meetings repeats overlap work. Once starts are sorted, a schedule can be checked at its consecutive boundaries.",
+        "decision": "Sort meetings by start time. Compare each start with its predecessor’s end. Starting exactly when the predecessor ends is allowed: these time spans are half-open, so the shared endpoint is not occupied twice."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort meetings by start time. Compare each start with its predecessor’s end. Starting exactly when the predecessor ends is allowed: these time spans are half-open, so the shared endpoint is not occupied twice.",
+        "decision": "Overlap requires a start strictly before the previous end; equality is compatible."
+      },
+      {
+        "id": "put-meetings-in-time-order",
+        "title": "Put meetings in time order",
+        "narration": "The input [6,8], [0,2], [2,6] sorts to [0,2], [2,6], [6,8].",
+        "decision": "Attendance depends on time order rather than original input order."
+      },
+      {
+        "id": "the-first-handoff-fits",
+        "title": "The first handoff fits",
+        "narration": "The second meeting starts at 2 exactly when the first ends at 2.",
+        "decision": "Half-open meeting spans allow this endpoint handoff."
+      },
+      {
+        "id": "the-second-handoff-also-fits",
+        "title": "The second handoff also fits",
+        "narration": "The last meeting starts at 6 when the previous ends. All meetings can be attended.",
+        "decision": "Every consecutive handoff fits."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "If every sorted adjacent pair fits, each earlier meeting ends before the next begins, and chaining these boundaries separates all earlier and later meetings. Any overlap would force a failed boundary during that chain. Thus the consecutive comparisons establish exactly whether one person can attend the full schedule.",
+        "decision": "Overlap requires a start strictly before the previous end; equality is compatible."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Meetings [0,3] and [2,4] overlap because 2 is strictly before 3.",
+        "decision": "Do not apply closed-interval touching overlap to meeting occupancy."
+      }
+    ]
+  }
 }

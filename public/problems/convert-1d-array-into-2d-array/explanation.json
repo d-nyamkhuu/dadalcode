@@ -48,5 +48,86 @@
       "note": "A consecutive slice preserves row-major order and creates a distinct list for each output row."
     }
   ],
-  "keyDecision": "Return an empty result unless len(original) == m × n."
+  "keyDecision": "Return an empty result unless len(original) == m × n.",
+  "concept": {
+    "question": "How does row-major position determine a cell without changing value order?",
+    "intuition": [
+      "A reshape should preserve the sequence, not rearrange it. The requested rectangle must contain exactly as many cells as the original array has entries.",
+      "Check rows times columns against input length. If equal, divide the original sequence into consecutive blocks of column-count length, one block per row. Each original position belongs to one exact row and column."
+    ],
+    "observation": "Reject a shape whose cell count differs from the original entry count.",
+    "approach": [
+      "Verify the requested rectangle has the exact number of entries.",
+      "Read one consecutive column-width block for each row.",
+      "Return those rows in the original sequence order."
+    ],
+    "correctness": "For a valid shape, consecutive equal-width blocks partition every original position once. Row order and within-row order match the original sequence, so every value reaches its required row-major cell. If cell count differs, preserving all entries exactly once is impossible and rejection is correct.",
+    "complexity": {
+      "time": "O(mn) for a valid shape; O(1) if invalid",
+      "space": "O(mn) output; O(1) auxiliary",
+      "explanation": "An invalid shape is rejected in constant time. A valid reshape copies each entry once, taking time and output storage proportional to cell count, with constant auxiliary bookkeeping."
+    },
+    "pitfalls": [
+      "Reject a shape whose cell count differs from the original entry count.",
+      "Do not pad missing entries or silently discard extras."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/convert-1d-array-into-2d-array/concept.webp",
+        "alt": "Check rows times columns against input length. If equal, divide the original sequence into consecutive blocks of column-count length, one block per row. Each original position belongs to one exact row and column.",
+        "caption": "Check rows times columns against input length. If equal, divide the original sequence into consecutive blocks of column-count length, one block per row. Each original position belongs to one exact row and column.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Convert 1D Array Into 2D Array algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Convert 1D Array Into 2D Array, not a generic data structure illustration. The key idea is: A matrix with m rows and n columns needs exactly m × n values. Check that size first. Then take consecutive groups of n input values as rows. The groups preserve the original order and use each value exactly once; no rearrangement is required. The reason a decision is safe is: Return an empty result unless len(original) == m × n. The actual example this lesson teaches is {\"original\": [1, 2, 3, 4], \"m\": 2, \"n\": 2} with answer [[1, 2], [3, 4]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How does row-major position determine a cell without changing value order?",
+        "decision": "Reject a shape whose cell count differs from the original entry count."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A reshape should preserve the sequence, not rearrange it. The requested rectangle must contain exactly as many cells as the original array has entries.",
+        "decision": "Check rows times columns against input length. If equal, divide the original sequence into consecutive blocks of column-count length, one block per row. Each original position belongs to one exact row and column."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Check rows times columns against input length. If equal, divide the original sequence into consecutive blocks of column-count length, one block per row. Each original position belongs to one exact row and column.",
+        "decision": "Reject a shape whose cell count differs from the original entry count."
+      },
+      {
+        "id": "four-entries-fit-four-cells",
+        "title": "Four entries fit four cells",
+        "narration": "For [1,2,3,4] with two rows and two columns, 2×2=4 matches the input length.",
+        "decision": "Equal cell count is necessary before copying any row."
+      },
+      {
+        "id": "the-first-block-fills-row-zero",
+        "title": "The first block fills row zero",
+        "narration": "Copy entries one and two into the first row. The next block begins immediately afterward.",
+        "decision": "Blocks neither overlap nor skip input positions."
+      },
+      {
+        "id": "the-next-block-finishes-the-rectangle",
+        "title": "The next block finishes the rectangle",
+        "narration": "Entries three and four fill the second row. Return [[1,2],[3,4]].",
+        "decision": "Reading row by row reproduces the original array exactly."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "For a valid shape, consecutive equal-width blocks partition every original position once. Row order and within-row order match the original sequence, so every value reaches its required row-major cell. If cell count differs, preserving all entries exactly once is impossible and rejection is correct.",
+        "decision": "Reject a shape whose cell count differs from the original entry count."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Requesting two-by-three cells from four entries is impossible.",
+        "decision": "Do not pad missing entries or silently discard extras."
+      }
+    ]
+  }
 }

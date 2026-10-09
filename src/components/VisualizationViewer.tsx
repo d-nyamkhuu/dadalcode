@@ -136,14 +136,23 @@ export default function VisualizationViewer({
         8;
       slot.style.height = `${Math.max(170, pane.clientHeight - reserved)}px`;
     };
-    const observer = new ResizeObserver(measure);
+    // ResizeObserver runs during layout. Defer its height write to the next
+    // frame so resizing the pane cannot create an undelivered observer loop.
+    let frame = 0;
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
+    });
     observer.observe(pane);
     const heading = panel.querySelector(".panel-heading");
     const example = panel.querySelector(".wt-example-row");
     if (heading) observer.observe(heading);
     if (example) observer.observe(example);
     measure();
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   useLayoutEffect(() => {

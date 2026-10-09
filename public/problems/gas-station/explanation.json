@@ -47,5 +47,87 @@
       "note": "The first station after the failed segment is the earliest candidate not already ruled out by the same deficit."
     }
   ],
-  "keyDecision": "On a negative tank, restart after the failed station. A negative total means no start can work."
+  "keyDecision": "On a negative tank, restart after the failed station. A negative total means no start can work.",
+  "concept": {
+    "question": "Why does a failed fuel stretch eliminate every start inside that stretch?",
+    "intuition": [
+      "Trying a full lap from every station repeats the same deficits. A failure before finishing the lap gives stronger information than just one bad starting station.",
+      "Track fuel gained minus fuel spent. When a candidate stretch first runs negative, its current start fails. Every intermediate start also fails by that point: removing a nonnegative initial prefix cannot improve the remaining balance. Begin again after the failure."
+    ],
+    "observation": "A negative total net fuel makes every start impossible; a failed candidate stretch can restart only after its failure.",
+    "approach": [
+      "Accumulate both full-circle net fuel and the current candidate tank.",
+      "When the candidate tank becomes negative, restart after that station.",
+      "Return the surviving start only if the full-circle total is nonnegative."
+    ],
+    "correctness": "Before a stretch’s first failure, its earlier partial balances are nonnegative. Starting later inside that stretch removes one such nonnegative prefix, so its balance at the failing end cannot improve enough to become nonnegative. All those starts may be discarded. If the total circle balance is nonnegative, the final surviving candidate also has enough surplus to cover the earlier discarded deficit portion after wrapping.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "One scan updates the full-circle balance, candidate balance, and start position. Work is linear and extra memory is constant."
+    },
+    "pitfalls": [
+      "Check the full-circle total before returning.",
+      "Restart after the failed station.",
+      "Do not confuse station fuel with its net fuel gain."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/gas-station/concept.webp",
+        "alt": "Track fuel gained minus fuel spent. When a candidate stretch first runs negative, its current start fails. Every intermediate start also fails by that point: removing a nonnegative initial prefix cannot improve the remaining balance. Begin again after the failure.",
+        "caption": "Track fuel gained minus fuel spent. When a candidate stretch first runs negative, its current start fails. Every intermediate start also fails by that point: removing a nonnegative initial prefix cannot improve the remaining balance. Begin again after the failure.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Gas Station algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Gas Station, not a generic data structure illustration. The key idea is: Track fuel gained minus fuel spent as you try a starting station. If the tank first becomes negative, that start cannot work. None of the intermediate stations can fix that failed section either, so try the next station. Separately check whether total fuel can cover the whole circle. The reason a decision is safe is: On a negative tank, restart after the failed station. A negative total means no start can work. The actual example this lesson teaches is {\"gas\": [1, 2, 3, 4, 5], \"cost\": [3, 4, 5, 1, 2]} with answer 3. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does a failed fuel stretch eliminate every start inside that stretch?",
+        "decision": "A negative total net fuel makes every start impossible; a failed candidate stretch can restart only after its failure."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Trying a full lap from every station repeats the same deficits. A failure before finishing the lap gives stronger information than just one bad starting station.",
+        "decision": "Track fuel gained minus fuel spent. When a candidate stretch first runs negative, its current start fails. Every intermediate start also fails by that point: removing a nonnegative initial prefix cannot improve the remaining balance. Begin again after the failure."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Track fuel gained minus fuel spent. When a candidate stretch first runs negative, its current start fails. Every intermediate start also fails by that point: removing a nonnegative initial prefix cannot improve the remaining balance. Begin again after the failure.",
+        "decision": "A negative total net fuel makes every start impossible; a failed candidate stretch can restart only after its failure."
+      },
+      {
+        "id": "three-starting-stretches-fail",
+        "title": "Three starting stretches fail",
+        "narration": "Net station balances are -2,-2,-2,3,3. Starts 0,1,2 each fail immediately.",
+        "decision": "A route cannot spend fuel it has not yet collected."
+      },
+      {
+        "id": "build-enough-surplus-at-three",
+        "title": "Build enough surplus at three",
+        "narration": "Stations 3 and 4 each add net 3, giving tank 6 before wrapping.",
+        "decision": "The candidate survives its remaining forward stretch."
+      },
+      {
+        "id": "wrap-through-the-earlier-deficits",
+        "title": "Wrap through the earlier deficits",
+        "narration": "Surplus 6 pays for the three deficits of 2. The circle’s total is zero, so start 3 succeeds.",
+        "decision": "The total-fuel check and failed-stretch eliminations certify the surviving start."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Before a stretch’s first failure, its earlier partial balances are nonnegative. Starting later inside that stretch removes one such nonnegative prefix, so its balance at the failing end cannot improve enough to become nonnegative. All those starts may be discarded. If the total circle balance is nonnegative, the final surviving candidate also has enough surplus to cover the earlier discarded deficit portion after wrapping.",
+        "decision": "A negative total net fuel makes every start impossible; a failed candidate stretch can restart only after its failure."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A negative total net balance means no full lap is possible regardless of start.",
+        "decision": "A local surviving suffix does not replace the global total check."
+      }
+    ]
+  }
 }

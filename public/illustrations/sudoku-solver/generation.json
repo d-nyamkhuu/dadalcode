@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. A conceptual three-panel illustration of Sudoku constraints WITHOUT any digits or solved board. Show an unfilled precise 9-by-9 square grid partitioned into nine 3-by-3 regions; one cyan horizontal row, one green vertical column, and one warm-outlined 3-by-3 region meet at a bright trial cell. A small cluster of abstract candidate tokens beside it narrows to one, then a faded backtracking arrow indicates undoing a choice. No letters or numerals anywhere.",
+  "width": 1774,
+  "height": 887
+}

@@ -102,5 +102,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How do plus and minus choices merge at the same reachable total?",
+    "intuition": [
+      "Enumerating all sign assignments is exponential. Different partial assignments often reach the same total and have identical choices left, so their counts can be combined.",
+      "Keep a count of assignments reaching each current total. For the next number, every old assignment creates one new total by adding it and one by subtracting it. Add contributions whenever totals coincide."
+    ],
+    "observation": "Extend only the preceding stage’s counts; plus and minus are distinct choices even for zero.",
+    "approach": [
+      "Begin with one assignment reaching total zero.",
+      "Send each current count to both plus and minus next totals.",
+      "After all numbers, read the target’s count or zero."
+    ],
+    "correctness": "After each stage, a recorded count equals the number of sign assignments for the processed prefix reaching that total. Each assignment has exactly two extensions, and its last sign uniquely determines which extension created it. Summing all predecessor contributions therefore counts every new assignment exactly once.",
+    "complexity": {
+      "time": "O(n × (S + 1))",
+      "space": "O(S + 1)",
+      "explanation": "At each number, process only currently reachable totals. The absolute total is bounded by the sum of magnitudes; time scales with number count times that reachable range, and storage with the range."
+    },
+    "pitfalls": [
+      "Extend only the preceding stage’s counts; plus and minus are distinct choices even for zero.",
+      "Do not deduplicate sign paths that share a total."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/target-sum/concept.webp",
+        "alt": "Keep a count of assignments reaching each current total. For the next number, every old assignment creates one new total by adding it and one by subtracting it. Add contributions whenever totals coincide.",
+        "caption": "Keep a count of assignments reaching each current total. For the next number, every old assignment creates one new total by adding it and one by subtracting it. Add contributions whenever totals coincide.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Target Sum algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Target Sum, not a generic data structure illustration. The key idea is: Choose a plus or minus sign for each number. Different sign choices may give the same total, so save a count for each possible total. For the next number, send each old count to both the plus total and the minus total in a new map. The reason a decision is safe is: Use a fresh map for each number. For zero, plus and minus are two distinct choices that both add to the same count. The actual example this lesson teaches is {\"nums\": [1, 1, 1, 1, 1], \"target\": 3} with answer 5. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How do plus and minus choices merge at the same reachable total?",
+        "decision": "Extend only the preceding stage’s counts; plus and minus are distinct choices even for zero."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Enumerating all sign assignments is exponential. Different partial assignments often reach the same total and have identical choices left, so their counts can be combined.",
+        "decision": "Keep a count of assignments reaching each current total. For the next number, every old assignment creates one new total by adding it and one by subtracting it. Add contributions whenever totals coincide."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep a count of assignments reaching each current total. For the next number, every old assignment creates one new total by adding it and one by subtracting it. Add contributions whenever totals coincide.",
+        "decision": "Extend only the preceding stage’s counts; plus and minus are distinct choices even for zero."
+      },
+      {
+        "id": "one-and-two-sign-decisions",
+        "title": "One and two sign decisions",
+        "narration": "For five ones and target three, after one value totals −1 and 1 each have one way. After two, totals −2,0,2 have counts 1,2,1.",
+        "decision": "The two paths reaching zero remain two distinct assignments."
+      },
+      {
+        "id": "counts-combine-before-the-last-choice",
+        "title": "Counts combine before the last choice",
+        "narration": "After four ones, total two has four ways and total four has one. These are the only totals that can reach three with the last one.",
+        "decision": "Reaching the same total lets later choices share one count record."
+      },
+      {
+        "id": "two-final-choice-groups-give-five",
+        "title": "Two final-choice groups give five",
+        "narration": "Add the final one to total two, contributing four ways. Subtract it from total four, contributing one. Return five.",
+        "decision": "The groups have different last signs and cannot overlap."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each stage, a recorded count equals the number of sign assignments for the processed prefix reaching that total. Each assignment has exactly two extensions, and its last sign uniquely determines which extension created it. Summing all predecessor contributions therefore counts every new assignment exactly once.",
+        "decision": "Extend only the preceding stage’s counts; plus and minus are distinct choices even for zero."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "For a zero value, plus zero and minus zero reach the same total but double its assignment count.",
+        "decision": "Do not deduplicate sign paths that share a total."
+      }
+    ]
+  }
 }

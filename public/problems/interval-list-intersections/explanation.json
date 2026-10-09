@@ -93,5 +93,86 @@
       "note": "The earlier-finishing interval cannot meet any later interval on the other side, making its pointer the safe one to advance."
     }
   ],
-  "keyDecision": "An intersection exists when max(starts) <= min(ends). A shared endpoint counts."
+  "keyDecision": "An intersection exists when max(starts) <= min(ends). A shared endpoint counts.",
+  "concept": {
+    "question": "Why does the interval ending first have no future overlap left to explore?",
+    "intuition": [
+      "Comparing every pair of intervals ignores that each list is sorted and internally disjoint. Only the currently earliest remaining interval from each list can overlap next.",
+      "Their common range starts at the larger start and ends at the smaller end. Record it when those boundaries do not cross. Then advance the interval ending first, since later intervals in the other list cannot overlap it."
+    ],
+    "observation": "Closed endpoints permit a one-point intersection when the boundaries are equal.",
+    "approach": [
+      "Compare the current interval of each list.",
+      "Record the larger-start to smaller-end range if nonempty.",
+      "Advance the interval with the earlier end."
+    ],
+    "correctness": "The larger start and smaller end are exactly the common bounds of a pair. Once one current interval ends before the other, it cannot meet any later interval in the other internally disjoint sorted list. Advancing it therefore discards no possible intersection. Repeating checks all potentially overlapping pairs and records each once.",
+    "complexity": {
+      "time": "O(m+n)",
+      "space": "O(1) auxiliary plus output",
+      "explanation": "Every comparison advances at least one list position, giving time linear in the combined interval count. Only current positions are auxiliary storage, besides the intersection output."
+    },
+    "pitfalls": [
+      "Closed endpoints permit a one-point intersection when the boundaries are equal.",
+      "Reject only when start exceeds end, not when it equals end."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/interval-list-intersections/concept.webp",
+        "alt": "Two overlapping intervals project their larger start and smaller end onto a short gold intersection; a separate inset shows a shared endpoint.",
+        "caption": "The common section begins only when both intervals have begun and ends when either interval ends. Closed intervals can also intersect at one point.",
+        "prompt": "Elegant mathematical intuition illustration, widescreen 2:1, clean luminous geometric cyan and lime with warm gold accents on black, readable sparse composition. No UI, code, watermark or signatures. Two partially overlapping horizontal intervals on separate rows of the SAME unnumbered axis. The top cyan interval begins earlier and ends INSIDE the lower green interval. Below them show ONLY their exact overlap, a gold segment beginning at the GREEN start and ending at the CYAN end, with vertical dashed guides aligning these endpoints. A separate small inset shows two intervals meeting at one endpoint, with a single gold POINT as their closed-interval intersection. No numbers, letters, or words."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does the interval ending first have no future overlap left to explore?",
+        "decision": "Closed endpoints permit a one-point intersection when the boundaries are equal."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing every pair of intervals ignores that each list is sorted and internally disjoint. Only the currently earliest remaining interval from each list can overlap next.",
+        "decision": "Their common range starts at the larger start and ends at the smaller end. Record it when those boundaries do not cross. Then advance the interval ending first, since later intervals in the other list cannot overlap it."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Their common range starts at the larger start and ends at the smaller end. Record it when those boundaries do not cross. Then advance the interval ending first, since later intervals in the other list cannot overlap it.",
+        "decision": "Closed endpoints permit a one-point intersection when the boundaries are equal."
+      },
+      {
+        "id": "the-first-pair-overlaps-from-one-to-two",
+        "title": "The first pair overlaps from one to two",
+        "narration": "For the authored lists, [0,2] and [1,5] intersect in [1,2]. Advance the first interval because its end two is earlier.",
+        "decision": "The other current interval may still overlap the first list’s next interval."
+      },
+      {
+        "id": "touching-counts-as-an-intersection",
+        "title": "Touching counts as an intersection",
+        "narration": "Next [5,10] touches [1,5] at five, giving [5,5]. Then [5,10] overlaps [8,12] in [8,10].",
+        "decision": "Equal intersection bounds represent one included point."
+      },
+      {
+        "id": "finish-the-remaining-ordered-pairs",
+        "title": "Finish the remaining ordered pairs",
+        "narration": "The complete result is [1,2],[5,5],[8,10],[15,23],[24,24],[25,25]. The gap between [13,23] and [8,12] contributes nothing.",
+        "decision": "Every step advances at least one exhausted interval."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "The larger start and smaller end are exactly the common bounds of a pair. Once one current interval ends before the other, it cannot meet any later interval in the other internally disjoint sorted list. Advancing it therefore discards no possible intersection. Repeating checks all potentially overlapping pairs and records each once.",
+        "decision": "Closed endpoints permit a one-point intersection when the boundaries are equal."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An empty list produces no intersections.",
+        "decision": "Reject only when start exceeds end, not when it equals end."
+      }
+    ]
+  }
 }

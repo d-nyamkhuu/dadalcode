@@ -127,5 +127,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "Why must we remember several possible word boundaries instead of choosing one long word?",
+    "intuition": [
+      "A greedy word choice can leave an impossible suffix even when another split succeeds. Retrying all prefix splits recursively also repeats the same boundary questions.",
+      "Imagine positions between characters as landing points. The start is reachable. A dictionary word can connect a reachable boundary to another boundary. Keep all reachable positions, so a later word can build on any valid earlier split."
+    ],
+    "observation": "A boundary is reachable only through a whole dictionary word from an already reachable boundary.",
+    "approach": [
+      "Mark the start boundary reachable.",
+      "At each later boundary, check dictionary pieces from earlier reachable boundaries.",
+      "Return whether the final boundary becomes reachable."
+    ],
+    "correctness": "A marked boundary has a valid dictionary-word partition of its preceding text. Extending it with a dictionary word preserves that fact. Every valid full partition supplies a sequence of such boundary connections, so its final boundary will be marked. Thus final reachability is equivalent to the requested segmentation.",
+    "complexity": {
+      "time": "O(nL²)",
+      "space": "O(n + D)",
+      "explanation": "The reference checks bounded-length candidate pieces at each end, including the cost of creating and hashing those pieces. Memory stores reachable boundaries and the dictionary rather than repeated full partition histories."
+    },
+    "pitfalls": [
+      "Do not commit greedily to the longest matching word.",
+      "Dictionary words may be reused.",
+      "Require reachability of the final boundary."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/word-break/concept.webp",
+        "alt": "A row of five symbol tiles splits into valid short pieces on one route; a longer first piece leaves an unusable remainder on another.",
+        "caption": "A longer first word can lead to a dead end. Keep every reachable word boundary so a shorter first word can still complete the text.",
+        "prompt": "Mathematical intuition illustration, widescreen 2:1, elegant geometric glowing cyan/lime shapes on black, restrained warm accents, no UI/code/watermark. An ordered row of five UNLETTERED glyph tiles can be covered by matching vocabulary puzzle blocks. Show two possible first blocks: one short cyan prefix then a matching green remainder, and one longer amber prefix leading to a dead end. A glowing marker at the successful ending boundary shows whole-text coverage. Use abstract glyphs, no real words, letters, numbers, or equations. Emphasize reachable prefix boundaries."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why must we remember several possible word boundaries instead of choosing one long word?",
+        "decision": "A boundary is reachable only through a whole dictionary word from an already reachable boundary."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A greedy word choice can leave an impossible suffix even when another split succeeds. Retrying all prefix splits recursively also repeats the same boundary questions.",
+        "decision": "Imagine positions between characters as landing points. The start is reachable. A dictionary word can connect a reachable boundary to another boundary. Keep all reachable positions, so a later word can build on any valid earlier split."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Imagine positions between characters as landing points. The start is reachable. A dictionary word can connect a reachable boundary to another boundary. Keep all reachable positions, so a later word can build on any valid earlier split.",
+        "decision": "A boundary is reachable only through a whole dictionary word from an already reachable boundary."
+      },
+      {
+        "id": "two-different-prefix-boundaries-work",
+        "title": "Two different prefix boundaries work",
+        "narration": "For cars with words car, ca, and rs, both ca ending at boundary 2 and car ending at boundary 3 are possible.",
+        "decision": "Keep both choices rather than committing to the longer prefix."
+      },
+      {
+        "id": "the-shorter-prefix-supplies-the-useful-route",
+        "title": "The shorter prefix supplies the useful route",
+        "narration": "Boundary 2 follows ca. Word rs connects it to the final boundary 4.",
+        "decision": "A word connection needs a valid split before its start."
+      },
+      {
+        "id": "the-final-boundary-is-reachable",
+        "title": "The final boundary is reachable",
+        "narration": "The split ca + rs covers cars, so return yes. The car route’s leftover s does not matter.",
+        "decision": "One complete route is enough to establish existence."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A marked boundary has a valid dictionary-word partition of its preceding text. Extending it with a dictionary word preserves that fact. Every valid full partition supplies a sequence of such boundary connections, so its final boundary will be marked. Thus final reachability is equivalent to the requested segmentation.",
+        "decision": "A boundary is reachable only through a whole dictionary word from an already reachable boundary."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Separate example: matching a dictionary prefix alone does not suffice if no sequence covers the leftover suffix.",
+        "decision": "Every character must belong to a dictionary word."
+      }
+    ]
+  }
 }

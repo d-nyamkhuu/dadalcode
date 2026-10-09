@@ -39,5 +39,86 @@
       "note": "An existing child extends the path by exactly one node. Its queued depth is therefore its parent depth plus one."
     }
   ],
-  "keyDecision": "A leaf has neither a left child nor a right child. Count depth in nodes."
+  "keyDecision": "A leaf has neither a left child nor a right child. Count depth in nodes.",
+  "concept": {
+    "question": "Why is the first leaf in breadth-first order the shortest completed path?",
+    "intuition": [
+      "A missing child is not a completed root-to-leaf path when its sibling exists. Computing a minimum through empty branches can therefore give an impossibly short depth.",
+      "Visit nodes in order of increasing depth using a queue. The first node with no children is a genuine leaf and completes the shortest root path. Return its depth immediately."
+    ],
+    "observation": "A leaf has neither child. One missing child does not make a node a leaf.",
+    "approach": [
+      "Queue the root with depth one.",
+      "Visit nodes in increasing depth.",
+      "Return the first genuine leaf’s depth."
+    ],
+    "correctness": "Breadth-first order processes every node at a smaller depth before any node at a greater depth. Therefore the first genuine leaf has a depth no greater than any other leaf. Requiring both children absent ensures the chosen endpoint is a valid complete path rather than an empty branch.",
+    "complexity": {
+      "time": "O(n) worst case",
+      "space": "O(w)",
+      "explanation": "In the worst case, visit every node. The queue uses memory proportional to the widest frontier; early return can avoid deeper work."
+    },
+    "pitfalls": [
+      "A leaf has neither child. One missing child does not make a node a leaf.",
+      "The missing sibling does not create a zero-length leaf path."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/minimum-depth-of-binary-tree/concept.webp",
+        "alt": "Visit nodes in order of increasing depth using a queue. The first node with no children is a genuine leaf and completes the shortest root path. Return its depth immediately.",
+        "caption": "Visit nodes in order of increasing depth using a queue. The first node with no children is a genuine leaf and completes the shortest root path. Return its depth immediately.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Minimum Depth of Binary Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Minimum Depth of Binary Tree, not a generic data structure illustration. The key idea is: Use a queue to visit the shallowest nodes first. The first leaf you reach ends the shortest root-to-leaf path. Return its depth immediately. A node with one missing child is not a leaf, so an empty child must not be mistaken for a shorter finished path. The reason a decision is safe is: A leaf has neither a left child nor a right child. Count depth in nodes. The actual example this lesson teaches is {\"root\": [3, 9, 20, null, null, 15, 7]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why is the first leaf in breadth-first order the shortest completed path?",
+        "decision": "A leaf has neither child. One missing child does not make a node a leaf."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A missing child is not a completed root-to-leaf path when its sibling exists. Computing a minimum through empty branches can therefore give an impossibly short depth.",
+        "decision": "Visit nodes in order of increasing depth using a queue. The first node with no children is a genuine leaf and completes the shortest root path. Return its depth immediately."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Visit nodes in order of increasing depth using a queue. The first node with no children is a genuine leaf and completes the shortest root path. Return its depth immediately.",
+        "decision": "A leaf has neither child. One missing child does not make a node a leaf."
+      },
+      {
+        "id": "the-root-is-not-a-completed-path",
+        "title": "The root is not a completed path",
+        "narration": "Root 3 has depth 1 but has children, so continue.",
+        "decision": "A valid endpoint must be a leaf."
+      },
+      {
+        "id": "the-next-level-contains-a-leaf",
+        "title": "The next level contains a leaf",
+        "narration": "Node 9 is visited at depth 2 and has no children.",
+        "decision": "All shallower nodes have already been processed."
+      },
+      {
+        "id": "return-before-visiting-deeper-leaves",
+        "title": "Return before visiting deeper leaves",
+        "narration": "The minimum depth is 2. Nodes 15 and 7 at depth 3 cannot improve it.",
+        "decision": "Queue order guarantees no unseen shallower leaf."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Breadth-first order processes every node at a smaller depth before any node at a greater depth. Therefore the first genuine leaf has a depth no greater than any other leaf. Requiring both children absent ensures the chosen endpoint is a valid complete path rather than an empty branch.",
+        "decision": "A leaf has neither child. One missing child does not make a node a leaf."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: a root with only one child must continue along that child.",
+        "decision": "The missing sibling does not create a zero-length leaf path."
+      }
+    ]
+  }
 }

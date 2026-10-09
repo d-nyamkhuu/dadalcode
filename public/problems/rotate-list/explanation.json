@@ -45,5 +45,87 @@
       "note": "Breaking this precise edge both produces the correct boundary and prevents returning a cyclic list."
     }
   ],
-  "keyDecision": "The new tail is at position length - k - 1 after reducing k modulo the length."
+  "keyDecision": "The new tail is at position length - k - 1 after reducing k modulo the length.",
+  "concept": {
+    "question": "Why does making a temporary circle simplify a list rotation?",
+    "intuition": [
+      "Moving the last node to the front repeatedly would scan the chain many times. A rotation only changes where we begin reading the same cyclic node order.",
+      "Count the nodes and reduce the rotation by that length. Connect the tail back to the front to make a temporary circle. Find the node just before the desired new front, then break its outgoing link to restore a chain."
+    ],
+    "observation": "A full-length rotation changes nothing; after choosing the new front, break the circle at its predecessor.",
+    "approach": [
+      "Count the chain and reduce the shift by its length.",
+      "Connect the old tail to the old front.",
+      "Choose the new front and cut just before it."
+    ],
+    "correctness": "Closing the tail-to-front link creates a circle containing every original node exactly once. Selecting the new front preserves this cyclic order while changing the linear reading start. Cutting its predecessor’s link yields exactly the desired suffix followed by the original prefix, with every node present and no cycle left.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Counting and finding the cut each walk across at most the list length. A few bookmarks use constant extra memory, so total work is linear."
+    },
+    "pitfalls": [
+      "Break the temporary circle before returning.",
+      "Reduce large shifts by the list length.",
+      "Handle empty and single-node chains before making a circle."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/rotate-list/concept.webp",
+        "alt": "A chain closes into a temporary circle and opens at a different boundary to perform a right rotation.",
+        "caption": "A chain closes into a temporary circle and opens at a different boundary to perform a right rotation.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Rotate List algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Rotate List, not a generic data structure illustration. The key idea is: A rotation moves the last k nodes to the front. Rotating by the full list length changes nothing, so first reduce k by that length. Temporarily connect the tail to the head, then cut the circle just before the nodes that should become the new front. The reason a decision is safe is: The new tail is at position length - k - 1 after reducing k modulo the length. The actual example this lesson teaches is {\"head\": [1, 2, 3, 4, 5], \"k\": 2} with answer [4, 5, 1, 2, 3]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does making a temporary circle simplify a list rotation?",
+        "decision": "A full-length rotation changes nothing; after choosing the new front, break the circle at its predecessor."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Moving the last node to the front repeatedly would scan the chain many times. A rotation only changes where we begin reading the same cyclic node order.",
+        "decision": "Count the nodes and reduce the rotation by that length. Connect the tail back to the front to make a temporary circle. Find the node just before the desired new front, then break its outgoing link to restore a chain."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Count the nodes and reduce the rotation by that length. Connect the tail back to the front to make a temporary circle. Find the node just before the desired new front, then break its outgoing link to restore a chain.",
+        "decision": "A full-length rotation changes nothing; after choosing the new front, break the circle at its predecessor."
+      },
+      {
+        "id": "count-and-reduce-the-shift",
+        "title": "Count and reduce the shift",
+        "narration": "The chain [1,2,3,4,5] has five nodes. A right shift of two moves the final two nodes to the front.",
+        "decision": "Whole cycles of five do not change the result."
+      },
+      {
+        "id": "find-the-new-break",
+        "title": "Find the new break",
+        "narration": "After temporarily closing the circle, node 3 becomes the new tail and node 4 the new front.",
+        "decision": "The new tail precedes the two-node suffix that is moving forward."
+      },
+      {
+        "id": "open-the-circle-at-the-new-tail",
+        "title": "Open the circle at the new tail",
+        "narration": "Break the link from 3 to 4. Reading from 4 gives 4 → 5 → 1 → 2 → 3.",
+        "decision": "The old tail-to-front link keeps the two old segments joined."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Closing the tail-to-front link creates a circle containing every original node exactly once. Selecting the new front preserves this cyclic order while changing the linear reading start. Cutting its predecessor’s link yields exactly the desired suffix followed by the original prefix, with every node present and no cycle left.",
+        "decision": "A full-length rotation changes nothing; after choosing the new front, break the circle at its predecessor."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: rotating a five-node list by five returns the original chain.",
+        "decision": "Reduce the shift before altering links."
+      }
+    ]
+  }
 }

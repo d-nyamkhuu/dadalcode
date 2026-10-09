@@ -43,5 +43,87 @@
       "note": "The next piece begins immediately after the chosen range, guaranteeing every recorded partition covers the string continuously and in order."
     }
   ],
-  "keyDecision": "Choose a piece only when its endpoints match and its inner piece is also a palindrome."
+  "keyDecision": "Choose a piece only when its endpoints match and its inner piece is also a palindrome.",
+  "concept": {
+    "question": "How can cached mirror checks guide every possible cut into palindromes?",
+    "intuition": [
+      "A partition search may inspect the same substring’s mirrored characters repeatedly from different routes. Testing those pieces once separates the mirror question from the cut-placement question.",
+      "First record which continuous ranges read the same forward and backward. Then choose a palindromic first piece, continue after its end, and explore every legal next cut. A completed sequence of pieces covers the string exactly."
+    ],
+    "observation": "Every chosen piece is palindromic, and the next piece begins immediately after it.",
+    "approach": [
+      "Precompute which ranges are palindromes.",
+      "Choose a valid next piece and continue with the remaining suffix.",
+      "Save complete partitions and undo pieces to explore other cuts."
+    ],
+    "correctness": "A completed search path chooses only verified palindrome ranges and advances directly to each following boundary, so it partitions the full string into valid pieces. Any valid partition identifies one legal next cut at every boundary, so its path is explored. Cached range checks do not change which pieces are valid.",
+    "complexity": {
+      "time": "O(n² + n × 2^n)",
+      "space": "O(n²) auxiliary plus output",
+      "explanation": "Mirror-range preprocessing uses quadratic work and memory. The number of partitions can be exponential, and writing their pieces adds output-sized work. Search depth is bounded by string length."
+    },
+    "pitfalls": [
+      "Substrings must be continuous pieces.",
+      "Save a completed copy before undoing choices.",
+      "Do not reject a valid longer piece because single-letter cuts also work."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/palindrome-partitioning/concept.webp",
+        "alt": "First record which continuous ranges read the same forward and backward. Then choose a palindromic first piece, continue after its end, and explore every legal next cut. A completed sequence of pieces covers the string exactly.",
+        "caption": "First record which continuous ranges read the same forward and backward. Then choose a palindromic first piece, continue after its end, and explore every legal next cut. A completed sequence of pieces covers the string exactly.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Palindrome Partitioning algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Palindrome Partitioning, not a generic data structure illustration. The key idea is: First remember which continuous pieces of the string are palindromes. Then build a partition by choosing one valid piece at a time and continuing after it. Saving the palindrome checks avoids comparing the same piece again in different partitions. The reason a decision is safe is: Choose a piece only when its endpoints match and its inner piece is also a palindrome. The actual example this lesson teaches is {\"s\": \"aab\"} with answer [[\"a\", \"a\", \"b\"], [\"aa\", \"b\"]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can cached mirror checks guide every possible cut into palindromes?",
+        "decision": "Every chosen piece is palindromic, and the next piece begins immediately after it."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "A partition search may inspect the same substring’s mirrored characters repeatedly from different routes. Testing those pieces once separates the mirror question from the cut-placement question.",
+        "decision": "First record which continuous ranges read the same forward and backward. Then choose a palindromic first piece, continue after its end, and explore every legal next cut. A completed sequence of pieces covers the string exactly."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "First record which continuous ranges read the same forward and backward. Then choose a palindromic first piece, continue after its end, and explore every legal next cut. A completed sequence of pieces covers the string exactly.",
+        "decision": "Every chosen piece is palindromic, and the next piece begins immediately after it."
+      },
+      {
+        "id": "find-the-usable-pieces",
+        "title": "Find the usable pieces",
+        "narration": "For aab, the single letters are palindromes, and aa is also a palindrome. Neither ab nor aab qualifies.",
+        "decision": "Equal endpoints rely on a palindromic inner range."
+      },
+      {
+        "id": "choose-single-letter-cuts",
+        "title": "Choose single-letter cuts",
+        "narration": "Choose the first a, then the second a, then b. Save [a,a,b].",
+        "decision": "The pieces are consecutive and use every character once."
+      },
+      {
+        "id": "choose-the-longer-first-piece",
+        "title": "Choose the longer first piece",
+        "narration": "Return to the first cut and choose aa, then b. Save [aa,b]. There are no other valid complete cuts.",
+        "decision": "All valid first pieces have been explored."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A completed search path chooses only verified palindrome ranges and advances directly to each following boundary, so it partitions the full string into valid pieces. Any valid partition identifies one legal next cut at every boundary, so its path is explored. Cached range checks do not change which pieces are valid.",
+        "decision": "Every chosen piece is palindromic, and the next piece begins immediately after it."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: every single character is a palindrome, so the all-single-letter partition always exists for a nonempty string.",
+        "decision": "A one-letter inner piece needs no matching partner."
+      }
+    ]
+  }
 }

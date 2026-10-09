@@ -45,5 +45,86 @@
       "note": "Value equality cheaply filters candidates, while the helper supplies the required complete structural comparison before accepting."
     }
   ],
-  "keyDecision": "The subtree comparison must match empty child positions as well as every node value."
+  "keyDecision": "The subtree comparison must match empty child positions as well as every node value.",
+  "concept": {
+    "question": "What must match besides the candidate root’s value?",
+    "intuition": [
+      "Finding a node with the right value is not enough: a subtree includes all descendants with their exact left-right structure. Try each possible root, then compare both trees completely.",
+      "At a candidate root, compare paired nodes recursively. Their values must agree, and absence must agree on both sides. A matching prefix with an extra descendant is a failure, not a subtree match."
+    ],
+    "observation": "A successful match requires identical values and shape through every descendant.",
+    "approach": [
+      "Visit possible roots in the larger tree.",
+      "At each root, compare corresponding values and left/right children.",
+      "Succeed only when the entire smaller tree matches without extra descendants."
+    ],
+    "correctness": "An exact comparison accepts only equal values at paired nodes and equal absence at every corresponding child. Thus it accepts precisely equal rooted trees. Trying every possible root includes the root of any true subtree and excludes all candidates that differ in value or structure.",
+    "complexity": {
+      "time": "O(nm)",
+      "space": "O(h₁ + h₂)",
+      "explanation": "In the worst case, many candidate roots each require a full smaller-tree comparison, giving the product of tree sizes. Traversal and comparison stacks scale with the relevant tree heights."
+    },
+    "pitfalls": [
+      "A successful match requires identical values and shape through every descendant.",
+      "Do not stop comparison when the smaller tree ends if the larger candidate still has a node."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/subtree-of-another-tree/concept.webp",
+        "alt": "At a candidate root, compare paired nodes recursively. Their values must agree, and absence must agree on both sides. A matching prefix with an extra descendant is a failure, not a subtree match.",
+        "caption": "At a candidate root, compare paired nodes recursively. Their values must agree, and absence must agree on both sides. A matching prefix with an extra descendant is a failure, not a subtree match.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Subtree of Another Tree algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Subtree of Another Tree, not a generic data structure illustration. The key idea is: Try each node of the larger tree as the start of the candidate subtree. If its value matches the smaller tree's root, compare the complete shapes and values below them. A matching root value alone is not enough; an extra child also makes the trees different. The reason a decision is safe is: The subtree comparison must match empty child positions as well as every node value. The actual example this lesson teaches is {\"root\": [3, 4, 5, 1, 2], \"subRoot\": [4, 1, 2]} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "What must match besides the candidate root’s value?",
+        "decision": "A successful match requires identical values and shape through every descendant."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Finding a node with the right value is not enough: a subtree includes all descendants with their exact left-right structure. Try each possible root, then compare both trees completely.",
+        "decision": "At a candidate root, compare paired nodes recursively. Their values must agree, and absence must agree on both sides. A matching prefix with an extra descendant is a failure, not a subtree match."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "At a candidate root, compare paired nodes recursively. Their values must agree, and absence must agree on both sides. A matching prefix with an extra descendant is a failure, not a subtree match.",
+        "decision": "A successful match requires identical values and shape through every descendant."
+      },
+      {
+        "id": "root-three-is-not-a-match",
+        "title": "Root three is not a match",
+        "narration": "For larger tree [3,4,5,1,2] and candidate [4,1,2], root three differs from candidate root four.",
+        "decision": "A root-value mismatch immediately rejects that candidate."
+      },
+      {
+        "id": "try-the-node-containing-four",
+        "title": "Try the node containing four",
+        "narration": "The next candidate root four has left child one and right child two, just like the smaller tree.",
+        "decision": "Check child orientation as well as values."
+      },
+      {
+        "id": "verify-both-descendant-endings",
+        "title": "Verify both descendant endings",
+        "narration": "Nodes one and two are leaves in both trees. Their absent children match, completing an exact subtree match. Return yes.",
+        "decision": "An extra child in the larger candidate would reject the match."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "An exact comparison accepts only equal values at paired nodes and equal absence at every corresponding child. Thus it accepts precisely equal rooted trees. Trying every possible root includes the root of any true subtree and excludes all candidates that differ in value or structure.",
+        "decision": "A successful match requires identical values and shape through every descendant."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A matching value sequence with different left/right placement is insufficient.",
+        "decision": "Do not stop comparison when the smaller tree ends if the larger candidate still has a node."
+      }
+    ]
+  }
 }

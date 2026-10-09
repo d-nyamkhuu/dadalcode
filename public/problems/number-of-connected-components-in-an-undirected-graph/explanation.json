@@ -46,5 +46,86 @@
       "note": "Discovery-time marking prevents cycles and shared routes from scheduling duplicate visits."
     }
   ],
-  "keyDecision": "Increase the group count once per new traversal, not once per vertex visited."
+  "keyDecision": "Increase the group count once per new traversal, not once per vertex visited.",
+  "concept": {
+    "question": "How can one exploration identify a whole connected component?",
+    "intuition": [
+      "Testing every pair of vertices for connectivity repeats the same routes. Once an exploration reaches all vertices connected to one starting vertex, they form a complete component.",
+      "Choose any still-unvisited vertex and follow all its connections until no new vertex is reachable. Mark that whole group, count one component, then start again from another unvisited vertex."
+    ],
+    "observation": "Start a new component only from a vertex no earlier exploration reached.",
+    "approach": [
+      "Build neighbor lists for all vertices, including isolated ones.",
+      "Explore every newly found vertex’s neighbors and mark discoveries.",
+      "Count one component per exploration started from an unvisited vertex."
+    ],
+    "correctness": "Following all neighbors reaches every vertex connected to the start, and never crosses into a disconnected group because no connecting route exists. Starting again only at unseen vertices produces disjoint exhaustive groups, so the number of starts equals the number of connected components.",
+    "complexity": {
+      "time": "O(n+e)",
+      "space": "O(n+e)",
+      "explanation": "Each vertex is discovered once and each undirected edge is examined from both ends. Work and neighbor-list storage are proportional to vertices plus edges."
+    },
+    "pitfalls": [
+      "Start a new component only from a vertex no earlier exploration reached.",
+      "Do not omit vertices just because they have no edge."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/number-of-connected-components-in-an-undirected-graph/concept.webp",
+        "alt": "Choose any still-unvisited vertex and follow all its connections until no new vertex is reachable. Mark that whole group, count one component, then start again from another unvisited vertex.",
+        "caption": "Choose any still-unvisited vertex and follow all its connections until no new vertex is reachable. Mark that whole group, count one component, then start again from another unvisited vertex.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Number of Connected Components in an Undirected Graph algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Number of Connected Components in an Undirected Graph, not a generic data structure illustration. The key idea is: Start from an unvisited vertex and follow every reachable edge. All vertices found belong to one connected group. Mark them so the next scan does not count that group again. Repeat from each remaining unvisited vertex, including isolated vertices with no edges. The reason a decision is safe is: Increase the group count once per new traversal, not once per vertex visited. The actual example this lesson teaches is {\"n\": 5, \"edges\": [[0, 1], [1, 2], [3, 4]]} with answer 2. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can one exploration identify a whole connected component?",
+        "decision": "Start a new component only from a vertex no earlier exploration reached."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Testing every pair of vertices for connectivity repeats the same routes. Once an exploration reaches all vertices connected to one starting vertex, they form a complete component.",
+        "decision": "Choose any still-unvisited vertex and follow all its connections until no new vertex is reachable. Mark that whole group, count one component, then start again from another unvisited vertex."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Choose any still-unvisited vertex and follow all its connections until no new vertex is reachable. Mark that whole group, count one component, then start again from another unvisited vertex.",
+        "decision": "Start a new component only from a vertex no earlier exploration reached."
+      },
+      {
+        "id": "explore-the-first-group",
+        "title": "Explore the first group",
+        "narration": "In the fixture, vertices 0,1,2 form the chain 0—1—2. Starting at 0 reaches all three.",
+        "decision": "Following every edge from discovered vertices eventually finds their entire reachable group."
+      },
+      {
+        "id": "start-from-the-next-unseen-vertex",
+        "title": "Start from the next unseen vertex",
+        "narration": "Vertices 1 and 2 need no new exploration. Vertex 3 remains unseen, so start the second component and reach 4.",
+        "decision": "An already reached vertex belongs to the component already counted."
+      },
+      {
+        "id": "count-two-components",
+        "title": "Count two components",
+        "narration": "The discovered groups are {0,1,2} and {3,4}. No edge connects them, so return 2.",
+        "decision": "Every vertex has been assigned to exactly one exploration."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Following all neighbors reaches every vertex connected to the start, and never crosses into a disconnected group because no connecting route exists. Starting again only at unseen vertices produces disjoint exhaustive groups, so the number of starts equals the number of connected components.",
+        "decision": "Start a new component only from a vertex no earlier exploration reached."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An isolated vertex is a component by itself.",
+        "decision": "Do not omit vertices just because they have no edge."
+      }
+    ]
+  }
 }

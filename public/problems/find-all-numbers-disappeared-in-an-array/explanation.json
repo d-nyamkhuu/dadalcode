@@ -45,5 +45,86 @@
       "note": "Convert an unmarked zero-based home back to its corresponding one-based value."
     }
   ],
-  "keyDecision": "Always read the original magnitude with abs. Mark with -abs so repeated visits do not undo the marker."
+  "keyDecision": "Always read the original magnitude with abs. Mark with -abs so repeated visits do not undo the marker.",
+  "concept": {
+    "question": "Why do unmarked addresses reveal absent values?",
+    "intuition": [
+      "Comparing every value from one through array length against the whole input is quadratic. Each allowed value can instead leave a presence mark at its corresponding address.",
+      "Make address v−1 negative for every encountered magnitude v. Repeated values preserve the mark rather than toggling it. Afterward, each still-positive address identifies a value that never appeared."
+    ],
+    "observation": "Presence marks are permanent; repeats must not erase them.",
+    "approach": [
+      "Mark the address belonging to each scanned magnitude.",
+      "Keep already marked addresses negative.",
+      "Read positive addresses as missing one-based values."
+    ],
+    "correctness": "Marking preserves every original magnitude and makes address v−1 negative exactly when v occurs. Repeating a value leaves that invariant unchanged. Thus after the scan a positive address is equivalent to absence of its represented value, and reading all such addresses produces every missing value once.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1) auxiliary",
+      "explanation": "One marking pass and one reading pass take linear time. Signs are stored in the existing array, giving constant auxiliary storage besides the missing-value output."
+    },
+    "pitfalls": [
+      "Presence marks are permanent; repeats must not erase them.",
+      "Assign a negative magnitude rather than toggling signs."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-all-numbers-disappeared-in-an-array/concept.webp",
+        "alt": "Make address v−1 negative for every encountered magnitude v. Repeated values preserve the mark rather than toggling it. Afterward, each still-positive address identifies a value that never appeared.",
+        "caption": "Make address v−1 negative for every encountered magnitude v. Repeated values preserve the mark rather than toggling it. Afterward, each still-positive address identifies a value that never appeared.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find All Numbers Disappeared in an Array algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find All Numbers Disappeared in an Array, not a generic data structure illustration. The key idea is: Use each array position to mark whether its corresponding value appears. When you see value v, make position v - 1 negative. Repeated values leave the marker negative. After the scan, a positive position means its corresponding number was never seen. The reason a decision is safe is: Always read the original magnitude with abs. Mark with -abs so repeated visits do not undo the marker. The actual example this lesson teaches is {\"nums\": [4, 3, 2, 7, 8, 2, 3, 1]} with answer [5, 6]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why do unmarked addresses reveal absent values?",
+        "decision": "Presence marks are permanent; repeats must not erase them."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing every value from one through array length against the whole input is quadratic. Each allowed value can instead leave a presence mark at its corresponding address.",
+        "decision": "Make address v−1 negative for every encountered magnitude v. Repeated values preserve the mark rather than toggling it. Afterward, each still-positive address identifies a value that never appeared."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Make address v−1 negative for every encountered magnitude v. Repeated values preserve the mark rather than toggling it. Afterward, each still-positive address identifies a value that never appeared.",
+        "decision": "Presence marks are permanent; repeats must not erase them."
+      },
+      {
+        "id": "mark-by-value-not-by-scan-position",
+        "title": "Mark by value, not by scan position",
+        "narration": "For [4,3,2,7,8,2,3,1], the present distinct values are 1,2,3,4,7,8.",
+        "decision": "Repeated occurrences mark the same address."
+      },
+      {
+        "id": "two-addresses-remain-positive",
+        "title": "Two addresses remain positive",
+        "narration": "The final marked array is [−4,−3,−2,−7,8,2,−3,−1]. Positions four and five remain positive.",
+        "decision": "A sign belongs to the address’s value, regardless of the magnitude stored there."
+      },
+      {
+        "id": "convert-addresses-back-to-values",
+        "title": "Convert addresses back to values",
+        "narration": "Positions four and five stand for one-based values five and six. Return [5,6].",
+        "decision": "The missing values are addresses plus one, not stored magnitudes."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Marking preserves every original magnitude and makes address v−1 negative exactly when v occurs. Repeating a value leaves that invariant unchanged. Thus after the scan a positive address is equivalent to absence of its represented value, and reading all such addresses produces every missing value once.",
+        "decision": "Presence marks are permanent; repeats must not erase them."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "If every allowed value occurs, no positive address remains and the result is empty.",
+        "decision": "Assign a negative magnitude rather than toggling signs."
+      }
+    ]
+  }
 }

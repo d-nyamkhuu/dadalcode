@@ -124,5 +124,86 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "How can later equal copies remain useful while equal sibling choices disappear?",
+    "intuition": [
+      "Equal occurrences can start identical families of subsets. Removing them entirely would lose subsets that need two copies, while exploring every equal sibling would duplicate results.",
+      "Sort the values. At any one selection step, try only the first of equal alternatives. Once a value is chosen, its later equal copy may still be chosen deeper in that path. Save each path, including empty."
+    ],
+    "observation": "Skip equal choices at the same depth, while permitting equal copies at deeper depths.",
+    "approach": [
+      "Sort equal values together.",
+      "Save the path and extend through later positions.",
+      "Skip equal sibling choices, then undo each extension."
+    ],
+    "correctness": "Every multiset subset can be built by taking its equal occurrences in sorted order. The earliest sibling choice permits all later copies as descendants, so it covers every needed multiplicity. Repeating a later equal sibling would cover the same family and is skipped. Every saved path therefore represents one distinct subset.",
+    "complexity": {
+      "time": "O(n * 2^n)",
+      "space": "O(n) auxiliary, excluding output",
+      "explanation": "Worst-case output remains exponential when values are distinct. Sorting and the current path add linear-size working storage; copied subsets account for the output size."
+    },
+    "pitfalls": [
+      "Skip equal choices at the same depth, while permitting equal copies at deeper depths.",
+      "Keeping multiple copies differs from repeating the same subset."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/subsets-ii/concept.webp",
+        "alt": "Sort the values. At any one selection step, try only the first of equal alternatives. Once a value is chosen, its later equal copy may still be chosen deeper in that path. Save each path, including empty.",
+        "caption": "Sort the values. At any one selection step, try only the first of equal alternatives. Once a value is chosen, its later equal copy may still be chosen deeper in that path. Save each path, including empty.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Subsets II algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Subsets II, not a generic data structure illustration. The key idea is: Sort the numbers so equal values are together. Build subsets by choosing later positions. At one step, choosing either of two equal values would start the same family of subsets, so try only the first. A later step may still choose another copy to include duplicates in a subset. The reason a decision is safe is: Skip equal choices at the same depth, but allow equal values at successive depths. The actual example this lesson teaches is {\"nums\": [1, 2, 2]} with answer [[], [1], [2], [1, 2], [2, 2], [1, 2, 2]]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can later equal copies remain useful while equal sibling choices disappear?",
+        "decision": "Skip equal choices at the same depth, while permitting equal copies at deeper depths."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Equal occurrences can start identical families of subsets. Removing them entirely would lose subsets that need two copies, while exploring every equal sibling would duplicate results.",
+        "decision": "Sort the values. At any one selection step, try only the first of equal alternatives. Once a value is chosen, its later equal copy may still be chosen deeper in that path. Save each path, including empty."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Sort the values. At any one selection step, try only the first of equal alternatives. Once a value is chosen, its later equal copy may still be chosen deeper in that path. Save each path, including empty.",
+        "decision": "Skip equal choices at the same depth, while permitting equal copies at deeper depths."
+      },
+      {
+        "id": "follow-a-branch-containing-one",
+        "title": "Follow a branch containing one",
+        "narration": "From [1,2,2], save empty and [1]. Choose the first 2, then the later 2, saving [1,2] and [1,2,2].",
+        "decision": "Equal descendants may represent multiple required copies."
+      },
+      {
+        "id": "skip-the-repeated-sibling",
+        "title": "Skip the repeated sibling",
+        "narration": "Back at [1], do not start another branch with its second 2. That would repeat [1,2].",
+        "decision": "The earlier equal sibling already represents that family."
+      },
+      {
+        "id": "finish-the-zero-one-two-copy-choices",
+        "title": "Finish the zero-one-two copy choices",
+        "narration": "At the root, choose the first 2 to save [2] and [2,2]. Skip the later root 2. Six subsets remain.",
+        "decision": "Each distinct multiplicity pattern receives one route."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every multiset subset can be built by taking its equal occurrences in sorted order. The earliest sibling choice permits all later copies as descendants, so it covers every needed multiplicity. Repeating a later equal sibling would cover the same family and is skipped. Every saved path therefore represents one distinct subset.",
+        "decision": "Skip equal choices at the same depth, while permitting equal copies at deeper depths."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: [2,2] yields empty, [2], and [2,2].",
+        "decision": "Keeping multiple copies differs from repeating the same subset."
+      }
+    ]
+  }
 }

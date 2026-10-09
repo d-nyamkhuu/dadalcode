@@ -33,5 +33,86 @@
       "note": "Once a mirrored pair agrees, both pointers move inward; previously compared characters never need to be revisited."
     }
   ],
-  "keyDecision": "Skip non-alphanumeric characters independently at both ends before comparing lowercase characters."
+  "keyDecision": "Skip non-alphanumeric characters independently at both ends before comparing lowercase characters.",
+  "concept": {
+    "question": "Which mirrored characters matter after spaces, punctuation, and case are ignored?",
+    "intuition": [
+      "Comparing the raw text includes characters the problem excludes. Constructing a cleaned copy works, but two inward-moving scans can skip irrelevant characters directly.",
+      "At both ends, skip nonletters and nondigits. Compare the next meaningful characters without case differences, then move inward. A mismatch rejects immediately; meeting or crossing means all meaningful mirrored pairs agree."
+    ],
+    "observation": "Letters and digits participate; punctuation and spaces do not.",
+    "approach": [
+      "Move both ends past irrelevant characters.",
+      "Compare the meaningful pair in a common case.",
+      "Continue inward until mismatch or all pairs have matched."
+    ],
+    "correctness": "Skipping nonalphanumeric characters exposes the next outermost pair of the normalized sequence. If those characters differ after case normalization, the sequence cannot be palindromic. If they match, removing the pair preserves the same question for its interior. Meeting bounds proves every mirrored pair matches.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Each scan crosses every original position at most once. Time is linear and only two positions and temporary characters use auxiliary storage."
+    },
+    "pitfalls": [
+      "Letters and digits participate; punctuation and spaces do not.",
+      "Do not skip a digit merely because it is not a letter."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/valid-palindrome/concept.webp",
+        "alt": "At both ends, skip nonletters and nondigits. Compare the next meaningful characters without case differences, then move inward. A mismatch rejects immediately; meeting or crossing means all meaningful mirrored pairs agree.",
+        "caption": "At both ends, skip nonletters and nondigits. Compare the next meaningful characters without case differences, then move inward. A mismatch rejects immediately; meeting or crossing means all meaningful mirrored pairs agree.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Valid Palindrome algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Valid Palindrome, not a generic data structure illustration. The key idea is: Compare the first and last relevant characters, then move inward. Skip punctuation and spaces, and compare letters without case differences. A mismatch proves the string is not a palindrome. If all mirrored pairs match, the normalized text reads the same in both directions. The reason a decision is safe is: Skip non-alphanumeric characters independently at both ends before comparing lowercase characters. The actual example this lesson teaches is {\"s\": \"A man, a plan, a canal: Panama\"} with answer true. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Which mirrored characters matter after spaces, punctuation, and case are ignored?",
+        "decision": "Letters and digits participate; punctuation and spaces do not."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Comparing the raw text includes characters the problem excludes. Constructing a cleaned copy works, but two inward-moving scans can skip irrelevant characters directly.",
+        "decision": "At both ends, skip nonletters and nondigits. Compare the next meaningful characters without case differences, then move inward. A mismatch rejects immediately; meeting or crossing means all meaningful mirrored pairs agree."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "At both ends, skip nonletters and nondigits. Compare the next meaningful characters without case differences, then move inward. A mismatch rejects immediately; meeting or crossing means all meaningful mirrored pairs agree.",
+        "decision": "Letters and digits participate; punctuation and spaces do not."
+      },
+      {
+        "id": "the-outer-a-and-a-agree",
+        "title": "The outer A and a agree",
+        "narration": "For A man, a plan, a canal: Panama, the first A and final a match after ignoring case.",
+        "decision": "Case does not change the meaningful character identity."
+      },
+      {
+        "id": "skip-gaps-and-punctuation",
+        "title": "Skip gaps and punctuation",
+        "narration": "After skipping spaces, the next pair m,m agrees. Commas, the colon, and other spaces never enter comparisons.",
+        "decision": "Skipping removes only characters outside the permitted alphanumeric set."
+      },
+      {
+        "id": "the-normalized-mirrored-sequence-agrees",
+        "title": "The normalized mirrored sequence agrees",
+        "narration": "Continuing inward matches every pair in amanaplanacanalpanama. Return yes.",
+        "decision": "All compared pairs are exactly the outermost unmatched meaningful characters."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Skipping nonalphanumeric characters exposes the next outermost pair of the normalized sequence. If those characters differ after case normalization, the sequence cannot be palindromic. If they match, removing the pair preserves the same question for its interior. Meeting bounds proves every mirrored pair matches.",
+        "decision": "Letters and digits participate; punctuation and spaces do not."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Digits matter; punctuation-only text has an empty normalized sequence and is palindromic.",
+        "decision": "Do not skip a digit merely because it is not a letter."
+      }
+    ]
+  }
 }

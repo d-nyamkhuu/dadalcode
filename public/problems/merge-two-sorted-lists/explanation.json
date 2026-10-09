@@ -47,5 +47,87 @@
       "note": "The remaining suffix is already ordered, so a single link completes all remaining work."
     }
   ],
-  "keyDecision": "Choose the smaller current head. Move only the pointer for the list you chose."
+  "keyDecision": "Choose the smaller current head. Move only the pointer for the list you chose.",
+  "concept": {
+    "question": "Why are just two exposed list heads enough to choose the next value?",
+    "intuition": [
+      "Sorting every node again ignores the order already present in the two lists. The smallest remaining node of each list is always its head, so deeper nodes cannot be the next result while that head remains.",
+      "Imagine two ordered queues feeding one output chain. Compare their exposed front values and attach the smaller front node. Only that queue advances. When a queue empties, its counterpart’s remaining chain is already correctly ordered."
+    ],
+    "observation": "Always attach a smallest exposed head, and advance only the list that supplied it.",
+    "approach": [
+      "Compare the first remaining node of each list.",
+      "Attach the smaller node and expose its successor.",
+      "When one list ends, attach the rest of the other list."
+    ],
+    "correctness": "Every time a node is attached, it is no larger than either list’s remaining head and hence no larger than any remaining node. The output therefore stays sorted. Advancing only its source uses every original node once. When one list empties, the other suffix is already ordered and belongs after the completed prefix.",
+    "complexity": {
+      "time": "O(m+n)",
+      "space": "O(1)",
+      "explanation": "Each node is attached once, so work is proportional to the combined list lengths. Reusing the original nodes requires only a few bookmarks and one temporary starting node."
+    },
+    "pitfalls": [
+      "Advance the chosen source and the output tail.",
+      "Return the first real output node.",
+      "Preserve all equal-valued nodes."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/merge-two-sorted-lists/concept.webp",
+        "alt": "Two ordered chains expose their smallest remaining nodes to one growing sorted output chain.",
+        "caption": "Two ordered chains expose their smallest remaining nodes to one growing sorted output chain.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Merge Two Sorted Lists algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Merge Two Sorted Lists, not a generic data structure illustration. The key idea is: Each input list is sorted, so its first remaining node has its smallest remaining value. Compare those two nodes and attach the smaller one to the result. Repeat until one list ends, then attach the rest of the other list. The reason a decision is safe is: Choose the smaller current head. Move only the pointer for the list you chose. The actual example this lesson teaches is {\"list1\": [1, 2, 4], \"list2\": [1, 3, 4]} with answer [1, 1, 2, 3, 4, 4]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why are just two exposed list heads enough to choose the next value?",
+        "decision": "Always attach a smallest exposed head, and advance only the list that supplied it."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Sorting every node again ignores the order already present in the two lists. The smallest remaining node of each list is always its head, so deeper nodes cannot be the next result while that head remains.",
+        "decision": "Imagine two ordered queues feeding one output chain. Compare their exposed front values and attach the smaller front node. Only that queue advances. When a queue empties, its counterpart’s remaining chain is already correctly ordered."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Imagine two ordered queues feeding one output chain. Compare their exposed front values and attach the smaller front node. Only that queue advances. When a queue empties, its counterpart’s remaining chain is already correctly ordered.",
+        "decision": "Always attach a smallest exposed head, and advance only the list that supplied it."
+      },
+      {
+        "id": "two-exposed-minima",
+        "title": "Two exposed minima",
+        "narration": "The lists are 1 → 2 → 4 and 1 → 3 → 4. Their heads tie at 1; choose the first list’s 1.",
+        "decision": "Either tied minimum is safe to attach first."
+      },
+      {
+        "id": "only-the-chosen-list-advances",
+        "title": "Only the chosen list advances",
+        "narration": "Now compare 2 with the other list’s 1. Take 1, then 2, then 3. The growing chain is 1 → 1 → 2 → 3.",
+        "decision": "A deeper node is no smaller than its own exposed head."
+      },
+      {
+        "id": "join-the-remaining-tail",
+        "title": "Join the remaining tail",
+        "narration": "Take the first list’s 4. It ends, so attach the remaining 4 from the second list.",
+        "decision": "A sorted remaining suffix needs no further comparisons."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every time a node is attached, it is no larger than either list’s remaining head and hence no larger than any remaining node. The output therefore stays sorted. Advancing only its source uses every original node once. When one list empties, the other suffix is already ordered and belongs after the completed prefix.",
+        "decision": "Always attach a smallest exposed head, and advance only the list that supplied it."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "Boundary example: one list may be empty. The answer is simply the other list.",
+        "decision": "No minimum comparison is needed when only one source remains."
+      }
+    ]
+  }
 }

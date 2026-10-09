@@ -80,6 +80,7 @@ try {
           "browser",
           "study-plans",
           "learning",
+          "concepts",
           "examples",
           "visualizations",
           "visualization-viewer",

@@ -144,5 +144,87 @@
         }
       ]
     }
-  ]
+  ],
+  "concept": {
+    "question": "What if each number could ask for its missing partner?",
+    "intuition": [
+      "Imagine four number tiles and a target total of nine. We need two different tiles that fill that total exactly. Trying every pair works, but each new tile makes us revisit the earlier tiles one by one. The question becomes much simpler when we turn it around: if this tile is seven, which single value would complete nine?",
+      "The missing partner is two. Keep a small address book of numbers already encountered and their positions. Looking up two now answers the whole pairing question in one operation. This is the useful observation: a search through many possible partners can become a question about one exact value."
+    ],
+    "observation": "Ask for the missing partner before remembering the current tile. The address book then contains only different, earlier positions.",
+    "approach": [
+      "Read a number and subtract it from the target to find the missing partner.",
+      "Look for that partner among earlier numbers. If it is there, the two remembered positions are the answer.",
+      "If it is absent, remember this number and its position, then continue."
+    ],
+    "correctness": "Every valid pair has an earlier tile and a later tile. When the later one arrives, the earlier one is already remembered. Their values make the target by construction. Since the current tile has not yet entered the address book, it cannot accidentally pair with itself. This explains both why every valid pair can be found and why a reported pair uses two different positions.",
+    "complexity": {
+      "time": "O(n) expected",
+      "space": "O(n)",
+      "explanation": "Read each tile at most once. Looking up and remembering a value take constant time on average, so doubling the number of tiles roughly doubles the work. The address book may need to remember almost all the tiles. Hashing gives an expected, rather than worst-case, linear time bound."
+    },
+    "pitfalls": [
+      "Two equal values can form a pair only when they occupy two separate positions.",
+      "The answer is a pair of positions, not the two number values.",
+      "Negative numbers and zero follow exactly the same missing-partner reasoning."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/two-sum/concept.webp",
+        "alt": "Two glowing puzzle pieces join into one outline, suggesting a number and its missing partner.",
+        "caption": "Think of each number as one piece of a target total. Its missing piece must come from another position; the exact example beside this lesson pairs 2 with 7.",
+        "prompt": "Create a polished mathematical intuition illustration for a dark algorithm lesson, widescreen 2:1. Black background, restrained cyan and lime with warm gold accents, crisp geometric luminous shapes, clear negative space, elegant visual hierarchy. No UI, no code, no signatures, no watermark. Two complementary differently colored puzzle pieces meet to complete one circular ring. A row of earlier pieces waits in a small cabinet on the left; a new arriving piece on the right looks back toward its complementary piece. Emphasize matching a missing partner among EARLIER objects, without counting, numbers, proportional lengths, or equations."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "two-tiles-one-total",
+        "title": "Two tiles, one total",
+        "narration": "The numbers are 2, 7, 11, and 15. Find two different positions whose values make 9.",
+        "decision": "A tile can contribute once. We are finding positions, not creating new numbers."
+      },
+      {
+        "id": "why-checking-every-pair-repeats-work",
+        "title": "Why checking every pair repeats work",
+        "narration": "We could compare 2 with 7, then 11, then 15, and repeat such comparisons for every next number.",
+        "decision": "Those repeated comparisons are the bottleneck. We want to ask a more focused question."
+      },
+      {
+        "id": "turn-the-question-around",
+        "title": "Turn the question around",
+        "narration": "For each number, ask what is missing from 9. For 2, the missing partner is 7.",
+        "decision": "Only one value can complete a particular number to the target."
+      },
+      {
+        "id": "remember-the-first-tile",
+        "title": "Remember the first tile",
+        "narration": "No earlier number is available yet. Remember the value 2 and its position, 0.",
+        "decision": "Remembering its position lets us later return the location of the pair."
+      },
+      {
+        "id": "the-next-tile-finds-its-partner",
+        "title": "The next tile finds its partner",
+        "narration": "The next value is 7. Its missing partner is 2, already remembered at position 0.",
+        "decision": "The stored tile is earlier, so these are two different positions."
+      },
+      {
+        "id": "the-answer-emerges",
+        "title": "The answer emerges",
+        "narration": "Positions 0 and 1 hold 2 and 7. Their total is 9, so these positions are the answer.",
+        "decision": "The required pair is found. The remaining numbers cannot improve an exact answer."
+      },
+      {
+        "id": "why-no-pair-is-missed",
+        "title": "Why no pair is missed",
+        "narration": "In any valid pair, the later tile asks for the earlier tile. The earlier tile is waiting in the address book.",
+        "decision": "One forward scan eventually examines the later member of the guaranteed pair."
+      },
+      {
+        "id": "a-useful-boundary-case",
+        "title": "A useful boundary case",
+        "narration": "Separate example: a target of 6 with two tiles both valued 3 is valid. A single tile valued 3 cannot be used twice.",
+        "decision": "Check before remembering the current tile to preserve the distinct-position rule."
+      }
+    ]
+  }
 }

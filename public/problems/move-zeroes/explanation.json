@@ -44,5 +44,86 @@
       "note": "The swap moves a retained value forward while carrying a zero back into the unused suffix, preserving all values in place."
     }
   ],
-  "keyDecision": "Advance write only for a nonzero value; always advance read."
+  "keyDecision": "Advance write only for a nonzero value; always advance read.",
+  "concept": {
+    "question": "How can a write frontier preserve nonzero order while zeros collect behind it?",
+    "intuition": [
+      "Repeatedly deleting zeros and shifting the row wastes movement. Sorting zeros away might also reorder nonzero values, violating stability.",
+      "Keep a frontier marking the next slot for a nonzero value. Read left to right. Each nonzero exchanges into that frontier and advances it; a zero leaves it unchanged. The completed prefix follows original nonzero order."
+    ],
+    "observation": "Advance the write frontier only after placing a nonzero value.",
+    "approach": [
+      "Read values in original order.",
+      "Exchange each nonzero into the next prefix slot.",
+      "Leave zeros behind and return the changed original row."
+    ],
+    "correctness": "After each read, the prefix contains exactly the nonzero values encountered, in encounter order. Swapping the next nonzero into the frontier extends that invariant. Any displaced prefix-gap value is zero. At the end all nonzeros occupy the prefix and all remaining positions contain zeros, with no nonzero reordered.",
+    "complexity": {
+      "time": "O(n)",
+      "space": "O(1)",
+      "explanation": "Read each value once and perform at most one exchange per nonzero. Work is linear and auxiliary memory constant."
+    },
+    "pitfalls": [
+      "Advance the write frontier only after placing a nonzero value.",
+      "A zero is a value to move back, not a signal to stop reading."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/move-zeroes/concept.webp",
+        "alt": "Keep a frontier marking the next slot for a nonzero value. Read left to right. Each nonzero exchanges into that frontier and advances it; a zero leaves it unchanged. The completed prefix follows original nonzero order.",
+        "caption": "Keep a frontier marking the next slot for a nonzero value. Read left to right. Each nonzero exchanges into that frontier and advances it; a zero leaves it unchanged. The completed prefix follows original nonzero order.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Move Zeroes algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Move Zeroes, not a generic data structure illustration. The key idea is: Keep a write position for the next nonzero value. Read the array from left to right. Whenever a nonzero value appears, swap it into that write position and advance the write position. This keeps the nonzero values in their original order while zeros collect at the end. The reason a decision is safe is: Advance write only for a nonzero value; always advance read. The actual example this lesson teaches is {\"nums\": [0, 1, 0, 3, 12]} with answer [1, 3, 12, 0, 0]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "How can a write frontier preserve nonzero order while zeros collect behind it?",
+        "decision": "Advance the write frontier only after placing a nonzero value."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Repeatedly deleting zeros and shifting the row wastes movement. Sorting zeros away might also reorder nonzero values, violating stability.",
+        "decision": "Keep a frontier marking the next slot for a nonzero value. Read left to right. Each nonzero exchanges into that frontier and advances it; a zero leaves it unchanged. The completed prefix follows original nonzero order."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Keep a frontier marking the next slot for a nonzero value. Read left to right. Each nonzero exchanges into that frontier and advances it; a zero leaves it unchanged. The completed prefix follows original nonzero order.",
+        "decision": "Advance the write frontier only after placing a nonzero value."
+      },
+      {
+        "id": "move-one-into-the-first-empty-slot",
+        "title": "Move one into the first empty slot",
+        "narration": "Input [0,1,0,3,12] becomes [1,0,0,3,12] when 1 moves to the frontier.",
+        "decision": "Encounter order determines stable nonzero order."
+      },
+      {
+        "id": "the-next-nonzero-follows-it",
+        "title": "The next nonzero follows it",
+        "narration": "Move 3 into the next prefix slot, giving [1,3,0,0,12].",
+        "decision": "Zeros do not advance the frontier."
+      },
+      {
+        "id": "complete-the-nonzero-prefix",
+        "title": "Complete the nonzero prefix",
+        "narration": "Move 12 after 3. The final row is [1,3,12,0,0].",
+        "decision": "The untouched order among retained nonzeros is preserved."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "After each read, the prefix contains exactly the nonzero values encountered, in encounter order. Swapping the next nonzero into the frontier extends that invariant. Any displaced prefix-gap value is zero. At the end all nonzeros occupy the prefix and all remaining positions contain zeros, with no nonzero reordered.",
+        "decision": "Advance the write frontier only after placing a nonzero value."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "An all-zero row needs no frontier advances.",
+        "decision": "A zero is a value to move back, not a signal to stop reading."
+      }
+    ]
+  }
 }

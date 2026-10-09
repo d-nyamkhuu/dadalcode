@@ -40,5 +40,87 @@
       "note": "A falling edge allows mid itself to be the peak. Keeping it avoids accidentally discarding the correct answer."
     }
   ],
-  "keyDecision": "Compare nums[mid] with nums[mid + 1], keeping mid on the falling side."
+  "keyDecision": "Compare nums[mid] with nums[mid + 1], keeping mid on the falling side.",
+  "concept": {
+    "question": "Why does following an upward slope always leave some peak ahead?",
+    "intuition": [
+      "Finding the global largest value would give a peak but reads every value. The task accepts any peak, so a local slope can guide a smaller search.",
+      "Compare the middle value with its next neighbor. If the slope rises, a peak exists toward the right before the row ends or turns downward. If it falls, a peak exists at the middle or to its left. Keep the corresponding side."
+    ],
+    "observation": "Keep the rising side; on a falling slope, retain the midpoint as a possible peak.",
+    "approach": [
+      "Compare the midpoint with its right neighbor.",
+      "Keep the right side on a rise, or the left side including the middle on a fall.",
+      "Return the sole remaining position."
+    ],
+    "correctness": "A rising edge guarantees a peak on its right because continuing rises reach the boundary, or the first fall creates a peak. The symmetric falling-edge argument guarantees a peak on the retained left side. The boundary convention treats outside values as lower than any input. Every update preserves a peak, so the last position is one.",
+    "complexity": {
+      "time": "O(log n)",
+      "space": "O(1)",
+      "explanation": "Halving the candidate range gives logarithmic work. A few positions use constant extra memory."
+    },
+    "pitfalls": [
+      "Return a position rather than the peak value.",
+      "Retain the midpoint on a falling slope.",
+      "Use the strict unequal-neighbor contract."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/find-peak-element/concept.webp",
+        "alt": "Compare the middle value with its next neighbor. If the slope rises, a peak exists toward the right before the row ends or turns downward. If it falls, a peak exists at the middle or to its left. Keep the corresponding side.",
+        "caption": "Compare the middle value with its next neighbor. If the slope rises, a peak exists toward the right before the row ends or turns downward. If it falls, a peak exists at the middle or to its left. Keep the corresponding side.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Find Peak Element algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Find Peak Element, not a generic data structure illustration. The key idea is: Look at the slope between the middle value and the next value. If it rises, a peak exists on the right. If it falls, a peak exists at the middle or on the left. Keep that side. We need any peak, so finding the global maximum is unnecessary. The reason a decision is safe is: Compare nums[mid] with nums[mid + 1], keeping mid on the falling side. The actual example this lesson teaches is {\"nums\": [1, 2, 1, 3, 5, 6, 4]} with answer 5. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why does following an upward slope always leave some peak ahead?",
+        "decision": "Keep the rising side; on a falling slope, retain the midpoint as a possible peak."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Finding the global largest value would give a peak but reads every value. The task accepts any peak, so a local slope can guide a smaller search.",
+        "decision": "Compare the middle value with its next neighbor. If the slope rises, a peak exists toward the right before the row ends or turns downward. If it falls, a peak exists at the middle or to its left. Keep the corresponding side."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Compare the middle value with its next neighbor. If the slope rises, a peak exists toward the right before the row ends or turns downward. If it falls, a peak exists at the middle or to its left. Keep the corresponding side.",
+        "decision": "Keep the rising side; on a falling slope, retain the midpoint as a possible peak."
+      },
+      {
+        "id": "follow-the-first-rise",
+        "title": "Follow the first rise",
+        "narration": "In [1,2,1,3,5,6,4], middle value 3 rises to 5. Keep the right side.",
+        "decision": "Some peak must occur beyond that rising edge."
+      },
+      {
+        "id": "a-falling-edge-keeps-its-left-value",
+        "title": "A falling edge keeps its left value",
+        "narration": "The next midpoint 6 falls to 4. Keep 6 and the values before it in the current range.",
+        "decision": "Six may itself be the peak."
+      },
+      {
+        "id": "a-final-rise-selects-position-five",
+        "title": "A final rise selects position five",
+        "narration": "Value 5 rises to 6, leaving original position 5. Its value exceeds neighbors 5 and 4.",
+        "decision": "The earlier peak at position 1 need not be found."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "A rising edge guarantees a peak on its right because continuing rises reach the boundary, or the first fall creates a peak. The symmetric falling-edge argument guarantees a peak on the retained left side. The boundary convention treats outside values as lower than any input. Every update preserves a peak, so the last position is one.",
+        "decision": "Keep the rising side; on a falling slope, retain the midpoint as a possible peak."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A single value is a peak under the outside-boundary convention.",
+        "decision": "A valid peak need not be the global maximum."
+      }
+    ]
+  }
 }

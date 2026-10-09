@@ -39,5 +39,86 @@
       "note": "Skipping the exact payload length positions the cursor at the next header, including when length is zero."
     }
   ],
-  "keyDecision": "Read '#' only inside a length header. Inside a payload, it is an ordinary character."
+  "keyDecision": "Read '#' only inside a length header. Inside a payload, it is an ordinary character.",
+  "concept": {
+    "question": "Why can a length header preserve text containing every possible separator?",
+    "intuition": [
+      "Joining texts with a separator fails when a payload contains that separator. An empty text also needs an explicit record so it cannot disappear between boundaries.",
+      "Write each text’s decimal character length, a header delimiter, and its exact payload. During decoding, read the delimiter only to end the numeric header, then consume precisely the announced character count. Payload delimiters are ordinary data."
+    ],
+    "observation": "Only headers search for delimiters; payloads are read by their declared lengths.",
+    "approach": [
+      "Encode each record as length, header delimiter, and payload.",
+      "Join the records into one stream.",
+      "Decode a numeric header, consume that many characters, and repeat."
+    ],
+    "correctness": "Every header announces the exact following payload length, so the receiver identifies its endpoint regardless of payload characters. Starting the next header at that endpoint preserves record alignment. Inductively all original records are recovered in order, including a zero-length record represented by an explicit zero header.",
+    "complexity": {
+      "time": "O(C + m)",
+      "space": "O(C + m)",
+      "explanation": "Encoding and decoding read the payload and headers once. Work and stored stream/output scale with total payload characters plus record count."
+    },
+    "pitfalls": [
+      "Only headers search for delimiters; payloads are read by their declared lengths.",
+      "The format assumes a well-formed stream from the encoder."
+    ],
+    "illustrations": [
+      {
+        "src": "illustrations/encode-and-decode-strings/concept.webp",
+        "alt": "Write each text’s decimal character length, a header delimiter, and its exact payload. During decoding, read the delimiter only to end the numeric header, then consume precisely the announced character count. Payload delimiters are ordinary data.",
+        "caption": "Write each text’s decimal character length, a header delimiter, and its exact payload. During decoding, read the delimiter only to end the numeric header, then consume precisely the announced character count. Payload delimiters are ordinary data.",
+        "prompt": "Use case: scientific-educational. Asset type: original conceptual illustration for a beginner's Encode and Decode Strings algorithm lesson. Create one polished, wide landscape mathematical visual explanation. Charcoal-black background, luminous cyan and lime, restrained warm ivory accents, spacious visual lecture aesthetic. This image must be specifically about Encode and Decode Strings, not a generic data structure illustration. The key idea is: A separator alone is unsafe because the text may contain that separator. Instead, write each string's length before its text. During decoding, read the length header, then take exactly that many characters. The next header begins immediately afterward, even for an empty string. The reason a decision is safe is: Read '#' only inside a length header. Inside a payload, it is an ordinary character. The actual example this lesson teaches is {\"strs\": [\"Hello\", \"World\"]} with answer [\"Hello\", \"World\"]. Use that example as inspiration for a clear spatial metaphor depicting the central algorithmic relationship, useful comparison, or before-and-after transformation. Prefer one focused composition to a dense infographic. Keep node identities and any depicted relationships mathematically correct. This is conceptual artwork; the application separately draws exact example states. No programming code, source variables, formulas with identifiers, UI controls, screenshot, pseudocode, text paragraphs, logos, watermark, or unrelated objects. Avoid in-image text entirely; use geometry, links, light, and grouping to communicate the specific insight. Do not depict a different algorithm from the stated one."
+      }
+    ],
+    "scenes": [
+      {
+        "id": "the-question",
+        "title": "The question",
+        "narration": "Why can a length header preserve text containing every possible separator?",
+        "decision": "Only headers search for delimiters; payloads are read by their declared lengths."
+      },
+      {
+        "id": "the-obstacle",
+        "title": "The obstacle",
+        "narration": "Joining texts with a separator fails when a payload contains that separator. An empty text also needs an explicit record so it cannot disappear between boundaries.",
+        "decision": "Write each text’s decimal character length, a header delimiter, and its exact payload. During decoding, read the delimiter only to end the numeric header, then consume precisely the announced character count. Payload delimiters are ordinary data."
+      },
+      {
+        "id": "the-useful-observation",
+        "title": "The useful observation",
+        "narration": "Write each text’s decimal character length, a header delimiter, and its exact payload. During decoding, read the delimiter only to end the numeric header, then consume precisely the announced character count. Payload delimiters are ordinary data.",
+        "decision": "Only headers search for delimiters; payloads are read by their declared lengths."
+      },
+      {
+        "id": "two-five-character-records",
+        "title": "Two five-character records",
+        "narration": "For Hello and World, records are 5#Hello and 5#World. Joining gives 5#Hello5#World, length fourteen.",
+        "decision": "Each record carries its own boundary information."
+      },
+      {
+        "id": "read-exactly-the-announced-payload",
+        "title": "Read exactly the announced payload",
+        "narration": "The first header announces five characters. Read Hello, then begin the next header immediately after its final o.",
+        "decision": "Do not search the payload for a delimiter."
+      },
+      {
+        "id": "a-fresh-receiver-recovers-both-texts",
+        "title": "A fresh receiver recovers both texts",
+        "narration": "The second header again announces five, giving World. The cursor reaches the end and the result is [Hello,World].",
+        "decision": "Decoding uses only the transmitted stream, not sender memory."
+      },
+      {
+        "id": "why-the-answer-is-complete",
+        "title": "Why the answer is complete",
+        "narration": "Every header announces the exact following payload length, so the receiver identifies its endpoint regardless of payload characters. Starting the next header at that endpoint preserves record alignment. Inductively all original records are recovered in order, including a zero-length record represented by an explicit zero header.",
+        "decision": "Only headers search for delimiters; payloads are read by their declared lengths."
+      },
+      {
+        "id": "a-boundary-to-remember",
+        "title": "A boundary to remember",
+        "narration": "A payload containing # is safe, and an empty payload is represented by 0#.",
+        "decision": "The format assumes a well-formed stream from the encoder."
+      }
+    ]
+  }
 }
