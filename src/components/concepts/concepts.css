@@ -219,7 +219,7 @@ text.concept-shape {
     font-size: 20px;
   }
 }
-@media (max-height: 700px) {
+@media (max-height: 900px) {
   .solution-view-tabs {
     margin-bottom: 4px;
   }
